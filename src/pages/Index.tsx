@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Mail, Users, GraduationCap, Book, Award, ShoppingBag } from "lucide-react";
 import headshotImage from "@/assets/zain-headshot.png";
 import communityImage from "@/assets/community-image.png";
+import Logo3D from "@/components/Logo3D";
 
 const Index = () => {
   return (
@@ -12,7 +13,7 @@ const Index = () => {
       {/* Header */}
       <header className="border-b border-border">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between max-w-6xl">
-          <div className="text-2xl font-bold text-foreground">Zain Adtani</div>
+          <Logo3D />
           <nav className="hidden md:flex items-center gap-6">
             <a href="#digital-products" className="text-foreground hover:text-primary transition-all duration-300">
               Digital Products
