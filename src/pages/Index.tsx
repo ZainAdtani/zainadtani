@@ -17,36 +17,64 @@ const Index = () => {
   const { toast } = useToast();
 
   const generateQuote = async () => {
+    console.log("🎯 Generate Quote button clicked!");
     setIsLoading(true);
+    
     try {
+      console.log("📡 Calling Lovable Cloud edge function...");
+      console.log("🔗 Supabase client initialized:", !!supabase);
+      
       const { data, error } = await supabase.functions.invoke("generate-quote");
       
+      console.log("📦 Response received:", { data, error });
+      
       if (error) {
+        console.error("❌ Supabase error:", error);
         throw error;
       }
       
       if (data?.error) {
+        console.error("❌ Edge function returned error:", data.error);
         toast({
-          title: "Error",
+          title: "Error from backend",
           description: data.error,
           variant: "destructive",
         });
         return;
       }
       
+      if (!data?.quote) {
+        console.error("❌ No quote in response:", data);
+        toast({
+          title: "Error",
+          description: "No quote returned from backend",
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      console.log("✅ Quote generated successfully:", data.quote);
       setQuote(data.quote);
       toast({
         title: "Quote Generated! ✨",
         description: "Here's your daily inspiration",
       });
-    } catch (error) {
-      console.error("Error generating quote:", error);
+    } catch (error: any) {
+      console.error("❌ Error generating quote:", error);
+      console.error("Error details:", {
+        message: error?.message,
+        status: error?.status,
+        statusText: error?.statusText,
+        name: error?.name,
+      });
+      
       toast({
         title: "Error",
-        description: "Failed to generate quote. Please try again.",
+        description: error?.message || "Failed to generate quote. Please try again.",
         variant: "destructive",
       });
     } finally {
+      console.log("🏁 Quote generation process completed");
       setIsLoading(false);
     }
   };
