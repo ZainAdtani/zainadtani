@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles } from "lucide-react";
+import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles, Music } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import headshotImage from "@/assets/zain-headshot.png";
@@ -262,6 +262,35 @@ const Index = () => {
               </Card>
             </TabsContent>
           </Tabs>
+        </div>
+      </section>
+
+      {/* Spotify Playlist Section */}
+      <section className="py-16 md:py-24 bg-secondary">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <Card className="p-8 shadow-lg border-2">
+            <div className="text-center mb-8">
+              <Music className="w-12 h-12 text-primary mx-auto mb-4" />
+              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">
+                Study Playlist 🎵
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                My curated playlist to help you focus while studying for the EA exam
+              </p>
+            </div>
+            <div className="rounded-lg overflow-hidden shadow-xl">
+              <iframe 
+                style={{ borderRadius: '12px' }}
+                src="https://open.spotify.com/embed/playlist/4ZHa92ZbMSi2Fwps39XZl5?utm_source=generator&theme=0" 
+                width="100%" 
+                height="352" 
+                frameBorder="0" 
+                allowFullScreen
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy"
+              />
+            </div>
+          </Card>
         </div>
       </section>
 
