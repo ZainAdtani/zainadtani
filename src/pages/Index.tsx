@@ -2,16 +2,59 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Mail, Users, GraduationCap, Book, Award, ShoppingBag } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles } from "lucide-react";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 import headshotImage from "@/assets/zain-headshot.png";
 import communityImage from "@/assets/community-image.png";
 import Logo3D from "@/components/Logo3D";
+import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
+  const [quote, setQuote] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const generateQuote = async () => {
+    setIsLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("generate-quote");
+      
+      if (error) {
+        throw error;
+      }
+      
+      if (data?.error) {
+        toast({
+          title: "Error",
+          description: data.error,
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      setQuote(data.quote);
+      toast({
+        title: "Quote Generated! ✨",
+        description: "Here's your daily inspiration",
+      });
+    } catch (error) {
+      console.error("Error generating quote:", error);
+      toast({
+        title: "Error",
+        description: "Failed to generate quote. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-border">
+      <header className="border-b border-border shadow-md">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between max-w-6xl">
           <Logo3D />
           <nav className="hidden md:flex items-center gap-6">
@@ -52,9 +95,32 @@ const Index = () => {
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground">
                 Hey Friends 👋
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
+              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8">
                 I'm Zain. I'm an Engineer turned Enrolled Agent, helping busy beginners pass the EA exam and get confident with taxes.
               </p>
+              
+              {/* Daily Quote Generator */}
+              <Card className="p-6 shadow-lg border-2 border-primary/20">
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                    <Sparkles className="w-5 h-5 text-primary" />
+                    Daily Quote Generator
+                  </h3>
+                  <Textarea
+                    value={quote}
+                    readOnly
+                    placeholder="Click the button below to generate an inspiring quote..."
+                    className="min-h-[100px] text-base resize-none bg-secondary/50"
+                  />
+                  <Button 
+                    onClick={generateQuote}
+                    disabled={isLoading}
+                    className="w-full bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg"
+                  >
+                    {isLoading ? "Generating..." : "Generate Daily Quote"}
+                  </Button>
+                </div>
+              </Card>
             </div>
           </div>
         </div>
@@ -65,7 +131,7 @@ const Index = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Button 1: Free Community */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl">
+            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
               <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer" className="block">
                 <Users className="w-12 h-12 text-primary mb-4" />
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Engineer → Enrolled Agent</h3>
@@ -74,7 +140,7 @@ const Index = () => {
             </Card>
 
             {/* Button 2: Full Course */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl">
+            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
               <a href="https://whop.com/eng2ea/?a=eng2ea" target="_blank" rel="noopener noreferrer" className="block">
                 <GraduationCap className="w-12 h-12 text-primary mb-4" />
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Take the Full Course</h3>
@@ -83,7 +149,7 @@ const Index = () => {
             </Card>
 
             {/* Button 3: Books */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl">
+            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
               <a href="#books" className="block">
                 <Book className="w-12 h-12 text-primary mb-4" />
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Books I've Read</h3>
@@ -92,7 +158,7 @@ const Index = () => {
             </Card>
 
             {/* Button 4: Certifications */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl">
+            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
               <a href="#certifications" className="block">
                 <Award className="w-12 h-12 text-primary mb-4" />
                 <h3 className="text-2xl font-bold mb-2 text-foreground">My Certifications</h3>
@@ -116,7 +182,7 @@ const Index = () => {
             {/* Digital Products Tab */}
             <TabsContent value="digital-products" className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card className="overflow-hidden hover-lift transition-all duration-300">
+                <Card className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2">
                   <div className="p-8">
                     <ShoppingBag className="w-10 h-10 text-primary mb-4" />
                     <h3 className="text-2xl font-bold mb-3 text-foreground">Engineer to EA Part 1</h3>
@@ -131,7 +197,7 @@ const Index = () => {
                   </div>
                 </Card>
 
-                <Card className="overflow-hidden hover-lift transition-all duration-300">
+                <Card className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2">
                   <div className="p-8">
                     <Users className="w-10 h-10 text-primary mb-4" />
                     <h3 className="text-2xl font-bold mb-3 text-foreground">Free Community</h3>
@@ -159,7 +225,7 @@ const Index = () => {
                   { title: "Tax-Free Wealth", author: "Tom Wheelwright", rating: "⭐⭐⭐⭐", take: "How to build massive wealth by reducing taxes legally." },
                   { title: "The Lean Startup", author: "Eric Ries", rating: "⭐⭐⭐⭐", take: "Build, measure, learn - the modern approach to innovation." },
                 ].map((book, index) => (
-                  <Card key={index} className="p-6 hover-lift transition-all duration-300">
+                  <Card key={index} className="p-6 hover-lift transition-all duration-300 shadow-lg border-2">
                     <div className="aspect-[2/3] bg-accent mb-4 rounded-md flex items-center justify-center">
                       <Book className="w-16 h-16 text-primary" />
                     </div>
@@ -174,7 +240,7 @@ const Index = () => {
 
             {/* Certifications Tab */}
             <TabsContent value="certifications" className="space-y-6">
-              <Card className="p-8 hover-lift transition-all duration-300">
+              <Card className="p-8 hover-lift transition-all duration-300 shadow-lg border-2">
                 <Award className="w-16 h-16 text-primary mb-6" />
                 <h3 className="text-3xl font-bold mb-4 text-foreground">Enrolled Agent (EA)</h3>
                 <p className="text-lg text-muted-foreground mb-4">
@@ -187,7 +253,7 @@ const Index = () => {
                 </div>
               </Card>
 
-              <Card className="p-8 hover-lift transition-all duration-300">
+              <Card className="p-8 hover-lift transition-all duration-300 shadow-lg border-2">
                 <GraduationCap className="w-16 h-16 text-primary mb-6" />
                 <h3 className="text-3xl font-bold mb-4 text-foreground">Engineering Background</h3>
                 <p className="text-lg text-muted-foreground">
