@@ -70,7 +70,7 @@ const Index = () => {
               {/* Daily Quote Generator */}
               <Card className="p-6 shadow-lg border-2 border-primary/20">
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-2 text-right">
+                  <h3 className="text-lg flex items-center gap-2 text-center font-semibold text-zinc-950">
                     <Sparkles className="w-5 h-5 text-primary" />
                     Daily Quote Generator
                   </h3>
