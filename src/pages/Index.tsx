@@ -132,10 +132,16 @@ const Index = () => {
       <section className="py-16 md:py-24 bg-secondary">
         <div className="container mx-auto px-4 max-w-6xl">
           <Tabs defaultValue="digital-products" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
-              <TabsTrigger value="digital-products" id="digital-products">Digital Products</TabsTrigger>
-              <TabsTrigger value="books" id="books">Books</TabsTrigger>
-              <TabsTrigger value="certifications" id="certifications">Certifications</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-3 mb-8 h-auto">
+              <TabsTrigger value="digital-products" id="digital-products" className="text-xs sm:text-sm px-2 py-2.5">
+                Digital Products
+              </TabsTrigger>
+              <TabsTrigger value="books" id="books" className="text-xs sm:text-sm px-2 py-2.5">
+                Books
+              </TabsTrigger>
+              <TabsTrigger value="certifications" id="certifications" className="text-xs sm:text-sm px-2 py-2.5">
+                Certifications
+              </TabsTrigger>
             </TabsList>
 
             {/* Digital Products Tab */}
