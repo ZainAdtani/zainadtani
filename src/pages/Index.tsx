@@ -9,74 +9,48 @@ import { useToast } from "@/hooks/use-toast";
 import headshotImage from "@/assets/zain-headshot.png";
 import communityImage from "@/assets/community-image.png";
 import Logo3D from "@/components/Logo3D";
-import { supabase } from "@/integrations/supabase/client";
+const QUOTES_AND_NOTES = [
+  "It is the unknown we fear when we look upon death and darkness, nothing more. - J.K. Rowling, Harry Potter and the Deathly Hallows",
+  
+  "Instead of digging for gold, sell shovels. Instead of driving a taxi, build Uber. Wealth is not about working harder; it's about creating systems that work harder than you do. - MJ DeMarco, The Millionaire Fastlane",
+  
+  "More than 50% of graduates completely forget what they learn in college within 5 years, and within 10 years it's closer to 100%. If most of our \"education\" inevitably collects dust, then what was the point in learning it? Let's do some simple math: Let's be conservative and say that 5 hours per week are spent attending lectures and studying for exams (10 for finals week). If there are 15 weeks in a semester, that's 30 weeks a year. Multiply that by 4 we get 120 weeks, resulting in 600 hours invested into learning information that for the most part, will not be useful for your future work and career. Now I'm not saying you should renounce education completely, rather look past the shiny allure of \"financial stability and higher wages\" and make an informed decision of whether or not it aligns with what you desire. Almost anything can be learned on the internet, online education is booming. Opportunities for the next wave of innovators are scaling faster and faster thanks to technology and AI. Imagine what you could do with 600 extra hours, $200,000, and 4 years to learn and explore on your own? The future is wide open for those willing to diverge and create.",
+  
+  "Plan Your Day: Establish a clear plan for your daily activities. This sets the foundation for \"traction,\" where every action intentionally moves you toward your goals, contrasting with \"distraction,\" which pulls you away. Use tools like calendars to allocate specific time blocks for tasks.",
+  
+  "Did you know that the average person spends over one hour on social media per day, just consuming and not creating? Additionally, they spend another 2-3 hours watching television. That's four hours, on average, gone every day. Doing the math, 4 hours lost per day, multiplied by 7 days per week, equals 28 hours per week. That's basically equivalent to a part-time job. In fact, it's literally 3.5 eight-hour workdays lost per week. Four hours lost per day over 30 days = 120 hours = 15 WORKDAYS PER MONTH LOST.",
+  
+  "Motivation is not the cause of action, but the effect. If you wanna feel motivated to do something, take the smallest action towards doing it, then let the momentum carry you forward.",
+  
+  "Don't view exercise as an exchange for something. You don't work out to lose a few pounds or earn that hamburger and ice cream. With this mindset, you will lose motivation quickly and quit. Instead, view exercise as an investment. For every unit of energy you put in, you'll receive multiple units of energy back. The catch is that these units of energy you get back will be spread out over weeks, months and years. This is why exercising hardcore occasionally is far inferior than exercising a little bit every day.",
+  
+  "Statistically speaking, a normal person is physically unhealthy, emotionally anxious and depressed, socially lonely and financially in debt. Fuck being normal.",
+  
+  "Your mindset is the KEY to making more progress in your life, and journaling is the daily WORK that helps you master your mindset.",
+  
+  "Don't make assumptions about people, you have no fucking idea what they've been through. Don't make assumptions about yourself either. The last person we're objective about is ourselves.",
+  
+  "No one thinks about you as much as you think about yourself. Whatever you are insecure about, chances are 99% of people around you haven't even noticed it. This is because everybody else is too busy thinking about themselves. This may strike you as a little bit depressing, but it's actually liberating. It means that you are judged far less than you think.",
+  
+  "Develop a willingness to be disliked. It will grant you the freedom to do what needs to be done, even if it's unpopular.",
+  
+  "Nothing meaningful in life is easy, and nothing easy in life is meaningful. We think we'd like to have everything handed to us on a silver platter, but the truth is that we don't appreciate or enjoy things that we don't struggle for. So stop avoiding the difficult things in your life and instead find the difficult things you enjoy.",
+  
+  "It's never too late to change. It's never too late. I get emails all the time from people asking me, \"Hey, I'm 20 or 40 or 60 or 80, is it too late? Can I change? Is there time?\" The answer is it's never too late, there's always time. The only question is how long we're gonna sit here and make excuses and pretend there's not.",
+];
 
 const Index = () => {
   const [quote, setQuote] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const generateQuote = async () => {
-    console.log("🎯 Generate Quote button clicked!");
-    setIsLoading(true);
-    
-    try {
-      console.log("📡 Calling Lovable Cloud edge function...");
-      console.log("🔗 Supabase client initialized:", !!supabase);
-      
-      const { data, error } = await supabase.functions.invoke("generate-quote");
-      
-      console.log("📦 Response received:", { data, error });
-      
-      if (error) {
-        console.error("❌ Supabase error:", error);
-        throw error;
-      }
-      
-      if (data?.error) {
-        console.error("❌ Edge function returned error:", data.error);
-        toast({
-          title: "Error from backend",
-          description: data.error,
-          variant: "destructive",
-        });
-        return;
-      }
-      
-      if (!data?.quote) {
-        console.error("❌ No quote in response:", data);
-        toast({
-          title: "Error",
-          description: "No quote returned from backend",
-          variant: "destructive",
-        });
-        return;
-      }
-      
-      console.log("✅ Quote generated successfully:", data.quote);
-      setQuote(data.quote);
-      toast({
-        title: "Quote Generated! ✨",
-        description: "Here's your daily inspiration",
-      });
-    } catch (error: any) {
-      console.error("❌ Error generating quote:", error);
-      console.error("Error details:", {
-        message: error?.message,
-        status: error?.status,
-        statusText: error?.statusText,
-        name: error?.name,
-      });
-      
-      toast({
-        title: "Error",
-        description: error?.message || "Failed to generate quote. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      console.log("🏁 Quote generation process completed");
-      setIsLoading(false);
-    }
+  const generateQuote = () => {
+    const randomIndex = Math.floor(Math.random() * QUOTES_AND_NOTES.length);
+    const selectedQuote = QUOTES_AND_NOTES[randomIndex];
+    setQuote(selectedQuote);
+    toast({
+      title: "Quote Generated! ✨",
+      description: "Here's your daily inspiration",
+    });
   };
 
   return (
@@ -138,14 +112,13 @@ const Index = () => {
                     value={quote}
                     readOnly
                     placeholder="Click the button below to generate an inspiring quote..."
-                    className="min-h-[100px] text-base resize-none bg-secondary/50"
+                    className="min-h-[200px] text-base resize-none bg-secondary/50"
                   />
                   <Button 
                     onClick={generateQuote}
-                    disabled={isLoading}
                     className="w-full bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg"
                   >
-                    {isLoading ? "Generating..." : "Generate Daily Quote"}
+                    Generate Daily Quote
                   </Button>
                 </div>
               </Card>
