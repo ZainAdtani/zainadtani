@@ -1,284 +1,241 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Mail, BookOpen, Award, GraduationCap, ExternalLink } from "lucide-react";
-import headshotImage from "@/assets/zain-headshot-new.png";
-
-const books = [
-  { title: "The Giver", author: "Lois Lowry", description: "Step into a world where emotions are controlled—and one boy begins to see the truth." },
-  { title: "The 4-Hour Workweek", author: "Tim Ferriss", description: "Tired of trading time for money? This book flips the script-and your schedule." },
-  { title: "The Millionaire Fastlane", author: "MJ DeMarco", description: "Forget saving for 40 years. Build wealth the untraditional (but smart) way." },
-  { title: "Work the System", author: "Sam Carpenter", description: "Life's not chaos—it's just poorly built systems. This book hands you the toolkit." },
-  { title: "Atomic Habits", author: "James Clear", description: "Tiny tweaks, massive change. Learn why small habits are the real power moves." },
-  { title: "Building a Second Brain", author: "Tiago Forte", description: "Your memory isn't failing—you just need an upgrade. This book shows how." },
-  { title: "Harry Potter and the Sorcerer's Stone", author: "J.K. Rowling", description: "A lonely boy, a secret letter, and a world that changes everything. This is where magic begins." },
-  { title: "The 7 Habits of Highly Effective People", author: "Stephen R. Covey", description: "The classic that changed how leaders lead and doers do. Still sharp. Still relevant." },
-  { title: "Make Time", author: "Jake Knapp & John Zeratsky", description: "Drowning in busywork? Learn to fight back and focus on what truly matters—every day." },
-  { title: "Feel-Good Productivity", author: "Ali Abdaal", description: "What if working less could make you feel better and get more done? This one's productivity with a soul." }
-];
+import { BookOpen, Calculator, FileText, Mail, Youtube } from "lucide-react";
+import headshotImage from "@/assets/zain-headshot.png";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-16 md:py-24">
+      <section className="bg-[hsl(var(--hero-bg))] text-[hsl(var(--hero-foreground))] py-20 md:py-32">
         <div className="container mx-auto px-4 max-w-4xl text-center">
-          <img 
-            src={headshotImage} 
-            alt="Zain Adtani - Enrolled Agent" 
-            className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-primary shadow-2xl mx-auto mb-8"
-          />
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Hey Zain 👋
+          <div className="mb-6 text-sm tracking-widest text-muted-foreground uppercase">
+            Zain Adtani
+          </div>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            Engineer → Enrolled Agent.
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-muted-foreground max-w-2xl mx-auto">
-            I'm Zain. I'm an Engineer turned Enrolled Agent, helping busy beginners pass the EA exam and get confident with taxes.
+          <p className="text-xl md:text-2xl mb-10 text-[hsl(var(--hero-foreground))]/80 max-w-2xl mx-auto">
+            I teach busy beginners how to pass the EA exam and get confident with taxes.
           </p>
-          
-          {/* Newsletter Signup */}
-          <div className="max-w-md mx-auto mb-4">
-            <form className="flex flex-col sm:flex-row gap-3">
-              <Input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="flex-1 h-12 text-base"
-              />
-              <Button type="submit" size="lg" className="h-12 px-8">
-                Subscribe
-              </Button>
-            </form>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Button size="lg" className="text-lg px-8 py-6 bg-primary hover:bg-primary/90">
+              Join Free Newsletter
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="text-lg px-8 py-6 border-2 border-[hsl(var(--hero-foreground))]/20 text-[hsl(var(--hero-foreground))] hover:bg-[hsl(var(--hero-foreground))]/10"
+            >
+              Start EA Part 1
+            </Button>
           </div>
-          <p className="text-sm text-muted-foreground">No spam. Ever.</p>
-        </div>
-      </section>
-
-      {/* Main Action Buttons */}
-      <section className="py-12 bg-card/50">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="hover-scale cursor-pointer" onClick={() => window.open('https://www.skool.com/eng2ea/about', '_blank')}>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <GraduationCap className="w-6 h-6" />
-                  Engineer → Enrolled Agent
-                </CardTitle>
-                <CardDescription>Free community • Short lessons. No fluff.</CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="hover-scale cursor-pointer" onClick={() => window.open('https://whop.com/eng2ea/?a=eng2ea', '_blank')}>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <BookOpen className="w-6 h-6" />
-                  Take the Full Course
-                </CardTitle>
-                <CardDescription>Engineer to Enrolled Agent Part 1</CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="hover-scale cursor-pointer" onClick={() => document.getElementById('books-tab')?.click()}>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <BookOpen className="w-6 h-6" />
-                  Books I've Read
-                </CardTitle>
-                <CardDescription>My Personal Reading List</CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="hover-scale cursor-pointer" onClick={() => document.getElementById('certifications-tab')?.click()}>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Award className="w-6 h-6" />
-                  My Certifications
-                </CardTitle>
-                <CardDescription>Professional credentials & achievements</CardDescription>
-              </CardHeader>
-            </Card>
+          <div className="text-sm text-[hsl(var(--hero-foreground))]/60">
+            As seen on <span className="font-semibold">YouTube</span> • <span className="font-semibold">WHOP</span> • <span className="font-semibold">Udemy</span> (coming)
           </div>
         </div>
       </section>
 
-      {/* Tabbed Content */}
+      {/* Newsletter Section */}
+      <section className="py-16 md:py-24 bg-secondary">
+        <div className="container mx-auto px-4 max-w-2xl text-center">
+          <Mail className="w-12 h-12 mx-auto mb-6 text-primary" />
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Study Notes In Your Inbox
+          </h2>
+          <p className="text-lg text-muted-foreground mb-8">
+            Short, friendly emails with EA tips, mnemonics, and weekly wins.
+          </p>
+          <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <Input 
+              type="email" 
+              placeholder="Enter your email" 
+              className="flex-1 h-12 text-base"
+            />
+            <Button type="submit" size="lg" className="h-12 px-8">
+              Subscribe
+            </Button>
+          </form>
+          <p className="text-sm text-muted-foreground mt-4">
+            No spam. Ever.
+          </p>
+        </div>
+      </section>
+
+      {/* Resources Section */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-6xl">
-          <Tabs defaultValue="products" className="w-full">
-            <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-12">
-              <TabsTrigger value="products">Digital Products</TabsTrigger>
-              <TabsTrigger value="books" id="books-tab">Books</TabsTrigger>
-              <TabsTrigger value="certifications" id="certifications-tab">Certifications</TabsTrigger>
-            </TabsList>
-
-            {/* Digital Products Tab */}
-            <TabsContent value="products" className="space-y-8">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Digital Products</h2>
-                <p className="text-lg text-muted-foreground">Courses and resources to help you succeed</p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Engineer to Enrolled Agent - Part 1</CardTitle>
-                    <CardDescription>Complete course to pass the EA exam with confidence</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Button className="w-full" onClick={() => window.open('https://whop.com/eng2ea/?a=eng2ea', '_blank')}>
-                      View Course
-                    </Button>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Free Community</CardTitle>
-                    <CardDescription>Join fellow EA students and share your journey</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Button variant="secondary" className="w-full" onClick={() => window.open('https://www.skool.com/eng2ea/about', '_blank')}>
-                      Join Now
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
-            </TabsContent>
-
-            {/* Books Tab */}
-            <TabsContent value="books" className="space-y-8">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">My Digital Library</h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  A simple space where I keep track of what I've read and what I want to read next. There's no deep commentary here (unless I'm in the mood). Just titles, a few notes, and a growing list that I update every week.
+          <div className="text-center mb-12">
+            <div className="text-sm tracking-widest text-muted-foreground uppercase mb-2">
+              Resources
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Join The New 1%
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Become future-proof with these tools
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="border-2 hover:border-primary transition-colors">
+              <CardContent className="p-8">
+                <Calculator className="w-12 h-12 text-primary mb-6" />
+                <h3 className="text-xl font-bold mb-3">EA Part 1 Course</h3>
+                <p className="text-muted-foreground mb-6">
+                  Everything you need to pass Individuals — explained like you're new. Video + audio + cheatsheets.
                 </p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {books.map((book, index) => (
-                  <Card key={index} className="hover-scale">
-                    <CardHeader>
-                      <CardTitle className="text-lg">{book.title}</CardTitle>
-                      <CardDescription className="text-sm">By: {book.author}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground">{book.description}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
+                <Button className="w-full">View Course</Button>
+              </CardContent>
+            </Card>
 
-            {/* Certifications Tab */}
-            <TabsContent value="certifications" className="space-y-12">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">My Certifications</h2>
-                <p className="text-lg text-muted-foreground">Professional credentials and achievements</p>
-              </div>
+            <Card className="border-2 hover:border-primary transition-colors">
+              <CardContent className="p-8">
+                <FileText className="w-12 h-12 text-accent mb-6" />
+                <h3 className="text-xl font-bold mb-3">QuickBooks Fast Track</h3>
+                <p className="text-muted-foreground mb-6">
+                  The essentials to clean books and look professional. Templates included.
+                </p>
+                <Button className="w-full" variant="outline">Explore</Button>
+              </CardContent>
+            </Card>
 
-              {/* Professional Licenses */}
-              <div>
-                <h3 className="text-2xl font-bold mb-6">Professional Licenses & Certifications</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Enrolled Agent</CardTitle>
-                      <CardDescription>IRS Licensed Tax Professional</CardDescription>
-                    </CardHeader>
-                  </Card>
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Notary Public</CardTitle>
-                      <CardDescription>American Association of Notaries (Exp: Aug 2024)</CardDescription>
-                    </CardHeader>
-                  </Card>
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Licensed Life & Health Insurance Agent</CardTitle>
-                      <CardDescription>State of Texas (2022)</CardDescription>
-                    </CardHeader>
-                  </Card>
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>First Aid & CPR</CardTitle>
-                      <CardDescription>Certified</CardDescription>
-                    </CardHeader>
-                  </Card>
+            <Card className="border-2 hover:border-primary transition-colors">
+              <CardContent className="p-8">
+                <BookOpen className="w-12 h-12 text-primary mb-6" />
+                <h3 className="text-xl font-bold mb-3">Book: Engineer to EA</h3>
+                <p className="text-muted-foreground mb-6">
+                  My journey from mechanical engineering to Enrolled Agent. Join the waitlist for early chapters.
+                </p>
+                <Button className="w-full" variant="outline">Get Updates</Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="py-16 md:py-24 bg-secondary">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="flex-shrink-0">
+              <img 
+                src={headshotImage} 
+                alt="Zain Adtani - Enrolled Agent" 
+                className="w-48 h-48 rounded-full object-cover border-4 border-primary"
+              />
+            </div>
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">About Z</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                I'm Z — EA, bookkeeper, and author-in-progress. I help newcomers pass the EA exam with simple explanations and study systems. A teacher at heart, I simplify tax so beginners can pass, get clients, and feel confident.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quotes Section */}
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="bg-primary/5 border-l-4 border-primary">
+              <CardContent className="p-8">
+                <p className="text-lg italic">
+                  "Be the authentic or best. Alas for lack now dead or old — J.C. Watling, Henry Potter and Ali."
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="bg-accent/5 border-l-4 border-accent">
+              <CardContent className="p-8">
+                <p className="text-lg italic">
+                  "Instead of hoping for gold, we'll search, instead of saving a life, build a nest about seeking healer. It's about creating systems that work harder than you." — AJ
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Latest Posts Section */}
+      <section className="py-16 md:py-24 bg-secondary">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Latest Posts</h2>
+          <div className="space-y-4">
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-6 flex justify-between items-center">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">
+                    How to Master EA Part 1: A Beginner's Roadmap
+                  </h3>
+                  <p className="text-sm text-muted-foreground">January 15, 2025</p>
                 </div>
-              </div>
-
-              {/* QuickBooks */}
-              <div>
-                <h3 className="text-2xl font-bold mb-6">Bookkeeping & Accounting</h3>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>QuickBooks Certified ProAdvisor Level 2</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-muted-foreground">
-                      Running a business is hard enough—your books shouldn't be. I'm a QuickBooks Certified ProAdvisor (now Level 2 certified!) and I help business owners get their books cleaned up, organized, and running like clockwork.
-                    </p>
-                    <p className="text-muted-foreground">Whether you're struggling to reconcile accounts, track expenses, or just keep things up to date, I'm here to take that weight off your shoulders.</p>
-                    <div className="space-y-2">
-                      <p className="font-semibold">💼 What I offer:</p>
-                      <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                        <li>Full QuickBooks Online setup & training</li>
-                        <li>Monthly reconciliations & cleanups</li>
-                        <li>Help with invoicing, payments, and reports</li>
-                        <li>Personalized support (yes, real answers—not robots)</li>
-                      </ul>
-                    </div>
-                    <Button variant="outline" className="gap-2">
-                      View My ProAdvisor Profile <ExternalLink className="w-4 h-4" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
-
-              {/* AWS */}
-              <div>
-                <h3 className="text-2xl font-bold mb-6">Cloud & Technical</h3>
-                <Card className="mb-6">
-                  <CardHeader>
-                    <CardTitle>AWS Cloud Practitioner</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-muted-foreground">
-                      Proudly AWS Certified and ready to deliver cutting-edge cloud solutions tailored to your needs. Whether it's streamlining operations or building scalable systems, I've got the tools and knowledge to take your business to the next level.
-                    </p>
-                    <Button variant="outline" className="gap-2">
-                      View AWS Badge <ExternalLink className="w-4 h-4" />
-                    </Button>
-                  </CardContent>
-                </Card>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Card><CardHeader><CardTitle className="text-base">AWS Fundamentals Specialization</CardTitle></CardHeader></Card>
-                  <Card><CardHeader><CardTitle className="text-base">AWS Fundamentals: Migrating to the Cloud</CardTitle></CardHeader></Card>
-                  <Card><CardHeader><CardTitle className="text-base">AWS Fundamentals: Addressing Security Risk</CardTitle></CardHeader></Card>
-                  <Card><CardHeader><CardTitle className="text-base">AWS Cloud Technical Essentials</CardTitle></CardHeader></Card>
-                  <Card><CardHeader><CardTitle className="text-base">Exam Prep: AWS Certified Cloud Practitioner Foundations</CardTitle></CardHeader></Card>
-                  <Card><CardHeader><CardTitle className="text-base">AWS Cloud Practitioner Essentials</CardTitle></CardHeader></Card>
+                <Button variant="ghost">Read →</Button>
+              </CardContent>
+            </Card>
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-6 flex justify-between items-center">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">
+                    5 Mnemonics That Saved My EA Exam
+                  </h3>
+                  <p className="text-sm text-muted-foreground">January 8, 2025</p>
                 </div>
-              </div>
-
-              {/* Programming */}
-              <div>
-                <h3 className="text-2xl font-bold mb-6">Programming & Data</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Card><CardHeader><CardTitle className="text-base">Crash Course on Python</CardTitle></CardHeader></Card>
-                  <Card><CardHeader><CardTitle className="text-base">The Structured Query Language (SQL)</CardTitle></CardHeader></Card>
-                  <Card><CardHeader><CardTitle className="text-base">Introduction to Programming with MATLAB</CardTitle></CardHeader></Card>
-                  <Card><CardHeader><CardTitle className="text-base">Python Data Structures</CardTitle></CardHeader></Card>
-                  <Card><CardHeader><CardTitle className="text-base">Programming for Everybody (Getting Started with Python)</CardTitle></CardHeader></Card>
+                <Button variant="ghost">Read →</Button>
+              </CardContent>
+            </Card>
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-6 flex justify-between items-center">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">
+                    From Engineer to Tax Pro: My Story
+                  </h3>
+                  <p className="text-sm text-muted-foreground">January 1, 2025</p>
                 </div>
-              </div>
-            </TabsContent>
-          </Tabs>
+                <Button variant="ghost">Read →</Button>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-sm text-muted-foreground">
+      <footer className="bg-[hsl(var(--hero-bg))] text-[hsl(var(--hero-foreground))] py-12">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="flex flex-wrap justify-center gap-6 mb-8">
+            <a 
+              href="#" 
+              className="flex items-center gap-2 hover:text-primary transition-colors"
+            >
+              <Youtube className="w-5 h-5" />
+              YouTube
+            </a>
+            <a 
+              href="#" 
+              className="flex items-center gap-2 hover:text-primary transition-colors"
+            >
+              <FileText className="w-5 h-5" />
+              WHOP
+            </a>
+            <a 
+              href="#" 
+              className="flex items-center gap-2 hover:text-primary transition-colors"
+            >
+              <BookOpen className="w-5 h-5" />
+              Udemy
+            </a>
+            <a 
+              href="#" 
+              className="flex items-center gap-2 hover:text-primary transition-colors"
+            >
+              <Mail className="w-5 h-5" />
+              Email
+            </a>
+          </div>
+          <div className="text-center text-sm text-[hsl(var(--hero-foreground))]/60">
             © {new Date().getFullYear()} Zain Adtani. All rights reserved.
-          </p>
+          </div>
         </div>
       </footer>
     </div>
