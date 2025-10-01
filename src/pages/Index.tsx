@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Card } from "@/components/ui/card";
 import { Mail } from "lucide-react";
 import headshotImage from "@/assets/zain-headshot.png";
+import communityImage from "@/assets/community-image.png";
 
 const Index = () => {
   return (
@@ -40,7 +42,7 @@ const Index = () => {
               <img 
                 src={headshotImage} 
                 alt="Zain Adtani - Enrolled Agent" 
-                className="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-background"
+                className="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover object-top border-4 border-background"
               />
             </div>
             
@@ -57,11 +59,39 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Free Community Section */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+            <a href="https://www.skool.com/eng2ea/about" className="flex flex-col md:flex-row">
+              <div className="md:w-1/2">
+                <img 
+                  src={communityImage} 
+                  alt="Join our free community" 
+                  className="w-full h-64 md:h-full object-cover"
+                />
+              </div>
+              <div className="md:w-1/2 p-8 flex flex-col justify-center">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+                  Join Our Free Community
+                </h2>
+                <p className="text-lg text-muted-foreground mb-6">
+                  Connect with fellow EA students, get study tips, and access free resources to help you pass the exam.
+                </p>
+                <Button className="w-fit bg-primary hover:bg-primary/90 text-primary-foreground">
+                  Join Now →
+                </Button>
+              </div>
+            </a>
+          </Card>
+        </div>
+      </section>
+
       {/* Newsletter Section */}
       <section className="py-16 md:py-24 bg-secondary">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center md:text-left md:flex md:items-start md:gap-12">
-            <div className="md:flex-1 mb-8 md:mb-0">
+            <div className="md:flex-1 mb-8 md:md:mb-0">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
                 Subscribe to <br />
                 <span className="inline-flex items-center gap-2">
