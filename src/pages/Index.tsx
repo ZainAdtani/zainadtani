@@ -111,8 +111,8 @@ const Index = () => {
                   <Textarea
                     value={quote}
                     readOnly
-                    placeholder="Click the button below to generate an inspiring quote..."
-                    className="min-h-[200px] text-base resize-none bg-secondary/50"
+                    placeholder="Click the button below to generate a quote or life note..."
+                    className="min-h-[120px] text-base resize-none bg-secondary/50"
                   />
                   <Button 
                     onClick={generateQuote}
