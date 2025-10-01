@@ -13,19 +13,19 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between max-w-6xl">
           <div className="text-2xl font-bold text-foreground">Zain Adtani</div>
           <nav className="hidden md:flex items-center gap-6">
-            <a href="https://www.skool.com/eng2ea/about" className="text-foreground hover:text-primary transition-colors">
+            <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-all duration-300">
               Free Community
             </a>
-            <a href="https://whop.com/eng2ea/?a=eng2ea" className="text-foreground hover:text-primary transition-colors">
+            <a href="https://whop.com/eng2ea/?a=eng2ea" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-all duration-300">
               EA Course
             </a>
-            <a href="#books" className="text-foreground hover:text-primary transition-colors">
+            <a href="#books" className="text-foreground hover:text-primary transition-all duration-300">
               Books
             </a>
-            <a href="#certifications" className="text-foreground hover:text-primary transition-colors">
+            <a href="#certifications" className="text-foreground hover:text-primary transition-all duration-300">
               Certifications
             </a>
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
               Join Newsletter
             </Button>
           </nav>
@@ -59,34 +59,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Free Community Section */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-            <a href="https://www.skool.com/eng2ea/about" className="flex flex-col md:flex-row">
-              <div className="md:w-1/2">
-                <img 
-                  src={communityImage} 
-                  alt="Join our free community" 
-                  className="w-full h-64 md:h-full object-cover"
-                />
-              </div>
-              <div className="md:w-1/2 p-8 flex flex-col justify-center">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-                  Join Our Free Community
-                </h2>
-                <p className="text-lg text-muted-foreground mb-6">
-                  Connect with fellow EA students, get study tips, and access free resources to help you pass the exam.
-                </p>
-                <Button className="w-fit bg-primary hover:bg-primary/90 text-primary-foreground">
-                  Join Now →
-                </Button>
-              </div>
-            </a>
-          </Card>
-        </div>
-      </section>
-
       {/* Newsletter Section */}
       <section className="py-16 md:py-24 bg-secondary">
         <div className="container mx-auto px-4 max-w-4xl">
@@ -109,14 +81,42 @@ const Index = () => {
                 <Input 
                   type="email" 
                   placeholder="Enter your email" 
-                  className="flex-1 h-12 text-base bg-background"
+                  className="flex-1 h-12 text-base bg-background transition-all duration-300 focus:ring-2 focus:ring-primary"
                 />
-                <Button type="submit" size="lg" className="h-12 px-8 bg-primary hover:bg-primary/90">
+                <Button type="submit" size="lg" className="h-12 px-8 bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
                   Subscribe
                 </Button>
               </form>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Free Community Section */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer" className="flex flex-col md:flex-row">
+              <div className="md:w-1/2">
+                <img 
+                  src={communityImage} 
+                  alt="Join our free community" 
+                  className="w-full h-64 md:h-full object-cover transition-transform duration-300 hover:scale-105"
+                />
+              </div>
+              <div className="md:w-1/2 p-8 flex flex-col justify-center">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+                  Join Our Free Community
+                </h2>
+                <p className="text-lg text-muted-foreground mb-6">
+                  Connect with fellow EA students, get study tips, and access free resources to help you pass the exam.
+                </p>
+                <Button className="w-fit bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
+                  Join Now →
+                </Button>
+              </div>
+            </a>
+          </Card>
         </div>
       </section>
 
