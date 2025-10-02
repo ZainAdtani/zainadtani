@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles, Music, BookOpen, ExternalLink } from "lucide-react";
+import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles, Music, BookOpen, ExternalLink, Youtube, Linkedin, Heart } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import headshotImage from "@/assets/zain-headshot.png";
@@ -13,6 +13,7 @@ import qbBadge from "@/assets/quickbooks-level2-badge.png";
 import awsBadge from "@/assets/aws-cloud-practitioner-badge.png";
 import authorGuide from "@/assets/author-guide-preview.png";
 import zaLogo from "@/assets/za-logo.png";
+import millionaireFastlane from "@/assets/millionaire-fastlane-cover.jpg";
 const QUOTES_AND_NOTES = ["It is the unknown we fear when we look upon death and darkness, nothing more. - J.K. Rowling, Harry Potter and the Deathly Hallows", "Instead of digging for gold, sell shovels. Instead of driving a taxi, build Uber. Wealth is not about working harder; it's about creating systems that work harder than you do. - MJ DeMarco, The Millionaire Fastlane", "More than 50% of graduates completely forget what they learn in college within 5 years, and within 10 years it's closer to 100%. If most of our \"education\" inevitably collects dust, then what was the point in learning it? Let's do some simple math: Let's be conservative and say that 5 hours per week are spent attending lectures and studying for exams (10 for finals week). If there are 15 weeks in a semester, that's 30 weeks a year. Multiply that by 4 we get 120 weeks, resulting in 600 hours invested into learning information that for the most part, will not be useful for your future work and career. Now I'm not saying you should renounce education completely, rather look past the shiny allure of \"financial stability and higher wages\" and make an informed decision of whether or not it aligns with what you desire. Almost anything can be learned on the internet, online education is booming. Opportunities for the next wave of innovators are scaling faster and faster thanks to technology and AI. Imagine what you could do with 600 extra hours, $200,000, and 4 years to learn and explore on your own? The future is wide open for those willing to diverge and create.", "Plan Your Day: Establish a clear plan for your daily activities. This sets the foundation for \"traction,\" where every action intentionally moves you toward your goals, contrasting with \"distraction,\" which pulls you away. Use tools like calendars to allocate specific time blocks for tasks.", "Did you know that the average person spends over one hour on social media per day, just consuming and not creating? Additionally, they spend another 2-3 hours watching television. That's four hours, on average, gone every day. Doing the math, 4 hours lost per day, multiplied by 7 days per week, equals 28 hours per week. That's basically equivalent to a part-time job. In fact, it's literally 3.5 eight-hour workdays lost per week. Four hours lost per day over 30 days = 120 hours = 15 WORKDAYS PER MONTH LOST.", "Motivation is not the cause of action, but the effect. If you wanna feel motivated to do something, take the smallest action towards doing it, then let the momentum carry you forward.", "Don't view exercise as an exchange for something. You don't work out to lose a few pounds or earn that hamburger and ice cream. With this mindset, you will lose motivation quickly and quit. Instead, view exercise as an investment. For every unit of energy you put in, you'll receive multiple units of energy back. The catch is that these units of energy you get back will be spread out over weeks, months and years. This is why exercising hardcore occasionally is far inferior than exercising a little bit every day.", "Statistically speaking, a normal person is physically unhealthy, emotionally anxious and depressed, socially lonely and financially in debt. Fuck being normal.", "Your mindset is the KEY to making more progress in your life, and journaling is the daily WORK that helps you master your mindset.", "Don't make assumptions about people, you have no fucking idea what they've been through. Don't make assumptions about yourself either. The last person we're objective about is ourselves.", "No one thinks about you as much as you think about yourself. Whatever you are insecure about, chances are 99% of people around you haven't even noticed it. This is because everybody else is too busy thinking about themselves. This may strike you as a little bit depressing, but it's actually liberating. It means that you are judged far less than you think.", "Develop a willingness to be disliked. It will grant you the freedom to do what needs to be done, even if it's unpopular.", "Nothing meaningful in life is easy, and nothing easy in life is meaningful. We think we'd like to have everything handed to us on a silver platter, but the truth is that we don't appreciate or enjoy things that we don't struggle for. So stop avoiding the difficult things in your life and instead find the difficult things you enjoy.", "It's never too late to change. It's never too late. I get emails all the time from people asking me, \"Hey, I'm 20 or 40 or 60 or 80, is it too late? Can I change? Is there time?\" The answer is it's never too late, there's always time. The only question is how long we're gonna sit here and make excuses and pretend there's not."];
 const Index = () => {
   const [quote, setQuote] = useState("");
@@ -141,7 +142,7 @@ const Index = () => {
       <section className="py-16 md:py-24 bg-secondary">
         <div className="container mx-auto px-4 max-w-6xl">
           <Tabs defaultValue="digital-products" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-8 h-auto">
+            <TabsList className="grid w-full grid-cols-4 mb-8 h-auto">
               <TabsTrigger value="digital-products" id="digital-products" className="text-xs sm:text-sm px-2 py-2.5">
                 Digital Products
               </TabsTrigger>
@@ -150,6 +151,9 @@ const Index = () => {
               </TabsTrigger>
               <TabsTrigger value="certifications" id="certifications" className="text-xs sm:text-sm px-2 py-2.5">
                 Certifications
+              </TabsTrigger>
+              <TabsTrigger value="role-models" id="role-models" className="text-xs sm:text-sm px-2 py-2.5">
+                Role Models
               </TabsTrigger>
             </TabsList>
 
@@ -235,7 +239,7 @@ const Index = () => {
                     stars: 5,
                     hook: "Escape trading time for money; build assets that scale.",
                     note: "Control, leverage, and process—not paychecks—drive wealth.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1312183821i/18872437.jpg"
+                    cover: millionaireFastlane
                   },
                   {
                     title: "Harry Potter and the Sorcerer's Stone",
@@ -459,7 +463,139 @@ const Index = () => {
               </Card>
 
             </TabsContent>
+
+            {/* Role Models Tab */}
+            <TabsContent value="role-models" className="space-y-6">
+              <div className="text-center mb-8">
+                <h3 className="text-3xl md:text-4xl font-bold mb-3 text-foreground bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  People I Look Up To
+                </h3>
+                <p className="text-lg text-muted-foreground">
+                  Mentors who inspire my journey
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {[
+                  {
+                    name: "Tony Robbins",
+                    born: "February 29, 1960",
+                    title: "Life & Business Strategist",
+                    description: "World-renowned peak performance coach, motivational speaker, and author. Creator of transformative events like Date With Destiny and Unleash the Power Within.",
+                    keyPoints: [
+                      "Coached presidents, athletes, and CEOs",
+                      "Author of 7 bestselling books",
+                      "Over 50 million people impacted worldwide"
+                    ],
+                    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop",
+                    website: "https://www.tonyrobbins.com"
+                  },
+                  {
+                    name: "Dean Graziosi",
+                    born: "1965",
+                    title: "Real Estate & Knowledge Entrepreneur",
+                    description: "Multiple New York Times bestselling author, real estate investor, and co-creator of the Mastermind Business System with Tony Robbins.",
+                    keyPoints: [
+                      "Built fortune in real estate investing",
+                      "TV infomercial pioneer for 15 years",
+                      "Co-founder of Mastermind.com"
+                    ],
+                    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
+                    website: "https://deangraziosimastermind.com"
+                  },
+                  {
+                    name: "Jason Fladlien",
+                    born: "Entrepreneur & Webinar Expert",
+                    title: "The $500M Webinar Man",
+                    description: "Co-founder of Rapid Crush, Inc. Known as one of the world's top webinar and sales conversion experts, responsible for over $500 million in sales.",
+                    keyPoints: [
+                      "Reached 150,000+ customers in 131 countries",
+                      "Founded Rapid Crush in 2011",
+                      "Mastered webinar sales psychology"
+                    ],
+                    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+                    website: "https://jasonfladlien.com"
+                  }
+                ].map((person, index) => (
+                  <Card 
+                    key={index} 
+                    className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2"
+                  >
+                    <div className="p-6">
+                      {/* Profile Image */}
+                      <div className="relative mb-4 rounded-full overflow-hidden shadow-xl mx-auto w-32 h-32">
+                        <img 
+                          src={person.image} 
+                          alt={`${person.name} portrait`}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+
+                      {/* Name & Title */}
+                      <div className="text-center mb-4">
+                        <h4 className="font-bold text-2xl mb-1 text-foreground">{person.name}</h4>
+                        <p className="text-sm text-primary font-semibold mb-1">{person.title}</p>
+                        <p className="text-xs text-muted-foreground">Born: {person.born}</p>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-sm text-muted-foreground mb-4 text-center">{person.description}</p>
+
+                      {/* Key Points */}
+                      <div className="mb-4 bg-secondary/50 rounded-lg p-4">
+                        <ul className="space-y-2 text-xs text-foreground">
+                          {person.keyPoints.map((point, i) => (
+                            <li key={i} className="flex items-start gap-2">
+                              <Heart className="w-3 h-3 text-primary flex-shrink-0 mt-0.5 fill-primary" />
+                              <span>{point}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* CTA Button */}
+                      <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary/10">
+                        <a href={person.website} target="_blank" rel="noopener noreferrer">
+                          Learn More →
+                        </a>
+                      </Button>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </TabsContent>
           </Tabs>
+        </div>
+      </section>
+
+      {/* About Me Section */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <Card className="p-8 shadow-lg border-2">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">
+                About Me
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Connect with me on social media
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg gap-2">
+                <a href="https://www.youtube.com/@eng2ea" target="_blank" rel="noopener noreferrer">
+                  <Youtube className="w-5 h-5" />
+                  YouTube Channel
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10 transition-all duration-300 gap-2">
+                <a href="https://www.linkedin.com/in/zainadtani/" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="w-5 h-5" />
+                  LinkedIn Profile
+                </a>
+              </Button>
+            </div>
+          </Card>
         </div>
       </section>
 
@@ -493,7 +629,7 @@ const Index = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
                 Subscribe to <br />
                 <span className="inline-flex items-center gap-2">
-                  Study Notes 
+                  Z Notes 
                   <Mail className="w-10 h-10 text-primary" />
                 </span>
               </h2>
