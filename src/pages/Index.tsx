@@ -202,46 +202,186 @@ const Index = () => {
 
             {/* Books Tab */}
             <TabsContent value="books" className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {[{
-                title: "Atomic Habits",
-                author: "James Clear",
-                rating: "⭐⭐⭐⭐⭐",
-                take: "Small changes lead to remarkable results."
-              }, {
-                title: "Deep Work",
-                author: "Cal Newport",
-                rating: "⭐⭐⭐⭐⭐",
-                take: "Focus is the new superpower in our distracted world."
-              }, {
-                title: "The E-Myth Revisited",
-                author: "Michael Gerber",
-                rating: "⭐⭐⭐⭐",
-                take: "Essential reading for anyone building a business."
-              }, {
-                title: "$100M Offers",
-                author: "Alex Hormozi",
-                rating: "⭐⭐⭐⭐⭐",
-                take: "Create offers so good people feel stupid saying no."
-              }, {
-                title: "Tax-Free Wealth",
-                author: "Tom Wheelwright",
-                rating: "⭐⭐⭐⭐",
-                take: "How to build massive wealth by reducing taxes legally."
-              }, {
-                title: "The Lean Startup",
-                author: "Eric Ries",
-                rating: "⭐⭐⭐⭐",
-                take: "Build, measure, learn - the modern approach to innovation."
-              }].map((book, index) => <Card key={index} className="p-6 hover-lift transition-all duration-300 shadow-lg border-2">
-                    <div className="aspect-[2/3] bg-accent mb-4 rounded-md flex items-center justify-center">
-                      <Book className="w-16 h-16 text-primary" />
+              <div className="text-center mb-8">
+                <h3 className="text-3xl md:text-4xl font-bold mb-3 text-foreground bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  Zain's Shelf
+                </h3>
+                <p className="text-lg text-muted-foreground">
+                  Short, practical takeaways. Add 1 that changes your week.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[
+                  {
+                    title: "Atomic Habits",
+                    author: "James Clear",
+                    tag: "Habits",
+                    stars: 5,
+                    hook: "Tiny daily upgrades that compound into surprising results.",
+                    note: "Systems > goals. Start with 2-minute wins.",
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1655988385i/40121378.jpg"
+                  },
+                  {
+                    title: "The Millionaire Fastlane",
+                    author: "MJ DeMarco",
+                    tag: "Business",
+                    stars: 5,
+                    hook: "Escape trading time for money; build assets that scale.",
+                    note: "Control, leverage, and process—not paychecks—drive wealth.",
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1312183821i/18872437.jpg"
+                  },
+                  {
+                    title: "Harry Potter and the Sorcerer's Stone",
+                    author: "J.K. Rowling",
+                    tag: "Fiction",
+                    stars: 5,
+                    hook: "A hidden world, a first wand, and friendship that changes fate.",
+                    note: "Start of a classic hero's journey.",
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474154022i/3.jpg"
+                  },
+                  {
+                    title: "Harry Potter and the Chamber of Secrets",
+                    author: "J.K. Rowling",
+                    tag: "Fiction",
+                    stars: 5,
+                    hook: "Mystery, memory, and the cost of ignoring warnings.",
+                    note: "Courage grows in year two.",
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474169725i/15881.jpg"
+                  },
+                  {
+                    title: "Harry Potter and the Prisoner of Azkaban",
+                    author: "J.K. Rowling",
+                    tag: "Fiction",
+                    stars: 5,
+                    hook: "Time twists, truth surfaces, and fear takes a new form.",
+                    note: "Fan-favorite plot turner.",
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1630547330i/5.jpg"
+                  },
+                  {
+                    title: "Harry Potter and the Goblet of Fire",
+                    author: "J.K. Rowling",
+                    tag: "Fiction",
+                    stars: 5,
+                    hook: "A deadly tournament forces choices bigger than glory.",
+                    note: "Darkness rises.",
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1554006152i/6.jpg"
+                  },
+                  {
+                    title: "Harry Potter and the Order of the Phoenix",
+                    author: "J.K. Rowling",
+                    tag: "Fiction",
+                    stars: 5,
+                    hook: "Resistance forms when truth is inconvenient.",
+                    note: "Leadership under pressure.",
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546910265i/2.jpg"
+                  },
+                  {
+                    title: "Harry Potter and the Half-Blood Prince",
+                    author: "J.K. Rowling",
+                    tag: "Fiction",
+                    stars: 5,
+                    hook: "Secrets of the past shape tomorrow's war.",
+                    note: "Choices > prophecy.",
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1587697303i/1.jpg"
+                  },
+                  {
+                    title: "Harry Potter and the Deathly Hallows",
+                    author: "J.K. Rowling",
+                    tag: "Fiction",
+                    stars: 5,
+                    hook: "Loyalty, loss, and the final stand against fear.",
+                    note: "A closing built on sacrifice.",
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1663805647i/136251.jpg"
+                  },
+                  {
+                    title: "Tuesdays with Morrie",
+                    author: "Mitch Albom",
+                    tag: "Wisdom",
+                    stars: 5,
+                    hook: "Gentle conversations that re-prioritize what matters.",
+                    note: "Love, purpose, and letting go.",
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1700235518i/6900.jpg"
+                  },
+                  {
+                    title: "How to Win Friends & Influence People",
+                    author: "Dale Carnegie",
+                    tag: "People",
+                    stars: 5,
+                    hook: "Make others feel seen, and doors open.",
+                    note: "Timeless human nature playbook.",
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1442726934i/4865.jpg"
+                  },
+                  {
+                    title: "The Alchemist",
+                    author: "Paulo Coelho",
+                    tag: "Fiction",
+                    stars: 5,
+                    hook: "Chasing your personal legend changes who you become.",
+                    note: "Simple story, durable lesson.",
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1654371463i/18144590.jpg"
+                  }
+                ].map((book, index) => (
+                  <Card 
+                    key={index} 
+                    className="group relative overflow-hidden rounded-3xl border-2 bg-background/60 backdrop-blur-md shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                    style={{
+                      animationDelay: `${index * 100}ms`,
+                      transformStyle: "preserve-3d",
+                      perspective: "1200px"
+                    }}
+                  >
+                    {/* Tag Badge */}
+                    <div className="absolute top-4 right-4 z-10 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm">
+                      {book.tag}
                     </div>
-                    <h4 className="font-bold text-lg mb-1 text-foreground">{book.title}</h4>
-                    <p className="text-sm text-muted-foreground mb-2">{book.author}</p>
-                    <p className="text-sm mb-2">{book.rating}</p>
-                    <p className="text-sm text-muted-foreground italic">{book.take}</p>
-                  </Card>)}
+
+                    <div className="p-6 flex flex-col h-full">
+                      {/* Book Cover */}
+                      <div className="relative mb-4 rounded-xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-shadow duration-500">
+                        <div className="aspect-[2/3] bg-accent/20">
+                          <img 
+                            src={book.cover} 
+                            alt={`Book cover: ${book.title} by ${book.author}`}
+                            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                            loading="lazy"
+                            onError={(e) => {
+                              e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'%3E%3Crect fill='%23e5e7eb' width='200' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%239ca3af'%3EBook Cover%3C/text%3E%3C/svg%3E";
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Stars */}
+                      <div className="flex gap-1 mb-2">
+                        {Array.from({length: book.stars}).map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                        ))}
+                      </div>
+
+                      {/* Title & Author */}
+                      <h4 className="font-bold text-xl mb-1 text-foreground line-clamp-2">{book.title}</h4>
+                      <p className="text-sm text-muted-foreground mb-3">{book.author}</p>
+
+                      {/* Hook */}
+                      <p className="text-sm text-foreground mb-3 line-clamp-2 italic">{book.hook}</p>
+
+                      {/* Note */}
+                      <p className="text-xs text-muted-foreground mb-4 flex-grow">{book.note}</p>
+
+                      {/* CTA Buttons */}
+                      <div className="flex gap-2 mt-auto">
+                        <Button variant="ghost" size="sm" className="flex-1 text-xs hover:bg-primary/10">
+                          Details
+                        </Button>
+                        <Button variant="ghost" size="sm" className="flex-1 text-xs hover:bg-primary/10">
+                          <ExternalLink className="w-3 h-3 mr-1" />
+                          Buy
+                        </Button>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
               </div>
             </TabsContent>
 
@@ -350,199 +490,6 @@ const Index = () => {
             }} src="https://open.spotify.com/embed/playlist/4ZHa92ZbMSi2Fwps39XZl5?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" />
             </div>
           </Card>
-        </div>
-      </section>
-
-      {/* Zain's Shelf - Book Recommendations */}
-      <section className="py-16 md:py-24 bg-background relative overflow-hidden">
-        {/* Parallax Background Blobs */}
-        <div className="absolute inset-0 -z-10 opacity-30">
-          <div className="absolute top-20 left-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: "1s"}}></div>
-        </div>
-
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Zain's Shelf
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Short, practical takeaways. Add 1 that changes your week.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Atomic Habits",
-                author: "James Clear",
-                tag: "Habits",
-                stars: 5,
-                hook: "Tiny daily upgrades that compound into surprising results.",
-                note: "Systems > goals. Start with 2-minute wins.",
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1655988385i/40121378.jpg"
-              },
-              {
-                title: "The Millionaire Fastlane",
-                author: "MJ DeMarco",
-                tag: "Business",
-                stars: 5,
-                hook: "Escape trading time for money; build assets that scale.",
-                note: "Control, leverage, and process—not paychecks—drive wealth.",
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1312183821i/18872437.jpg"
-              },
-              {
-                title: "Harry Potter and the Sorcerer's Stone",
-                author: "J.K. Rowling",
-                tag: "Fiction",
-                stars: 5,
-                hook: "A hidden world, a first wand, and friendship that changes fate.",
-                note: "Start of a classic hero's journey.",
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474154022i/3.jpg"
-              },
-              {
-                title: "Harry Potter and the Chamber of Secrets",
-                author: "J.K. Rowling",
-                tag: "Fiction",
-                stars: 5,
-                hook: "Mystery, memory, and the cost of ignoring warnings.",
-                note: "Courage grows in year two.",
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474169725i/15881.jpg"
-              },
-              {
-                title: "Harry Potter and the Prisoner of Azkaban",
-                author: "J.K. Rowling",
-                tag: "Fiction",
-                stars: 5,
-                hook: "Time twists, truth surfaces, and fear takes a new form.",
-                note: "Fan-favorite plot turner.",
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1630547330i/5.jpg"
-              },
-              {
-                title: "Harry Potter and the Goblet of Fire",
-                author: "J.K. Rowling",
-                tag: "Fiction",
-                stars: 5,
-                hook: "A deadly tournament forces choices bigger than glory.",
-                note: "Darkness rises.",
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1554006152i/6.jpg"
-              },
-              {
-                title: "Harry Potter and the Order of the Phoenix",
-                author: "J.K. Rowling",
-                tag: "Fiction",
-                stars: 5,
-                hook: "Resistance forms when truth is inconvenient.",
-                note: "Leadership under pressure.",
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546910265i/2.jpg"
-              },
-              {
-                title: "Harry Potter and the Half-Blood Prince",
-                author: "J.K. Rowling",
-                tag: "Fiction",
-                stars: 5,
-                hook: "Secrets of the past shape tomorrow's war.",
-                note: "Choices > prophecy.",
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1587697303i/1.jpg"
-              },
-              {
-                title: "Harry Potter and the Deathly Hallows",
-                author: "J.K. Rowling",
-                tag: "Fiction",
-                stars: 5,
-                hook: "Loyalty, loss, and the final stand against fear.",
-                note: "A closing built on sacrifice.",
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1663805647i/136251.jpg"
-              },
-              {
-                title: "Tuesdays with Morrie",
-                author: "Mitch Albom",
-                tag: "Wisdom",
-                stars: 5,
-                hook: "Gentle conversations that re-prioritize what matters.",
-                note: "Love, purpose, and letting go.",
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1700235518i/6900.jpg"
-              },
-              {
-                title: "How to Win Friends & Influence People",
-                author: "Dale Carnegie",
-                tag: "People",
-                stars: 5,
-                hook: "Make others feel seen, and doors open.",
-                note: "Timeless human nature playbook.",
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1442726934i/4865.jpg"
-              },
-              {
-                title: "The Alchemist",
-                author: "Paulo Coelho",
-                tag: "Fiction",
-                stars: 5,
-                hook: "Chasing your personal legend changes who you become.",
-                note: "Simple story, durable lesson.",
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1654371463i/18144590.jpg"
-              }
-            ].map((book, index) => (
-              <Card 
-                key={index} 
-                className="group relative overflow-hidden rounded-3xl border-2 bg-background/60 backdrop-blur-md shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-                style={{
-                  animationDelay: `${index * 100}ms`,
-                  transformStyle: "preserve-3d",
-                  perspective: "1200px"
-                }}
-              >
-                {/* Tag Badge */}
-                <div className="absolute top-4 right-4 z-10 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm">
-                  {book.tag}
-                </div>
-
-                <div className="p-6 flex flex-col h-full">
-                  {/* Book Cover */}
-                  <div className="relative mb-4 rounded-xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-shadow duration-500">
-                    <div className="aspect-[2/3] bg-accent/20">
-                      <img 
-                        src={book.cover} 
-                        alt={`Book cover: ${book.title} by ${book.author}`}
-                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                        onError={(e) => {
-                          e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'%3E%3Crect fill='%23e5e7eb' width='200' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%239ca3af'%3EBook Cover%3C/text%3E%3C/svg%3E";
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Stars */}
-                  <div className="flex gap-1 mb-2">
-                    {Array.from({length: book.stars}).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-primary text-primary" />
-                    ))}
-                  </div>
-
-                  {/* Title & Author */}
-                  <h4 className="font-bold text-xl mb-1 text-foreground line-clamp-2">{book.title}</h4>
-                  <p className="text-sm text-muted-foreground mb-3">{book.author}</p>
-
-                  {/* Hook */}
-                  <p className="text-sm text-foreground mb-3 line-clamp-2 italic">{book.hook}</p>
-
-                  {/* Note */}
-                  <p className="text-xs text-muted-foreground mb-4 flex-grow">{book.note}</p>
-
-                  {/* CTA Buttons */}
-                  <div className="flex gap-2 mt-auto">
-                    <Button variant="ghost" size="sm" className="flex-1 text-xs hover:bg-primary/10">
-                      Details
-                    </Button>
-                    <Button variant="ghost" size="sm" className="flex-1 text-xs hover:bg-primary/10">
-                      <ExternalLink className="w-3 h-3 mr-1" />
-                      Buy
-                    </Button>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
         </div>
       </section>
 
