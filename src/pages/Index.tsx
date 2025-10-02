@@ -240,6 +240,45 @@ const Index = () => {
               </Card>
 
               <Card className="p-8 hover-lift transition-all duration-300 shadow-lg border-2">
+                <Award className="w-16 h-16 text-primary mb-6" />
+                <h3 className="text-3xl font-bold mb-4 text-foreground">QuickBooks Certified ProAdvisor Level 2</h3>
+                <p className="text-lg text-muted-foreground mb-4">
+                  Running a business is hard enough—your books shouldn't be. I'm a QuickBooks Certified ProAdvisor (now Level 2 certified!) and I help business owners get their books cleaned up, organized, and running like clockwork.
+                </p>
+                <p className="text-muted-foreground mb-4">
+                  Whether you're struggling to reconcile accounts, track expenses, or just keep things up to date, I'm here to take that weight off your shoulders.
+                </p>
+                <div className="space-y-2 text-muted-foreground mb-6">
+                  <p className="font-semibold">💼 What I offer:</p>
+                  <p>• Full QuickBooks Online setup & training</p>
+                  <p>• Monthly reconciliations & cleanups</p>
+                  <p>• Help with invoicing, payments, and reports</p>
+                  <p>• Personalized support (yes, real answers—not robots)</p>
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  Check out my official badges—and let's chat about how we can make your bookkeeping the easiest part of your business.
+                </p>
+                <Button asChild className="bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg">
+                  <a href="https://proadvisor.intuit.com/app/accountant/search?searchId=zainadtani" target="_blank" rel="noopener noreferrer">
+                    View My ProAdvisor Profile →
+                  </a>
+                </Button>
+              </Card>
+
+              <Card className="p-8 hover-lift transition-all duration-300 shadow-lg border-2">
+                <Award className="w-16 h-16 text-primary mb-6" />
+                <h3 className="text-3xl font-bold mb-4 text-foreground">AWS Certified</h3>
+                <p className="text-lg text-muted-foreground mb-6">
+                  Amazon Web Services certification demonstrating cloud computing expertise and technical proficiency.
+                </p>
+                <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/10 transition-all duration-300">
+                  <a href="https://www.credly.com/badges/2d636eb8-4677-4783-b829-47394e406a5a/public_url" target="_blank" rel="noopener noreferrer">
+                    View AWS Badge →
+                  </a>
+                </Button>
+              </Card>
+
+              <Card className="p-8 hover-lift transition-all duration-300 shadow-lg border-2">
                 <GraduationCap className="w-16 h-16 text-primary mb-6" />
                 <h3 className="text-3xl font-bold mb-4 text-foreground">Engineering Background</h3>
                 <p className="text-lg text-muted-foreground">
