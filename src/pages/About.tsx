@@ -14,12 +14,12 @@ const About = () => {
           <div className="space-y-8 animate-fade-in">
             {/* Hero Headline */}
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                From{" "}
-                <span className="text-primary">Engineer</span>
-                {" "}to{" "}
-                <span className="text-accent">Enrolled Agent</span>
-              </h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              Hi, I'm <span className="text-primary">Zain Adtani</span>
+            </h1>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-muted-foreground">
+              From Engineer to Enrolled Agent
+            </h2>
               <p className="text-xl text-muted-foreground">
                 Helping busy beginners navigate the complex world of taxes with confidence
               </p>
