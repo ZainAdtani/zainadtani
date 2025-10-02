@@ -4,10 +4,8 @@ import { Card } from "@/components/ui/card";
 import { Youtube, Linkedin } from "lucide-react";
 import zainHeadshot from "@/assets/zain-headshot-new.png";
 import zainSimba from "@/assets/zain-simba.png";
-
 const About = () => {
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <Header />
       
       <main className="container mx-auto px-4 py-12 md:py-20">
@@ -83,33 +81,14 @@ const About = () => {
 
             {/* Social Links */}
             <div className="flex gap-4 pt-4">
-              <Button
-                asChild
-                size="lg"
-                className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
-              >
-                <a
-                  href="https://youtube.com/@zainadtani"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
+              <Button asChild size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity">
+                <a href="https://youtube.com/@zainadtani" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                   <Youtube className="h-5 w-5" />
                   YouTube Channel
                 </a>
               </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="hover-scale"
-              >
-                <a
-                  href="https://linkedin.com/in/zainadtani"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
+              <Button asChild variant="outline" size="lg" className="hover-scale">
+                <a href="https://linkedin.com/in/zainadtani" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                   <Linkedin className="h-5 w-5" />
                   Connect on LinkedIn
                 </a>
@@ -123,13 +102,7 @@ const About = () => {
             <div className="relative">
               {/* Accent border effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-accent to-primary rounded-2xl blur-xl opacity-30 animate-pulse" />
-              <div className="relative border-4 border-accent rounded-2xl overflow-hidden shadow-2xl hover-scale">
-                <img
-                  src={zainHeadshot}
-                  alt="Zain Adtani"
-                  className="w-full h-auto object-cover"
-                />
-              </div>
+              
             </div>
 
             {/* Zain with Simba Photo */}
@@ -137,11 +110,7 @@ const About = () => {
               {/* Yellow highlight effect like Dean Graziosi */}
               <div className="absolute inset-0 bg-accent rounded-2xl blur-2xl opacity-40" />
               <div className="relative border-4 border-accent rounded-2xl overflow-hidden shadow-2xl hover-scale">
-                <img
-                  src={zainSimba}
-                  alt="Zain with Simba"
-                  className="w-full h-auto object-cover"
-                />
+                <img src={zainSimba} alt="Zain with Simba" className="w-full h-auto object-cover" />
               </div>
             </div>
 
@@ -177,8 +146,6 @@ const About = () => {
           <p>&copy; {new Date().getFullYear()} Zain Adtani. All rights reserved.</p>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default About;
