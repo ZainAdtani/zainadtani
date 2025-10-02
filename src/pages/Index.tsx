@@ -12,6 +12,7 @@ import Logo3D from "@/components/Logo3D";
 import qbBadge from "@/assets/quickbooks-level2-badge.png";
 import awsBadge from "@/assets/aws-cloud-practitioner-badge.png";
 import authorGuide from "@/assets/author-guide-preview.png";
+import authorGuideDownload from "@/assets/author-guide-download.png";
 import millionaireFastlane from "@/assets/millionaire-fastlane-cover.jpg";
 import deanGraziosi from "@/assets/dean-graziosi.jpg";
 import tonyRobbins from "@/assets/tony-robbins.jpg";
@@ -27,7 +28,7 @@ const Index = () => {
   };
   return <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-border shadow-md">
+      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-md">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between max-w-6xl">
           <div className="flex items-center gap-4">
             <a href="#top" className="block hover:opacity-80 transition-opacity">
@@ -210,7 +211,7 @@ const Index = () => {
                       <img src={authorGuide} alt="How to Become an Author Guide Preview" className="w-full rounded-lg shadow-md" />
                     </div>
                     <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary/10 transition-all duration-300">
-                      <a href="#" download>
+                      <a href={authorGuideDownload} download="You-Bestselling-Author-Guide.png">
                         Download Free Guide →
                       </a>
                     </Button>
@@ -239,7 +240,8 @@ const Index = () => {
                     stars: 5,
                     hook: "Tiny daily upgrades that compound into surprising results.",
                     note: "Systems > goals. Start with 2-minute wins.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1655988385i/40121378.jpg"
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1655988385i/40121378.jpg",
+                    amazonUrl: "https://www.amazon.com/Atomic-Habits-Proven-Build-Break/dp/0735211299"
                   },
                   {
                     title: "The Millionaire Fastlane",
@@ -248,7 +250,8 @@ const Index = () => {
                     stars: 5,
                     hook: "Escape trading time for money; build assets that scale.",
                     note: "Control, leverage, and process—not paychecks—drive wealth.",
-                    cover: millionaireFastlane
+                    cover: millionaireFastlane,
+                    amazonUrl: "https://www.amazon.com/Millionaire-Fastlane-Crack-Wealth-Lifetime/dp/0984358102"
                   },
                   {
                     title: "Harry Potter and the Sorcerer's Stone",
@@ -257,7 +260,8 @@ const Index = () => {
                     stars: 5,
                     hook: "A hidden world, a first wand, and friendship that changes fate.",
                     note: "Start of a classic hero's journey.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474154022i/3.jpg"
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474154022i/3.jpg",
+                    amazonUrl: "https://www.amazon.com/Harry-Potter-Sorcerers-Stone-Book/dp/0545582881"
                   },
                   {
                     title: "Harry Potter and the Chamber of Secrets",
@@ -266,7 +270,8 @@ const Index = () => {
                     stars: 5,
                     hook: "Mystery, memory, and the cost of ignoring warnings.",
                     note: "Courage grows in year two.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474169725i/15881.jpg"
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474169725i/15881.jpg",
+                    amazonUrl: "https://www.amazon.com/Harry-Potter-Chamber-Secrets-Book/dp/054558292X"
                   },
                   {
                     title: "Harry Potter and the Prisoner of Azkaban",
@@ -275,7 +280,8 @@ const Index = () => {
                     stars: 5,
                     hook: "Time twists, truth surfaces, and fear takes a new form.",
                     note: "Fan-favorite plot turner.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1630547330i/5.jpg"
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1630547330i/5.jpg",
+                    amazonUrl: "https://www.amazon.com/Harry-Potter-Prisoner-Azkaban-Book/dp/0545582938"
                   },
                   {
                     title: "Harry Potter and the Goblet of Fire",
@@ -284,7 +290,8 @@ const Index = () => {
                     stars: 5,
                     hook: "A deadly tournament forces choices bigger than glory.",
                     note: "Darkness rises.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1554006152i/6.jpg"
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1554006152i/6.jpg",
+                    amazonUrl: "https://www.amazon.com/J-K-Rowling/dp/0545582954"
                   },
                   {
                     title: "Harry Potter and the Order of the Phoenix",
@@ -293,7 +300,8 @@ const Index = () => {
                     stars: 5,
                     hook: "Resistance forms when truth is inconvenient.",
                     note: "Leadership under pressure.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546910265i/2.jpg"
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546910265i/2.jpg",
+                    amazonUrl: "https://www.amazon.com/Harry-Potter-Order-Phoenix-5/dp/0545582970"
                   },
                   {
                     title: "Harry Potter and the Half-Blood Prince",
@@ -302,7 +310,8 @@ const Index = () => {
                     stars: 5,
                     hook: "Secrets of the past shape tomorrow's war.",
                     note: "Choices > prophecy.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1587697303i/1.jpg"
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1587697303i/1.jpg",
+                    amazonUrl: "https://www.amazon.com/Harry-Potter-Half-Blood-Prince-Book/dp/0545582997"
                   },
                   {
                     title: "Harry Potter and the Deathly Hallows",
@@ -311,7 +320,8 @@ const Index = () => {
                     stars: 5,
                     hook: "Loyalty, loss, and the final stand against fear.",
                     note: "A closing built on sacrifice.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1663805647i/136251.jpg"
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1663805647i/136251.jpg",
+                    amazonUrl: "https://www.amazon.com/Harry-Potter-Deathly-Hallows-Book/dp/0545583004"
                   },
                   {
                     title: "Tuesdays with Morrie",
@@ -320,7 +330,8 @@ const Index = () => {
                     stars: 5,
                     hook: "Gentle conversations that re-prioritize what matters.",
                     note: "Love, purpose, and letting go.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1423763749i/6900.jpg"
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1423763749i/6900.jpg",
+                    amazonUrl: "https://www.amazon.com/Tuesdays-Morrie-Greatest-Lesson-Anniversary/dp/076790592X"
                   },
                   {
                     title: "How to Win Friends & Influence People",
@@ -329,7 +340,8 @@ const Index = () => {
                     stars: 5,
                     hook: "Make others feel seen, and doors open.",
                     note: "Timeless human nature playbook.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1442726934i/4865.jpg"
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1442726934i/4865.jpg",
+                    amazonUrl: "https://www.amazon.com/How-Win-Friends-Influence-People/dp/0671027034"
                   },
                   {
                     title: "The Alchemist",
@@ -338,7 +350,8 @@ const Index = () => {
                     stars: 5,
                     hook: "Chasing your personal legend changes who you become.",
                     note: "Simple story, durable lesson.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1654371463i/18144590.jpg"
+                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1654371463i/18144590.jpg",
+                    amazonUrl: "https://www.amazon.com/Alchemist-Paulo-Coelho/dp/0061122416"
                   }
                 ].map((book, index) => (
                   <Card 
@@ -383,12 +396,28 @@ const Index = () => {
 
                       {/* CTA Buttons */}
                       <div className="flex gap-2 mt-auto">
-                        <Button variant="ghost" size="sm" className="flex-1 text-xs hover:bg-primary/10">
-                          Details
-                        </Button>
-                        <Button variant="ghost" size="sm" className="flex-1 text-xs hover:bg-primary/10">
-                          <ExternalLink className="w-3 h-3 mr-1" />
-                          Buy
+                        <div className="relative flex-1">
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="w-full text-xs bg-gradient-to-r from-primary/20 to-accent/20 hover:from-primary/30 hover:to-accent/30 rounded-full font-semibold transition-all duration-300 hover:shadow-lg"
+                            disabled
+                          >
+                            Full Report
+                          </Button>
+                          <span className="absolute -top-2 -right-2 bg-accent text-accent-foreground text-[10px] px-2 py-0.5 rounded-full font-bold shadow-md rotate-12 whitespace-nowrap">
+                            Coming Soon
+                          </span>
+                        </div>
+                        <Button 
+                          asChild 
+                          size="sm" 
+                          className="flex-1 text-xs bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+                        >
+                          <a href={book.amazonUrl} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="w-3 h-3 mr-1" />
+                            Buy
+                          </a>
                         </Button>
                       </div>
                     </div>
@@ -720,27 +749,36 @@ const Index = () => {
       {/* Newsletter Section */}
       <section id="newsletter" className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 max-w-4xl">
-          <div className="text-center md:text-left md:flex md:items-start md:gap-12">
-            <div className="md:flex-1 mb-8 md:md:mb-0">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-                Subscribe to <br />
-                <span className="inline-flex items-center gap-2">
-                  Z Notes 
-                  <Mail className="w-10 h-10 text-primary" />
-                </span>
-              </h2>
+          <div className="relative">
+            {/* Coming Soon Diagonal Banner */}
+            <div className="absolute -top-8 -right-8 md:-top-12 md:-right-12 z-10 pointer-events-none">
+              <div className="bg-gradient-to-r from-accent via-accent/90 to-accent text-accent-foreground font-black text-lg md:text-2xl px-16 py-3 rotate-45 shadow-2xl border-2 border-accent-foreground/20">
+                COMING SOON
+              </div>
             </div>
-            
-            <div className="md:flex-1">
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                Each week, I share actionable EA tips, practical study advice, and highlights from my favorite tax resources, directly to your inbox. It's free to join, and always will be.
-              </p>
-              <form className="flex flex-col sm:flex-row gap-3">
-                <Input type="email" placeholder="Enter your email" className="flex-1 h-12 text-base bg-background transition-all duration-300 focus:ring-2 focus:ring-primary" />
-                <Button type="submit" size="lg" className="h-12 px-8 bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
-                  Subscribe
-                </Button>
-              </form>
+
+            <div className="text-center md:text-left md:flex md:items-start md:gap-12 opacity-60 pointer-events-none">
+              <div className="md:flex-1 mb-8 md:md:mb-0">
+                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+                  Subscribe to <br />
+                  <span className="inline-flex items-center gap-2">
+                    Z Notes 
+                    <Mail className="w-10 h-10 text-primary" />
+                  </span>
+                </h2>
+              </div>
+              
+              <div className="md:flex-1">
+                <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                  Each week, I share actionable EA tips, practical study advice, and highlights from my favorite tax resources, directly to your inbox. It's free to join, and always will be.
+                </p>
+                <form className="flex flex-col sm:flex-row gap-3">
+                  <Input type="email" placeholder="Enter your email" className="flex-1 h-12 text-base bg-background transition-all duration-300 focus:ring-2 focus:ring-primary" disabled />
+                  <Button type="submit" size="lg" className="h-12 px-8 bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" disabled>
+                    Subscribe
+                  </Button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
