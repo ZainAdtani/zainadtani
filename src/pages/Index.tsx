@@ -4,9 +4,10 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles, Music, BookOpen, ExternalLink, Youtube, Linkedin, Heart } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { EAGame } from "@/components/EAGame";
+import { useLocation } from "react-router-dom";
 import headshotImage from "@/assets/zain-headshot.png";
 import communityImage from "@/assets/community-image.png";
 import Logo3D from "@/components/Logo3D";
@@ -23,18 +24,34 @@ import maggieSimbaBook from "@/assets/maggie-simba-book.png";
 const QUOTES_AND_NOTES = ["It is the unknown we fear when we look upon death and darkness, nothing more. - J.K. Rowling, Harry Potter and the Deathly Hallows", "Instead of digging for gold, sell shovels. Instead of driving a taxi, build Uber. Wealth is not about working harder; it's about creating systems that work harder than you do. - MJ DeMarco, The Millionaire Fastlane", "More than 50% of graduates completely forget what they learn in college within 5 years, and within 10 years it's closer to 100%. If most of our \"education\" inevitably collects dust, then what was the point in learning it? Let's do some simple math: Let's be conservative and say that 5 hours per week are spent attending lectures and studying for exams (10 for finals week). If there are 15 weeks in a semester, that's 30 weeks a year. Multiply that by 4 we get 120 weeks, resulting in 600 hours invested into learning information that for the most part, will not be useful for your future work and career. Now I'm not saying you should renounce education completely, rather look past the shiny allure of \"financial stability and higher wages\" and make an informed decision of whether or not it aligns with what you desire. Almost anything can be learned on the internet, online education is booming. Opportunities for the next wave of innovators are scaling faster and faster thanks to technology and AI. Imagine what you could do with 600 extra hours, $200,000, and 4 years to learn and explore on your own? The future is wide open for those willing to diverge and create.", "Plan Your Day: Establish a clear plan for your daily activities. This sets the foundation for \"traction,\" where every action intentionally moves you toward your goals, contrasting with \"distraction,\" which pulls you away. Use tools like calendars to allocate specific time blocks for tasks.", "Did you know that the average person spends over one hour on social media per day, just consuming and not creating? Additionally, they spend another 2-3 hours watching television. That's four hours, on average, gone every day. Doing the math, 4 hours lost per day, multiplied by 7 days per week, equals 28 hours per week. That's basically equivalent to a part-time job. In fact, it's literally 3.5 eight-hour workdays lost per week. Four hours lost per day over 30 days = 120 hours = 15 WORKDAYS PER MONTH LOST.", "Motivation is not the cause of action, but the effect. If you wanna feel motivated to do something, take the smallest action towards doing it, then let the momentum carry you forward.", "Don't view exercise as an exchange for something. You don't work out to lose a few pounds or earn that hamburger and ice cream. With this mindset, you will lose motivation quickly and quit. Instead, view exercise as an investment. For every unit of energy you put in, you'll receive multiple units of energy back. The catch is that these units of energy you get back will be spread out over weeks, months and years. This is why exercising hardcore occasionally is far inferior than exercising a little bit every day.", "Statistically speaking, a normal person is physically unhealthy, emotionally anxious and depressed, socially lonely and financially in debt. Fuck being normal.", "Your mindset is the KEY to making more progress in your life, and journaling is the daily WORK that helps you master your mindset.", "Don't make assumptions about people, you have no fucking idea what they've been through. Don't make assumptions about yourself either. The last person we're objective about is ourselves.", "No one thinks about you as much as you think about yourself. Whatever you are insecure about, chances are 99% of people around you haven't even noticed it. This is because everybody else is too busy thinking about themselves. This may strike you as a little bit depressing, but it's actually liberating. It means that you are judged far less than you think.", "Develop a willingness to be disliked. It will grant you the freedom to do what needs to be done, even if it's unpopular.", "Nothing meaningful in life is easy, and nothing easy in life is meaningful. We think we'd like to have everything handed to us on a silver platter, but the truth is that we don't appreciate or enjoy things that we don't struggle for. So stop avoiding the difficult things in your life and instead find the difficult things you enjoy.", "It's never too late to change. It's never too late. I get emails all the time from people asking me, \"Hey, I'm 20 or 40 or 60 or 80, is it too late? Can I change? Is there time?\" The answer is it's never too late, there's always time. The only question is how long we're gonna sit here and make excuses and pretend there's not."];
 const Index = () => {
   const [quote, setQuote] = useState("");
+  const [activeTab, setActiveTab] = useState("digital-products");
+  const location = useLocation();
   
   const generateQuote = () => {
     const randomIndex = Math.floor(Math.random() * QUOTES_AND_NOTES.length);
     const selectedQuote = QUOTES_AND_NOTES[randomIndex];
     setQuote(selectedQuote);
   };
+
+  useEffect(() => {
+    const hash = location.hash.replace('#', '');
+    if (hash === 'digital-products' || hash === 'books') {
+      setActiveTab(hash);
+      // Scroll to the tabs section
+      setTimeout(() => {
+        const element = document.getElementById('tabs-section');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [location]);
   
   return <div id="home" className="min-h-screen bg-background">
       <Header />
 
       {/* Hero Section */}
-      <section className="py-16 md:py-24 bg-hero-bg">
+      <section className="py-16 md:py-24 bg-gradient-to-br from-primary/5 via-background to-accent/5">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col md:flex-row items-center gap-12">
             {/* Headshot with decorative background */}
@@ -71,7 +88,7 @@ const Index = () => {
       </section>
 
       {/* Main Action Buttons */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-secondary/20">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Button 1: Free Community */}
@@ -114,9 +131,9 @@ const Index = () => {
       </section>
 
       {/* Tabbed Sections */}
-      <section id="digital-products" className="py-16 md:py-24 bg-secondary">
+      <section id="tabs-section" className="py-16 md:py-24 bg-accent/5">
         <div className="container mx-auto px-4 max-w-6xl">
-          <Tabs defaultValue="digital-products" className="w-full">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full grid-cols-4 mb-8 h-auto">
               <TabsTrigger value="digital-products" className="text-xs sm:text-sm px-2 py-2.5">
                 Digital Products
@@ -690,7 +707,7 @@ const Index = () => {
       </section>
 
       {/* Spotify Playlist Section */}
-      <section className="py-16 md:py-24 bg-secondary">
+      <section className="py-16 md:py-24 bg-primary/5">
         <div className="container mx-auto px-4 max-w-4xl">
           <Card className="p-8 shadow-lg border-2">
             <div className="text-center mb-8">
@@ -711,46 +728,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <section id="newsletter" className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="relative">
-            {/* Coming Soon Diagonal Banner */}
-            <div className="absolute -top-8 -right-8 md:-top-12 md:-right-12 z-10 pointer-events-none">
-              <div className="bg-gradient-to-r from-accent via-accent/90 to-accent text-accent-foreground font-black text-lg md:text-2xl px-16 py-3 rotate-45 shadow-2xl border-2 border-accent-foreground/20">
-                COMING SOON
-              </div>
-            </div>
-
-            <div className="text-center md:text-left md:flex md:items-start md:gap-12 opacity-60 pointer-events-none">
-              <div className="md:flex-1 mb-8 md:md:mb-0">
-                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-                  Subscribe to <br />
-                  <span className="inline-flex items-center gap-2">
-                    Z Notes 
-                    <Mail className="w-10 h-10 text-primary" />
-                  </span>
-                </h2>
-              </div>
-              
-              <div className="md:flex-1">
-                <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                  Each week, I share actionable EA tips, practical study advice, and highlights from my favorite tax resources, directly to your inbox. It's free to join, and always will be.
-                </p>
-                <form className="flex flex-col sm:flex-row gap-3">
-                  <Input type="email" placeholder="Enter your email" className="flex-1 h-12 text-base bg-background transition-all duration-300 focus:ring-2 focus:ring-primary" disabled />
-                  <Button type="submit" size="lg" className="h-12 px-8 bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" disabled>
-                    Subscribe
-                  </Button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Books I've Published Section */}
-      <section className="py-20 bg-accent/5">
+      <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 space-y-4">
             <h2 className="text-4xl md:text-5xl font-bold">
@@ -809,6 +788,44 @@ const Index = () => {
 
       {/* EA Learning Game */}
       <EAGame />
+
+      {/* Newsletter Section */}
+      <section id="newsletter" className="py-16 md:py-24 bg-accent/10">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="relative">
+            {/* Coming Soon Diagonal Banner */}
+            <div className="absolute -top-8 -right-8 md:-top-12 md:-right-12 z-10 pointer-events-none">
+              <div className="bg-gradient-to-r from-accent via-accent/90 to-accent text-accent-foreground font-black text-lg md:text-2xl px-16 py-3 rotate-45 shadow-2xl border-2 border-accent-foreground/20">
+                COMING SOON
+              </div>
+            </div>
+
+            <div className="text-center md:text-left md:flex md:items-start md:gap-12 opacity-60 pointer-events-none">
+              <div className="md:flex-1 mb-8 md:md:mb-0">
+                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+                  Subscribe to <br />
+                  <span className="inline-flex items-center gap-2">
+                    Z Notes 
+                    <Mail className="w-10 h-10 text-primary" />
+                  </span>
+                </h2>
+              </div>
+              
+              <div className="md:flex-1">
+                <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                  Each week, I share actionable EA tips, practical study advice, and highlights from my favorite tax resources, directly to your inbox. It's free to join, and always will be.
+                </p>
+                <form className="flex flex-col sm:flex-row gap-3">
+                  <Input type="email" placeholder="Enter your email" className="flex-1 h-12 text-base bg-background transition-all duration-300 focus:ring-2 focus:ring-primary" disabled />
+                  <Button type="submit" size="lg" className="h-12 px-8 bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" disabled>
+                    Subscribe
+                  </Button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="bg-background border-t border-border py-8">
