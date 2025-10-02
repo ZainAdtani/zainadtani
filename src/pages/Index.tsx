@@ -3,12 +3,15 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles, Music } from "lucide-react";
+import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles, Music, BookOpen, ExternalLink, Star } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import headshotImage from "@/assets/zain-headshot.png";
 import communityImage from "@/assets/community-image.png";
 import Logo3D from "@/components/Logo3D";
+import qbBadge from "@/assets/quickbooks-level2-badge.png";
+import awsBadge from "@/assets/aws-cloud-practitioner-badge.png";
+import authorGuide from "@/assets/author-guide-preview.png";
 const QUOTES_AND_NOTES = ["It is the unknown we fear when we look upon death and darkness, nothing more. - J.K. Rowling, Harry Potter and the Deathly Hallows", "Instead of digging for gold, sell shovels. Instead of driving a taxi, build Uber. Wealth is not about working harder; it's about creating systems that work harder than you do. - MJ DeMarco, The Millionaire Fastlane", "More than 50% of graduates completely forget what they learn in college within 5 years, and within 10 years it's closer to 100%. If most of our \"education\" inevitably collects dust, then what was the point in learning it? Let's do some simple math: Let's be conservative and say that 5 hours per week are spent attending lectures and studying for exams (10 for finals week). If there are 15 weeks in a semester, that's 30 weeks a year. Multiply that by 4 we get 120 weeks, resulting in 600 hours invested into learning information that for the most part, will not be useful for your future work and career. Now I'm not saying you should renounce education completely, rather look past the shiny allure of \"financial stability and higher wages\" and make an informed decision of whether or not it aligns with what you desire. Almost anything can be learned on the internet, online education is booming. Opportunities for the next wave of innovators are scaling faster and faster thanks to technology and AI. Imagine what you could do with 600 extra hours, $200,000, and 4 years to learn and explore on your own? The future is wide open for those willing to diverge and create.", "Plan Your Day: Establish a clear plan for your daily activities. This sets the foundation for \"traction,\" where every action intentionally moves you toward your goals, contrasting with \"distraction,\" which pulls you away. Use tools like calendars to allocate specific time blocks for tasks.", "Did you know that the average person spends over one hour on social media per day, just consuming and not creating? Additionally, they spend another 2-3 hours watching television. That's four hours, on average, gone every day. Doing the math, 4 hours lost per day, multiplied by 7 days per week, equals 28 hours per week. That's basically equivalent to a part-time job. In fact, it's literally 3.5 eight-hour workdays lost per week. Four hours lost per day over 30 days = 120 hours = 15 WORKDAYS PER MONTH LOST.", "Motivation is not the cause of action, but the effect. If you wanna feel motivated to do something, take the smallest action towards doing it, then let the momentum carry you forward.", "Don't view exercise as an exchange for something. You don't work out to lose a few pounds or earn that hamburger and ice cream. With this mindset, you will lose motivation quickly and quit. Instead, view exercise as an investment. For every unit of energy you put in, you'll receive multiple units of energy back. The catch is that these units of energy you get back will be spread out over weeks, months and years. This is why exercising hardcore occasionally is far inferior than exercising a little bit every day.", "Statistically speaking, a normal person is physically unhealthy, emotionally anxious and depressed, socially lonely and financially in debt. Fuck being normal.", "Your mindset is the KEY to making more progress in your life, and journaling is the daily WORK that helps you master your mindset.", "Don't make assumptions about people, you have no fucking idea what they've been through. Don't make assumptions about yourself either. The last person we're objective about is ourselves.", "No one thinks about you as much as you think about yourself. Whatever you are insecure about, chances are 99% of people around you haven't even noticed it. This is because everybody else is too busy thinking about themselves. This may strike you as a little bit depressing, but it's actually liberating. It means that you are judged far less than you think.", "Develop a willingness to be disliked. It will grant you the freedom to do what needs to be done, even if it's unpopular.", "Nothing meaningful in life is easy, and nothing easy in life is meaningful. We think we'd like to have everything handed to us on a silver platter, but the truth is that we don't appreciate or enjoy things that we don't struggle for. So stop avoiding the difficult things in your life and instead find the difficult things you enjoy.", "It's never too late to change. It's never too late. I get emails all the time from people asking me, \"Hey, I'm 20 or 40 or 60 or 80, is it too late? Can I change? Is there time?\" The answer is it's never too late, there's always time. The only question is how long we're gonna sit here and make excuses and pretend there's not."];
 const Index = () => {
   const [quote, setQuote] = useState("");
@@ -146,7 +149,7 @@ const Index = () => {
 
             {/* Digital Products Tab */}
             <TabsContent value="digital-products" className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <Card className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2">
                   <div className="p-8">
                     <ShoppingBag className="w-10 h-10 text-primary mb-4" />
@@ -172,6 +175,24 @@ const Index = () => {
                     <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary/10 transition-all duration-300">
                       <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer">
                         Join Free →
+                      </a>
+                    </Button>
+                  </div>
+                </Card>
+
+                <Card className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2">
+                  <div className="p-8">
+                    <BookOpen className="w-10 h-10 text-primary mb-4" />
+                    <h3 className="text-2xl font-bold mb-3 text-foreground">How to Become an Author</h3>
+                    <p className="text-muted-foreground mb-6">
+                      The proven framework to transform your expertise into a published book in just 6 months. Covers Kindle, print, and audiobook formats.
+                    </p>
+                    <div className="mb-6">
+                      <img src={authorGuide} alt="How to Become an Author Guide Preview" className="w-full rounded-lg shadow-md" />
+                    </div>
+                    <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary/10 transition-all duration-300">
+                      <a href="#" download>
+                        Download Free Guide →
                       </a>
                     </Button>
                   </div>
@@ -240,8 +261,13 @@ const Index = () => {
               </Card>
 
               <Card className="p-8 hover-lift transition-all duration-300 shadow-lg border-2">
-                <Award className="w-16 h-16 text-primary mb-6" />
-                <h3 className="text-3xl font-bold mb-4 text-foreground">QuickBooks Certified ProAdvisor Level 2</h3>
+                <div className="flex items-start gap-4 mb-6">
+                  <img src={qbBadge} alt="QuickBooks ProAdvisor Level 2 Badge" className="w-32 h-32 object-contain flex-shrink-0" />
+                  <div className="bg-primary/10 border-2 border-primary rounded-lg px-4 py-2 self-start">
+                    <p className="text-primary font-bold text-lg">Level 2 Certified</p>
+                  </div>
+                </div>
+                <h3 className="text-3xl font-bold mb-4 text-foreground">QuickBooks Certified ProAdvisor</h3>
                 <p className="text-lg text-muted-foreground mb-4">
                   Running a business is hard enough—your books shouldn't be. I'm a QuickBooks Certified ProAdvisor (now Level 2 certified!) and I help business owners get their books cleaned up, organized, and running like clockwork.
                 </p>
@@ -255,22 +281,37 @@ const Index = () => {
                   <p>• Help with invoicing, payments, and reports</p>
                   <p>• Personalized support (yes, real answers—not robots)</p>
                 </div>
-                <p className="text-muted-foreground mb-4">
+                <p className="text-muted-foreground mb-6">
                   Check out my official badges—and let's chat about how we can make your bookkeeping the easiest part of your business.
                 </p>
-                <Button asChild className="bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg">
-                  <a href="https://proadvisor.intuit.com/app/accountant/search?searchId=zainadtani" target="_blank" rel="noopener noreferrer">
-                    View My ProAdvisor Profile →
-                  </a>
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button asChild className="flex-1 bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg">
+                    <a href="https://proadvisor.intuit.com/app/accountant/search?searchId=zainadtani" target="_blank" rel="noopener noreferrer">
+                      View My ProAdvisor Profile →
+                    </a>
+                  </Button>
+                  <Button asChild variant="outline" className="flex-1 border-primary text-primary hover:bg-primary/10 transition-all duration-300">
+                    <a href="https://www.credly.com/badges/31486029-a69d-462a-84d6-cf324f42fdfa/embedded" target="_blank" rel="noopener noreferrer">
+                      View My Badge →
+                    </a>
+                  </Button>
+                </div>
               </Card>
 
               <Card className="p-8 hover-lift transition-all duration-300 shadow-lg border-2">
-                <Award className="w-16 h-16 text-primary mb-6" />
-                <h3 className="text-3xl font-bold mb-4 text-foreground">AWS Certified</h3>
-                <p className="text-lg text-muted-foreground mb-6">
-                  Amazon Web Services certification demonstrating cloud computing expertise and technical proficiency.
+                <img src={awsBadge} alt="AWS Certified Cloud Practitioner Badge" className="w-32 h-32 object-contain mb-6" />
+                <h3 className="text-3xl font-bold mb-4 text-foreground">AWS Certified Cloud Practitioner</h3>
+                <p className="text-lg text-muted-foreground mb-4">
+                  Foundational certification validating comprehensive understanding of AWS Cloud services, architecture, and best practices.
                 </p>
+                <div className="space-y-2 text-muted-foreground mb-6">
+                  <p className="font-semibold">Key Competencies:</p>
+                  <p>• Cloud concepts and AWS global infrastructure</p>
+                  <p>• Core AWS services (compute, storage, database, networking)</p>
+                  <p>• AWS security and compliance best practices</p>
+                  <p>• AWS pricing models and cost optimization</p>
+                  <p>• Cloud architecture design principles</p>
+                </div>
                 <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/10 transition-all duration-300">
                   <a href="https://www.credly.com/badges/2d636eb8-4677-4783-b829-47394e406a5a/public_url" target="_blank" rel="noopener noreferrer">
                     View AWS Badge →
@@ -309,6 +350,199 @@ const Index = () => {
             }} src="https://open.spotify.com/embed/playlist/4ZHa92ZbMSi2Fwps39XZl5?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" />
             </div>
           </Card>
+        </div>
+      </section>
+
+      {/* Zain's Shelf - Book Recommendations */}
+      <section className="py-16 md:py-24 bg-background relative overflow-hidden">
+        {/* Parallax Background Blobs */}
+        <div className="absolute inset-0 -z-10 opacity-30">
+          <div className="absolute top-20 left-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: "1s"}}></div>
+        </div>
+
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Zain's Shelf
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Short, practical takeaways. Add 1 that changes your week.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Atomic Habits",
+                author: "James Clear",
+                tag: "Habits",
+                stars: 5,
+                hook: "Tiny daily upgrades that compound into surprising results.",
+                note: "Systems > goals. Start with 2-minute wins.",
+                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1655988385i/40121378.jpg"
+              },
+              {
+                title: "The Millionaire Fastlane",
+                author: "MJ DeMarco",
+                tag: "Business",
+                stars: 5,
+                hook: "Escape trading time for money; build assets that scale.",
+                note: "Control, leverage, and process—not paychecks—drive wealth.",
+                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1312183821i/18872437.jpg"
+              },
+              {
+                title: "Harry Potter and the Sorcerer's Stone",
+                author: "J.K. Rowling",
+                tag: "Fiction",
+                stars: 5,
+                hook: "A hidden world, a first wand, and friendship that changes fate.",
+                note: "Start of a classic hero's journey.",
+                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474154022i/3.jpg"
+              },
+              {
+                title: "Harry Potter and the Chamber of Secrets",
+                author: "J.K. Rowling",
+                tag: "Fiction",
+                stars: 5,
+                hook: "Mystery, memory, and the cost of ignoring warnings.",
+                note: "Courage grows in year two.",
+                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474169725i/15881.jpg"
+              },
+              {
+                title: "Harry Potter and the Prisoner of Azkaban",
+                author: "J.K. Rowling",
+                tag: "Fiction",
+                stars: 5,
+                hook: "Time twists, truth surfaces, and fear takes a new form.",
+                note: "Fan-favorite plot turner.",
+                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1630547330i/5.jpg"
+              },
+              {
+                title: "Harry Potter and the Goblet of Fire",
+                author: "J.K. Rowling",
+                tag: "Fiction",
+                stars: 5,
+                hook: "A deadly tournament forces choices bigger than glory.",
+                note: "Darkness rises.",
+                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1554006152i/6.jpg"
+              },
+              {
+                title: "Harry Potter and the Order of the Phoenix",
+                author: "J.K. Rowling",
+                tag: "Fiction",
+                stars: 5,
+                hook: "Resistance forms when truth is inconvenient.",
+                note: "Leadership under pressure.",
+                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546910265i/2.jpg"
+              },
+              {
+                title: "Harry Potter and the Half-Blood Prince",
+                author: "J.K. Rowling",
+                tag: "Fiction",
+                stars: 5,
+                hook: "Secrets of the past shape tomorrow's war.",
+                note: "Choices > prophecy.",
+                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1587697303i/1.jpg"
+              },
+              {
+                title: "Harry Potter and the Deathly Hallows",
+                author: "J.K. Rowling",
+                tag: "Fiction",
+                stars: 5,
+                hook: "Loyalty, loss, and the final stand against fear.",
+                note: "A closing built on sacrifice.",
+                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1663805647i/136251.jpg"
+              },
+              {
+                title: "Tuesdays with Morrie",
+                author: "Mitch Albom",
+                tag: "Wisdom",
+                stars: 5,
+                hook: "Gentle conversations that re-prioritize what matters.",
+                note: "Love, purpose, and letting go.",
+                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1700235518i/6900.jpg"
+              },
+              {
+                title: "How to Win Friends & Influence People",
+                author: "Dale Carnegie",
+                tag: "People",
+                stars: 5,
+                hook: "Make others feel seen, and doors open.",
+                note: "Timeless human nature playbook.",
+                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1442726934i/4865.jpg"
+              },
+              {
+                title: "The Alchemist",
+                author: "Paulo Coelho",
+                tag: "Fiction",
+                stars: 5,
+                hook: "Chasing your personal legend changes who you become.",
+                note: "Simple story, durable lesson.",
+                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1654371463i/18144590.jpg"
+              }
+            ].map((book, index) => (
+              <Card 
+                key={index} 
+                className="group relative overflow-hidden rounded-3xl border-2 bg-background/60 backdrop-blur-md shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                  transformStyle: "preserve-3d",
+                  perspective: "1200px"
+                }}
+              >
+                {/* Tag Badge */}
+                <div className="absolute top-4 right-4 z-10 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm">
+                  {book.tag}
+                </div>
+
+                <div className="p-6 flex flex-col h-full">
+                  {/* Book Cover */}
+                  <div className="relative mb-4 rounded-xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-shadow duration-500">
+                    <div className="aspect-[2/3] bg-accent/20">
+                      <img 
+                        src={book.cover} 
+                        alt={`Book cover: ${book.title} by ${book.author}`}
+                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                        onError={(e) => {
+                          e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'%3E%3Crect fill='%23e5e7eb' width='200' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%239ca3af'%3EBook Cover%3C/text%3E%3C/svg%3E";
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Stars */}
+                  <div className="flex gap-1 mb-2">
+                    {Array.from({length: book.stars}).map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                    ))}
+                  </div>
+
+                  {/* Title & Author */}
+                  <h4 className="font-bold text-xl mb-1 text-foreground line-clamp-2">{book.title}</h4>
+                  <p className="text-sm text-muted-foreground mb-3">{book.author}</p>
+
+                  {/* Hook */}
+                  <p className="text-sm text-foreground mb-3 line-clamp-2 italic">{book.hook}</p>
+
+                  {/* Note */}
+                  <p className="text-xs text-muted-foreground mb-4 flex-grow">{book.note}</p>
+
+                  {/* CTA Buttons */}
+                  <div className="flex gap-2 mt-auto">
+                    <Button variant="ghost" size="sm" className="flex-1 text-xs hover:bg-primary/10">
+                      Details
+                    </Button>
+                    <Button variant="ghost" size="sm" className="flex-1 text-xs hover:bg-primary/10">
+                      <ExternalLink className="w-3 h-3 mr-1" />
+                      Buy
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
