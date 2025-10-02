@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Youtube, Linkedin } from "lucide-react";
 import zainHeadshot from "@/assets/zain-headshot-new.png";
+import zainSimba from "@/assets/zain-simba.png";
 
 const About = () => {
   return (
@@ -116,8 +117,9 @@ const About = () => {
             </div>
           </div>
 
-          {/* Right Column - Photo */}
-          <div className="lg:sticky lg:top-24 animate-fade-in">
+          {/* Right Column - Photos */}
+          <div className="lg:sticky lg:top-24 animate-fade-in space-y-8">
+            {/* Main Professional Photo */}
             <div className="relative">
               {/* Accent border effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-accent to-primary rounded-2xl blur-xl opacity-30 animate-pulse" />
@@ -125,6 +127,19 @@ const About = () => {
                 <img
                   src={zainHeadshot}
                   alt="Zain Adtani"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
+
+            {/* Zain with Simba Photo */}
+            <div className="relative">
+              {/* Yellow highlight effect like Dean Graziosi */}
+              <div className="absolute inset-0 bg-accent rounded-2xl blur-2xl opacity-40" />
+              <div className="relative border-4 border-accent rounded-2xl overflow-hidden shadow-2xl hover-scale">
+                <img
+                  src={zainSimba}
+                  alt="Zain with Simba"
                   className="w-full h-auto object-cover"
                 />
               </div>

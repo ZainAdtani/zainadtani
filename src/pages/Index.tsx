@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles, Music, BookOpen, ExternalLink, Youtube, Linkedin, Heart } from "lucide-react";
 import { useState } from "react";
 import { Header } from "@/components/Header";
+import { EAGame } from "@/components/EAGame";
 import headshotImage from "@/assets/zain-headshot.png";
 import communityImage from "@/assets/community-image.png";
 import Logo3D from "@/components/Logo3D";
@@ -17,6 +18,8 @@ import millionaireFastlane from "@/assets/millionaire-fastlane-cover.jpg";
 import deanGraziosi from "@/assets/dean-graziosi.jpg";
 import tonyRobbins from "@/assets/tony-robbins.jpg";
 import jasonFladlien from "@/assets/jason-fladlien.jpg";
+import engineerToEABook from "@/assets/engineer-to-ea-book.png";
+import maggieSimbaBook from "@/assets/maggie-simba-book.png";
 const QUOTES_AND_NOTES = ["It is the unknown we fear when we look upon death and darkness, nothing more. - J.K. Rowling, Harry Potter and the Deathly Hallows", "Instead of digging for gold, sell shovels. Instead of driving a taxi, build Uber. Wealth is not about working harder; it's about creating systems that work harder than you do. - MJ DeMarco, The Millionaire Fastlane", "More than 50% of graduates completely forget what they learn in college within 5 years, and within 10 years it's closer to 100%. If most of our \"education\" inevitably collects dust, then what was the point in learning it? Let's do some simple math: Let's be conservative and say that 5 hours per week are spent attending lectures and studying for exams (10 for finals week). If there are 15 weeks in a semester, that's 30 weeks a year. Multiply that by 4 we get 120 weeks, resulting in 600 hours invested into learning information that for the most part, will not be useful for your future work and career. Now I'm not saying you should renounce education completely, rather look past the shiny allure of \"financial stability and higher wages\" and make an informed decision of whether or not it aligns with what you desire. Almost anything can be learned on the internet, online education is booming. Opportunities for the next wave of innovators are scaling faster and faster thanks to technology and AI. Imagine what you could do with 600 extra hours, $200,000, and 4 years to learn and explore on your own? The future is wide open for those willing to diverge and create.", "Plan Your Day: Establish a clear plan for your daily activities. This sets the foundation for \"traction,\" where every action intentionally moves you toward your goals, contrasting with \"distraction,\" which pulls you away. Use tools like calendars to allocate specific time blocks for tasks.", "Did you know that the average person spends over one hour on social media per day, just consuming and not creating? Additionally, they spend another 2-3 hours watching television. That's four hours, on average, gone every day. Doing the math, 4 hours lost per day, multiplied by 7 days per week, equals 28 hours per week. That's basically equivalent to a part-time job. In fact, it's literally 3.5 eight-hour workdays lost per week. Four hours lost per day over 30 days = 120 hours = 15 WORKDAYS PER MONTH LOST.", "Motivation is not the cause of action, but the effect. If you wanna feel motivated to do something, take the smallest action towards doing it, then let the momentum carry you forward.", "Don't view exercise as an exchange for something. You don't work out to lose a few pounds or earn that hamburger and ice cream. With this mindset, you will lose motivation quickly and quit. Instead, view exercise as an investment. For every unit of energy you put in, you'll receive multiple units of energy back. The catch is that these units of energy you get back will be spread out over weeks, months and years. This is why exercising hardcore occasionally is far inferior than exercising a little bit every day.", "Statistically speaking, a normal person is physically unhealthy, emotionally anxious and depressed, socially lonely and financially in debt. Fuck being normal.", "Your mindset is the KEY to making more progress in your life, and journaling is the daily WORK that helps you master your mindset.", "Don't make assumptions about people, you have no fucking idea what they've been through. Don't make assumptions about yourself either. The last person we're objective about is ourselves.", "No one thinks about you as much as you think about yourself. Whatever you are insecure about, chances are 99% of people around you haven't even noticed it. This is because everybody else is too busy thinking about themselves. This may strike you as a little bit depressing, but it's actually liberating. It means that you are judged far less than you think.", "Develop a willingness to be disliked. It will grant you the freedom to do what needs to be done, even if it's unpopular.", "Nothing meaningful in life is easy, and nothing easy in life is meaningful. We think we'd like to have everything handed to us on a silver platter, but the truth is that we don't appreciate or enjoy things that we don't struggle for. So stop avoiding the difficult things in your life and instead find the difficult things you enjoy.", "It's never too late to change. It's never too late. I get emails all the time from people asking me, \"Hey, I'm 20 or 40 or 60 or 80, is it too late? Can I change? Is there time?\" The answer is it's never too late, there's always time. The only question is how long we're gonna sit here and make excuses and pretend there's not."];
 const Index = () => {
   const [quote, setQuote] = useState("");
@@ -27,7 +30,7 @@ const Index = () => {
     setQuote(selectedQuote);
   };
   
-  return <div className="min-h-screen bg-background">
+  return <div id="home" className="min-h-screen bg-background">
       <Header />
 
       {/* Hero Section */}
@@ -111,20 +114,20 @@ const Index = () => {
       </section>
 
       {/* Tabbed Sections */}
-      <section className="py-16 md:py-24 bg-secondary">
+      <section id="digital-products" className="py-16 md:py-24 bg-secondary">
         <div className="container mx-auto px-4 max-w-6xl">
           <Tabs defaultValue="digital-products" className="w-full">
             <TabsList className="grid w-full grid-cols-4 mb-8 h-auto">
-              <TabsTrigger value="digital-products" id="digital-products" className="text-xs sm:text-sm px-2 py-2.5">
+              <TabsTrigger value="digital-products" className="text-xs sm:text-sm px-2 py-2.5">
                 Digital Products
               </TabsTrigger>
-              <TabsTrigger value="books" id="books" className="text-xs sm:text-sm px-2 py-2.5">
+              <TabsTrigger value="books" className="text-xs sm:text-sm px-2 py-2.5">
                 Books
               </TabsTrigger>
-              <TabsTrigger value="certifications" id="certifications" className="text-xs sm:text-sm px-2 py-2.5">
+              <TabsTrigger value="certifications" className="text-xs sm:text-sm px-2 py-2.5">
                 Certifications
               </TabsTrigger>
-              <TabsTrigger value="role-models" id="role-models" className="text-xs sm:text-sm px-2 py-2.5">
+              <TabsTrigger value="role-models" className="text-xs sm:text-sm px-2 py-2.5">
                 Role Models
               </TabsTrigger>
             </TabsList>
@@ -183,7 +186,7 @@ const Index = () => {
             </TabsContent>
 
             {/* Books Tab */}
-            <TabsContent value="books" className="space-y-6">
+            <TabsContent id="books" value="books" className="space-y-6">
               <div className="text-center mb-8">
                 <h3 className="text-3xl md:text-4xl font-bold mb-3 text-foreground bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                   Zain's Shelf
@@ -745,6 +748,67 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Books I've Published Section */}
+      <section className="py-20 bg-accent/5">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12 space-y-4">
+            <h2 className="text-4xl md:text-5xl font-bold">
+              My <span className="text-accent">Published Works</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Books I'm writing to share knowledge and inspire others
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Engineer to EA Book */}
+            <Card className="overflow-hidden hover-lift group">
+              <div className="relative">
+                <img
+                  src={engineerToEABook}
+                  alt="Engineer to Enrolled Agent Book Cover"
+                  className="w-full h-auto object-cover"
+                />
+                {/* In The Works Banner */}
+                <div className="absolute top-8 -right-12 bg-gradient-to-r from-accent to-primary text-white px-16 py-2 transform rotate-45 shadow-lg">
+                  <span className="font-bold text-sm">IN THE WORKS</span>
+                </div>
+              </div>
+              <div className="p-6 space-y-3">
+                <h3 className="text-2xl font-bold">Engineer to Enrolled Agent</h3>
+                <p className="text-muted-foreground">
+                  The smartest career pivot you've never heard of - a comprehensive guide to transitioning from engineering to becoming an Enrolled Agent.
+                </p>
+              </div>
+            </Card>
+
+            {/* Maggie & Simba Book */}
+            <Card className="overflow-hidden hover-lift group">
+              <div className="relative">
+                <img
+                  src={maggieSimbaBook}
+                  alt="If Maggie & Simba Could Talk Book Cover"
+                  className="w-full h-auto object-cover"
+                />
+                {/* In The Works Banner */}
+                <div className="absolute top-8 -right-12 bg-gradient-to-r from-accent to-primary text-white px-16 py-2 transform rotate-45 shadow-lg">
+                  <span className="font-bold text-sm">IN THE WORKS</span>
+                </div>
+              </div>
+              <div className="p-6 space-y-3">
+                <h3 className="text-2xl font-bold">If Maggie & Simba Could Talk</h3>
+                <p className="text-muted-foreground">
+                  A heartwarming memoir of love, loss, and life lessons through the eyes of two beloved companions.
+                </p>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* EA Learning Game */}
+      <EAGame />
 
       {/* Footer */}
       <footer className="bg-background border-t border-border py-8">

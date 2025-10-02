@@ -19,9 +19,18 @@ export const Header = () => {
 
         {/* Navigation */}
         <nav className="flex items-center gap-6">
+          <a href="/#home" className="text-foreground hover:text-primary transition-colors">
+            Home
+          </a>
           <Link to="/about" className="text-foreground hover:text-primary transition-colors">
             About Me
           </Link>
+          <a href="/#digital-products" className="text-foreground hover:text-primary transition-colors">
+            Digital Products
+          </a>
+          <a href="/#books" className="text-foreground hover:text-primary transition-colors">
+            Books
+          </a>
           
           {/* Dark Mode Toggle */}
           <Button
