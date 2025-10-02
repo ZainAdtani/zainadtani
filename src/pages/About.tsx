@@ -17,12 +17,8 @@ const About = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Hi, I'm <span className="text-primary">Zain Adtani</span>
             </h1>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-muted-foreground">
-              From Engineer to Enrolled Agent
-            </h2>
-              <p className="text-xl text-muted-foreground">
-                Helping busy beginners navigate the complex world of taxes with confidence
-              </p>
+            
+              
             </div>
 
             {/* Biography Section */}
@@ -115,27 +111,7 @@ const About = () => {
             </div>
 
             {/* Stats Card */}
-            <Card className="mt-8 p-6 space-y-4 hover-lift">
-              <h3 className="text-xl font-bold text-foreground">Quick Stats</h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center p-4 bg-primary/10 rounded-lg">
-                  <div className="text-3xl font-bold text-primary">IRS</div>
-                  <div className="text-sm text-muted-foreground">Enrolled Agent</div>
-                </div>
-                <div className="text-center p-4 bg-accent/10 rounded-lg">
-                  <div className="text-3xl font-bold text-accent">QB</div>
-                  <div className="text-sm text-muted-foreground">ProAdvisor L2</div>
-                </div>
-                <div className="text-center p-4 bg-primary/10 rounded-lg">
-                  <div className="text-3xl font-bold text-primary">AWS</div>
-                  <div className="text-sm text-muted-foreground">Cloud Certified</div>
-                </div>
-                <div className="text-center p-4 bg-accent/10 rounded-lg">
-                  <div className="text-3xl font-bold text-accent">∞</div>
-                  <div className="text-sm text-muted-foreground">Lifelong Learner</div>
-                </div>
-              </div>
-            </Card>
+            
           </div>
         </div>
       </main>
