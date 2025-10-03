@@ -25,7 +25,6 @@ const QUOTES_AND_NOTES = ["It is the unknown we fear when we look upon death and
 const Index = () => {
   const [quote, setQuote] = useState("");
   const [activeTab, setActiveTab] = useState("digital-products");
-  const [carouselIndex, setCarouselIndex] = useState(0);
   const location = useLocation();
   
   const generateQuote = () => {
@@ -47,15 +46,6 @@ const Index = () => {
       }, 100);
     }
   }, [location]);
-
-  useEffect(() => {
-    const featuredProducts = ALL_PRODUCTS.filter(p => p.featured);
-    const interval = setInterval(() => {
-      setCarouselIndex(prev => (prev + 1) % featuredProducts.length);
-    }, 17000);
-
-    return () => clearInterval(interval);
-  }, []);
   
   return <div id="home" className="min-h-screen bg-background">
       <Header />
@@ -243,105 +233,6 @@ const Index = () => {
                     </Card>
                   );
                 })}
-              </div>
-
-              {/* Auto-rotating carousel */}
-              <div className="mt-12">
-                <div className="text-center mb-6">
-                  <p className="text-sm text-muted-foreground">
-                    Rotating showcase • Updates every 17 seconds
-                  </p>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {ALL_PRODUCTS.filter(p => p.featured).map((product, idx) => {
-                    const Icon = product.icon ?? BookOpen;
-                    const isHighlighted = idx === carouselIndex;
-                    
-                    return (
-                      <Card 
-                        key={product.id} 
-                        className={`overflow-hidden transition-all duration-1000 shadow-lg border-2
-                                    ${isHighlighted ? 'opacity-100 scale-100 border-primary/50' : 'opacity-30 scale-95 border-border'}`}
-                      >
-                        {product.media && (
-                          <div className="relative">
-                            <img
-                              src={product.media}
-                              alt={`${product.title} preview`}
-                              className="w-full h-48 object-cover"
-                            />
-                            {product.badge && (
-                              <span className="absolute top-3 left-3 text-xs px-3 py-1 rounded-full
-                                             bg-primary text-primary-foreground font-semibold">
-                                {product.badge}
-                              </span>
-                            )}
-                          </div>
-                        )}
-                        
-                        <CardHeader>
-                          <div className="flex items-start justify-between gap-3">
-                            <div className="flex items-center gap-3 flex-1">
-                              <div className="p-2 rounded-lg bg-primary/10">
-                                <Icon className="w-5 h-5 text-primary" />
-                              </div>
-                              <CardTitle className="text-xl leading-tight">{product.title}</CardTitle>
-                            </div>
-                            <Badge variant="secondary" className="shrink-0">{product.category}</Badge>
-                          </div>
-                        </CardHeader>
-
-                        <CardContent className="space-y-4">
-                          <CardDescription className="text-base leading-relaxed">
-                            {product.desc}
-                          </CardDescription>
-
-                          {product.tags && (
-                            <div className="flex flex-wrap gap-2">
-                              {product.tags.map((tag) => (
-                                <Badge key={tag} variant="outline" className="text-xs">
-                                  {tag}
-                                </Badge>
-                              ))}
-                            </div>
-                          )}
-
-                          {product.cta && (
-                            product.cta.disabled ? (
-                              <Button disabled className="w-full">
-                                {product.cta.label}
-                              </Button>
-                            ) : (
-                              <Button asChild className="w-full">
-                                <a
-                                  href={product.cta.href}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  download={product.cta.download}
-                                >
-                                  {product.cta.label}
-                                </a>
-                              </Button>
-                            )
-                          )}
-                        </CardContent>
-                      </Card>
-                    );
-                  })}
-                </div>
-                
-                <div className="flex justify-center gap-2 mt-6">
-                  {ALL_PRODUCTS.filter(p => p.featured).map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCarouselIndex(idx)}
-                      className={`h-2 rounded-full transition-all duration-300
-                                  ${idx === carouselIndex ? 'bg-primary w-6' : 'bg-primary/30 w-2'}`}
-                      aria-label={`View product ${idx + 1}`}
-                    />
-                  ))}
-                </div>
               </div>
             </TabsContent>
 
