@@ -28,9 +28,9 @@ export const Header = () => {
           <Link to="/investing" className="text-foreground hover:text-primary transition-colors">
             Investing
           </Link>
-          <a href="/#digital-products" className="text-foreground hover:text-primary transition-colors">
+          <Link to="/digital-products" className="text-foreground hover:text-primary transition-colors">
             Digital Products
-          </a>
+          </Link>
           <a href="/#books" className="text-foreground hover:text-primary transition-colors">
             Books
           </a>

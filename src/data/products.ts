@@ -1,4 +1,4 @@
-import { ShoppingBag, Users, BookOpen, Heart, type LucideIcon } from "lucide-react";
+import { ShoppingBag, Users, BookOpen, Heart, Sparkles, type LucideIcon } from "lucide-react";
 import authorGuide from "@/assets/author-guide-preview.png";
 import authorGuidePDF from "@/assets/author-guide.pdf";
 import walkingWorkday from "@/assets/walking-workday.png";
@@ -59,6 +59,34 @@ export const ALL_PRODUCTS: Product[] = [
     media: walkingWorkday,
     cta: { label: "New Version Coming Soon", disabled: true, href: "#" },
     tags: ["Wellness"],
+    featured: true,
+    icon: Heart,
+  },
+  {
+    id: "coming-soon-1",
+    title: "New Digital Product Coming Soon",
+    category: "Guides",
+    desc: "Stay tuned! I'm working on something exciting for you. Message me on LinkedIn if you'd like early access or want to influence what I create next.",
+    cta: { 
+      label: "Message Me on LinkedIn →", 
+      href: "https://www.linkedin.com/in/zainadtani",
+    },
+    tags: ["Coming Soon"],
+    badge: "Soon",
+    featured: true,
+    icon: Sparkles,
+  },
+  {
+    id: "coming-soon-2",
+    title: "More Products on the Way",
+    category: "Communities",
+    desc: "Building something valuable takes time. If you have ideas for what you'd like to see, reach out! Your feedback shapes what I create.",
+    cta: { 
+      label: "Share Your Ideas →", 
+      href: "https://www.linkedin.com/in/zainadtani",
+    },
+    tags: ["Coming Soon"],
+    badge: "In Progress",
     featured: true,
     icon: Heart,
   },
