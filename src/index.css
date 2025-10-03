@@ -116,3 +116,22 @@ All colors MUST be HSL.
     @apply transition-all duration-300 ease-out hover:scale-[1.02];
   }
 }
+
+/* Respect prefers-reduced-motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .hover-lift:hover,
+  .hover-scale:hover {
+    transform: none !important;
+  }
+  
+  .animate-bounce,
+  .animate-pulse {
+    animation: none !important;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

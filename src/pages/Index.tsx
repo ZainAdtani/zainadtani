@@ -5,10 +5,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles, Music, BookOpen, ExternalLink, Youtube, Linkedin, Heart } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Header } from "@/components/Header";
-import { EAGame } from "@/components/EAGame";
 import { ALL_PRODUCTS } from "@/data/products";
 import headshotImage from "@/assets/zain-headshot.png";
 import communityImage from "@/assets/community-image.png";
@@ -21,10 +21,49 @@ import tonyRobbins from "@/assets/tony-robbins.jpg";
 import jasonFladlien from "@/assets/jason-fladlien.jpg";
 import engineerToEABook from "@/assets/engineer-to-ea-book.png";
 import maggieSimbaBook from "@/assets/maggie-simba-book.png";
+
+// Lazy load heavy component for better performance
+const EAGame = lazy(() => import("@/components/EAGame").then(m => ({ default: m.EAGame })));
 const QUOTES_AND_NOTES = ["It is the unknown we fear when we look upon death and darkness, nothing more. - J.K. Rowling, Harry Potter and the Deathly Hallows", "Instead of digging for gold, sell shovels. Instead of driving a taxi, build Uber. Wealth is not about working harder; it's about creating systems that work harder than you do. - MJ DeMarco, The Millionaire Fastlane", "More than 50% of graduates completely forget what they learn in college within 5 years, and within 10 years it's closer to 100%. If most of our \"education\" inevitably collects dust, then what was the point in learning it? Let's do some simple math: Let's be conservative and say that 5 hours per week are spent attending lectures and studying for exams (10 for finals week). If there are 15 weeks in a semester, that's 30 weeks a year. Multiply that by 4 we get 120 weeks, resulting in 600 hours invested into learning information that for the most part, will not be useful for your future work and career. Now I'm not saying you should renounce education completely, rather look past the shiny allure of \"financial stability and higher wages\" and make an informed decision of whether or not it aligns with what you desire. Almost anything can be learned on the internet, online education is booming. Opportunities for the next wave of innovators are scaling faster and faster thanks to technology and AI. Imagine what you could do with 600 extra hours, $200,000, and 4 years to learn and explore on your own? The future is wide open for those willing to diverge and create.", "Plan Your Day: Establish a clear plan for your daily activities. This sets the foundation for \"traction,\" where every action intentionally moves you toward your goals, contrasting with \"distraction,\" which pulls you away. Use tools like calendars to allocate specific time blocks for tasks.", "Did you know that the average person spends over one hour on social media per day, just consuming and not creating? Additionally, they spend another 2-3 hours watching television. That's four hours, on average, gone every day. Doing the math, 4 hours lost per day, multiplied by 7 days per week, equals 28 hours per week. That's basically equivalent to a part-time job. In fact, it's literally 3.5 eight-hour workdays lost per week. Four hours lost per day over 30 days = 120 hours = 15 WORKDAYS PER MONTH LOST.", "Motivation is not the cause of action, but the effect. If you wanna feel motivated to do something, take the smallest action towards doing it, then let the momentum carry you forward.", "Don't view exercise as an exchange for something. You don't work out to lose a few pounds or earn that hamburger and ice cream. With this mindset, you will lose motivation quickly and quit. Instead, view exercise as an investment. For every unit of energy you put in, you'll receive multiple units of energy back. The catch is that these units of energy you get back will be spread out over weeks, months and years. This is why exercising hardcore occasionally is far inferior than exercising a little bit every day.", "Statistically speaking, a normal person is physically unhealthy, emotionally anxious and depressed, socially lonely and financially in debt. Fuck being normal.", "Your mindset is the KEY to making more progress in your life, and journaling is the daily WORK that helps you master your mindset.", "Don't make assumptions about people, you have no fucking idea what they've been through. Don't make assumptions about yourself either. The last person we're objective about is ourselves.", "No one thinks about you as much as you think about yourself. Whatever you are insecure about, chances are 99% of people around you haven't even noticed it. This is because everybody else is too busy thinking about themselves. This may strike you as a little bit depressing, but it's actually liberating. It means that you are judged far less than you think.", "Develop a willingness to be disliked. It will grant you the freedom to do what needs to be done, even if it's unpopular.", "Nothing meaningful in life is easy, and nothing easy in life is meaningful. We think we'd like to have everything handed to us on a silver platter, but the truth is that we don't appreciate or enjoy things that we don't struggle for. So stop avoiding the difficult things in your life and instead find the difficult things you enjoy.", "It's never too late to change. It's never too late. I get emails all the time from people asking me, \"Hey, I'm 20 or 40 or 60 or 80, is it too late? Can I change? Is there time?\" The answer is it's never too late, there's always time. The only question is how long we're gonna sit here and make excuses and pretend there's not."];
+
+const TABS = ["digital-products", "books", "certifications", "role-models"] as const;
+type TabKey = typeof TABS[number];
+
+const PRODUCT_FILTERS = ["All", "Courses", "Guides", "Wellness"] as const;
+type ProductFilter = typeof PRODUCT_FILTERS[number];
+
+// Helper functions
+function pad2(n: number) { return n.toString().padStart(2, '0'); }
+
+function getTabFromHash(hash: string): TabKey {
+  const clean = hash.replace('#', '') as TabKey;
+  return (TABS as readonly string[]).includes(clean) ? clean : "digital-products";
+}
+
+function productTypeOf(p: any): "Courses" | "Guides" | "Wellness" {
+  if (p.category) return p.category as "Courses" | "Guides" | "Wellness";
+  const t = (p.title || '').toLowerCase();
+  if (t.includes('course')) return 'Courses';
+  if (t.includes('guide') || t.includes('pdf')) return 'Guides';
+  if (t.includes('walk') || t.includes('wellness')) return 'Wellness';
+  return 'Guides';
+}
+
+function withAffiliate(url: string, tag = 'eng2ea-20') {
+  try {
+    const u = new URL(url);
+    if (!u.searchParams.get('tag')) u.searchParams.set('tag', tag);
+    u.searchParams.set('utm_source', 'lovable');
+    u.searchParams.set('utm_medium', 'site');
+    return u.toString();
+  } catch { return url; }
+}
+
 const Index = () => {
   const [quote, setQuote] = useState("");
-  const [activeTab, setActiveTab] = useState("digital-products");
+  const [activeTab, setActiveTab] = useState<TabKey>(() => getTabFromHash(window.location.hash));
+  const [searchQuery, setSearchQuery] = useState("");
+  const [productFilter, setProductFilter] = useState<ProductFilter>('All');
   const location = useLocation();
   
   const generateQuote = () => {
@@ -33,22 +72,148 @@ const Index = () => {
     setQuote(selectedQuote);
   };
 
+  // Memoize product catalog (exclude free community from MAJESTY HQ)
+  const productCatalog = useMemo(() => 
+    ALL_PRODUCTS.filter(p => p.id !== 'free-community'), 
+    []
+  );
+
+  // Filter products for MAJESTY HQ
+  const filteredProducts = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    return productCatalog
+      .filter(p => {
+        if (productFilter !== 'All' && productTypeOf(p) !== productFilter) return false;
+        if (!q) return true;
+        const hay = `${p.title} ${p.desc || ''} ${p.badge || ''}`.toLowerCase();
+        return hay.includes(q);
+      })
+      .map((p, idx) => ({ ...p, catalogIndex: idx + 1 }));
+  }, [productCatalog, searchQuery, productFilter]);
+
+  // Handle hash changes for tab navigation
   useEffect(() => {
-    const hash = location.hash.replace('#', '');
-    if (hash === 'digital-products' || hash === 'books') {
-      setActiveTab(hash);
-      // Scroll to the tabs section
-      setTimeout(() => {
-        const element = document.getElementById('tabs-section');
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
+    const onHashChange = () => {
+      const next = getTabFromHash(window.location.hash);
+      setActiveTab(next);
+      const el = document.getElementById('tabs-section');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    window.addEventListener('hashchange', onHashChange);
+    if (window.location.hash) onHashChange();
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
+  // Update hash when tab changes
+  useEffect(() => {
+    const newHash = `#${activeTab}`;
+    if (window.location.hash !== newHash) {
+      history.replaceState(null, '', newHash);
     }
-  }, [location]);
+    const el = document.getElementById('tabs-section');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [activeTab]);
   
   return <div id="home" className="min-h-screen bg-background">
+      <Helmet>
+        <title>Engineer → Enrolled Agent | Zain Adtani</title>
+        <meta name="description" content="Short lessons, no fluff. Pass the EA exam and get confident with taxes. Free community, full course, reading list, certifications." />
+        <meta property="og:title" content="Engineer → Enrolled Agent | Zain Adtani" />
+        <meta property="og:description" content="Short lessons, no fluff. Pass the EA exam and get confident with taxes." />
+        <meta property="og:image" content={headshotImage} />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      
       <Header />
+
+      {/* MAJESTY HQ - Digital Products Library */}
+      <section className="py-16 md:py-20 bg-background border-b" aria-label="MAJESTY HQ Digital Products Library">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center mb-8">
+            <Logo3D />
+            <h1 className="text-4xl md:text-5xl font-extrabold mt-4">MAJESTY HQ</h1>
+            <p className="text-muted-foreground mt-2">Search courses, guides, and tools—all in one place.</p>
+            <div className="mt-6 max-w-2xl mx-auto">
+              <div className="flex items-center gap-2 bg-secondary/40 border rounded-full px-4 py-2">
+                <input
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search by title or description..."
+                  className="flex-1 bg-transparent py-2 focus:outline-none text-foreground"
+                  aria-label="Search products"
+                />
+                <Button variant="outline" size="sm" className="rounded-full">Search</Button>
+              </div>
+              <div className="flex flex-wrap justify-center gap-2 mt-4">
+                {PRODUCT_FILTERS.map(f => (
+                  <Button
+                    key={f}
+                    variant={f === productFilter ? 'default' : 'outline'}
+                    size="sm"
+                    className="text-sm rounded-full"
+                    onClick={() => setProductFilter(f)}
+                    aria-pressed={f === productFilter}
+                  >{f}</Button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredProducts.map((product) => {
+              const Icon = product.icon ?? BookOpen;
+              const num = pad2(product.catalogIndex);
+              return (
+                <Card key={product.id} className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2">
+                  <div className="p-6">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex items-center gap-3">
+                        <Badge className="rounded-full">#{num}</Badge>
+                        <Icon className="w-6 h-6 text-primary" aria-hidden="true" />
+                      </div>
+                      {product.badge && (
+                        <Badge variant="secondary" className="text-[10px] px-2 py-0.5">{product.badge}</Badge>
+                      )}
+                    </div>
+                    <h3 className="text-xl font-bold mb-2 line-clamp-2">{product.title}</h3>
+                    <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{product.desc}</p>
+                    {product.media && (
+                      <div className="relative mb-4">
+                        <img src={product.media} alt={`${product.title} preview`} className="w-full rounded-lg shadow-md" loading="lazy" />
+                      </div>
+                    )}
+                    {product.cta?.disabled ? (
+                      <Button disabled className="w-full bg-muted text-muted-foreground">{product.cta.label}</Button>
+                    ) : (
+                      <Button asChild className="w-full">
+                        <a href={product.cta?.href ?? '#'} target={product.cta?.download ? '_blank' : '_self'} rel="noopener noreferrer" download={product.cta?.download} aria-label={product.cta?.label ?? 'Open'}>
+                          {product.cta?.label ?? 'Open'}
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Join Free Community Section */}
+      <section className="py-12 bg-secondary/20" aria-label="Join Free Community">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <Card className="p-8 flex flex-col md:flex-row items-center gap-6 border-2 shadow-lg">
+            <Users className="w-12 h-12 text-primary shrink-0" aria-hidden="true" />
+            <div className="flex-1 text-center md:text-left">
+              <h3 className="text-2xl font-bold">Engineer → Enrolled Agent (Free Community)</h3>
+              <p className="text-muted-foreground">Short lessons. No fluff. Study tips, resources, and support.</p>
+            </div>
+            <Button asChild size="lg" className="shrink-0">
+              <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer">Join Free →</a>
+            </Button>
+          </Card>
+        </div>
+      </section>
 
       {/* Hero Section */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-primary/5 via-background to-accent/5">
@@ -91,16 +256,7 @@ const Index = () => {
       <section className="py-16 md:py-24 bg-secondary/20">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Button 1: Free Community */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer" className="block">
-                <Users className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-2xl font-bold mb-2 text-foreground">Engineer → Enrolled Agent</h3>
-                <p className="text-muted-foreground">Free community • Short lessons. No fluff.</p>
-              </a>
-            </Card>
-
-            {/* Button 2: Full Course */}
+            {/* Button 1: Full Course */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
               <a href="https://whop.com/eng2ea/?a=eng2ea" target="_blank" rel="noopener noreferrer" className="block">
                 <GraduationCap className="w-12 h-12 text-primary mb-4" />
@@ -109,12 +265,21 @@ const Index = () => {
               </a>
             </Card>
 
-            {/* Button 3: Books */}
+            {/* Button 2: Books */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
               <a href="#books" className="block">
                 <Book className="w-12 h-12 text-primary mb-4" />
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Books I've Read</h3>
                 <p className="text-muted-foreground">My Personal Reading List</p>
+              </a>
+            </Card>
+
+            {/* Button 3: Digital Products */}
+            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
+              <a href="#digital-products" className="block">
+                <ShoppingBag className="w-12 h-12 text-primary mb-4" />
+                <h3 className="text-2xl font-bold mb-2 text-foreground">Digital Products</h3>
+                <p className="text-muted-foreground">Courses, guides, and tools</p>
               </a>
             </Card>
 
@@ -133,7 +298,7 @@ const Index = () => {
       {/* Tabbed Sections */}
       <section id="tabs-section" className="py-16 md:py-24 bg-accent/5">
         <div className="container mx-auto px-4 max-w-6xl">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TabKey)} className="w-full" aria-label="Zain site sections">
             <TabsList className="grid w-full grid-cols-4 mb-8 h-auto">
               <TabsTrigger value="digital-products" className="text-xs sm:text-sm px-2 py-2.5">
                 Digital Products
@@ -172,13 +337,17 @@ const Index = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {ALL_PRODUCTS.filter(p => p.featured).slice(0, 6).map((product) => {
+                {productCatalog.filter(p => p.featured).slice(0, 6).map((product, idx) => {
                   const Icon = product.icon ?? BookOpen;
+                  const num = pad2(idx + 1);
                   return (
                     <Card key={product.id} className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2">
                       <div className="p-6">
                         <div className="flex items-start justify-between mb-3">
-                          <Icon className="w-8 h-8 text-primary shrink-0" />
+                          <div className="flex items-center gap-3">
+                            <Badge className="rounded-full text-xs">#{num}</Badge>
+                            <Icon className="w-8 h-8 text-primary shrink-0" aria-hidden="true" />
+                          </div>
                           {product.badge && (
                             <Badge variant="secondary" className="text-[10px] px-2 py-0.5">
                               {product.badge}
@@ -212,8 +381,8 @@ const Index = () => {
                         ) : (
                           <Button 
                             asChild 
-                            variant={product.id === "free-community" || product.id === "author-guide" ? "outline" : "default"}
-                            className={product.id === "free-community" || product.id === "author-guide" 
+                            variant={product.id === "author-guide" ? "outline" : "default"}
+                            className={product.id === "author-guide" 
                               ? "w-full border-primary text-primary hover:bg-primary/10" 
                               : "w-full"
                             }
@@ -221,7 +390,7 @@ const Index = () => {
                             <a
                               href={product.cta?.href ?? "#"}
                               target={product.cta?.download ? "_blank" : "_self"}
-                              rel="noopener"
+                              rel="noopener noreferrer"
                               download={product.cta?.download}
                               aria-label={product.cta?.label ?? "Open"}
                             >
@@ -307,7 +476,7 @@ const Index = () => {
                     hook: "A deadly tournament forces choices bigger than glory.",
                     note: "Darkness rises.",
                     cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1554006152i/6.jpg",
-                    amazonUrl: "https://www.amazon.com/J-K-Rowling/dp/0545582954"
+                    amazonUrl: "https://www.amazon.com/Harry-Potter-Goblet-Fire-Book/dp/0545582954"
                   },
                   {
                     title: "Harry Potter and the Order of the Phoenix",
@@ -430,7 +599,7 @@ const Index = () => {
                           size="sm" 
                           className="flex-1 text-xs bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
                         >
-                          <a href={book.amazonUrl} target="_blank" rel="noopener noreferrer">
+                          <a href={withAffiliate(book.amazonUrl)} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="w-3 h-3 mr-1" />
                             Buy
                           </a>
@@ -821,7 +990,11 @@ const Index = () => {
       </section>
 
       {/* EA Learning Game */}
-      <EAGame />
+      <section aria-label="EA Learning Game">
+        <Suspense fallback={<div className="py-16 text-center text-muted-foreground">Loading game…</div>}>
+          <EAGame />
+        </Suspense>
+      </section>
 
       {/* Newsletter Section */}
       <section id="newsletter" className="py-16 md:py-24 bg-accent/10">
