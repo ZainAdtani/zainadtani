@@ -14,7 +14,7 @@ import Logo3D from "@/components/Logo3D";
 import qbBadge from "@/assets/quickbooks-level2-badge.png";
 import awsBadge from "@/assets/aws-cloud-practitioner-badge.png";
 import authorGuide from "@/assets/author-guide-preview.png";
-import authorGuideDownload from "@/assets/author-guide-download.png";
+import authorGuidePDF from "@/assets/author-guide.pdf";
 import millionaireFastlane from "@/assets/millionaire-fastlane-cover.jpg";
 import deanGraziosi from "@/assets/dean-graziosi.jpg";
 import tonyRobbins from "@/assets/tony-robbins.jpg";
@@ -190,12 +190,34 @@ const Index = () => {
                     <p className="text-muted-foreground mb-6">
                       The proven framework to transform your expertise into a published book in just 6 months. Covers Kindle, print, and audiobook formats.
                     </p>
-                    <div className="mb-6">
-                      <img src={authorGuide} alt="How to Become an Author Guide Preview" className="w-full rounded-lg shadow-md" />
+                    
+                    {/* Preview Image with tiny "Preview" badge */}
+                    <div className="relative mb-6">
+                      <img
+                        src={authorGuide}
+                        alt="How to Become an Author — preview image"
+                        className="w-full rounded-lg shadow-md"
+                      />
+                      <span
+                        className="absolute top-3 left-3 text-[10px] px-2 py-0.5 rounded-full
+                                   bg-primary/90 text-primary-foreground tracking-wide"
+                      >
+                        Preview
+                      </span>
                     </div>
-                    <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary/10 transition-all duration-300">
-                      <a href={authorGuideDownload} download="You-Bestselling-Author-Guide.png">
-                        Download Free Guide →
+
+                    {/* Exact CTA text; points to the uploaded PDF */}
+                    <Button asChild variant="outline"
+                      className="w-full border-primary text-primary hover:bg-primary/10 transition-all duration-300"
+                    >
+                      <a
+                        href={authorGuidePDF}
+                        download
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Download free PDF guide"
+                      >
+                        download free PDF guide
                       </a>
                     </Button>
                   </div>
