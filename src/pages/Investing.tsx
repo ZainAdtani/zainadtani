@@ -107,6 +107,120 @@ const Investing = () => {
         </div>
       </section>
 
+      {/* Savings & Brokerage Accounts */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <h2 className="text-4xl font-bold text-center mb-12">
+            My <span className="text-primary">Banking & Brokerage</span>
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <Card className="p-8 hover-lift transition-all duration-300 border-2 border-primary/20">
+              <PiggyBank className="w-12 h-12 text-primary mb-4" />
+              <h3 className="text-2xl font-bold mb-4">Marcus by Goldman Sachs</h3>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                High-yield savings account for building emergency funds and short-term savings goals.
+              </p>
+              <Button asChild variant="outline" className="w-full">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  Link Coming Soon
+                </a>
+              </Button>
+            </Card>
+            
+            <Card className="p-8 hover-lift transition-all duration-300 border-2 border-accent/20">
+              <LineChart className="w-12 h-12 text-accent mb-4" />
+              <h3 className="text-2xl font-bold mb-4">Fidelity</h3>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                My primary brokerage for stocks, ETFs, and retirement accounts with excellent research tools.
+              </p>
+              <Button asChild variant="outline" className="w-full">
+                <a href="https://www.fidelity.com" target="_blank" rel="noopener noreferrer">
+                  Visit Fidelity
+                </a>
+              </Button>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Top Stocks & ETFs */}
+      <section className="py-16 md:py-24 bg-accent/5">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <h2 className="text-4xl font-bold text-center mb-6">
+            My Current <span className="text-primary">Favorite Stocks & ETFs</span>
+          </h2>
+          <p className="text-center text-muted-foreground mb-12 text-lg">
+            These are my current holdings and watchlist. Not financial advice—do your own research!
+          </p>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card className="p-6 hover-lift transition-all duration-300 border-2 border-primary/20">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-2xl font-bold text-primary">VOO</h3>
+                <TrendingUp className="w-6 h-6 text-primary" />
+              </div>
+              <p className="text-sm text-muted-foreground">Vanguard S&P 500 ETF</p>
+              <p className="text-xs text-muted-foreground mt-2">Broad market index fund</p>
+            </Card>
+
+            <Card className="p-6 hover-lift transition-all duration-300 border-2 border-accent/20">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-2xl font-bold text-accent">PLTR</h3>
+                <span className="text-xs text-muted-foreground">?</span>
+              </div>
+              <p className="text-sm text-muted-foreground">Palantir Technologies</p>
+              <p className="text-xs text-muted-foreground mt-2">AI & data analytics</p>
+            </Card>
+
+            <Card className="p-6 hover-lift transition-all duration-300 border-2 border-primary/20">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-2xl font-bold text-primary">GLD</h3>
+                <TrendingUp className="w-6 h-6 text-primary" />
+              </div>
+              <p className="text-sm text-muted-foreground">SPDR Gold Trust</p>
+              <p className="text-xs text-muted-foreground mt-2">Gold commodity ETF</p>
+            </Card>
+
+            <Card className="p-6 hover-lift transition-all duration-300 border-2 border-accent/20">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-2xl font-bold text-accent">NVDIA</h3>
+                <span className="text-xs text-muted-foreground">?</span>
+              </div>
+              <p className="text-sm text-muted-foreground">NVIDIA Corporation</p>
+              <p className="text-xs text-muted-foreground mt-2">GPU & AI chips</p>
+            </Card>
+
+            <Card className="p-6 hover-lift transition-all duration-300 border-2 border-primary/20">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-2xl font-bold text-primary">SCHD</h3>
+                <TrendingUp className="w-6 h-6 text-primary" />
+              </div>
+              <p className="text-sm text-muted-foreground">Schwab US Dividend Equity</p>
+              <p className="text-xs text-muted-foreground mt-2">Dividend growth ETF</p>
+            </Card>
+
+            <Card className="p-6 hover-lift transition-all duration-300 border-2 border-accent/20">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-2xl font-bold text-accent">BTC</h3>
+                <TrendingUp className="w-6 h-6 text-accent" />
+              </div>
+              <p className="text-sm text-muted-foreground">Bitcoin</p>
+              <p className="text-xs text-muted-foreground mt-2">Cryptocurrency</p>
+            </Card>
+
+            <Card className="p-6 hover-lift transition-all duration-300 border-2 border-primary/20">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-2xl font-bold text-primary">QQQM</h3>
+                <TrendingUp className="w-6 h-6 text-primary" />
+              </div>
+              <p className="text-sm text-muted-foreground">Invesco NASDAQ 100 ETF</p>
+              <p className="text-xs text-muted-foreground mt-2">Tech-focused index</p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Resources Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 max-w-4xl">

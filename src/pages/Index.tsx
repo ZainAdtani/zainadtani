@@ -21,6 +21,7 @@ import tonyRobbins from "@/assets/tony-robbins.jpg";
 import jasonFladlien from "@/assets/jason-fladlien.jpg";
 import engineerToEABook from "@/assets/engineer-to-ea-book.png";
 import maggieSimbaBook from "@/assets/maggie-simba-book.png";
+import walkingWorkday from "@/assets/walking-workday.png";
 const QUOTES_AND_NOTES = ["It is the unknown we fear when we look upon death and darkness, nothing more. - J.K. Rowling, Harry Potter and the Deathly Hallows", "Instead of digging for gold, sell shovels. Instead of driving a taxi, build Uber. Wealth is not about working harder; it's about creating systems that work harder than you do. - MJ DeMarco, The Millionaire Fastlane", "More than 50% of graduates completely forget what they learn in college within 5 years, and within 10 years it's closer to 100%. If most of our \"education\" inevitably collects dust, then what was the point in learning it? Let's do some simple math: Let's be conservative and say that 5 hours per week are spent attending lectures and studying for exams (10 for finals week). If there are 15 weeks in a semester, that's 30 weeks a year. Multiply that by 4 we get 120 weeks, resulting in 600 hours invested into learning information that for the most part, will not be useful for your future work and career. Now I'm not saying you should renounce education completely, rather look past the shiny allure of \"financial stability and higher wages\" and make an informed decision of whether or not it aligns with what you desire. Almost anything can be learned on the internet, online education is booming. Opportunities for the next wave of innovators are scaling faster and faster thanks to technology and AI. Imagine what you could do with 600 extra hours, $200,000, and 4 years to learn and explore on your own? The future is wide open for those willing to diverge and create.", "Plan Your Day: Establish a clear plan for your daily activities. This sets the foundation for \"traction,\" where every action intentionally moves you toward your goals, contrasting with \"distraction,\" which pulls you away. Use tools like calendars to allocate specific time blocks for tasks.", "Did you know that the average person spends over one hour on social media per day, just consuming and not creating? Additionally, they spend another 2-3 hours watching television. That's four hours, on average, gone every day. Doing the math, 4 hours lost per day, multiplied by 7 days per week, equals 28 hours per week. That's basically equivalent to a part-time job. In fact, it's literally 3.5 eight-hour workdays lost per week. Four hours lost per day over 30 days = 120 hours = 15 WORKDAYS PER MONTH LOST.", "Motivation is not the cause of action, but the effect. If you wanna feel motivated to do something, take the smallest action towards doing it, then let the momentum carry you forward.", "Don't view exercise as an exchange for something. You don't work out to lose a few pounds or earn that hamburger and ice cream. With this mindset, you will lose motivation quickly and quit. Instead, view exercise as an investment. For every unit of energy you put in, you'll receive multiple units of energy back. The catch is that these units of energy you get back will be spread out over weeks, months and years. This is why exercising hardcore occasionally is far inferior than exercising a little bit every day.", "Statistically speaking, a normal person is physically unhealthy, emotionally anxious and depressed, socially lonely and financially in debt. Fuck being normal.", "Your mindset is the KEY to making more progress in your life, and journaling is the daily WORK that helps you master your mindset.", "Don't make assumptions about people, you have no fucking idea what they've been through. Don't make assumptions about yourself either. The last person we're objective about is ourselves.", "No one thinks about you as much as you think about yourself. Whatever you are insecure about, chances are 99% of people around you haven't even noticed it. This is because everybody else is too busy thinking about themselves. This may strike you as a little bit depressing, but it's actually liberating. It means that you are judged far less than you think.", "Develop a willingness to be disliked. It will grant you the freedom to do what needs to be done, even if it's unpopular.", "Nothing meaningful in life is easy, and nothing easy in life is meaningful. We think we'd like to have everything handed to us on a silver platter, but the truth is that we don't appreciate or enjoy things that we don't struggle for. So stop avoiding the difficult things in your life and instead find the difficult things you enjoy.", "It's never too late to change. It's never too late. I get emails all the time from people asking me, \"Hey, I'm 20 or 40 or 60 or 80, is it too late? Can I change? Is there time?\" The answer is it's never too late, there's always time. The only question is how long we're gonna sit here and make excuses and pretend there's not."];
 const Index = () => {
   const [quote, setQuote] = useState("");
@@ -151,7 +152,7 @@ const Index = () => {
 
             {/* Digital Products Tab */}
             <TabsContent value="digital-products" className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <Card className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2">
                   <div className="p-8">
                     <ShoppingBag className="w-10 h-10 text-primary mb-4" />
@@ -196,6 +197,28 @@ const Index = () => {
                       <a href={authorGuideDownload} download="You-Bestselling-Author-Guide.png">
                         Download Free Guide →
                       </a>
+                    </Button>
+                  </div>
+                </Card>
+
+                <Card className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2">
+                  <div className="p-8">
+                    <BookOpen className="w-10 h-10 text-accent mb-4" />
+                    <h3 className="text-xl font-bold mb-2 text-foreground">The Walking Workday</h3>
+                    <p className="text-sm text-muted-foreground mb-2">
+                      Fit Three 20-Minute Walks Into Any Busy Schedule
+                    </p>
+                    <div className="mb-4">
+                      <img src={walkingWorkday} alt="The Walking Workday" className="w-full rounded-lg shadow-md" />
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-4 italic">
+                      I have a few digital products on the way that are on a waitlist - message me on LinkedIn if you would like to purchase
+                    </p>
+                    <Button 
+                      disabled 
+                      className="w-full bg-muted text-muted-foreground cursor-not-allowed"
+                    >
+                      New Version Coming Soon
                     </Button>
                   </div>
                 </Card>
