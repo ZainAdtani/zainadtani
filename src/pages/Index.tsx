@@ -245,6 +245,15 @@ const Index = () => {
                   </div>
                 </Card>
               </div>
+
+              {/* View All Digital Products Button */}
+              <div className="flex justify-end mt-4">
+                <Button asChild variant="ghost" className="text-sm text-primary hover:text-primary/80">
+                  <a href="/digital-products" aria-label="View all digital products">
+                    View all digital products →
+                  </a>
+                </Button>
+              </div>
             </TabsContent>
 
             {/* Books Tab */}
@@ -869,6 +878,28 @@ const Index = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Buy Me a Coffee Section */}
+      <section className="py-16 bg-secondary/30">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <Card className="p-8 border-2 text-center shadow-lg">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3 text-foreground">Was this helpful?</h2>
+            <p className="text-muted-foreground mb-6">
+              If anything here helped you, you can say thanks with a coffee. It means a lot.
+            </p>
+            <Button asChild size="lg" className="mx-auto bg-primary hover:bg-primary/90 transition-all duration-300">
+              <a 
+                href="https://www.buymeacoffee.com/yourname" 
+                target="_blank" 
+                rel="noopener" 
+                aria-label="Buy me a coffee"
+              >
+                Buy Me a Coffee ☕
+              </a>
+            </Button>
+          </Card>
         </div>
       </section>
 
