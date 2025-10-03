@@ -4,8 +4,9 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles, Music, BookOpen, ExternalLink, Youtube, Linkedin, Heart } from "lucide-react";
+import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles, Music, BookOpen, ExternalLink, Youtube, Linkedin, Heart, ChevronUp } from "lucide-react";
 import { useState, useEffect, lazy, Suspense } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Header } from "@/components/Header";
@@ -51,12 +52,30 @@ const productCatalog = ALL_PRODUCTS.filter(p => p.id !== 'free-community');
 const Index = () => {
   const [quote, setQuote] = useState("");
   const [activeTab, setActiveTab] = useState<TabKey>(() => getTabFromHash(window.location.hash));
+  const [showBackToTop, setShowBackToTop] = React.useState(false);
   const location = useLocation();
   
   const generateQuote = () => {
     const randomIndex = Math.floor(Math.random() * QUOTES_AND_NOTES.length);
     const selectedQuote = QUOTES_AND_NOTES[randomIndex];
     setQuote(selectedQuote);
+  };
+
+  // Back to top scroll detection
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 600);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? 'auto' : 'smooth'
+    });
   };
 
   // Handle hash changes for tab navigation
@@ -82,7 +101,8 @@ const Index = () => {
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, [activeTab]);
   
-  return <div id="home" className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
+      <div id="top" />
       <Helmet>
         <title>Engineer → Enrolled Agent | Zain Adtani</title>
         <meta name="description" content="Short lessons, no fluff. Pass the EA exam and get confident with taxes. Free community, full course, reading list, certifications." />
@@ -93,22 +113,6 @@ const Index = () => {
       </Helmet>
       
       <Header />
-
-      {/* Join Free Community Section */}
-      <section className="py-12 bg-secondary/20" aria-label="Join Free Community">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <Card className="p-8 flex flex-col md:flex-row items-center gap-6 border-2 shadow-lg">
-            <Users className="w-12 h-12 text-primary shrink-0" aria-hidden="true" />
-            <div className="flex-1 text-center md:text-left">
-              <h3 className="text-2xl font-bold">Engineer → Enrolled Agent (Free Community)</h3>
-              <p className="text-muted-foreground">Short lessons. No fluff. Study tips, resources, and support.</p>
-            </div>
-            <Button asChild size="lg" className="shrink-0">
-              <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer">Join Free →</a>
-            </Button>
-          </Card>
-        </div>
-      </section>
 
       {/* Hero Section */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-primary/5 via-background to-accent/5">
@@ -951,12 +955,39 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Join Free Community - Moved near bottom */}
+      <section className="py-12 bg-secondary/20" aria-label="Join Free Community">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <Card className="p-8 flex flex-col md:flex-row items-center gap-6 border-2 shadow-lg">
+            <Users className="w-12 h-12 text-primary shrink-0" aria-hidden="true" />
+            <div className="flex-1 text-center md:text-left">
+              <h3 className="text-2xl font-bold">Engineer → Enrolled Agent (Free Community)</h3>
+              <p className="text-muted-foreground">Short lessons. No fluff. Study tips, resources, and support.</p>
+            </div>
+            <Button asChild size="lg" className="shrink-0">
+              <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer">Join Free →</a>
+            </Button>
+          </Card>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-background border-t border-border py-8">
         <div className="container mx-auto px-4 max-w-6xl text-center text-sm text-muted-foreground">
           © {new Date().getFullYear()} Zain Adtani. All rights reserved.
         </div>
       </footer>
+
+      {/* Back to Top Button */}
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-background/80 backdrop-blur-md border border-border shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-center z-50 motion-reduce:transition-none motion-reduce:hover:transform-none"
+          aria-label="Back to top"
+        >
+          <ChevronUp className="w-5 h-5 text-primary" aria-hidden="true" />
+        </button>
+      )}
     </div>;
 };
 export default Index;
