@@ -20,9 +20,9 @@ export const Header = () => {
 
         {/* Navigation */}
         <nav className="flex items-center gap-6">
-          <a href="/#home" className="text-foreground hover:text-primary transition-colors">
+          <Link to="/" className="text-foreground hover:text-primary transition-colors">
             Home
-          </a>
+          </Link>
           <Link to="/about" className="text-foreground hover:text-primary transition-colors">
             About Me
           </Link>

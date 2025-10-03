@@ -5,14 +5,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles, Music, BookOpen, ExternalLink, Youtube, Linkedin, Heart } from "lucide-react";
-import { useState, useEffect, lazy, Suspense, useMemo } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Header } from "@/components/Header";
 import { ALL_PRODUCTS } from "@/data/products";
 import headshotImage from "@/assets/zain-headshot.png";
-import communityImage from "@/assets/community-image.png";
-import Logo3D from "@/components/Logo3D";
 import qbBadge from "@/assets/quickbooks-level2-badge.png";
 import awsBadge from "@/assets/aws-cloud-practitioner-badge.png";
 import millionaireFastlane from "@/assets/millionaire-fastlane-cover.jpg";
@@ -29,24 +27,12 @@ const QUOTES_AND_NOTES = ["It is the unknown we fear when we look upon death and
 const TABS = ["digital-products", "books", "certifications", "role-models"] as const;
 type TabKey = typeof TABS[number];
 
-const PRODUCT_FILTERS = ["All", "Courses", "Guides", "Wellness"] as const;
-type ProductFilter = typeof PRODUCT_FILTERS[number];
-
-// Helper functions
+// Helper function for formatting catalog numbers
 function pad2(n: number) { return n.toString().padStart(2, '0'); }
 
 function getTabFromHash(hash: string): TabKey {
   const clean = hash.replace('#', '') as TabKey;
   return (TABS as readonly string[]).includes(clean) ? clean : "digital-products";
-}
-
-function productTypeOf(p: any): "Courses" | "Guides" | "Wellness" {
-  if (p.category) return p.category as "Courses" | "Guides" | "Wellness";
-  const t = (p.title || '').toLowerCase();
-  if (t.includes('course')) return 'Courses';
-  if (t.includes('guide') || t.includes('pdf')) return 'Guides';
-  if (t.includes('walk') || t.includes('wellness')) return 'Wellness';
-  return 'Guides';
 }
 
 function withAffiliate(url: string, tag = 'eng2ea-20') {
@@ -59,11 +45,12 @@ function withAffiliate(url: string, tag = 'eng2ea-20') {
   } catch { return url; }
 }
 
+// Product catalog excluding free community
+const productCatalog = ALL_PRODUCTS.filter(p => p.id !== 'free-community');
+
 const Index = () => {
   const [quote, setQuote] = useState("");
   const [activeTab, setActiveTab] = useState<TabKey>(() => getTabFromHash(window.location.hash));
-  const [searchQuery, setSearchQuery] = useState("");
-  const [productFilter, setProductFilter] = useState<ProductFilter>('All');
   const location = useLocation();
   
   const generateQuote = () => {
@@ -71,25 +58,6 @@ const Index = () => {
     const selectedQuote = QUOTES_AND_NOTES[randomIndex];
     setQuote(selectedQuote);
   };
-
-  // Memoize product catalog (exclude free community from MAJESTY HQ)
-  const productCatalog = useMemo(() => 
-    ALL_PRODUCTS.filter(p => p.id !== 'free-community'), 
-    []
-  );
-
-  // Filter products for MAJESTY HQ
-  const filteredProducts = useMemo(() => {
-    const q = searchQuery.trim().toLowerCase();
-    return productCatalog
-      .filter(p => {
-        if (productFilter !== 'All' && productTypeOf(p) !== productFilter) return false;
-        if (!q) return true;
-        const hay = `${p.title} ${p.desc || ''} ${p.badge || ''}`.toLowerCase();
-        return hay.includes(q);
-      })
-      .map((p, idx) => ({ ...p, catalogIndex: idx + 1 }));
-  }, [productCatalog, searchQuery, productFilter]);
 
   // Handle hash changes for tab navigation
   useEffect(() => {
@@ -125,79 +93,6 @@ const Index = () => {
       </Helmet>
       
       <Header />
-
-      {/* MAJESTY HQ - Digital Products Library */}
-      <section className="py-16 md:py-20 bg-background border-b" aria-label="MAJESTY HQ Digital Products Library">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-8">
-            <Logo3D />
-            <h1 className="text-4xl md:text-5xl font-extrabold mt-4">MAJESTY HQ</h1>
-            <p className="text-muted-foreground mt-2">Search courses, guides, and tools—all in one place.</p>
-            <div className="mt-6 max-w-2xl mx-auto">
-              <div className="flex items-center gap-2 bg-secondary/40 border rounded-full px-4 py-2">
-                <input
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search by title or description..."
-                  className="flex-1 bg-transparent py-2 focus:outline-none text-foreground"
-                  aria-label="Search products"
-                />
-                <Button variant="outline" size="sm" className="rounded-full">Search</Button>
-              </div>
-              <div className="flex flex-wrap justify-center gap-2 mt-4">
-                {PRODUCT_FILTERS.map(f => (
-                  <Button
-                    key={f}
-                    variant={f === productFilter ? 'default' : 'outline'}
-                    size="sm"
-                    className="text-sm rounded-full"
-                    onClick={() => setProductFilter(f)}
-                    aria-pressed={f === productFilter}
-                  >{f}</Button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProducts.map((product) => {
-              const Icon = product.icon ?? BookOpen;
-              const num = pad2(product.catalogIndex);
-              return (
-                <Card key={product.id} className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2">
-                  <div className="p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex items-center gap-3">
-                        <Badge className="rounded-full">#{num}</Badge>
-                        <Icon className="w-6 h-6 text-primary" aria-hidden="true" />
-                      </div>
-                      {product.badge && (
-                        <Badge variant="secondary" className="text-[10px] px-2 py-0.5">{product.badge}</Badge>
-                      )}
-                    </div>
-                    <h3 className="text-xl font-bold mb-2 line-clamp-2">{product.title}</h3>
-                    <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{product.desc}</p>
-                    {product.media && (
-                      <div className="relative mb-4">
-                        <img src={product.media} alt={`${product.title} preview`} className="w-full rounded-lg shadow-md" loading="lazy" />
-                      </div>
-                    )}
-                    {product.cta?.disabled ? (
-                      <Button disabled className="w-full bg-muted text-muted-foreground">{product.cta.label}</Button>
-                    ) : (
-                      <Button asChild className="w-full">
-                        <a href={product.cta?.href ?? '#'} target={product.cta?.download ? '_blank' : '_self'} rel="noopener noreferrer" download={product.cta?.download} aria-label={product.cta?.label ?? 'Open'}>
-                          {product.cta?.label ?? 'Open'}
-                        </a>
-                      </Button>
-                    )}
-                  </div>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
       {/* Join Free Community Section */}
       <section className="py-12 bg-secondary/20" aria-label="Join Free Community">
