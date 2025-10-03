@@ -6,7 +6,7 @@ import { Lock, Unlock } from "lucide-react";
 
 // Set the PIN via env var if available; fallback to a default you can change.
 const VAULT_PIN = import.meta.env.VITE_SECRET_PIN || "2311";
-const STORAGE_KEY = "vault_access_granted";
+const STORAGE_KEY = "vault_session"; // session-only
 
 export default function SecretVault() {
   const [pin, setPin] = useState("");
@@ -14,8 +14,16 @@ export default function SecretVault() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const ok = localStorage.getItem(STORAGE_KEY) === "true";
-    setGranted(ok);
+    // Auto-lock when leaving page
+    const onLeave = () => localStorage.removeItem(STORAGE_KEY);
+    window.addEventListener("beforeunload", onLeave);
+    const onHide = () => document.hidden && onLeave();
+    document.addEventListener("visibilitychange", onHide);
+    return () => {
+      onLeave();
+      window.removeEventListener("beforeunload", onLeave);
+      document.removeEventListener("visibilitychange", onHide);
+    };
   }, []);
 
   const unlock = (e?: React.FormEvent) => {
@@ -74,7 +82,10 @@ export default function SecretVault() {
               <Unlock className="w-5 h-5 text-primary" />
               <h1 className="text-3xl font-bold">Z's Secret Vault</h1>
             </div>
-            <Button variant="outline" onClick={lock}>Lock</Button>
+            <div className="flex items-center gap-2">
+              <a href="/" className="text-sm underline" aria-label="Back to home">← Home</a>
+              <Button variant="outline" onClick={lock}>Lock</Button>
+            </div>
           </div>
           <p className="text-muted-foreground mt-2">
             Private notes, WIP links, prototype drops — your eyes only.

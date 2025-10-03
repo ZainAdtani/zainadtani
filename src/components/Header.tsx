@@ -126,6 +126,15 @@ export const Header = () => {
               </SheetHeader>
 
               <nav className="mt-6 space-y-6">
+                {/* Home Link */}
+                <Link
+                  to="/"
+                  className="flex items-center gap-2 text-foreground hover:underline"
+                  aria-label="Home"
+                >
+                  <span>← Home</span>
+                </Link>
+
                 {/* Secret Vault */}
                 <Link
                   to="/vault"
@@ -134,6 +143,24 @@ export const Header = () => {
                 >
                   <Lock className="w-4 h-4 text-primary" />
                   <span>Secret Vault</span>
+                </Link>
+
+                {/* Subscriptions (Vault) */}
+                <Link
+                  to="/vault/subscriptions"
+                  className="flex items-center gap-2 text-foreground hover:underline"
+                  aria-label="Subscriptions (Vault)"
+                >
+                  <span>🗂️ Subscriptions</span>
+                </Link>
+
+                {/* Tools */}
+                <Link
+                  to="/tools"
+                  className="flex items-center gap-2 text-foreground hover:underline"
+                  aria-label="Tools"
+                >
+                  <span>🧰 Tools</span>
                 </Link>
 
                 {/* Courses I Recommend */}
