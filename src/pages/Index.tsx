@@ -145,16 +145,16 @@ const Index = () => {
                 I'm Zain. I'm an Engineer turned Enrolled Agent, helping busy beginners pass the EA exam and get confident with taxes.
               </p>
               
-              {/* Daily Quote Generator */}
-              <Card className="p-6 shadow-lg border-2 border-primary/20">
+              {/* Daily Motivation Generator */}
+              <Card className="p-6 shadow-lg border-2 border-primary/20 bg-card text-card-foreground">
                 <div className="space-y-4">
-                  <h3 className="text-lg flex items-center gap-2 text-center font-semibold text-zinc-950">
+                  <h3 className="text-lg flex items-center justify-center gap-2 font-semibold text-foreground">
                     <Sparkles className="w-5 h-5 text-primary" />
-                    Daily Quote Generator
+                    Daily Motivation Generator
                   </h3>
-                  <Textarea value={quote} readOnly placeholder="Click the button below to generate a quote or life note..." className="min-h-[120px] text-base resize-none bg-secondary/50" />
+                  <Textarea value={quote} readOnly placeholder="Click the button below to generate a quote or life note..." className="min-h-[120px] text-base resize-none bg-muted text-foreground text-center" />
                   <Button onClick={generateQuote} className="w-full bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg">
-                    Generate Daily Quote
+                    Generate Daily Motivation
                   </Button>
                 </div>
               </Card>
@@ -227,24 +227,16 @@ const Index = () => {
 
             {/* Digital Products Tab */}
             <TabsContent value="digital-products" className="space-y-6">
-              <div className="flex justify-end mb-4">
-                <Link
-                  to="/digital-products"
-                  aria-label="View all digital products"
-                  className="relative inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm
-                             transition-all duration-300 ease-out
-                             border border-primary/30 bg-gradient-to-r from-primary/10 to-accent/10
-                             hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/20
-                             active:translate-y-0
-                             group"
-                  style={{ 
-                    transformStyle: "preserve-3d",
-                    perspective: "800px"
-                  }}
-                >
-                  <span className="translate-z-[12px]">View all digital products</span>
-                  <span className="translate-z-[12px] group-hover:translate-x-1 transition-transform">→</span>
-                </Link>
+              <div className="flex flex-col items-center gap-4 mb-6">
+                <p className="text-sm font-semibold text-muted-foreground tracking-wider">MAJESTY HQ</p>
+                <div className="flex gap-2 w-full max-w-md">
+                  <Input 
+                    type="search" 
+                    placeholder="Search digital products..." 
+                    className="flex-1 rounded-full"
+                  />
+                  <Button className="rounded-full px-6">Search</Button>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -289,9 +281,10 @@ const Index = () => {
                           </div>
                         )}
 
+
                         <div className="mt-auto pt-2">
                           {product.cta?.disabled ? (
-                            <Button disabled className="w-full bg-muted text-muted-foreground">
+                            <Button disabled className="w-full bg-muted text-muted-foreground cursor-not-allowed hover:bg-muted">
                               {product.cta.label}
                             </Button>
                           ) : (
@@ -885,7 +878,13 @@ const Index = () => {
       </section>
 
       {/* Newsletters I Follow Section */}
-      <section className="py-16 md:py-24 bg-accent/5">
+      <section className="py-16 md:py-24 relative overflow-hidden bg-gradient-to-br from-primary/5 via-accent/10 to-secondary/5">
+        {/* Gradient mesh background effect */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl"></div>
+        </div>
+        <div className="relative z-10">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">
@@ -939,6 +938,7 @@ const Index = () => {
               </Button>
             </Card>
           </div>
+        </div>
         </div>
       </section>
 
@@ -1053,8 +1053,15 @@ const Index = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section id="newsletter" className="py-16 md:py-24 bg-accent/10">
-        <div className="container mx-auto px-4 max-w-4xl">
+      <section id="newsletter" className="py-16 md:py-24 relative overflow-hidden">
+        {/* Gradient mesh background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-primary/10 to-secondary/20"></div>
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-72 h-72 bg-primary/30 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-10 right-10 w-96 h-96 bg-accent/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-secondary/20 rounded-full blur-3xl"></div>
+        </div>
+        <div className="container mx-auto px-4 max-w-4xl relative z-10">
           <div className="relative">
             {/* Coming Soon Diagonal Banner */}
             <div className="absolute -top-8 -right-8 md:-top-12 md:-right-12 z-10 pointer-events-none">
@@ -1091,21 +1098,20 @@ const Index = () => {
       </section>
 
       {/* My Custom & Recommended GPTs Section */}
-      <section className="py-16">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
-          <div className="border-2 rounded-xl p-8 bg-card/50">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">
-                My Custom & Recommended GPTs 🤖
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                AI assistants I've built and recommend
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Book Architect - Recommended */}
-              <Card className="p-6 border-2 flex flex-col">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">
+              My Custom & Recommended GPTs 🤖
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              AI assistants I've built and recommend
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Book Architect - Recommended */}
+            <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
                 <div className="mb-4">
                   <h3 className="text-lg font-bold mb-1">Book Architect</h3>
                   <p className="text-xs text-muted-foreground mb-3">by Daniel Martell</p>
@@ -1130,7 +1136,7 @@ const Index = () => {
               </Card>
 
               {/* Skool.com GPT - My Custom */}
-              <Card className="p-6 border-2 flex flex-col">
+              <Card className="p-6 border border-border/50 flex flex-col bg-card shadow-sm">
                 <div className="mb-4">
                   <h3 className="text-lg font-bold mb-1">Skool.com GPT: $10K/M Community Coach</h3>
                   <p className="text-xs text-muted-foreground mb-3">by Zain Adtani</p>
@@ -1148,7 +1154,7 @@ const Index = () => {
               </Card>
 
               {/* The Time of Your Life Method - My Custom */}
-              <Card className="p-6 border-2 flex flex-col">
+              <Card className="p-6 border border-border/50 flex flex-col bg-card shadow-sm">
                 <div className="mb-4">
                   <h3 className="text-lg font-bold mb-1">The Time of Your Life Method</h3>
                   <p className="text-xs text-muted-foreground mb-3">by Zain Adtani</p>
@@ -1165,7 +1171,6 @@ const Index = () => {
                 </Button>
               </Card>
             </div>
-          </div>
         </div>
       </section>
 
