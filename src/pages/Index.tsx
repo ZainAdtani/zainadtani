@@ -20,6 +20,9 @@ import tonyRobbins from "@/assets/tony-robbins.jpg";
 import jasonFladlien from "@/assets/jason-fladlien.jpg";
 import engineerToEABook from "@/assets/engineer-to-ea-book.png";
 import maggieSimbaBook from "@/assets/maggie-simba-book.png";
+import financialSorceryBook from "@/assets/financial-sorcery-book.png";
+import chrisHaroun from "@/assets/chris-haroun.png";
+import trentShelton from "@/assets/trent-shelton.png";
 
 // Lazy load heavy component for better performance
 const EAGame = lazy(() => import("@/components/EAGame").then(m => ({ default: m.EAGame })));
@@ -78,21 +81,29 @@ const Index = () => {
     });
   };
 
-  // Handle hash changes for tab navigation
+  // Handle hash changes for tab navigation (only scroll if user clicked or hash changed)
   useEffect(() => {
     const onHashChange = () => {
       const next = getTabFromHash(window.location.hash);
       setActiveTab(next);
-      const el = document.getElementById('tabs-section');
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Only scroll if this is a real hash change (user action), not initial load
+      if (document.readyState === 'complete') {
+        const el = document.getElementById('tabs-section');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     };
     window.addEventListener('hashchange', onHashChange);
-    if (window.location.hash) onHashChange();
+    // Don't scroll on initial load even if hash exists
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
-  // Update hash when tab changes
+  // Update hash when tab changes (only after user interaction)
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   useEffect(() => {
+    if (isInitialLoad) {
+      setIsInitialLoad(false);
+      return;
+    }
     const newHash = `#${activeTab}`;
     if (window.location.hash !== newHash) {
       history.replaceState(null, '', newHash);
@@ -643,6 +654,36 @@ const Index = () => {
                     ],
                     image: jasonFladlien,
                     website: "https://jasonfladlien.com/about/"
+                  },
+                  {
+                    name: "Chris Haroun",
+                    role: "Founder & CEO, Haroun Education Ventures",
+                    born: "",
+                    age: "",
+                    imageAlt: "Chris Haroun headshot",
+                    bio: "Award-winning business school professor & CEO behind the 300+ hour Haroun MBA Degree Program; background in finance/VC.",
+                    bullets: [
+                      "Created comprehensive online MBA program",
+                      "Former VC and finance executive",
+                      "Focus: business education, entrepreneurship, finance"
+                    ],
+                    image: chrisHaroun,
+                    website: "https://www.linkedin.com/in/charoun/"
+                  },
+                  {
+                    name: "Trent Shelton",
+                    role: "Speaker & Author; Founder of RehabTime",
+                    born: "Sep 21, 1984",
+                    age: "41 years old",
+                    imageAlt: "Trent Shelton headshot",
+                    bio: "Former NFL WR turned globally followed motivational speaker. Focus: purpose, protecting your peace, and transformational habits.",
+                    bullets: [
+                      "Founded RehabTime movement",
+                      "Former NFL wide receiver",
+                      "Focus: personal transformation, purpose, mindset"
+                    ],
+                    image: trentShelton,
+                    website: "https://www.trentshelton.com/"
                   }
                 ].map((person, index) => (
                   <Card 
@@ -683,9 +724,11 @@ const Index = () => {
                       <div className="text-center mb-4">
                         <h4 className="font-bold text-2xl mb-2 text-foreground">{person.name}</h4>
                         <p className="text-base text-primary font-semibold mb-1">{person.role}</p>
-                        <p className="text-sm text-muted-foreground">
-                          {person.born} • {person.age}
-                        </p>
+                        {person.born && person.age && (
+                          <p className="text-sm text-muted-foreground">
+                            {person.born} • {person.age}
+                          </p>
+                        )}
                       </div>
 
                       {/* Bio */}
@@ -808,6 +851,64 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Newsletters I Follow Section */}
+      <section className="py-16 md:py-24 bg-accent/5">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">
+              Newsletters I Follow 📬
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              My favorite weekly reads for growth, health, and finance
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* 5-Bullet Friday */}
+            <Card className="p-6 hover-lift border-2 flex flex-col">
+              <h3 className="text-xl font-bold mb-2 text-foreground">5-Bullet Friday</h3>
+              <p className="text-sm text-primary font-semibold mb-3">by Tim Ferriss</p>
+              <p className="text-sm text-muted-foreground mb-4 flex-grow">
+                Five cool things each week—books, hacks, tools.
+              </p>
+              <Button asChild className="w-full">
+                <a href="https://go.tim.blog/5-bullet-friday-1/" target="_blank" rel="noopener noreferrer">
+                  Subscribe
+                </a>
+              </Button>
+            </Card>
+
+            {/* High Performance Journal */}
+            <Card className="p-6 hover-lift border-2 flex flex-col">
+              <h3 className="text-xl font-bold mb-2 text-foreground">High Performance Journal</h3>
+              <p className="text-sm text-primary font-semibold mb-3">by Dan Go</p>
+              <p className="text-sm text-muted-foreground mb-4 flex-grow">
+                One practical health tip in ~4 minutes.
+              </p>
+              <Button asChild className="w-full">
+                <a href="https://www.dango.co/newsletter" target="_blank" rel="noopener noreferrer">
+                  Subscribe
+                </a>
+              </Button>
+            </Card>
+
+            {/* Market Briefs */}
+            <Card className="p-6 hover-lift border-2 flex flex-col">
+              <h3 className="text-xl font-bold mb-2 text-foreground">Market Briefs</h3>
+              <p className="text-sm text-primary font-semibold mb-3">by Briefs Media</p>
+              <p className="text-sm text-muted-foreground mb-4 flex-grow">
+                Daily 5-minute finance for regular investors.
+              </p>
+              <Button asChild className="w-full">
+                <a href="https://www.briefs.co/" target="_blank" rel="noopener noreferrer">
+                  Subscribe
+                </a>
+              </Button>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Spotify Playlist Section */}
       <section className="py-16 md:py-24 bg-primary/5">
         <div className="container mx-auto px-4 max-w-4xl">
@@ -830,7 +931,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Books I've Published Section */}
+      {/* Books I've Published Section - Updated with 3 books */}
       <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 space-y-4">
@@ -842,7 +943,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Engineer to EA Book */}
             <Card className="overflow-hidden hover-lift group">
               <div className="relative">
@@ -864,12 +965,12 @@ const Index = () => {
               </div>
             </Card>
 
-            {/* Maggie & Simba Book */}
+            {/* Engineer to EA Book 2 */}
             <Card className="overflow-hidden hover-lift group">
               <div className="relative">
                 <img
-                  src={maggieSimbaBook}
-                  alt="If Maggie & Simba Could Talk Book Cover"
+                  src={engineerToEABook}
+                  alt="Engineer to Enrolled Agent: The Smartest Career Pivot You've Never Heard Of Book Cover"
                   className="w-full h-auto object-cover"
                 />
                 {/* In The Works Banner */}
@@ -878,9 +979,31 @@ const Index = () => {
                 </div>
               </div>
               <div className="p-6 space-y-3">
-                <h3 className="text-2xl font-bold">If Maggie & Simba Could Talk</h3>
+                <h3 className="text-xl font-bold">Engineer to Enrolled Agent: The Smartest Career Pivot You've Never Heard Of</h3>
                 <p className="text-muted-foreground">
-                  A heartwarming memoir of love, loss, and life lessons through the eyes of two beloved companions.
+                  A practical, step-by-step roadmap showing how engineers can leverage their skills to build a rewarding tax career.
+                </p>
+              </div>
+            </Card>
+
+            {/* Financial Sorcery Book */}
+            <Card className="overflow-hidden hover-lift group">
+              <div className="relative">
+                <img
+                  src={financialSorceryBook}
+                  alt="The School of Financial Sorcery Book Cover"
+                  className="w-full h-auto object-cover"
+                />
+                {/* In The Works Banner */}
+                <div className="absolute top-8 -right-12 bg-gradient-to-r from-accent to-primary text-white px-16 py-2 transform rotate-45 shadow-lg">
+                  <span className="font-bold text-sm">IN THE WORKS</span>
+                </div>
+              </div>
+              <div className="p-6 space-y-3">
+                <h3 className="text-xl font-bold">The School of Financial Sorcery</h3>
+                <p className="text-sm text-muted-foreground mb-2">How to Master Money Like Magic</p>
+                <p className="text-muted-foreground">
+                  Practical wisdom and transformative strategies for building wealth and financial freedom.
                 </p>
               </div>
             </Card>
@@ -928,6 +1051,42 @@ const Index = () => {
                   </Button>
                 </form>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* My Custom GPTs Section */}
+      <section className="py-16 bg-primary/5">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">
+              My Custom GPTs 🤖
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Custom AI assistants I've built on ChatGPT
+            </p>
+          </div>
+          
+          <div className="overflow-x-auto pb-4">
+            <div className="flex gap-4 min-w-max px-4">
+              {[
+                { title: "Tax Research Assistant", desc: "Helps research tax code and regulations", link: "#" },
+                { title: "EA Exam Prep Coach", desc: "Practice questions and study guidance", link: "#" },
+                { title: "Business Strategy Bot", desc: "Strategic planning and growth advice", link: "#" },
+                { title: "Writing Helper", desc: "Content creation and editing assistance", link: "#" },
+                { title: "Learning Optimizer", desc: "Personalized study plans and techniques", link: "#" }
+              ].map((gpt, idx) => (
+                <Card key={idx} className="p-6 w-72 flex-shrink-0 hover-lift border-2 flex flex-col">
+                  <h3 className="text-lg font-bold mb-2 text-foreground">{gpt.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-4 flex-grow">{gpt.desc}</p>
+                  <Button asChild variant="outline" className="w-full">
+                    <a href={gpt.link} target="_blank" rel="noopener noreferrer">
+                      Open on ChatGPT →
+                    </a>
+                  </Button>
+                </Card>
+              ))}
             </div>
           </div>
         </div>

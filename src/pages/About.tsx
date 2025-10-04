@@ -4,6 +4,8 @@ import { Card } from "@/components/ui/card";
 import { Youtube, Linkedin } from "lucide-react";
 import zainHeadshot from "@/assets/zain-headshot-new.png";
 import zainSimba from "@/assets/zain-simba.png";
+import chrisHaroun from "@/assets/chris-haroun.png";
+import trentShelton from "@/assets/trent-shelton.png";
 const About = () => {
   return <div className="min-h-screen bg-background">
       <Header />

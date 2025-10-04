@@ -1,12 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
-import { Moon, Sun, Menu, Lock, Cloud, Code, Award, ExternalLink } from "lucide-react";
+import { Moon, Sun, Menu, Lock, Cloud, Code, Award, ExternalLink, Home as HomeIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "@/components/ui/sheet";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useState } from "react";
 
 export const Header = () => {
   const { theme, setTheme } = useTheme();
   const location = useLocation();
+  const [sheetOpen, setSheetOpen] = useState(false);
 
   const isActive = (path: string) => {
     if (path === '/') return location.pathname === '/';
@@ -113,261 +116,125 @@ export const Header = () => {
           </a>
 
           {/* Hamburger Menu */}
-          <Sheet>
+          <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon" aria-label="Open menu">
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-80">
+            <SheetContent side="right" className="w-80 overflow-y-auto">
               <SheetHeader>
                 <h3 className="text-lg font-semibold">More</h3>
                 <p className="text-sm text-muted-foreground">Quick access</p>
               </SheetHeader>
 
-              <nav className="mt-6 space-y-6">
+              <nav className="mt-6 space-y-4">
                 {/* Home Link */}
                 <Link
                   to="/"
                   className="flex items-center gap-2 text-foreground hover:underline"
+                  onClick={() => setSheetOpen(false)}
                   aria-label="Home"
                 >
-                  <span>← Home</span>
+                  <HomeIcon className="w-4 h-4" />
+                  <span>Home</span>
                 </Link>
 
-                {/* Secret Vault */}
-                <Link
-                  to="/vault"
-                  className="flex items-center gap-2 text-foreground hover:underline"
-                  aria-label="Open Secret Vault"
-                >
-                  <Lock className="w-4 h-4 text-primary" />
-                  <span>Secret Vault</span>
-                </Link>
+                <div className="border-t border-border pt-4 space-y-2">
+                  {/* Vault Links */}
+                  <Link to="/vault" className="flex items-center gap-2 text-foreground hover:underline" onClick={() => setSheetOpen(false)}>
+                    <Lock className="w-4 h-4 text-primary" />
+                    <span>Secret Vault</span>
+                  </Link>
+                  <Link to="/vault/subscriptions" className="flex items-center gap-2 text-foreground hover:underline" onClick={() => setSheetOpen(false)}>
+                    <span>🗂️ Subscriptions</span>
+                  </Link>
+                  <Link to="/tools" className="flex items-center gap-2 text-foreground hover:underline" onClick={() => setSheetOpen(false)}>
+                    <span>🧰 Tools</span>
+                  </Link>
+                </div>
 
-                {/* Subscriptions (Vault) */}
-                <Link
-                  to="/vault/subscriptions"
-                  className="flex items-center gap-2 text-foreground hover:underline"
-                  aria-label="Subscriptions (Vault)"
-                >
-                  <span>🗂️ Subscriptions</span>
-                </Link>
+                {/* Accordion Groups */}
+                <div className="border-t border-border pt-4">
+                  <Accordion type="multiple" className="w-full">
+                    {/* Courses I Recommend */}
+                    <AccordionItem value="courses">
+                      <AccordionTrigger className="text-sm font-semibold">Courses I Recommend</AccordionTrigger>
+                      <AccordionContent>
+                        <div className="space-y-3 pl-2">
+                          <a 
+                            href="https://udemy.com/course/nlp-practitioner-master-practitioner-certification-course/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-3 py-2 text-sm rounded-full border border-primary/30 hover:bg-primary/10 transition-colors"
+                            onClick={() => setSheetOpen(false)}
+                          >
+                            <span className="flex-1">NLP Practitioner + Master</span>
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                          <p className="text-xs text-muted-foreground italic px-3">
+                            (AWS course links coming soon)
+                          </p>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
 
-                {/* Tools */}
-                <Link
-                  to="/tools"
-                  className="flex items-center gap-2 text-foreground hover:underline"
-                  aria-label="Tools"
-                >
-                  <span>🧰 Tools</span>
-                </Link>
-
-                {/* Courses I Recommend */}
-                <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="font-semibold text-base">Courses I Recommend</span>
-                  </div>
-
-                  {/* AWS & Cloud */}
-                  <div className="mb-4">
-                    <div className="flex items-center gap-2 mb-2 text-sm font-medium text-muted-foreground">
-                      <Cloud className="w-3.5 h-3.5" />
-                      <span>AWS & Cloud</span>
-                    </div>
-                    <ul className="space-y-2 pl-5 text-sm">
-                      <li>
-                        <a
-                          href="https://www.coursera.org/specializations/aws-fundamentals"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-start gap-1.5 hover:text-primary transition-colors"
-                        >
-                          <span className="flex-1 leading-tight">AWS Fundamentals Specialization</span>
-                          <ExternalLink className="w-3 h-3 mt-0.5 shrink-0 opacity-60 group-hover:opacity-100" />
-                        </a>
-                        <span className="text-xs text-muted-foreground">Coursera</span>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.coursera.org/learn/aws-fundamentals-migrating-to-the-cloud"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-start gap-1.5 hover:text-primary transition-colors"
-                        >
-                          <span className="flex-1 leading-tight">AWS Fundamentals: Migrating to the Cloud</span>
-                          <ExternalLink className="w-3 h-3 mt-0.5 shrink-0 opacity-60 group-hover:opacity-100" />
-                        </a>
-                        <span className="text-xs text-muted-foreground">Coursera</span>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.coursera.org/learn/aws-fundamentals-addressing-security-risk"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-start gap-1.5 hover:text-primary transition-colors"
-                        >
-                          <span className="flex-1 leading-tight">AWS Fundamentals: Addressing Security Risk</span>
-                          <ExternalLink className="w-3 h-3 mt-0.5 shrink-0 opacity-60 group-hover:opacity-100" />
-                        </a>
-                        <span className="text-xs text-muted-foreground">Coursera</span>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.coursera.org/learn/aws-cloud-technical-essentials"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-start gap-1.5 hover:text-primary transition-colors"
-                        >
-                          <span className="flex-1 leading-tight">AWS Cloud Technical Essentials</span>
-                          <ExternalLink className="w-3 h-3 mt-0.5 shrink-0 opacity-60 group-hover:opacity-100" />
-                        </a>
-                        <span className="text-xs text-muted-foreground">Coursera</span>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.coursera.org/learn/aws-cloud-practitioner-essentials"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-start gap-1.5 hover:text-primary transition-colors"
-                        >
-                          <span className="flex-1 leading-tight">AWS Cloud Practitioner Essentials</span>
-                          <ExternalLink className="w-3 h-3 mt-0.5 shrink-0 opacity-60 group-hover:opacity-100" />
-                        </a>
-                        <span className="text-xs text-muted-foreground">Coursera</span>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.coursera.org/learn/cloud-practitioner-exam-prep"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-start gap-1.5 hover:text-primary transition-colors"
-                        >
-                          <span className="flex-1 leading-tight">Exam Prep: AWS Certified Cloud Practitioner Foundations</span>
-                          <ExternalLink className="w-3 h-3 mt-0.5 shrink-0 opacity-60 group-hover:opacity-100" />
-                        </a>
-                        <span className="text-xs text-muted-foreground">Coursera</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  {/* Programming & Data */}
-                  <div className="mb-4">
-                    <div className="flex items-center gap-2 mb-2 text-sm font-medium text-muted-foreground">
-                      <Code className="w-3.5 h-3.5" />
-                      <span>Programming & Data</span>
-                    </div>
-                    <ul className="space-y-2 pl-5 text-sm">
-                      <li>
-                        <a
-                          href="https://www.coursera.org/learn/python"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-start gap-1.5 hover:text-primary transition-colors"
-                        >
-                          <span className="flex-1 leading-tight">Programming for Everybody (Getting Started with Python)</span>
-                          <ExternalLink className="w-3 h-3 mt-0.5 shrink-0 opacity-60 group-hover:opacity-100" />
-                        </a>
-                        <span className="text-xs text-muted-foreground">Coursera</span>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.coursera.org/learn/python-data"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-start gap-1.5 hover:text-primary transition-colors"
-                        >
-                          <span className="flex-1 leading-tight">Python Data Structures</span>
-                          <ExternalLink className="w-3 h-3 mt-0.5 shrink-0 opacity-60 group-hover:opacity-100" />
-                        </a>
-                        <span className="text-xs text-muted-foreground">Coursera</span>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.coursera.org/learn/python-crash-course"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-start gap-1.5 hover:text-primary transition-colors"
-                        >
-                          <span className="flex-1 leading-tight">Crash Course on Python</span>
-                          <ExternalLink className="w-3 h-3 mt-0.5 shrink-0 opacity-60 group-hover:opacity-100" />
-                        </a>
-                        <span className="text-xs text-muted-foreground">Coursera</span>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.coursera.org/learn/the-structured-query-language-sql"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-start gap-1.5 hover:text-primary transition-colors"
-                        >
-                          <span className="flex-1 leading-tight">The Structured Query Language (SQL)</span>
-                          <ExternalLink className="w-3 h-3 mt-0.5 shrink-0 opacity-60 group-hover:opacity-100" />
-                        </a>
-                        <span className="text-xs text-muted-foreground">Coursera</span>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.coursera.org/learn/matlab"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-start gap-1.5 hover:text-primary transition-colors"
-                        >
-                          <span className="flex-1 leading-tight">Introduction to Programming with MATLAB</span>
-                          <ExternalLink className="w-3 h-3 mt-0.5 shrink-0 opacity-60 group-hover:opacity-100" />
-                        </a>
-                        <span className="text-xs text-muted-foreground">Coursera</span>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.coursera.org/account/accomplishments/certificate/YHKHYPAG6VU5"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-start gap-1.5 hover:text-primary transition-colors"
-                        >
-                          <Award className="w-3 h-3 mt-0.5 shrink-0 text-primary" />
-                          <span className="flex-1 leading-tight">Programming for Everybody — Zain <span className="text-xs text-primary">(Certificate)</span></span>
-                          <ExternalLink className="w-3 h-3 mt-0.5 shrink-0 opacity-60 group-hover:opacity-100" />
-                        </a>
-                        <span className="text-xs text-muted-foreground">Coursera</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  {/* Other */}
-                  <div>
-                    <div className="flex items-center gap-2 mb-2 text-sm font-medium text-muted-foreground">
-                      <span>Other</span>
-                    </div>
-                    <ul className="space-y-2 pl-5 text-sm">
-                      <li>
-                        <a
-                          href="https://www.udemy.com/course/nlp-practitioner-master-practitioner-certification-course/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-start gap-1.5 hover:text-primary transition-colors"
-                        >
-                          <span className="flex-1 leading-tight">NLP Practitioner + Master Practitioner</span>
-                          <ExternalLink className="w-3 h-3 mt-0.5 shrink-0 opacity-60 group-hover:opacity-100" />
-                        </a>
-                        <span className="text-xs text-muted-foreground">Udemy</span>
-                      </li>
-                    </ul>
-                  </div>
+                    {/* Marketplaces */}
+                    <AccordionItem value="marketplaces">
+                      <AccordionTrigger className="text-sm font-semibold">Marketplaces</AccordionTrigger>
+                      <AccordionContent>
+                        <div className="space-y-2 pl-2">
+                          {[
+                            { name: "Etsy", url: "https://www.etsy.com/" },
+                            { name: "eBay", url: "https://www.ebay.com/" },
+                            { name: "WHOP", url: "https://whop.com/" },
+                            { name: "Mastermind.com", url: "https://www.mastermind.com/" },
+                            { name: "Skool", url: "https://www.skool.com/" },
+                            { name: "Udemy", url: "https://www.udemy.com/" },
+                            { name: "YouTube", url: "https://www.youtube.com/" }
+                          ].map((marketplace) => (
+                            <a 
+                              key={marketplace.name}
+                              href={marketplace.url} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-2 px-3 py-2 text-sm rounded-full border border-primary/30 hover:bg-primary/10 transition-colors"
+                              onClick={() => setSheetOpen(false)}
+                            >
+                              <span className="flex-1">{marketplace.name}</span>
+                              <ExternalLink className="w-3 h-3" />
+                            </a>
+                          ))}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
                 </div>
               </nav>
+
+              {/* Theme Toggle */}
+              <div className="mt-8 pt-6 border-t border-border">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                  className="w-full"
+                >
+                  {theme === "light" ? <Moon className="h-4 w-4 mr-2" /> : <Sun className="h-4 w-4 mr-2" />}
+                  {theme === "light" ? "Dark" : "Light"} Mode
+                </Button>
+              </div>
             </SheetContent>
           </Sheet>
-          
-          {/* Dark Mode Toggle */}
+
+          {/* Theme Toggle (Desktop) */}
           <Button
-            variant="outline"
+            variant="ghost"
             size="icon"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="rounded-full"
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            className="hidden md:inline-flex"
           >
-            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
             <span className="sr-only">Toggle theme</span>
           </Button>
         </nav>
