@@ -1,7 +1,7 @@
 import { ShoppingBag, Users, BookOpen, Heart, Sparkles, type LucideIcon } from "lucide-react";
 import authorGuide from "@/assets/author-guide-preview.png";
 import authorGuidePDF from "@/assets/author-guide.pdf";
-import walkingWorkday from "@/assets/walking-workday.png";
+import walkingWorkday from "@/assets/walking-workday-new.png";
 
 export type Product = {
   id: string;
@@ -57,8 +57,8 @@ export const ALL_PRODUCTS: Product[] = [
     category: "Wellness",
     desc: "Fit three 20-minute walks into any busy schedule. Calendar and commute strategies to build daily movement without a gym.",
     media: walkingWorkday,
-    cta: { label: "New Version Coming Soon", disabled: true, href: "#" },
-    tags: ["Wellness"],
+    cta: { label: "Get It Now →", href: "https://whop.com/the-walking-workday/the-walking-workday-bb/" },
+    tags: ["Wellness", "eBook"],
     featured: true,
     icon: Heart,
   },

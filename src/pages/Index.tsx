@@ -275,11 +275,11 @@ const Index = () => {
                         </p>
 
                         {product.media && (
-                          <div className="relative mb-4">
+                          <div className="relative mb-4 overflow-hidden rounded-lg">
                             <img
                               src={product.media}
                               alt={`${product.title} preview`}
-                              className="w-full rounded-lg shadow-md"
+                              className="w-full h-44 object-cover rounded-lg shadow-md"
                               loading="lazy"
                             />
                           </div>
