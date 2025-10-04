@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
+import { Header } from "@/components/Header";
 
 const CATS: Record<string, [string, string][]> = {
   "AI & Agents": [
@@ -48,6 +49,7 @@ export default function Tools() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Header />
       <header className="py-10">
         <div className="container mx-auto px-4 max-w-6xl">
           <h1 className="text-3xl md:text-4xl font-bold">Tools</h1>

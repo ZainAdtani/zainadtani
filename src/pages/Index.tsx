@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles, Music, BookOpen, ExternalLink, Youtube, Linkedin, Heart, ChevronUp } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useState, useEffect, lazy, Suspense } from "react";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -318,9 +319,35 @@ const Index = () => {
             {/* Books Tab */}
             <TabsContent id="books" value="books" className="space-y-6">
               <div className="text-center mb-8">
-                <h3 className="text-3xl md:text-4xl font-bold mb-3 text-foreground bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Zain's Shelf
-                </h3>
+                <div className="flex items-center justify-center gap-3 mb-3">
+                  <h3 className="text-3xl md:text-4xl font-bold text-foreground bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                    Zain's Shelf
+                  </h3>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground"
+                          onClick={() => {
+                            const element = document.getElementById('published-works');
+                            if (element) {
+                              const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                              element.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+                            }
+                          }}
+                          aria-label="Scroll to my published works"
+                        >
+                          <BookOpen className="h-4 w-4" />
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>My Books</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
                 <p className="text-lg text-muted-foreground">
                   Short, practical takeaways. Add 1 that changes your week.
                 </p>
@@ -932,7 +959,7 @@ const Index = () => {
       </section>
 
       {/* Books I've Published Section - Updated with 3 books */}
-      <section className="py-20 bg-secondary/30">
+      <section id="published-works" className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 space-y-4">
             <h2 className="text-4xl md:text-5xl font-bold">
