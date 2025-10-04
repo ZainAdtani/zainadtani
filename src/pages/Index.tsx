@@ -252,12 +252,11 @@ const Index = () => {
                   const Icon = product.icon ?? BookOpen;
                   const num = pad2(idx + 1);
                   return (
-                    <Card key={product.id} className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2">
-                      <div className="p-6">
+                <Card key={product.id} className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2 flex flex-col">
+                      <div className="p-6 flex flex-col flex-grow">
                         <div className="flex items-start justify-between mb-3">
                           <div className="flex items-center gap-3">
                             <Badge className="rounded-full text-xs">#{num}</Badge>
-                            <Icon className="w-8 h-8 text-primary shrink-0" aria-hidden="true" />
                           </div>
                           {product.badge && (
                             <Badge variant="secondary" className="text-[10px] px-2 py-0.5">
@@ -275,42 +274,49 @@ const Index = () => {
                         </p>
 
                         {product.media && (
-                          <div className="relative mb-4 overflow-hidden rounded-lg">
+                          <div className="relative mb-4 overflow-hidden rounded-lg bg-muted/50 flex items-center justify-center">
                             <img
                               src={product.media}
                               alt={`${product.title} preview`}
                               className={`w-full h-44 rounded-lg shadow-md ${
-                                product.id === 'walking-workday' ? 'object-cover object-top' : 'object-cover'
+                                product.id === 'walking-workday' 
+                                  ? 'object-cover object-top' 
+                                  : product.id === 'quiet-your-gut'
+                                  ? 'object-contain p-4'
+                                  : 'object-cover'
                               }`}
                               loading="lazy"
                             />
                           </div>
                         )}
 
-                        {product.cta?.disabled ? (
-                          <Button disabled className="w-full bg-muted text-muted-foreground">
-                            {product.cta.label}
-                          </Button>
-                        ) : (
-                          <Button 
-                            asChild 
-                            variant={product.id === "author-guide" ? "outline" : "default"}
-                            className={product.id === "author-guide" 
-                              ? "w-full border-primary text-primary hover:bg-primary/10" 
-                              : "w-full"
-                            }
-                          >
-                            <a
-                              href={product.cta?.href ?? "#"}
-                              target={product.cta?.download ? "_blank" : "_self"}
-                              rel="noopener noreferrer"
-                              download={product.cta?.download}
-                              aria-label={product.cta?.label ?? "Open"}
+                        <div className="mt-auto pt-2 flex items-center gap-3">
+                          <Icon className="w-5 h-5 text-primary shrink-0" aria-hidden="true" />
+                          {product.cta?.disabled ? (
+                            <Button disabled className="w-full bg-muted text-muted-foreground">
+                              {product.cta.label}
+                            </Button>
+                          ) : (
+                            <Button 
+                              asChild 
+                              variant={product.id === "author-guide" ? "outline" : "default"}
+                              className={product.id === "author-guide" 
+                                ? "w-full border-primary text-primary hover:bg-primary/10" 
+                                : "w-full"
+                              }
                             >
-                              {product.cta?.label ?? "Open"}
-                            </a>
-                          </Button>
-                        )}
+                              <a
+                                href={product.cta?.href ?? "#"}
+                                target={product.cta?.download ? "_blank" : "_self"}
+                                rel="noopener noreferrer"
+                                download={product.cta?.download}
+                                aria-label={product.cta?.label ?? "Open"}
+                              >
+                                {product.cta?.label ?? "Open"}
+                              </a>
+                            </Button>
+                          )}
+                        </div>
                       </div>
                     </Card>
                   );

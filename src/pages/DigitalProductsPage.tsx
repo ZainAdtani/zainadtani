@@ -97,14 +97,20 @@ export default function DigitalProductsPage() {
               return (
                 <Card 
                   key={p.id} 
-                  className="group overflow-hidden border-2 bg-card motion-safe:hover:shadow-xl motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:-translate-y-1"
+                  className="group overflow-hidden border-2 bg-card motion-safe:hover:shadow-xl motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:-translate-y-1 flex flex-col"
                 >
                   {p.media && (
-                    <div className="relative">
+                    <div className="relative bg-muted/50 flex items-center justify-center">
                       <img
                         src={p.media}
                         alt={`${p.title} preview`}
-                        className="w-full h-44 object-cover"
+                        className={`w-full h-44 ${
+                          p.id === 'walking-workday' 
+                            ? 'object-cover object-top' 
+                            : p.id === 'quiet-your-gut'
+                            ? 'object-contain p-4'
+                            : 'object-cover'
+                        }`}
                         loading="lazy"
                       />
                       {p.badge && (
@@ -115,11 +121,10 @@ export default function DigitalProductsPage() {
                     </div>
                   )}
 
-                  <div className="p-5">
+                  <div className="p-5 flex flex-col flex-grow">
                     <div className="flex items-start justify-between gap-2 mb-3">
                       <div className="flex items-center gap-3">
                         <Badge className="rounded-full">#{num}</Badge>
-                        <Icon className="w-6 h-6 text-primary" aria-hidden="true" />
                       </div>
                       <Badge variant="secondary" className="shrink-0 text-xs">
                         {p.category}
@@ -142,24 +147,27 @@ export default function DigitalProductsPage() {
                       </div>
                     )}
 
-                    {p.cta?.disabled ? (
-                      <Button disabled className="w-full bg-muted text-muted-foreground">
-                        {p.cta.label}
-                      </Button>
-                    ) : (
-                      <Button asChild className="w-full">
-                        <a
-                          href={p.cta?.href ?? "#"}
-                          target={p.cta?.download ? "_blank" : "_self"}
-                          rel="noopener"
-                          download={p.cta?.download}
-                          aria-label={p.cta?.label ?? "Open"}
-                        >
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          {p.cta?.label ?? "Open"}
-                        </a>
-                      </Button>
-                    )}
+                    <div className="mt-auto flex items-center gap-3">
+                      <Icon className="w-5 h-5 text-primary shrink-0" aria-hidden="true" />
+                      {p.cta?.disabled ? (
+                        <Button disabled className="w-full bg-muted text-muted-foreground">
+                          {p.cta.label}
+                        </Button>
+                      ) : (
+                        <Button asChild className="w-full">
+                          <a
+                            href={p.cta?.href ?? "#"}
+                            target={p.cta?.download ? "_blank" : "_self"}
+                            rel="noopener"
+                            download={p.cta?.download}
+                            aria-label={p.cta?.label ?? "Open"}
+                          >
+                            <ExternalLink className="w-4 h-4 mr-2" />
+                            {p.cta?.label ?? "Open"}
+                          </a>
+                        </Button>
+                      )}
+                    </div>
                   </div>
                 </Card>
               );

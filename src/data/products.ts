@@ -3,6 +3,7 @@ import authorGuide from "@/assets/author-guide-preview.png";
 import authorGuidePDF from "@/assets/author-guide.pdf";
 import walkingWorkday from "@/assets/walking-workday-new.png";
 import quietYourGut from "@/assets/quiet-your-gut.png";
+import engineerToEA from "@/assets/engineer-to-ea-banner.png";
 
 export type Product = {
   id: string;
@@ -23,6 +24,7 @@ export const ALL_PRODUCTS: Product[] = [
     title: "Engineer to EA — Part 1",
     category: "Courses",
     desc: "Complete course covering all three parts of the Enrolled Agent exam. Fast-track your path from engineer to tax professional.",
+    media: engineerToEA,
     cta: { label: "Enroll Now →", href: "https://whop.com/eng2ea/?a=eng2ea" },
     tags: ["Course", "EA", "Beginner"],
     badge: "Popular",
