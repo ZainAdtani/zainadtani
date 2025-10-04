@@ -157,8 +157,8 @@ export default function DigitalProductsPage() {
                         <Button asChild className="w-full">
                           <a
                             href={p.cta?.href ?? "#"}
-                            target={p.cta?.download ? "_blank" : "_self"}
-                            rel="noopener"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             download={p.cta?.download}
                             aria-label={p.cta?.label ?? "Open"}
                           >

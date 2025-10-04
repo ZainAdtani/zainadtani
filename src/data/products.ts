@@ -4,6 +4,7 @@ import authorGuidePDF from "@/assets/author-guide.pdf";
 import walkingWorkday from "@/assets/walking-workday-new.png";
 import quietYourGut from "@/assets/quiet-your-gut.png";
 import engineerToEA from "@/assets/engineer-to-ea-banner.png";
+import jointFamilyBoundaries from "@/assets/joint-family-boundaries.png";
 
 export type Product = {
   id: string;
@@ -82,6 +83,7 @@ export const ALL_PRODUCTS: Product[] = [
     title: "Joint Family Boundaries Blueprint",
     category: "Courses",
     desc: "Navigate joint family dynamics with proven strategies for setting healthy boundaries while maintaining harmony. Coming soon.",
+    media: jointFamilyBoundaries,
     cta: { 
       label: "Coming Soon", 
       href: "#",
@@ -91,34 +93,6 @@ export const ALL_PRODUCTS: Product[] = [
     badge: "Soon",
     featured: true,
     icon: Users,
-  },
-  {
-    id: "coming-soon-1",
-    title: "New Digital Product Coming Soon",
-    category: "Guides",
-    desc: "Stay tuned! I'm working on something exciting for you. Message me on LinkedIn if you'd like early access or want to influence what I create next.",
-    cta: { 
-      label: "Message Me on LinkedIn →", 
-      href: "https://www.linkedin.com/in/zainadtani",
-    },
-    tags: ["Coming Soon"],
-    badge: "Soon",
-    featured: true,
-    icon: Sparkles,
-  },
-  {
-    id: "coming-soon-2",
-    title: "More Products on the Way",
-    category: "Communities",
-    desc: "Building something valuable takes time. If you have ideas for what you'd like to see, reach out! Your feedback shapes what I create.",
-    cta: { 
-      label: "Share Your Ideas →", 
-      href: "https://www.linkedin.com/in/zainadtani",
-    },
-    tags: ["Coming Soon"],
-    badge: "In Progress",
-    featured: true,
-    icon: Heart,
   },
 ];
 

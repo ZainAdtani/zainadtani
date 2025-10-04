@@ -307,7 +307,7 @@ const Index = () => {
                             >
                               <a
                                 href={product.cta?.href ?? "#"}
-                                target={product.cta?.download ? "_blank" : "_self"}
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 download={product.cta?.download}
                                 aria-label={product.cta?.label ?? "Open"}
