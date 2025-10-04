@@ -249,7 +249,6 @@ const Index = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {productCatalog.filter(p => p.featured).slice(0, 6).map((product, idx) => {
-                  const Icon = product.icon ?? BookOpen;
                   const num = pad2(idx + 1);
                   return (
                 <Card key={product.id} className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2 flex flex-col">
@@ -290,8 +289,7 @@ const Index = () => {
                           </div>
                         )}
 
-                        <div className="mt-auto pt-2 flex items-center gap-3">
-                          <Icon className="w-5 h-5 text-primary shrink-0" aria-hidden="true" />
+                        <div className="mt-auto pt-2">
                           {product.cta?.disabled ? (
                             <Button disabled className="w-full bg-muted text-muted-foreground">
                               {product.cta.label}

@@ -5,6 +5,7 @@ import walkingWorkday from "@/assets/walking-workday-new.png";
 import quietYourGut from "@/assets/quiet-your-gut.png";
 import engineerToEA from "@/assets/engineer-to-ea-banner.png";
 import jointFamilyBoundaries from "@/assets/joint-family-boundaries.png";
+import dailyLedgerMastery from "@/assets/daily-ledger-mastery.png";
 
 export type Product = {
   id: string;
@@ -16,7 +17,6 @@ export type Product = {
   tags?: string[];
   badge?: string;
   featured?: boolean;
-  icon?: LucideIcon;
 };
 
 export const ALL_PRODUCTS: Product[] = [
@@ -30,7 +30,6 @@ export const ALL_PRODUCTS: Product[] = [
     tags: ["Course", "EA", "Beginner"],
     badge: "Popular",
     featured: true,
-    icon: ShoppingBag,
   },
   {
     id: "free-community",
@@ -41,7 +40,6 @@ export const ALL_PRODUCTS: Product[] = [
     tags: ["Free", "Community"],
     badge: "#1 Starter",
     featured: true,
-    icon: Users,
   },
   {
     id: "author-guide",
@@ -49,11 +47,10 @@ export const ALL_PRODUCTS: Product[] = [
     category: "Guides",
     desc: "Proven framework to publish in ~6 months. Includes Kindle, print, and audiobook.",
     media: authorGuide,
-    cta: { label: "download free PDF guide", href: authorGuidePDF, download: true },
+    cta: { label: "Download Free PDF →", href: authorGuidePDF, download: true },
     tags: ["Free", "PDF"],
     badge: "Preview",
     featured: true,
-    icon: BookOpen,
   },
   {
     id: "walking-workday",
@@ -64,7 +61,6 @@ export const ALL_PRODUCTS: Product[] = [
     cta: { label: "Get It Now →", href: "https://whop.com/the-walking-workday/the-walking-workday-bb/" },
     tags: ["Wellness", "eBook"],
     featured: true,
-    icon: BookOpen,
   },
   {
     id: "quiet-your-gut",
@@ -76,7 +72,6 @@ export const ALL_PRODUCTS: Product[] = [
     tags: ["Wellness", "Guide"],
     badge: "New",
     featured: true,
-    icon: Heart,
   },
   {
     id: "joint-family-boundaries",
@@ -92,7 +87,17 @@ export const ALL_PRODUCTS: Product[] = [
     tags: ["Course", "Coming Soon"],
     badge: "Soon",
     featured: true,
-    icon: Users,
+  },
+  {
+    id: "daily-ledger-mastery",
+    title: "Daily Ledger Mastery for Shop-Helping Teens in Hindi",
+    category: "Guides",
+    desc: "18,000 शब्दों की व्यावहारिक ईबुक + टेम्पलेट्स। दुकान में मदद करने वाले टीनएजर्स के लिए रोज़ाना बही-खाता सिस्टम। 7 दिनों में आत्मविश्वास के साथ कैशबुक, बिक्री, उधारी, स्टॉक रजिस्टर सीखें।",
+    media: dailyLedgerMastery,
+    cta: { label: "Get It Now →", href: "#" },
+    tags: ["eBook", "Hindi"],
+    badge: "New",
+    featured: true,
   },
 ];
 

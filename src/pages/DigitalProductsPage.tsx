@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Search, ExternalLink, BookOpen } from "lucide-react";
+import { Search } from "lucide-react";
 import { Header } from "@/components/Header";
 import { ALL_PRODUCTS, CATEGORIES } from "@/data/products";
 import Logo3D from "@/components/Logo3D";
@@ -92,7 +92,6 @@ export default function DigitalProductsPage() {
           {/* Product grid with catalog numbers */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((p) => {
-              const Icon = p.icon ?? BookOpen;
               const num = pad2(p.catalogIndex);
               return (
                 <Card 
@@ -147,8 +146,7 @@ export default function DigitalProductsPage() {
                       </div>
                     )}
 
-                    <div className="mt-auto flex items-center gap-3">
-                      <Icon className="w-5 h-5 text-primary shrink-0" aria-hidden="true" />
+                    <div className="mt-auto">
                       {p.cta?.disabled ? (
                         <Button disabled className="w-full bg-muted text-muted-foreground">
                           {p.cta.label}
@@ -162,7 +160,6 @@ export default function DigitalProductsPage() {
                             download={p.cta?.download}
                             aria-label={p.cta?.label ?? "Open"}
                           >
-                            <ExternalLink className="w-4 h-4 mr-2" />
                             {p.cta?.label ?? "Open"}
                           </a>
                         </Button>
