@@ -944,12 +944,12 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Engineer to EA Book */}
+            {/* If Maggie & Simba Could Talk Book */}
             <Card className="overflow-hidden hover-lift group">
               <div className="relative">
                 <img
-                  src={engineerToEABook}
-                  alt="Engineer to Enrolled Agent Book Cover"
+                  src={maggieSimbaBook}
+                  alt="If Maggie & Simba Could Talk Book Cover"
                   className="w-full h-auto object-cover"
                 />
                 {/* In The Works Banner */}
@@ -958,14 +958,15 @@ const Index = () => {
                 </div>
               </div>
               <div className="p-6 space-y-3">
-                <h3 className="text-2xl font-bold">Engineer to Enrolled Agent</h3>
+                <h3 className="text-2xl font-bold">If Maggie & Simba Could Talk</h3>
+                <p className="text-sm text-muted-foreground mb-2">A Memoir of Love, Loss, and Life Lessons</p>
                 <p className="text-muted-foreground">
-                  The smartest career pivot you've never heard of - a comprehensive guide to transitioning from engineering to becoming an Enrolled Agent.
+                  A heartfelt memoir exploring the profound lessons learned from two beloved companions.
                 </p>
               </div>
             </Card>
 
-            {/* Engineer to EA Book 2 */}
+            {/* Engineer to EA Book */}
             <Card className="overflow-hidden hover-lift group">
               <div className="relative">
                 <img
@@ -1056,37 +1057,80 @@ const Index = () => {
         </div>
       </section>
 
-      {/* My Custom GPTs Section */}
-      <section className="py-16 bg-primary/5">
+      {/* My Custom & Recommended GPTs Section */}
+      <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">
-              My Custom GPTs 🤖
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Custom AI assistants I've built on ChatGPT
-            </p>
-          </div>
-          
-          <div className="overflow-x-auto pb-4">
-            <div className="flex gap-4 min-w-max px-4">
-              {[
-                { title: "Tax Research Assistant", desc: "Helps research tax code and regulations", link: "#" },
-                { title: "EA Exam Prep Coach", desc: "Practice questions and study guidance", link: "#" },
-                { title: "Business Strategy Bot", desc: "Strategic planning and growth advice", link: "#" },
-                { title: "Writing Helper", desc: "Content creation and editing assistance", link: "#" },
-                { title: "Learning Optimizer", desc: "Personalized study plans and techniques", link: "#" }
-              ].map((gpt, idx) => (
-                <Card key={idx} className="p-6 w-72 flex-shrink-0 hover-lift border-2 flex flex-col">
-                  <h3 className="text-lg font-bold mb-2 text-foreground">{gpt.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-4 flex-grow">{gpt.desc}</p>
-                  <Button asChild variant="outline" className="w-full">
-                    <a href={gpt.link} target="_blank" rel="noopener noreferrer">
-                      Open on ChatGPT →
-                    </a>
-                  </Button>
-                </Card>
-              ))}
+          <div className="border-2 rounded-xl p-8 bg-card/50">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">
+                My Custom & Recommended GPTs 🤖
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                AI assistants I've built and recommend
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Book Architect - Recommended */}
+              <Card className="p-6 border-2 flex flex-col">
+                <div className="mb-4">
+                  <h3 className="text-lg font-bold mb-1">Book Architect</h3>
+                  <p className="text-xs text-muted-foreground mb-3">by Daniel Martell</p>
+                  <p className="text-sm mb-3">Create structured nonfiction book outlines based on the teachings, voice, and philosophies of public figures.</p>
+                  <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+                    <span>⭐ 4.7 (100+ ratings)</span>
+                    <span>•</span>
+                    <span>Writing</span>
+                    <span>•</span>
+                    <span>1K+ chats</span>
+                  </div>
+                </div>
+                <Button asChild variant="default" className="w-full mt-auto">
+                  <a 
+                    href="https://chatgpt.com/g/g-6867e586d500819189774562feffe01c-book-architect" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    Open on ChatGPT ↗
+                  </a>
+                </Button>
+              </Card>
+
+              {/* Skool.com GPT - My Custom */}
+              <Card className="p-6 border-2 flex flex-col">
+                <div className="mb-4">
+                  <h3 className="text-lg font-bold mb-1">Skool.com GPT: $10K/M Community Coach</h3>
+                  <p className="text-xs text-muted-foreground mb-3">by Zain Adtani</p>
+                  <p className="text-sm mb-3">Action-first coach for launching & growing a Skool community to $10K+/mo—show up daily, batch work, funnel attention, ship simple offers, track MRR.</p>
+                </div>
+                <Button asChild variant="default" className="w-full mt-auto">
+                  <a 
+                    href="https://chatgpt.com/g/g-68bf196615048191abb478d398627dd0-skool-com-gpt-10k-m-community-coach" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    Open on ChatGPT ↗
+                  </a>
+                </Button>
+              </Card>
+
+              {/* The Time of Your Life Method - My Custom */}
+              <Card className="p-6 border-2 flex flex-col">
+                <div className="mb-4">
+                  <h3 className="text-lg font-bold mb-1">The Time of Your Life Method</h3>
+                  <p className="text-xs text-muted-foreground mb-3">by Zain Adtani</p>
+                  <p className="text-sm mb-3">A planner won't change your life—a new system of thinking will.</p>
+                </div>
+                <Button asChild variant="default" className="w-full mt-auto">
+                  <a 
+                    href="https://chatgpt.com/g/g-68c1e0fa113c8191940474d7a1653fce-the-time-of-your-life-method" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    Open on ChatGPT ↗
+                  </a>
+                </Button>
+              </Card>
             </div>
           </div>
         </div>

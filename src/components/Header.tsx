@@ -146,9 +146,6 @@ export const Header = () => {
                     <Lock className="w-4 h-4 text-primary" />
                     <span>Secret Vault</span>
                   </Link>
-                  <Link to="/vault/subscriptions" className="flex items-center gap-2 text-foreground hover:underline" onClick={() => setSheetOpen(false)}>
-                    <span>🗂️ Subscriptions</span>
-                  </Link>
                   <Link to="/tools" className="flex items-center gap-2 text-foreground hover:underline" onClick={() => setSheetOpen(false)}>
                     <span>🧰 Tools</span>
                   </Link>
@@ -172,9 +169,66 @@ export const Header = () => {
                             <span className="flex-1">NLP Practitioner + Master</span>
                             <ExternalLink className="w-3 h-3" />
                           </a>
-                          <p className="text-xs text-muted-foreground italic px-3">
-                            (AWS course links coming soon)
-                          </p>
+                          <a 
+                            href="https://www.coursera.org/specializations/aws-fundamentals" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-3 py-2 text-sm rounded-full border border-primary/30 hover:bg-primary/10 transition-colors"
+                            onClick={() => setSheetOpen(false)}
+                          >
+                            <span className="flex-1">AWS Fundamentals Specialization</span>
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                          <a 
+                            href="https://www.coursera.org/learn/aws-fundamentals-migrating-to-the-cloud" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-3 py-2 text-sm rounded-full border border-primary/30 hover:bg-primary/10 transition-colors"
+                            onClick={() => setSheetOpen(false)}
+                          >
+                            <span className="flex-1">AWS Fundamentals: Migrating to the Cloud</span>
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                          <a 
+                            href="https://www.coursera.org/learn/aws-fundamentals-addressing-security" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-3 py-2 text-sm rounded-full border border-primary/30 hover:bg-primary/10 transition-colors"
+                            onClick={() => setSheetOpen(false)}
+                          >
+                            <span className="flex-1">AWS Fundamentals: Addressing Security Risk</span>
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                          <a 
+                            href="https://www.coursera.org/learn/aws-cloud-technical-essentials" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-3 py-2 text-sm rounded-full border border-primary/30 hover:bg-primary/10 transition-colors"
+                            onClick={() => setSheetOpen(false)}
+                          >
+                            <span className="flex-1">AWS Cloud Technical Essentials</span>
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                          <a 
+                            href="https://www.coursera.org/learn/aws-certified-cloud-practitioner-exam-prep" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-3 py-2 text-sm rounded-full border border-primary/30 hover:bg-primary/10 transition-colors"
+                            onClick={() => setSheetOpen(false)}
+                          >
+                            <span className="flex-1">Exam Prep: AWS Certified Cloud Practitioner Foundations</span>
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                          <a 
+                            href="https://www.coursera.org/learn/aws-cloud-practitioner-essentials" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-3 py-2 text-sm rounded-full border border-primary/30 hover:bg-primary/10 transition-colors"
+                            onClick={() => setSheetOpen(false)}
+                          >
+                            <span className="flex-1">AWS Cloud Practitioner Essentials</span>
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
                         </div>
                       </AccordionContent>
                     </AccordionItem>
