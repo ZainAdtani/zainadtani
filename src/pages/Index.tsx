@@ -279,7 +279,9 @@ const Index = () => {
                             <img
                               src={product.media}
                               alt={`${product.title} preview`}
-                              className="w-full h-44 object-cover rounded-lg shadow-md"
+                              className={`w-full h-44 rounded-lg shadow-md ${
+                                product.id === 'walking-workday' ? 'object-cover object-top' : 'object-cover'
+                              }`}
                               loading="lazy"
                             />
                           </div>

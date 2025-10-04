@@ -2,6 +2,7 @@ import { ShoppingBag, Users, BookOpen, Heart, Sparkles, type LucideIcon } from "
 import authorGuide from "@/assets/author-guide-preview.png";
 import authorGuidePDF from "@/assets/author-guide.pdf";
 import walkingWorkday from "@/assets/walking-workday-new.png";
+import quietYourGut from "@/assets/quiet-your-gut.png";
 
 export type Product = {
   id: string;
@@ -60,7 +61,34 @@ export const ALL_PRODUCTS: Product[] = [
     cta: { label: "Get It Now →", href: "https://whop.com/the-walking-workday/the-walking-workday-bb/" },
     tags: ["Wellness", "eBook"],
     featured: true,
+    icon: BookOpen,
+  },
+  {
+    id: "quiet-your-gut",
+    title: "Quiet Your Gut",
+    category: "Wellness",
+    desc: "Natural relief for busy people. Feel calm, confident, and in control—without pills or strict diets.",
+    media: quietYourGut,
+    cta: { label: "Get It Now →", href: "https://whop.com/stop-bloating-and-grumbling/stop-bloating-and-grumbling/" },
+    tags: ["Wellness", "Guide"],
+    badge: "New",
+    featured: true,
     icon: Heart,
+  },
+  {
+    id: "joint-family-boundaries",
+    title: "Joint Family Boundaries Blueprint",
+    category: "Courses",
+    desc: "Navigate joint family dynamics with proven strategies for setting healthy boundaries while maintaining harmony. Coming soon.",
+    cta: { 
+      label: "Coming Soon", 
+      href: "#",
+      disabled: true
+    },
+    tags: ["Course", "Coming Soon"],
+    badge: "Soon",
+    featured: true,
+    icon: Users,
   },
   {
     id: "coming-soon-1",
