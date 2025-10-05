@@ -4,7 +4,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles, Music, BookOpen, ExternalLink, Youtube, Linkedin, Heart, ChevronUp } from "lucide-react";
+import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles, Music, BookOpen, ExternalLink, Youtube, Linkedin, Heart, ChevronUp, X } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useState, useEffect, lazy, Suspense } from "react";
 import React from "react";
@@ -57,7 +57,20 @@ const Index = () => {
   const [quote, setQuote] = useState("");
   const [activeTab, setActiveTab] = useState<TabKey>(() => getTabFromHash(window.location.hash));
   const [showBackToTop, setShowBackToTop] = React.useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const location = useLocation();
+  
+  // Filter products based on search query
+  const filteredProducts = React.useMemo(() => {
+    if (!searchQuery.trim()) return productCatalog.filter(p => p.featured).slice(0, 6);
+    const query = searchQuery.toLowerCase();
+    return productCatalog.filter(p => 
+      p.featured && (
+        p.title.toLowerCase().includes(query) || 
+        p.desc.toLowerCase().includes(query)
+      )
+    );
+  }, [searchQuery]);
   
   const generateQuote = () => {
     const randomIndex = Math.floor(Math.random() * QUOTES_AND_NOTES.length);
@@ -228,19 +241,38 @@ const Index = () => {
             {/* Digital Products Tab */}
             <TabsContent value="digital-products" className="space-y-6">
               <div className="flex flex-col items-center gap-4 mb-6">
-                <p className="text-sm font-semibold text-muted-foreground tracking-wider">MAJESTY HQ</p>
-                <div className="flex gap-2 w-full max-w-md">
+                <div className="flex items-center justify-between w-full mb-2">
+                  <div className="flex-1" />
+                  <p className="text-sm font-semibold text-muted-foreground tracking-wider">MAJESTY HQ</p>
+                  <div className="flex-1 flex justify-end">
+                    <Button asChild variant="outline" size="sm">
+                      <Link to="/digital-products">View All Products →</Link>
+                    </Button>
+                  </div>
+                </div>
+                <div className="flex gap-2 w-full max-w-md relative">
                   <Input 
                     type="search" 
                     placeholder="Search digital products..." 
-                    className="flex-1 rounded-full"
+                    className="flex-1 rounded-full pr-10"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                   />
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery("")}
+                      className="absolute right-24 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                      aria-label="Clear search"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  )}
                   <Button className="rounded-full px-6">Search</Button>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {productCatalog.filter(p => p.featured).slice(0, 6).map((product, idx) => {
+                {filteredProducts.map((product, idx) => {
                   const num = pad2(idx + 1);
                   return (
                 <Card key={product.id} className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2 flex flex-col">
@@ -1116,13 +1148,6 @@ const Index = () => {
                   <h3 className="text-lg font-bold mb-1">Book Architect</h3>
                   <p className="text-xs text-muted-foreground mb-3">by Daniel Martell</p>
                   <p className="text-sm mb-3">Create structured nonfiction book outlines based on the teachings, voice, and philosophies of public figures.</p>
-                  <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-                    <span>⭐ 4.7 (100+ ratings)</span>
-                    <span>•</span>
-                    <span>Writing</span>
-                    <span>•</span>
-                    <span>1K+ chats</span>
-                  </div>
                 </div>
                 <Button asChild variant="default" className="w-full mt-auto">
                   <a 
@@ -1136,7 +1161,7 @@ const Index = () => {
               </Card>
 
               {/* Skool.com GPT - My Custom */}
-              <Card className="p-6 border border-border/50 flex flex-col bg-card shadow-sm">
+              <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
                 <div className="mb-4">
                   <h3 className="text-lg font-bold mb-1">Skool.com GPT: $10K/M Community Coach</h3>
                   <p className="text-xs text-muted-foreground mb-3">by Zain Adtani</p>
@@ -1154,7 +1179,7 @@ const Index = () => {
               </Card>
 
               {/* The Time of Your Life Method - My Custom */}
-              <Card className="p-6 border border-border/50 flex flex-col bg-card shadow-sm">
+              <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
                 <div className="mb-4">
                   <h3 className="text-lg font-bold mb-1">The Time of Your Life Method</h3>
                   <p className="text-xs text-muted-foreground mb-3">by Zain Adtani</p>
@@ -1171,6 +1196,22 @@ const Index = () => {
                 </Button>
               </Card>
             </div>
+        </div>
+      </section>
+
+      {/* Join Free Community */}
+      <section className="py-12 bg-secondary/20" aria-label="Join Free Community">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <Card className="p-8 flex flex-col md:flex-row items-center gap-6 border-2 shadow-lg">
+            <Users className="w-12 h-12 text-primary shrink-0" aria-hidden="true" />
+            <div className="flex-1 text-center md:text-left">
+              <h3 className="text-2xl font-bold">Engineer → Enrolled Agent (Free Community)</h3>
+              <p className="text-muted-foreground">Short lessons. No fluff. Study tips, resources, and support.</p>
+            </div>
+            <Button asChild size="lg" className="shrink-0">
+              <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer">Join Free →</a>
+            </Button>
+          </Card>
         </div>
       </section>
 
@@ -1196,26 +1237,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Join Free Community - Moved near bottom */}
-      <section className="py-12 bg-secondary/20" aria-label="Join Free Community">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <Card className="p-8 flex flex-col md:flex-row items-center gap-6 border-2 shadow-lg">
-            <Users className="w-12 h-12 text-primary shrink-0" aria-hidden="true" />
-            <div className="flex-1 text-center md:text-left">
-              <h3 className="text-2xl font-bold">Engineer → Enrolled Agent (Free Community)</h3>
-              <p className="text-muted-foreground">Short lessons. No fluff. Study tips, resources, and support.</p>
-            </div>
-            <Button asChild size="lg" className="shrink-0">
-              <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer">Join Free →</a>
-            </Button>
-          </Card>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="bg-background border-t border-border py-8">
         <div className="container mx-auto px-4 max-w-6xl text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Zain Adtani. All rights reserved.
+          © {new Date().getFullYear()} Zain Education Ventures. All rights reserved.
         </div>
       </footer>
 

@@ -94,9 +94,13 @@ export const ALL_PRODUCTS: Product[] = [
     category: "Guides",
     desc: "18,000 शब्दों की व्यावहारिक ईबुक + टेम्पलेट्स। दुकान में मदद करने वाले टीनएजर्स के लिए रोज़ाना बही-खाता सिस्टम। 7 दिनों में आत्मविश्वास के साथ कैशबुक, बिक्री, उधारी, स्टॉक रजिस्टर सीखें।",
     media: dailyLedgerMastery,
-    cta: { label: "Get It Now →", href: "#" },
+    cta: { 
+      label: "Coming Soon", 
+      href: "#",
+      disabled: true
+    },
     tags: ["eBook", "Hindi"],
-    badge: "New",
+    badge: "Soon",
     featured: true,
   },
 ];
