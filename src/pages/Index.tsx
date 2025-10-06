@@ -11,6 +11,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Header } from "@/components/Header";
+import { TimeZoneClock } from "@/components/TimeZoneClock";
 import { ALL_PRODUCTS } from "@/data/products";
 import headshotImage from "@/assets/zain-headshot.png";
 import qbBadge from "@/assets/quickbooks-level2-badge.png";
@@ -138,6 +139,7 @@ const Index = () => {
       </Helmet>
       
       <Header />
+      <TimeZoneClock />
 
       {/* Hero Section */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-primary/5 via-background to-accent/5">
