@@ -10,6 +10,7 @@ import DigitalProductsPage from "./pages/DigitalProductsPage";
 import SecretVault from "./pages/SecretVault";
 import VaultSubscriptions from "./pages/VaultSubscriptions";
 import Tools from "./pages/Tools";
+import EnrolledAgent from "./pages/EnrolledAgent";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/vault" element={<SecretVault />} />
           <Route path="/vault/subscriptions" element={<VaultSubscriptions />} />
           <Route path="/tools" element={<Tools />} />
+          <Route path="/enrolled-agent" element={<EnrolledAgent />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

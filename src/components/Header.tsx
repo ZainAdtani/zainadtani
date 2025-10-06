@@ -149,6 +149,10 @@ export const Header = () => {
                   <Link to="/tools" className="flex items-center gap-2 text-foreground hover:underline" onClick={() => setSheetOpen(false)}>
                     <span>🧰 Tools</span>
                   </Link>
+                  <Link to="/enrolled-agent" className="flex items-center gap-2 text-foreground hover:underline" onClick={() => setSheetOpen(false)}>
+                    <Award className="w-4 h-4 text-accent" />
+                    <span>Enrolled Agent</span>
+                  </Link>
                 </div>
 
                 {/* Accordion Groups */}
