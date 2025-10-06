@@ -22,7 +22,7 @@ export function TimeZoneClock() {
   const formatDate = (date: Date) => format(date, "EEEE, MMM d, yyyy");
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 animate-fade-in">
+    <div className="fixed bottom-4 left-4 z-50 animate-fade-in">
       <div className="backdrop-blur-md bg-card/90 border border-border rounded-xl shadow-lg p-3 min-w-[280px]">
         <div className="flex items-center gap-2 mb-2 pb-2 border-b border-border/50">
           <Clock className="w-4 h-4 text-primary" />
@@ -36,12 +36,12 @@ export function TimeZoneClock() {
             <span className="font-mono text-foreground">{formatTime(centralTime)}</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-muted-foreground font-medium">PT:</span>
-            <span className="font-mono text-foreground">{formatTime(pacificTime)}</span>
-          </div>
-          <div className="flex justify-between items-center">
             <span className="text-muted-foreground font-medium">ET:</span>
             <span className="font-mono text-foreground">{formatTime(easternTime)}</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-muted-foreground font-medium">PT:</span>
+            <span className="font-mono text-foreground">{formatTime(pacificTime)}</span>
           </div>
         </div>
       </div>
