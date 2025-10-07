@@ -6,6 +6,7 @@ import quietYourGut from "@/assets/quiet-your-gut.png";
 import engineerToEA from "@/assets/engineer-to-ea-banner.png";
 import jointFamilyBoundaries from "@/assets/joint-family-boundaries.png";
 import dailyLedgerMastery from "@/assets/daily-ledger-mastery.png";
+import newlywedsMoveout from "@/assets/newlyweds-moveout-blueprint.png";
 
 export type Product = {
   id: string;
@@ -70,6 +71,17 @@ export const ALL_PRODUCTS: Product[] = [
     media: quietYourGut,
     cta: { label: "Get It Now →", href: "https://whop.com/stop-bloating-and-grumbling/stop-bloating-and-grumbling/" },
     tags: ["Wellness", "Guide"],
+    badge: "New",
+    featured: true,
+  },
+  {
+    id: "newlyweds-moveout",
+    title: "The Newlyweds' 14-Day Move-Out Blueprint",
+    category: "Guides",
+    desc: "Step-by-step roadmap to confidently move out in just 14 days. Perfect for newlyweds planning their first home together.",
+    media: newlywedsMoveout,
+    cta: { label: "Get It Now →", href: "https://whop.com/the-newlyweds-14-day-move-out-blueprint/the-newlyweds-14-day-move-out/" },
+    tags: ["eBook", "Guide"],
     badge: "New",
     featured: true,
   },
