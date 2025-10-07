@@ -1,17 +1,8 @@
-import { useState, useMemo, useCallback } from "react";
-import { Search, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useMemo } from "react";
+import { Search, ExternalLink } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/Header";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 import zaLogo from "@/assets/za-logo.png";
 
 interface Tool {
@@ -154,26 +145,26 @@ function ToolCard({ tool }: { tool: Tool }) {
       href={tool.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block h-full"
+      className="group block flex-shrink-0 w-[320px] snap-start"
     >
-      <div className="h-full backdrop-blur-md bg-card/80 border border-border rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 p-6 flex flex-col gap-4">
-        <div className="flex items-start gap-3">
+      <div className="h-[280px] backdrop-blur-md bg-card/90 border border-border rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 p-8 flex flex-col gap-6">
+        <div className="flex items-start gap-4">
           {getFavicon(tool.url) && (
             <img
               src={getFavicon(tool.url)!}
               alt=""
-              className="w-10 h-10 rounded-lg flex-shrink-0"
+              className="w-12 h-12 rounded-xl flex-shrink-0"
               onError={(e) => {
                 e.currentTarget.style.display = "none";
               }}
             />
           )}
           <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-foreground flex items-center gap-2 mb-1">
+            <h3 className="text-lg font-semibold text-foreground flex items-center gap-2 mb-2">
               <span className="truncate">{tool.name}</span>
               <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
             </h3>
-            <p className="text-sm text-muted-foreground line-clamp-2">
+            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
               {tool.description}
             </p>
           </div>
@@ -194,8 +185,6 @@ function ToolCard({ tool }: { tool: Tool }) {
 
 export default function Tools() {
   const [query, setQuery] = useState("");
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
 
   const filteredTools = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -206,33 +195,6 @@ export default function Tools() {
         tool.description.toLowerCase().includes(q)
     );
   }, [query]);
-
-  const autoplayPlugin = useMemo(
-    () =>
-      Autoplay({
-        delay: 6000,
-        stopOnInteraction: true,
-        stopOnMouseEnter: true,
-      }),
-    []
-  );
-
-  const scrollTo = useCallback(
-    (index: number) => {
-      api?.scrollTo(index);
-    },
-    [api]
-  );
-
-  useMemo(() => {
-    if (!api) return;
-
-    setCurrent(api.selectedScrollSnap());
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap());
-    });
-  }, [api]);
 
   const isSearching = query.trim().length > 0;
 
@@ -280,16 +242,63 @@ export default function Tools() {
       </div>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-12 max-w-6xl">
+      <main className="pb-12">
         {isSearching ? (
           // Search Results Grid
-          <div>
+          <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="text-2xl font-semibold mb-6">
               {filteredTools?.length || 0} result{filteredTools?.length !== 1 ? "s" : ""}
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredTools?.map((tool) => (
-                <ToolCard key={tool.name} tool={tool} />
+                <div key={tool.name} className="w-full">
+                  <a
+                    href={tool.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block h-full"
+                  >
+                    <div className="h-full backdrop-blur-md bg-card/90 border border-border rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 p-6 flex flex-col gap-4">
+                      <div className="flex items-start gap-3">
+                        {(() => {
+                          try {
+                            const domain = new URL(tool.url).hostname;
+                            return (
+                              <img
+                                src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
+                                alt=""
+                                className="w-10 h-10 rounded-lg flex-shrink-0"
+                                onError={(e) => {
+                                  e.currentTarget.style.display = "none";
+                                }}
+                              />
+                            );
+                          } catch {
+                            return null;
+                          }
+                        })()}
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-semibold text-foreground flex items-center gap-2 mb-1">
+                            <span className="truncate">{tool.name}</span>
+                            <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+                          </h3>
+                          <p className="text-sm text-muted-foreground line-clamp-2">
+                            {tool.description}
+                          </p>
+                        </div>
+                      </div>
+                      <Button
+                        className="w-full mt-auto"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.open(tool.url, "_blank", "noopener,noreferrer");
+                        }}
+                      >
+                        Open Tool
+                      </Button>
+                    </div>
+                  </a>
+                </div>
               ))}
             </div>
             {filteredTools?.length === 0 && (
@@ -299,62 +308,33 @@ export default function Tools() {
             )}
           </div>
         ) : (
-          // Carousel View
-          <div className="space-y-8">
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              plugins={[autoplayPlugin]}
-              className="w-full"
-              setApi={setApi}
-            >
-              <CarouselContent>
-                {CATEGORIES.map((category) => {
-                  const categoryTools = TOOLS.filter((t) => t.category === category);
-                  return (
-                    <CarouselItem key={category}>
-                      <div className="space-y-6">
-                        <h2 className="text-3xl font-bold">{category}</h2>
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                          {categoryTools.map((tool) => (
-                            <ToolCard key={tool.name} tool={tool} />
-                          ))}
-                        </div>
+          // Apple-Style Category Sections with Horizontal Scroll
+          <div className="space-y-16">
+            {CATEGORIES.map((category) => {
+              const categoryTools = TOOLS.filter((t) => t.category === category);
+              return (
+                <section key={category} className="space-y-6">
+                  <div className="container mx-auto px-4 max-w-6xl">
+                    <h2 className="text-3xl font-bold tracking-tight">{category}</h2>
+                  </div>
+                  
+                  <div className="relative">
+                    {/* Gradient fade on edges */}
+                    <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+                    <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+                    
+                    {/* Horizontal scroll container */}
+                    <div className="overflow-x-auto scrollbar-hide">
+                      <div className="flex gap-6 px-4 pb-4 snap-x snap-mandatory" style={{ paddingLeft: 'max(1rem, calc((100vw - 72rem) / 2))', paddingRight: 'max(1rem, calc((100vw - 72rem) / 2))' }}>
+                        {categoryTools.map((tool) => (
+                          <ToolCard key={tool.name} tool={tool} />
+                        ))}
                       </div>
-                    </CarouselItem>
-                  );
-                })}
-              </CarouselContent>
-
-              <div className="flex items-center justify-center gap-4 mt-8">
-                <CarouselPrevious className="static translate-y-0" />
-                
-                {/* Dot Indicators */}
-                <div className="flex gap-2">
-                  {CATEGORIES.map((_, index) => (
-                    <button
-                      key={index}
-                      className={`w-2.5 h-2.5 rounded-full transition-all ${
-                        current === index
-                          ? "bg-primary w-8"
-                          : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                      }`}
-                      onClick={() => scrollTo(index)}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  ))}
-                </div>
-
-                <CarouselNext className="static translate-y-0" />
-              </div>
-            </Carousel>
-
-            {/* Keyboard Navigation Hint */}
-            <p className="text-center text-xs text-muted-foreground">
-              Use arrow keys to navigate • Hover to pause auto-rotation
-            </p>
+                    </div>
+                  </div>
+                </section>
+              );
+            })}
           </div>
         )}
       </main>

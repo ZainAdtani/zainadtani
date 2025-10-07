@@ -115,6 +115,15 @@ All colors MUST be HSL.
   .hover-scale {
     @apply transition-all duration-300 ease-out hover:scale-[1.02];
   }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* Respect prefers-reduced-motion for accessibility */
