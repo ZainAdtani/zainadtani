@@ -221,6 +221,66 @@ const Investing = () => {
         </div>
       </section>
 
+      {/* Options Trading Section */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold mb-6">
+                Master <span className="text-primary">Options Trading</span>
+              </h2>
+              <div className="space-y-4 text-lg text-muted-foreground">
+                <p>
+                  Options are one of the most powerful tools in investing—offering flexibility, leverage, and strategic opportunities beyond simple stock ownership.
+                </p>
+                <p>
+                  Whether you're hedging your portfolio, generating income through covered calls, or speculating on market movements, understanding options is essential for serious investors.
+                </p>
+                <p>
+                  I'm learning from the best resources available, and I highly recommend this comprehensive course that breaks down calls, puts, spreads, and advanced strategies.
+                </p>
+              </div>
+            </div>
+            
+            <Card className="p-8 hover-lift transition-all duration-300 border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
+              <LineChart className="w-12 h-12 text-primary mb-4" />
+              <h3 className="text-2xl font-bold mb-4">Complete Options Course</h3>
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                Master calls, puts, long & short positions, spreads, and real-world strategies. From beginner to advanced, this course covers everything you need to trade options confidently.
+              </p>
+              <Button asChild className="w-full" size="lg">
+                <a href="https://www.udemy.com/course/the-completecomplete-options-course-calls-puts-long-short/?couponCode=MT251006G3" target="_blank" rel="noopener noreferrer">
+                  Get the Course →
+                </a>
+              </Button>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Book in Progress Section */}
+      <section className="py-16 md:py-24 bg-gradient-to-br from-accent/5 via-background to-primary/5">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <Card className="p-8 md:p-12 text-center border-2 border-primary/20">
+            <BookOpen className="w-16 h-16 text-primary mx-auto mb-6" />
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              The School of <span className="text-primary">Financial Sorcery</span>
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
+              I'm currently writing a comprehensive guide that demystifies wealth-building, combining practical investing strategies with mindset shifts that transform your relationship with money. 
+              This book will cover everything from stock market fundamentals to real estate, business ventures, and the psychology of wealth creation.
+            </p>
+            <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary/20 to-accent/20 text-foreground font-bold rounded-lg">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+              </span>
+              BOOK IN PROGRESS
+            </div>
+          </Card>
+        </div>
+      </section>
+
       {/* Resources Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 max-w-4xl">
