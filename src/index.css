@@ -124,6 +124,18 @@ All colors MUST be HSL.
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  .ea-domains-accordion {
+    scroll-behavior: smooth;
+  }
+
+  .ea-domains-accordion [data-state="open"] svg {
+    transform: rotate(180deg);
+  }
+
+  .ea-domains-accordion svg {
+    transition: transform 200ms ease-out;
+  }
 }
 
 /* Respect prefers-reduced-motion for accessibility */

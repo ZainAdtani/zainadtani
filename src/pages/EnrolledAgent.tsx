@@ -4,6 +4,12 @@ import { Header } from "@/components/Header";
 import { EAGame } from "@/components/EAGame";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { 
   Gamepad2, 
   Music, 
@@ -13,7 +19,8 @@ import {
   Rocket,
   Sparkles,
   Award,
-  ChevronRight
+  ChevronRight,
+  FileText
 } from "lucide-react";
 
 const EnrolledAgent = () => {
@@ -84,7 +91,7 @@ const EnrolledAgent = () => {
         <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
           
           {/* Section 1: EA Quest */}
-          <Card className="relative border-2 border-dashed border-primary/40 p-8 hover:border-primary transition-all hover-lift bg-card">
+          <Card id="ea-quest" className="relative border-2 border-dashed border-primary/40 p-8 hover:border-primary transition-all hover-lift bg-card">
             <div className="absolute -top-4 -left-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-lg">
               <Gamepad2 className="w-6 h-6 text-primary-foreground" />
             </div>
@@ -114,7 +121,7 @@ const EnrolledAgent = () => {
           </Card>
 
           {/* Section 2: Study Soundtracks */}
-          <Card className="relative border-2 border-dashed border-accent/40 p-8 hover:border-accent transition-all hover-lift bg-card">
+          <Card id="study-soundtracks" className="relative border-2 border-dashed border-accent/40 p-8 hover:border-accent transition-all hover-lift bg-card">
             <div className="absolute -top-4 -left-4 w-12 h-12 bg-accent rounded-full flex items-center justify-center shadow-lg">
               <Music className="w-6 h-6 text-accent-foreground" />
             </div>
@@ -163,7 +170,7 @@ const EnrolledAgent = () => {
           </Card>
 
           {/* Section 3: EA Learning Resources */}
-          <Card className="relative border-2 border-dashed border-secondary/40 p-8 hover:border-secondary transition-all hover-lift bg-card">
+          <Card id="learning-materials" className="relative border-2 border-dashed border-secondary/40 p-8 hover:border-secondary transition-all hover-lift bg-card">
             <div className="absolute -top-4 -left-4 w-12 h-12 bg-secondary rounded-full flex items-center justify-center shadow-lg">
               <BookOpen className="w-6 h-6 text-secondary-foreground" />
             </div>
@@ -207,7 +214,7 @@ const EnrolledAgent = () => {
           </Card>
 
           {/* Section 4: EA Community & Tools */}
-          <Card className="relative border-2 border-dashed border-primary/40 p-8 hover:border-primary transition-all hover-lift bg-card">
+          <Card id="community-tools" className="relative border-2 border-dashed border-primary/40 p-8 hover:border-primary transition-all hover-lift bg-card">
             <div className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-lg">
               <Users className="w-6 h-6 text-primary-foreground" />
             </div>
@@ -250,6 +257,163 @@ const EnrolledAgent = () => {
             </div>
           </Card>
 
+        </div>
+      </section>
+
+      {/* EA Part 1 — Domains Overview Accordion */}
+      <section id="ea-part-1" className="container mx-auto px-4 py-16">
+        <div className="max-w-7xl mx-auto">
+          <Card className="rounded-2xl shadow-lg border-2 border-primary/20 p-8 bg-card ea-domains-accordion">
+            <div className="text-center mb-8">
+              <h2 className="text-4xl font-bold mb-3">
+                🧩 EA Part 1 — <span className="text-primary">Domains Overview</span>
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Skim the fun overview, then dive into the lessons when you're ready.
+              </p>
+            </div>
+
+            <Accordion type="multiple" className="space-y-4">
+              {/* Domain 1: Preliminary Work & Taxpayer Data */}
+              <AccordionItem 
+                id="domain-1-preliminary" 
+                value="domain-1" 
+                className="border-2 border-primary/20 rounded-lg px-6 bg-background/50"
+              >
+                <AccordionTrigger className="text-xl font-semibold hover:no-underline py-4">
+                  Domain 1: Preliminary Work & Taxpayer Data
+                </AccordionTrigger>
+                <AccordionContent className="pt-2 pb-4 space-y-3">
+                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
+                    <li>Understanding filing requirements and taxpayer identification</li>
+                    <li>Determining filing status (Single, MFJ, MFS, HOH, QSS)</li>
+                    <li>Dependency rules and exemptions</li>
+                    <li>Recordkeeping requirements and substantiation</li>
+                    <li>Tax year accounting periods and methods</li>
+                  </ul>
+                  <a 
+                    href="#" 
+                    className="inline-flex items-center gap-2 text-primary hover:underline mt-4 font-medium"
+                  >
+                    <FileText className="w-4 h-4" />
+                    View sample lesson →
+                  </a>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* Domain 2: Income & Assets */}
+              <AccordionItem 
+                id="domain-2-income" 
+                value="domain-2" 
+                className="border-2 border-primary/20 rounded-lg px-6 bg-background/50"
+              >
+                <AccordionTrigger className="text-xl font-semibold hover:no-underline py-4">
+                  Domain 2: Income & Assets
+                </AccordionTrigger>
+                <AccordionContent className="pt-2 pb-4 space-y-3">
+                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
+                    <li>Wages, salaries, tips, and other compensation</li>
+                    <li>Interest and dividend income reporting</li>
+                    <li>Business and self-employment income</li>
+                    <li>Capital gains and losses, basis calculations</li>
+                    <li>Rental real estate, royalties, and passive activities</li>
+                    <li>Retirement income (pensions, IRAs, Social Security)</li>
+                  </ul>
+                  <a 
+                    href="#" 
+                    className="inline-flex items-center gap-2 text-primary hover:underline mt-4 font-medium"
+                  >
+                    <FileText className="w-4 h-4" />
+                    View sample lesson →
+                  </a>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* Domain 3: Deductions & Credits */}
+              <AccordionItem 
+                id="domain-3-deductions" 
+                value="domain-3" 
+                className="border-2 border-primary/20 rounded-lg px-6 bg-background/50"
+              >
+                <AccordionTrigger className="text-xl font-semibold hover:no-underline py-4">
+                  Domain 3: Deductions & Credits
+                </AccordionTrigger>
+                <AccordionContent className="pt-2 pb-4 space-y-3">
+                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
+                    <li>Standard deduction vs. itemized deductions</li>
+                    <li>Medical and dental expenses, state and local taxes</li>
+                    <li>Mortgage interest, charitable contributions</li>
+                    <li>Business expenses and self-employment deductions</li>
+                    <li>Education credits (American Opportunity, Lifetime Learning)</li>
+                    <li>Child Tax Credit, Earned Income Credit, and other credits</li>
+                  </ul>
+                  <a 
+                    href="#" 
+                    className="inline-flex items-center gap-2 text-primary hover:underline mt-4 font-medium"
+                  >
+                    <FileText className="w-4 h-4" />
+                    View sample lesson →
+                  </a>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* Domain 4: Taxation, Payments & Specialty Returns */}
+              <AccordionItem 
+                id="domain-4-taxation" 
+                value="domain-4" 
+                className="border-2 border-primary/20 rounded-lg px-6 bg-background/50"
+              >
+                <AccordionTrigger className="text-xl font-semibold hover:no-underline py-4">
+                  Domain 4: Taxation, Payments & Specialty Returns
+                </AccordionTrigger>
+                <AccordionContent className="pt-2 pb-4 space-y-3">
+                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
+                    <li>Tax calculation and alternative minimum tax (AMT)</li>
+                    <li>Self-employment tax and estimated tax payments</li>
+                    <li>Withholding requirements and penalties</li>
+                    <li>Net Investment Income Tax (NIIT)</li>
+                    <li>Estate and trust income tax basics</li>
+                    <li>Gift tax fundamentals and reporting</li>
+                  </ul>
+                  <a 
+                    href="#" 
+                    className="inline-flex items-center gap-2 text-primary hover:underline mt-4 font-medium"
+                  >
+                    <FileText className="w-4 h-4" />
+                    View sample lesson →
+                  </a>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* Domain 5: Specialized Returns for Business */}
+              <AccordionItem 
+                id="domain-5-specialized" 
+                value="domain-5" 
+                className="border-2 border-primary/20 rounded-lg px-6 bg-background/50"
+              >
+                <AccordionTrigger className="text-xl font-semibold hover:no-underline py-4">
+                  Domain 5: Specialized Returns for Business
+                </AccordionTrigger>
+                <AccordionContent className="pt-2 pb-4 space-y-3">
+                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
+                    <li>Sole proprietorships and Schedule C</li>
+                    <li>Partnerships (Form 1065) and K-1 reporting</li>
+                    <li>S Corporations and pass-through taxation</li>
+                    <li>C Corporations and corporate tax returns</li>
+                    <li>Depreciation, Section 179, and bonus depreciation</li>
+                    <li>Business tax credits and incentives</li>
+                  </ul>
+                  <a 
+                    href="#" 
+                    className="inline-flex items-center gap-2 text-primary hover:underline mt-4 font-medium"
+                  >
+                    <FileText className="w-4 h-4" />
+                    View sample lesson →
+                  </a>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </Card>
         </div>
       </section>
 
