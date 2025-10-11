@@ -1,5 +1,6 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
+import { BackToTop } from "./BackToTop";
 import { ReactNode } from "react";
 
 interface AppLayoutProps {
@@ -23,6 +24,8 @@ export function AppLayout({ children }: AppLayoutProps) {
           </main>
         </div>
       </div>
+      {/* Global Back to Top button */}
+      <BackToTop />
     </SidebarProvider>
   );
 }

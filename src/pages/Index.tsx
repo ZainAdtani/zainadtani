@@ -4,7 +4,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles, Music, BookOpen, ExternalLink, Youtube, Linkedin, Heart, ChevronUp, X } from "lucide-react";
+import { Mail, Users, GraduationCap, Book, Award, ShoppingBag, Sparkles, Music, BookOpen, ExternalLink, Youtube, Linkedin, Heart, X } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useState, useEffect, lazy, Suspense } from "react";
 import React from "react";
@@ -57,7 +57,6 @@ const productCatalog = ALL_PRODUCTS.filter(p => p.id !== 'free-community');
 const Index = () => {
   const [quote, setQuote] = useState("");
   const [activeTab, setActiveTab] = useState<TabKey>(() => getTabFromHash(window.location.hash));
-  const [showBackToTop, setShowBackToTop] = React.useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const location = useLocation();
   
@@ -77,23 +76,6 @@ const Index = () => {
     const randomIndex = Math.floor(Math.random() * QUOTES_AND_NOTES.length);
     const selectedQuote = QUOTES_AND_NOTES[randomIndex];
     setQuote(selectedQuote);
-  };
-
-  // Back to top scroll detection
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 600);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    window.scrollTo({
-      top: 0,
-      behavior: prefersReducedMotion ? 'auto' : 'smooth'
-    });
   };
 
   // Handle hash changes for tab navigation (only scroll if user clicked or hash changed)
@@ -193,11 +175,11 @@ const Index = () => {
 
             {/* Button 2: Books */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <a href="#books" className="block">
+              <Link to="/books" className="block">
                 <Book className="w-12 h-12 text-primary mb-4" />
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Books I've Read</h3>
                 <p className="text-muted-foreground">My Personal Reading List</p>
-              </a>
+              </Link>
             </Card>
 
             {/* Button 3: Digital Products */}
@@ -1245,17 +1227,6 @@ const Index = () => {
           © {new Date().getFullYear()} Zain Education Ventures. All rights reserved.
         </div>
       </footer>
-
-      {/* Back to Top Button */}
-      {showBackToTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-background/80 backdrop-blur-md border border-border shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-center z-50 motion-reduce:transition-none motion-reduce:hover:transform-none"
-          aria-label="Back to top"
-        >
-          <ChevronUp className="w-5 h-5 text-primary" aria-hidden="true" />
-        </button>
-      )}
     </div>;
 };
 export default Index;

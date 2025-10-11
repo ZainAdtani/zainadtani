@@ -1,4 +1,4 @@
-import { Home, GraduationCap, TrendingUp, Wrench, Lock, ShoppingBag, Trophy, HelpCircle, Search, ChevronDown } from "lucide-react";
+import { Home, GraduationCap, TrendingUp, Wrench, Lock, ShoppingBag, Trophy, BookOpen, Music, HelpCircle, Search, ChevronDown } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import {
   Sidebar,
@@ -126,6 +126,15 @@ export function AppSidebar() {
 
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
+                  <NavLink to="/books" className={getNavClass}>
+                    <BookOpen className="h-4 w-4" />
+                    {!isCollapsed && <span>Books</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
                   <NavLink to="/investing" className={getNavClass}>
                     <TrendingUp className="h-4 w-4" />
                     {!isCollapsed && <span>Investing</span>}
@@ -179,6 +188,14 @@ export function AppSidebar() {
                   <NavLink to="/sports" className={getNavClass}>
                     <Trophy className="h-4 w-4" />
                     {!isCollapsed && <span>Sports</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/waez" className={getNavClass}>
+                    <Music className="h-4 w-4" />
+                    {!isCollapsed && <span>Waez</span>}
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
