@@ -3,8 +3,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Search, PlayCircle } from "lucide-react";
+import { ExternalLink, Search, PlayCircle, Home as HomeIcon, ArrowLeft } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
+import abuAliPortrait from "@/assets/abu-ali-portrait.png";
 
 // Front-matter data - easy to edit
 const GOOGLE_DRIVE_URL = "PASTE_MY_GOOGLE_DRIVE_LINK_HERE";
@@ -45,22 +47,63 @@ export default function Waez() {
       item.note.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const today = new Date().toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+
   return (
     <div className="min-h-screen bg-[#fafaf9]">
       <Helmet>
         <title>Waez — Listen on the Go | Zain Adtani</title>
         <meta name="description" content="Selections from community recordings of Rai Dr. Abualy Alibhai Aziz (Abu Ali) — religious talks and lectures." />
+        <meta property="og:title" content="Waez — Listen on the Go | Zain Adtani" />
+        <meta property="og:description" content="Selections from community recordings and notes" />
+        <meta property="og:image" content="/og-waez.png" />
+        <meta property="og:type" content="website" />
       </Helmet>
 
       <div className="max-w-[70ch] mx-auto px-4 py-16 leading-relaxed">
+        {/* Breadcrumb + Back Links */}
+        <nav className="flex items-center gap-4 mb-6 text-sm text-muted-foreground">
+          <Link to="/" className="flex items-center gap-1 hover:text-primary transition-colors">
+            <HomeIcon className="w-4 h-4" />
+            Home
+          </Link>
+          <span>▸</span>
+          <Link to="/sports" className="hover:text-primary transition-colors">
+            Articles
+          </Link>
+          <span>▸</span>
+          <span className="text-foreground font-medium">Waez</span>
+        </nav>
+
+        <div className="flex gap-3 mb-8">
+          <Button variant="ghost" size="sm" asChild>
+            <Link to="/" className="flex items-center gap-1">
+              <ArrowLeft className="w-4 h-4" />
+              Back to Home
+            </Link>
+          </Button>
+          <Button variant="ghost" size="sm" asChild>
+            <Link to="/sports" className="flex items-center gap-1">
+              <ArrowLeft className="w-4 h-4" />
+              Back to Articles
+            </Link>
+          </Button>
+        </div>
         {/* Hero */}
         <header className="text-center mb-16 border-b border-dotted border-muted-foreground/30 pb-8">
           <h1 className="font-serif text-5xl md:text-6xl font-bold text-foreground mb-3">
             Waez — Listen on the Go
           </h1>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-lg mb-3">
             Selections from community recordings and notes
           </p>
+          <Badge variant="secondary" className="text-xs">
+            Updated: {today}
+          </Badge>
         </header>
 
         {/* Section 1 — About Abu Ali */}
@@ -69,11 +112,11 @@ export default function Waez() {
             About Rai Dr. Abualy Alibhai Aziz (1919–2008)
           </h2>
 
-          <div className="md:grid md:grid-cols-[1fr_140px] md:gap-8">
+          <div className="md:grid md:grid-cols-[1fr_180px] md:gap-8">
             {/* Bio text */}
             <div className="prose prose-slate max-w-none">
               <p className="first-letter:text-5xl first-letter:font-serif first-letter:font-bold first-letter:mr-1 first-letter:float-left first-letter:leading-none mb-4">
-                Rai Dr. Abualy Alibhai Aziz—affectionately known as <strong>Abu Ali</strong>—was a renowned Ismaili missionary and scholar whose work spanned eight decades. He delivered <strong>10,000+ lectures worldwide</strong>, with thousands recorded on tape after the 1950s, leaving a living archive of waez and guidance for generations.{" "}
+                Rai Dr. Abualy Alibhai Aziz—affectionately known as <strong>Abu Ali</strong>—was a renowned Ismaili missionary and scholar whose work spanned eight decades. He delivered <strong>10,000+ lectures worldwide</strong>, with thousands recorded after the 1950s, leaving a living archive of waez and guidance for generations.{" "}
                 <a 
                   href="https://khojawiki.org" 
                   target="_blank" 
@@ -86,7 +129,7 @@ export default function Waez() {
               </p>
 
               <p className="mb-4">
-                Born in Amritsar, India (Aug 21, 1919), he began religious service early and became one of the most travelled and recognized missionaries of the 20th century, known for clarity, discipline, and devotion.{" "}
+                Born in Amritsar, India (Aug 21, 1919), he began religious service early and became one of the most travelled and recognized missionaries of the 20th century, known for his clarity, discipline, and devotion.{" "}
                 <a 
                   href="https://ismailiheritage.org" 
                   target="_blank" 
@@ -99,7 +142,7 @@ export default function Waez() {
               </p>
 
               <p className="mb-4">
-                His preserved works and papers today include a curated collection of <strong>12,000+ items</strong>—audio, manuscripts, periodicals, and more—held at the University of Toronto Mississauga.{" "}
+                His preserved works and papers today number <strong>12,000+ items</strong> in a curated collection at the University of Toronto Mississauga.{" "}
                 <a 
                   href="https://utm.utoronto.ca" 
                   target="_blank" 
@@ -114,8 +157,25 @@ export default function Waez() {
               <div className="border-l-4 border-primary pl-4 my-6 bg-muted/30 py-3 rounded-r">
                 <p className="text-sm font-medium italic mb-1">Why this page</p>
                 <p className="text-sm text-muted-foreground">
-                  To make a small, respectful doorway into that legacy: short summaries, quick listening access, and links to deeper archives.
+                  A small, respectful doorway into that legacy—short summaries, quick listening access, and links to deeper archives.
                 </p>
+              </div>
+
+              <div className="border-l-4 border-blue-500 pl-4 my-6 bg-blue-50 dark:bg-blue-950/20 py-3 rounded-r">
+                <p className="text-sm font-medium mb-2">What is Bait-ul-Khayal?</p>
+                <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
+                  <li>A practice of contemplative reflection and mindfulness in the Ismaili tradition</li>
+                  <li>Focuses on cultivating inner awareness, gratitude, and spiritual discipline</li>
+                  <li>Involves structured thought exercises to connect with higher purpose and meaning</li>
+                </ul>
+                <a 
+                  href="https://www.youtube.com/results?search_query=bait+ul+khayal+ismaili"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-primary hover:underline mt-2 inline-block"
+                >
+                  Learn more →
+                </a>
               </div>
 
               {/* Sources footnote */}
@@ -157,13 +217,13 @@ export default function Waez() {
               </div>
             </div>
 
-            {/* Decorative monogram placeholder (optional) */}
+            {/* Portrait */}
             <div className="hidden md:flex items-start justify-center mt-2">
-              <div className="w-32 h-32 rounded-full bg-muted/50 border-2 border-muted-foreground/20 flex items-center justify-center">
-                <span className="font-serif text-4xl font-bold text-muted-foreground/50">
-                  AA
-                </span>
-              </div>
+              <img
+                src={abuAliPortrait}
+                alt="Rai Dr. Abualy Alibhai Aziz portrait"
+                className="w-40 h-40 object-cover rounded-lg shadow-lg border-2 border-muted"
+              />
             </div>
           </div>
         </section>
