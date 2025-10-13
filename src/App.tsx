@@ -13,6 +13,7 @@ import VaultSubscriptions from "./pages/VaultSubscriptions";
 import Tools from "./pages/Tools";
 import EnrolledAgent from "./pages/EnrolledAgent";
 import Sports from "./pages/Sports";
+import NBA from "./pages/NBA";
 import Waez from "./pages/Waez";
 import BooksHQ from "./pages/BooksHQ";
 import NotFound from "./pages/NotFound";
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="/tools" element={<Tools />} />
             <Route path="/enrolled-agent" element={<EnrolledAgent />} />
             <Route path="/sports" element={<Sports />} />
+            <Route path="/nba" element={<NBA />} />
             <Route path="/waez" element={<Waez />} />
             <Route path="/books" element={<BooksHQ />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -193,6 +193,14 @@ export function AppSidebar() {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
+                  <NavLink to="/nba" className={getNavClass}>
+                    <Trophy className="h-4 w-4" />
+                    {!isCollapsed && <span>NBA</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
                   <NavLink to="/waez" className={getNavClass}>
                     <Music className="h-4 w-4" />
                     {!isCollapsed && <span>Waez</span>}

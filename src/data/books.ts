@@ -9,6 +9,8 @@ export type Book = {
   tags?: string[];
   link?: string;
   cover?: string;
+  rating?: number; // 1-5
+  notes?: string;
 };
 
 export const BOOKS: Book[] = [
@@ -17,21 +19,23 @@ export const BOOKS: Book[] = [
     id: 'the-4-hour-workweek',
     title: 'The 4-Hour Workweek',
     author: 'Timothy Ferriss',
-    status: 'IN_PROGRESS',
-    progress: 16,
+    status: 'TBR',
     tags: ['Productivity', 'Lifestyle'],
     link: 'https://amzn.to/4aOEjeS',
-    cover: 'https://m.media-amazon.com/images/I/51K8cn98S1L._SY445_SX342_.jpg'
+    cover: 'https://m.media-amazon.com/images/I/51K8cn98S1L._SY445_SX342_.jpg',
+    rating: 5,
+    notes: 'Systems > grind'
   },
   {
     id: 'feel-good-productivity',
     title: 'Feel-Good Productivity: How to Do More of What Matters to You',
     author: 'Ali Abdaal',
-    status: 'IN_PROGRESS',
-    progress: 29,
+    status: 'READ',
     tags: ['Productivity'],
     link: 'https://amzn.to/48D3glL',
-    cover: 'https://m.media-amazon.com/images/I/71VnV1r+jAL._SY466_.jpg'
+    cover: 'https://m.media-amazon.com/images/I/71VnV1r+jAL._SY466_.jpg',
+    rating: 4,
+    notes: 'Energy beats force'
   },
   {
     id: 'make-time',
@@ -87,10 +91,12 @@ export const BOOKS: Book[] = [
     id: 'atomic-habits',
     title: 'Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones',
     author: 'James Clear',
-    status: 'TBR',
+    status: 'READ',
     tags: ['Productivity', 'Self-Improvement'],
     link: 'https://amzn.to/48y4R3e',
-    cover: 'https://m.media-amazon.com/images/I/81YkqyaFVEL._SY466_.jpg'
+    cover: 'https://m.media-amazon.com/images/I/81YkqyaFVEL._SY466_.jpg',
+    rating: 5,
+    notes: 'Tiny changes compound'
   },
   {
     id: 'work-the-system',

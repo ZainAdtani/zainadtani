@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ExternalLink, Search } from "lucide-react";
+import { ExternalLink, Search, Star } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { BOOKS, type BookStatus } from "@/data/books";
 
@@ -21,7 +21,7 @@ const STATUS_LABELS: Record<BookStatus, string> = {
   TBR: "Want To Read"
 };
 
-type SortOption = 'title-asc' | 'author-asc' | 'progress-desc';
+type SortOption = 'title-asc' | 'author-asc' | 'progress-desc' | 'rating-desc';
 
 export default function BooksHQ() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -55,6 +55,8 @@ export default function BooksHQ() {
           return a.author.localeCompare(b.author);
         case 'progress-desc':
           return (b.progress || 0) - (a.progress || 0);
+        case 'rating-desc':
+          return (b.rating || 0) - (a.rating || 0);
         default:
           return 0;
       }
@@ -135,6 +137,7 @@ export default function BooksHQ() {
             <SelectContent>
               <SelectItem value="title-asc">Title A-Z</SelectItem>
               <SelectItem value="author-asc">Author A-Z</SelectItem>
+              <SelectItem value="rating-desc">Rating (High-Low)</SelectItem>
               <SelectItem value="progress-desc">Progress</SelectItem>
             </SelectContent>
           </Select>
@@ -188,6 +191,27 @@ export default function BooksHQ() {
                     </div>
                     <Progress value={book.progress} className="h-2" />
                   </div>
+                )}
+
+                {/* Rating */}
+                {book.rating && (
+                  <div className="flex items-center gap-1 mb-2">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-3.5 h-3.5 ${
+                          i < book.rating! ? 'fill-yellow-500 text-yellow-500' : 'text-muted'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                )}
+
+                {/* Notes */}
+                {book.notes && (
+                  <p className="text-sm text-muted-foreground italic mb-3">
+                    "{book.notes}"
+                  </p>
                 )}
 
                 {/* Tags */}
