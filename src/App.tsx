@@ -17,6 +17,8 @@ import Waez from "./pages/Waez";
 import { Navigate } from "react-router-dom";
 import BooksHQ from "./pages/BooksHQ";
 import NotFound from "./pages/NotFound";
+import Projects from "./pages/Projects";
+import ProjectPokedex from "./pages/ProjectPokedex";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +42,8 @@ const App = () => (
             <Route path="/nba" element={<Navigate to="/sports#nba" replace />} />
             <Route path="/waez" element={<Waez />} />
             <Route path="/books" element={<BooksHQ />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/pokedex" element={<ProjectPokedex />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

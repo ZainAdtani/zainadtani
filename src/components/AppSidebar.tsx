@@ -1,4 +1,4 @@
-import { Home, GraduationCap, TrendingUp, Wrench, Lock, ShoppingBag, Trophy, BookOpen, Music, HelpCircle, Search, ChevronDown } from "lucide-react";
+import { Home, GraduationCap, TrendingUp, Wrench, Lock, ShoppingBag, Trophy, BookOpen, Music, HelpCircle, Search, ChevronDown, FolderKanban } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
   Sidebar,
@@ -47,6 +47,8 @@ const searchIndex: SearchableItem[] = [
   { title: "Marketplaces", route: "/digital-products", section: "Articles", tags: ["ebay", "products"] },
   { title: "Sports", route: "/sports", section: "Articles", tags: ["NBA", "scores"] },
   { title: "Waez", route: "/waez", section: "Articles", tags: ["religious", "lectures", "Abu Ali"] },
+  { title: "Projects", route: "/projects", section: "Explore", tags: ["pokedex", "builds"] },
+  { title: "Pokédex", route: "/projects/pokedex", section: "Explore", tags: ["pokemon", "notion"] },
   { title: "Help / Contact", route: "/about", section: "Support" },
 ];
 
@@ -77,6 +79,10 @@ export function AppSidebar() {
     const saved = localStorage.getItem("sidebar-ea-open");
     return saved !== null ? JSON.parse(saved) : false;
   });
+  const [exploreOpen, setExploreOpen] = useState(() => {
+    const saved = localStorage.getItem("sidebar-explore-open");
+    return saved !== null ? JSON.parse(saved) : true;
+  });
 
   // Search state
   const [searchQuery, setSearchQuery] = useState("");
@@ -99,6 +105,9 @@ export function AppSidebar() {
   useEffect(() => {
     localStorage.setItem("sidebar-ea-open", JSON.stringify(eaOpen));
   }, [eaOpen]);
+  useEffect(() => {
+    localStorage.setItem("sidebar-explore-open", JSON.stringify(exploreOpen));
+  }, [exploreOpen]);
 
   // Fuse.js search
   const fuse = useMemo(
@@ -366,6 +375,34 @@ export function AppSidebar() {
                   <NavLink to="/waez" className={getNavClass}>
                     <Music className="h-4 w-4" />
                     {!isCollapsed && <span>Waez</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+              </SidebarGroupContent>
+            </CollapsibleContent>
+          </SidebarGroup>
+        </Collapsible>
+
+        {/* Explore Section */}
+        <Collapsible open={exploreOpen} onOpenChange={setExploreOpen}>
+          <SidebarGroup>
+            <CollapsibleTrigger asChild>
+              <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
+                Explore
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${exploreOpen ? "rotate-180" : ""}`}
+                />
+              </SidebarGroupLabel>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/projects" className={getNavClass}>
+                    <FolderKanban className="h-4 w-4" />
+                    {!isCollapsed && <span>Projects</span>}
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
