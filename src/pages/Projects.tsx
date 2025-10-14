@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
 import { projects } from "@/data/projects";
+import pokeballBg from "@/assets/pokeball-background.png";
+import pikachu from "@/assets/pikachu.png";
 
 export default function Projects() {
   const notionPokedexUrl = import.meta.env.VITE_NOTION_POKEDEX_URL;
@@ -31,11 +33,26 @@ export default function Projects() {
           </p>
         </div>
 
+        {/* Floating Pikachu */}
+        <img 
+          src={pikachu} 
+          alt="Pikachu" 
+          className="fixed bottom-8 right-8 w-20 h-20 animate-bounce z-10 pointer-events-none opacity-90"
+        />
+
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
             <Card key={project.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-              {project.thumbnail && (
+              {project.id === 'pokedex' ? (
+                <div className="aspect-video w-full overflow-hidden bg-muted relative">
+                  <img 
+                    src={pokeballBg} 
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ) : project.thumbnail ? (
                 <div className="aspect-video w-full overflow-hidden bg-muted">
                   <img 
                     src={project.thumbnail} 
@@ -46,7 +63,7 @@ export default function Projects() {
                     }}
                   />
                 </div>
-              )}
+              ) : null}
               <CardHeader>
                 <CardTitle>{project.title}</CardTitle>
                 <CardDescription>{project.description}</CardDescription>

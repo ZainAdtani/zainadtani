@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import pikachu from "@/assets/pikachu.png";
 
 export default function ProjectPokedex() {
   const notionPokedexUrl = import.meta.env.VITE_NOTION_POKEDEX_URL;
@@ -21,6 +22,13 @@ export default function ProjectPokedex() {
           <span className="mx-2">/</span>
           <span className="text-foreground">My Pokémon Pokédex</span>
         </nav>
+
+        {/* Floating Pikachu */}
+        <img 
+          src={pikachu} 
+          alt="Pikachu mascot" 
+          className="fixed top-20 right-8 w-16 h-16 md:w-20 md:h-20 animate-bounce z-10 pointer-events-none opacity-90"
+        />
 
         {/* Header */}
         <h1 className="text-3xl md:text-4xl font-bold mb-6">My Pokémon Pokédex</h1>
