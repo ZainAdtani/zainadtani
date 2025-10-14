@@ -11,7 +11,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 'pokedex',
-    title: 'Pokédex',
+    title: 'My Pokémon Pokédex',
     description: 'A Notion-powered Pokédex with sprites, stats, and filters.',
     thumbnail: '/pokedex-cover.jpg',
     route: '/projects/pokedex',
