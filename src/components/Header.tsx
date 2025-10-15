@@ -101,9 +101,13 @@ export const Header = () => {
             <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
           </Link>
           
-          <a 
-            href="/#books" 
-            className="px-3 py-1.5 rounded-full font-semibold text-sm transition-all duration-300 relative overflow-hidden group hover:shadow-lg hover:-translate-y-0.5"
+          <Link 
+            to="/books" 
+            className={`px-3 py-1.5 rounded-full font-semibold text-sm transition-all duration-300 relative overflow-hidden group ${
+              isActive('/books') 
+                ? 'bg-primary/10 shadow-md' 
+                : 'hover:shadow-lg hover:-translate-y-0.5'
+            }`}
             style={{
               border: '1px solid transparent',
               backgroundImage: 'linear-gradient(var(--background), var(--background)), linear-gradient(30deg, hsl(var(--primary)), hsl(var(--accent)))',
@@ -113,7 +117,7 @@ export const Header = () => {
           >
             <span className="relative z-10">Books</span>
             <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          </a>
+          </Link>
 
           {/* Hamburger Menu */}
           <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>

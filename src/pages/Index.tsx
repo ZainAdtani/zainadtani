@@ -366,6 +366,11 @@ const Index = () => {
                 <p className="text-lg text-muted-foreground">
                   Short, practical takeaways. Add 1 that changes your week.
                 </p>
+                <div className="mt-4">
+                  <Button asChild variant="outline">
+                    <Link to="/books">Browse all books →</Link>
+                  </Button>
+                </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

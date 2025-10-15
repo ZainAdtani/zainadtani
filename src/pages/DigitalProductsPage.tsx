@@ -20,11 +20,16 @@ export default function DigitalProductsPage() {
 
   const filtered = useMemo(() => {
     const query = q.trim().toLowerCase();
+    const priority = (p: typeof catalog[number]) =>
+      p.id === "daily-ledger-mastery" ? 0 :
+      p.id === "joint-family-boundaries" ? 99 : 1;
+    
     return catalog
       .filter(p => 
         (cat === "All" || p.category === cat) &&
         (!query || p.title.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query))
       )
+      .sort((a, b) => priority(a) - priority(b))
       .map((p, idx) => ({ ...p, catalogIndex: idx + 1 }));
   }, [catalog, q, cat]);
 
