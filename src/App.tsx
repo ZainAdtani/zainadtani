@@ -19,6 +19,7 @@ import BooksHQ from "./pages/BooksHQ";
 import NotFound from "./pages/NotFound";
 import Projects from "./pages/Projects";
 import ProjectPokedex from "./pages/ProjectPokedex";
+import Countdown from "./pages/Countdown";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const App = () => (
             <Route path="/books" element={<BooksHQ />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/pokedex" element={<ProjectPokedex />} />
+            <Route path="/countdown" element={<Countdown />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

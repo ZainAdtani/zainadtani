@@ -41,25 +41,24 @@ export default function ProjectPokedex() {
             </p>
             <div className="flex gap-2">
               <Button asChild variant="outline" size="sm">
-                <a href="/projects/pokedex/index.html" target="_blank" rel="noreferrer">Full Screen</a>
+                <a href="https://zainadtani.notion.site/Zain-s-Notion-Pok-dex-3d1da8f06b194c24a7aeb9f54aa43294" target="_blank" rel="noreferrer">Full Screen</a>
               </Button>
-              {notionPokedexUrl && (
-                <Button asChild size="sm">
-                  <a href={notionPokedexUrl} target="_blank" rel="noreferrer">Open on Notion</a>
-                </Button>
-              )}
+              <Button asChild size="sm">
+                <a href="https://zainadtani.notion.site/Zain-s-Notion-Pok-dex-3d1da8f06b194c24a7aeb9f54aa43294" target="_blank" rel="noreferrer">Open on Notion</a>
+              </Button>
             </div>
           </div>
           <div className="rounded-xl overflow-hidden border">
             <iframe
-              src="/projects/pokedex/index.html"
+              src="https://zainadtani.notion.site/ebd/3d1da8f06b194c24a7aeb9f54aa43294"
               title="My Pokémon Pokédex"
               style={{ width: "100%", height: "88vh", border: "0" }}
               loading="lazy"
+              allowFullScreen
             />
           </div>
           <p className="text-xs text-muted-foreground">
-            🧩 This page is embedded from a local export for speed and reliability.
+            🧩 This page is embedded from Notion for live updates and filtering.
           </p>
         </div>
       </div>
