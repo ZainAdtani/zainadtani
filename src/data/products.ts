@@ -18,6 +18,7 @@ export type Product = {
   tags?: string[];
   badge?: string;
   featured?: boolean;
+  order?: number; // Explicit display order
 };
 
 export const ALL_PRODUCTS: Product[] = [
@@ -31,16 +32,7 @@ export const ALL_PRODUCTS: Product[] = [
     tags: ["Course", "EA", "Beginner"],
     badge: "Popular",
     featured: true,
-  },
-  {
-    id: "free-community",
-    title: "Engineer → Enrolled Agent (Free Community)",
-    category: "Communities",
-    desc: "Join fellow EA students, get study tips, and access free resources. No fluff, just actionable advice.",
-    cta: { label: "Join Free →", href: "https://www.skool.com/eng2ea/about" },
-    tags: ["Free", "Community"],
-    badge: "#1 Starter",
-    featured: true,
+    order: 1,
   },
   {
     id: "author-guide",
@@ -52,6 +44,7 @@ export const ALL_PRODUCTS: Product[] = [
     tags: ["Free", "PDF"],
     badge: "Preview",
     featured: true,
+    order: 2,
   },
   {
     id: "walking-workday",
@@ -62,6 +55,7 @@ export const ALL_PRODUCTS: Product[] = [
     cta: { label: "Get It Now →", href: "https://whop.com/the-walking-workday/the-walking-workday-bb/" },
     tags: ["Wellness", "eBook"],
     featured: true,
+    order: 3,
   },
   {
     id: "quiet-your-gut",
@@ -73,6 +67,7 @@ export const ALL_PRODUCTS: Product[] = [
     tags: ["Wellness", "Guide"],
     badge: "New",
     featured: true,
+    order: 4,
   },
   {
     id: "newlyweds-moveout",
@@ -84,6 +79,22 @@ export const ALL_PRODUCTS: Product[] = [
     tags: ["eBook", "Guide"],
     badge: "New",
     featured: true,
+    order: 5,
+  },
+  {
+    id: "daily-ledger-mastery",
+    title: "Daily Ledger Mastery for Shop-Helping Teens in Hindi",
+    category: "Guides",
+    desc: "18,000 शब्दों की व्यावहारिक ईबुक + टेम्पलेट्स। दुकान में मदद करने वाले टीनएजर्स के लिए रोज़ाना बही-खाता सिस्टम। 7 दिनों में आत्मविश्वास के साथ कैशबुक, बिक्री, उधारी, स्टॉक रजिस्टर सीखें।",
+    media: dailyLedgerMastery,
+    cta: { 
+      label: "Get It Now →", 
+      href: "https://whop.com/qbo-hindi/quickbooks-for-teens-in-hindi/"
+    },
+    tags: ["eBook", "Hindi"],
+    badge: "New",
+    featured: true,
+    order: 6,
   },
   {
     id: "joint-family-boundaries",
@@ -99,20 +110,18 @@ export const ALL_PRODUCTS: Product[] = [
     tags: ["Course", "Coming Soon"],
     badge: "Soon",
     featured: true,
+    order: 7,
   },
   {
-    id: "daily-ledger-mastery",
-    title: "Daily Ledger Mastery for Shop-Helping Teens in Hindi",
-    category: "Guides",
-    desc: "18,000 शब्दों की व्यावहारिक ईबुक + टेम्पलेट्स। दुकान में मदद करने वाले टीनएजर्स के लिए रोज़ाना बही-खाता सिस्टम। 7 दिनों में आत्मविश्वास के साथ कैशबुक, बिक्री, उधारी, स्टॉक रजिस्टर सीखें।",
-    media: dailyLedgerMastery,
-    cta: { 
-      label: "Get It Now →", 
-      href: "https://whop.com/qbo-hindi/quickbooks-for-teens-in-hindi/"
-    },
-    tags: ["eBook", "Hindi"],
-    badge: "New",
+    id: "free-community",
+    title: "Engineer → Enrolled Agent (Free Community)",
+    category: "Communities",
+    desc: "Join fellow EA students, get study tips, and access free resources. No fluff, just actionable advice.",
+    cta: { label: "Join Free →", href: "https://www.skool.com/eng2ea/about" },
+    tags: ["Free", "Community"],
+    badge: "#1 Starter",
     featured: true,
+    order: 8,
   },
 ];
 

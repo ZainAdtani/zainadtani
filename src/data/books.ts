@@ -14,17 +14,17 @@ export type Book = {
 };
 
 export const BOOKS: Book[] = [
-  // In Progress Books
+  // Read Books
   {
-    id: 'the-4-hour-workweek',
-    title: 'The 4-Hour Workweek',
-    author: 'Timothy Ferriss',
-    status: 'TBR',
-    tags: ['Productivity', 'Lifestyle'],
-    link: 'https://amzn.to/4aOEjeS',
-    cover: 'https://m.media-amazon.com/images/I/51K8cn98S1L._SY445_SX342_.jpg',
+    id: 'atomic-habits',
+    title: 'Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones',
+    author: 'James Clear',
+    status: 'READ',
+    tags: ['Productivity', 'Self-Improvement'],
+    link: 'https://amzn.to/48y4R3e',
+    cover: 'https://m.media-amazon.com/images/I/81YkqyaFVEL._SY466_.jpg',
     rating: 5,
-    notes: 'Systems > grind'
+    notes: 'Tiny changes compound'
   },
   {
     id: 'feel-good-productivity',
@@ -37,6 +37,28 @@ export const BOOKS: Book[] = [
     rating: 4,
     notes: 'Energy beats force'
   },
+  {
+    id: 'harry-potter-sorcerers-stone',
+    title: "Harry Potter and the Sorcerer's Stone",
+    author: 'J.K. Rowling',
+    status: 'READ',
+    tags: ['Fiction', 'Fantasy'],
+    link: 'https://amzn.to/3TZwXiQ',
+    cover: 'https://m.media-amazon.com/images/I/81lAPl9Jh9L._SY466_.jpg',
+    rating: 5
+  },
+  {
+    id: 'millionaire-fastlane',
+    title: 'The Millionaire Fastlane: Crack the Code to Wealth and Live Rich for a Lifetime',
+    author: 'MJ DeMarco',
+    status: 'READ',
+    tags: ['Business', 'Wealth', 'Entrepreneurship'],
+    link: 'https://amzn.to/48O4ccW',
+    cover: 'https://m.media-amazon.com/images/I/71B7OTV7AFL._SY466_.jpg',
+    rating: 5
+  },
+  
+  // In Progress Books
   {
     id: 'make-time',
     title: 'Make Time: How to Focus on What Matters Every Day',
@@ -68,35 +90,15 @@ export const BOOKS: Book[] = [
     cover: 'https://m.media-amazon.com/images/I/71VEWrJ7gEL._SY466_.jpg'
   },
   
-  // Read Books
+  // To Be Read
   {
-    id: 'harry-potter-sorcerers-stone',
-    title: "Harry Potter and the Sorcerer's Stone, Book 1",
-    author: 'J.K. Rowling',
-    status: 'READ',
-    tags: ['Fiction', 'Fantasy'],
-    link: 'https://amzn.to/3TZwXiQ',
-    cover: 'https://m.media-amazon.com/images/I/81lAPl9Jh9L._SY466_.jpg'
-  },
-  {
-    id: 'millionaire-fastlane',
-    title: 'The Millionaire Fastlane: Crack the Code to Wealth and Live Rich for a Lifetime',
-    author: 'MJ DeMarco',
-    status: 'READ',
-    tags: ['Business', 'Wealth', 'Entrepreneurship'],
-    link: 'https://amzn.to/48O4ccW',
-    cover: 'https://m.media-amazon.com/images/I/71B7OTV7AFL._SY466_.jpg'
-  },
-  {
-    id: 'atomic-habits',
-    title: 'Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones',
-    author: 'James Clear',
-    status: 'READ',
-    tags: ['Productivity', 'Self-Improvement'],
-    link: 'https://amzn.to/48y4R3e',
-    cover: 'https://m.media-amazon.com/images/I/81YkqyaFVEL._SY466_.jpg',
-    rating: 5,
-    notes: 'Tiny changes compound'
+    id: 'the-4-hour-workweek',
+    title: 'The 4-Hour Workweek',
+    author: 'Timothy Ferriss',
+    status: 'TBR',
+    tags: ['Productivity', 'Lifestyle'],
+    link: 'https://amzn.to/4aOEjeS',
+    cover: 'https://m.media-amazon.com/images/I/51K8cn98S1L._SY445_SX342_.jpg'
   },
   {
     id: 'work-the-system',
@@ -133,5 +135,77 @@ export const BOOKS: Book[] = [
     tags: ['Self-Improvement', 'Leadership'],
     link: 'https://amzn.to/3tS9d5p',
     cover: 'https://m.media-amazon.com/images/I/71U7Lf0TWSL._SY466_.jpg'
+  },
+  {
+    id: 'harry-potter-prisoner-azkaban',
+    title: 'Harry Potter and the Prisoner of Azkaban',
+    author: 'J.K. Rowling',
+    status: 'TBR',
+    tags: ['Fiction', 'Fantasy'],
+    link: 'https://a.co/d/2Xj8KpN',
+    cover: 'https://m.media-amazon.com/images/I/81lAPl9Jh9L._SY466_.jpg'
+  },
+  {
+    id: 'harry-potter-goblet-fire',
+    title: 'Harry Potter and the Goblet of Fire',
+    author: 'J.K. Rowling',
+    status: 'TBR',
+    tags: ['Fiction', 'Fantasy'],
+    link: 'https://a.co/d/8vQ3Yzj',
+    cover: 'https://m.media-amazon.com/images/I/81lAPl9Jh9L._SY466_.jpg'
+  },
+  {
+    id: 'harry-potter-order-phoenix',
+    title: 'Harry Potter and the Order of the Phoenix',
+    author: 'J.K. Rowling',
+    status: 'TBR',
+    tags: ['Fiction', 'Fantasy'],
+    link: 'https://a.co/d/5jtQc9H',
+    cover: 'https://m.media-amazon.com/images/I/81lAPl9Jh9L._SY466_.jpg'
+  },
+  {
+    id: 'harry-potter-half-blood-prince',
+    title: 'Harry Potter and the Half-Blood Prince',
+    author: 'J.K. Rowling',
+    status: 'TBR',
+    tags: ['Fiction', 'Fantasy'],
+    link: 'https://a.co/d/7Yt9Qmn',
+    cover: 'https://m.media-amazon.com/images/I/81lAPl9Jh9L._SY466_.jpg'
+  },
+  {
+    id: 'harry-potter-deathly-hallows',
+    title: 'Harry Potter and the Deathly Hallows',
+    author: 'J.K. Rowling',
+    status: 'TBR',
+    tags: ['Fiction', 'Fantasy'],
+    link: 'https://a.co/d/9Kz3Fqw',
+    cover: 'https://m.media-amazon.com/images/I/81lAPl9Jh9L._SY466_.jpg'
+  },
+  {
+    id: 'tuesdays-with-morrie',
+    title: 'Tuesdays with Morrie',
+    author: 'Mitch Albom',
+    status: 'TBR',
+    tags: ['Memoir', 'Philosophy'],
+    link: 'https://a.co/d/3Bz9Kpw',
+    cover: 'https://m.media-amazon.com/images/I/71+jwNGJDCL._SY466_.jpg'
+  },
+  {
+    id: 'how-to-win-friends',
+    title: 'How to Win Friends & Influence People',
+    author: 'Dale Carnegie',
+    status: 'TBR',
+    tags: ['Self-Improvement', 'Communication'],
+    link: 'https://a.co/d/4Qz8Lpw',
+    cover: 'https://m.media-amazon.com/images/I/71vK0WVQ4rL._SY466_.jpg'
+  },
+  {
+    id: 'the-alchemist',
+    title: 'The Alchemist',
+    author: 'Paulo Coelho',
+    status: 'TBR',
+    tags: ['Fiction', 'Philosophy'],
+    link: 'https://a.co/d/8Hz7Npq',
+    cover: 'https://m.media-amazon.com/images/I/71aFt4+OTOL._SY466_.jpg'
   }
 ];

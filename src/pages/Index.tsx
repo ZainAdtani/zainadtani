@@ -13,6 +13,7 @@ import { Helmet } from "react-helmet-async";
 import { Header } from "@/components/Header";
 import { TimeBar } from "@/components/TimeBar";
 import { ALL_PRODUCTS } from "@/data/products";
+import { BOOKS } from "@/data/books";
 import headshotImage from "@/assets/zain-headshot.png";
 import qbBadge from "@/assets/quickbooks-level2-badge.png";
 import awsBadge from "@/assets/aws-cloud-practitioner-badge.png";
@@ -62,15 +63,19 @@ const Index = () => {
   
   // Filter products based on search query
   const filteredProducts = React.useMemo(() => {
-    if (!searchQuery.trim()) return productCatalog.filter(p => p.featured).slice(0, 6);
+    const featured = productCatalog.filter(p => p.featured).sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
+    if (!searchQuery.trim()) return featured.slice(0, 7);
     const query = searchQuery.toLowerCase();
-    return productCatalog.filter(p => 
-      p.featured && (
-        p.title.toLowerCase().includes(query) || 
-        p.desc.toLowerCase().includes(query)
-      )
+    return featured.filter(p => 
+      p.title.toLowerCase().includes(query) || 
+      p.desc.toLowerCase().includes(query)
     );
   }, [searchQuery]);
+  
+  // Top books for home page display
+  const topBooks = React.useMemo(() => {
+    return BOOKS.slice(0, 9);
+  }, []);
   
   const generateQuote = () => {
     const randomIndex = Math.floor(Math.random() * QUOTES_AND_NOTES.length);
@@ -336,7 +341,7 @@ const Index = () => {
               <div className="text-center mb-8">
                 <div className="flex items-center justify-center gap-3 mb-3">
                   <h3 className="text-3xl md:text-4xl font-bold text-foreground bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                    Zain's Shelf
+                    My Books Portal
                   </h3>
                   <TooltipProvider>
                     <Tooltip>
@@ -364,7 +369,7 @@ const Index = () => {
                   </TooltipProvider>
                 </div>
                 <p className="text-lg text-muted-foreground">
-                  Short, practical takeaways. Add 1 that changes your week.
+                  Books I've read, I'm reading, and want to read.
                 </p>
                 <div className="mt-4">
                   <Button asChild variant="outline">
@@ -374,140 +379,18 @@ const Index = () => {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {[
-                  {
-                    title: "Atomic Habits",
-                    author: "James Clear",
-                    tag: "Habits",
-                    stars: 5,
-                    hook: "Tiny daily upgrades that compound into surprising results.",
-                    note: "Systems > goals. Start with 2-minute wins.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1655988385i/40121378.jpg",
-                    amazonUrl: "https://www.amazon.com/Atomic-Habits-Proven-Build-Break/dp/0735211299"
-                  },
-                  {
-                    title: "The Millionaire Fastlane",
-                    author: "MJ DeMarco",
-                    tag: "Business",
-                    stars: 5,
-                    hook: "Escape trading time for money; build assets that scale.",
-                    note: "Control, leverage, and process—not paychecks—drive wealth.",
-                    cover: millionaireFastlane,
-                    amazonUrl: "https://www.amazon.com/Millionaire-Fastlane-Crack-Wealth-Lifetime/dp/0984358102"
-                  },
-                  {
-                    title: "Harry Potter and the Sorcerer's Stone",
-                    author: "J.K. Rowling",
-                    tag: "Fiction",
-                    stars: 5,
-                    hook: "A hidden world, a first wand, and friendship that changes fate.",
-                    note: "Start of a classic hero's journey.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474154022i/3.jpg",
-                    amazonUrl: "https://www.amazon.com/Harry-Potter-Sorcerers-Stone-Book/dp/0545582881"
-                  },
-                  {
-                    title: "Harry Potter and the Chamber of Secrets",
-                    author: "J.K. Rowling",
-                    tag: "Fiction",
-                    stars: 5,
-                    hook: "Mystery, memory, and the cost of ignoring warnings.",
-                    note: "Courage grows in year two.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474169725i/15881.jpg",
-                    amazonUrl: "https://www.amazon.com/Harry-Potter-Chamber-Secrets-Book/dp/054558292X"
-                  },
-                  {
-                    title: "Harry Potter and the Prisoner of Azkaban",
-                    author: "J.K. Rowling",
-                    tag: "Fiction",
-                    stars: 5,
-                    hook: "Time twists, truth surfaces, and fear takes a new form.",
-                    note: "Fan-favorite plot turner.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1630547330i/5.jpg",
-                    amazonUrl: "https://www.amazon.com/Harry-Potter-Prisoner-Azkaban-Book/dp/0545582938"
-                  },
-                  {
-                    title: "Harry Potter and the Goblet of Fire",
-                    author: "J.K. Rowling",
-                    tag: "Fiction",
-                    stars: 5,
-                    hook: "A deadly tournament forces choices bigger than glory.",
-                    note: "Darkness rises.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1554006152i/6.jpg",
-                    amazonUrl: "https://www.amazon.com/Harry-Potter-Goblet-Fire-Book/dp/0545582954"
-                  },
-                  {
-                    title: "Harry Potter and the Order of the Phoenix",
-                    author: "J.K. Rowling",
-                    tag: "Fiction",
-                    stars: 5,
-                    hook: "Resistance forms when truth is inconvenient.",
-                    note: "Leadership under pressure.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546910265i/2.jpg",
-                    amazonUrl: "https://www.amazon.com/Harry-Potter-Order-Phoenix-5/dp/0545582970"
-                  },
-                  {
-                    title: "Harry Potter and the Half-Blood Prince",
-                    author: "J.K. Rowling",
-                    tag: "Fiction",
-                    stars: 5,
-                    hook: "Secrets of the past shape tomorrow's war.",
-                    note: "Choices > prophecy.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1587697303i/1.jpg",
-                    amazonUrl: "https://www.amazon.com/Harry-Potter-Half-Blood-Prince-Book/dp/0545582997"
-                  },
-                  {
-                    title: "Harry Potter and the Deathly Hallows",
-                    author: "J.K. Rowling",
-                    tag: "Fiction",
-                    stars: 5,
-                    hook: "Loyalty, loss, and the final stand against fear.",
-                    note: "A closing built on sacrifice.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1663805647i/136251.jpg",
-                    amazonUrl: "https://www.amazon.com/Harry-Potter-Deathly-Hallows-Book/dp/0545583004"
-                  },
-                  {
-                    title: "Tuesdays with Morrie",
-                    author: "Mitch Albom",
-                    tag: "Wisdom",
-                    stars: 5,
-                    hook: "Gentle conversations that re-prioritize what matters.",
-                    note: "Love, purpose, and letting go.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1423763749i/6900.jpg",
-                    amazonUrl: "https://www.amazon.com/Tuesdays-Morrie-Greatest-Lesson-Anniversary/dp/076790592X"
-                  },
-                  {
-                    title: "How to Win Friends & Influence People",
-                    author: "Dale Carnegie",
-                    tag: "People",
-                    stars: 5,
-                    hook: "Make others feel seen, and doors open.",
-                    note: "Timeless human nature playbook.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1442726934i/4865.jpg",
-                    amazonUrl: "https://www.amazon.com/How-Win-Friends-Influence-People/dp/0671027034"
-                  },
-                  {
-                    title: "The Alchemist",
-                    author: "Paulo Coelho",
-                    tag: "Fiction",
-                    stars: 5,
-                    hook: "Chasing your personal legend changes who you become.",
-                    note: "Simple story, durable lesson.",
-                    cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1654371463i/18144590.jpg",
-                    amazonUrl: "https://www.amazon.com/Alchemist-Paulo-Coelho/dp/0061122416"
-                  }
-                ].map((book, index) => (
+                {topBooks.map((book) => (
                   <Card 
-                    key={index} 
+                    key={book.id} 
                     className="group relative overflow-hidden rounded-3xl border-2 bg-background/60 backdrop-blur-md shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
                     style={{
-                      animationDelay: `${index * 100}ms`,
                       transformStyle: "preserve-3d",
                       perspective: "1200px"
                     }}
                   >
-                    {/* Tag Badge */}
+                    {/* Status Badge */}
                     <div className="absolute top-4 right-4 z-10 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm">
-                      {book.tag}
+                      {book.status === 'READ' ? '✓ Read' : book.status === 'IN_PROGRESS' ? 'Reading' : 'To Read'}
                     </div>
 
                     <div className="p-6 flex flex-col h-full">
@@ -515,7 +398,7 @@ const Index = () => {
                       <div className="relative mb-4 rounded-xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-shadow duration-500">
                         <div className="aspect-[2/3] bg-accent/20">
                           <img 
-                            src={book.cover} 
+                            src={book.cover ?? "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'%3E%3Crect fill='%23e5e7eb' width='200' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%239ca3af'%3EBook Cover%3C/text%3E%3C/svg%3E"} 
                             alt={`Book cover: ${book.title} by ${book.author}`}
                             className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                             loading="lazy"
@@ -530,37 +413,34 @@ const Index = () => {
                       <h4 className="font-bold text-xl mb-1 text-foreground line-clamp-2">{book.title}</h4>
                       <p className="text-sm text-muted-foreground mb-3">{book.author}</p>
 
-                      {/* Hook */}
-                      <p className="text-sm text-foreground mb-3 line-clamp-2 italic">{book.hook}</p>
+                      {/* Rating */}
+                      {book.rating && (
+                        <div className="flex items-center gap-1 mb-3">
+                          {[...Array(5)].map((_, i) => (
+                            <span key={i} className={i < book.rating! ? "text-yellow-500" : "text-muted-foreground/30"}>★</span>
+                          ))}
+                        </div>
+                      )}
 
-                      {/* Note */}
-                      <p className="text-xs text-muted-foreground mb-4 flex-grow">{book.note}</p>
+                      {/* Notes */}
+                      {book.notes && (
+                        <p className="text-xs text-muted-foreground mb-4 flex-grow italic">{book.notes}</p>
+                      )}
 
                       {/* CTA Buttons */}
                       <div className="flex gap-2 mt-auto">
-                        <div className="relative flex-1">
+                        {book.link && (
                           <Button 
-                            variant="ghost" 
+                            asChild
+                            variant="outline" 
                             size="sm" 
-                            className="w-full text-xs bg-gradient-to-r from-primary/20 to-accent/20 hover:from-primary/30 hover:to-accent/30 rounded-full font-semibold transition-all duration-300 hover:shadow-lg"
-                            disabled
+                            className="w-full text-xs rounded-full font-semibold transition-all duration-300 hover:shadow-lg"
                           >
-                            Full Report
+                            <a href={book.link} target="_blank" rel="noopener noreferrer" aria-label={`View ${book.title} on Amazon`}>
+                              View on Amazon
+                            </a>
                           </Button>
-                          <span className="absolute -top-2 -right-2 bg-accent text-accent-foreground text-[10px] px-2 py-0.5 rounded-full font-bold shadow-md rotate-12 whitespace-nowrap">
-                            Coming Soon
-                          </span>
-                        </div>
-                        <Button 
-                          asChild 
-                          size="sm" 
-                          className="flex-1 text-xs bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
-                        >
-                          <a href={withAffiliate(book.amazonUrl)} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="w-3 h-3 mr-1" />
-                            Buy
-                          </a>
-                        </Button>
+                        )}
                       </div>
                     </div>
                   </Card>
