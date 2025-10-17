@@ -969,6 +969,24 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Join Free Community */}
+      <section className="py-12 bg-secondary/20" aria-label="Join Free Community">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <Card className="p-8 flex flex-col md:flex-row items-center gap-6 border-2 shadow-lg">
+            <Users className="w-12 h-12 text-primary shrink-0" aria-hidden="true" />
+            <div className="flex-1 text-center md:text-left">
+              <h3 className="text-2xl font-bold">Engineer → Enrolled Agent (Free Community)</h3>
+              <p className="text-muted-foreground">Short lessons. No fluff. Study tips, resources, and support.</p>
+            </div>
+            <Button asChild size="lg" className="shrink-0">
+              <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer">
+                Join Free →
+              </a>
+            </Button>
+          </Card>
+        </div>
+      </section>
+
       {/* Newsletters I Follow Section */}
       <section className="py-16 md:py-24 relative overflow-hidden bg-gradient-to-br from-primary/5 via-accent/10 to-secondary/5">
         {/* Gradient mesh background effect */}
@@ -1231,24 +1249,6 @@ const Index = () => {
             <Button asChild size="lg" className="mx-auto bg-primary hover:bg-primary/90 transition-all duration-300">
               <a href="https://buymeacoffee.com/curiouszen" target="_blank" rel="noopener" aria-label="Buy me a coffee">
                 Buy Me a Coffee ☕
-              </a>
-            </Button>
-          </Card>
-        </div>
-      </section>
-
-      {/* Join Free Community */}
-      <section className="py-12 bg-secondary/20" aria-label="Join Free Community">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <Card className="p-8 flex flex-col md:flex-row items-center gap-6 border-2 shadow-lg">
-            <Users className="w-12 h-12 text-primary shrink-0" aria-hidden="true" />
-            <div className="flex-1 text-center md:text-left">
-              <h3 className="text-2xl font-bold">Engineer → Enrolled Agent (Free Community)</h3>
-              <p className="text-muted-foreground">Short lessons. No fluff. Study tips, resources, and support.</p>
-            </div>
-            <Button asChild size="lg" className="shrink-0">
-              <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer">
-                Join Free →
               </a>
             </Button>
           </Card>
