@@ -79,9 +79,9 @@ export default function BooksHQ() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>My Books Portal | Zain Adtani</title>
+        <title>Book Portal | Zain Adtani</title>
         <meta name="description" content="Books I've read, I'm reading, and want to read." />
-        <meta property="og:title" content="My Books Portal | Zain Adtani" />
+        <meta property="og:title" content="Book Portal | Zain Adtani" />
         <meta property="og:description" content="Books I've read, I'm reading, and want to read." />
       </Helmet>
 
@@ -90,44 +90,33 @@ export default function BooksHQ() {
       <div className="container mx-auto px-4 py-16 max-w-7xl">
         {/* Header with Portal Animation */}
         <div className="text-center mb-8 relative">
-          {/* Animated Portal Background */}
+          {/* Danny Phantom Green Portal Animation */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden" aria-hidden="true">
             <svg 
-              className="w-96 h-96 opacity-10 motion-safe:animate-spin-slow"
-              style={{ animationDuration: '30s' }}
-              viewBox="0 0 400 400"
+              className="w-[220px] h-[220px] opacity-90"
+              viewBox="0 0 200 200"
             >
               <defs>
-                <radialGradient id="portalGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" style={{ stopColor: '#10A37F', stopOpacity: 0.12 }} />
-                  <stop offset="50%" style={{ stopColor: '#00FFA8', stopOpacity: 0.08 }} />
-                  <stop offset="100%" style={{ stopColor: '#0AFF6C', stopOpacity: 0.02 }} />
+                <radialGradient id="portalGlow" cx="50%" cy="50%">
+                  <stop offset="0%" style={{ stopColor: '#00FFA8', stopOpacity: 0.9 }} />
+                  <stop offset="60%" style={{ stopColor: '#10A37F', stopOpacity: 0.25 }} />
+                  <stop offset="100%" style={{ stopColor: '#0AFF6C', stopOpacity: 0 }} />
                 </radialGradient>
+                <filter id="blur">
+                  <feGaussianBlur stdDeviation="3" />
+                </filter>
               </defs>
-              <circle cx="200" cy="200" r="160" fill="none" stroke="url(#portalGlow)" strokeWidth="3" opacity="0.6" />
-              <circle cx="200" cy="200" r="120" fill="none" stroke="url(#portalGlow)" strokeWidth="2" opacity="0.4" />
-              <circle cx="200" cy="200" r="80" fill="none" stroke="url(#portalGlow)" strokeWidth="1" opacity="0.3" />
+              {/* Outer ring */}
+              <circle cx="100" cy="100" r="70" fill="none" stroke="url(#portalGlow)" strokeWidth="8" className="motion-safe:animate-spin-slow" style={{ transformOrigin: '100px 100px', animationDuration: '16s' }} />
+              {/* Inner swirl */}
+              <path d="M100 40 C150 60,150 140,100 160 C50 140,50 60,100 40 Z"
+                    fill="url(#portalGlow)" filter="url(#blur)" className="motion-safe:animate-spin-reverse" style={{ transformOrigin: '100px 100px', animationDuration: '12s' }} />
             </svg>
-            
-            {/* Floating particles */}
-            <div className="absolute inset-0 motion-safe:animate-float" style={{ animationDuration: '20s' }}>
-              {[...Array(6)].map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute w-1 h-1 bg-emerald-400/20 rounded-full"
-                  style={{
-                    left: `${20 + i * 12}%`,
-                    top: `${30 + (i % 3) * 20}%`,
-                    animationDelay: `${i * 0.5}s`
-                  }}
-                />
-              ))}
-            </div>
           </div>
 
           <div className="relative z-10">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-              My Books Portal
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-foreground">
+              Book Portal
             </h1>
             <p className="text-xl text-muted-foreground">
               Books I've read, I'm reading, and want to read

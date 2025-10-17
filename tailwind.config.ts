@@ -98,6 +98,10 @@ export default {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-20px)" },
         },
+        "spin-reverse": {
+          "0%": { transform: "rotate(360deg)" },
+          "100%": { transform: "rotate(0deg)" }
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -105,6 +109,7 @@ export default {
         "fade-in": "fade-in 0.3s ease-out",
         "spin-slow": "spin-slow 30s linear infinite",
         "float": "float 20s ease-in-out infinite",
+        "spin-reverse": "spin-reverse 12s linear infinite",
       },
     },
   },

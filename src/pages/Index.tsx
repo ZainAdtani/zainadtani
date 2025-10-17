@@ -83,6 +83,54 @@ const Index = () => {
     setQuote(selectedQuote);
   };
 
+  // Auto-fetch missing book covers
+  useEffect(() => {
+    const KEY = 'bookCoversV1';
+    const cache = JSON.parse(localStorage.getItem(KEY) || '{}');
+
+    async function findCover({ title, author }: { title: string; author: string }): Promise<string | null> {
+      // Try Open Library by title+author
+      try {
+        const q = new URLSearchParams({ title, author }).toString();
+        const res = await fetch(`https://openlibrary.org/search.json?${q}`);
+        const data = await res.json();
+        const best = data?.docs?.[0];
+        const isbn = best?.isbn?.[0];
+        if (isbn) return `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`;
+        if (best?.cover_i) return `https://covers.openlibrary.org/b/id/${best.cover_i}-L.jpg`;
+      } catch {}
+      // Fallback: Google Books thumbnail
+      try {
+        const q = encodeURIComponent(`${title} ${author}`);
+        const res = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${q}&maxResults=1`);
+        const data = await res.json();
+        const img = data?.items?.[0]?.volumeInfo?.imageLinks?.thumbnail || data?.items?.[0]?.volumeInfo?.imageLinks?.smallThumbnail;
+        if (img) return img.replace(/^http:/, 'https:');
+      } catch {}
+      return null;
+    }
+
+    (async () => {
+      let changed = false;
+      for (const b of BOOKS) {
+        if (!b.cover) {
+          const key = `${b.title}__${b.author}`.toLowerCase();
+          if (cache[key]) {
+            b.cover = cache[key];
+          } else {
+            const url = await findCover({ title: b.title, author: b.author });
+            if (url) {
+              b.cover = url;
+              cache[key] = url;
+              changed = true;
+            }
+          }
+        }
+      }
+      if (changed) localStorage.setItem(KEY, JSON.stringify(cache));
+    })();
+  }, []);
+
   // Handle hash changes for tab navigation (only scroll if user clicked or hash changed)
   useEffect(() => {
     const onHashChange = () => {
@@ -180,11 +228,24 @@ const Index = () => {
 
             {/* Button 2: Books */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <Link to="/books" className="block">
+              <a
+                href="#books"
+                className="block"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveTab('books');
+                  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                  document.getElementById('tabs-section')?.scrollIntoView({
+                    behavior: prefersReduced ? 'auto' : 'smooth',
+                    block: 'start'
+                  });
+                }}
+                aria-label="Jump to Books tab"
+              >
                 <Book className="w-12 h-12 text-primary mb-4" />
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Books I've Read</h3>
                 <p className="text-muted-foreground">My Personal Reading List</p>
-              </Link>
+              </a>
             </Card>
 
             {/* Button 3: Digital Products */}
