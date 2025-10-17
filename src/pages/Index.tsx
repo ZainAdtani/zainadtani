@@ -1237,6 +1237,24 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Join Free Community */}
+      <section className="py-12 bg-secondary/20" aria-label="Join Free Community">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <Card className="p-8 flex flex-col md:flex-row items-center gap-6 border-2 shadow-lg">
+            <Users className="w-12 h-12 text-primary shrink-0" aria-hidden="true" />
+            <div className="flex-1 text-center md:text-left">
+              <h3 className="text-2xl font-bold">Engineer → Enrolled Agent (Free Community)</h3>
+              <p className="text-muted-foreground">Short lessons. No fluff. Study tips, resources, and support.</p>
+            </div>
+            <Button asChild size="lg" className="shrink-0">
+              <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer">
+                Join Free →
+              </a>
+            </Button>
+          </Card>
+        </div>
+      </section>
+
       {/* Newsletter Section */}
       <section id="newsletter" className="py-16 md:py-24 relative overflow-hidden">
         {/* Gradient mesh background */}
@@ -1295,25 +1313,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {/* Join Free Community */}
-      <section className="py-12 bg-secondary/20" aria-label="Join Free Community">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <Card className="p-8 flex flex-col md:flex-row items-center gap-6 border-2 shadow-lg">
-            <Users className="w-12 h-12 text-primary shrink-0" aria-hidden="true" />
-            <div className="flex-1 text-center md:text-left">
-              <h3 className="text-2xl font-bold">Engineer → Enrolled Agent (Free Community)</h3>
-              <p className="text-muted-foreground">Short lessons. No fluff. Study tips, resources, and support.</p>
-            </div>
-            <Button asChild size="lg" className="shrink-0">
-              <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer">
-                Join Free →
-              </a>
-            </Button>
-          </Card>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="bg-background border-t border-border py-8">
         <div className="container mx-auto px-4 max-w-6xl text-center text-sm text-muted-foreground">
