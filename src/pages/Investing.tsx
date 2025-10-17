@@ -7,14 +7,12 @@ const Investing = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-primary/5 via-background to-accent/5">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Investing
-            </h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">Investing</h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Building wealth through smart investment strategies and financial education
             </p>
@@ -32,36 +30,39 @@ const Investing = () => {
               </h2>
               <div className="space-y-4 text-lg text-muted-foreground">
                 <p>
-                  Investing isn't just about making money—it's about building financial freedom and creating opportunities for yourself and those you care about.
+                  Investing isn't just about making money—it's about building financial freedom and creating
+                  opportunities for yourself and those you care about.
                 </p>
                 <p>
-                  I believe in a balanced approach that combines long-term wealth building with calculated risks, always focusing on continuous learning and adaptation.
+                  I believe in a balanced approach that combines long-term wealth building with calculated risks, always
+                  focusing on continuous learning and adaptation.
                 </p>
                 <p>
-                  Whether it's stocks, real estate, or building businesses, the key is understanding the fundamentals and staying disciplined.
+                  Whether it's stocks, real estate, or building businesses, the key is understanding the fundamentals
+                  and staying disciplined.
                 </p>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-2 gap-6">
               <Card className="p-6 text-center hover-lift transition-all duration-300">
                 <TrendingUp className="w-12 h-12 text-primary mx-auto mb-4" />
                 <h3 className="font-bold text-2xl mb-2">Long-Term</h3>
                 <p className="text-muted-foreground">Focus on sustainable growth</p>
               </Card>
-              
+
               <Card className="p-6 text-center hover-lift transition-all duration-300">
                 <Target className="w-12 h-12 text-accent mx-auto mb-4" />
                 <h3 className="font-bold text-2xl mb-2">Strategic</h3>
                 <p className="text-muted-foreground">Data-driven decisions</p>
               </Card>
-              
+
               <Card className="p-6 text-center hover-lift transition-all duration-300">
                 <PiggyBank className="w-12 h-12 text-primary mx-auto mb-4" />
                 <h3 className="font-bold text-2xl mb-2">Diversified</h3>
                 <p className="text-muted-foreground">Spread risk wisely</p>
               </Card>
-              
+
               <Card className="p-6 text-center hover-lift transition-all duration-300">
                 <BookOpen className="w-12 h-12 text-accent mx-auto mb-4" />
                 <h3 className="font-bold text-2xl mb-2">Educated</h3>
@@ -78,29 +79,32 @@ const Investing = () => {
           <h2 className="text-4xl font-bold text-center mb-12">
             Where I <span className="text-primary">Invest</span>
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="p-8 hover-lift transition-all duration-300 border-2">
               <DollarSign className="w-12 h-12 text-primary mb-4" />
               <h3 className="text-2xl font-bold mb-4">Stock Market</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Index funds, dividend stocks, and growth opportunities. Building a diversified portfolio for long-term wealth creation.
+                Index funds, dividend stocks, and growth opportunities. Building a diversified portfolio for long-term
+                wealth creation.
               </p>
             </Card>
-            
+
             <Card className="p-8 hover-lift transition-all duration-300 border-2">
               <LineChart className="w-12 h-12 text-accent mb-4" />
               <h3 className="text-2xl font-bold mb-4">Business Ventures</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Creating and investing in businesses that solve real problems. From digital products to service-based companies.
+                Creating and investing in businesses that solve real problems. From digital products to service-based
+                companies.
               </p>
             </Card>
-            
+
             <Card className="p-8 hover-lift transition-all duration-300 border-2">
               <TrendingUp className="w-12 h-12 text-primary mb-4" />
               <h3 className="text-2xl font-bold mb-4">Real Estate</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Property investments for passive income and long-term appreciation. Building a real estate portfolio strategically.
+                Property investments for passive income and long-term appreciation. Building a real estate portfolio
+                strategically.
               </p>
             </Card>
           </div>
@@ -113,7 +117,7 @@ const Investing = () => {
           <h2 className="text-4xl font-bold text-center mb-12">
             My <span className="text-primary">Banking & Brokerage</span>
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <Card className="p-8 hover-lift transition-all duration-300 border-2 border-primary/20">
               <PiggyBank className="w-12 h-12 text-primary mb-4" />
@@ -127,7 +131,7 @@ const Investing = () => {
                 </a>
               </Button>
             </Card>
-            
+
             <Card className="p-8 hover-lift transition-all duration-300 border-2 border-accent/20">
               <LineChart className="w-12 h-12 text-accent mb-4" />
               <h3 className="text-2xl font-bold mb-4">Fidelity</h3>
@@ -153,7 +157,7 @@ const Investing = () => {
           <p className="text-center text-muted-foreground mb-12 text-lg">
             These are my current holdings and watchlist. Not financial advice—do your own research!
           </p>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card className="p-6 hover-lift transition-all duration-300 border-2 border-primary/20">
               <div className="flex items-center justify-between mb-2">
@@ -219,132 +223,138 @@ const Investing = () => {
             </Card>
           </div>
         </div>
-      </section
+      </section>
 
+      {/* === Portfolio Breakdown (3D Cards) === */}
+      <section className="py-16 md:py-24 bg-gradient-to-br from-background via-accent/5 to-secondary/10">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <h2 className="text-4xl font-bold text-center mb-4">
+            My <span className="text-primary">Portfolio Breakdown</span>
+          </h2>
+          <p className="text-center text-muted-foreground mb-12">
+            Live list from my notes — not financial advice. I’ll update positions as I go.
+          </p>
 
-{/* === Portfolio Breakdown (3D Cards) === */}
-<section className="py-16 md:py-24 bg-gradient-to-br from-background via-accent/5 to-secondary/10">
-  <div className="container mx-auto px-4 max-w-6xl">
-    <h2 className="text-4xl font-bold text-center mb-4">
-      My <span className="text-primary">Portfolio Breakdown</span>
-    </h2>
-    <p className="text-center text-muted-foreground mb-12">
-      Live list from my notes — not financial advice. I’ll update positions as I go.
-    </p>
+          {/* Data (edit freely) */}
+          {(() => {
+            const INDIVIDUAL = [
+              { ticker: "VOO", name: "Vanguard S&P 500", tag: "Core" },
+              { ticker: "SCHD", name: "Schwab U.S. Dividend", tag: "Income" },
+              { ticker: "GLD", name: "SPDR Gold Trust", tag: "Hedge" },
+              { ticker: "NVDA", name: "NVIDIA", tag: "Growth" },
+              { ticker: "QQQM", name: "NASDAQ 100 ETF", tag: "ETF" },
+              { ticker: "SOFI", name: "SoFi", tag: "Growth" },
+              { ticker: "AAPL", name: "Apple", tag: "Core" },
+              { ticker: "GOOGL", name: "Alphabet", tag: "Growth" },
+              { ticker: "PLTR", name: "Palantir", tag: "Growth" },
+              { ticker: "SGOV", name: "iShares 0–3M T-Bills", tag: "Income" },
+              { ticker: "AMZN", name: "Amazon", tag: "Growth" },
+              { ticker: "VNQ", name: "Vanguard REIT", tag: "Income" },
+              { ticker: "AVUV", name: "Avantis US Small Value", tag: "ETF" },
+              { ticker: "SHY", name: "iShares 1–3Y Treasury", tag: "Income" },
+              { ticker: "HOOD", name: "Robinhood", tag: "Spec" },
+              { ticker: "BRK.B", name: "Berkshire Hathaway", tag: "Core" },
+              { ticker: "MSFT", name: "Microsoft", tag: "Core" },
+              { ticker: "APLD", name: "Applied Digital", tag: "Spec" },
+              { ticker: "BBAI", name: "BigBear.ai", tag: "Spec" },
+              { ticker: "WULF", name: "TeraWulf", tag: "Spec" },
+              { ticker: "MSTR", name: "MicroStrategy", tag: "Spec" },
+              { ticker: "PATH", name: "UiPath", tag: "Growth" },
+              { ticker: "TTD", name: "The Trade Desk", tag: "Growth" },
+              { ticker: "BIL", name: "SPDR 1–3M T-Bill", tag: "Income" },
+              { ticker: "VYMI", name: "Intl High Dividend", tag: "Income" },
+              { ticker: "CRWD", name: "CrowdStrike", tag: "Growth" },
+              { ticker: "SCHG", name: "Schwab U.S. Growth", tag: "ETF" },
+              { ticker: "TEM", name: "Templeton EM (CEF)", tag: "Spec" },
+              { ticker: "BABA", name: "Alibaba", tag: "Spec" },
+              { ticker: "UNH", name: "UnitedHealth", tag: "Core" },
+            ];
 
-    {/* Data (edit freely) */}
-    {(() => {
-      type Pos = { ticker: string; name?: string; note?: string; tag?: "Core" | "Growth" | "Income" | "Hedge" | "Spec" | "ETF"; };
-      const INDIVIDUAL: Pos[] = [
-        { ticker: "VOO", name: "Vanguard S&P 500", tag: "Core" },
-        { ticker: "SCHD", name: "Schwab U.S. Dividend", tag: "Income" },
-        { ticker: "GLD", name: "SPDR Gold Trust", tag: "Hedge" },
-        { ticker: "NVDA", name: "NVIDIA", tag: "Growth" },
-        { ticker: "QQQM", name: "NASDAQ 100 ETF", tag: "ETF" },
-        { ticker: "SOFI", name: "SoFi", tag: "Growth" },
-        { ticker: "AAPL", name: "Apple", tag: "Core" },
-        { ticker: "GOOGL", name: "Alphabet", tag: "Growth" },
-        { ticker: "PLTR", name: "Palantir", tag: "Growth" },
-        { ticker: "SGOV", name: "iShares 0–3M T-Bills", tag: "Income" },
-        { ticker: "AMZN", name: "Amazon", tag: "Growth" },
-        { ticker: "VNQ", name: "Vanguard REIT", tag: "Income" },
-        { ticker: "AVUV", name: "Avantis US Small Value", tag: "ETF" },
-        { ticker: "SHY", name: "iShares 1–3Y Treasury", tag: "Income" },
-        { ticker: "HOOD", name: "Robinhood", tag: "Spec" },
-        { ticker: "BRK.B", name: "Berkshire Hathaway", tag: "Core" },
-        { ticker: "MSFT", name: "Microsoft", tag: "Core" },
-        { ticker: "APLD", name: "Applied Digital", tag: "Spec" },
-        { ticker: "BBAI", name: "BigBear.ai", tag: "Spec" },
-        { ticker: "WULF", name: "TeraWulf", tag: "Spec" },
-        { ticker: "MSTR", name: "MicroStrategy", tag: "Spec" },
-        { ticker: "PATH", name: "UiPath", tag: "Growth" },
-        { ticker: "TTD", name: "The Trade Desk", tag: "Growth" },
-        { ticker: "BIL", name: "SPDR 1–3M T-Bill", tag: "Income" },
-        { ticker: "VYMI", name: "Intl High Dividend", tag: "Income" },
-        { ticker: "CRWD", name: "CrowdStrike", tag: "Growth" },
-        { ticker: "SCHG", name: "Schwab U.S. Growth", tag: "ETF" },
-        { ticker: "TEM", name: "Templeton EM (CEF)", tag: "Spec" },
-        { ticker: "BABA", name: "Alibaba", tag: "Spec" },
-        { ticker: "UNH", name: "UnitedHealth", tag: "Core" },
-        // add/remove freely
-      ];
+            const ROTH_IRA = [
+              { ticker: "JEPI", name: "JP Morgan Equity Premium", tag: "Income" },
+              { ticker: "JEPQ", name: "JP Morgan Nasdaq Premium", tag: "Income" },
+              { ticker: "VOO", name: "Vanguard S&P 500", tag: "Core" },
+              { ticker: "VXUS", name: "Vanguard Total Intl", tag: "ETF" },
+              { ticker: "BND", name: "Vanguard Total Bond", tag: "Income" },
+              { ticker: "VNQ", name: "Vanguard REIT", tag: "Income" },
+              { ticker: "FBTC", name: "Fidelity Bitcoin ETF", tag: "Spec" },
+            ];
 
-      const ROTH_IRA: Pos[] = [
-        { ticker: "JEPI", name: "JP Morgan Equity Premium", tag: "Income" },
-        { ticker: "JEPQ", name: "JP Morgan Nasdaq Premium", tag: "Income" },
-        { ticker: "VOO", name: "Vanguard S&P 500", tag: "Core" },
-        { ticker: "VXUS", name: "Vanguard Total Intl", tag: "ETF" },
-        { ticker: "BND", name: "Vanguard Total Bond", tag: "Income" },
-        { ticker: "VNQ", name: "Vanguard REIT", tag: "Income" },
-        { ticker: "FBTC", name: "Fidelity Bitcoin ETF", tag: "Spec" },
-      ];
+            const Card3D = ({ p }) => (
+              <div
+                className="group relative rounded-2xl border-2 bg-background/70 backdrop-blur-sm p-5 shadow-lg hover:shadow-2xl transition-all duration-300"
+                onMouseMove={(e) => {
+                  const el = e.currentTarget;
+                  const r = el.getBoundingClientRect();
+                  const x = e.clientX - r.left;
+                  const y = e.clientY - r.top;
+                  const rx = (y / r.height - 0.5) * -6;
+                  const ry = (x / r.width - 0.5) * 6;
+                  el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "perspective(900px) rotateX(0) rotateY(0) translateY(0)";
+                }}
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/10 via-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-2xl font-extrabold tracking-tight">{p.ticker}</h4>
+                    {/* uses icon already imported on this page */}
+                    <TrendingUp className="w-5 h-5 text-primary opacity-70" />
+                  </div>
+                  {p.name ? <p className="text-sm text-muted-foreground mt-1">{p.name}</p> : null}
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {p.tag ? (
+                      <span className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border">
+                        {p.tag}
+                      </span>
+                    ) : null}
+                    {p.note ? (
+                      <span className="text-[10px] px-2 py-1 rounded-full bg-secondary/40">{p.note}</span>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+            );
 
-      const Card3D: React.FC<{ p: Pos }> = ({ p }) => (
-        <div
-          className="group relative rounded-2xl border-2 bg-background/70 backdrop-blur-sm p-5 shadow-lg hover:shadow-2xl transition-all duration-300"
-          onMouseMove={(e) => {
-            const el = e.currentTarget as HTMLDivElement;
-            const r = el.getBoundingClientRect();
-            const x = e.clientX - r.left, y = e.clientY - r.top;
-            const rx = ((y / r.height) - 0.5) * -6;
-            const ry = ((x / r.width) - 0.5) * 6;
-            el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
-          }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "perspective(900px) rotateX(0) rotateY(0) translateY(0)"; }}
-          style={{ transformStyle: "preserve-3d" }}
-        >
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/10 via-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          <div className="relative">
-            <div className="flex items-center justify-between">
-              <h4 className="text-2xl font-extrabold tracking-tight">{p.ticker}</h4>
-              <TrendingUp className="w-5 h-5 text-primary opacity-70" />
-            </div>
-            {p.name && <p className="text-sm text-muted-foreground mt-1">{p.name}</p>}
-            <div className="mt-3 flex flex-wrap gap-2">
-              {p.tag && (
-                <span className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border">
-                  {p.tag}
-                </span>
-              )}
-              {p.note && (
-                <span className="text-[10px] px-2 py-1 rounded-full bg-secondary/40">
-                  {p.note}
-                </span>
-              )}
-            </div>
-          </div>
+            return (
+              <>
+                {/* Individual */}
+                <div className="mb-12">
+                  <div className="flex items-baseline justify-between gap-4 mb-6">
+                    <h3 className="text-3xl font-bold">
+                      Individual <span className="text-primary">Stocks & ETFs</span>
+                    </h3>
+                    <span className="text-xs text-muted-foreground">{INDIVIDUAL.length} positions</span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {INDIVIDUAL.map((p, i) => (
+                      <Card3D key={p.ticker + i} p={p} />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Roth IRA */}
+                <div>
+                  <div className="flex items-baseline justify-between gap-4 mb-6">
+                    <h3 className="text-3xl font-bold">
+                      Roth IRA <span className="text-primary">Holdings</span>
+                    </h3>
+                    <span className="text-xs text-muted-foreground">{ROTH_IRA.length} positions</span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {ROTH_IRA.map((p, i) => (
+                      <Card3D key={p.ticker + i} p={p} />
+                    ))}
+                  </div>
+                </div>
+              </>
+            );
+          })()}
         </div>
-      );
-
-      return (
-        <>
-          {/* Individual */}
-          <div className="mb-12">
-            <div className="flex items-baseline justify-between gap-4 mb-6">
-              <h3 className="text-3xl font-bold">Individual <span className="text-primary">Stocks & ETFs</span></h3>
-              <span className="text-xs text-muted-foreground">{INDIVIDUAL.length} positions</span>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {INDIVIDUAL.map((p, i) => <Card3D key={p.ticker + i} p={p} />)}
-            </div>
-          </div>
-
-          {/* Roth IRA */}
-          <div>
-            <div className="flex items-baseline justify-between gap-4 mb-6">
-              <h3 className="text-3xl font-bold">Roth IRA <span className="text-primary">Holdings</span></h3>
-              <span className="text-xs text-muted-foreground">{ROTH_IRA.length} positions</span>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {ROTH_IRA.map((p, i) => <Card3D key={p.ticker + i} p={p} />)}
-            </div>
-          </div>
-        </>
-      );
-    })()}
-  </div>
-</section>
-
+      </section>
 
       {/* Options Trading Section */}
       <section className="py-16 md:py-24 bg-background">
@@ -356,25 +366,33 @@ const Investing = () => {
               </h2>
               <div className="space-y-4 text-lg text-muted-foreground">
                 <p>
-                  Options are one of the most powerful tools in investing—offering flexibility, leverage, and strategic opportunities beyond simple stock ownership.
+                  Options are one of the most powerful tools in investing—offering flexibility, leverage, and strategic
+                  opportunities beyond simple stock ownership.
                 </p>
                 <p>
-                  Whether you're hedging your portfolio, generating income through covered calls, or speculating on market movements, understanding options is essential for serious investors.
+                  Whether you're hedging your portfolio, generating income through covered calls, or speculating on
+                  market movements, understanding options is essential for serious investors.
                 </p>
                 <p>
-                  I'm learning from the best resources available, and I highly recommend this comprehensive course that breaks down calls, puts, spreads, and advanced strategies.
+                  I'm learning from the best resources available, and I highly recommend this comprehensive course that
+                  breaks down calls, puts, spreads, and advanced strategies.
                 </p>
               </div>
             </div>
-            
+
             <Card className="p-8 hover-lift transition-all duration-300 border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
               <LineChart className="w-12 h-12 text-primary mb-4" />
               <h3 className="text-2xl font-bold mb-4">Complete Options Course</h3>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                Master calls, puts, long & short positions, spreads, and real-world strategies. From beginner to advanced, this course covers everything you need to trade options confidently.
+                Master calls, puts, long & short positions, spreads, and real-world strategies. From beginner to
+                advanced, this course covers everything you need to trade options confidently.
               </p>
               <Button asChild className="w-full" size="lg">
-                <a href="https://www.udemy.com/course/the-completecomplete-options-course-calls-puts-long-short/?couponCode=MT251006G3" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://www.udemy.com/course/the-completecomplete-options-course-calls-puts-long-short/?couponCode=MT251006G3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Get the Course →
                 </a>
               </Button>
@@ -392,8 +410,10 @@ const Investing = () => {
               The School of <span className="text-primary">Financial Sorcery</span>
             </h2>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
-              I'm currently writing a comprehensive guide that demystifies wealth-building, combining practical investing strategies with mindset shifts that transform your relationship with money. 
-              This book will cover everything from stock market fundamentals to real estate, business ventures, and the psychology of wealth creation.
+              I'm currently writing a comprehensive guide that demystifies wealth-building, combining practical
+              investing strategies with mindset shifts that transform your relationship with money. This book will cover
+              everything from stock market fundamentals to real estate, business ventures, and the psychology of wealth
+              creation.
             </p>
             <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary/20 to-accent/20 text-foreground font-bold rounded-lg">
               <span className="relative flex h-3 w-3">
@@ -411,16 +431,12 @@ const Investing = () => {
         <div className="container mx-auto px-4 max-w-4xl">
           <Card className="p-8 md:p-12 text-center">
             <BookOpen className="w-16 h-16 text-primary mx-auto mb-6" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Investment Resources
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Investment Resources</h2>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Coming soon: My curated list of books, courses, and tools that have helped shape my investment journey. 
+              Coming soon: My curated list of books, courses, and tools that have helped shape my investment journey.
               Stay tuned for detailed guides, strategies, and insights.
             </p>
-            <div className="inline-block px-8 py-3 bg-accent/20 text-accent font-bold rounded-lg">
-              COMING SOON
-            </div>
+            <div className="inline-block px-8 py-3 bg-accent/20 text-accent font-bold rounded-lg">COMING SOON</div>
           </Card>
         </div>
       </section>
