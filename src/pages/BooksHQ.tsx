@@ -9,6 +9,7 @@ import { ExternalLink, Search, Star } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { Header } from "@/components/Header";
 import { BOOKS, type BookStatus } from "@/data/books";
+import maggieStickerImage from "@/assets/maggie-simba-stickers.png";
 
 const STATUS_COLORS: Record<BookStatus, string> = {
   READ: "bg-green-500/20 text-green-400 border-green-500/50",
@@ -84,6 +85,14 @@ export default function BooksHQ() {
         <meta property="og:title" content="Book Portal | Zain Adtani" />
         <meta property="og:description" content="Books I've read, I'm reading, and want to read." />
       </Helmet>
+
+      {/* Easter Egg Dog */}
+      <img 
+        src={maggieStickerImage} 
+        alt="" 
+        className="fixed top-32 right-12 w-10 h-10 opacity-10 hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50"
+        aria-hidden="true"
+      />
 
       <Header />
 

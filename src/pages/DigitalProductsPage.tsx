@@ -8,6 +8,7 @@ import { Search } from "lucide-react";
 import { Header } from "@/components/Header";
 import { ALL_PRODUCTS, CATEGORIES } from "@/data/products";
 import Logo3D from "@/components/Logo3D";
+import maggieStickerImage from "@/assets/maggie-simba-stickers.png";
 
 function pad2(n: number) { return n.toString().padStart(2, '0'); }
 
@@ -38,6 +39,14 @@ export default function DigitalProductsPage() {
         <meta property="og:title" content="Digital Products — MAJESTY HQ | Zain Adtani" />
         <meta property="og:description" content="Search courses, guides, and tools—all in one place." />
       </Helmet>
+      
+      {/* Easter Egg Dog */}
+      <img 
+        src={maggieStickerImage} 
+        alt="" 
+        className="fixed bottom-8 right-8 w-12 h-12 opacity-10 hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50"
+        aria-hidden="true"
+      />
       
       <Header />
       

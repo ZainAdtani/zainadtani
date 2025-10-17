@@ -26,6 +26,7 @@ import maggieSimbaBook from "@/assets/maggie-simba-book.png";
 import financialSorceryBook from "@/assets/financial-sorcery-book.png";
 import chrisHaroun from "@/assets/chris-haroun.png";
 import trentShelton from "@/assets/trent-shelton.png";
+import maggieStickerImage from "@/assets/maggie-simba-stickers.png";
 
 // Lazy load heavy component for better performance
 const EAGame = lazy(() => import("@/components/EAGame").then(m => ({ default: m.EAGame })));
@@ -172,6 +173,20 @@ const Index = () => {
         <meta property="og:image" content={headshotImage} />
         <meta property="og:type" content="website" />
       </Helmet>
+      
+      {/* Easter Egg Dog Icons */}
+      <img 
+        src={maggieStickerImage} 
+        alt="" 
+        className="fixed top-20 right-4 w-10 h-10 opacity-10 hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50"
+        aria-hidden="true"
+      />
+      <img 
+        src={maggieStickerImage} 
+        alt="" 
+        className="fixed bottom-20 left-4 w-12 h-12 opacity-10 hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50"
+        aria-hidden="true"
+      />
       
       <Header />
       <TimeBar />
@@ -1129,22 +1144,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Join Free Community */}
-      <section className="py-12 bg-secondary/20" aria-label="Join Free Community">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <Card className="p-8 flex flex-col md:flex-row items-center gap-6 border-2 shadow-lg">
-            <Users className="w-12 h-12 text-primary shrink-0" aria-hidden="true" />
-            <div className="flex-1 text-center md:text-left">
-              <h3 className="text-2xl font-bold">Engineer → Enrolled Agent (Free Community)</h3>
-              <p className="text-muted-foreground">Short lessons. No fluff. Study tips, resources, and support.</p>
-            </div>
-            <Button asChild size="lg" className="shrink-0">
-              <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer">Join Free →</a>
-            </Button>
-          </Card>
-        </div>
-      </section>
-
       {/* Buy Me a Coffee Section */}
       <section className="py-16 bg-secondary/30">
         <div className="container mx-auto px-4 max-w-3xl">
@@ -1162,6 +1161,67 @@ const Index = () => {
               >
                 Buy Me a Coffee ☕
               </a>
+            </Button>
+          </Card>
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section id="newsletter" className="py-16 md:py-24 relative overflow-hidden">
+        {/* Gradient mesh background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-primary/10 to-secondary/20"></div>
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-72 h-72 bg-primary/30 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-10 right-10 w-96 h-96 bg-accent/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-secondary/20 rounded-full blur-3xl"></div>
+        </div>
+        <div className="container mx-auto px-4 max-w-4xl relative z-10">
+          <div className="relative">
+            {/* Coming Soon Diagonal Banner */}
+            <div className="absolute -top-8 -right-8 md:-top-12 md:-right-12 z-10 pointer-events-none">
+              <div className="bg-gradient-to-r from-accent via-accent/90 to-accent text-accent-foreground font-black text-lg md:text-2xl px-16 py-3 rotate-45 shadow-2xl border-2 border-accent-foreground/20">
+                COMING SOON
+              </div>
+            </div>
+
+            <div className="text-center md:text-left md:flex md:items-start md:gap-12 opacity-60 pointer-events-none">
+              <div className="md:flex-1 mb-8 md:md:mb-0">
+                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+                  Subscribe to <br />
+                  <span className="inline-flex items-center gap-2">
+                    Z Notes 
+                    <Mail className="w-10 h-10 text-primary" />
+                  </span>
+                </h2>
+              </div>
+              
+              <div className="md:flex-1">
+                <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                  Each week, I share actionable EA tips, practical study advice, and highlights from my favorite tax resources, directly to your inbox. It's free to join, and always will be.
+                </p>
+                <form className="flex flex-col sm:flex-row gap-3">
+                  <Input type="email" placeholder="Enter your email" className="flex-1 h-12 text-base bg-background transition-all duration-300 focus:ring-2 focus:ring-primary" disabled />
+                  <Button type="submit" size="lg" className="h-12 px-8 bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" disabled>
+                    Subscribe
+                  </Button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Join Free Community */}
+      <section className="py-12 bg-secondary/20" aria-label="Join Free Community">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <Card className="p-8 flex flex-col md:flex-row items-center gap-6 border-2 shadow-lg">
+            <Users className="w-12 h-12 text-primary shrink-0" aria-hidden="true" />
+            <div className="flex-1 text-center md:text-left">
+              <h3 className="text-2xl font-bold">Engineer → Enrolled Agent (Free Community)</h3>
+              <p className="text-muted-foreground">Short lessons. No fluff. Study tips, resources, and support.</p>
+            </div>
+            <Button asChild size="lg" className="shrink-0">
+              <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer">Join Free →</a>
             </Button>
           </Card>
         </div>

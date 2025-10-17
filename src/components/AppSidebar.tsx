@@ -1,4 +1,4 @@
-import { Home, GraduationCap, TrendingUp, Wrench, Lock, ShoppingBag, Trophy, BookOpen, Music, HelpCircle, Search, ChevronDown, FolderKanban, Clock } from "lucide-react";
+import { Home, GraduationCap, TrendingUp, Wrench, Lock, ShoppingBag, Trophy, BookOpen, Music, HelpCircle, Search, ChevronDown, FolderKanban, Clock, FileText } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
   Sidebar,
@@ -35,13 +35,9 @@ interface SearchableItem {
 const searchIndex: SearchableItem[] = [
   { title: "Home", route: "/", section: "Learn" },
   { title: "Enrolled Agent", route: "/enrolled-agent", section: "Learn", tags: ["EA", "tax", "certification"] },
-  { title: "EA Quest", route: "/enrolled-agent#ea-quest", section: "Learn" },
-  { title: "Study Soundtracks", route: "/enrolled-agent#study-soundtracks", section: "Learn" },
-  { title: "Learning Materials", route: "/enrolled-agent#learning-materials", section: "Learn" },
-  { title: "Community & Tools", route: "/enrolled-agent#community-tools", section: "Learn" },
-  { title: "EA Part 1", route: "/enrolled-agent#ea-part-1", section: "Learn" },
   { title: "Books HQ", route: "/books", section: "Learn", tags: ["reading", "library"] },
   { title: "Investing", route: "/investing", section: "Learn", tags: ["finance", "stocks"] },
+  { title: "Blog", route: "/blog", section: "Learn", tags: ["articles", "posts", "writing"] },
   { title: "Tools", route: "/tools", section: "Resources", tags: ["utilities"] },
   { title: "Secret Vault", route: "/vault", section: "Resources", tags: ["premium", "exclusive"] },
   { title: "Marketplaces", route: "/digital-products", section: "Articles", tags: ["ebay", "products"] },
@@ -76,10 +72,6 @@ export function AppSidebar() {
     const saved = localStorage.getItem("sidebar-support-open");
     return saved !== null ? JSON.parse(saved) : true;
   });
-  const [eaOpen, setEaOpen] = useState(() => {
-    const saved = localStorage.getItem("sidebar-ea-open");
-    return saved !== null ? JSON.parse(saved) : false;
-  });
   const [exploreOpen, setExploreOpen] = useState(() => {
     const saved = localStorage.getItem("sidebar-explore-open");
     return saved !== null ? JSON.parse(saved) : true;
@@ -103,9 +95,6 @@ export function AppSidebar() {
   useEffect(() => {
     localStorage.setItem("sidebar-support-open", JSON.stringify(supportOpen));
   }, [supportOpen]);
-  useEffect(() => {
-    localStorage.setItem("sidebar-ea-open", JSON.stringify(eaOpen));
-  }, [eaOpen]);
   useEffect(() => {
     localStorage.setItem("sidebar-explore-open", JSON.stringify(exploreOpen));
   }, [exploreOpen]);
@@ -223,64 +212,14 @@ export function AppSidebar() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
 
-              <Collapsible open={eaOpen} onOpenChange={setEaOpen}>
-                <SidebarMenuItem>
-                  <CollapsibleTrigger asChild>
-                    <SidebarMenuButton className="w-full justify-between">
-                      <div className="flex items-center gap-2">
-                        <GraduationCap className="h-4 w-4" />
-                        {!isCollapsed && <span>Enrolled Agent</span>}
-                      </div>
-                      {!isCollapsed && (
-                        <ChevronDown
-                          className={`h-4 w-4 transition-transform ${
-                            eaOpen ? "rotate-180" : ""
-                          }`}
-                        />
-                      )}
-                    </SidebarMenuButton>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <SidebarMenuSub>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <NavLink to="/enrolled-agent#ea-quest">
-                            EA Quest
-                          </NavLink>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <NavLink to="/enrolled-agent#study-soundtracks">
-                            Study Soundtracks
-                          </NavLink>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <NavLink to="/enrolled-agent#learning-materials">
-                            Learning Materials
-                          </NavLink>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <NavLink to="/enrolled-agent#community-tools">
-                            Community & Tools
-                          </NavLink>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <NavLink to="/enrolled-agent#ea-part-1">
-                            EA Part 1
-                          </NavLink>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    </SidebarMenuSub>
-                  </CollapsibleContent>
-                </SidebarMenuItem>
-              </Collapsible>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/enrolled-agent" className={getNavClass}>
+                    <GraduationCap className="h-4 w-4" />
+                    {!isCollapsed && <span>Enrolled Agent</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
 
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
@@ -296,6 +235,15 @@ export function AppSidebar() {
                   <NavLink to="/investing" className={getNavClass}>
                     <TrendingUp className="h-4 w-4" />
                     {!isCollapsed && <span>Investing</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/blog" className={getNavClass}>
+                    <FileText className="h-4 w-4" />
+                    {!isCollapsed && <span>Blog</span>}
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
