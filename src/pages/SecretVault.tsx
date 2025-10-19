@@ -105,41 +105,18 @@ export default function SecretVault() {
           </Card>
 
           <Card className="p-6 border-2">
-            <h2 className="font-semibold text-xl mb-4">Subscriptions</h2>
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between border-b pb-2">
-                <span className="font-medium">Spotify Duo</span>
-                <span className="text-muted-foreground">$18.39/month (AMEX 31034)</span>
-              </div>
-              <div className="flex justify-between border-b pb-2">
-                <span className="font-medium">Bookmory</span>
-                <span className="text-muted-foreground">$31/year (Apple CC 2708)</span>
-              </div>
-              <div className="flex justify-between border-b pb-2">
-                <span className="font-medium">Goodnotes</span>
-                <span className="text-muted-foreground">$12/year (Apple CC 2708)</span>
-              </div>
-              <div className="flex justify-between border-b pb-2">
-                <span className="font-medium">iCloud+</span>
-                <span className="text-muted-foreground">$3/month (Apple CC 2708)</span>
-              </div>
-              <div className="flex justify-between border-b pb-2">
-                <span className="font-medium">Gym (EFLC)</span>
-                <span className="text-muted-foreground">$__/month (AMEX 31034)</span>
-              </div>
-              <div className="flex justify-between border-b pb-2">
-                <span className="font-medium">Mahek Pilates</span>
-                <span className="text-muted-foreground">$199/month (2 classes weekly, 3 months)</span>
-              </div>
-              <div className="flex justify-between border-b pb-2">
-                <span className="font-medium">ChatGPT</span>
-                <span className="text-muted-foreground">$20/month</span>
-              </div>
-              <div className="flex justify-between pb-2">
-                <span className="font-medium">Gamma AI</span>
-                <span className="text-muted-foreground">$__/month</span>
-              </div>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-semibold text-xl">Subscriptions</h2>
+              <a 
+                href="/vault/subscriptions"
+                className="text-primary underline hover:text-primary/80 transition"
+              >
+                View Full Dashboard →
+              </a>
             </div>
+            <p className="text-sm text-muted-foreground">
+              Manage all your subscriptions, track spending, and see analytics in the full dashboard.
+            </p>
           </Card>
 
           <Card className="p-6 border-2">
