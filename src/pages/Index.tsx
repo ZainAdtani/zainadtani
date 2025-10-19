@@ -103,9 +103,10 @@ const Index = () => {
     return featured.filter((p) => p.title.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query));
   }, [searchQuery]);
 
-  // Top books for home page display
+  // Top books for home page display - randomly selected
   const topBooks = React.useMemo(() => {
-    return BOOKS.slice(0, 9);
+    const shuffled = [...BOOKS].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, 9);
   }, []);
 
   const generateQuote = () => {

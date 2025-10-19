@@ -33,7 +33,7 @@ export const BOOKS: Book[] = [
     status: 'READ',
     tags: ['Productivity'],
     link: 'https://amzn.to/48D3glL',
-    cover: 'https://m.media-amazon.com/images/I/71VnV1r+jAL._SY466_.jpg',
+    cover: '/book-covers/feel-good-productivity.jpg',
     rating: 4,
     notes: 'Energy beats force'
   },
@@ -67,7 +67,7 @@ export const BOOKS: Book[] = [
     progress: 19,
     tags: ['Focus', 'Time Management'],
     link: 'https://amzn.to/48Xm9pL',
-    cover: 'https://m.media-amazon.com/images/I/71g2ednj0JL._SY466_.jpg'
+    cover: '/book-covers/make-time.jpg'
   },
   {
     id: 'harry-potter-chamber-of-secrets',
@@ -98,7 +98,7 @@ export const BOOKS: Book[] = [
     status: 'TBR',
     tags: ['Productivity', 'Lifestyle'],
     link: 'https://amzn.to/4aOEjeS',
-    cover: 'https://m.media-amazon.com/images/I/51K8cn98S1L._SY445_SX342_.jpg'
+    cover: '/book-covers/4hr.jpeg'
   },
   {
     id: 'work-the-system',
@@ -107,7 +107,7 @@ export const BOOKS: Book[] = [
     status: 'TBR',
     tags: ['Business', 'Productivity', 'Systems'],
     link: 'https://amzn.to/422WKbJ',
-    cover: 'https://m.media-amazon.com/images/I/71VxA6xsL+L._SY466_.jpg'
+    cover: '/book-covers/work-the-system.jpg'
   },
   {
     id: 'building-second-brain',
@@ -125,7 +125,7 @@ export const BOOKS: Book[] = [
     status: 'TBR',
     tags: ['Focus', 'Productivity'],
     link: 'https://amzn.to/3NY817h',
-    cover: 'https://m.media-amazon.com/images/I/71dFakhL67L._SY466_.jpg'
+    cover: '/book-covers/deep-work.jpg'
   },
   {
     id: '7-habits',
@@ -134,7 +134,7 @@ export const BOOKS: Book[] = [
     status: 'TBR',
     tags: ['Self-Improvement', 'Leadership'],
     link: 'https://amzn.to/3tS9d5p',
-    cover: 'https://m.media-amazon.com/images/I/71U7Lf0TWSL._SY466_.jpg'
+    cover: '/book-covers/7-habits.jpg'
   },
   {
     id: 'harry-potter-prisoner-azkaban',
@@ -202,7 +202,25 @@ export const BOOKS: Book[] = [
     status: 'TBR',
     tags: ['Self-Improvement', 'Communication'],
     link: 'https://a.co/d/4Qz8Lpw',
-    cover: 'https://m.media-amazon.com/images/I/71vK0WVQ4rL._SY466_.jpg'
+    cover: '/book-covers/how-to-win-friends.jpg'
+  },
+  {
+    id: 'awaken-giant-within',
+    title: 'Awaken the Giant Within: How to Take Immediate Control of Your Mental, Emotional, Physical and Financial Destiny!',
+    author: 'Tony Robbins',
+    status: 'TBR',
+    tags: ['Self-Improvement', 'Personal Development'],
+    link: 'https://amzn.to/3TonyRobbins',
+    cover: '/book-covers/awaken-the-giant-within.jpg'
+  },
+  {
+    id: '100m-offers',
+    title: '$100M Offers: How to Make Offers So Good People Feel Stupid Saying No',
+    author: 'Alex Hormozi',
+    status: 'TBR',
+    tags: ['Business', 'Sales', 'Entrepreneurship'],
+    link: 'https://amzn.to/3AlexHormozi',
+    cover: '/book-covers/alex-hormozi-offers.jpg'
   },
   {
     id: 'the-alchemist',
