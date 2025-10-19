@@ -9,7 +9,7 @@ import { ExternalLink, Search, Star } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { Header } from "@/components/Header";
 import { BOOKS, type BookStatus } from "@/data/books";
-import maggieStickerImage from "@/assets/maggie-simba-stickers.png";
+
 
 const STATUS_COLORS: Record<BookStatus, string> = {
   READ: "bg-green-500/20 text-green-400 border-green-500/50",
@@ -86,51 +86,17 @@ export default function BooksHQ() {
         <meta property="og:description" content="Books I've read, I'm reading, and want to read." />
       </Helmet>
 
-      {/* Easter Egg Dog */}
-      <img 
-        src={maggieStickerImage} 
-        alt="" 
-        className="fixed top-32 right-12 w-10 h-10 opacity-10 hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50"
-        aria-hidden="true"
-      />
-
       <Header />
 
       <div className="container mx-auto px-4 py-16 max-w-7xl">
-        {/* Header with Portal Animation */}
-        <div className="text-center mb-8 relative">
-          {/* Danny Phantom Green Portal Animation */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden" aria-hidden="true">
-            <svg 
-              className="w-[220px] h-[220px] opacity-90"
-              viewBox="0 0 200 200"
-            >
-              <defs>
-                <radialGradient id="portalGlow" cx="50%" cy="50%">
-                  <stop offset="0%" style={{ stopColor: '#00FFA8', stopOpacity: 0.9 }} />
-                  <stop offset="60%" style={{ stopColor: '#10A37F', stopOpacity: 0.25 }} />
-                  <stop offset="100%" style={{ stopColor: '#0AFF6C', stopOpacity: 0 }} />
-                </radialGradient>
-                <filter id="blur">
-                  <feGaussianBlur stdDeviation="3" />
-                </filter>
-              </defs>
-              {/* Outer ring */}
-              <circle cx="100" cy="100" r="70" fill="none" stroke="url(#portalGlow)" strokeWidth="8" className="motion-safe:animate-spin-slow" style={{ transformOrigin: '100px 100px', animationDuration: '16s' }} />
-              {/* Inner swirl */}
-              <path d="M100 40 C150 60,150 140,100 160 C50 140,50 60,100 40 Z"
-                    fill="url(#portalGlow)" filter="url(#blur)" className="motion-safe:animate-spin-reverse" style={{ transformOrigin: '100px 100px', animationDuration: '12s' }} />
-            </svg>
-          </div>
-
-          <div className="relative z-10">
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-foreground">
-              Book Portal
-            </h1>
-            <p className="text-xl text-muted-foreground">
-              Books I've read, I'm reading, and want to read
-            </p>
-          </div>
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-foreground">
+            Book Portal
+          </h1>
+          <p className="text-xl text-muted-foreground">
+            Books I've read, I'm reading, and want to read
+          </p>
         </div>
 
         {/* Search and Filters */}

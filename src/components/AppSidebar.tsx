@@ -40,7 +40,7 @@ const searchIndex: SearchableItem[] = [
   { title: "Blog", route: "/blog", section: "Learn", tags: ["articles", "posts", "writing"] },
   { title: "Tools", route: "/tools", section: "Resources", tags: ["utilities"] },
   { title: "Secret Vault", route: "/vault", section: "Resources", tags: ["premium", "exclusive"] },
-  { title: "Marketplaces", route: "/digital-products", section: "Articles", tags: ["ebay", "products"] },
+  
   { title: "Sports", route: "/sports", section: "Articles", tags: ["NBA", "scores"] },
   { title: "Waez", route: "/waez", section: "Articles", tags: ["religious", "lectures", "Abu Ali"] },
   { title: "Projects", route: "/projects", section: "Explore", tags: ["pokedex", "builds"] },
@@ -303,14 +303,6 @@ export function AppSidebar() {
             <CollapsibleContent>
               <SidebarGroupContent>
             <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/digital-products" className={getNavClass}>
-                    <ShoppingBag className="h-4 w-4" />
-                    {!isCollapsed && <span>Marketplaces</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <NavLink to="/sports" className={getNavClass}>

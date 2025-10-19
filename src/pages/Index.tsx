@@ -41,7 +41,6 @@ import maggieSimbaBook from "@/assets/maggie-simba-book.png";
 import financialSorceryBook from "@/assets/financial-sorcery-book.png";
 import chrisHaroun from "@/assets/chris-haroun.png";
 import trentShelton from "@/assets/trent-shelton.png";
-import maggieStickerImage from "@/assets/maggie-simba-stickers.png";
 
 // Lazy load heavy component for better performance
 const EAGame = lazy(() => import("@/components/EAGame").then((m) => ({ default: m.EAGame })));
@@ -213,20 +212,6 @@ const Index = () => {
         <meta property="og:image" content={headshotImage} />
         <meta property="og:type" content="website" />
       </Helmet>
-
-      {/* Easter Egg Dog Icons */}
-      <img
-        src={maggieStickerImage}
-        alt=""
-        className="fixed top-20 right-4 w-10 h-10 opacity-10 hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50"
-        aria-hidden="true"
-      />
-      <img
-        src={maggieStickerImage}
-        alt=""
-        className="fixed bottom-20 left-4 w-12 h-12 opacity-10 hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50"
-        aria-hidden="true"
-      />
 
       <Header />
       <TimeBar />

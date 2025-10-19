@@ -3,7 +3,6 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/ca
 import { Badge } from "@/components/ui/badge";
 import { Helmet } from "react-helmet-async";
 import { Calendar, Clock } from "lucide-react";
-import maggieStickerImage from "@/assets/maggie-simba-stickers.png";
 
 const BLOG_POSTS = [
   {
@@ -41,14 +40,6 @@ export default function Blog() {
       </Helmet>
 
       <Header />
-
-      {/* Easter Egg Dog */}
-      <img 
-        src={maggieStickerImage} 
-        alt="" 
-        className="fixed bottom-4 right-4 w-12 h-12 opacity-20 hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50"
-        aria-hidden="true"
-      />
 
       <main className="container mx-auto px-4 py-16 max-w-4xl">
         <div className="text-center mb-12">

@@ -73,11 +73,11 @@ export const BOOKS: Book[] = [
     id: 'harry-potter-chamber-of-secrets',
     title: 'Harry Potter and the Chamber of Secrets',
     author: 'J.K. Rowling',
-    status: 'IN_PROGRESS',
-    progress: 32,
+    status: 'READ',
     tags: ['Fiction', 'Fantasy'],
     link: 'https://a.co/d/i1N4Xie',
-    cover: 'https://m.media-amazon.com/images/I/81lAPl9Jh9L._SY466_.jpg'
+    cover: 'https://m.media-amazon.com/images/I/81ibfYk4qmL._SY466_.jpg',
+    rating: 5
   },
   {
     id: 'speed-reading',
@@ -140,46 +140,51 @@ export const BOOKS: Book[] = [
     id: 'harry-potter-prisoner-azkaban',
     title: 'Harry Potter and the Prisoner of Azkaban',
     author: 'J.K. Rowling',
-    status: 'TBR',
+    status: 'READ',
     tags: ['Fiction', 'Fantasy'],
     link: 'https://a.co/d/2Xj8KpN',
-    cover: 'https://m.media-amazon.com/images/I/81lAPl9Jh9L._SY466_.jpg'
+    cover: 'https://m.media-amazon.com/images/I/81lz6YXeCgL._SY466_.jpg',
+    rating: 5
   },
   {
     id: 'harry-potter-goblet-fire',
     title: 'Harry Potter and the Goblet of Fire',
     author: 'J.K. Rowling',
-    status: 'TBR',
+    status: 'READ',
     tags: ['Fiction', 'Fantasy'],
     link: 'https://a.co/d/8vQ3Yzj',
-    cover: 'https://m.media-amazon.com/images/I/81lAPl9Jh9L._SY466_.jpg'
+    cover: 'https://m.media-amazon.com/images/I/81Cjnj3U6xL._SY466_.jpg',
+    rating: 5
   },
   {
     id: 'harry-potter-order-phoenix',
     title: 'Harry Potter and the Order of the Phoenix',
     author: 'J.K. Rowling',
-    status: 'TBR',
+    status: 'READ',
     tags: ['Fiction', 'Fantasy'],
     link: 'https://a.co/d/5jtQc9H',
-    cover: 'https://m.media-amazon.com/images/I/81lAPl9Jh9L._SY466_.jpg'
+    cover: 'https://m.media-amazon.com/images/I/71V6ZL9P1zL._SY466_.jpg',
+    rating: 5
   },
   {
     id: 'harry-potter-half-blood-prince',
     title: 'Harry Potter and the Half-Blood Prince',
     author: 'J.K. Rowling',
-    status: 'TBR',
+    status: 'READ',
     tags: ['Fiction', 'Fantasy'],
     link: 'https://a.co/d/7Yt9Qmn',
-    cover: 'https://m.media-amazon.com/images/I/81lAPl9Jh9L._SY466_.jpg'
+    cover: 'https://m.media-amazon.com/images/I/81u8VzbK+IL._SY466_.jpg',
+    rating: 5
   },
   {
     id: 'harry-potter-deathly-hallows',
     title: 'Harry Potter and the Deathly Hallows',
     author: 'J.K. Rowling',
-    status: 'TBR',
+    status: 'READ',
     tags: ['Fiction', 'Fantasy'],
     link: 'https://a.co/d/9Kz3Fqw',
-    cover: 'https://m.media-amazon.com/images/I/81lAPl9Jh9L._SY466_.jpg'
+    cover: 'https://m.media-amazon.com/images/I/71OQZqh7BEL._SY466_.jpg',
+    rating: 5
   },
   {
     id: 'tuesdays-with-morrie',

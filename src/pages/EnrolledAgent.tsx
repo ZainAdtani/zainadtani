@@ -22,7 +22,6 @@ import {
   ChevronRight,
   FileText
 } from "lucide-react";
-import maggieStickerImage from "@/assets/maggie-simba-stickers.png";
 
 const EnrolledAgent = () => {
   const [showGame, setShowGame] = useState(false);
@@ -51,14 +50,6 @@ const EnrolledAgent = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Easter Egg Dog */}
-      <img 
-        src={maggieStickerImage} 
-        alt="" 
-        className="fixed top-24 left-8 w-10 h-10 opacity-10 hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50"
-        aria-hidden="true"
-      />
-      
       <Header />
       
       {/* Hero Section */}
