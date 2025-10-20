@@ -153,7 +153,7 @@ export const BOOKS: Book[] = [
     status: 'READ',
     tags: ['Fiction', 'Fantasy'],
     link: 'https://a.co/d/8vQ3Yzj',
-    cover: 'https://m.media-amazon.com/images/I/81Cjnj3U6xL._SY466_.jpg',
+    cover: '/book-covers/hp-goblet-fire.png',
     rating: 5
   },
   {
@@ -163,7 +163,7 @@ export const BOOKS: Book[] = [
     status: 'READ',
     tags: ['Fiction', 'Fantasy'],
     link: 'https://a.co/d/5jtQc9H',
-    cover: 'https://m.media-amazon.com/images/I/71V6ZL9P1zL._SY466_.jpg',
+    cover: '/book-covers/hp-order-phoenix.png',
     rating: 5
   },
   {
@@ -173,7 +173,7 @@ export const BOOKS: Book[] = [
     status: 'READ',
     tags: ['Fiction', 'Fantasy'],
     link: 'https://a.co/d/7Yt9Qmn',
-    cover: 'https://m.media-amazon.com/images/I/81u8VzbK+IL._SY466_.jpg',
+    cover: '/book-covers/hp-half-blood-prince.png',
     rating: 5
   },
   {
@@ -183,7 +183,7 @@ export const BOOKS: Book[] = [
     status: 'READ',
     tags: ['Fiction', 'Fantasy'],
     link: 'https://a.co/d/9Kz3Fqw',
-    cover: 'https://m.media-amazon.com/images/I/71OQZqh7BEL._SY466_.jpg',
+    cover: '/book-covers/hp-deathly-hallows.png',
     rating: 5
   },
   {
