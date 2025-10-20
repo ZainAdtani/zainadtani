@@ -21,6 +21,9 @@ import Projects from "./pages/Projects";
 import ProjectPokedex from "./pages/ProjectPokedex";
 import Countdown from "./pages/Countdown";
 import Blog from "./pages/Blog";
+import TopPrompts from "./pages/blog/TopPrompts";
+import ChatGPTVsClaude from "./pages/blog/ChatGPTVsClaude";
+import EmailChaos from "./pages/blog/EmailChaos";
 
 const queryClient = new QueryClient();
 
@@ -47,7 +50,10 @@ const App = () => (
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/pokedex" element={<ProjectPokedex />} />
             <Route path="/countdown" element={<Countdown />} />
-            <Route path="/blog" element={<Blog />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/top-10-prompts" element={<TopPrompts />} />
+          <Route path="/blog/chatgpt-vs-claude" element={<ChatGPTVsClaude />} />
+          <Route path="/blog/email-chaos-to-clarity" element={<EmailChaos />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
