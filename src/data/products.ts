@@ -26,7 +26,7 @@ export const ALL_PRODUCTS: Product[] = [
     id: "eng2ea-course",
     title: "Engineer to EA — Part 1",
     category: "Courses",
-    desc: "Complete course covering all three parts of the Enrolled Agent exam. Fast-track your path from engineer to tax professional.",
+    desc: "Covers Part 1 (Individuals) of the Enrolled Agent exam. Parts 2 & 3 will be released on request. Fast-track your path from engineer to tax professional.",
     media: engineerToEA,
     cta: { label: "Enroll Now →", href: "https://whop.com/eng2ea/?a=eng2ea" },
     tags: ["Course", "EA", "Beginner"],
