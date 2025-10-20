@@ -349,21 +349,6 @@ const Investing = () => {
         </div>
       </section>
 
-      {/* Resources Section */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <Card className="p-8 md:p-12 text-center">
-            <BookOpen className="w-16 h-16 text-primary mx-auto mb-6" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Investment Resources</h2>
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Coming soon: My curated list of books, courses, and tools that have helped shape my investment journey.
-              Stay tuned for detailed guides, strategies, and insights.
-            </p>
-            <div className="inline-block px-8 py-3 bg-accent/20 text-accent font-bold rounded-lg">COMING SOON</div>
-          </Card>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="bg-background border-t border-border py-8">
         <div className="container mx-auto px-4 max-w-6xl text-center text-sm text-muted-foreground">
