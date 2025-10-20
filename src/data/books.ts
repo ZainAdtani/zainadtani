@@ -44,7 +44,7 @@ export const BOOKS: Book[] = [
     status: 'READ',
     tags: ['Fiction', 'Fantasy'],
     link: 'https://amzn.to/3TZwXiQ',
-    cover: 'https://m.media-amazon.com/images/I/81lAPl9Jh9L._SY466_.jpg',
+    cover: '/book-covers/hp-sorcerers-stone.png',
     rating: 5
   },
   {
@@ -54,7 +54,7 @@ export const BOOKS: Book[] = [
     status: 'READ',
     tags: ['Business', 'Wealth', 'Entrepreneurship'],
     link: 'https://amzn.to/48O4ccW',
-    cover: 'https://m.media-amazon.com/images/I/71B7OTV7AFL._SY466_.jpg',
+    cover: '/book-covers/millionaire-fastlane.jpg',
     rating: 5
   },
   
@@ -76,7 +76,7 @@ export const BOOKS: Book[] = [
     status: 'READ',
     tags: ['Fiction', 'Fantasy'],
     link: 'https://a.co/d/i1N4Xie',
-    cover: 'https://m.media-amazon.com/images/I/81ibfYk4qmL._SY466_.jpg',
+    cover: '/book-covers/hp-chamber-secrets.png',
     rating: 5
   },
   {
@@ -87,7 +87,7 @@ export const BOOKS: Book[] = [
     progress: 45,
     tags: ['Productivity', 'Learning'],
     link: 'https://a.co/d/5J1lNaJ',
-    cover: 'https://m.media-amazon.com/images/I/71VEWrJ7gEL._SY466_.jpg'
+    cover: '/book-covers/speed-reading.png'
   },
   
   // To Be Read
@@ -116,7 +116,7 @@ export const BOOKS: Book[] = [
     status: 'TBR',
     tags: ['Productivity', 'Knowledge Management'],
     link: 'https://amzn.to/3S1g2to',
-    cover: 'https://m.media-amazon.com/images/I/71xMhJ5v0xL._SY466_.jpg'
+    cover: '/book-covers/building-second-brain.jpg'
   },
   {
     id: 'deep-work',
@@ -143,7 +143,7 @@ export const BOOKS: Book[] = [
     status: 'READ',
     tags: ['Fiction', 'Fantasy'],
     link: 'https://a.co/d/2Xj8KpN',
-    cover: 'https://m.media-amazon.com/images/I/81lz6YXeCgL._SY466_.jpg',
+    cover: '/book-covers/hp-prisoner-azkaban.png',
     rating: 5
   },
   {
@@ -193,7 +193,7 @@ export const BOOKS: Book[] = [
     status: 'TBR',
     tags: ['Memoir', 'Philosophy'],
     link: 'https://a.co/d/3Bz9Kpw',
-    cover: 'https://m.media-amazon.com/images/I/71+jwNGJDCL._SY466_.jpg'
+    cover: '/book-covers/tuesdays-with-morrie.png'
   },
   {
     id: 'how-to-win-friends',
