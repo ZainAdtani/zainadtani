@@ -3,9 +3,9 @@ import { Search, ExternalLink } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/Header";
-import zaLogo from "@/assets/za-logo.png";
 
 interface Tool {
+  id: string;
   name: string;
   url: string;
   description: string;
@@ -15,24 +15,28 @@ interface Tool {
 const TOOLS: Tool[] = [
   // AI & Agents
   {
+    id: "google-ai-studio",
     name: "Google AI Studio",
     url: "https://aistudio.google.com",
     description: "Build and test AI prompts with Google's latest models",
     category: "AI & Agents",
   },
   {
+    id: "claude",
     name: "Claude",
     url: "https://claude.ai",
     description: "AI assistant by Anthropic for conversations and tasks",
     category: "AI & Agents",
   },
   {
+    id: "elevenlabs",
     name: "ElevenLabs (TTS)",
     url: "https://elevenlabs.io",
     description: "Realistic text-to-speech and voice cloning",
     category: "AI & Agents",
   },
   {
+    id: "notebooklm",
     name: "NotebookLM",
     url: "https://notebooklm.google",
     description: "AI-powered research and note-taking assistant",
@@ -40,18 +44,21 @@ const TOOLS: Tool[] = [
   },
   // Courses & Learning
   {
+    id: "udemy",
     name: "Udemy (My Learning)",
     url: "https://www.udemy.com/home/my-courses/learning/",
     description: "Access your enrolled courses and continue learning",
     category: "Courses & Learning",
   },
   {
+    id: "gamma",
     name: "Gamma",
     url: "https://gamma.app",
     description: "Create beautiful presentations with AI assistance",
     category: "Courses & Learning",
   },
   {
+    id: "mastermind",
     name: "Mastermind.com",
     url: "https://www.mastermind.com",
     description: "Connect with experts and join mastermind groups",
@@ -59,62 +66,51 @@ const TOOLS: Tool[] = [
   },
   // Productivity
   {
+    id: "otter",
     name: "Otter.ai",
     url: "https://otter.ai",
     description: "AI meeting notes and transcription service",
     category: "Productivity",
   },
   {
+    id: "send-to-kindle",
     name: "Send to Kindle",
     url: "https://www.amazon.com/sendtokindle",
     description: "Email documents directly to your Kindle device",
     category: "Productivity",
   },
   {
+    id: "mindgrasp",
     name: "Mindgrasp",
     url: "https://mindgrasp.ai",
     description: "AI study assistant for notes and flashcards",
     category: "Productivity",
   },
-  {
-    name: "ShowMyPC",
-    url: "https://showmypc.com",
-    description: "Simple remote desktop and screen sharing",
-    category: "Productivity",
-  },
   // Research & Writing
   {
+    id: "figma",
     name: "Figma",
     url: "https://www.figma.com",
     description: "Collaborative design and prototyping platform",
     category: "Research & Writing",
   },
-  {
-    name: "Euless Public Library",
-    url: "https://www.eulesstx.gov/132/Euless-Public-Library",
-    description: "Access digital resources and library catalog",
-    category: "Research & Writing",
-  },
-  {
-    name: "Reddit",
-    url: "https://www.reddit.com",
-    description: "Communities and discussions on every topic",
-    category: "Research & Writing",
-  },
   // Utilities
   {
+    id: "temp-mail",
     name: "Temp Mail",
     url: "https://temp-mail.org",
     description: "Disposable email addresses for privacy",
     category: "Utilities",
   },
   {
+    id: "napkin-ai",
     name: "Napkin AI",
     url: "https://www.napkin.ai",
     description: "Turn text into visual diagrams instantly",
     category: "Utilities",
   },
   {
+    id: "playlist-manager",
     name: "Playlist Manager",
     url: "http://playlist-manager.com/#/login",
     description: "Organize and manage your music playlists",
@@ -122,13 +118,9 @@ const TOOLS: Tool[] = [
   },
 ];
 
-const CATEGORIES = [
-  "AI & Agents",
-  "Courses & Learning",
-  "Productivity",
-  "Research & Writing",
-  "Utilities",
-];
+const HIDDEN_IDS = new Set(["showmypc", "euless-public-library", "reddit"]);
+
+const SECTION_ORDER = ["AI & Agents", "Productivity", "Research & Writing", "Courses & Learning", "Utilities"];
 
 function ToolCard({ tool }: { tool: Tool }) {
   const getFavicon = (url: string) => {
@@ -186,15 +178,34 @@ function ToolCard({ tool }: { tool: Tool }) {
 export default function Tools() {
   const [query, setQuery] = useState("");
 
+  const displayTools = useMemo(() => {
+    return TOOLS.filter(t => !HIDDEN_IDS.has(t.id));
+  }, []);
+
   const filteredTools = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return null;
-    return TOOLS.filter(
+    return displayTools.filter(
       (tool) =>
         tool.name.toLowerCase().includes(q) ||
         tool.description.toLowerCase().includes(q)
     );
-  }, [query]);
+  }, [query, displayTools]);
+
+  const orderedSections = useMemo(() => {
+    const grouped = displayTools.reduce((acc, tool) => {
+      if (!acc[tool.category]) acc[tool.category] = [];
+      acc[tool.category].push(tool);
+      return acc;
+    }, {} as Record<string, Tool[]>);
+
+    return SECTION_ORDER
+      .map(name => ({
+        name,
+        items: (grouped[name] ?? []).sort((a, b) => a.name.localeCompare(b.name))
+      }))
+      .filter(s => s.items.length > 0);
+  }, [displayTools]);
 
   const isSearching = query.trim().length > 0;
 
@@ -205,18 +216,6 @@ export default function Tools() {
       {/* Hero Section */}
       <div className="border-b border-border bg-gradient-to-b from-background to-muted/20">
         <div className="container mx-auto px-4 py-8 max-w-6xl">
-          <div className="flex items-center gap-4 mb-6">
-            <img
-              src={zaLogo}
-              alt="Zain HQ"
-              className="w-12 h-12 rounded-lg"
-              onError={(e) => {
-                e.currentTarget.style.display = "none";
-                e.currentTarget.nextElementSibling!.classList.remove("hidden");
-              }}
-            />
-            <div className="hidden text-2xl font-bold text-primary">Zain HQ</div>
-          </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-2">Tools</h1>
           <p className="text-lg text-muted-foreground mb-6">
             Everything I use—organized by category
@@ -310,31 +309,28 @@ export default function Tools() {
         ) : (
           // Apple-Style Category Sections with Horizontal Scroll
           <div className="space-y-16">
-            {CATEGORIES.map((category) => {
-              const categoryTools = TOOLS.filter((t) => t.category === category);
-              return (
-                <section key={category} className="space-y-6">
-                  <div className="container mx-auto px-4 max-w-6xl">
-                    <h2 className="text-3xl font-bold tracking-tight">{category}</h2>
-                  </div>
+            {orderedSections.map((section) => (
+              <section key={section.name} className="space-y-6">
+                <div className="container mx-auto px-4 max-w-6xl">
+                  <h2 className="text-3xl font-bold tracking-tight">{section.name}</h2>
+                </div>
+                
+                <div className="relative">
+                  {/* Gradient fade on edges */}
+                  <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+                  <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
                   
-                  <div className="relative">
-                    {/* Gradient fade on edges */}
-                    <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-                    <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-                    
-                    {/* Horizontal scroll container */}
-                    <div className="overflow-x-auto scrollbar-hide">
-                      <div className="flex gap-6 px-4 pb-4 snap-x snap-mandatory" style={{ paddingLeft: 'max(1rem, calc((100vw - 72rem) / 2))', paddingRight: 'max(1rem, calc((100vw - 72rem) / 2))' }}>
-                        {categoryTools.map((tool) => (
-                          <ToolCard key={tool.name} tool={tool} />
-                        ))}
-                      </div>
+                  {/* Horizontal scroll container */}
+                  <div className="overflow-x-auto scrollbar-hide">
+                    <div className="flex gap-6 px-4 pb-4 snap-x snap-mandatory" style={{ paddingLeft: 'max(1rem, calc((100vw - 72rem) / 2))', paddingRight: 'max(1rem, calc((100vw - 72rem) / 2))' }}>
+                      {section.items.map((tool) => (
+                        <ToolCard key={tool.id} tool={tool} />
+                      ))}
                     </div>
                   </div>
-                </section>
-              );
-            })}
+                </div>
+              </section>
+            ))}
           </div>
         )}
       </main>
