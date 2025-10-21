@@ -19,6 +19,7 @@ import BooksHQ from "./pages/BooksHQ";
 import NotFound from "./pages/NotFound";
 import Projects from "./pages/Projects";
 import ProjectPokedex from "./pages/ProjectPokedex";
+import AiAvatars from "./pages/projects/AiAvatars";
 import Countdown from "./pages/Countdown";
 import Blog from "./pages/Blog";
 import TopPrompts from "./pages/blog/TopPrompts";
@@ -49,6 +50,7 @@ const App = () => (
             <Route path="/books" element={<BooksHQ />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/pokedex" element={<ProjectPokedex />} />
+            <Route path="/projects/ai-avatars" element={<AiAvatars />} />
             <Route path="/countdown" element={<Countdown />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/top-10-prompts" element={<TopPrompts />} />
