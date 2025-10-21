@@ -1,6 +1,5 @@
-// src/pages/SecretVault.tsx
 import { useEffect, useState } from "react";
-import { Lock, KeyRound } from "lucide-react";
+import { Lock, KeyRound, Castle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -29,29 +28,51 @@ export default function SecretVault() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center p-6"
+      className="min-h-screen flex items-center justify-center p-6 overflow-x-hidden"
+      /* soft sky + baby blue */
       style={{
-        backgroundImage: `
-          linear-gradient(0deg, rgba(10,12,16,0.75), rgba(10,12,16,0.75)),
-          repeating-linear-gradient(0deg,#c9d6e4 0px,#c9d6e4 22px,#d7e2ee 22px,#d7e2ee 44px),
-          repeating-linear-gradient(90deg,#c9d6e4 0px,#c9d6e4 44px,#d7e2ee 44px,#d7e2ee 88px)
-        `,
-        backgroundSize: "cover, 100% 44px, 88px 100%",
-        backgroundBlendMode: "multiply, normal, normal",
+        background:
+          "radial-gradient(60% 60% at 50% 0%, rgba(154,189,255,.35), transparent 60%), linear-gradient(#eaf3ff, #dfefff)",
       }}
     >
-      <div className="relative w-full max-w-xl">
+      {/* distant castle silhouette */}
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-30">
         <div
-          className="mx-auto px-6 pt-10 pb-8 rounded-3xl shadow-2xl border
-                     bg-[rgba(255,255,255,0.85)] border-white/70 backdrop-blur-md"
-          style={{ clipPath: "path('M20,220 Q220,-20 420,220 L420,380 L20,380 Z')" }}
-        >
-          <div className="max-w-md mx-auto">
-            <div className="flex items-center gap-3 mb-3">
-              <Lock className="w-6 h-6 text-[#3d5a98]" />
-              <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900">Z’s Secret Vault</h1>
+          className="absolute inset-x-0 top-[8%] mx-auto h-40 max-w-5xl"
+          style={{
+            backgroundImage:
+              "linear-gradient(0deg, transparent 35%, rgba(60,80,120,.25)), repeating-linear-gradient(90deg, rgba(80,100,150,.35) 0 10px, rgba(80,100,150,.15) 10px 20px)",
+            mask: "radial-gradient(120% 80% at 50% 0%, #000 60%, transparent 61%)",
+            borderBottomLeftRadius: 9999,
+            borderBottomRightRadius: 9999,
+          }}
+        />
+      </div>
+
+      {/* gate */}
+      <div className="w-full max-w-md">
+        <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-xl ring-1 ring-black/5">
+          {/* turrets header */}
+          <div
+            className="relative h-16 rounded-t-2xl"
+            style={{
+              background: "repeating-linear-gradient(90deg,#c7d4ee 0 36px,#b8c6e3 36px 72px)",
+            }}
+          >
+            {/* merlons */}
+            <div className="absolute -top-3 left-3 right-3 flex gap-3">
+              {Array.from({ length: 7 }).map((_, i) => (
+                <div key={i} className="h-6 flex-1 rounded-md bg-[#9fb6e8]" />
+              ))}
             </div>
-            <p className="text-slate-600 mb-6">Whisper your PIN to open the vault.</p>
+          </div>
+
+          <div className="px-6 pt-5 pb-6">
+            <div className="flex items-center gap-3 mb-2">
+              <Castle className="w-6 h-6 text-[#3d5a98]" />
+              <h1 className="text-2xl font-extrabold text-slate-900">Z’s Secret Vault</h1>
+            </div>
+            <p className="text-slate-600 mb-5">Enter your PIN to pass the gate.</p>
 
             <form onSubmit={handleUnlock} className="space-y-4">
               <Input
@@ -65,7 +86,7 @@ export default function SecretVault() {
               {error && <p className="text-sm text-red-600 -mt-2">{error}</p>}
               <Button
                 type="submit"
-                className="w-full h-12 text-base rounded-xl bg-[#4e7aff] hover:bg-[#3f6ff5] 
+                className="w-full h-12 text-base rounded-xl bg-[#4e7aff] hover:bg-[#3f6ff5]
                            active:translate-y-[1px] shadow-[0_8px_20px_rgba(78,122,255,.35)]"
               >
                 <KeyRound className="w-4 h-4 mr-2" />
@@ -73,14 +94,6 @@ export default function SecretVault() {
               </Button>
             </form>
           </div>
-        </div>
-
-        {/* Brass rim */}
-        <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
-          <div
-            className="w-[520px] h-[520px] rounded-full border-[10px] border-amber-600/80
-                          shadow-[0_0_0_8px_rgba(255,255,255,.25)_inset] opacity-70"
-          />
         </div>
       </div>
     </div>

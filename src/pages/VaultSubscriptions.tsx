@@ -46,6 +46,9 @@ export default function VaultSubscriptions() {
   const [formCategory, setFormCategory] = useState<Subscription["category"]>("Personal");
   const [formNextBill, setFormNextBill] = useState("");
 
+  const MIGRATION_VERSION_KEY = "vault_subs_migration_version";
+  const CURRENT_MIGRATION = "2"; // bump this if you change migration later
+
   useEffect(() => {
     const isAuth = localStorage.getItem(STORAGE_KEY) === "true";
     setAuthorized(isAuth);
@@ -54,56 +57,76 @@ export default function VaultSubscriptions() {
       return;
     }
 
-    // Load current subs (from storage or seed)
+    // Load current subs or seed
     const stored = localStorage.getItem(SUBSCRIPTIONS_KEY);
-    const base = stored ? JSON.parse(stored) : SEED_SUBSCRIPTIONS;
+    let next: Subscription[] = stored ? JSON.parse(stored) : SEED_SUBSCRIPTIONS;
 
-    // Remove Netflix & 1Password
-    const removeNames = new Set(["Netflix", "1Password"]);
-    let next: Subscription[] = base.filter((s: Subscription) => !removeNames.has(s.name));
+    // 1) Always dedupe by name (keeps the first occurrence)
+    const seen = new Set<string>();
+    next = next.filter((s) => {
+      const k = s.name.trim().toLowerCase();
+      if (seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    });
 
-    // Helper: add or update by name
+    // Helper: upsert by name
     const upsert = (sub: Omit<Subscription, "id"> & { id?: string }) => {
-      const existing = next.find((x) => x.name.toLowerCase() === sub.name.toLowerCase());
-      if (existing) {
-        next = next.map((x) => (x.id === existing.id ? { ...existing, ...sub, id: existing.id } : x));
+      const k = sub.name.trim().toLowerCase();
+      const idx = next.findIndex((x) => x.name.trim().toLowerCase() === k);
+      if (idx >= 0) {
+        next[idx] = { ...next[idx], ...sub, id: next[idx].id }; // keep id
       } else {
-        next = [...next, { id: Date.now().toString() + Math.random().toString().slice(2, 6), paused: false, ...sub }];
+        next.push({
+          id: Date.now().toString() + Math.random().toString().slice(2, 6),
+          paused: false,
+          ...sub,
+        });
       }
     };
 
-    // Keep your Spotify Family + HeyGen (we don’t touch them),
-    // and ADD / UPDATE these three:
-    upsert({
-      name: "Bookmory",
-      amount: "$31",
-      method: "Apple CC 2708",
-      cadence: "Yearly",
-      category: "Personal",
-      nextBillDate: "",
-      paused: false,
-    });
+    // 2) Run migration ONCE per version
+    const already = localStorage.getItem(MIGRATION_VERSION_KEY) === CURRENT_MIGRATION;
+    if (!already) {
+      // Remove Netflix & 1Password
+      const removeNames = new Set(["netflix", "1password"]);
+      next = next.filter((s) => !removeNames.has(s.name.trim().toLowerCase()));
 
-    upsert({
-      name: "Goodnotes",
-      amount: "$12",
-      method: "Apple CC 2708",
-      cadence: "Yearly",
-      category: "Work",
-      nextBillDate: "",
-      paused: false,
-    });
+      // Add / update these three
+      upsert({
+        name: "Bookmory",
+        amount: "$31",
+        method: "Apple CC 2708",
+        cadence: "Yearly",
+        category: "Personal",
+        nextBillDate: "",
+        paused: false,
+      });
 
-    upsert({
-      name: "iCloud+",
-      amount: "$3",
-      method: "Apple CC 2708",
-      cadence: "Monthly",
-      category: "Utilities",
-      nextBillDate: "",
-      paused: false,
-    });
+      upsert({
+        name: "Goodnotes",
+        amount: "$12",
+        method: "Apple CC 2708",
+        cadence: "Yearly",
+        category: "Work",
+        nextBillDate: "",
+        paused: false,
+      });
 
+      upsert({
+        name: "iCloud+",
+        amount: "$3",
+        method: "Apple CC 2708",
+        cadence: "Monthly",
+        category: "Utilities",
+        nextBillDate: "",
+        paused: false,
+      });
+
+      localStorage.setItem(MIGRATION_VERSION_KEY, CURRENT_MIGRATION);
+    }
+
+    // Save & show
     localStorage.setItem(SUBSCRIPTIONS_KEY, JSON.stringify(next));
     setSubscriptions(next);
   }, []);
