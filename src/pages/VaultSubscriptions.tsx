@@ -6,21 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Subscription, SEED_SUBSCRIPTIONS } from "@/types/subscription";
 import { calculateTotals } from "@/utils/subscription-utils";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Toggle } from "@/components/ui/toggle";
 import {
@@ -66,14 +54,58 @@ export default function VaultSubscriptions() {
       return;
     }
 
-    // Load subscriptions
+    // Load current subs (from storage or seed)
     const stored = localStorage.getItem(SUBSCRIPTIONS_KEY);
-    if (stored) {
-      setSubscriptions(JSON.parse(stored));
-    } else {
-      setSubscriptions(SEED_SUBSCRIPTIONS);
-      localStorage.setItem(SUBSCRIPTIONS_KEY, JSON.stringify(SEED_SUBSCRIPTIONS));
-    }
+    const base = stored ? JSON.parse(stored) : SEED_SUBSCRIPTIONS;
+
+    // Remove Netflix & 1Password
+    const removeNames = new Set(["Netflix", "1Password"]);
+    let next: Subscription[] = base.filter((s: Subscription) => !removeNames.has(s.name));
+
+    // Helper: add or update by name
+    const upsert = (sub: Omit<Subscription, "id"> & { id?: string }) => {
+      const existing = next.find((x) => x.name.toLowerCase() === sub.name.toLowerCase());
+      if (existing) {
+        next = next.map((x) => (x.id === existing.id ? { ...existing, ...sub, id: existing.id } : x));
+      } else {
+        next = [...next, { id: Date.now().toString() + Math.random().toString().slice(2, 6), paused: false, ...sub }];
+      }
+    };
+
+    // Keep your Spotify Family + HeyGen (we don’t touch them),
+    // and ADD / UPDATE these three:
+    upsert({
+      name: "Bookmory",
+      amount: "$31",
+      method: "Apple CC 2708",
+      cadence: "Yearly",
+      category: "Personal",
+      nextBillDate: "",
+      paused: false,
+    });
+
+    upsert({
+      name: "Goodnotes",
+      amount: "$12",
+      method: "Apple CC 2708",
+      cadence: "Yearly",
+      category: "Work",
+      nextBillDate: "",
+      paused: false,
+    });
+
+    upsert({
+      name: "iCloud+",
+      amount: "$3",
+      method: "Apple CC 2708",
+      cadence: "Monthly",
+      category: "Utilities",
+      nextBillDate: "",
+      paused: false,
+    });
+
+    localStorage.setItem(SUBSCRIPTIONS_KEY, JSON.stringify(next));
+    setSubscriptions(next);
   }, []);
 
   useEffect(() => {
@@ -121,28 +153,26 @@ export default function VaultSubscriptions() {
     };
 
     if (editingSub) {
-      setSubscriptions(subs => subs.map(s => s.id === editingSub.id ? newSub : s));
+      setSubscriptions((subs) => subs.map((s) => (s.id === editingSub.id ? newSub : s)));
     } else {
-      setSubscriptions(subs => [...subs, newSub]);
+      setSubscriptions((subs) => [...subs, newSub]);
     }
 
     setIsDialogOpen(false);
   };
 
   const handleTogglePause = (id: string) => {
-    setSubscriptions(subs =>
-      subs.map(s => (s.id === id ? { ...s, paused: !s.paused } : s))
-    );
+    setSubscriptions((subs) => subs.map((s) => (s.id === id ? { ...s, paused: !s.paused } : s)));
   };
 
   const handleDelete = () => {
     if (!deleteId) return;
-    setSubscriptions(subs => subs.filter(s => s.id !== deleteId));
+    setSubscriptions((subs) => subs.filter((s) => s.id !== deleteId));
     setDeleteId(null);
   };
 
   const filteredSubs = subscriptions
-    .filter(s => {
+    .filter((s) => {
       const matchesSearch = s.name.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesCadence = filterCadence === "all" || s.cadence === filterCadence;
       const matchesCategory = filterCategory === "all" || s.category === filterCategory;
@@ -172,14 +202,15 @@ export default function VaultSubscriptions() {
             <a href="/vault" className="text-sm underline hover:text-blue-400 transition flex items-center gap-1">
               <ArrowLeft className="w-4 h-4" /> Back to Vault
             </a>
-            <a href="/" className="text-sm underline hover:text-blue-400 transition">Home</a>
+            <a href="/" className="text-sm underline hover:text-blue-400 transition">
+              Home
+            </a>
           </div>
         </div>
       </header>
 
       <main className="py-10 relative">
         <div className="container mx-auto px-4 max-w-7xl space-y-8">
-          
           {/* Summary Strip */}
           <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-6 shadow-2xl">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
@@ -223,7 +254,7 @@ export default function VaultSubscriptions() {
                 className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/50"
               />
             </div>
-            
+
             <div className="flex gap-2 flex-wrap">
               <Select value={filterCadence} onValueChange={setFilterCadence}>
                 <SelectTrigger className="w-32 bg-white/10 border-white/20 text-white">
@@ -269,7 +300,7 @@ export default function VaultSubscriptions() {
 
           {/* Subscriptions Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredSubs.map(sub => (
+            {filteredSubs.map((sub) => (
               <SubscriptionCard
                 key={sub.id}
                 subscription={sub}
@@ -297,7 +328,7 @@ export default function VaultSubscriptions() {
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="bg-[#1a1f2e] border-white/20 text-white">
           <DialogHeader>
-            <DialogTitle>{editingSub ? 'Edit' : 'Add'} Subscription</DialogTitle>
+            <DialogTitle>{editingSub ? "Edit" : "Add"} Subscription</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div>
@@ -369,8 +400,12 @@ export default function VaultSubscriptions() {
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>Cancel</Button>
-            <Button onClick={handleSave} className="bg-blue-500 hover:bg-blue-600">Save</Button>
+            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleSave} className="bg-blue-500 hover:bg-blue-600">
+              Save
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -385,8 +420,12 @@ export default function VaultSubscriptions() {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="bg-white/10 border-white/20 text-white hover:bg-white/20">Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleDelete} className="bg-red-500 hover:bg-red-600">Delete</AlertDialogAction>
+            <AlertDialogCancel className="bg-white/10 border-white/20 text-white hover:bg-white/20">
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction onClick={handleDelete} className="bg-red-500 hover:bg-red-600">
+              Delete
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

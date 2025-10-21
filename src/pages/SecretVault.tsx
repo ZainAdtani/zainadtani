@@ -1,119 +1,88 @@
+// src/pages/SecretVault.tsx
 import { useEffect, useState } from "react";
-import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Lock, KeyRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Lock, Unlock } from "lucide-react";
-import SubscriptionsVault from "@/components/SubscriptionsVault";
+import { Input } from "@/components/ui/input";
 
-/** ====== CONFIG ====== */
-const VAULT_PIN = import.meta.env.VITE_SECRET_PIN || "2311";
 const STORAGE_KEY = "vault_session";
+const VAULT_PIN = import.meta.env.VITE_SECRET_PIN || "2311";
 
-/** ====== MAIN ====== */
 export default function SecretVault() {
   const [pin, setPin] = useState("");
-  const [granted, setGranted] = useState(false);
   const [error, setError] = useState("");
 
-  // Session gate + auto-lock on leave
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) === "true";
-    setGranted(stored);
-    const onLeave = () => localStorage.removeItem(STORAGE_KEY);
-    window.addEventListener("beforeunload", onLeave);
-    const onHide = () => document.hidden && onLeave();
-    document.addEventListener("visibilitychange", onHide);
-    return () => {
-      onLeave();
-      window.removeEventListener("beforeunload", onLeave);
-      document.removeEventListener("visibilitychange", onHide);
-    };
+    if (localStorage.getItem(STORAGE_KEY) === "true") {
+      window.location.href = "/vault/subscriptions";
+    }
   }, []);
 
-  const unlock = (e?: React.FormEvent) => {
+  const handleUnlock = (e?: React.FormEvent) => {
     e?.preventDefault();
     if (pin.trim() === VAULT_PIN) {
       localStorage.setItem(STORAGE_KEY, "true");
-      setGranted(true);
-      setError("");
+      window.location.href = "/vault/subscriptions";
     } else {
-      setError("Incorrect PIN. Try again.");
+      setError("Wrong incantation… try again.");
     }
   };
-  
-  const lock = () => {
-    localStorage.removeItem(STORAGE_KEY);
-    setGranted(false);
-    setPin("");
-  };
 
-  /** ====== LOCK SCREEN (LIGHT THEME) ====== */
-  if (!granted) {
-    return (
-      <div
-        className="min-h-screen flex items-center justify-center px-4"
-        style={{ background: "linear-gradient(180deg,#ECF5FF, #F7FBFF)" }}
-      >
-        <Card className="max-w-md w-full p-8 border border-[#CFE6FF] bg-white/90 backdrop-blur rounded-2xl shadow-lg">
-          <div className="flex items-center gap-2 mb-4">
-            <Lock className="w-5 h-5 text-[#3B82F6]" />
-            <h1 className="text-2xl font-bold text-[#0F172A]">Z's Secret Vault</h1>
-          </div>
-          <p className="text-sm text-[#334155] mb-4">Enter your PIN to access subscriptions.</p>
-          <form onSubmit={unlock} className="space-y-3">
-            <Input
-              type="password"
-              inputMode="numeric"
-              placeholder="Enter PIN"
-              value={pin}
-              onChange={(e) => setPin(e.target.value)}
-              aria-label="Vault PIN"
-              className="h-12"
-            />
-            <Button type="submit" className="w-full h-12">
-              Unlock
-            </Button>
-            {error && <p className="text-red-600 text-sm mt-1">{error}</p>}
-          </form>
-        </Card>
-      </div>
-    );
-  }
-
-  /** ====== PAGE (LIGHT BABY-BLUE THEME) ====== */
   return (
     <div
-      className="min-h-screen relative overflow-hidden"
-      style={{ background: "linear-gradient(180deg,#ECF5FF 0%, #F7FBFF 60%, #FFFFFF 100%)" }}
+      className="min-h-screen flex items-center justify-center p-6"
+      style={{
+        backgroundImage: `
+          linear-gradient(0deg, rgba(10,12,16,0.75), rgba(10,12,16,0.75)),
+          repeating-linear-gradient(0deg,#c9d6e4 0px,#c9d6e4 22px,#d7e2ee 22px,#d7e2ee 44px),
+          repeating-linear-gradient(90deg,#c9d6e4 0px,#c9d6e4 44px,#d7e2ee 44px,#d7e2ee 88px)
+        `,
+        backgroundSize: "cover, 100% 44px, 88px 100%",
+        backgroundBlendMode: "multiply, normal, normal",
+      }}
     >
-      {/* soft baby-blue blobs */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(700px 400px at 15% 0%, rgba(59,130,246,0.10), transparent), radial-gradient(800px 500px at 95% 15%, rgba(16,163,127,0.10), transparent)",
-        }}
-      />
-      <header className="py-8 border-b border-[#D9ECFF]/70 bg-white/60 backdrop-blur sticky top-0 z-10">
-        <div className="container mx-auto px-4 max-w-6xl flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Lock className="w-5 h-5 text-[#3B82F6]" />
-            <h1 className="text-2xl font-bold text-[#0F172A]">Secret Vault</h1>
-          </div>
-          <div className="flex items-center gap-3">
-            <a href="/" className="text-sm underline text-[#1E293B]">
-              Home
-            </a>
-            <Button variant="outline" onClick={lock}>
-              <Unlock className="w-4 h-4 mr-2" /> Lock
-            </Button>
+      <div className="relative w-full max-w-xl">
+        <div
+          className="mx-auto px-6 pt-10 pb-8 rounded-3xl shadow-2xl border
+                     bg-[rgba(255,255,255,0.85)] border-white/70 backdrop-blur-md"
+          style={{ clipPath: "path('M20,220 Q220,-20 420,220 L420,380 L20,380 Z')" }}
+        >
+          <div className="max-w-md mx-auto">
+            <div className="flex items-center gap-3 mb-3">
+              <Lock className="w-6 h-6 text-[#3d5a98]" />
+              <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900">Z’s Secret Vault</h1>
+            </div>
+            <p className="text-slate-600 mb-6">Whisper your PIN to open the vault.</p>
+
+            <form onSubmit={handleUnlock} className="space-y-4">
+              <Input
+                inputMode="numeric"
+                value={pin}
+                onChange={(e) => setPin(e.target.value)}
+                placeholder="····"
+                className="h-14 text-lg bg-slate-900 text-white border-2 border-[#7aa2ff]
+                           focus-visible:ring-0 focus-visible:border-[#4e7aff] rounded-xl"
+              />
+              {error && <p className="text-sm text-red-600 -mt-2">{error}</p>}
+              <Button
+                type="submit"
+                className="w-full h-12 text-base rounded-xl bg-[#4e7aff] hover:bg-[#3f6ff5] 
+                           active:translate-y-[1px] shadow-[0_8px_20px_rgba(78,122,255,.35)]"
+              >
+                <KeyRound className="w-4 h-4 mr-2" />
+                Unlock
+              </Button>
+            </form>
           </div>
         </div>
-      </header>
 
-      <main>
-        <SubscriptionsVault />
-      </main>
+        {/* Brass rim */}
+        <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
+          <div
+            className="w-[520px] h-[520px] rounded-full border-[10px] border-amber-600/80
+                          shadow-[0_0_0_8px_rgba(255,255,255,.25)_inset] opacity-70"
+          />
+        </div>
+      </div>
     </div>
   );
 }
