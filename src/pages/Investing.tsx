@@ -126,8 +126,8 @@ const Investing = () => {
                 High-yield savings account for building emergency funds and short-term savings goals.
               </p>
               <Button asChild variant="outline" className="w-full">
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                  Link Coming Soon
+                <a href="https://www.marcus.com/share/ZAI-3SI-69TP" target="_blank" rel="noopener noreferrer">
+                  Open Marcus Account →
                 </a>
               </Button>
             </Card>
@@ -327,25 +327,45 @@ const Investing = () => {
       {/* Book in Progress Section */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-accent/5 via-background to-primary/5">
         <div className="container mx-auto px-4 max-w-6xl">
-          <Card className="p-8 md:p-12 text-center border-2 border-primary/20">
-            <BookOpen className="w-16 h-16 text-primary mx-auto mb-6" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              The School of <span className="text-primary">Financial Sorcery</span>
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
-              I'm currently writing a comprehensive guide that demystifies wealth-building, combining practical
-              investing strategies with mindset shifts that transform your relationship with money. This book will cover
-              everything from stock market fundamentals to real estate, business ventures, and the psychology of wealth
-              creation.
-            </p>
-            <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary/20 to-accent/20 text-foreground font-bold rounded-lg">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
-              </span>
-              BOOK IN PROGRESS
-            </div>
-          </Card>
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="p-8 md:p-12 text-center border-2 border-primary/20">
+              <BookOpen className="w-16 h-16 text-primary mx-auto mb-6" />
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                The School of <span className="text-primary">Financial Sorcery</span>
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
+                I'm currently writing a comprehensive guide that demystifies wealth-building, combining practical
+                investing strategies with mindset shifts that transform your relationship with money. This book will cover
+                everything from stock market fundamentals to real estate, business ventures, and the psychology of wealth
+                creation.
+              </p>
+              <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary/20 to-accent/20 text-foreground font-bold rounded-lg">
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                </span>
+                BOOK IN PROGRESS
+              </div>
+            </Card>
+
+            <Card className="p-8 md:p-12 text-center border-2 border-accent/20">
+              <Target className="w-16 h-16 text-accent mx-auto mb-6" />
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Financial <span className="text-accent">Treasure Map</span>
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
+                An interactive game to help you visualize and achieve your financial goals. Make smart money decisions,
+                unlock achievements, and build your wealth journey through gamification. Coming soon!
+              </p>
+              <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-accent/20 to-primary/20 text-foreground font-bold rounded-lg">
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-accent"></span>
+                </span>
+                COMING SOON
+              </div>
+            </Card>
+          </div>
         </div>
       </section>
 

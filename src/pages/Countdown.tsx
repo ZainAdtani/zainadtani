@@ -1,138 +1,118 @@
-import { useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+import { Card, CardContent } from "@/components/ui/card";
 
-interface TimeLeft {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-  isComplete: boolean;
-}
-
-interface CountdownCardProps {
+type TimerCfg = {
   title: string;
-  targetDate: Date;
   emoji: string;
-  gradient: string;
-  startDate?: Date;
+  gradient: string;      // Tailwind from-*/to-* classes
+  start: string;         // ISO
+  target: string;        // ISO
+};
+
+const TIMER_CONFIG: TimerCfg[] = [
+  { title: "Feb 4th",  emoji: "🎉", gradient: "from-purple-500 to-pink-500",  start: "2025-01-01T00:00:00", target: "2026-02-04T00:00:00" },
+  { title: "Christmas",emoji: "🎄", gradient: "from-emerald-500 to-rose-500", start: "2025-01-01T00:00:00", target: "2025-12-25T00:00:00" },
+  { title: "New Year", emoji: "🎆", gradient: "from-indigo-500 to-violet-500",start: "2025-01-01T00:00:00", target: "2026-01-01T00:00:00" },
+];
+
+type TL = { days: number; hours: number; minutes: number; seconds: number; done: boolean; };
+const clamp = (n:number,min=0,max=100)=>Math.min(max,Math.max(min,n));
+
+function diff(target: Date): TL {
+  const ms = +target - +new Date();
+  if (ms <= 0) return { days:0,hours:0,minutes:0,seconds:0,done:true };
+  const days = Math.floor(ms / 86400000);
+  const hours = Math.floor((ms % 86400000) / 3600000);
+  const minutes = Math.floor((ms % 3600000) / 60000);
+  const seconds = Math.floor((ms % 60000) / 1000);
+  return { days, hours, minutes, seconds, done:false };
 }
 
-const calculateTimeLeft = (targetDate: Date): TimeLeft => {
-  const now = new Date();
-  const difference = targetDate.getTime() - now.getTime();
+function progressPct(start: Date, target: Date) {
+  const total = +target - +start;
+  const elapsed = +new Date() - +start;
+  return clamp((elapsed / total) * 100);
+}
 
-  if (difference <= 0) {
-    return { days: 0, hours: 0, minutes: 0, seconds: 0, isComplete: true };
-  }
-
-  return {
-    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((difference / 1000 / 60) % 60),
-    seconds: Math.floor((difference / 1000) % 60),
-    isComplete: false,
-  };
-};
-
-const calculateProgress = (startDate: Date, targetDate: Date): number => {
-  const now = new Date();
-  const total = targetDate.getTime() - startDate.getTime();
-  const elapsed = now.getTime() - startDate.getTime();
-  return Math.min(Math.max((elapsed / total) * 100, 0), 100);
-};
-
-function CountdownCard({ title, targetDate, emoji, gradient, startDate = new Date() }: CountdownCardProps) {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft(targetDate));
-  const [progress, setProgress] = useState(calculateProgress(startDate, targetDate));
+function RingTimer({ title, emoji, startISO, targetISO, gradient }: { title:string; emoji:string; startISO:string; targetISO:string; gradient:string; }) {
+  const start = useMemo(()=>new Date(startISO),[startISO]);
+  const target= useMemo(()=>new Date(targetISO),[targetISO]);
+  const [tl, setTl] = useState<TL>(diff(target));
+  const [pct, setPct] = useState(progressPct(start, target));
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft(targetDate));
-      setProgress(calculateProgress(startDate, targetDate));
+    const id = setInterval(() => {
+      setTl(diff(target));
+      setPct(progressPct(start, target));
     }, 1000);
+    return () => clearInterval(id);
+  }, [start, target]);
 
-    return () => clearInterval(timer);
-  }, [targetDate, startDate]);
+  // SVG ring math
+  const r = 80;                      // radius
+  const C = 2 * Math.PI * r;         // circumference
+  const offset = C * (1 - pct / 100);
 
   return (
-    <Card className={`relative overflow-hidden bg-gradient-to-br ${gradient} border-0 shadow-lg hover:shadow-xl transition-all duration-300`}>
+    <Card className={`relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all bg-gradient-to-br ${gradient}`}>
+      {/* glass veil */}
       <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
-      <div className="relative z-10">
-        <CardHeader>
-          <CardTitle className="text-2xl text-white flex items-center gap-2">
-            <span className="text-4xl">{emoji}</span>
-            <span>{title}</span>
-          </CardTitle>
-          <CardDescription className="text-white/80">
-            {timeLeft.isComplete ? "Time's up!" : "Counting down..."}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          {timeLeft.isComplete ? (
-            <div className="text-center py-8">
-              <p className="text-4xl font-bold text-white animate-bounce">🎉 It's here! 🎉</p>
+      <CardContent className="relative z-10 p-6">
+        <div className="flex items-start justify-between mb-4">
+          <div className="text-white/90">
+            <div className="text-2xl font-bold flex items-center gap-2">
+              <span className="text-3xl">{emoji}</span>
+              {title}
             </div>
-          ) : (
-            <>
-              <div className="grid grid-cols-4 gap-3">
-                <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-                  <div className="text-3xl md:text-4xl font-bold text-white tabular-nums">
-                    {timeLeft.days}
-                  </div>
-                  <div className="text-xs md:text-sm text-white/80 uppercase tracking-wider mt-1">
-                    Days
-                  </div>
-                </div>
-                <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-                  <div className="text-3xl md:text-4xl font-bold text-white tabular-nums">
-                    {timeLeft.hours}
-                  </div>
-                  <div className="text-xs md:text-sm text-white/80 uppercase tracking-wider mt-1">
-                    Hours
-                  </div>
-                </div>
-                <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-                  <div className="text-3xl md:text-4xl font-bold text-white tabular-nums">
-                    {timeLeft.minutes}
-                  </div>
-                  <div className="text-xs md:text-sm text-white/80 uppercase tracking-wider mt-1">
-                    Min
-                  </div>
-                </div>
-                <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-                  <div className="text-3xl md:text-4xl font-bold text-white tabular-nums">
-                    {timeLeft.seconds}
-                  </div>
-                  <div className="text-xs md:text-sm text-white/80 uppercase tracking-wider mt-1">
-                    Sec
-                  </div>
-                </div>
-              </div>
+            <div className="text-xs text-white/70">{tl.done ? "Time's up!" : "Counting down…"}</div>
+          </div>
+          <div className="text-right text-white/80 text-xs tabular-nums">{pct.toFixed(1)}%</div>
+        </div>
 
-              {/* 3D Glowing Progress Bar */}
-              <div className="relative">
-                <div className="relative h-8 w-full overflow-hidden rounded-full bg-black/30 backdrop-blur-sm border border-white/20 shadow-inner">
-                  <div
-                    className="h-full rounded-full bg-gradient-to-r from-white/90 to-white/70 transition-all duration-500 relative"
-                    style={{
-                      width: `${progress}%`,
-                      boxShadow:
-                        "0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.5)",
-                    }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/30 rounded-full animate-pulse" />
-                  </div>
-                </div>
-                <p className="text-center text-white/70 text-xs mt-2">
-                  {progress.toFixed(1)}% complete
-                </p>
+        <div className="grid gap-6 md:grid-cols-[220px_1fr] items-center">
+          {/* Circular ring */}
+          <div className="relative mx-auto">
+            <svg width="220" height="220" viewBox="0 0 220 220" role="img" aria-label={`${title} ${pct.toFixed(1)} percent complete`}>
+              <g transform="translate(110,110)">
+                <circle r={r} fill="none" stroke="rgba(255,255,255,.25)" strokeWidth="14" />
+                <circle
+                  r={r}
+                  fill="none"
+                  stroke="white"
+                  strokeOpacity="0.95"
+                  strokeWidth="14"
+                  strokeDasharray={C}
+                  strokeDashoffset={offset}
+                  strokeLinecap="round"
+                  transform="rotate(-90)"
+                />
+              </g>
+            </svg>
+            {/* center content */}
+            <div className="absolute inset-0 grid place-items-center">
+              <div className="text-center">
+                <div className="text-5xl font-extrabold text-white tabular-nums leading-none">{tl.days}</div>
+                <div className="text-white/70 text-xs uppercase tracking-wider">Days</div>
               </div>
-            </>
-          )}
-        </CardContent>
-      </div>
+            </div>
+          </div>
+
+          {/* H / M / S blocks */}
+          <div className="grid grid-cols-3 gap-3">
+            {[
+              { label: "Hours", value: tl.hours },
+              { label: "Min",   value: tl.minutes },
+              { label: "Sec",   value: tl.seconds },
+            ].map((b) => (
+              <div key={b.label} className="rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm text-center p-4">
+                <div className="text-3xl font-bold text-white tabular-nums">{b.value}</div>
+                <div className="text-[11px] uppercase tracking-widest text-white/80 mt-1">{b.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </CardContent>
     </Card>
   );
 }
@@ -142,41 +122,25 @@ export default function Countdown() {
     <>
       <Helmet>
         <title>Countdown Timers – Zain</title>
-        <meta name="description" content="Track important dates with beautiful countdown timers and progress indicators." />
+        <meta name="description" content="Track important dates with beautiful countdown timers." />
       </Helmet>
-
-      <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <div className="container mx-auto px-4 py-10 max-w-7xl">
         <div className="mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Countdown Timers
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            Track important dates with style ⏰
-          </p>
+          <h1 className="text-5xl font-bold mb-2 text-sky-500/90">Countdown Timers</h1>
+          <p className="text-lg text-muted-foreground">Track important dates with style ⏰</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <CountdownCard
-            title="Feb 4th"
-            targetDate={new Date("2026-02-04T00:00:00")}
-            emoji="🎉"
-            gradient="from-purple-500 to-pink-500"
-            startDate={new Date("2025-01-01T00:00:00")}
-          />
-          <CountdownCard
-            title="Christmas"
-            targetDate={new Date("2025-12-25T00:00:00")}
-            emoji="🎄"
-            gradient="from-red-500 to-green-500"
-            startDate={new Date("2025-01-01T00:00:00")}
-          />
-          <CountdownCard
-            title="New Year"
-            targetDate={new Date("2026-01-01T00:00:00")}
-            emoji="🎆"
-            gradient="from-blue-500 to-purple-500"
-            startDate={new Date("2025-01-01T00:00:00")}
-          />
+          {TIMER_CONFIG.map((t) => (
+            <RingTimer
+              key={t.title}
+              title={t.title}
+              emoji={t.emoji}
+              startISO={t.start}
+              targetISO={t.target}
+              gradient={t.gradient}
+            />
+          ))}
         </div>
       </div>
     </>
