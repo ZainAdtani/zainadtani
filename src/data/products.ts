@@ -1,5 +1,5 @@
 import { ShoppingBag, Users, BookOpen, Heart, Sparkles, type LucideIcon } from "lucide-react";
-import authorGuide from "@/assets/author-guide-preview.png";
+import authorGuide from "@/assets/author-kit-cover.png";
 import authorGuidePDF from "@/assets/author-guide.pdf";
 import walkingWorkday from "@/assets/walking-workday-new.png";
 import quietYourGut from "@/assets/quiet-your-gut.png";
@@ -40,7 +40,7 @@ export const ALL_PRODUCTS: Product[] = [
     category: "Guides",
     desc: "Proven framework to publish in ~6 months. Includes Kindle, print, and audiobook.",
     media: authorGuide,
-    cta: { label: "Download Free PDF →", href: authorGuidePDF, download: true },
+    cta: { label: "Download Free PDF →", href: "https://whop.com/you-bestselling-author", disabled: false },
     tags: ["Free", "PDF"],
     badge: "Preview",
     featured: true,
