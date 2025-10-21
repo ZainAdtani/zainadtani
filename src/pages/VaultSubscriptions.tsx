@@ -57,78 +57,82 @@ export default function VaultSubscriptions() {
       return;
     }
 
-    // Load current subs or seed
-    const stored = localStorage.getItem(SUBSCRIPTIONS_KEY);
-    let next: Subscription[] = stored ? JSON.parse(stored) : SEED_SUBSCRIPTIONS;
+    // Build EXACT subscription list (deduped by name)
+    type S = Subscription;
+    const byName = new Map<string, S>();
 
-    // 1) Always dedupe by name (keeps the first occurrence)
-    const seen = new Set<string>();
-    next = next.filter((s) => {
-      const k = s.name.trim().toLowerCase();
-      if (seen.has(k)) return false;
-      seen.add(k);
-      return true;
-    });
-
-    // Helper: upsert by name
-    const upsert = (sub: Omit<Subscription, "id"> & { id?: string }) => {
-      const k = sub.name.trim().toLowerCase();
-      const idx = next.findIndex((x) => x.name.trim().toLowerCase() === k);
-      if (idx >= 0) {
-        next[idx] = { ...next[idx], ...sub, id: next[idx].id }; // keep id
-      } else {
-        next.push({
+    const add = (s: Omit<S, "id"> & { id?: string }) => {
+      const nameKey = s.name.trim().toLowerCase();
+      if (!byName.has(nameKey)) {
+        byName.set(nameKey, {
           id: Date.now().toString() + Math.random().toString().slice(2, 6),
           paused: false,
-          ...sub,
-        });
+          ...s,
+        } as S);
       }
     };
 
-    // 2) Run migration ONCE per version
-    const already = localStorage.getItem(MIGRATION_VERSION_KEY) === CURRENT_MIGRATION;
-    if (!already) {
-      // Remove Netflix & 1Password
-      const removeNames = new Set(["netflix", "1password"]);
-      next = next.filter((s) => !removeNames.has(s.name.trim().toLowerCase()));
+    // 1) Spotify Family — keep
+    add({
+      name: "Spotify Family",
+      amount: "$23",
+      method: "",
+      cadence: "Monthly",
+      category: "Personal",
+      nextBillDate: "",
+      paused: false,
+    });
 
-      // Add / update these three
-      upsert({
-        name: "Bookmory",
-        amount: "$31",
-        method: "Apple CC 2708",
-        cadence: "Yearly",
-        category: "Personal",
-        nextBillDate: "",
-        paused: false,
-      });
+    // 2) HeyGen AI — keep
+    add({
+      name: "HeyGen AI",
+      amount: "$290",
+      method: "",
+      cadence: "Yearly",
+      category: "Work",
+      nextBillDate: "",
+      paused: false,
+    });
 
-      upsert({
-        name: "Goodnotes",
-        amount: "$12",
-        method: "Apple CC 2708",
-        cadence: "Yearly",
-        category: "Work",
-        nextBillDate: "",
-        paused: false,
-      });
+    // 3) Bookmory — add
+    add({
+      name: "Bookmory",
+      amount: "$31",
+      method: "Apple CC 2708",
+      cadence: "Yearly",
+      category: "Personal",
+      nextBillDate: "",
+      paused: false,
+    });
 
-      upsert({
-        name: "iCloud+",
-        amount: "$3",
-        method: "Apple CC 2708",
-        cadence: "Monthly",
-        category: "Utilities",
-        nextBillDate: "",
-        paused: false,
-      });
+    // 4) Goodnotes — add
+    add({
+      name: "Goodnotes",
+      amount: "$12",
+      method: "Apple CC 2708",
+      cadence: "Yearly",
+      category: "Work",
+      nextBillDate: "",
+      paused: false,
+    });
 
-      localStorage.setItem(MIGRATION_VERSION_KEY, CURRENT_MIGRATION);
-    }
+    // 5) iCloud+ — add
+    add({
+      name: "iCloud+",
+      amount: "$3",
+      method: "Apple CC 2708",
+      cadence: "Monthly",
+      category: "Utilities",
+      nextBillDate: "",
+      paused: false,
+    });
 
-    // Save & show
-    localStorage.setItem(SUBSCRIPTIONS_KEY, JSON.stringify(next));
-    setSubscriptions(next);
+    // Convert back to array
+    const fixed = Array.from(byName.values());
+
+    // Save + render
+    localStorage.setItem(SUBSCRIPTIONS_KEY, JSON.stringify(fixed));
+    setSubscriptions(fixed);
   }, []);
 
   useEffect(() => {
