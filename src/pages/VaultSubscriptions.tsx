@@ -216,4 +216,21 @@ function normalizeSub(s: Sub): Required<Sub> & { daysLeft: number; percentElapse
     daysLeft = diff;
 
     // elapsed = cycleDays - daysLeft (clamped)
-    const elapsed = Math.max(0, Math.min(cycleDays, cycleDays
+    const elapsed = Math.max(0, Math.min(cycleDays, cycleDays - daysLeft));
+    percentElapsed = (elapsed / cycleDays) * 100;
+  }
+
+  return {
+    name: s.name,
+    cadence: s.cadence,
+    amount: s.amount,
+    note: s.note ?? "",
+    payer: s.payer ?? "",
+    bucket: s.bucket ?? "Personal",
+    nextDueISO: nextDueISO ?? "",
+    cycleDays,
+    daysUntilDue: s.daysUntilDue ?? 0,
+    daysLeft,
+    percentElapsed,
+  };
+}
