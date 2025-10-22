@@ -6,9 +6,13 @@ export function BackToTop() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 600);
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = window.scrollY;
+      const scrollPercent = scrollHeight > 0 ? (scrolled / scrollHeight) * 100 : 0;
+      setShowBackToTop(scrollPercent > 30);
     };
-    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 

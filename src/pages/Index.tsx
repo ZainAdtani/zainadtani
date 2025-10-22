@@ -10,7 +10,8 @@ import {
   GraduationCap,
   Book,
   Award,
-  ShoppingBag,
+  Cpu,
+  Activity,
   Sparkles,
   Music,
   BookOpen,
@@ -278,35 +279,22 @@ const Index = () => {
               </a>
             </Card>
 
-            {/* Button 2: Books */}
+            {/* Button 2: My Toolkit */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <a
-                href="#books"
-                className="block"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setActiveTab("books");
-                  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-                  document.getElementById("tabs-section")?.scrollIntoView({
-                    behavior: prefersReduced ? "auto" : "smooth",
-                    block: "start",
-                  });
-                }}
-                aria-label="Jump to Books tab"
-              >
-                <Book className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-2xl font-bold mb-2 text-foreground">Books I've Read</h3>
-                <p className="text-muted-foreground">My Personal Reading List</p>
-              </a>
+              <Link to="/tools" className="block">
+                <Cpu className="w-12 h-12 text-primary mb-4" />
+                <h3 className="text-2xl font-bold mb-2 text-foreground">My Toolkit</h3>
+                <p className="text-muted-foreground">AI, software, and systems I actually use</p>
+              </Link>
             </Card>
 
-            {/* Button 3: Digital Products */}
+            {/* Button 3: NBA Tracker Hub */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <a href="#digital-products" className="block">
-                <ShoppingBag className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-2xl font-bold mb-2 text-foreground">Digital Products</h3>
-                <p className="text-muted-foreground">Courses, guides, and tools</p>
-              </a>
+              <Link to="/nba" className="block">
+                <Activity className="w-12 h-12 text-primary mb-4" />
+                <h3 className="text-2xl font-bold mb-2 text-foreground">NBA Tracker Hub</h3>
+                <p className="text-muted-foreground">Live scores, stats, and standings</p>
+              </Link>
             </Card>
 
             {/* Button 4: Certifications */}
