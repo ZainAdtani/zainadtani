@@ -26,7 +26,6 @@ import { useState, useEffect, lazy, Suspense } from "react";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Header } from "@/components/Header";
 import { TimeBar } from "@/components/TimeBar";
 import { ALL_PRODUCTS } from "@/data/products";
 import { BOOKS } from "@/data/books";
@@ -215,7 +214,6 @@ const Index = () => {
         <meta property="og:type" content="website" />
       </Helmet>
 
-      <Header />
       <TimeBar />
 
       {/* Hero Section */}

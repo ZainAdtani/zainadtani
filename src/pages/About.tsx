@@ -1,4 +1,3 @@
-import { Header } from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Youtube, Linkedin } from "lucide-react";
@@ -8,7 +7,6 @@ import chrisHaroun from "@/assets/chris-haroun.png";
 import trentShelton from "@/assets/trent-shelton.png";
 const About = () => {
   return <div className="min-h-screen bg-background">
-      <Header />
       
       <main className="container mx-auto px-4 py-12 md:py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">

@@ -1,7 +1,8 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { BackToTop } from "./BackToTop";
 import { ReadingProgressBar } from "./ReadingProgressBar";
+import { Header } from "./Header";
 import { ReactNode } from "react";
 
 interface AppLayoutProps {
@@ -16,11 +17,8 @@ export function AppLayout({ children }: AppLayoutProps) {
       <div className="min-h-screen flex w-full">
         <AppSidebar />
         <div className="flex-1 flex flex-col w-full">
-          {/* Global Header with Trigger */}
-          <header className="sticky top-0 z-40 h-14 flex items-center gap-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4">
-            <SidebarTrigger className="-ml-1" />
-            <div className="flex-1" />
-          </header>
+          {/* Global Header */}
+          <Header />
           {/* Main Content */}
           <main className="flex-1 overflow-auto">
             {children}
