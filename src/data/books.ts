@@ -230,5 +230,53 @@ export const BOOKS: Book[] = [
     tags: ['Fiction', 'Philosophy'],
     link: 'https://a.co/d/8Hz7Npq',
     cover: 'https://m.media-amazon.com/images/I/71aFt4+OTOL._SY466_.jpg'
+  },
+  {
+    id: 'brief-illustrated-guide-islam',
+    title: 'A Brief Illustrated Guide to Understanding Islam',
+    author: 'I.A. Ibrahim',
+    status: 'READ',
+    tags: ['Islam', 'Religion', 'Nonfiction', 'Reference', 'Spirituality'],
+    cover: 'https://m.media-amazon.com/images/I/51qZq7Z3bpL._SY466_.jpg',
+    rating: 5,
+    notes: 'Very nice short info on Islam - great re-read during Ramadan'
+  },
+  {
+    id: 'danger-zone',
+    title: 'Danger Zone',
+    author: 'David Klass',
+    status: 'READ',
+    tags: ['Sports', 'Fiction', 'Young Adult'],
+    link: 'https://a.co/d/0vFw3Qz',
+    cover: 'https://m.media-amazon.com/images/I/51X7ZQXQWZL._SY466_.jpg'
+  },
+  {
+    id: 'enrolled-agent-study-guide',
+    title: 'Enrolled Agent Study Guide 2025-2026: All in One EA Exam Prep',
+    author: 'Markie Tinan',
+    status: 'IN_PROGRESS',
+    progress: 4,
+    tags: ['Tax', 'Study Guide', 'Professional Development'],
+    cover: 'https://m.media-amazon.com/images/I/71xGKqN5QpL._SY466_.jpg'
+  },
+  {
+    id: 'ethical-living-stories',
+    title: 'Ethical Living through Stories: Encounters with Adab',
+    author: 'Wen-chin Ouyang',
+    status: 'TBR',
+    tags: ['Ethics', 'Philosophy', 'Islam'],
+    link: 'https://a.co/d/2Mz8Kpw',
+    cover: 'https://m.media-amazon.com/images/I/41rH6Z7ZXKL._SY466_.jpg'
+  },
+  {
+    id: 'free-to-focus',
+    title: 'Free to Focus: A Total Productivity System to Achieve More',
+    author: 'Michael Hyatt',
+    status: 'READ',
+    tags: ['Productivity', 'Business', 'Self-Improvement'],
+    link: 'https://a.co/d/1Hz9Kpw',
+    cover: 'https://m.media-amazon.com/images/I/71vZ8Z9ZXKL._SY466_.jpg',
+    rating: 3.5,
+    notes: 'Focus on 3 main tasks per day using 80/20 rule'
   }
 ];

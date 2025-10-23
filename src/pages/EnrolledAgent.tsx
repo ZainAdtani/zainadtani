@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { EAGame } from "@/components/EAGame";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import TryTaxQuestCTA from "@/components/TryTaxQuestCTA";
 import {
   Accordion,
   AccordionContent,
@@ -66,12 +67,11 @@ const EnrolledAgent = () => {
             </div>
             
             <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-              Your Enrolled Agent Journey
+              Enrolled Agent Study Hub
             </h1>
             
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Master the EA exam with gamified learning, curated study playlists, 
-              and comprehensive resources all in one place.
+              Resources, lessons, and a playable practice game to prep smarter for the EA exam.
             </p>
 
             <div className="flex items-center justify-center gap-4 pt-4">
@@ -80,6 +80,13 @@ const EnrolledAgent = () => {
               <div className="w-32 h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Tax Quest CTA */}
+      <section className="container mx-auto px-4 -mt-8 relative z-20">
+        <div className="max-w-4xl mx-auto">
+          <TryTaxQuestCTA />
         </div>
       </section>
 
@@ -414,15 +421,19 @@ const EnrolledAgent = () => {
         </div>
       </section>
 
-      {/* Back to Home CTA */}
+      {/* Tax Quest CTA - Bottom */}
       <section className="container mx-auto px-4 pb-16">
-        <div className="max-w-2xl mx-auto text-center">
-          <Link to="/">
-            <Button variant="outline" size="lg" className="group">
-              <ChevronRight className="w-4 h-4 mr-2 rotate-180 group-hover:-translate-x-1 transition-transform" />
-              Back to Home
-            </Button>
-          </Link>
+        <div className="max-w-4xl mx-auto space-y-8">
+          <TryTaxQuestCTA />
+          
+          <div className="text-center">
+            <Link to="/">
+              <Button variant="outline" size="lg" className="group">
+                <ChevronRight className="w-4 h-4 mr-2 rotate-180 group-hover:-translate-x-1 transition-transform" />
+                Back to Home
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
