@@ -107,14 +107,31 @@ const EnrolledAgent = () => {
                 through our gamified learning experience.
               </p>
               
-              <Button 
-                onClick={() => setShowGame(!showGame)}
-                className="w-full group"
-                size="lg"
-              >
-                {showGame ? "Hide Quest" : "Start Quest"}
-                <ChevronRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button 
+                  onClick={() => setShowGame(!showGame)}
+                  className="flex-1 group"
+                  size="lg"
+                >
+                  {showGame ? "Hide Quest" : "Start Quest (Embedded)"}
+                  <ChevronRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="flex-1"
+                >
+                  <a
+                    href="https://tax-quest-game.lovable.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Open Tax Quest (Full App) ↗
+                  </a>
+                </Button>
+              </div>
               
               {showGame && (
                 <div className="mt-6 border-2 border-dashed border-primary/20 rounded-lg p-4 bg-background/50">
@@ -183,7 +200,7 @@ const EnrolledAgent = () => {
               <div className="flex items-center gap-3">
                 <h2 className="text-3xl font-bold text-foreground mt-2">Learning Materials</h2>
                 <span className="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm font-semibold">
-                  Coming Soon
+                  Course
                 </span>
               </div>
               
@@ -211,8 +228,14 @@ const EnrolledAgent = () => {
                 </div>
               </div>
               
-              <Button variant="outline" className="w-full" disabled>
-                Notify Me When Available
+              <Button asChild className="w-full">
+                <a
+                  href="https://whop.com/eng2ea/?a=eng2ea"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Go to Engineer → EA (Part 1) →
+                </a>
               </Button>
             </div>
           </Card>
@@ -227,7 +250,7 @@ const EnrolledAgent = () => {
               <div className="flex items-center gap-3">
                 <h2 className="text-3xl font-bold text-foreground mt-2">Community & Tools</h2>
                 <span className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm font-semibold">
-                  Coming Soon
+                  Live
                 </span>
               </div>
               
@@ -255,8 +278,14 @@ const EnrolledAgent = () => {
                 </div>
               </div>
               
-              <Button variant="outline" className="w-full" disabled>
-                Join the Community
+              <Button asChild variant="outline" className="w-full">
+                <a
+                  href="https://www.skool.com/eng2ea/about"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Join on Skool →
+                </a>
               </Button>
             </div>
           </Card>
@@ -411,6 +440,181 @@ const EnrolledAgent = () => {
                     href="#" 
                     className="inline-flex items-center gap-2 text-primary hover:underline mt-4 font-medium"
                   >
+                    <FileText className="w-4 h-4" />
+                    View sample lesson →
+                  </a>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </Card>
+        </div>
+      </section>
+
+      {/* EA Part 2 — Domains Overview Accordion */}
+      <section id="ea-part-2" className="container mx-auto px-4 py-16">
+        <div className="max-w-7xl mx-auto">
+          <Card className="rounded-2xl shadow-lg border-2 border-primary/20 p-8 bg-card ea-domains-accordion">
+            <div className="text-center mb-8">
+              <h2 className="text-4xl font-bold mb-3">
+                🧩 EA Part 2 — <span className="text-primary">Domains Overview</span>
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Quick overview of business tax areas you'll see on the exam.
+              </p>
+            </div>
+
+            <Accordion type="multiple" className="space-y-4">
+              {/* Business Entities & Taxation */}
+              <AccordionItem
+                id="p2-domain-1-entities"
+                value="p2-domain-1"
+                className="border-2 border-primary/20 rounded-lg px-6 bg-background/50"
+              >
+                <AccordionTrigger className="text-xl font-semibold hover:no-underline py-4">
+                  Domain 1: Business Entities & Taxation
+                </AccordionTrigger>
+                <AccordionContent className="pt-2 pb-4 space-y-3">
+                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
+                    <li>Sole proprietorships (Sch C) and QBI overview</li>
+                    <li>Partnerships (Form 1065), basis, capital accounts, K-1s</li>
+                    <li>S Corporations (Form 1120-S), reasonable comp, AAA</li>
+                    <li>C Corporations (Form 1120), dividends, NOLs</li>
+                    <li>Entity selection considerations & elections (2553, 8832)</li>
+                  </ul>
+                  <a href="#" className="inline-flex items-center gap-2 text-primary hover:underline mt-4 font-medium">
+                    <FileText className="w-4 h-4" />
+                    View sample lesson →
+                  </a>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* Income, Expenses & Accounting */}
+              <AccordionItem
+                id="p2-domain-2-income-expenses"
+                value="p2-domain-2"
+                className="border-2 border-primary/20 rounded-lg px-6 bg-background/50"
+              >
+                <AccordionTrigger className="text-xl font-semibold hover:no-underline py-4">
+                  Domain 2: Income, Expenses & Accounting
+                </AccordionTrigger>
+                <AccordionContent className="pt-2 pb-4 space-y-3">
+                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
+                    <li>Gross receipts, cost of goods sold (COGS)</li>
+                    <li>Ordinary & necessary expenses, Section 162</li>
+                    <li>Meals, travel, auto, home office rules</li>
+                    <li>Accounting methods: cash vs. accrual, UNICAP basics</li>
+                    <li>1099 compliance and worker classification</li>
+                  </ul>
+                  <a href="#" className="inline-flex items-center gap-2 text-primary hover:underline mt-4 font-medium">
+                    <FileText className="w-4 h-4" />
+                    View sample lesson →
+                  </a>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* Depreciation & Credits */}
+              <AccordionItem
+                id="p2-domain-3-depr-credits"
+                value="p2-domain-3"
+                className="border-2 border-primary/20 rounded-lg px-6 bg-background/50"
+              >
+                <AccordionTrigger className="text-xl font-semibold hover:no-underline py-4">
+                  Domain 3: Depreciation & Credits
+                </AccordionTrigger>
+                <AccordionContent className="pt-2 pb-4 space-y-3">
+                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
+                    <li>MACRS, listed property, luxury auto limits</li>
+                    <li>Section 179 vs. bonus depreciation</li>
+                    <li>Disposition, §1231/§1245/§1250 recapture</li>
+                    <li>Common business credits (WOTC, R&D basics)</li>
+                  </ul>
+                  <a href="#" className="inline-flex items-center gap-2 text-primary hover:underline mt-4 font-medium">
+                    <FileText className="w-4 h-4" />
+                    View sample lesson →
+                  </a>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </Card>
+        </div>
+      </section>
+
+      {/* EA Part 3 — Domains Overview Accordion */}
+      <section id="ea-part-3" className="container mx-auto px-4 py-16">
+        <div className="max-w-7xl mx-auto">
+          <Card className="rounded-2xl shadow-lg border-2 border-primary/20 p-8 bg-card ea-domains-accordion">
+            <div className="text-center mb-8">
+              <h2 className="text-4xl font-bold mb-3">
+                🧩 EA Part 3 — <span className="text-primary">Domains Overview</span>
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Key areas for representation, ethics, and IRS procedure.
+              </p>
+            </div>
+
+            <Accordion type="multiple" className="space-y-4">
+              {/* Representation & Power of Attorney */}
+              <AccordionItem
+                id="p3-domain-1-rep"
+                value="p3-domain-1"
+                className="border-2 border-primary/20 rounded-lg px-6 bg-background/50"
+              >
+                <AccordionTrigger className="text-xl font-semibold hover:no-underline py-4">
+                  Domain 1: Representation & Power of Attorney
+                </AccordionTrigger>
+                <AccordionContent className="pt-2 pb-4 space-y-3">
+                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
+                    <li>POA (Form 2848), disclosure (8821), CAF basics</li>
+                    <li>Authorization scope, revocation, best practices</li>
+                    <li>Practice before the IRS: rights & limitations</li>
+                  </ul>
+                  <a href="#" className="inline-flex items-center gap-2 text-primary hover:underline mt-4 font-medium">
+                    <FileText className="w-4 h-4" />
+                    View sample lesson →
+                  </a>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* Exams, Appeals & Collections */}
+              <AccordionItem
+                id="p3-domain-2-procedures"
+                value="p3-domain-2"
+                className="border-2 border-primary/20 rounded-lg px-6 bg-background/50"
+              >
+                <AccordionTrigger className="text-xl font-semibold hover:no-underline py-4">
+                  Domain 2: Examinations, Appeals & Collections
+                </AccordionTrigger>
+                <AccordionContent className="pt-2 pb-4 space-y-3">
+                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
+                    <li>Audit process, IDRs, interview & documentation</li>
+                    <li>Appeals basics, protest letters, hazards of litigation</li>
+                    <li>Collections: notices, liens, levies, installment agreements</li>
+                    <li>Offers in Compromise, currently not collectible</li>
+                  </ul>
+                  <a href="#" className="inline-flex items-center gap-2 text-primary hover:underline mt-4 font-medium">
+                    <FileText className="w-4 h-4" />
+                    View sample lesson →
+                  </a>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* Ethics & Circular 230 */}
+              <AccordionItem
+                id="p3-domain-3-ethics"
+                value="p3-domain-3"
+                className="border-2 border-primary/20 rounded-lg px-6 bg-background/50"
+              >
+                <AccordionTrigger className="text-xl font-semibold hover:no-underline py-4">
+                  Domain 3: Ethics & Circular 230
+                </AccordionTrigger>
+                <AccordionContent className="pt-2 pb-4 space-y-3">
+                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground leading-relaxed">
+                    <li>Standards: due diligence, competence, conflicts</li>
+                    <li>Sanctions, disciplinary proceedings</li>
+                    <li>Advertising, contingent fees, written advice</li>
+                    <li>Recordkeeping & client communications</li>
+                  </ul>
+                  <a href="#" className="inline-flex items-center gap-2 text-primary hover:underline mt-4 font-medium">
                     <FileText className="w-4 h-4" />
                     View sample lesson →
                   </a>

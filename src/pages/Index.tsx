@@ -29,6 +29,7 @@ import { Helmet } from "react-helmet-async";
 import { TimeBar } from "@/components/TimeBar";
 import { ALL_PRODUCTS } from "@/data/products";
 import { BOOKS } from "@/data/books";
+import TryTaxQuestCTA from "@/components/TryTaxQuestCTA";
 import headshotImage from "@/assets/zain-headshot.png";
 import qbBadge from "@/assets/quickbooks-level2-badge.png";
 import awsBadge from "@/assets/aws-cloud-practitioner-badge.png";
@@ -304,6 +305,13 @@ const Index = () => {
               </a>
             </Card>
           </div>
+        </div>
+      </section>
+
+      {/* Tax Quest CTA (external game) */}
+      <section className="py-8">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <TryTaxQuestCTA />
         </div>
       </section>
 
