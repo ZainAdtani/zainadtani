@@ -7,7 +7,6 @@ import { Progress } from "@/components/ui/progress";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ExternalLink, Search, Star } from "lucide-react";
 import { Helmet } from "react-helmet-async";
-import { Header } from "@/components/Header";
 import { BOOKS, type BookStatus } from "@/data/books";
 
 
@@ -85,8 +84,6 @@ export default function BooksHQ() {
         <meta property="og:title" content="Book Portal | Zain Adtani" />
         <meta property="og:description" content="Books I've read, I'm reading, and want to read." />
       </Helmet>
-
-      <Header />
 
       <div className="container mx-auto px-4 py-16 max-w-7xl">
         {/* Header */}

@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "@/components/ui/sheet";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useState } from "react";
 
 export const Header = () => {
@@ -18,7 +19,10 @@ export const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-4">
+        {/* Sidebar Trigger */}
+        <SidebarTrigger className="-ml-1" />
+        
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <div className="text-3xl font-bold">

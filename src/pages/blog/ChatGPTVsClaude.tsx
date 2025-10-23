@@ -1,4 +1,3 @@
-import { Header } from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft } from "lucide-react";
@@ -11,8 +10,6 @@ export default function ChatGPTVsClaude() {
         <title>ChatGPT vs Claude: Which AI Should You Use (and When)? | Zain Adtani</title>
         <meta name="description" content="A practical comparison of the two leading AI assistants and when to use each one." />
       </Helmet>
-
-      <Header />
 
       <main className="container mx-auto px-4 py-16 max-w-3xl">
         <Link to="/blog">

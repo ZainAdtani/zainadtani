@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Header } from "@/components/Header";
 import { EAGame } from "@/components/EAGame";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -50,8 +49,6 @@ const EnrolledAgent = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-      
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-accent/5 pt-20 pb-16">
         <div className="absolute inset-0 opacity-10">

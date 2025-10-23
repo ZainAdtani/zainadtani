@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Search } from "lucide-react";
-import { Header } from "@/components/Header";
 import { ALL_PRODUCTS, CATEGORIES } from "@/data/products";
 import Logo3D from "@/components/Logo3D";
 
@@ -38,8 +37,6 @@ export default function DigitalProductsPage() {
         <meta property="og:title" content="Digital Products — MAJESTY HQ | Zain Adtani" />
         <meta property="og:description" content="Search courses, guides, and tools—all in one place." />
       </Helmet>
-      
-      <Header />
       
       <header className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4 max-w-6xl text-center">

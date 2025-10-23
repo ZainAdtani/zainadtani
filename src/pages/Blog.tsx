@@ -1,4 +1,3 @@
-import { Header } from "@/components/Header";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -43,8 +42,6 @@ export default function Blog() {
         <title>Blog | Zain Adtani</title>
         <meta name="description" content="Practical insights on productivity, AI, taxes, and life optimization by Zain Adtani." />
       </Helmet>
-
-      <Header />
 
       <main className="container mx-auto px-4 py-16 max-w-4xl">
         <div className="text-center mb-12">

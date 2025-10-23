@@ -2,7 +2,6 @@ import { useState, useMemo } from "react";
 import { Search, ExternalLink } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Header } from "@/components/Header";
 
 interface Tool {
   id: string;
@@ -211,8 +210,6 @@ export default function Tools() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-
       {/* Hero Section */}
       <div className="border-b border-border bg-gradient-to-b from-background to-muted/20">
         <div className="container mx-auto px-4 py-8 max-w-6xl">

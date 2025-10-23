@@ -1,4 +1,3 @@
-import { Header } from "@/components/Header";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TrendingUp, DollarSign, PiggyBank, LineChart, BookOpen, Target } from "lucide-react";
@@ -6,8 +5,6 @@ import { TrendingUp, DollarSign, PiggyBank, LineChart, BookOpen, Target } from "
 const Investing = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-
       {/* Hero Section */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-primary/5 via-background to-accent/5">
         <div className="container mx-auto px-4 max-w-6xl">

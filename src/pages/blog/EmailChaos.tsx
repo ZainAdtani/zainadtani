@@ -1,4 +1,3 @@
-import { Header } from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft } from "lucide-react";
@@ -11,8 +10,6 @@ export default function EmailChaos() {
         <title>From Chaos to Clarity: How to Cut Your Inbox Time by 70% Using AI | Zain Adtani</title>
         <meta name="description" content="Learn my exact system for managing email efficiently with AI assistance." />
       </Helmet>
-
-      <Header />
 
       <main className="container mx-auto px-4 py-16 max-w-3xl">
         <Link to="/blog">

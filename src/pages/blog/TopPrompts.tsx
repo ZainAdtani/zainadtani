@@ -1,4 +1,3 @@
-import { Header } from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft } from "lucide-react";
@@ -11,8 +10,6 @@ export default function TopPrompts() {
         <title>My Top 10 (Insanely Simple) Prompts I Use Every Week | Zain Adtani</title>
         <meta name="description" content="Discover the AI prompts that save me hours of work every single week." />
       </Helmet>
-
-      <Header />
 
       <main className="container mx-auto px-4 py-16 max-w-3xl">
         <Link to="/blog">
