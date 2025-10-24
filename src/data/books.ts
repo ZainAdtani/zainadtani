@@ -11,6 +11,7 @@ export type Book = {
   cover?: string;
   rating?: number; // 1-5
   notes?: string;
+  isbn?: string;
 };
 
 export const BOOKS: Book[] = [

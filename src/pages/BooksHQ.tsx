@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,6 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ExternalLink, Search, Star } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { BOOKS, type BookStatus } from "@/data/books";
+import BooksImport from "@/components/BooksImport";
+import { findCover } from "@/lib/covers";
 
 
 const STATUS_COLORS: Record<BookStatus, string> = {
@@ -28,6 +30,7 @@ export default function BooksHQ() {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<BookStatus | "ALL">("ALL");
   const [sortBy, setSortBy] = useState<SortOption>("title-asc");
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   // Count books by status
   const bookCounts = useMemo(() => {
@@ -74,7 +77,24 @@ export default function BooksHQ() {
     });
 
     return result;
-  }, [searchQuery, statusFilter, sortBy]);
+  }, [searchQuery, statusFilter, sortBy, refreshTrigger]);
+
+  // Auto-fetch missing covers on load
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      for (const b of filteredAndSortedBooks) {
+        if (!b.cover) {
+          const url = await findCover({ title: b.title, author: b.author, isbn: b.isbn });
+          if (url && !cancelled) { 
+            b.cover = url;
+            setRefreshTrigger(prev => prev + 1);
+          }
+        }
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [filteredAndSortedBooks]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -156,6 +176,11 @@ export default function BooksHQ() {
               <SelectItem value="progress-desc">Progress</SelectItem>
             </SelectContent>
           </Select>
+        </div>
+
+        {/* Import Component */}
+        <div className="mb-6">
+          <BooksImport onImported={() => setRefreshTrigger(prev => prev + 1)} />
         </div>
 
         {/* Books Grid */}
