@@ -4,6 +4,7 @@ import { EAGame } from "@/components/EAGame";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import TryTaxQuestCTA from "@/components/TryTaxQuestCTA";
+import { LINKS } from "@/config/links";
 import {
   Accordion,
   AccordionContent,
@@ -124,7 +125,7 @@ const EnrolledAgent = () => {
                   className="flex-1"
                 >
                   <a
-                    href="https://tax-quest-game.lovable.app/"
+                    href={LINKS.TAX_QUEST}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

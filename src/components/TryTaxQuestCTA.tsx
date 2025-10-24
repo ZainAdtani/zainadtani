@@ -1,36 +1,32 @@
-import { ExternalLink, Gamepad2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import { LINKS } from "@/config/links";
 
 export default function TryTaxQuestCTA() {
   return (
-    <Card className="relative border-2 border-dashed border-accent/40 p-6 hover:border-accent transition-all bg-gradient-to-r from-primary/5 via-accent/5 to-secondary/5">
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div className="flex items-start gap-4">
-          <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
-            <Gamepad2 className="w-6 h-6 text-accent-foreground" />
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold mb-1">Try the Tax Quest Game</h3>
-            <p className="text-sm text-muted-foreground">
-              Turn EA prep into a quick, gamified practice session—no login required (guest mode).
-            </p>
+    <Card className="p-8 md:p-10 border-2 shadow-lg bg-gradient-to-br from-primary/5 via-background to-accent/5">
+      <div className="max-w-3xl">
+        <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-2">
+          New • Free to try
+        </p>
+        <h3 className="text-3xl md:text-4xl font-extrabold leading-tight mb-3">
+          Turn EA Prep into a Game—Beat the Bosses, Level Up, Pass Faster
+        </h3>
+        <p className="text-lg text-muted-foreground mb-6">
+          Micro-levels. Instant feedback. No account required. Jump in, clear a
+          stage in minutes, and stack daily wins—Tony-style momentum with Dean-style simplicity.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <Button asChild size="lg" className="px-6">
+            <a href={LINKS.TAX_QUEST} target="_blank" rel="noopener noreferrer">
+              Play Tax Quest Now <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+          </Button>
+          <div className="text-sm text-muted-foreground self-center">
+            No login. Mobile friendly.
           </div>
         </div>
-        <Button 
-          asChild
-          size="lg"
-          className="group w-full md:w-auto"
-        >
-          <a
-            href="https://tax-quest-game.lovable.app/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Play Tax Quest (Beta)
-            <ExternalLink className="ml-2 w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
-        </Button>
       </div>
     </Card>
   );
