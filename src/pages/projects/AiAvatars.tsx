@@ -3,86 +3,67 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 
-/**
- * THEME — Lemonade-inspired accents.
- * Adjust tokens once and the whole page updates.
- */
-const THEME = {
-  primary: "#ff0083", // Lemonade pink
-  primaryDark: "#dc0073",
-  teal: "#24B8A3",
-  blue: "#2A76E4",
-  bg: "#ffffff",
-  chipBg: "#ffe4f2",
-};
+/** Brand flavor — Lemonade-esque */
+const PINK = "#ff0083";
+const PINK_DARK = "#dc0073";
+
+/** Full-bleed banner image (16:9 or wider). Replace with your hero. */
+const HERO_BANNER = "/media/avatars/hero-ai-avatars.jpg";
 
 type AvatarItem = {
   id: string;
   title: string;
-  blurb?: string;
-  poster: string; // 16:9 or 4:5 poster image (required for the card visual)
-  embedUrl: string; // HeyGen iframe URL
-  tags?: string[];
-  created?: string;
+  poster: string; // required: nice cover image
+  embedUrl: string; // required: HeyGen iframe URL
 };
 
 const AVATARS: AvatarItem[] = [
   {
     id: "db8ce879a39c4148a60024e8c80b3033",
     title: "EA Orientation — Soft Open",
-    blurb: "Warm intro. Sets tone and credibility for your course.",
-    poster: "/media/avatars/ea-orientation.jpg", // TODO: swap with your image
+    poster: "/media/avatars/ea-orientation.jpg",
     embedUrl: "https://app.heygen.com/embedded-player/db8ce879a39c4148a60024e8c80b3033",
-    tags: ["Intro", "EA"],
-    created: "2025-10-23",
   },
   {
     id: "667c3764d19e49269ad40daea602c280",
     title: "My Story — Mechanical → EA",
-    blurb: "Identity pivot narrative with B-roll beats.",
-    poster: "/media/avatars/mech-to-ea.jpg", // TODO: swap with your image
+    poster: "/media/avatars/mech-to-ea.jpg",
     embedUrl: "https://app.heygen.com/embedded-player/667c3764d19e49269ad40daea602c280",
-    tags: ["Story", "B-roll"],
-    created: "2025-10-25",
   },
-  // Add more avatars as you create them…
+  // add more…
 ];
 
 export default function AiAvatars() {
   const [openId, setOpenId] = useState<string | null>(null);
   const active = useMemo(() => AVATARS.find((a) => a.id === openId) ?? null, [openId]);
-
   const railRef = useRef<HTMLDivElement>(null);
 
-  // Arrow keys for accessibility/flow
   useEffect(() => {
-    const h = (e: KeyboardEvent) => {
+    const onKey = (e: KeyboardEvent) => {
       if (!railRef.current) return;
-      const dx = 600;
+      const dx = 640;
       if (e.key === "ArrowRight") railRef.current.scrollBy({ left: dx, behavior: "smooth" });
       if (e.key === "ArrowLeft") railRef.current.scrollBy({ left: -dx, behavior: "smooth" });
     };
-    window.addEventListener("keydown", h);
-    return () => window.removeEventListener("keydown", h);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const scrollByPx = (dx: number) => railRef.current?.scrollBy({ left: dx, behavior: "smooth" });
+  const nudge = (dx: number) => railRef.current?.scrollBy({ left: dx, behavior: "smooth" });
 
   return (
     <>
       <Helmet>
         <title>AI Avatars — Zain</title>
-        <meta name="description" content="A flowing carousel of AI avatar projects. Click a card to watch." />
+        <meta name="description" content="Poster-first carousel of AI avatar videos. Click to play." />
       </Helmet>
 
-      {/* Page chrome */}
-      <div className="container mx-auto px-4 py-8 max-w-6xl" style={{ background: THEME.bg }}>
-        {/* Breadcrumbs – minimal */}
-        <nav className="text-sm text-muted-foreground mb-5">
+      {/* Minimal breadcrumbs */}
+      <div className="container mx-auto px-4 pt-4 max-w-6xl">
+        <nav className="text-sm text-muted-foreground mb-2">
           <Link to="/" className="hover:underline">
             Home
           </Link>
@@ -93,51 +74,60 @@ export default function AiAvatars() {
           <span className="mx-2">/</span>
           <span className="text-foreground">AI Avatars</span>
         </nav>
+      </div>
 
-        {/* Title + subtle underline */}
-        <header className="mb-6">
-          <h1 className="text-4xl md:text-5xl font-black tracking-tight" style={{ color: THEME.primary }}>
-            AI Avatars
-          </h1>
-          <div
-            className="h-1 w-24 mt-3 rounded-full"
-            style={{
-              background: `linear-gradient(90deg, ${THEME.primary}, ${THEME.teal})`,
-            }}
-          />
-        </header>
-
-        {/* Carousel controls pinned top-right */}
-        <div className="flex items-center justify-between mb-3">
-          <p className="text-base text-muted-foreground">Browse your avatars. Tap a card to play.</p>
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => scrollByPx(-640)}
-              aria-label="Previous"
-              className="rounded-full"
-              style={{ borderColor: THEME.primary, color: THEME.primary }}
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => scrollByPx(640)}
-              aria-label="Next"
-              className="rounded-full"
-              style={{ borderColor: THEME.primary, color: THEME.primary }}
-            >
-              <ChevronRight className="h-5 w-5" />
-            </Button>
+      {/* Hero banner */}
+      <section className="relative">
+        <div className="mx-auto max-w-7xl px-0">
+          <div className="relative h-[34rem] w-full overflow-hidden rounded-none md:rounded-[2.5rem]">
+            <img src={HERO_BANNER} alt="" className="h-full w-full object-cover" />
+            {/* playful gradient wash */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(255,0,131,0.10) 0%, rgba(255,255,255,0.0) 40%, rgba(255,255,255,0.85) 100%)",
+              }}
+            />
+            {/* Headline */}
+            <div className="absolute bottom-8 left-6 md:left-10">
+              <h1 className="text-4xl md:text-6xl font-black tracking-tight drop-shadow-sm" style={{ color: PINK }}>
+                AI Avatars
+              </h1>
+              <p className="mt-2 text-base md:text-lg text-foreground/70">Click a poster. Hit play. Magic happens.</p>
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* Carousel rail: large posters, Lemonade vibe, masked edges for “infinite” feel */}
+      {/* Carousel */}
+      <section className="container mx-auto px-4 py-8 max-w-6xl">
+        <div className="flex items-center justify-end gap-2 mb-3">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => nudge(-640)}
+            className="rounded-full border-2"
+            style={{ borderColor: PINK, color: PINK }}
+            aria-label="Previous"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => nudge(640)}
+            className="rounded-full border-2"
+            style={{ borderColor: PINK, color: PINK }}
+            aria-label="Next"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </Button>
+        </div>
+
         <div
           ref={railRef}
-          className="relative flex gap-5 overflow-x-auto snap-x snap-mandatory pb-2 pt-1
+          className="relative flex gap-6 overflow-x-auto snap-x snap-mandatory pb-2 pt-1
                      [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           style={{
             maskImage:
@@ -146,66 +136,54 @@ export default function AiAvatars() {
               "linear-gradient(to right, transparent 0, black 3rem, black calc(100% - 3rem), transparent 100%)",
           }}
         >
-          {AVATARS.map((a, idx) => (
+          {AVATARS.map((a) => (
             <Card
               key={a.id}
-              className="snap-start shrink-0 overflow-hidden rounded-3xl border-0 hover:shadow-xl transition
-                         min-w-[320px] sm:min-w-[420px] max-w-[520px] bg-white"
-              style={{ boxShadow: "0 10px 24px rgba(0,0,0,0.06)" }}
+              className="snap-start shrink-0 overflow-hidden rounded-3xl border-0 bg-white min-w-[320px] sm:min-w-[420px] max-w-[520px]
+                         hover:shadow-2xl hover:-translate-y-0.5 transition will-change-transform"
               role="button"
               onClick={() => setOpenId(a.id)}
               aria-label={`Open ${a.title}`}
+              style={{ boxShadow: "0 12px 26px rgba(0,0,0,0.07)" }}
             >
-              {/* Poster */}
-              <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16 / 9", background: "#f6f7f8" }}>
+              {/* Poster with centered play */}
+              <div className="relative w-full" style={{ aspectRatio: "16 / 9" }}>
                 <img src={a.poster} alt="" className="h-full w-full object-cover" loading="lazy" />
-                {/* Pink corner bookmark (brand flair) */}
-                <span className="absolute left-3 top-3 h-5 w-5 rounded-sm" style={{ background: THEME.primary }} />
-                {/* Play button overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="grid place-items-center h-12 w-12 rounded-full" style={{ background: THEME.primary }}>
-                    <Play className="h-6 w-6 text-white" />
+                {/* tiny pink tab for flair */}
+                <span className="absolute left-3 top-3 h-5 w-5 rounded-sm" style={{ background: PINK }} />
+                {/* play button */}
+                <div className="absolute inset-0 grid place-items-center">
+                  <div
+                    className="grid place-items-center h-14 w-14 rounded-full shadow-lg"
+                    style={{ background: PINK }}
+                  >
+                    <Play className="h-7 w-7 text-white" />
                   </div>
                 </div>
               </div>
-
-              {/* Body */}
+              {/* Title only */}
               <div className="p-4">
-                <h3 className="text-xl font-extrabold leading-tight">{a.title}</h3>
-                {a.blurb && <p className="mt-1 text-sm text-muted-foreground line-clamp-2">{a.blurb}</p>}
-                <div className="mt-3 flex flex-wrap items-center gap-2">
-                  {a.tags?.map((t) => (
-                    <Badge
-                      key={t}
-                      variant="outline"
-                      className="text-xs border-0"
-                      style={{ background: THEME.chipBg, color: THEME.primaryDark }}
-                    >
-                      {t}
-                    </Badge>
-                  ))}
-                  {a.created && <span className="text-xs text-muted-foreground">• {a.created}</span>}
-                </div>
+                <h3 className="text-lg md:text-xl font-extrabold leading-tight">{a.title}</h3>
               </div>
             </Card>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* Modal player — clean, focus on video */}
+      {/* Modal player */}
       <Dialog open={!!openId} onOpenChange={(v) => !v && setOpenId(null)}>
         <DialogContent className="max-w-3xl p-0 overflow-hidden rounded-3xl">
           {active && (
-            <>
-              <DialogHeader className="px-6 pt-6">
-                <DialogTitle className="text-xl font-bold" style={{ color: THEME.primary }}>
+            <div className="w-full">
+              <div className="px-6 pt-6 pb-3">
+                <h2 className="text-xl md:text-2xl font-black" style={{ color: PINK }}>
                   {active.title}
-                </DialogTitle>
-              </DialogHeader>
+                </h2>
+              </div>
               <div className="px-6 pb-6">
                 <div
                   className="aspect-video w-full overflow-hidden rounded-2xl border"
-                  style={{ borderColor: THEME.chipBg }}
+                  style={{ borderColor: `${PINK}20` }}
                 >
                   <iframe
                     src={active.embedUrl}
@@ -216,9 +194,8 @@ export default function AiAvatars() {
                     allowFullScreen
                   />
                 </div>
-                {active.blurb && <p className="text-sm text-muted-foreground mt-3">{active.blurb}</p>}
               </div>
-            </>
+            </div>
           )}
         </DialogContent>
       </Dialog>
