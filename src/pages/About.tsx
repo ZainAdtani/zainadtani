@@ -116,7 +116,7 @@ const About = () => {
       {/* Footer */}
       <footer className="border-t border-border py-8 mt-20">
         <div className="container mx-auto px-4 text-center text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Zain Adtani. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Zain Education Ventures. All rights reserved.</p>
         </div>
       </footer>
     </div>;

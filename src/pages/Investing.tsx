@@ -115,7 +115,7 @@ const Investing = () => {
             My <span className="text-primary">Banking & Brokerage</span>
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <Card className="p-8 hover-lift transition-all duration-300 border-2 border-primary/20">
               <PiggyBank className="w-12 h-12 text-primary mb-4" />
               <h3 className="text-2xl font-bold mb-4">Marcus by Goldman Sachs</h3>
@@ -136,8 +136,21 @@ const Investing = () => {
                 My primary brokerage for stocks, ETFs, and retirement accounts with excellent research tools.
               </p>
               <Button asChild variant="outline" className="w-full">
-                <a href="https://www.fidelity.com" target="_blank" rel="noopener noreferrer">
-                  Visit Fidelity
+                <a href="https://fidelity.app.link/e/wKOQHcrcRVb" target="_blank" rel="noopener noreferrer">
+                  Open Fidelity Account →
+                </a>
+              </Button>
+            </Card>
+
+            <Card className="p-8 hover-lift transition-all duration-300 border-2 border-primary/20">
+              <TrendingUp className="w-12 h-12 text-primary mb-4" />
+              <h3 className="text-2xl font-bold mb-4">Robinhood</h3>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                Commission-free trading platform for stocks, ETFs, options, and crypto with an intuitive mobile experience.
+              </p>
+              <Button asChild variant="outline" className="w-full">
+                <a href="https://join.robinhood.com/zaina113" target="_blank" rel="noopener noreferrer">
+                  Join Robinhood →
                 </a>
               </Button>
             </Card>
