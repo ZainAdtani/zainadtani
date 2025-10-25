@@ -74,22 +74,6 @@ const About = () => {
                 </li>
               </ul>
             </Card>
-
-            {/* Social Links */}
-            <div className="flex gap-4 pt-4">
-              <Button asChild size="lg" className="bg-red-600 hover:bg-red-700 shadow-[0_8px_0_0_rgb(153,27,27)] hover:shadow-[0_4px_0_0_rgb(153,27,27)] active:shadow-[0_0px_0_0_rgb(153,27,27)] hover:translate-y-1 active:translate-y-2 transition-all">
-                <a href="https://www.youtube.com/@engineer2ea" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                  <Youtube className="h-5 w-5" />
-                  YouTube Channel
-                </a>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="hover-scale">
-                <a href="https://linkedin.com/in/zainadtani" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                  <Linkedin className="h-5 w-5" />
-                  Connect on LinkedIn
-                </a>
-              </Button>
-            </div>
           </div>
 
           {/* Right Column - Photos */}
@@ -110,8 +94,21 @@ const About = () => {
               </div>
             </div>
 
-            {/* Stats Card */}
-            
+            {/* Social Links */}
+            <div className="flex gap-4 pt-4">
+              <Button asChild size="lg" className="bg-red-600 hover:bg-red-700 shadow-[0_8px_0_0_rgb(153,27,27)] hover:shadow-[0_4px_0_0_rgb(153,27,27)] active:shadow-[0_0px_0_0_rgb(153,27,27)] hover:translate-y-1 active:translate-y-2 transition-all">
+                <a href="https://www.youtube.com/@engineer2ea" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                  <Youtube className="h-5 w-5" />
+                  YouTube Channel
+                </a>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="hover-scale">
+                <a href="https://linkedin.com/in/zainadtani" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                  <Linkedin className="h-5 w-5" />
+                  Connect on LinkedIn
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       </main>
