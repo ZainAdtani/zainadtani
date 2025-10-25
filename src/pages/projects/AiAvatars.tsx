@@ -1,38 +1,55 @@
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Separator } from "@/components/ui/separator";
-import { Link2, ExternalLink, ChevronLeft, ChevronRight, Play, Clock } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 
-/** ────────────────────────────────────────────────────────────────────────────
- * CONFIG — Add your avatars here. (Poster is optional but recommended.)
- * poster: 16:9 image URL (screencap from HeyGen or a cover you upload)
- * duration: purely display text, e.g., "1:02" or "1 Hour"
- * ──────────────────────────────────────────────────────────────────────────── */
-const AVATARS = [
+/**
+ * THEME — Lemonade-inspired accents.
+ * Adjust tokens once and the whole page updates.
+ */
+const THEME = {
+  primary: "#ff0083", // Lemonade pink
+  primaryDark: "#dc0073",
+  teal: "#24B8A3",
+  blue: "#2A76E4",
+  bg: "#ffffff",
+  chipBg: "#ffe4f2",
+};
+
+type AvatarItem = {
+  id: string;
+  title: string;
+  blurb?: string;
+  poster: string; // 16:9 or 4:5 poster image (required for the card visual)
+  embedUrl: string; // HeyGen iframe URL
+  tags?: string[];
+  created?: string;
+};
+
+const AVATARS: AvatarItem[] = [
   {
     id: "db8ce879a39c4148a60024e8c80b3033",
-    title: "Module 0 — EA Orientation (Soft Open)",
-    blurb: "Warm intro tone. Sets course context and credibility.",
-    duration: "1:00",
-    tags: ["Intro", "EA Course"],
-    poster: "/media/avatars/ea-orientation.jpg", // <- replace with your image
+    title: "EA Orientation — Soft Open",
+    blurb: "Warm intro. Sets tone and credibility for your course.",
+    poster: "/media/avatars/ea-orientation.jpg", // TODO: swap with your image
     embedUrl: "https://app.heygen.com/embedded-player/db8ce879a39c4148a60024e8c80b3033",
+    tags: ["Intro", "EA"],
+    created: "2025-10-23",
   },
   {
     id: "667c3764d19e49269ad40daea602c280",
-    title: "Module 0 — My Story: Mechanical → EA",
+    title: "My Story — Mechanical → EA",
     blurb: "Identity pivot narrative with B-roll beats.",
-    duration: "1:05",
-    tags: ["Story", "B-roll"],
-    poster: "/media/avatars/mech-to-ea.jpg", // <- replace with your image
+    poster: "/media/avatars/mech-to-ea.jpg", // TODO: swap with your image
     embedUrl: "https://app.heygen.com/embedded-player/667c3764d19e49269ad40daea602c280",
+    tags: ["Story", "B-roll"],
+    created: "2025-10-25",
   },
-  // Add more items as you create them…
+  // Add more avatars as you create them…
 ];
 
 export default function AiAvatars() {
@@ -40,142 +57,134 @@ export default function AiAvatars() {
   const active = useMemo(() => AVATARS.find((a) => a.id === openId) ?? null, [openId]);
 
   const railRef = useRef<HTMLDivElement>(null);
-  const SCROLL = 720; // px per click (tune to taste)
 
-  function scrollBy(dx: number) {
-    const el = railRef.current;
-    if (!el) return;
-    el.scrollTo({ left: el.scrollLeft + dx, behavior: "smooth" });
-  }
+  // Arrow keys for accessibility/flow
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => {
+      if (!railRef.current) return;
+      const dx = 600;
+      if (e.key === "ArrowRight") railRef.current.scrollBy({ left: dx, behavior: "smooth" });
+      if (e.key === "ArrowLeft") railRef.current.scrollBy({ left: -dx, behavior: "smooth" });
+    };
+    window.addEventListener("keydown", h);
+    return () => window.removeEventListener("keydown", h);
+  }, []);
+
+  const scrollByPx = (dx: number) => railRef.current?.scrollBy({ left: dx, behavior: "smooth" });
 
   return (
     <>
       <Helmet>
         <title>AI Avatars — Zain</title>
-        <meta
-          name="description"
-          content="Carousel of production-ready HeyGen avatar videos for the Engineer → EA course."
-        />
+        <meta name="description" content="A flowing carousel of AI avatar projects. Click a card to watch." />
       </Helmet>
 
-      <div className="container mx-auto px-4 py-8 max-w-6xl">
-        {/* Breadcrumbs */}
-        <nav className="text-sm text-muted-foreground mb-6">
-          <Link to="/" className="hover:text-primary transition-colors">
+      {/* Page chrome */}
+      <div className="container mx-auto px-4 py-8 max-w-6xl" style={{ background: THEME.bg }}>
+        {/* Breadcrumbs – minimal */}
+        <nav className="text-sm text-muted-foreground mb-5">
+          <Link to="/" className="hover:underline">
             Home
           </Link>
           <span className="mx-2">/</span>
-          <Link to="/projects" className="hover:text-primary transition-colors">
+          <Link to="/projects" className="hover:underline">
             Projects
           </Link>
           <span className="mx-2">/</span>
           <span className="text-foreground">AI Avatars</span>
         </nav>
 
-        {/* Hero / Ribbon */}
-        <section className="rounded-2xl p-6 md:p-8 mb-8 border bg-gradient-to-br from-[#10A37F0D] via-transparent to-[#FF8A000D]">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Content Overview</h1>
-              <p className="text-base md:text-lg text-muted-foreground mt-2">
-                This is a single project consisting of multiple avatar modules. Click a card to preview.
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button asChild variant="outline" className="gap-2">
-                <a
-                  href={typeof window !== "undefined" ? window.location.href : "#"}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigator.clipboard?.writeText(window.location.href);
-                  }}
-                >
-                  <Link2 className="h-4 w-4" />
-                  Copy page link
-                </a>
-              </Button>
-              <Button asChild className="gap-2">
-                <a href="https://app.heygen.com/" target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="h-4 w-4" />
-                  Create in HeyGen
-                </a>
-              </Button>
-            </div>
-          </div>
-        </section>
+        {/* Title + subtle underline */}
+        <header className="mb-6">
+          <h1 className="text-4xl md:text-5xl font-black tracking-tight" style={{ color: THEME.primary }}>
+            AI Avatars
+          </h1>
+          <div
+            className="h-1 w-24 mt-3 rounded-full"
+            style={{
+              background: `linear-gradient(90deg, ${THEME.primary}, ${THEME.teal})`,
+            }}
+          />
+        </header>
 
-        {/* Carousel Header */}
+        {/* Carousel controls pinned top-right */}
         <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-primary text-sm">
-              ✺
-            </span>
-            <h2 className="text-2xl font-semibold">Modules</h2>
-          </div>
+          <p className="text-base text-muted-foreground">Browse your avatars. Tap a card to play.</p>
           <div className="flex gap-2">
-            <Button variant="outline" size="icon" onClick={() => scrollBy(-SCROLL)} aria-label="Previous">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => scrollByPx(-640)}
+              aria-label="Previous"
+              className="rounded-full"
+              style={{ borderColor: THEME.primary, color: THEME.primary }}
+            >
               <ChevronLeft className="h-5 w-5" />
             </Button>
-            <Button variant="outline" size="icon" onClick={() => scrollBy(SCROLL)} aria-label="Next">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => scrollByPx(640)}
+              aria-label="Next"
+              className="rounded-full"
+              style={{ borderColor: THEME.primary, color: THEME.primary }}
+            >
               <ChevronRight className="h-5 w-5" />
             </Button>
           </div>
         </div>
-        <Separator className="mb-4" />
 
-        {/* Carousel Rail (scroll-snap) */}
+        {/* Carousel rail: large posters, Lemonade vibe, masked edges for “infinite” feel */}
         <div
           ref={railRef}
-          className="relative flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          aria-label="AI avatar modules"
+          className="relative flex gap-5 overflow-x-auto snap-x snap-mandatory pb-2 pt-1
+                     [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          style={{
+            maskImage:
+              "linear-gradient(to right, transparent 0, black 3rem, black calc(100% - 3rem), transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent 0, black 3rem, black calc(100% - 3rem), transparent 100%)",
+          }}
         >
-          {AVATARS.map((m) => (
+          {AVATARS.map((a, idx) => (
             <Card
-              key={m.id}
-              className="min-w-[320px] max-w-[420px] snap-start shrink-0 overflow-hidden rounded-2xl border hover:shadow-md transition"
+              key={a.id}
+              className="snap-start shrink-0 overflow-hidden rounded-3xl border-0 hover:shadow-xl transition
+                         min-w-[320px] sm:min-w-[420px] max-w-[520px] bg-white"
+              style={{ boxShadow: "0 10px 24px rgba(0,0,0,0.06)" }}
+              role="button"
+              onClick={() => setOpenId(a.id)}
+              aria-label={`Open ${a.title}`}
             >
-              {/* Cover */}
-              <div className="relative h-44 w-full overflow-hidden">
-                {m.poster ? (
-                  <img src={m.poster} alt="" className="h-full w-full object-cover" loading="lazy" />
-                ) : (
-                  <div className="h-full w-full bg-gradient-to-br from-muted to-background" />
-                )}
-                <div className="absolute inset-0 bg-black/10" />
+              {/* Poster */}
+              <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16 / 9", background: "#f6f7f8" }}>
+                <img src={a.poster} alt="" className="h-full w-full object-cover" loading="lazy" />
+                {/* Pink corner bookmark (brand flair) */}
+                <span className="absolute left-3 top-3 h-5 w-5 rounded-sm" style={{ background: THEME.primary }} />
+                {/* Play button overlay */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="grid place-items-center h-12 w-12 rounded-full" style={{ background: THEME.primary }}>
+                    <Play className="h-6 w-6 text-white" />
+                  </div>
+                </div>
               </div>
 
               {/* Body */}
               <div className="p-4">
-                <p className="text-sm font-semibold text-primary mb-1">
-                  {/** You can compute “Module N” dynamically if you prefer */}
-                  Module {AVATARS.indexOf(m) + 1}
-                </p>
-                <h3 className="text-xl font-semibold leading-snug">{m.title}</h3>
-                <p className="mt-1 text-sm text-muted-foreground line-clamp-2">{m.blurb}</p>
-
+                <h3 className="text-xl font-extrabold leading-tight">{a.title}</h3>
+                {a.blurb && <p className="mt-1 text-sm text-muted-foreground line-clamp-2">{a.blurb}</p>}
                 <div className="mt-3 flex flex-wrap items-center gap-2">
-                  {m.tags?.map((t) => (
-                    <Badge key={t} variant="outline" className="text-xs">
+                  {a.tags?.map((t) => (
+                    <Badge
+                      key={t}
+                      variant="outline"
+                      className="text-xs border-0"
+                      style={{ background: THEME.chipBg, color: THEME.primaryDark }}
+                    >
                       {t}
                     </Badge>
                   ))}
-                </div>
-
-                {/* Footer actions */}
-                <div className="mt-4 flex items-center justify-between">
-                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <span className="inline-flex items-center gap-1">
-                      <Clock className="h-4 w-4" />
-                      {m.duration}
-                    </span>
-                    <span className="inline-flex items-center gap-1">
-                      <Play className="h-4 w-4" />
-                      View
-                    </span>
-                  </div>
-                  <Button size="sm" onClick={() => setOpenId(m.id)}>
-                    Open
-                  </Button>
+                  {a.created && <span className="text-xs text-muted-foreground">• {a.created}</span>}
                 </div>
               </div>
             </Card>
@@ -183,16 +192,21 @@ export default function AiAvatars() {
         </div>
       </div>
 
-      {/* Modal Player */}
+      {/* Modal player — clean, focus on video */}
       <Dialog open={!!openId} onOpenChange={(v) => !v && setOpenId(null)}>
-        <DialogContent className="max-w-3xl p-0 overflow-hidden">
+        <DialogContent className="max-w-3xl p-0 overflow-hidden rounded-3xl">
           {active && (
             <>
               <DialogHeader className="px-6 pt-6">
-                <DialogTitle className="text-xl">{active.title}</DialogTitle>
+                <DialogTitle className="text-xl font-bold" style={{ color: THEME.primary }}>
+                  {active.title}
+                </DialogTitle>
               </DialogHeader>
               <div className="px-6 pb-6">
-                <div className="aspect-video w-full overflow-hidden rounded-xl border bg-background">
+                <div
+                  className="aspect-video w-full overflow-hidden rounded-2xl border"
+                  style={{ borderColor: THEME.chipBg }}
+                >
                   <iframe
                     src={active.embedUrl}
                     title={active.title}
