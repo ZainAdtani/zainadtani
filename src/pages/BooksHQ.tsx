@@ -8,7 +8,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ExternalLink, Search, Star } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { BOOKS, type BookStatus } from "@/data/books";
-import BooksImport from "@/components/BooksImport";
 import { findCover } from "@/lib/covers";
 
 
@@ -176,11 +175,6 @@ export default function BooksHQ() {
               <SelectItem value="progress-desc">Progress</SelectItem>
             </SelectContent>
           </Select>
-        </div>
-
-        {/* Import Component */}
-        <div className="mb-6">
-          <BooksImport onImported={() => setRefreshTrigger(prev => prev + 1)} />
         </div>
 
         {/* Books Grid */}

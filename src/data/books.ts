@@ -279,5 +279,78 @@ export const BOOKS: Book[] = [
     cover: 'https://m.media-amazon.com/images/I/71vZ8Z9ZXKL._SY466_.jpg',
     rating: 3.5,
     notes: 'Focus on 3 main tasks per day using 80/20 rule'
+  },
+  {
+    id: 'influence-psychology-persuasion',
+    title: 'Influence: The Psychology of Persuasion',
+    author: 'Robert B. Cialdini',
+    status: 'TBR',
+    tags: ['Psychology', 'Business', 'Nonfiction', 'SelfHelp', 'Leadership', 'PersonalDevelopment', 'Communication'],
+    isbn: '9780061241895'
+  },
+  {
+    id: 'learning-how-to-learn',
+    title: 'Learning How to Learn: How to Succeed in School Without Spend...',
+    author: 'Barbara Oakley',
+    status: 'TBR',
+    tags: ['Nonfiction', 'Education', 'SelfHelp', 'Psychology', 'Parenting', 'PersonalDevelopment', 'Productivity'],
+    isbn: '9780525504467'
+  },
+  {
+    id: 'mans-search-for-meaning',
+    title: "Man's Search for Meaning",
+    author: 'Viktor E. Frankl',
+    status: 'READ',
+    tags: ['Nonfiction', 'Psychology', 'Philosophy', 'History', 'SelfHelp', 'Memoir', 'Biography'],
+    isbn: '9780807014271',
+    rating: 5,
+    notes: 'Very good book must read every one to two years'
+  },
+  {
+    id: 'master-your-emotions',
+    title: 'Master Your Emotions: A Practical Guide to Overcome Negativity and Better Manage Your Feelings',
+    author: 'Thibaut Meurisse',
+    status: 'TBR',
+    tags: ['SelfHelp', 'Nonfiction', 'Psychology', 'PersonalDevelopment', 'MentalHealth', 'Emotion', 'Business'],
+    isbn: '9781981089154'
+  },
+  {
+    id: 'million-dollar-weekend',
+    title: 'Million Dollar Weekend: The Surprisingly Simple Way to Launch...',
+    author: 'Noah Kagan',
+    status: 'IN_PROGRESS',
+    tags: ['Business', 'Entrepreneurship', 'Nonfiction', 'Finance', 'SelfHelp', 'Money', 'Audiobook'],
+    isbn: '9780593539774',
+    progress: 8
+  },
+  {
+    id: 'mindset-psychology-success',
+    title: 'Mindset: The New Psychology of Success',
+    author: 'Carol S. Dweck',
+    status: 'TBR',
+    tags: ['Psychology', 'Nonfiction', 'SelfHelp', 'Business', 'PersonalDevelopment', 'Education', 'Leadership']
+  },
+  {
+    id: 'mistborn-final-empire',
+    title: 'Mistborn: The Final Empire',
+    author: 'Brandon Sanderson',
+    status: 'TBR',
+    tags: ['Fantasy', 'Fiction', 'HighFantasy', 'Audiobook', 'EpicFantasy', 'Magic', 'Adult'],
+    isbn: '9781250868282'
+  },
+  {
+    id: 'sherlock-holmes-collection',
+    title: 'Sherlock Holmes Collection anthology of classic tales',
+    author: 'Jon Lellenberg',
+    status: 'TBR',
+    isbn: '9781786645449'
+  },
+  {
+    id: 'shoe-dog',
+    title: 'Shoe Dog: A Memoir by the Creator of Nike',
+    author: 'Phil Knight',
+    status: 'TBR',
+    tags: ['Business', 'Biography', 'Nonfiction', 'Memoir', 'Audiobook', 'Sports', 'Autobiography'],
+    isbn: '9781501135910'
   }
 ];
