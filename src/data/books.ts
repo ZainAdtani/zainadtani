@@ -352,5 +352,79 @@ export const BOOKS: Book[] = [
     status: 'TBR',
     tags: ['Business', 'Biography', 'Nonfiction', 'Memoir', 'Audiobook', 'Sports', 'Autobiography'],
     isbn: '9781501135910'
+  },
+  {
+    id: 'the-secret',
+    title: 'The Secret',
+    author: 'Rhonda Byrne',
+    status: 'READ',
+    tags: ['SelfHelp', 'Nonfiction', 'Spirituality', 'Psychology', 'PersonalDevelopment', 'Philosophy', 'Inspirational'],
+    isbn: '9781582701707',
+    rating: 5,
+    notes: 'Probably need to reread once a month and watch the movie once a month'
+  },
+  {
+    id: 'the-sht-they-never-taught-you',
+    title: 'The Sh*t They Never Taught You: What You Can Learn From Books',
+    author: 'Adam Ashton',
+    status: 'TBR',
+    tags: ['Nonfiction', 'SelfHelp', 'PersonalDevelopment', 'Business', 'Education', 'Psychology', 'Philosophy'],
+    isbn: '9780645133806'
+  },
+  {
+    id: 'subtle-art-not-giving-fck',
+    title: 'The Subtle Art of Not Giving a F*ck: A Counterintuitive Appro...',
+    author: 'Mark Manson',
+    status: 'TBR',
+    tags: ['Nonfiction', 'SelfHelp', 'Psychology', 'Audiobook', 'PersonalDevelopment', 'Philosophy', 'Business'],
+    isbn: '9798804636129'
+  },
+  {
+    id: 'surrender-experiment',
+    title: "The Surrender Experiment: My Journey into Life's Perfection",
+    author: 'Michael A. Singer',
+    status: 'TBR',
+    tags: ['Spirituality', 'Nonfiction', 'SelfHelp', 'Philosophy', 'PersonalDevelopment', 'Memoir', 'Psychology'],
+    isbn: '9780804141109'
+  },
+  {
+    id: 'the-third-door',
+    title: "The Third Door: The Wild Quest to Uncover How the World's Mos...",
+    author: 'Alex Banayan',
+    status: 'TBR',
+    tags: ['Business', 'Nonfiction', 'SelfHelp', 'PersonalDevelopment', 'Entrepreneurship', 'Biography', 'Productivity']
+  },
+  {
+    id: 'wonder-boy-luka-doncic',
+    title: 'The Wonder Boy: Luka Doncic and the Curse of Greatness',
+    author: 'Tim MacMahon',
+    status: 'TBR',
+    tags: ['Sports', 'Basketball', 'Nonfiction', 'Biography'],
+    isbn: '9781538740712'
+  },
+  {
+    id: 'think-grow-rich',
+    title: 'Think and Grow Rich',
+    author: 'Napoleon Hill',
+    status: 'TBR',
+    tags: ['SelfHelp', 'Business', 'Nonfiction', 'Finance', 'PersonalDevelopment', 'Money', 'Psychology']
+  },
+  {
+    id: 'where-hope-takes-root',
+    title: 'Where Hope Takes Root: Democracy and Pluralism in an Interdependent World',
+    author: 'Aga Khan IV',
+    status: 'READ',
+    tags: ['Nonfiction'],
+    isbn: '9781553653660',
+    rating: 3.5,
+    notes: 'Last few chapters are better'
+  },
+  {
+    id: 'why-has-nobody-told-me',
+    title: 'Why Has Nobody Told Me This Before?: Expert Advice for Naviga...',
+    author: 'Julie Smith',
+    status: 'TBR',
+    tags: ['Nonfiction', 'SelfHelp', 'Psychology', 'MentalHealth', 'Audiobook', 'PersonalDevelopment', 'Health'],
+    isbn: '9780063227934'
   }
 ];

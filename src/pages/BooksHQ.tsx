@@ -10,20 +10,70 @@ import { Helmet } from "react-helmet-async";
 import { BOOKS, type BookStatus } from "@/data/books";
 import { findCover } from "@/lib/covers";
 
+/** ---------- helpers ---------- **/
+
+// Nice-looking generic cover (dark-friendly). Replace with /assets/book-placeholder.png if you prefer.
+const GENERIC_COVER =
+  "data:image/svg+xml;charset=UTF-8," +
+  encodeURIComponent(`
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 450'>
+  <defs>
+    <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+      <stop offset='0%' stop-color='#1f2937'/>
+      <stop offset='100%' stop-color='#0f172a'/>
+    </linearGradient>
+  </defs>
+  <rect width='300' height='450' fill='url(#g)'/>
+  <rect x='28' y='28' width='244' height='394' rx='8' ry='8' fill='none' stroke='#334155' stroke-width='3'/>
+  <g fill='#94a3b8'>
+    <rect x='60' y='90' width='180' height='14' rx='7'/>
+    <rect x='60' y='120' width='180' height='14' rx='7' opacity='0.9'/>
+    <rect x='60' y='150' width='120' height='14' rx='7' opacity='0.8'/>
+    <rect x='60' y='330' width='180' height='10' rx='5' opacity='0.5'/>
+    <rect x='60' y='350' width='160' height='10' rx='5' opacity='0.4'/>
+  </g>
+  <path d='M120 215 h60' stroke='#64748b' stroke-width='10' stroke-linecap='round'/>
+  <path d='M100 250 h100' stroke='#475569' stroke-width='6' stroke-linecap='round'/>
+</svg>`);
+
+// Build a dependable Amazon search link when we don't have a direct product link
+function amazonSearchUrl(title: string, author?: string, tag = "eng2ea-20") {
+  const q = [title, author].filter(Boolean).join(" ");
+  const base = `https://www.amazon.com/s?k=${encodeURIComponent(q)}`;
+  const u = new URL(base);
+  if (tag) u.searchParams.set("tag", tag);
+  return u.toString();
+}
+
+// If you *do* have a direct Amazon URL, make sure the affiliate tag is attached
+function withAffiliate(url?: string, tag = "eng2ea-20") {
+  try {
+    if (!url) return url;
+    const u = new URL(url);
+    if (!u.searchParams.get("tag")) u.searchParams.set("tag", tag);
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
+
+/** ---------- styles ---------- **/
 
 const STATUS_COLORS: Record<BookStatus, string> = {
   READ: "bg-green-500/20 text-green-400 border-green-500/50",
   IN_PROGRESS: "bg-blue-500/20 text-blue-400 border-blue-500/50",
-  TBR: "bg-muted text-muted-foreground border-border"
+  TBR: "bg-muted text-muted-foreground border-border",
 };
 
 const STATUS_LABELS: Record<BookStatus, string> = {
   READ: "Read",
   IN_PROGRESS: "Reading",
-  TBR: "Want To Read"
+  TBR: "Want To Read",
 };
 
-type SortOption = 'title-asc' | 'author-asc' | 'progress-desc' | 'rating-desc';
+type SortOption = "title-asc" | "author-asc" | "progress-desc" | "rating-desc";
+
+/** ---------- component ---------- **/
 
 export default function BooksHQ() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -31,44 +81,46 @@ export default function BooksHQ() {
   const [sortBy, setSortBy] = useState<SortOption>("title-asc");
   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
-  // Count books by status
+  // counts
   const bookCounts = useMemo(() => {
     return {
       ALL: BOOKS.length,
-      READ: BOOKS.filter(b => b.status === 'READ').length,
-      IN_PROGRESS: BOOKS.filter(b => b.status === 'IN_PROGRESS').length,
-      TBR: BOOKS.filter(b => b.status === 'TBR').length
+      READ: BOOKS.filter((b) => b.status === "READ").length,
+      IN_PROGRESS: BOOKS.filter((b) => b.status === "IN_PROGRESS").length,
+      TBR: BOOKS.filter((b) => b.status === "TBR").length,
     };
   }, []);
 
+  // list
   const filteredAndSortedBooks = useMemo(() => {
     let result = [...BOOKS];
 
-    // Filter by search query
+    // filter by query
     if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      result = result.filter(book => 
-        book.title.toLowerCase().includes(query) ||
-        book.author.toLowerCase().includes(query) ||
-        book.tags?.some(tag => tag.toLowerCase().includes(query))
+      const q = searchQuery.toLowerCase();
+      result = result.filter(
+        (book) =>
+          book.title.toLowerCase().includes(q) ||
+          book.author.toLowerCase().includes(q) ||
+          book.tags?.some((tag) => tag.toLowerCase().includes(q))
       );
     }
 
-    // Filter by status
+    // filter by status
     if (statusFilter !== "ALL") {
-      result = result.filter(book => book.status === statusFilter);
+      result = result.filter((book) => book.status === statusFilter);
     }
 
-    // Sort
+    // sort
     result.sort((a, b) => {
       switch (sortBy) {
-        case 'title-asc':
+        case "title-asc":
           return a.title.localeCompare(b.title);
-        case 'author-asc':
+        case "author-asc":
           return a.author.localeCompare(b.author);
-        case 'progress-desc':
+        case "progress-desc":
           return (b.progress || 0) - (a.progress || 0);
-        case 'rating-desc':
+        case "rating-desc":
           return (b.rating || 0) - (a.rating || 0);
         default:
           return 0;
@@ -78,21 +130,23 @@ export default function BooksHQ() {
     return result;
   }, [searchQuery, statusFilter, sortBy, refreshTrigger]);
 
-  // Auto-fetch missing covers on load
+  // quietly fill missing covers
   useEffect(() => {
     let cancelled = false;
     (async () => {
       for (const b of filteredAndSortedBooks) {
         if (!b.cover) {
-          const url = await findCover({ title: b.title, author: b.author, isbn: b.isbn });
-          if (url && !cancelled) { 
+          const url = await findCover({ title: b.title, author: b.author, isbn: (b as any).isbn });
+          if (url && !cancelled) {
             b.cover = url;
-            setRefreshTrigger(prev => prev + 1);
+            setRefreshTrigger((x) => x + 1);
           }
         }
       }
     })();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, [filteredAndSortedBooks]);
 
   return (
@@ -107,15 +161,11 @@ export default function BooksHQ() {
       <div className="container mx-auto px-4 py-16 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-foreground">
-            Book Portal
-          </h1>
-          <p className="text-xl text-muted-foreground">
-            Books I've read, I'm reading, and want to read
-          </p>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-foreground">Book Portal</h1>
+          <p className="text-xl text-muted-foreground">Books I've read, I'm reading, and want to read</p>
         </div>
 
-        {/* Search and Filters */}
+        {/* Search + Filters */}
         <div className="flex flex-col md:flex-row gap-4 mb-8">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -128,38 +178,18 @@ export default function BooksHQ() {
               aria-label="Search books"
             />
           </div>
-          
+
           <div className="flex gap-2 flex-wrap md:flex-nowrap">
-            <Button
-              variant={statusFilter === "ALL" ? "default" : "outline"}
-              onClick={() => setStatusFilter("ALL")}
-              size="sm"
-              aria-pressed={statusFilter === "ALL"}
-            >
+            <Button variant={statusFilter === "ALL" ? "default" : "outline"} onClick={() => setStatusFilter("ALL")} size="sm">
               All ({bookCounts.ALL})
             </Button>
-            <Button
-              variant={statusFilter === "READ" ? "default" : "outline"}
-              onClick={() => setStatusFilter("READ")}
-              size="sm"
-              aria-pressed={statusFilter === "READ"}
-            >
+            <Button variant={statusFilter === "READ" ? "default" : "outline"} onClick={() => setStatusFilter("READ")} size="sm">
               Read ({bookCounts.READ})
             </Button>
-            <Button
-              variant={statusFilter === "IN_PROGRESS" ? "default" : "outline"}
-              onClick={() => setStatusFilter("IN_PROGRESS")}
-              size="sm"
-              aria-pressed={statusFilter === "IN_PROGRESS"}
-            >
+            <Button variant={statusFilter === "IN_PROGRESS" ? "default" : "outline"} onClick={() => setStatusFilter("IN_PROGRESS")} size="sm">
               In Progress ({bookCounts.IN_PROGRESS})
             </Button>
-            <Button
-              variant={statusFilter === "TBR" ? "default" : "outline"}
-              onClick={() => setStatusFilter("TBR")}
-              size="sm"
-              aria-pressed={statusFilter === "TBR"}
-            >
+            <Button variant={statusFilter === "TBR" ? "default" : "outline"} onClick={() => setStatusFilter("TBR")} size="sm">
               To Read ({bookCounts.TBR})
             </Button>
           </div>
@@ -179,119 +209,86 @@ export default function BooksHQ() {
 
         {/* Books Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredAndSortedBooks.map((book) => (
-            <Card key={book.id} className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2 flex flex-col">
-              {/* Cover Image */}
-              <div className="aspect-[2/3] w-full bg-muted relative overflow-hidden">
-                {book.cover ? (
+          {filteredAndSortedBooks.map((book) => {
+            const coverSrc = book.cover || GENERIC_COVER;
+            // always render a button — prefer direct link (with affiliate), else Amazon search
+            const href = withAffiliate(book.link) || amazonSearchUrl(book.title, book.author);
+
+            return (
+              <Card key={book.id} className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2 flex flex-col">
+                {/* Cover */}
+                <div className="aspect-[2/3] w-full bg-muted relative overflow-hidden">
                   <img
-                    src={book.cover}
+                    src={coverSrc}
                     alt={`${book.title} cover`}
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300"%3E%3Crect fill="%23333" width="200" height="300"/%3E%3Ctext fill="%23666" x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="14"%3ENo Cover%3C/text%3E%3C/svg%3E';
+                      e.currentTarget.src = GENERIC_COVER;
                     }}
                   />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                    No Cover
-                  </div>
-                )}
-              </div>
+                </div>
 
-              <CardContent className="p-4 flex-1 flex flex-col">
-                {/* Title & Author */}
-                <h3 className="font-semibold text-base mb-1 line-clamp-2 text-foreground">
-                  {book.title}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-3">
-                  {book.author}
-                </p>
+                <CardContent className="p-4 flex-1 flex flex-col">
+                  {/* Title & Author */}
+                  <h3 className="font-semibold text-base mb-1 line-clamp-2 text-foreground">{book.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-3">{book.author}</p>
 
-                {/* Status Badge */}
-                <Badge 
-                  className={`mb-3 w-fit ${STATUS_COLORS[book.status]}`}
-                  variant="outline"
-                >
-                  {STATUS_LABELS[book.status]}
-                </Badge>
+                  {/* Status */}
+                  <Badge className={`mb-3 w-fit ${STATUS_COLORS[book.status]}`} variant="outline">
+                    {STATUS_LABELS[book.status]}
+                  </Badge>
 
-                {/* Progress Bar for IN_PROGRESS */}
-                {book.status === 'IN_PROGRESS' && book.progress !== undefined && (
-                  <div className="mb-3">
-                    <div className="flex justify-between text-xs text-muted-foreground mb-1">
-                      <span>Progress</span>
-                      <span>{book.progress}%</span>
+                  {/* Progress */}
+                  {book.status === "IN_PROGRESS" && book.progress !== undefined && (
+                    <div className="mb-3">
+                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                        <span>Progress</span>
+                        <span>{book.progress}%</span>
+                      </div>
+                      <Progress value={book.progress} className="h-2" />
                     </div>
-                    <Progress value={book.progress} className="h-2" />
-                  </div>
-                )}
+                  )}
 
-                {/* Rating */}
-                {book.rating && (
-                  <div className="flex items-center gap-1 mb-2">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-3.5 h-3.5 ${
-                          i < book.rating! ? 'fill-yellow-500 text-yellow-500' : 'text-muted'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                )}
+                  {/* Rating */}
+                  {book.rating && (
+                    <div className="flex items-center gap-1 mb-2">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className={`w-3.5 h-3.5 ${i < book.rating! ? "fill-yellow-500 text-yellow-500" : "text-muted"}`} />
+                      ))}
+                    </div>
+                  )}
 
-                {/* Notes */}
-                {book.notes && (
-                  <p className="text-sm text-muted-foreground italic mb-3">
-                    "{book.notes}"
-                  </p>
-                )}
+                  {/* Notes (quote) */}
+                  {book.notes && <p className="text-sm text-muted-foreground italic mb-3">"{book.notes}"</p>}
 
-                {/* Tags */}
-                {book.tags && book.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-1 mb-3">
-                    {book.tags.map((tag) => (
-                      <span 
-                        key={tag}
-                        className="text-xs px-2 py-0.5 rounded-full bg-accent text-accent-foreground"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                  {/* Tags */}
+                  {book.tags && book.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1 mb-3">
+                      {book.tags.map((tag) => (
+                        <span key={tag} className="text-xs px-2 py-0.5 rounded-full bg-accent text-accent-foreground">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
 
-                {/* Link Button */}
-                {book.link && (
-                  <Button 
-                    asChild 
-                    variant="outline" 
-                    size="sm"
-                    className="mt-auto"
-                  >
-                    <a 
-                      href={book.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
-                    >
+                  {/* Always show button */}
+                  <Button asChild variant="outline" size="sm" className="mt-auto">
+                    <a href={href} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
                       View on Amazon
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   </Button>
-                )}
-              </CardContent>
-            </Card>
-          ))}
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
 
-        {/* No Results */}
+        {/* Empty state */}
         {filteredAndSortedBooks.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-lg text-muted-foreground">
-              No books found matching your criteria.
-            </p>
+            <p className="text-lg text-muted-foreground">No books found matching your criteria.</p>
           </div>
         )}
       </div>
