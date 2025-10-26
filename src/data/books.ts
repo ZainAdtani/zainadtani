@@ -238,36 +238,37 @@ export const BOOKS: Book[] = [
     author: 'I.A. Ibrahim',
     status: 'READ',
     tags: ['Islam', 'Religion', 'Nonfiction', 'Reference', 'Spirituality'],
-    cover: 'https://m.media-amazon.com/images/I/51qZq7Z3bpL._SY466_.jpg',
+    link: 'https://www.amazon.com/Brief-Illustrated-Guide-Understanding-Islam/dp/9960340112',
+    cover: '/book-covers/understanding-islam.png',
     rating: 5,
     notes: 'Very nice short info on Islam - great re-read during Ramadan'
   },
   {
     id: 'danger-zone',
-    title: 'Danger Zone',
+    title: 'Danger Point (Signature)',
     author: 'David Klass',
     status: 'READ',
-    tags: ['Sports', 'Fiction', 'Young Adult'],
-    link: 'https://a.co/d/0vFw3Qz',
-    cover: 'https://m.media-amazon.com/images/I/51X7ZQXQWZL._SY466_.jpg'
+    tags: ['Sports', 'Fiction', 'Young Adult', 'Thriller'],
+    link: 'https://www.amazon.com/Danger-Point-Signature-David-Klass/dp/0590485911',
+    cover: '/book-covers/danger-point.png'
   },
   {
     id: 'ethical-living-stories',
-    title: 'Ethical Living through Stories: Encounters with Adab',
-    author: 'Wen-chin Ouyang',
+    title: 'Ethical Living through Stories and Encounters with Adab',
+    author: 'Wen-Chin Duyang',
     status: 'TBR',
-    tags: ['Ethics', 'Philosophy', 'Islam'],
-    link: 'https://a.co/d/2Mz8Kpw',
-    cover: 'https://m.media-amazon.com/images/I/41rH6Z7ZXKL._SY466_.jpg'
+    tags: ['Ethics', 'Philosophy', 'Islam', 'Moral Philosophy'],
+    link: 'https://www.amazon.com/Ethical-Living-through-Stories-Encounters/dp/0755657497',
+    cover: '/book-covers/ethical-living.png'
   },
   {
     id: 'free-to-focus',
-    title: 'Free to Focus: A Total Productivity System to Achieve More',
+    title: 'Free to Focus: A Total Productivity System to Achieve More by Doing Less',
     author: 'Michael Hyatt',
     status: 'READ',
-    tags: ['Productivity', 'Business', 'Self-Improvement'],
-    link: 'https://a.co/d/1Hz9Kpw',
-    cover: 'https://m.media-amazon.com/images/I/71vZ8Z9ZXKL._SY466_.jpg',
+    tags: ['Productivity', 'Business', 'Self-Improvement', 'Time Management'],
+    link: 'https://www.amazon.com/Free-Focus-Productivity-System-Achieve/dp/0801075092',
+    cover: '/book-covers/free-to-focus.png',
     rating: 3.5,
     notes: 'Focus on 3 main tasks per day using 80/20 rule'
   },
@@ -281,10 +282,12 @@ export const BOOKS: Book[] = [
   },
   {
     id: 'learning-how-to-learn',
-    title: 'Learning How to Learn: How to Succeed in School Without Spend...',
-    author: 'Barbara Oakley',
+    title: 'Learning How to Learn: How to Succeed in School Without Spending All Your Time Studying',
+    author: 'Barbara Oakley, PhD and Terrence Sejnowski, PhD',
     status: 'TBR',
-    tags: ['Nonfiction', 'Education', 'SelfHelp', 'Psychology', 'Parenting', 'PersonalDevelopment', 'Productivity'],
+    tags: ['Nonfiction', 'Education', 'SelfHelp', 'Psychology', 'Parenting', 'PersonalDevelopment', 'Productivity', 'Learning', 'Study Skills', 'Neuroscience'],
+    link: 'https://www.amazon.com/Learning-How-Learn-Spending-Studying/dp/0143132547',
+    cover: '/book-covers/learning-how-to-learn.png',
     isbn: '9780525504467'
   },
   {
@@ -364,10 +367,12 @@ export const BOOKS: Book[] = [
   },
   {
     id: 'subtle-art-not-giving-fck',
-    title: 'The Subtle Art of Not Giving a F*ck: A Counterintuitive Appro...',
+    title: 'The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life',
     author: 'Mark Manson',
     status: 'TBR',
     tags: ['Nonfiction', 'SelfHelp', 'Psychology', 'Audiobook', 'PersonalDevelopment', 'Philosophy', 'Business'],
+    link: 'https://www.amazon.com/Subtle-Art-Not-Giving-Counterintuitive/dp/0062457713',
+    cover: '/book-covers/subtle-art.png',
     isbn: '9798804636129'
   },
   {
@@ -387,10 +392,12 @@ export const BOOKS: Book[] = [
   },
   {
     id: 'wonder-boy-luka-doncic',
-    title: 'The Wonder Boy: Luka Doncic and the Curse of Greatness',
+    title: 'The Wonder Boy: Luka Dončić and the Curse of Greatness',
     author: 'Tim MacMahon',
     status: 'TBR',
     tags: ['Sports', 'Basketball', 'Nonfiction', 'Biography'],
+    link: 'https://www.amazon.com/Wonder-Boy-Doncic-Curse-Greatness/dp/1538740710',
+    cover: '/book-covers/wonder-boy.png',
     isbn: '9781538740712'
   },
   {
