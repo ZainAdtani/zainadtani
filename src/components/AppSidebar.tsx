@@ -1,4 +1,4 @@
-import { Home, GraduationCap, TrendingUp, Wrench, Lock, ShoppingBag, Trophy, BookOpen, Music, HelpCircle, Search, ChevronDown, FolderKanban, Clock, FileText } from "lucide-react";
+import { Home, GraduationCap, TrendingUp, Wrench, Lock, ShoppingBag, Trophy, BookOpen, Music, HelpCircle, Search, ChevronDown, FolderKanban, FileText } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
   Sidebar,
@@ -39,13 +39,11 @@ const searchIndex: SearchableItem[] = [
   { title: "Investing", route: "/investing", section: "Learn", tags: ["finance", "stocks"] },
   { title: "Blog", route: "/blog", section: "Learn", tags: ["articles", "posts", "writing"] },
   { title: "Tools", route: "/tools", section: "Resources", tags: ["utilities"] },
-  { title: "Secret Vault", route: "/vault", section: "Resources", tags: ["premium", "exclusive"] },
-  
-  { title: "Sports", route: "/sports", section: "Articles", tags: ["NBA", "scores"] },
-  { title: "Waez", route: "/waez", section: "Articles", tags: ["religious", "lectures", "Abu Ali"] },
+  { title: "Sports", route: "/sports", section: "Resources", tags: ["NBA", "scores"] },
+  { title: "Waez", route: "/waez", section: "Resources", tags: ["religious", "lectures", "Abu Ali"] },
   { title: "Projects", route: "/projects", section: "Explore", tags: ["pokedex", "builds"] },
   { title: "Pokédex", route: "/projects/pokedex", section: "Explore", tags: ["pokemon", "notion"] },
-  { title: "Countdown", route: "/countdown", section: "Explore", tags: ["timer", "events", "dates"] },
+  { title: "Secret Vault", route: "/vault", section: "Secret Vault", tags: ["premium", "exclusive"] },
   { title: "Help / Contact", route: "/about", section: "Support" },
 ];
 
@@ -62,10 +60,6 @@ export function AppSidebar() {
   });
   const [resourcesOpen, setResourcesOpen] = useState(() => {
     const saved = localStorage.getItem("sidebar-resources-open");
-    return saved !== null ? JSON.parse(saved) : true;
-  });
-  const [articlesOpen, setArticlesOpen] = useState(() => {
-    const saved = localStorage.getItem("sidebar-articles-open");
     return saved !== null ? JSON.parse(saved) : true;
   });
   const [supportOpen, setSupportOpen] = useState(() => {
@@ -89,9 +83,6 @@ export function AppSidebar() {
   useEffect(() => {
     localStorage.setItem("sidebar-resources-open", JSON.stringify(resourcesOpen));
   }, [resourcesOpen]);
-  useEffect(() => {
-    localStorage.setItem("sidebar-articles-open", JSON.stringify(articlesOpen));
-  }, [articlesOpen]);
   useEffect(() => {
     localStorage.setItem("sidebar-support-open", JSON.stringify(supportOpen));
   }, [supportOpen]);
@@ -277,34 +268,6 @@ export function AppSidebar() {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <NavLink to="/vault" className={getNavClass}>
-                    <Lock className="h-4 w-4" />
-                    {!isCollapsed && <span>Secret Vault</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible>
-
-        {/* Articles Section */}
-        <Collapsible open={articlesOpen} onOpenChange={setArticlesOpen}>
-          <SidebarGroup>
-            <CollapsibleTrigger asChild>
-              <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
-                Articles
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform ${articlesOpen ? "rotate-180" : ""}`}
-                />
-              </SidebarGroupLabel>
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
                   <NavLink to="/sports" className={getNavClass}>
                     <Trophy className="h-4 w-4" />
                     {!isCollapsed && <span>Sports</span>}
@@ -347,14 +310,6 @@ export function AppSidebar() {
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/countdown" className={getNavClass}>
-                    <Clock className="h-4 w-4" />
-                    {!isCollapsed && <span>Countdown</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
             </SidebarMenu>
               </SidebarGroupContent>
             </CollapsibleContent>
@@ -388,6 +343,20 @@ export function AppSidebar() {
             </CollapsibleContent>
           </SidebarGroup>
         </Collapsible>
+
+        {/* Secret Vault Section (Standalone) */}
+        <SidebarGroup>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <NavLink to="/vault" className={getNavClass}>
+                  <Lock className="h-4 w-4" />
+                  {!isCollapsed && <span>Secret Vault</span>}
+                </NavLink>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
       </SidebarContent>
 
       {/* Theme Toggle Footer */}
