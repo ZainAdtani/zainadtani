@@ -10,11 +10,12 @@
 
     {(() => {
       type Item = {
-        t: string;
+        t: string; // ticker
         name: string;
         kind: "Stock" | "ETF" | "Crypto" | "CEF";
-        note: string;
+        note: string; // 1-line “what it is / what it does”
       };
+
       type Group = { title: string; items: Item[] };
 
       // ------- DATA (edit freely) -------
@@ -78,7 +79,10 @@
         },
         {
           title: "International / EM",
-          items: [{ t: "BABA", name: "Alibaba", kind: "Stock", note: "China e-commerce & cloud." }],
+          items: [
+            { t: "BABA", name: "Alibaba", kind: "Stock", note: "China e-commerce & cloud." },
+            // VXUS appears in IRA below
+          ],
         },
         {
           title: "Crypto & Proxies",
@@ -93,7 +97,7 @@
               t: "FBTC",
               name: "Fidelity Bitcoin ETF",
               kind: "ETF",
-              note: "Spot BTC exposure (see IRA if held there).",
+              note: "Spot BTC exposure (IRA below if held there).",
             },
           ],
         },
@@ -151,6 +155,8 @@
             <div className="text-xs text-muted-foreground">{it.name}</div>
             <div className="text-sm mt-1">{it.note}</div>
           </div>
+          {/* optional: link out (comment if you don't want) */}
+          {/* <a className="text-xs text-primary mt-1" href={`https://finance.yahoo.com/quote/${it.t}`} target="_blank" rel="noreferrer">Quote ↗</a> */}
         </div>
       );
 
