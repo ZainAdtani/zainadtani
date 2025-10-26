@@ -29,7 +29,6 @@ import { Helmet } from "react-helmet-async";
 import { TimeBar } from "@/components/TimeBar";
 import { ALL_PRODUCTS } from "@/data/products";
 import { BOOKS } from "@/data/books";
-import TryTaxQuestCTA from "@/components/TryTaxQuestCTA";
 import headshotImage from "@/assets/zain-headshot.png";
 import qbBadge from "@/assets/quickbooks-level2-badge.png";
 import awsBadge from "@/assets/aws-cloud-practitioner-badge.png";
@@ -43,8 +42,6 @@ import financialSorceryBook from "@/assets/financial-sorcery-book.png";
 import chrisHaroun from "@/assets/chris-haroun.png";
 import trentShelton from "@/assets/trent-shelton.png";
 
-// Lazy load heavy component for better performance
-const EAGame = lazy(() => import("@/components/EAGame").then((m) => ({ default: m.EAGame })));
 const QUOTES_AND_NOTES = [
   "It is the unknown we fear when we look upon death and darkness, nothing more. - J.K. Rowling, Harry Potter and the Deathly Hallows",
   "Instead of digging for gold, sell shovels. Instead of driving a taxi, build Uber. Wealth is not about working harder; it's about creating systems that work harder than you do. - MJ DeMarco, The Millionaire Fastlane",
@@ -305,13 +302,6 @@ const Index = () => {
               </a>
             </Card>
           </div>
-        </div>
-      </section>
-
-      {/* Tax Quest CTA (external game) */}
-      <section className="py-8">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <TryTaxQuestCTA />
         </div>
       </section>
 
@@ -1137,13 +1127,6 @@ const Index = () => {
             </Card>
           </div>
         </div>
-      </section>
-
-      {/* EA Learning Game */}
-      <section aria-label="EA Learning Game">
-        <Suspense fallback={<div className="py-16 text-center text-muted-foreground">Loading game…</div>}>
-          <EAGame />
-        </Suspense>
       </section>
 
       {/* My Custom & Recommended GPTs Section */}

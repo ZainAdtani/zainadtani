@@ -252,15 +252,6 @@ export const BOOKS: Book[] = [
     cover: 'https://m.media-amazon.com/images/I/51X7ZQXQWZL._SY466_.jpg'
   },
   {
-    id: 'enrolled-agent-study-guide',
-    title: 'Enrolled Agent Study Guide 2025-2026: All in One EA Exam Prep',
-    author: 'Markie Tinan',
-    status: 'IN_PROGRESS',
-    progress: 4,
-    tags: ['Tax', 'Study Guide', 'Professional Development'],
-    cover: 'https://m.media-amazon.com/images/I/71xGKqN5QpL._SY466_.jpg'
-  },
-  {
     id: 'ethical-living-stories',
     title: 'Ethical Living through Stories: Encounters with Adab',
     author: 'Wen-chin Ouyang',

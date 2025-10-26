@@ -20,7 +20,6 @@ import NotFound from "./pages/NotFound";
 import Projects from "./pages/Projects";
 import ProjectPokedex from "./pages/ProjectPokedex";
 import AiAvatars from "./pages/projects/AiAvatars";
-import Countdown from "./pages/Countdown";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 
@@ -49,7 +48,6 @@ const App = () => (
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/pokedex" element={<ProjectPokedex />} />
             <Route path="/projects/ai-avatars" element={<AiAvatars />} />
-            <Route path="/countdown" element={<Countdown />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
