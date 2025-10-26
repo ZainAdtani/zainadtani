@@ -5,12 +5,12 @@ import { TrendingUp, DollarSign, PiggyBank, LineChart, BookOpen, Target } from "
 const Investing = () => {
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary/5 via-background to-accent/5">
+      {/* Hero Section — slightly smaller */}
+      <section className="py-12 md:py-20 bg-gradient-to-br from-primary/5 via-background to-accent/5">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-12">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">Investing</h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <div className="text-center mb-10">
+            <h1 className="text-5xl md:text-6xl font-bold mb-5">Investing</h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Building wealth through smart investment strategies and financial education
             </p>
           </div>
@@ -70,43 +70,7 @@ const Investing = () => {
         </div>
       </section>
 
-      {/* Investment Areas */}
-      <section className="py-16 md:py-24 bg-secondary/30">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-4xl font-bold text-center mb-12">
-            Where I <span className="text-primary">Invest</span>
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="p-8 hover-lift transition-all duration-300 border-2">
-              <DollarSign className="w-12 h-12 text-primary mb-4" />
-              <h3 className="text-2xl font-bold mb-4">Stock Market</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Index funds, dividend stocks, and growth opportunities. Building a diversified portfolio for long-term
-                wealth creation.
-              </p>
-            </Card>
-
-            <Card className="p-8 hover-lift transition-all duration-300 border-2">
-              <LineChart className="w-12 h-12 text-accent mb-4" />
-              <h3 className="text-2xl font-bold mb-4">Business Ventures</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Creating and investing in businesses that solve real problems. From digital products to service-based
-                companies.
-              </p>
-            </Card>
-
-            <Card className="p-8 hover-lift transition-all duration-300 border-2">
-              <TrendingUp className="w-12 h-12 text-primary mb-4" />
-              <h3 className="text-2xl font-bold mb-4">Real Estate</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Property investments for passive income and long-term appreciation. Building a real estate portfolio
-                strategically.
-              </p>
-            </Card>
-          </div>
-        </div>
-      </section>
+      {/* (REMOVED) Investment Areas — “Where I Invest” */}
 
       {/* Savings & Brokerage Accounts */}
       <section className="py-16 md:py-24 bg-background">
@@ -146,11 +110,57 @@ const Investing = () => {
               <TrendingUp className="w-12 h-12 text-primary mb-4" />
               <h3 className="text-2xl font-bold mb-4">Robinhood</h3>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Commission-free trading platform for stocks, ETFs, options, and crypto with an intuitive mobile experience.
+                Commission-free trading platform for stocks, ETFs, options, and crypto with an intuitive mobile
+                experience.
               </p>
               <Button asChild variant="outline" className="w-full">
                 <a href="https://join.robinhood.com/zaina113" target="_blank" rel="noopener noreferrer">
                   Join Robinhood →
+                </a>
+              </Button>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Options Trading Section — moved BEFORE Portfolio Breakdown */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold mb-6">
+                Master <span className="text-primary">Options Trading</span>
+              </h2>
+              <div className="space-y-4 text-lg text-muted-foreground">
+                <p>
+                  Options are one of the most powerful tools in investing—offering flexibility, leverage, and strategic
+                  opportunities beyond simple stock ownership.
+                </p>
+                <p>
+                  Whether you're hedging your portfolio, generating income through covered calls, or speculating on
+                  market movements, understanding options is essential for serious investors.
+                </p>
+                <p>
+                  I'm learning from the best resources available, and I highly recommend this comprehensive course that
+                  breaks down calls, puts, spreads, and advanced strategies.
+                </p>
+              </div>
+            </div>
+
+            <Card className="p-8 hover-lift transition-all duration-300 border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
+              <LineChart className="w-12 h-12 text-primary mb-4" />
+              <h3 className="text-2xl font-bold mb-4">Complete Options Course</h3>
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                Master calls, puts, long & short positions, spreads, and real-world strategies. From beginner to
+                advanced, this course covers everything you need to trade options confidently.
+              </p>
+              <Button asChild className="w-full" size="lg">
+                <a
+                  href="https://www.udemy.com/course/the-completecomplete-options-course-calls-puts-long-short/?couponCode=MT251006G3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Get the Course →
                 </a>
               </Button>
             </Card>
@@ -234,7 +244,6 @@ const Investing = () => {
                 <div className="relative">
                   <div className="flex items-center justify-between">
                     <h4 className="text-2xl font-extrabold tracking-tight">{p.ticker}</h4>
-                    {/* uses icon already imported on this page */}
                     <TrendingUp className="w-5 h-5 text-primary opacity-70" />
                   </div>
                   {p.name ? <p className="text-sm text-muted-foreground mt-1">{p.name}</p> : null}
@@ -289,51 +298,6 @@ const Investing = () => {
         </div>
       </section>
 
-      {/* Options Trading Section */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold mb-6">
-                Master <span className="text-primary">Options Trading</span>
-              </h2>
-              <div className="space-y-4 text-lg text-muted-foreground">
-                <p>
-                  Options are one of the most powerful tools in investing—offering flexibility, leverage, and strategic
-                  opportunities beyond simple stock ownership.
-                </p>
-                <p>
-                  Whether you're hedging your portfolio, generating income through covered calls, or speculating on
-                  market movements, understanding options is essential for serious investors.
-                </p>
-                <p>
-                  I'm learning from the best resources available, and I highly recommend this comprehensive course that
-                  breaks down calls, puts, spreads, and advanced strategies.
-                </p>
-              </div>
-            </div>
-
-            <Card className="p-8 hover-lift transition-all duration-300 border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
-              <LineChart className="w-12 h-12 text-primary mb-4" />
-              <h3 className="text-2xl font-bold mb-4">Complete Options Course</h3>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                Master calls, puts, long & short positions, spreads, and real-world strategies. From beginner to
-                advanced, this course covers everything you need to trade options confidently.
-              </p>
-              <Button asChild className="w-full" size="lg">
-                <a
-                  href="https://www.udemy.com/course/the-completecomplete-options-course-calls-puts-long-short/?couponCode=MT251006G3"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Get the Course →
-                </a>
-              </Button>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* Book in Progress Section */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-accent/5 via-background to-primary/5">
         <div className="container mx-auto px-4 max-w-6xl">
@@ -345,9 +309,9 @@ const Investing = () => {
               </h2>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
                 I'm currently writing a comprehensive guide that demystifies wealth-building, combining practical
-                investing strategies with mindset shifts that transform your relationship with money. This book will cover
-                everything from stock market fundamentals to real estate, business ventures, and the psychology of wealth
-                creation.
+                investing strategies with mindset shifts that transform your relationship with money. This book will
+                cover everything from stock market fundamentals to real estate, business ventures, and the psychology of
+                wealth creation.
               </p>
               <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary/20 to-accent/20 text-foreground font-bold rounded-lg">
                 <span className="relative flex h-3 w-3">
