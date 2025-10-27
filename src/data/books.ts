@@ -64,11 +64,11 @@ export const BOOKS: Book[] = [
     id: 'make-time',
     title: 'Make Time: How to Focus on What Matters Every Day',
     author: 'Jake Knapp & John Zeratsky',
-    status: 'IN_PROGRESS',
-    progress: 19,
+    status: 'READ',
     tags: ['Focus', 'Time Management'],
     link: 'https://amzn.to/48Xm9pL',
-    cover: '/book-covers/make-time.jpg'
+    cover: '/book-covers/make-time.jpg',
+    rating: 4
   },
   {
     id: 'harry-potter-chamber-of-secrets',
@@ -84,11 +84,11 @@ export const BOOKS: Book[] = [
     id: 'speed-reading',
     title: 'Speed Reading: Learn to Read a 200+ Page Book in 1 Hour',
     author: 'Kam Knight',
-    status: 'IN_PROGRESS',
-    progress: 45,
+    status: 'READ',
     tags: ['Productivity', 'Learning'],
     link: 'https://a.co/d/5J1lNaJ',
-    cover: '/book-covers/speed-reading.png'
+    cover: '/book-covers/speed-reading.png',
+    rating: 4
   },
   
   // To Be Read
@@ -335,6 +335,7 @@ export const BOOKS: Book[] = [
     author: 'Brandon Sanderson',
     status: 'TBR',
     tags: ['Fantasy', 'Fiction', 'HighFantasy', 'Audiobook', 'EpicFantasy', 'Magic', 'Adult'],
+    cover: '/book-covers/mistborn-final-empire.png',
     isbn: '9781250868282'
   },
   {
