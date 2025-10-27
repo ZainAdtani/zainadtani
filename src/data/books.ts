@@ -96,9 +96,10 @@ export const BOOKS: Book[] = [
     id: 'the-4-hour-workweek',
     title: 'The 4-Hour Workweek',
     author: 'Timothy Ferriss',
-    status: 'TBR',
+    status: 'IN_PROGRESS',
+    progress: 20,
     tags: ['Productivity', 'Lifestyle'],
-    link: 'https://amzn.to/4aOEjeS',
+    link: 'https://www.amazon.com/4-Hour-Workweek-Escape-Live-Anywhere/dp/0307465357',
     cover: '/book-covers/4hr.jpeg'
   },
   {
@@ -191,19 +192,21 @@ export const BOOKS: Book[] = [
     id: 'tuesdays-with-morrie',
     title: 'Tuesdays with Morrie',
     author: 'Mitch Albom',
-    status: 'TBR',
+    status: 'READ',
     tags: ['Memoir', 'Philosophy'],
     link: 'https://a.co/d/3Bz9Kpw',
-    cover: '/book-covers/tuesdays-with-morrie.png'
+    cover: '/book-covers/tuesdays-with-morrie.png',
+    rating: 5
   },
   {
     id: 'how-to-win-friends',
     title: 'How to Win Friends & Influence People',
     author: 'Dale Carnegie',
-    status: 'TBR',
+    status: 'READ',
     tags: ['Self-Improvement', 'Communication'],
     link: 'https://a.co/d/4Qz8Lpw',
-    cover: '/book-covers/how-to-win-friends.jpg'
+    cover: '/book-covers/how-to-win-friends.jpg',
+    rating: 5
   },
   {
     id: 'awaken-giant-within',
@@ -227,10 +230,11 @@ export const BOOKS: Book[] = [
     id: 'the-alchemist',
     title: 'The Alchemist',
     author: 'Paulo Coelho',
-    status: 'TBR',
+    status: 'READ',
     tags: ['Fiction', 'Philosophy'],
     link: 'https://a.co/d/8Hz7Npq',
-    cover: 'https://m.media-amazon.com/images/I/71aFt4+OTOL._SY466_.jpg'
+    cover: 'https://m.media-amazon.com/images/I/71aFt4+OTOL._SY466_.jpg',
+    rating: 5
   },
   {
     id: 'brief-illustrated-guide-islam',
@@ -310,10 +314,11 @@ export const BOOKS: Book[] = [
   },
   {
     id: 'million-dollar-weekend',
-    title: 'Million Dollar Weekend: The Surprisingly Simple Way to Launch...',
+    title: 'Million Dollar Weekend: The Surprisingly Simple Way to Launch a 7-Figure Business',
     author: 'Noah Kagan',
     status: 'IN_PROGRESS',
     tags: ['Business', 'Entrepreneurship', 'Nonfiction', 'Finance', 'SelfHelp', 'Money', 'Audiobook'],
+    link: 'https://www.amazon.com/Million-Dollar-Weekend-Surprisingly-7-Figure/dp/059353977X',
     isbn: '9780593539774',
     progress: 8
   },
@@ -334,9 +339,11 @@ export const BOOKS: Book[] = [
   },
   {
     id: 'sherlock-holmes-collection',
-    title: 'Sherlock Holmes Collection anthology of classic tales',
-    author: 'Jon Lellenberg',
+    title: 'Sherlock Holmes Short Stories',
+    author: 'Arthur Conan Doyle',
     status: 'TBR',
+    tags: ['Fiction', 'Mystery', 'Classics'],
+    cover: '/book-covers/sherlock-holmes-collection.png',
     isbn: '9781786645449'
   },
   {
@@ -345,6 +352,8 @@ export const BOOKS: Book[] = [
     author: 'Phil Knight',
     status: 'TBR',
     tags: ['Business', 'Biography', 'Nonfiction', 'Memoir', 'Audiobook', 'Sports', 'Autobiography'],
+    link: 'https://www.amazon.com/Shoe-Dog-Memoir-Creator-Nike/dp/1501135910',
+    cover: '/book-covers/shoe-dog.png',
     isbn: '9781501135910'
   },
   {
@@ -385,10 +394,12 @@ export const BOOKS: Book[] = [
   },
   {
     id: 'the-third-door',
-    title: "The Third Door: The Wild Quest to Uncover How the World's Mos...",
+    title: "The Third Door: The Mindset of Success",
     author: 'Alex Banayan',
     status: 'TBR',
-    tags: ['Business', 'Nonfiction', 'SelfHelp', 'PersonalDevelopment', 'Entrepreneurship', 'Biography', 'Productivity']
+    tags: ['Business', 'Nonfiction', 'SelfHelp', 'PersonalDevelopment', 'Entrepreneurship', 'Biography', 'Productivity'],
+    link: 'https://www.amazon.com/Third-Door-Uncover-Successful-Launched/dp/0804136661',
+    cover: '/book-covers/third-door.jpg'
   },
   {
     id: 'wonder-boy-luka-doncic',

@@ -61,7 +61,7 @@ function withAffiliate(url?: string, tag = "eng2ea-20") {
 
 const STATUS_COLORS: Record<BookStatus, string> = {
   READ: "bg-green-500/20 text-green-400 border-green-500/50",
-  IN_PROGRESS: "bg-blue-500/20 text-blue-400 border-blue-500/50",
+  IN_PROGRESS: "bg-red-600/20 text-red-500 border-red-600/50",
   TBR: "bg-muted text-muted-foreground border-border",
 };
 
