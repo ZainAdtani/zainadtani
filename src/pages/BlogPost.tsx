@@ -1,28 +1,27 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+// src/pages/BlogPost.tsx
+import { useMemo, useRef, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { BLOG_POSTS } from "@/data/blog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, ArrowLeft, Play, Pause, Headphones } from "lucide-react";
+import { monthYear } from "@/lib/dates";
 
-// 🎧 compact audio bar (click-to-play)
+/* Audio bar unchanged */
 function AudioBar({ src, title }: { src?: string; title: string }) {
   const aRef = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
   const [pct, setPct] = useState(0);
   const [cur, setCur] = useState(0);
   const [dur, setDur] = useState(0);
-
   const fmt = (n: number) => {
     if (!isFinite(n)) return "0:00";
     const m = Math.floor(n / 60);
     const s = Math.floor(n % 60).toString().padStart(2, "0");
     return `${m}:${s}`;
   };
-
   if (!src) return null;
-
   return (
     <div className="w-full rounded-2xl border bg-card/80 backdrop-blur shadow-sm p-4">
       <div className="flex items-center gap-3">
@@ -84,23 +83,6 @@ export default function BlogPost() {
   const { slug } = useParams();
   const post = useMemo(() => BLOG_POSTS.find((p) => p.slug === slug), [slug]);
 
-  // 🧚 tiny auto-TOC from paragraphs: use first 6 sentences that look like section headers
-  const headings = useMemo(() => {
-    const lines = (post?.content ?? [])
-      .map((s, i) => ({ i, s: s.trim() }))
-      .filter(({ s }) => s.length > 0 && /[:!?]|—|-/.test(s) || s.split(" ").length <= 6)
-      .slice(0, 6);
-    return lines;
-  }, [post]);
-
-  // jump helper
-  const ids = useMemo(() => headings.map(({ i }) => `h-${i}`), [headings]);
-
-  useEffect(() => {
-    // optional: scroll to top on route change
-    window.scrollTo(0, 0);
-  }, [slug]);
-
   if (!post) {
     return (
       <main className="container mx-auto px-4 py-20 max-w-3xl">
@@ -110,7 +92,8 @@ export default function BlogPost() {
     );
   }
 
-  const isDraft = post.status !== "published";
+  const displayDate = post.date ?? monthYear();
+  const displayRead = post.readTime ?? "—";
 
   return (
     <div className="min-h-screen bg-background">
@@ -126,69 +109,30 @@ export default function BlogPost() {
           </Button>
         </div>
 
-        {/* 🏞 optional cover */}
-        {post.coverImage && (
-          <div className="rounded-xl overflow-hidden border mb-6">
-            <img src={post.coverImage} alt={post.title} className="w-full h-auto object-cover" />
-          </div>
-        )}
-
-        {/* 🏷 heading + meta */}
-        <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4">{post.title}</h1>
+        <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+          {post.title}
+        </h1>
 
         <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground mb-6">
-          <span className="inline-flex items-center gap-1"><Calendar className="w-4 h-4"/>{post.date}</span>
+          <span className="inline-flex items-center gap-1"><Calendar className="w-4 h-4"/>{displayDate}</span>
           <span>•</span>
-          <span className="inline-flex items-center gap-1"><Clock className="w-4 h-4"/>{post.readTime}</span>
+          <span className="inline-flex items-center gap-1"><Clock className="w-4 h-4"/>{displayRead}</span>
           {post.tags?.length ? (
             <>
               <span>•</span>
-              <span className="inline-flex gap-2">{post.tags.map(t => (<Badge key={t} variant="secondary">{t}</Badge>))}</span>
+              <span className="inline-flex gap-2">{post.tags.map((t) => (<Badge key={t} variant="secondary">{t}</Badge>))}</span>
             </>
           ) : null}
-          {isDraft && <Badge variant="secondary">Draft</Badge>}
         </div>
 
-        {/* 🎧 Sahil-like “Listen” bar */}
+        {/* Sahil-style "Listen" bar */}
         <AudioBar src={post.audioUrl} title={`Listen — ${post.title}`} />
 
-        {/* ✍️ Dek / intro */}
         <p className="text-lg text-muted-foreground mt-6">{post.excerpt}</p>
 
-        {/* 🗺️ mini TOC */}
-        {headings.length > 0 && (
-          <div className="mt-6 mb-2 text-sm">
-            <div className="font-semibold mb-2">Quick Jumps:</div>
-            <div className="flex flex-wrap gap-2">
-              {headings.map(({ s }, idx) => (
-                <a key={idx} href={`#${ids[idx]}`} className="px-3 py-1 rounded-full border hover:bg-muted transition">
-                  {s.length > 40 ? s.slice(0, 40) + "…" : s}
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* 📖 Content */}
-        <article className="prose prose-slate dark:prose-invert max-w-none mt-6">
-          {post.content?.map((para, i) => (
-            <p key={i} id={ids.includes(`h-${i}`) ? `h-${i}` : undefined}>{para}</p>
-          ))}
+        <article className="prose prose-slate dark:prose-invert max-w-none mt-8">
+          {post.content?.map((para, i) => <p key={i}>{para}</p>)}
         </article>
-
-        {/* 👈👉 Prev/Next (alphabetical, simple) */}
-        <nav className="mt-12 flex justify-between text-sm">
-          <span>
-            {BLOG_POSTS.find(p => p.id === post.id - 1) && (
-              <Link className="hover:underline" to={`/blog/${BLOG_POSTS[post.id - 2].slug}`}>← Previous</Link>
-            )}
-          </span>
-          <span>
-            {BLOG_POSTS.find(p => p.id === post.id + 1) && (
-              <Link className="hover:underline" to={`/blog/${BLOG_POSTS[post.id].slug}`}>Next →</Link>
-            )}
-          </span>
-        </nav>
       </main>
     </div>
   );
