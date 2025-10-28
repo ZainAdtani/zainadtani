@@ -8,8 +8,12 @@ export type BlogPost = {
   readTime: string;    // e.g., "5 min read"
   status: "published" | "draft";
   tags?: string[];
-  audioUrl?: string;   // e.g., "/audio/top-10-prompts.mp3" (drop MP3s in /public/audio)
+  audioUrl?: string;   // e.g., "/audio/top-10-prompts.mp3"
   content?: string[];
+  // 👇 new but optional (won’t break anything)
+  coverImage?: string; // e.g., "/blog/top-10-prompts.jpg"
+  featured?: boolean;  // shows on top banner
+  pinned?: boolean;    // shows in "Start Here"
 };
 
 export const BLOG_POSTS: BlogPost[] = [
@@ -23,6 +27,9 @@ export const BLOG_POSTS: BlogPost[] = [
     status: "published",
     tags: ["AI", "Productivity"],
     audioUrl: "/audio/top-10-prompts.mp3",
+    coverImage: "/blog/top-10-prompts.jpg",
+    featured: true,
+    pinned: true,
     content: [
       "Intro paragraph about why these prompts matter...",
       "Prompt #1: ...",
@@ -39,9 +46,8 @@ export const BLOG_POSTS: BlogPost[] = [
     status: "published",
     tags: ["AI", "Tools"],
     audioUrl: "/audio/chatgpt-vs-claude.mp3",
-    content: [
-      "Both assistants are excellent, but use cases differ...",
-    ],
+    coverImage: "/blog/chatgpt-vs-claude.jpg",
+    content: ["Both assistants are excellent, but use cases differ..."],
   },
   {
     id: 3,
@@ -53,9 +59,9 @@ export const BLOG_POSTS: BlogPost[] = [
     status: "published",
     tags: ["Systems", "Productivity"],
     audioUrl: "/audio/email-chaos-to-clarity.mp3",
-    content: [
-      "Email overwhelm is solvable with a simple loop...",
-    ],
+    coverImage: "/blog/email-chaos.jpg",
+    pinned: true,
+    content: ["Email overwhelm is solvable with a simple loop..."],
   },
   {
     id: 4,
@@ -65,6 +71,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "January 2025",
     readTime: "—",
     status: "draft",
+    tags: ["Life"],
     content: [],
   },
   {
@@ -75,6 +82,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "January 2025",
     readTime: "—",
     status: "draft",
+    tags: ["Life"],
     content: [],
   },
 ];

@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { BLOG_POSTS } from "@/data/blog";
@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, ArrowLeft, Play, Pause, Headphones } from "lucide-react";
 
-// compact, clean audio bar
+// 🎧 compact audio bar (click-to-play)
 function AudioBar({ src, title }: { src?: string; title: string }) {
   const aRef = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
@@ -84,6 +84,23 @@ export default function BlogPost() {
   const { slug } = useParams();
   const post = useMemo(() => BLOG_POSTS.find((p) => p.slug === slug), [slug]);
 
+  // 🧚 tiny auto-TOC from paragraphs: use first 6 sentences that look like section headers
+  const headings = useMemo(() => {
+    const lines = (post?.content ?? [])
+      .map((s, i) => ({ i, s: s.trim() }))
+      .filter(({ s }) => s.length > 0 && /[:!?]|—|-/.test(s) || s.split(" ").length <= 6)
+      .slice(0, 6);
+    return lines;
+  }, [post]);
+
+  // jump helper
+  const ids = useMemo(() => headings.map(({ i }) => `h-${i}`), [headings]);
+
+  useEffect(() => {
+    // optional: scroll to top on route change
+    window.scrollTo(0, 0);
+  }, [slug]);
+
   if (!post) {
     return (
       <main className="container mx-auto px-4 py-20 max-w-3xl">
@@ -92,6 +109,8 @@ export default function BlogPost() {
       </main>
     );
   }
+
+  const isDraft = post.status !== "published";
 
   return (
     <div className="min-h-screen bg-background">
@@ -107,10 +126,16 @@ export default function BlogPost() {
           </Button>
         </div>
 
-        {/* Hero title */}
+        {/* 🏞 optional cover */}
+        {post.coverImage && (
+          <div className="rounded-xl overflow-hidden border mb-6">
+            <img src={post.coverImage} alt={post.title} className="w-full h-auto object-cover" />
+          </div>
+        )}
+
+        {/* 🏷 heading + meta */}
         <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4">{post.title}</h1>
 
-        {/* Meta row */}
         <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground mb-6">
           <span className="inline-flex items-center gap-1"><Calendar className="w-4 h-4"/>{post.date}</span>
           <span>•</span>
@@ -121,18 +146,49 @@ export default function BlogPost() {
               <span className="inline-flex gap-2">{post.tags.map(t => (<Badge key={t} variant="secondary">{t}</Badge>))}</span>
             </>
           ) : null}
+          {isDraft && <Badge variant="secondary">Draft</Badge>}
         </div>
 
-        {/* Listen bar just under title (Sahil vibe) */}
+        {/* 🎧 Sahil-like “Listen” bar */}
         <AudioBar src={post.audioUrl} title={`Listen — ${post.title}`} />
 
-        {/* Dek / intro */}
+        {/* ✍️ Dek / intro */}
         <p className="text-lg text-muted-foreground mt-6">{post.excerpt}</p>
 
-        {/* Content */}
-        <article className="prose prose-slate dark:prose-invert max-w-none mt-8">
-          {post.content?.map((para, i) => <p key={i}>{para}</p>)}
+        {/* 🗺️ mini TOC */}
+        {headings.length > 0 && (
+          <div className="mt-6 mb-2 text-sm">
+            <div className="font-semibold mb-2">Quick Jumps:</div>
+            <div className="flex flex-wrap gap-2">
+              {headings.map(({ s }, idx) => (
+                <a key={idx} href={`#${ids[idx]}`} className="px-3 py-1 rounded-full border hover:bg-muted transition">
+                  {s.length > 40 ? s.slice(0, 40) + "…" : s}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 📖 Content */}
+        <article className="prose prose-slate dark:prose-invert max-w-none mt-6">
+          {post.content?.map((para, i) => (
+            <p key={i} id={ids.includes(`h-${i}`) ? `h-${i}` : undefined}>{para}</p>
+          ))}
         </article>
+
+        {/* 👈👉 Prev/Next (alphabetical, simple) */}
+        <nav className="mt-12 flex justify-between text-sm">
+          <span>
+            {BLOG_POSTS.find(p => p.id === post.id - 1) && (
+              <Link className="hover:underline" to={`/blog/${BLOG_POSTS[post.id - 2].slug}`}>← Previous</Link>
+            )}
+          </span>
+          <span>
+            {BLOG_POSTS.find(p => p.id === post.id + 1) && (
+              <Link className="hover:underline" to={`/blog/${BLOG_POSTS[post.id].slug}`}>Next →</Link>
+            )}
+          </span>
+        </nav>
       </main>
     </div>
   );
