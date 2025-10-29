@@ -121,6 +121,51 @@ const Investing = () => {
         </div>
       </section>
 
+      {/* Options Trading Section */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold mb-6">
+                Master <span className="text-primary">Options Trading</span>
+              </h2>
+              <div className="space-y-4 text-lg text-muted-foreground">
+                <p>
+                  Options are one of the most powerful tools in investing—offering flexibility, leverage, and strategic
+                  opportunities beyond simple stock ownership.
+                </p>
+                <p>
+                  Whether you're hedging your portfolio, generating income through covered calls, or speculating on
+                  market movements, understanding options is essential for serious investors.
+                </p>
+                <p>
+                  I'm learning from the best resources available, and I highly recommend this comprehensive course that
+                  breaks down calls, puts, spreads, and advanced strategies.
+                </p>
+              </div>
+            </div>
+
+            <Card className="p-8 hover-lift transition-all duration-300 border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
+              <LineChart className="w-12 h-12 text-primary mb-4" />
+              <h3 className="text-2xl font-bold mb-4">Complete Options Course</h3>
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                Master calls, puts, long & short positions, spreads, and real-world strategies. From beginner to
+                advanced, this course covers everything you need to trade options confidently.
+              </p>
+              <Button asChild className="w-full" size="lg">
+                <a
+                  href="https://www.udemy.com/course/the-completecomplete-options-course-calls-puts-long-short/?couponCode=MT251006G3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Get the Course →
+                </a>
+              </Button>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* === Portfolio Breakdown (3D Cards) === */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-background via-accent/5 to-secondary/10">
         <div className="container mx-auto px-4 max-w-6xl">
@@ -249,51 +294,6 @@ const Investing = () => {
               </>
             );
           })()}
-        </div>
-      </section>
-
-      {/* Options Trading Section */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold mb-6">
-                Master <span className="text-primary">Options Trading</span>
-              </h2>
-              <div className="space-y-4 text-lg text-muted-foreground">
-                <p>
-                  Options are one of the most powerful tools in investing—offering flexibility, leverage, and strategic
-                  opportunities beyond simple stock ownership.
-                </p>
-                <p>
-                  Whether you're hedging your portfolio, generating income through covered calls, or speculating on
-                  market movements, understanding options is essential for serious investors.
-                </p>
-                <p>
-                  I'm learning from the best resources available, and I highly recommend this comprehensive course that
-                  breaks down calls, puts, spreads, and advanced strategies.
-                </p>
-              </div>
-            </div>
-
-            <Card className="p-8 hover-lift transition-all duration-300 border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
-              <LineChart className="w-12 h-12 text-primary mb-4" />
-              <h3 className="text-2xl font-bold mb-4">Complete Options Course</h3>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                Master calls, puts, long & short positions, spreads, and real-world strategies. From beginner to
-                advanced, this course covers everything you need to trade options confidently.
-              </p>
-              <Button asChild className="w-full" size="lg">
-                <a
-                  href="https://www.udemy.com/course/the-completecomplete-options-course-calls-puts-long-short/?couponCode=MT251006G3"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Get the Course →
-                </a>
-              </Button>
-            </Card>
-          </div>
         </div>
       </section>
 
