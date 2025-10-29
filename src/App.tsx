@@ -22,6 +22,9 @@ import ProjectPokedex from "./pages/ProjectPokedex";
 import AiAvatars from "./pages/projects/AiAvatars";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import Resources from "./pages/Resources";
+import AIPrompts from "./pages/AIPrompts";
+import LifeNotes from "./pages/LifeNotes";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +53,9 @@ const App = () => (
             <Route path="/projects/ai-avatars" element={<AiAvatars />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/ai-prompts" element={<AIPrompts />} />
+            <Route path="/life-notes" element={<LifeNotes />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

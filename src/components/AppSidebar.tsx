@@ -1,4 +1,4 @@
-import { Home, GraduationCap, TrendingUp, Wrench, Lock, ShoppingBag, Trophy, BookOpen, Music, HelpCircle, Search, ChevronDown, FolderKanban, FileText } from "lucide-react";
+import { Home, GraduationCap, TrendingUp, Wrench, Lock, ShoppingBag, Trophy, BookOpen, Music, HelpCircle, Search, ChevronDown, FolderKanban, FileText, Paperclip, Zap, StickyNote } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
   Sidebar,
@@ -38,6 +38,9 @@ const searchIndex: SearchableItem[] = [
   { title: "Books HQ", route: "/books", section: "Learn", tags: ["reading", "library"] },
   { title: "Investing", route: "/investing", section: "Learn", tags: ["finance", "stocks"] },
   { title: "Blog", route: "/blog", section: "Learn", tags: ["articles", "posts", "writing"] },
+  { title: "Resources", route: "/resources", section: "Resources", tags: ["PDFs", "tools", "quick reference"] },
+  { title: "AI Prompts", route: "/ai-prompts", section: "Resources", tags: ["prompts", "coaching", "productivity"] },
+  { title: "Life Notes", route: "/life-notes", section: "Resources", tags: ["quotes", "wisdom", "mindset"] },
   { title: "Tools", route: "/tools", section: "Resources", tags: ["utilities"] },
   { title: "Sports", route: "/sports", section: "Resources", tags: ["NBA", "scores"] },
   { title: "Waez", route: "/waez", section: "Resources", tags: ["religious", "lectures", "Abu Ali"] },
@@ -258,6 +261,30 @@ export function AppSidebar() {
             <CollapsibleContent>
               <SidebarGroupContent>
             <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/resources" className={getNavClass}>
+                    <Paperclip className="h-4 w-4" />
+                    {!isCollapsed && <span>Resources</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/ai-prompts" className={getNavClass}>
+                    <Zap className="h-4 w-4" />
+                    {!isCollapsed && <span>AI Prompts</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/life-notes" className={getNavClass}>
+                    <StickyNote className="h-4 w-4" />
+                    {!isCollapsed && <span>Life Notes</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <NavLink to="/tools" className={getNavClass}>
