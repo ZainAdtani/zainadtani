@@ -172,6 +172,38 @@ const Investing = () => {
 
           return (
             <>
+              {/* Brokerages landing (top) */}
+              <div className="mb-12">
+                <h3 className="text-2xl font-bold text-center mb-4">Brokerage Shortcuts</h3>
+                <p className="text-center text-muted-foreground mb-6">Jump straight to your accounts.</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                  <div className="rounded-2xl border-2 p-5 bg-background/70">
+                    <h4 className="font-semibold mb-2">Fidelity</h4>
+                    <p className="text-sm text-muted-foreground mb-3">Core IRA + index exposure</p>
+                    <a href="https://www.fidelity.com/" target="_blank" rel="noreferrer"
+                       className="inline-flex items-center justify-center rounded-md px-4 py-2 bg-primary text-primary-foreground hover:opacity-90">
+                      Open Fidelity →
+                    </a>
+                  </div>
+                  <div className="rounded-2xl border-2 p-5 bg-background/70">
+                    <h4 className="font-semibold mb-2">Robinhood</h4>
+                    <p className="text-sm text-muted-foreground mb-3">Active ideas + crypto access</p>
+                    <a href="https://robinhood.com/" target="_blank" rel="noreferrer"
+                       className="inline-flex items-center justify-center rounded-md px-4 py-2 bg-primary text-primary-foreground hover:opacity-90">
+                      Open Robinhood →
+                    </a>
+                  </div>
+                  <div className="rounded-2xl border-2 p-5 bg-background/70">
+                    <h4 className="font-semibold mb-2">Schwab</h4>
+                    <p className="text-sm text-muted-foreground mb-3">Additional diversification</p>
+                    <a href="https://www.schwab.com/" target="_blank" rel="noreferrer"
+                       className="inline-flex items-center justify-center rounded-md px-4 py-2 bg-primary text-primary-foreground hover:opacity-90">
+                      Open Schwab →
+                    </a>
+                  </div>
+                </div>
+              </div>
+
               {/* Main groups */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
                 {GROUPS.map((g) => (

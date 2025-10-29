@@ -262,7 +262,7 @@ export default function Waez() {
       </Helmet>
 
       {/* Sticky TOC - Desktop only */}
-      <nav className="hidden lg:block fixed left-8 top-1/2 -translate-y-1/2 z-30">
+      <nav className="hidden lg:block fixed right-8 top-1/2 -translate-y-1/2 z-30">
         <div className="space-y-3">
           {TIMELINE_STEPS.map((step) => (
             <a
