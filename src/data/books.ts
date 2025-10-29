@@ -436,5 +436,173 @@ export const BOOKS: Book[] = [
     status: 'TBR',
     tags: ['Nonfiction', 'SelfHelp', 'Psychology', 'MentalHealth', 'Audiobook', 'PersonalDevelopment', 'Health'],
     isbn: '9780063227934'
+  },
+  {
+    id: 'change-your-brain-change-your-life',
+    title: 'Change Your Brain, Change Your Life',
+    author: 'Daniel G. Amen',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Change-Your-Brain-Revised-Expanded/dp/110190464X'
+  },
+  {
+    id: 'its-all-in-your-mouth',
+    title: "It's All in Your Mouth",
+    author: 'Dominik Nischwitz',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Its-All-Your-Mouth-Biological/dp/1603589546'
+  },
+  {
+    id: 'limitless-expanded-edition',
+    title: 'Limitless (Expanded Edition)',
+    author: 'Jim Kwik',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Limitless-Expanded-Jim-Kwik/dp/140197693X'
+  },
+  {
+    id: 'tiny-habits',
+    title: 'Tiny Habits',
+    author: 'BJ Fogg',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Tiny-Habits-Changes-Change-Everything/dp/0358003326'
+  },
+  {
+    id: 'the-power-of-when',
+    title: 'The Power of When',
+    author: 'Michael Breus',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Power-When-Discover-Chronotype-Lunch/dp/0316391263'
+  },
+  {
+    id: 'worthy',
+    title: 'Worthy',
+    author: 'Jamie Kern Lima',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Worthy-Jamie-Kern-Lima/dp/1401977596'
+  },
+  {
+    id: 'the-one-thing',
+    title: 'The ONE Thing',
+    author: 'Gary Keller; Jay Papasan',
+    status: 'TBR',
+    link: 'https://www.amazon.com/ONE-Thing-Surprisingly-Extraordinary-Results/dp/1885167776'
+  },
+  {
+    id: 'breath',
+    title: 'Breath',
+    author: 'James Nestor',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Breath-New-Science-Lost-Art/dp/0735213615'
+  },
+  {
+    id: 'supercommunicators',
+    title: 'Supercommunicators',
+    author: 'Charles Duhigg',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Supercommunicators-Unlock-Secret-Language-Connection/dp/0593243919'
+  },
+  {
+    id: 'why-we-remember',
+    title: 'Why We Remember',
+    author: 'Charan Ranganath',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Why-We-Remember-Unlocking-Memorys/dp/038554863X'
+  },
+  {
+    id: 'brain-energy',
+    title: 'Brain Energy',
+    author: 'Christopher M. Palmer',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Brain-Energy-Revolutionary-Understanding-Health/dp/1637741588'
+  },
+  {
+    id: 'cleaning-up-your-mental-mess',
+    title: 'Cleaning Up Your Mental Mess',
+    author: 'Caroline Leaf',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Cleaning-Your-Mental-Mess-Scientifically/dp/0801093457'
+  },
+  {
+    id: '10x-is-easier-than-2x',
+    title: '10x Is Easier Than 2x',
+    author: 'Dan Sullivan; Benjamin Hardy',
+    status: 'TBR',
+    link: 'https://www.amazon.com/10x-Easier-Than-World-Class-Entrepreneurs/dp/140196995X'
+  },
+  {
+    id: 'the-art-of-rest',
+    title: 'The Art of Rest',
+    author: 'Claudia Hammond',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Art-Rest-Find-Respite-Modern/dp/1786892820'
+  },
+  {
+    id: 'math-magic',
+    title: 'Math Magic',
+    author: 'Scott Flansburg',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Math-Magic-Everyday-Problems-Revised/dp/0060726350'
+  },
+  {
+    id: 'genius-foods',
+    title: 'Genius Foods',
+    author: 'Max Lugavere',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Genius-Foods-Smarter-Productive-Protecting/dp/0062562851'
+  },
+  {
+    id: 'forever-strong',
+    title: 'Forever Strong',
+    author: 'Gabrielle Lyon',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Forever-Strong-Science-Based-Strategy-Aging/dp/1668007878'
+  },
+  {
+    id: 'the-seven-frequencies-of-communication',
+    title: 'The Seven Frequencies of Communication',
+    author: 'Erwin Raphael McManus',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Seven-Frequencies-Communication-Language-Connection/dp/B0DG7YJ38L'
+  },
+  {
+    id: 'the-5-resets',
+    title: 'The 5 Resets',
+    author: 'Aditi Nerurkar',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Resets-Rewire-Brain-Stress-Resilience/dp/0063289210'
+  },
+  {
+    id: 'healing-the-modern-brain',
+    title: 'Healing the Modern Brain',
+    author: 'Drew Ramsey',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Healing-Modern-Brain-Fitness-Revitalize/dp/006337773X'
+  },
+  {
+    id: 'secrets-of-the-icewomen',
+    title: 'Secrets of the Icewomen',
+    author: 'Isabelle Hof; Laura Hof',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Secrets-Icewomen-Breathwork-Hormones-Potential/dp/0063391600'
+  },
+  {
+    id: 'innsaei-icelandic-power-of-intuition',
+    title: 'InnSaei: Heal, Revive and Reset with the Icelandic Power of Intuition',
+    author: 'Hrund Gunnsteinsdottir',
+    status: 'TBR',
+    link: 'https://www.amazon.com/InnSaei-Revive-Reset-Icelandic-Intuition/dp/178870875X'
+  },
+  {
+    id: 'never-lead-alone',
+    title: 'Never Lead Alone',
+    author: 'Keith Ferrazzi',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Never-Lead-Alone-Leadership-Teamship/dp/0063412578'
+  },
+  {
+    id: 'the-5-types-of-wealth',
+    title: 'The 5 Types of Wealth',
+    author: 'Sahil Bloom',
+    status: 'TBR',
+    link: 'https://www.amazon.com/Types-Wealth-Transformative-Guide-Design/dp/059372318X'
   }
 ];
