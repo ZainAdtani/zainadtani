@@ -70,44 +70,6 @@ const Investing = () => {
         </div>
       </section>
 
-      {/* Investment Areas */}
-      <section className="py-16 md:py-24 bg-secondary/30">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-4xl font-bold text-center mb-12">
-            Where I <span className="text-primary">Invest</span>
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="p-8 hover-lift transition-all duration-300 border-2">
-              <DollarSign className="w-12 h-12 text-primary mb-4" />
-              <h3 className="text-2xl font-bold mb-4">Stock Market</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Index funds, dividend stocks, and growth opportunities. Building a diversified portfolio for long-term
-                wealth creation.
-              </p>
-            </Card>
-
-            <Card className="p-8 hover-lift transition-all duration-300 border-2">
-              <LineChart className="w-12 h-12 text-accent mb-4" />
-              <h3 className="text-2xl font-bold mb-4">Business Ventures</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Creating and investing in businesses that solve real problems. From digital products to service-based
-                companies.
-              </p>
-            </Card>
-
-            <Card className="p-8 hover-lift transition-all duration-300 border-2">
-              <TrendingUp className="w-12 h-12 text-primary mb-4" />
-              <h3 className="text-2xl font-bold mb-4">Real Estate</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Property investments for passive income and long-term appreciation. Building a real estate portfolio
-                strategically.
-              </p>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* Savings & Brokerage Accounts */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 max-w-6xl">
