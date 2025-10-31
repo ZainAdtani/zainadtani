@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -9,25 +9,29 @@ type Cadence = "Monthly" | "Yearly";
 
 type Sub = {
   name: string;
-  cadence: Cadence;
+  cadence: Cadence;             // the REAL billing cadence
   amount: number;               // numeric for math; render as $
-  note?: string;                // e.g., "••4009"
+  note?: string;                // e.g., "••4009" or "Creator Annual"
   payer?: string;               // e.g., "Apple CC 2708"
   bucket?: "Personal" | "Work" | "Business" | "Utilities" | "Family";
-  // Set either nextDueISO (YYYY-MM-DD) OR daysUntilDue to drive the progress bar.
+  // For the progress bar (show it everywhere)
   nextDueISO?: string;          // ISO date string for next renewal date
-  cycleDays?: number;           // usually 30 for Monthly, 365 for Yearly (defaulted below)
-  daysUntilDue?: number;        // convenience override (we’ll convert to nextDueISO at runtime)
+  cycleDays?: number;           // usually 30 for Monthly, 365 for Yearly (default below)
+  daysUntilDue?: number;        // convenience override; we convert to date at runtime
 };
 
-// Helper: today (no time)
+// ---------- helpers ----------
 const today = () => {
   const d = new Date();
   d.setHours(0, 0, 0, 0);
   return d;
 };
+
 const fmtMoney = (n: number) =>
-  `$${n.toLocaleString(undefined, { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 })}`;
+  `$${n.toLocaleString(undefined, {
+    minimumFractionDigits: n % 1 ? 2 : 0,
+    maximumFractionDigits: 2,
+  })}`;
 
 const addDays = (d: Date, days: number) => {
   const copy = new Date(d);
@@ -35,29 +39,74 @@ const addDays = (d: Date, days: number) => {
   return copy;
 };
 
-// ---- YOUR 7 SUBSCRIPTIONS ----
-const SUBS: Sub[] = [
-  { name: "OpenAI", cadence: "Monthly", amount: 21.28, note: "••4009", bucket: "Business", daysUntilDue: 20 },
-  { name: "iCloud+", cadence: "Monthly", amount: 3, payer: "Apple CC 2708", bucket: "Utilities" },
-  { name: "Spotify Family", cadence: "Monthly", amount: 23, bucket: "Personal" },
+const convertAmount = (amount: number, from: Cadence, to: Cadence) => {
+  if (from === to) return amount;
+  return from === "Monthly" ? amount * 12 : amount / 12;
+};
 
-  { name: "11labs", cadence: "Yearly", amount: 53.3, note: "per year", bucket: "Personal" },
-  { name: "Bookmory", cadence: "Yearly", amount: 31, payer: "Apple CC 2708", bucket: "Personal" },
-  { name: "Goodnotes", cadence: "Yearly", amount: 12, payer: "Apple CC 2708", bucket: "Work" },
-  { name: "HeyGen AI", cadence: "Yearly", amount: 290, bucket: "Work" },
+// ---------- YOUR SUBSCRIPTIONS (clean + consistent) ----------
+const SUBS: Sub[] = [
+  // Monthly
+  { name: "OpenAI",        cadence: "Monthly", amount: 21.28, note: "••4009", bucket: "Business", daysUntilDue: 20 },
+  { name: "iCloud+",       cadence: "Monthly", amount: 3,      payer: "Apple CC 2708", bucket: "Utilities", daysUntilDue: 12 },
+  { name: "Spotify Family",cadence: "Monthly", amount: 23,     bucket: "Personal", daysUntilDue: 25 },
+
+  // Yearly
+  { name: "EllevenLabs",   cadence: "Yearly",  amount: 53.3,   note: "per year", bucket: "Personal", daysUntilDue: 330 },
+  { name: "Bookmory",      cadence: "Yearly",  amount: 31,     payer: "Apple CC 2708", bucket: "Personal", daysUntilDue: 200 },
+  { name: "Goodnotes",     cadence: "Yearly",  amount: 12,     payer: "Apple CC 2708", bucket: "Work", daysUntilDue: 120 },
+
+  // HeyGen: from your Apple receipt (keep it simple)
+  {
+    name: "HeyGen AI",
+    cadence: "Yearly",
+    amount: 279,                                    // base subscription price
+    note: "Creator Annual • Renews 10/23/2026",
+    payer: "Apple Card",
+    bucket: "Work",
+    nextDueISO: "2026-10-23",
+  },
 ];
 
-// Compute totals
-const monthlyTotal = SUBS.filter(s => s.cadence === "Monthly").reduce((a, s) => a + s.amount, 0);
-const yearlyTotal  = SUBS.filter(s => s.cadence === "Yearly").reduce((a, s) => a + s.amount, 0);
-
+// ---------- component ----------
 export default function Subscriptions() {
-  // must unlock this tab via the vault page
+  // gate via the vault
   useEffect(() => {
     if (sessionStorage.getItem(STORAGE_KEY) !== "true") {
       window.location.replace("/vault");
     }
   }, []);
+
+  // Magic switch: how we want to SEE prices
+  const [viewCadence, setViewCadence] = useState<Cadence>("Monthly");
+
+  // Totals in both units (so the stat tiles always make sense)
+  const totals = useMemo(() => {
+    const totalAsMonthly = SUBS.reduce(
+      (sum, s) => sum + convertAmount(s.amount, s.cadence, "Monthly"),
+      0
+    );
+    const totalAsYearly = SUBS.reduce(
+      (sum, s) => sum + convertAmount(s.amount, s.cadence, "Yearly"),
+      0
+    );
+    return { totalAsMonthly, totalAsYearly };
+  }, []);
+
+  // Normalize + convert each sub to the currently viewed cadence
+  const viewSubs = useMemo(
+    () =>
+      SUBS.map((s) => {
+        const convertedAmount = convertAmount(s.amount, s.cadence, viewCadence);
+        return normalizeSub({
+          ...s,
+          amount: convertedAmount,  // show converted price
+          // badge should say how we're viewing it
+          cadence: viewCadence,
+        });
+      }),
+    [viewCadence]
+  );
 
   return (
     <div className="min-h-screen w-full bg-slate-50 text-slate-900 dark:bg-[#0a0e17] dark:text-slate-100">
@@ -73,26 +122,34 @@ export default function Subscriptions() {
           </Link>
         </div>
 
-        {/* Summary tiles */}
+        {/* Toggle */}
+        <div className="mb-6 inline-flex overflow-hidden rounded-xl border dark:border-white/10">
+          <button
+            className={`px-4 py-2 text-sm ${viewCadence === "Monthly" ? "bg-white dark:bg-white/10 font-semibold" : "bg-transparent"}`}
+            onClick={() => setViewCadence("Monthly")}
+          >
+            View as Monthly
+          </button>
+          <button
+            className={`px-4 py-2 text-sm ${viewCadence === "Yearly" ? "bg-white dark:bg-white/10 font-semibold" : "bg-transparent"}`}
+            onClick={() => setViewCadence("Yearly")}
+          >
+            View as Yearly
+          </button>
+        </div>
+
+        {/* Summary tiles (always useful in BOTH units) */}
         <div className="mb-8 grid gap-4 md:grid-cols-3">
-          <StatTile label="Total Monthly" value={fmtMoney(monthlyTotal)} />
-          <StatTile label="Total Yearly" value={fmtMoney(yearlyTotal)} />
+          <StatTile label="Total (as Monthly)" value={fmtMoney(totals.totalAsMonthly)} />
+          <StatTile label="Total (as Yearly)"  value={fmtMoney(totals.totalAsYearly)} />
           <StatTile label="Active Subscriptions" value={`${SUBS.length}`} />
         </div>
 
-        {/* Grids: Monthly and Yearly shown together */}
-        <Section title="Monthly">
+        {/* Single grid — everything converted to your chosen view */}
+        <Section title={`All — showing prices as ${viewCadence}`}>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {SUBS.filter(s => s.cadence === "Monthly").map(s => (
-              <SubCard key={s.name} sub={normalizeSub(s)} />
-            ))}
-          </div>
-        </Section>
-
-        <Section title="Yearly" className="mt-10">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {SUBS.filter(s => s.cadence === "Yearly").map(s => (
-              <SubCard key={s.name} sub={normalizeSub(s)} />
+            {viewSubs.map((s) => (
+              <SubCard key={`${s.name}-${viewCadence}`} sub={s} />
             ))}
           </div>
         </Section>
@@ -101,7 +158,7 @@ export default function Subscriptions() {
   );
 }
 
-/* ---------- Components ---------- */
+/* ---------- UI bits ---------- */
 
 function Section({ title, className = "", children }: any) {
   return (
@@ -123,20 +180,36 @@ function StatTile({ label, value }: { label: string; value: string }) {
   );
 }
 
-function SubCard({ sub }: { sub: Required<Sub> & { daysLeft: number; percentElapsed: number } }) {
+function SubCard({
+  sub,
+}: {
+  sub: Required<Sub> & { daysLeft: number; percentElapsed: number };
+}) {
   const {
-    name, cadence, amount, note, payer, bucket, nextDueISO, cycleDays, daysLeft, percentElapsed
+    name,
+    cadence,
+    amount,
+    note,
+    payer,
+    bucket,
+    nextDueISO,
+    cycleDays,
+    daysLeft,
+    percentElapsed,
   } = sub;
 
   const dueText =
-    daysLeft > 1 ? `Due in ${daysLeft} days`
-    : daysLeft === 1 ? "Due in 1 day"
-    : daysLeft === 0 ? "Due today"
-    : `Overdue by ${Math.abs(daysLeft)} days`;
+    daysLeft > 1
+      ? `Due in ${daysLeft} days`
+      : daysLeft === 1
+      ? "Due in 1 day"
+      : daysLeft === 0
+      ? "Due today"
+      : `Overdue by ${Math.abs(daysLeft)} days`;
 
   return (
     <Card className="group relative overflow-hidden rounded-2xl border bg-white/90 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/[.06]">
-      {/* subtle mesh (no motion) */}
+      {/* subtle mesh */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[.6] mix-blend-overlay"
         style={{
@@ -167,7 +240,7 @@ function SubCard({ sub }: { sub: Required<Sub> & { daysLeft: number; percentElap
           </div>
         )}
 
-        {/* Progress to next renewal */}
+        {/* Progress to next renewal (now consistent for all) */}
         {nextDueISO && (
           <div className="mt-4">
             <div className="mb-1 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
@@ -195,39 +268,40 @@ function SubCard({ sub }: { sub: Required<Sub> & { daysLeft: number; percentElap
   );
 }
 
-/* ---------- Data normalization ---------- */
+/* ---------- normalization ---------- */
 
-// Convert daysUntilDue to a real date; default cycleDays; compute bar numbers.
-function normalizeSub(s: Sub): Required<Sub> & { daysLeft: number; percentElapsed: number } {
-  // default cycle length
-  const cycleDays = s.cadence === "Monthly" ? (s.cycleDays ?? 30) : (s.cycleDays ?? 365);
+function normalizeSub(
+  s: Sub
+): Required<Sub> & { daysLeft: number; percentElapsed: number } {
+  const realCadence: Cadence = s.cadence; // original cadence (used for cycleDays)
+  const cycleDays =
+    realCadence === "Monthly" ? s.cycleDays ?? 30 : s.cycleDays ?? 365;
 
   let nextDueISO = s.nextDueISO;
   if (!nextDueISO && typeof s.daysUntilDue === "number") {
     nextDueISO = addDays(today(), s.daysUntilDue).toISOString().slice(0, 10);
   }
-
-  let daysLeft = 0;
-  let percentElapsed = 0;
-
-  if (nextDueISO) {
-    const due = new Date(nextDueISO + "T00:00:00");
-    const diff = Math.round((due.getTime() - today().getTime()) / (1000 * 60 * 60 * 24));
-    daysLeft = diff;
-
-    // elapsed = cycleDays - daysLeft (clamped)
-    const elapsed = Math.max(0, Math.min(cycleDays, cycleDays - daysLeft));
-    percentElapsed = (elapsed / cycleDays) * 100;
+  // If STILL no date, assume “due in full cycle” so we still show a bar.
+  if (!nextDueISO) {
+    nextDueISO = addDays(today(), cycleDays).toISOString().slice(0, 10);
   }
+
+  const due = new Date(nextDueISO + "T00:00:00");
+  const diff = Math.round(
+    (due.getTime() - today().getTime()) / (1000 * 60 * 60 * 24)
+  );
+  const daysLeft = diff;
+  const elapsed = Math.max(0, Math.min(cycleDays, cycleDays - daysLeft));
+  const percentElapsed = (elapsed / cycleDays) * 100;
 
   return {
     name: s.name,
-    cadence: s.cadence,
+    cadence: s.cadence, // will be overwritten for display higher up
     amount: s.amount,
     note: s.note ?? "",
     payer: s.payer ?? "",
     bucket: s.bucket ?? "Personal",
-    nextDueISO: nextDueISO ?? "",
+    nextDueISO,
     cycleDays,
     daysUntilDue: s.daysUntilDue ?? 0,
     daysLeft,
