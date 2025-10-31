@@ -25,18 +25,13 @@ export const BLOG_POSTS: BlogPost[] = [
     status: "published",
     tags: ["AI", "Productivity"],
     audioUrl: "/audio/top-10-prompts.mp3",
-    content: [
-      "Intro paragraph about why these prompts matter...",
-      "Prompt #1: ...",
-      "Prompt #2: ...",
-    ],
+    content: ["Intro paragraph about why these prompts matter...", "Prompt #1: ...", "Prompt #2: ..."],
   },
   {
     id: 2,
     slug: "chatgpt-vs-claude",
     title: "ChatGPT vs Claude: Which AI Should You Use (and When)?",
-    excerpt:
-      "A practical comparison of the two leading AI assistants and when to use each one.",
+    excerpt: "A practical comparison of the two leading AI assistants and when to use each one.",
     status: "published",
     tags: ["AI", "Tools"],
     audioUrl: "/audio/chatgpt-vs-claude.mp3",
@@ -46,8 +41,7 @@ export const BLOG_POSTS: BlogPost[] = [
     id: 3,
     slug: "email-chaos-to-clarity",
     title: "From Chaos to Clarity: Cut Your Inbox Time by 70% Using AI",
-    excerpt:
-      "Learn my exact system for managing email efficiently with AI assistance.",
+    excerpt: "Learn my exact system for managing email efficiently with AI assistance.",
     status: "published",
     tags: ["Systems", "Productivity"],
     audioUrl: "/audio/email-chaos-to-clarity.mp3",
@@ -56,8 +50,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     id: 4,
     slug: "when-the-darkness-closes-in",
-    title:
-      "When the Darkness Closes In: What Helped Someone Stay, and What Might Help You Too",
+    title: "When the Darkness Closes In: What Helped Someone Stay, and What Might Help You Too",
     excerpt: "A gentle, practical note for heavy days. (Full post coming soon.)",
     status: "draft",
     content: [],
@@ -69,5 +62,23 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: "A raw, clear retell with resources. (Full post coming soon.)",
     status: "draft",
     content: [],
+  },
+  {
+    id: 6,
+    slug: "how-i-study-ea-part-1",
+    title: "How I’m Studying for the EA Part 1 (Step by Step)",
+    excerpt: "My simple 3-pass loop with tools, time boxes, and practice blocks.",
+    date: "October 2025", // optional; if omitted UI shows current Month Year
+    readTime: "6 min read", // optional; otherwise shows "—"
+    status: "published", // "draft" keeps the card disabled on the list
+    tags: ["EA Exam", "Systems"],
+    audioUrl: "/audio/how-i-study-ea.mp3", // optional; put file in /public/audio/
+    content: [
+      "Quick intro about why the 3-pass method works for me.",
+      "Pass 1: Go wide. I skim the Becker outline, watch videos at 1.25x, and highlight only terms.",
+      "Pass 2: Loop weak topics. I write tiny cards and re-work missed Qs until they feel easy.",
+      "Pass 3: Mocks. I schedule 2–3 pressure tests and review every miss the same day.",
+      "Tools I use: timer, spaced repetition deck, and a weekly checkpoint.",
+    ],
   },
 ];
