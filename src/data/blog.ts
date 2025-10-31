@@ -1,7 +1,7 @@
 // src/data/blog.ts
 export type BlogPostSection = {
   id: string; // anchor id for TOC links
-  title: string; // section heading (H2)
+  title: string; // section heading (H2). Can be "" for intro
   paragraphs: string[]; // content for that section
 };
 
@@ -17,53 +17,15 @@ export type BlogPost = {
   status: "published" | "draft";
   tags?: string[];
   audioUrl?: string;
-  /** Legacy flat paragraphs (still supported). */
+  /** Legacy flat paragraphs (still supported) */
   content?: string[];
-  /** Preferred: structured sections (enables right-rail TOC). */
+  /** Preferred structured content (enables right-rail TOC) */
   sections?: BlogPostSection[];
 };
 
 export const BLOG_POSTS: BlogPost[] = [
   {
     id: 1,
-    slug: "top-10-prompts",
-    title: "My Top 10 (Insanely Simple) Prompts I Use Every Week",
-    excerpt: "Discover the AI prompts that save me hours of work every single week.",
-    date: "October 2025",
-    readTime: "5 min read",
-    status: "published",
-    tags: ["AI", "Productivity"],
-    audioUrl: "/audio/top-10-prompts.mp3",
-    content: ["Intro paragraph about why these prompts matter...", "Prompt #1: ...", "Prompt #2: ..."],
-  },
-  {
-    id: 2,
-    slug: "chatgpt-vs-claude",
-    title: "ChatGPT vs Claude: Which AI Should You Use (and When)?",
-    excerpt: "A practical comparison of the two leading AI assistants and when to use each one.",
-    date: "October 2025",
-    readTime: "7 min read",
-    status: "published",
-    tags: ["AI", "Tools"],
-    audioUrl: "/audio/chatgpt-vs-claude.mp3",
-    content: ["Both assistants are excellent, but use cases differ..."],
-  },
-  {
-    id: 3,
-    slug: "email-chaos-to-clarity",
-    title: "From Chaos to Clarity: Cut Your Inbox Time by 70% Using AI",
-    excerpt: "Learn my exact system for managing email efficiently with AI assistance.",
-    date: "October 2025",
-    readTime: "6 min read",
-    status: "published",
-    tags: ["Systems", "Productivity"],
-    audioUrl: "/audio/email-chaos-to-clarity.mp3",
-    content: ["Email overwhelm is solvable with a simple loop..."],
-  },
-
-  // Published long-form with sections (enables TOC)
-  {
-    id: 4,
     slug: "tims-tough-journey-teacher",
     title: "Tim’s Tough Journey, Told by a Teacher",
     excerpt:
@@ -141,16 +103,120 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
 
-  // Keep one October draft (shows as “Coming soon”)
   {
-    id: 5,
+    id: 2,
     slug: "when-the-darkness-closes-in",
-    title: "When the Darkness Closes In: What Helped Someone Stay, and What Might Help You Too",
-    excerpt: "A gentle, practical note for heavy days. (Full post coming soon.)",
+    title: "When the Darkness Closes In",
+    excerpt:
+      "What helped someone stay—and what might help you, too. Clear, practical ideas for getting through the hardest nights.",
     date: "October 2025",
-    readTime: "—",
-    status: "draft",
-    tags: ["Mindset"],
-    content: [],
+    readTime: "7–9 min read",
+    status: "published",
+    tags: ["Mindset", "Support"],
+    audioUrl: "/audio/when-the-darkness-closes-in.mp3",
+    sections: [
+      {
+        id: "intro",
+        title: "",
+        paragraphs: [
+          "If you’re in immediate danger or thinking about self-harm: call or text 988 in the U.S. (24/7). If you’re outside the U.S., search your country’s crisis line. You are not alone.",
+          "I want to talk to you the way a good teacher would: clear voice, steady hands, no judgment. This is about suicidal thoughts—why they can feel final, why they aren’t, and what tiny moves can keep you here until the weather changes.",
+          "This is my retelling, but the spark comes from Tim Ferriss’s essay “Some Practical Thoughts on Suicide.” He didn’t share a highlight reel. He shared a hard truth—and it helped people. I’m passing that light forward.",
+        ],
+      },
+      {
+        id: "crack",
+        title: "The moment that cracked the silence",
+        paragraphs: [
+          "Tim met a reader whose younger brother had died by suicide. The reader asked, “Would you talk about this? You might save someone.” That one request turned into a promise: stop hiding, start telling the truth. Sometimes a single honest question opens a door you thought was made of stone.",
+        ],
+      },
+      {
+        id: "why",
+        title: "Why suicidal thoughts feel so final (and why they aren’t)",
+        paragraphs: [
+          "1) Pressure shrinks your world. When stress piles up, your brain narrows the story to one awful sentence: “It’ll always be this way.” That’s tunnel vision, not reality. Your world is bigger than your worst day.",
+          "2) Pain sounds like facts. “I’m a burden. There’s no way out.” Those lines feel solid—but they’re feelings, not facts. Facts can be checked. Feelings need care.",
+          "3) We forget the blast radius. In the dark, it’s easy to believe your exit would tidy the mess. It won’t. It multiplies pain—for family, friends, first responders, even strangers. Your staying matters more than you can see from the storm.",
+          "4) It’s a bad bet on the unknown. Here, today, there are variables you can still change—food, sleep, movement, people, plans. There, you can’t. Don’t make a permanent decision from temporary weather.",
+          "5) Interruptions save lives. A random phone call. A stubborn friend at the door. A hotline operator who keeps you talking. These “interruptions” are actually tools. Build them in on purpose.",
+        ],
+      },
+      {
+        id: "helped",
+        title: "What helped him stay (and might help you)",
+        paragraphs: [
+          "No magic. Just friction—small wedges that slow the slide.",
+          "1) Make connection non-negotiable. If you’re on the edge, call or text 988. Say, “I don’t feel safe.” If that feels too raw, say anything that keeps a human voice with you. Awkward is fine. Alive is the goal.",
+          "2) Borrow a vow. Some people make a no-suicide promise to someone they love. When your own hope is low, borrow theirs. “I won’t do this to you” can carry you through a bad hour.",
+          "3) Use your body to unstick your mind. Walk. Stretch. Do a few pushups. Take a hot shower. You’re not chasing a medal; you’re changing chemistry. Ten minutes can move the needle.",
+          "4) Win one square. Pick one meaningful task. Block 90–120 minutes for just that. No tabs. No ping-ponging. One square on the chessboard. A single forward move changes the whole position.",
+          "5) Remember: storms pass. Tim finished the hard thing he thought would break him. Time did what time does. Your future self deserves the chance to be surprised by how this turns.",
+        ],
+      },
+      {
+        id: "daily",
+        title: "A tiny daily plan (seatbelt, not sparkle)",
+        paragraphs: [
+          "Before screens",
+          "Drink water. Sit with a pen and paper.",
+          "Write the 3–5 scariest or heaviest items.",
+          "Circle the one that would make the day a win if you moved it even a little.",
+          "Block 2–3 hours for that one thing. Put your phone in another room.",
+          "When your brain wanders, gently return. (Gentle is part of the plan.)",
+        ],
+      },
+      {
+        id: "anchors",
+        title: "Mood anchors (low effort, high leverage)",
+        paragraphs: [
+          "Move 20+ minutes. Outside if you can.",
+          "Eat to steady. Protein, real foods, fewer sugar spikes.",
+          "One human touchpoint. Text someone, or sit near people (library, café).",
+          "One small kindness. Send a two-line thank-you. Gratitude pulls you toward the living.",
+        ],
+      },
+      {
+        id: "reframes",
+        title: "Reframes that help when hope is thin",
+        paragraphs: [
+          "You are not the storm. You are the sky it passes through.",
+          "“I’m a burden” is a feeling. The fact: people would crawl across the world to keep you.",
+          "You can quit a plan without quitting life. Drop classes, switch jobs, leave a city. Don’t leave the whole story.",
+          "Borrow oxygen. If you can’t breathe for you today, breathe for the ones who can’t bear losing you.",
+        ],
+      },
+      {
+        id: "supporting",
+        title: "If you’re supporting someone",
+        paragraphs: [
+          "Ask directly: “Are you thinking about suicide?” You won’t put the idea there.",
+          "Stay with them (call, text, sit) while help is contacted.",
+          "Remove means if it’s safe.",
+          "Keep interrupting the spiral: warmth + logistics.",
+          "Follow up tomorrow. And the next day. Repetition saves lives.",
+        ],
+      },
+      {
+        id: "resources",
+        title: "Quick resources",
+        paragraphs: [
+          "U.S. Suicide & Crisis Lifeline: call/text 988 (24/7) or chat online.",
+          "If you’re outside the U.S., search “suicide hotline + [your country].”",
+          "Consider talking with a licensed, trauma-informed professional. You don’t have to carry this alone.",
+        ],
+      },
+      {
+        id: "tonight",
+        title: "If tonight feels impossible",
+        paragraphs: [
+          "Text 988.",
+          "Or make a no-suicide vow to someone who loves you.",
+          "Or put on shoes. Walk to the end of the block and back. That’s it.",
+          "You still have chapters you haven’t met yet—people you’ll laugh with, places you’ll love, quiet mornings that feel like mercy. Stay for those. Stay for the you who gets to see them.",
+          "With respect to Tim Ferriss for telling the truth out loud, and to everyone who ever interrupted a plan. May we keep interrupting, together.",
+        ],
+      },
+    ],
   },
 ];
