@@ -6,7 +6,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import {
   Mail,
-  Users,
   GraduationCap,
   Book,
   Award,
@@ -991,17 +990,85 @@ const Index = () => {
       {/* Join Free Community */}
       <section className="py-12 bg-secondary/20" aria-label="Join Free Community">
         <div className="container mx-auto px-4 max-w-5xl">
-          <Card className="p-8 flex flex-col md:flex-row items-center gap-6 border-2 shadow-lg">
-            <Users className="w-12 h-12 text-primary shrink-0" aria-hidden="true" />
-            <div className="flex-1 text-center md:text-left">
-              <h3 className="text-2xl font-bold">Engineer → Enrolled Agent (Free Community)</h3>
-              <p className="text-muted-foreground">Short lessons. No fluff. Study tips, resources, and support.</p>
+          <Card className="p-8 md:p-10 border-2 shadow-lg bg-background/90 backdrop-blur-sm">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+              {/* Visual / Cover */}
+              <div
+                className="relative md:col-span-1 rounded-2xl overflow-hidden border-2 border-accent/40 bg-gradient-to-br from-yellow-300/40 via-yellow-200/30 to-yellow-100/40 dark:from-yellow-400/20 dark:via-yellow-300/15 dark:to-yellow-200/10"
+                style={{
+                  transformStyle: "preserve-3d",
+                }}
+              >
+                <div className="absolute -top-10 -left-10 w-40 h-40 bg-yellow-300/30 rounded-full blur-2xl pointer-events-none" />
+                <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-yellow-500/20 rounded-full blur-3xl pointer-events-none" />
+                <div className="aspect-[16/10] flex items-center justify-center p-6">
+                  <div className="text-center">
+                    <p className="text-sm font-semibold text-yellow-800 dark:text-yellow-200 tracking-wide">
+                      Engineer → Enrolled Agent
+                    </p>
+                    <p className="text-xl md:text-2xl font-extrabold text-yellow-900 dark:text-yellow-100 mt-1">
+                      Free Community
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="md:col-span-2">
+                <div className="flex items-center gap-2 mb-3 animate-[float_6s_ease-in-out_infinite]">
+                  <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-yellow-100 text-yellow-900 border border-yellow-300/70 dark:bg-yellow-900/30 dark:text-yellow-100 dark:border-yellow-700/50">
+                    ✅ Free to join
+                  </span>
+                  <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-yellow-100 text-yellow-900 border border-yellow-300/70 dark:bg-yellow-900/30 dark:text-yellow-100 dark:border-yellow-700/50">
+                    📚 Short lessons
+                  </span>
+                  <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-yellow-100 text-yellow-900 border border-yellow-300/70 dark:bg-yellow-900/30 dark:text-yellow-100 dark:border-yellow-700/50">
+                    🧠 Study systems
+                  </span>
+                </div>
+
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+                  Engineer → Enrolled Agent (Free Community)
+                </h3>
+                <p className="text-muted-foreground mt-2">
+                  Short lessons. No fluff. Study tips, resources, and support—built for busy beginners and career switchers.
+                </p>
+
+                <ul className="mt-5 grid sm:grid-cols-2 gap-3 text-sm">
+                  <li className="flex items-start gap-2">
+                    <span className="mt-0.5">🟡</span>
+                    <span>EA Part 1 bite-size lessons & weekly practice prompts</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-0.5">🟡</span>
+                    <span>Printable tools: one-pagers, flowcharts, study planners</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-0.5">🟡</span>
+                    <span>Author templates: outlines, chapter kits, publishing shortcuts</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-0.5">🟡</span>
+                    <span>Friendly accountability to keep you consistent</span>
+                  </li>
+                </ul>
+
+                <div className="mt-6 flex flex-wrap items-center gap-3">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold border-2 border-yellow-600/40 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                  >
+                    <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer" aria-label="Join the free community on Skool">
+                      Join Free →
+                    </a>
+                  </Button>
+                  <span className="text-xs text-muted-foreground">
+                    100% free • No spam • Cancel anytime
+                  </span>
+                </div>
+              </div>
             </div>
-            <Button asChild size="lg" className="shrink-0">
-              <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer">
-                Join Free →
-              </a>
-            </Button>
           </Card>
         </div>
       </section>
@@ -1331,6 +1398,17 @@ const Index = () => {
           © {new Date().getFullYear()} Zain Education Ventures. All rights reserved.
         </div>
       </footer>
+
+      {/* Keyframes for animations */}
+      <style>
+        {`
+          @keyframes float {
+            0% { transform: translateY(0) }
+            50% { transform: translateY(-4px) }
+            100% { transform: translateY(0) }
+          }
+        `}
+      </style>
     </div>
   );
 };
