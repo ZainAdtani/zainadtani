@@ -50,7 +50,7 @@ export default function Blog() {
             return (
               <li key={post.id}>
                 <Link
-                  to={`/blog-post?slug=${post.slug}`}
+                  to={`/blog/${post.slug}`}
                   className="group block rounded-2xl border bg-card/70 backdrop-blur p-6 hover:bg-card transition-shadow hover:shadow-sm"
                 >
                   <div className="flex items-center gap-2 mb-3">
