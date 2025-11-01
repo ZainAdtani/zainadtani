@@ -1,7 +1,6 @@
-// src/pages/blog-post.tsx
+// src/pages/BlogPost.tsx
 import React from "react";
-import Head from "next/head";
-import { useRouter } from "next/router";
+import { useParams } from "react-router-dom";
 import { BLOG_POSTS } from "@/data/blog";
 
 function WatchTabs({ videoUrl, slidesEmbedUrl }: { videoUrl?: string; slidesEmbedUrl?: string }) {
@@ -13,7 +12,9 @@ function WatchTabs({ videoUrl, slidesEmbedUrl }: { videoUrl?: string; slidesEmbe
     <div className="rounded-xl border bg-card">
       <div className="p-4">
         <h3 className="text-sm font-semibold">Watch or browse — your choice</h3>
-        <p className="text-sm text-muted-foreground">Click a tab to watch the video or go through the slides.</p>
+        <p className="text-sm text-muted-foreground">
+          Click a tab to watch the video or go through the slides.
+        </p>
       </div>
 
       <div className="px-4 pb-4">
@@ -51,56 +52,53 @@ function WatchTabs({ videoUrl, slidesEmbedUrl }: { videoUrl?: string; slidesEmbe
 }
 
 export default function BlogPostPage() {
-  const router = useRouter();
-  const slug = (router.query.slug as string) || (router.query.s as string) || "";
-
+  const { slug = "" } = useParams<{ slug: string }>();
   const post = BLOG_POSTS.find((p) => p.slug === slug);
-  if (!post) return <div className="container mx-auto p-6">Post not found.</div>;
+
+  React.useEffect(() => {
+    if (post) document.title = `${post.title} • Blog`;
+  }, [post]);
+
+  if (!post) {
+    return <main className="container mx-auto px-4 max-w-3xl py-10">Post not found.</main>;
+  }
 
   return (
-    <>
-      <Head>
-        <title>{post.title} • Blog</title>
-      </Head>
+    <main className="container mx-auto px-4 max-w-3xl py-10">
+      {/* TITLE — top of page (no hero video above) */}
+      <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{post.title}</h1>
 
-      <main className="container mx-auto px-4 max-w-3xl py-10">
-        {/* TITLE — top of page (no hero video above) */}
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{post.title}</h1>
+      {/* Meta row (date • read time • tags) */}
+      <div className="mt-2 text-sm text-muted-foreground flex flex-wrap gap-x-3 gap-y-1">
+        <span>{post.date ?? "—"}</span>
+        <span>•</span>
+        <span>{post.readTime ?? "—"}</span>
+        {!!post.tags?.length && (
+          <>
+            <span>•</span>
+            <span>{post.tags.join(", ")}</span>
+          </>
+        )}
+      </div>
 
-        {/* Meta row (date • read time • tags) */}
-        <div className="mt-2 text-sm text-muted-foreground flex flex-wrap gap-x-3 gap-y-1">
-          <span>{post.date ?? "—"}</span>
-          <span>•</span>
-          <span>{post.readTime ?? "—"}</span>
-          {post.tags && post.tags.length > 0 && (
-            <>
-              <span>•</span>
-              <span>{post.tags.join(", ")}</span>
-            </>
-          )}
-        </div>
+      {/* Video / Slides (no Download tab) */}
+      <div className="mt-6">
+        <WatchTabs videoUrl={post.videoUrl} slidesEmbedUrl={post.slidesEmbedUrl} />
+      </div>
 
-        {/* NO EXCERPT ON THE SINGLE POST PAGE */}
-
-        {/* Video / Slides (no Download tab) */}
-        <div className="mt-6">
-          <WatchTabs videoUrl={post.videoUrl} slidesEmbedUrl={post.slidesEmbedUrl} />
-        </div>
-
-        {/* Content */}
-        <article className="prose dark:prose-invert mt-8">
-          {post.sections
-            ? post.sections.map((sec) => (
-                <section key={sec.id} id={sec.id}>
-                  {sec.title ? <h2>{sec.title}</h2> : null}
-                  {sec.paragraphs.map((p, i) => (
-                    <p key={i}>{p}</p>
-                  ))}
-                </section>
-              ))
-            : post.content?.map((p, i) => <p key={i}>{p}</p>)}
-        </article>
-      </main>
-    </>
+      {/* Content */}
+      <article className="prose dark:prose-invert mt-8">
+        {post.sections
+          ? post.sections.map((sec) => (
+              <section key={sec.id} id={sec.id}>
+                {sec.title ? <h2>{sec.title}</h2> : null}
+                {sec.paragraphs.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </section>
+            ))
+          : post.content?.map((p, i) => <p key={i}>{p}</p>)}
+      </article>
+    </main>
   );
 }
