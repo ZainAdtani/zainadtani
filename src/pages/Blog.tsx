@@ -1,4 +1,3 @@
-// src/pages/blog.tsx
 import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -65,7 +64,7 @@ export default function Blog() {
                     {post.title}
                   </h2>
 
-                  <p className="mt-2 text-muted-foreground line-clamp-2">{post.excerpt}</p>
+                  <p className="mt-2 text-muted-foreground">{post.excerpt}</p>
 
                   <div className="mt-4 flex items-center justify-between text-sm text-muted-foreground">
                     <div className="flex items-center gap-4">
