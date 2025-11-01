@@ -41,6 +41,7 @@ import maggieSimbaBook from "@/assets/maggie-simba-book.png";
 import financialSorceryBook from "@/assets/financial-sorcery-book.png";
 import chrisHaroun from "@/assets/chris-haroun.png";
 import trentShelton from "@/assets/trent-shelton.png";
+import timFerriss from "@/assets/tim-ferriss.jpg";
 
 const QUOTES_AND_NOTES = [
   "It is the unknown we fear when we look upon death and darkness, nothing more. - J.K. Rowling, Harry Potter and the Deathly Hallows",
@@ -762,6 +763,21 @@ const Index = () => {
                     ],
                     image: trentShelton,
                     website: "https://www.trentshelton.com/",
+                  },
+                  {
+                    name: "Tim Ferriss",
+                    role: "Author & Investor",
+                    born: "Jul 20, 1977",
+                    age: "48 years old",
+                    imageAlt: "Tim Ferriss headshot",
+                    bio: "Bestselling author of The 4-Hour Workweek. Angel investor and host of The Tim Ferriss Show. Curates 5-Bullet Friday.",
+                    bullets: [
+                      "Host of one of the world's biggest business podcasts",
+                      "Author: The 4-Hour Workweek, Tools of Titans, Tribe of Mentors",
+                      "Focus: experiments, lifestyle design, meta-learning",
+                    ],
+                    image: timFerriss,
+                    website: "https://tim.blog/",
                   },
                 ].map((person, index) => (
                   <Card

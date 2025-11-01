@@ -5,9 +5,17 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { ExternalLink, Search, Star } from "lucide-react";
 import { Helmet } from "react-helmet-async";
-import { BOOKS, type BookStatus } from "@/data/books";
+import { BOOKS, type BookStatus, importHundredBooksIfNeeded } from "@/data/books";
 import { findCover } from "@/lib/covers";
 
 /** ---------- helpers ---------- **/
@@ -75,11 +83,29 @@ type SortOption = "title-asc" | "author-asc" | "progress-desc" | "rating-desc";
 
 /** ---------- component ---------- **/
 
+// Debounced search hook for performance
+function useDebounced<T>(value: T, delay = 150): T {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedValue(value), delay);
+    return () => clearTimeout(timer);
+  }, [value, delay]);
+  
+  return debouncedValue;
+}
+
 export default function BooksHQ() {
   const [searchQuery, setSearchQuery] = useState("");
+  const debouncedQuery = useDebounced(searchQuery, 150);
   const [statusFilter, setStatusFilter] = useState<BookStatus | "ALL">("ALL");
   const [sortBy, setSortBy] = useState<SortOption>("title-asc");
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+
+  // Import 100 books list once on mount (non-blocking)
+  useEffect(() => {
+    importHundredBooksIfNeeded();
+  }, []);
 
   // counts
   const bookCounts = useMemo(() => {
@@ -95,9 +121,9 @@ export default function BooksHQ() {
   const filteredAndSortedBooks = useMemo(() => {
     let result = [...BOOKS];
 
-    // filter by query
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
+    // filter by query (using debounced value)
+    if (debouncedQuery.trim()) {
+      const q = debouncedQuery.toLowerCase();
       result = result.filter(
         (book) =>
           book.title.toLowerCase().includes(q) ||
@@ -128,7 +154,7 @@ export default function BooksHQ() {
     });
 
     return result;
-  }, [searchQuery, statusFilter, sortBy, refreshTrigger]);
+  }, [debouncedQuery, statusFilter, sortBy, refreshTrigger]);
 
   // quietly fill missing covers
   useEffect(() => {
@@ -279,6 +305,39 @@ export default function BooksHQ() {
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   </Button>
+
+                  {/* "View my thoughts" modal - only if notes exist */}
+                  {(book.myNotes || book.notes) && (
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="outline" size="sm" className="mt-2 w-full">
+                          View my thoughts
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-lg">
+                        <DialogHeader>
+                          <DialogTitle>{book.title}</DialogTitle>
+                          <DialogDescription>{book.author}</DialogDescription>
+                        </DialogHeader>
+                        <div className="space-y-4 text-sm text-foreground">
+                          {book.myNotes && (
+                            <div>
+                              <p className="font-semibold mb-1">My thoughts</p>
+                              <p className="whitespace-pre-wrap">{book.myNotes}</p>
+                            </div>
+                          )}
+                          {book.notes && (
+                            <div>
+                              <p className="font-semibold mb-1">Summary / notes</p>
+                              <p className="italic text-muted-foreground whitespace-pre-wrap">
+                                {book.notes.length > 600 ? book.notes.slice(0, 597) + "..." : book.notes}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                  )}
                 </CardContent>
               </Card>
             );

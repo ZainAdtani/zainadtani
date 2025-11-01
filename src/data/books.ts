@@ -10,7 +10,8 @@ export type Book = {
   link?: string;
   cover?: string;
   rating?: number; // 1-5
-  notes?: string;
+  notes?: string; // Book summary/description
+  myNotes?: string; // Personal thoughts/reviews
   isbn?: string;
 };
 
@@ -606,3 +607,19 @@ export const BOOKS: Book[] = [
     link: 'https://www.amazon.com/Types-Wealth-Transformative-Guide-Design/dp/059372318X'
   }
 ];
+
+/**
+ * Import and merge books from the 100-book HTML list
+ * Called once when BooksHQ page loads
+ */
+export async function importHundredBooksIfNeeded() {
+  try {
+    const { parse100Books } = await import("@/lib/imports/parse100Books");
+    const { mergeIntoBooks } = await import("@/lib/imports/mergeBooks");
+    const list = await parse100Books();
+    mergeIntoBooks(list);
+    console.info("[BOOKS] Imported 100-list. Total:", BOOKS.length);
+  } catch (e) {
+    console.warn("[BOOKS] Import failed:", e);
+  }
+}
