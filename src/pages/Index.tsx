@@ -18,6 +18,7 @@ import {
   Linkedin,
   Heart,
   X,
+  FileText,
 } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
@@ -295,12 +296,12 @@ const Index = () => {
               </Link>
             </Card>
 
-            {/* Button 4: Certifications */}
+            {/* Button 4: My Blog */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <a href="#certifications" className="block">
-                <Award className="w-12 h-12 text-primary mb-4 animate-bounce" />
-                <h3 className="text-2xl font-bold mb-2 text-foreground">My Certifications</h3>
-                <p className="text-muted-foreground">Professional credentials & achievements</p>
+              <a href="https://zainadtani.com/blog" className="block">
+                <FileText className="w-12 h-12 text-primary mb-4 animate-bounce" />
+                <h3 className="text-2xl font-bold mb-2 text-foreground">My Blog</h3>
+                <p className="text-muted-foreground">Articles, notes, and ideas</p>
               </a>
             </Card>
           </div>
