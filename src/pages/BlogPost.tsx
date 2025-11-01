@@ -4,86 +4,79 @@ import { Helmet } from "react-helmet-async";
 import { BLOG_POSTS } from "@/data/blog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Calendar, Clock, ArrowLeft, PlayCircle, FileDown, Presentation } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, Play, Pause, Headphones } from "lucide-react";
 import { monthYear } from "@/lib/dates";
 
-/* Watch or Listen section with embeds */
-function WatchOrListen() {
+/* Audio bar unchanged style */
+function AudioBar({ src, title }: { src?: string; title: string }) {
+  const aRef = useRef<HTMLAudioElement | null>(null);
+  const [playing, setPlaying] = useState(false);
+  const [pct, setPct] = useState(0);
+  const [cur, setCur] = useState(0);
+  const [dur, setDur] = useState(0);
+  const fmt = (n: number) => {
+    if (!isFinite(n)) return "0:00";
+    const m = Math.floor(n / 60);
+    const s = Math.floor(n % 60)
+      .toString()
+      .padStart(2, "0");
+    return `${m}:${s}`;
+  };
+  if (!src) return null;
   return (
-    <section className="my-6">
-      <h3 className="text-xl font-semibold mb-2">Watch or listen — your choice</h3>
-      <p className="text-muted-foreground mb-4">
-        Click a tab to watch the video, browse the slides, or play the downloadable version with captions.
-      </p>
+    <div className="w-full rounded-2xl border bg-card/80 backdrop-blur shadow-sm p-4">
+      <div className="flex items-center gap-3">
+        <Button
+          variant="outline"
+          size="icon"
+          aria-label={playing ? "Pause" : "Play"}
+          onClick={() => {
+            const a = aRef.current;
+            if (!a) return;
+            a.paused ? a.play() : a.pause();
+          }}
+        >
+          {playing ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+        </Button>
 
-      <Tabs defaultValue="video" className="w-full">
-        <TabsList className="grid grid-cols-3 md:w-auto">
-          <TabsTrigger value="video" className="gap-2">
-            <PlayCircle className="h-4 w-4" /> Video
-          </TabsTrigger>
-          <TabsTrigger value="slides" className="gap-2">
-            <Presentation className="h-4 w-4" /> Slides
-          </TabsTrigger>
-          <TabsTrigger value="download" className="gap-2">
-            <FileDown className="h-4 w-4" /> Download
-          </TabsTrigger>
-        </TabsList>
-
-        {/* HeyGen embed */}
-        <TabsContent value="video" className="mt-4">
-          <div className="aspect-video w-full overflow-hidden rounded-xl shadow-sm">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://app.heygen.com/embedded-player/5bee2415e200460398e1c032bc52f2c2"
-              title="HeyGen video player"
-              frameBorder="0"
-              allow="encrypted-media; fullscreen;"
-              allowFullScreen
-            />
-          </div>
-        </TabsContent>
-
-        {/* Gamma embed */}
-        <TabsContent value="slides" className="mt-4">
-          <div className="w-full overflow-hidden rounded-xl shadow-sm">
-            <iframe
-              src="https://gamma.app/embed/lhmoxndy1b2dtye"
-              style={{ width: "100%", height: "450px" }}
-              allow="fullscreen"
-              title="Here's The Problem..."
-            />
-          </div>
-        </TabsContent>
-
-        {/* Native player + captions + download */}
-        <TabsContent value="download" className="mt-4">
-          <video
-            className="w-full rounded-xl shadow-sm"
-            controls
-            preload="metadata"
+        <div className="flex-1 min-w-0">
+          <div className="text-sm font-medium truncate">{title}</div>
+          <div
+            className="h-2 rounded-full bg-muted mt-2 cursor-pointer"
+            onClick={(e) => {
+              const a = aRef.current;
+              if (!a || !dur) return;
+              const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
+              const ratio = (e.clientX - rect.left) / rect.width;
+              a.currentTime = Math.max(0, Math.min(1, ratio)) * dur;
+            }}
           >
-            <source src="/media/automation-audit.mp4" type="video/mp4" />
-            <track
-              kind="subtitles"
-              srcLang="en"
-              label="English"
-              src="/media/automation-audit.srt"
-              default
-            />
-            Your browser does not support the video tag.
-          </video>
-          <div className="mt-3 text-sm">
-            Prefer offline?{" "}
-            <a className="underline" href="/media/automation-audit.mp4" download>
-              Download the video
-            </a>
-            .
+            <div className="h-2 rounded-full bg-primary" style={{ width: `${pct * 100}%` }} />
           </div>
-        </TabsContent>
-      </Tabs>
-    </section>
+          <div className="text-xs text-muted-foreground mt-1">
+            {fmt(cur)} / {fmt(dur)}
+          </div>
+        </div>
+
+        <Headphones className="w-4 h-4 text-primary/80" />
+      </div>
+
+      <audio
+        ref={aRef}
+        src={src}
+        preload="metadata"
+        onTimeUpdate={() => {
+          const a = aRef.current;
+          if (!a) return;
+          setCur(a.currentTime);
+          setDur(a.duration || 0);
+          setPct(a.duration ? a.currentTime / a.duration : 0);
+        }}
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        onEnded={() => setPlaying(false)}
+      />
+    </div>
   );
 }
 
@@ -159,7 +152,7 @@ export default function BlogPost() {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-10">
           {/* Main */}
           <div>
-            {post.slug === "save-5-hours-automation-audit" && <WatchOrListen />}
+            <AudioBar src={post.audioUrl} title={`Listen — ${post.title}`} />
 
             {post.excerpt && <p className="text-lg text-muted-foreground mt-6">{post.excerpt}</p>}
 
@@ -200,6 +193,22 @@ export default function BlogPost() {
                 </nav>
               </div>
             )}
+
+            {/* Subscribe card */}
+            <div className="rounded-2xl border bg-card/70 backdrop-blur p-5">
+              <div className="text-base font-semibold">Subscribe to LifeNotes</div>
+              <p className="text-sm text-muted-foreground mt-1">
+                Short, useful notes on AI, productivity, and the EA path.
+              </p>
+              <form className="mt-3 space-y-2">
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  className="w-full rounded-lg border bg-background px-3 py-2 text-sm"
+                />
+                <Button className="w-full">Subscribe</Button>
+              </form>
+            </div>
           </aside>
         </div>
       </main>

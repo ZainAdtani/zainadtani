@@ -1,4 +1,4 @@
-import { Home, GraduationCap, TrendingUp, Wrench, Lock, Trophy, BookOpen, HelpCircle, Search, ChevronDown, FolderKanban, FileText, Paperclip, Zap, StickyNote, LineChart, PenLine, Compass, Bot, FolderClosed, LifeBuoy, FlaskConical } from "lucide-react";
+import { Home, GraduationCap, TrendingUp, Wrench, Lock, ShoppingBag, Trophy, BookOpen, Music, HelpCircle, Search, ChevronDown, FolderKanban, FileText, Paperclip, Zap, StickyNote } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
   Sidebar,
@@ -33,19 +33,21 @@ interface SearchableItem {
 }
 
 const searchIndex: SearchableItem[] = [
-  { title: "Home", route: "/" },
+  { title: "Home", route: "/", section: "Learn" },
   { title: "Enrolled Agent", route: "/enrolled-agent", section: "Learn", tags: ["EA", "tax", "certification"] },
-  { title: "Books", route: "/books", section: "Learn", tags: ["reading", "library"] },
+  { title: "Books HQ", route: "/books", section: "Learn", tags: ["reading", "library"] },
   { title: "Investing", route: "/investing", section: "Learn", tags: ["finance", "stocks"] },
   { title: "Blog", route: "/blog", section: "Learn", tags: ["articles", "posts", "writing"] },
-  { title: "Sports", route: "/sports", section: "Explore", tags: ["NBA", "scores"] },
-  { title: "Projects", route: "/projects", section: "Explore", tags: ["pokedex", "builds"] },
   { title: "Resources", route: "/resources", section: "Resources", tags: ["PDFs", "tools", "quick reference"] },
   { title: "AI Prompts", route: "/ai-prompts", section: "Resources", tags: ["prompts", "coaching", "productivity"] },
   { title: "Life Notes", route: "/life-notes", section: "Resources", tags: ["quotes", "wisdom", "mindset"] },
   { title: "Tools", route: "/tools", section: "Resources", tags: ["utilities"] },
+  { title: "Sports", route: "/sports", section: "Resources", tags: ["NBA", "scores"] },
+  { title: "Waez", route: "/waez", section: "Resources", tags: ["religious", "lectures", "Abu Ali"] },
+  { title: "Projects", route: "/projects", section: "Explore", tags: ["pokedex", "builds"] },
+  { title: "Pokédex", route: "/projects/pokedex", section: "Explore", tags: ["pokemon", "notion"] },
+  { title: "Secret Vault", route: "/vault", section: "Secret Vault", tags: ["premium", "exclusive"] },
   { title: "Help / Contact", route: "/about", section: "Support" },
-  { title: "Secret Vault", route: "/vault", section: "Secret", tags: ["premium", "exclusive"] },
 ];
 
 export function AppSidebar() {
@@ -56,24 +58,20 @@ export function AppSidebar() {
 
   // Collapsible state with localStorage persistence
   const [learnOpen, setLearnOpen] = useState(() => {
-    const saved = localStorage.getItem("sidebar.group.learn");
-    return saved !== null ? JSON.parse(saved) : true;
-  });
-  const [exploreOpen, setExploreOpen] = useState(() => {
-    const saved = localStorage.getItem("sidebar.group.explore");
+    const saved = localStorage.getItem("sidebar-learn-open");
     return saved !== null ? JSON.parse(saved) : true;
   });
   const [resourcesOpen, setResourcesOpen] = useState(() => {
-    const saved = localStorage.getItem("sidebar.group.resources");
+    const saved = localStorage.getItem("sidebar-resources-open");
     return saved !== null ? JSON.parse(saved) : true;
   });
   const [supportOpen, setSupportOpen] = useState(() => {
-    const saved = localStorage.getItem("sidebar.group.support");
+    const saved = localStorage.getItem("sidebar-support-open");
     return saved !== null ? JSON.parse(saved) : true;
   });
-  const [secretOpen, setSecretOpen] = useState(() => {
-    const saved = localStorage.getItem("sidebar.group.secret");
-    return saved !== null ? JSON.parse(saved) : false;
+  const [exploreOpen, setExploreOpen] = useState(() => {
+    const saved = localStorage.getItem("sidebar-explore-open");
+    return saved !== null ? JSON.parse(saved) : true;
   });
 
   // Search state
@@ -83,20 +81,17 @@ export function AppSidebar() {
 
   // Persist collapsible state
   useEffect(() => {
-    localStorage.setItem("sidebar.group.learn", JSON.stringify(learnOpen));
+    localStorage.setItem("sidebar-learn-open", JSON.stringify(learnOpen));
   }, [learnOpen]);
   useEffect(() => {
-    localStorage.setItem("sidebar.group.explore", JSON.stringify(exploreOpen));
-  }, [exploreOpen]);
-  useEffect(() => {
-    localStorage.setItem("sidebar.group.resources", JSON.stringify(resourcesOpen));
+    localStorage.setItem("sidebar-resources-open", JSON.stringify(resourcesOpen));
   }, [resourcesOpen]);
   useEffect(() => {
-    localStorage.setItem("sidebar.group.support", JSON.stringify(supportOpen));
+    localStorage.setItem("sidebar-support-open", JSON.stringify(supportOpen));
   }, [supportOpen]);
   useEffect(() => {
-    localStorage.setItem("sidebar.group.secret", JSON.stringify(secretOpen));
-  }, [secretOpen]);
+    localStorage.setItem("sidebar-explore-open", JSON.stringify(exploreOpen));
+  }, [exploreOpen]);
 
   // Fuse.js search
   const fuse = useMemo(
@@ -187,10 +182,20 @@ export function AppSidebar() {
         </SidebarHeader>
       )}
 
-      <SidebarContent className="flex flex-col justify-between h-full">
-        <div>
-          {/* Home - Single top link */}
+      <SidebarContent>
+        {/* Learn Section */}
+        <Collapsible open={learnOpen} onOpenChange={setLearnOpen}>
           <SidebarGroup>
+            <CollapsibleTrigger asChild>
+              <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
+                Learn
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${learnOpen ? "rotate-180" : ""}`}
+                />
+              </SidebarGroupLabel>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
@@ -200,207 +205,185 @@ export function AppSidebar() {
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/enrolled-agent" className={getNavClass}>
+                    <GraduationCap className="h-4 w-4" />
+                    {!isCollapsed && <span>Enrolled Agent</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/books" className={getNavClass}>
+                    <BookOpen className="h-4 w-4" />
+                    {!isCollapsed && <span>Books</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/investing" className={getNavClass}>
+                    <TrendingUp className="h-4 w-4" />
+                    {!isCollapsed && <span>Investing</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/blog" className={getNavClass}>
+                    <FileText className="h-4 w-4" />
+                    {!isCollapsed && <span>Blog</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
+              </SidebarGroupContent>
+            </CollapsibleContent>
           </SidebarGroup>
+        </Collapsible>
 
-          {/* Learn Section */}
-          <Collapsible open={learnOpen} onOpenChange={setLearnOpen}>
-            <SidebarGroup>
-              <CollapsibleTrigger asChild>
-                <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
-                  Learn 🎓
-                  <ChevronDown
-                    className={`h-4 w-4 transition-transform ${learnOpen ? "rotate-180" : ""}`}
-                  />
-                </SidebarGroupLabel>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <SidebarGroupContent>
-                  <SidebarMenu>
-                    <SidebarMenuItem>
-                      <SidebarMenuButton asChild>
-                        <NavLink to="/enrolled-agent" className={getNavClass}>
-                          <GraduationCap className="h-4 w-4" />
-                          {!isCollapsed && <span>Enrolled Agent</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                      <SidebarMenuButton asChild>
-                        <NavLink to="/books" className={getNavClass}>
-                          <BookOpen className="h-4 w-4" />
-                          {!isCollapsed && <span>Books</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                      <SidebarMenuButton asChild>
-                        <NavLink to="/investing" className={getNavClass}>
-                          <LineChart className="h-4 w-4" />
-                          {!isCollapsed && <span>Investing</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                      <SidebarMenuButton asChild>
-                        <NavLink to="/blog" className={getNavClass}>
-                          <PenLine className="h-4 w-4" />
-                          {!isCollapsed && <span>Blog</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  </SidebarMenu>
-                </SidebarGroupContent>
-              </CollapsibleContent>
-            </SidebarGroup>
-          </Collapsible>
+        {/* Resources Section */}
+        <Collapsible open={resourcesOpen} onOpenChange={setResourcesOpen}>
+          <SidebarGroup>
+            <CollapsibleTrigger asChild>
+              <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
+                Resources
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${resourcesOpen ? "rotate-180" : ""}`}
+                />
+              </SidebarGroupLabel>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/resources" className={getNavClass}>
+                    <Paperclip className="h-4 w-4" />
+                    {!isCollapsed && <span>Resources</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/ai-prompts" className={getNavClass}>
+                    <Zap className="h-4 w-4" />
+                    {!isCollapsed && <span>AI Prompts</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/life-notes" className={getNavClass}>
+                    <StickyNote className="h-4 w-4" />
+                    {!isCollapsed && <span>Life Notes</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/tools" className={getNavClass}>
+                    <Wrench className="h-4 w-4" />
+                    {!isCollapsed && <span>Tools</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/sports" className={getNavClass}>
+                    <Trophy className="h-4 w-4" />
+                    {!isCollapsed && <span>Sports</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/waez" className={getNavClass}>
+                    <Music className="h-4 w-4" />
+                    {!isCollapsed && <span>Waez</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+              </SidebarGroupContent>
+            </CollapsibleContent>
+          </SidebarGroup>
+        </Collapsible>
 
-          {/* Explore Section */}
-          <Collapsible open={exploreOpen} onOpenChange={setExploreOpen}>
-            <SidebarGroup>
-              <CollapsibleTrigger asChild>
-                <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
-                  Explore 🧭
-                  <ChevronDown
-                    className={`h-4 w-4 transition-transform ${exploreOpen ? "rotate-180" : ""}`}
-                  />
-                </SidebarGroupLabel>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <SidebarGroupContent>
-                  <SidebarMenu>
-                    <SidebarMenuItem>
-                      <SidebarMenuButton asChild>
-                        <NavLink to="/sports" className={getNavClass}>
-                          <Trophy className="h-4 w-4" />
-                          {!isCollapsed && <span>Sports</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                      <SidebarMenuButton asChild>
-                        <NavLink to="/projects" className={getNavClass}>
-                          <FlaskConical className="h-4 w-4" />
-                          {!isCollapsed && <span>Projects</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  </SidebarMenu>
-                </SidebarGroupContent>
-              </CollapsibleContent>
-            </SidebarGroup>
-          </Collapsible>
+        {/* Explore Section */}
+        <Collapsible open={exploreOpen} onOpenChange={setExploreOpen}>
+          <SidebarGroup>
+            <CollapsibleTrigger asChild>
+              <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
+                Explore
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${exploreOpen ? "rotate-180" : ""}`}
+                />
+              </SidebarGroupLabel>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/projects" className={getNavClass}>
+                    <FolderKanban className="h-4 w-4" />
+                    {!isCollapsed && <span>Projects</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+              </SidebarGroupContent>
+            </CollapsibleContent>
+          </SidebarGroup>
+        </Collapsible>
 
-          {/* Resources Section */}
-          <Collapsible open={resourcesOpen} onOpenChange={setResourcesOpen}>
-            <SidebarGroup>
-              <CollapsibleTrigger asChild>
-                <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
-                  Resources 🧰
-                  <ChevronDown
-                    className={`h-4 w-4 transition-transform ${resourcesOpen ? "rotate-180" : ""}`}
-                  />
-                </SidebarGroupLabel>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <SidebarGroupContent>
-                  <SidebarMenu>
-                    <SidebarMenuItem>
-                      <SidebarMenuButton asChild>
-                        <NavLink to="/resources" className={getNavClass}>
-                          <FolderClosed className="h-4 w-4" />
-                          {!isCollapsed && <span>Resources</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                      <SidebarMenuButton asChild>
-                        <NavLink to="/ai-prompts" className={getNavClass}>
-                          <Bot className="h-4 w-4" />
-                          {!isCollapsed && <span>AI Prompts</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                      <SidebarMenuButton asChild>
-                        <NavLink to="/life-notes" className={getNavClass}>
-                          <StickyNote className="h-4 w-4" />
-                          {!isCollapsed && <span>Life Notes</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                      <SidebarMenuButton asChild>
-                        <NavLink to="/tools" className={getNavClass}>
-                          <Wrench className="h-4 w-4" />
-                          {!isCollapsed && <span>Tools</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  </SidebarMenu>
-                </SidebarGroupContent>
-              </CollapsibleContent>
-            </SidebarGroup>
-          </Collapsible>
+        {/* Support Section */}
+        <Collapsible open={supportOpen} onOpenChange={setSupportOpen}>
+          <SidebarGroup>
+            <CollapsibleTrigger asChild>
+              <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
+                Support
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${supportOpen ? "rotate-180" : ""}`}
+                />
+              </SidebarGroupLabel>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/about" className={getNavClass}>
+                    <HelpCircle className="h-4 w-4" />
+                    {!isCollapsed && <span>Help / Contact</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+              </SidebarGroupContent>
+            </CollapsibleContent>
+          </SidebarGroup>
+        </Collapsible>
 
-          {/* Support Section */}
-          <Collapsible open={supportOpen} onOpenChange={setSupportOpen}>
-            <SidebarGroup>
-              <CollapsibleTrigger asChild>
-                <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
-                  Support 💬
-                  <ChevronDown
-                    className={`h-4 w-4 transition-transform ${supportOpen ? "rotate-180" : ""}`}
-                  />
-                </SidebarGroupLabel>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <SidebarGroupContent>
-                  <SidebarMenu>
-                    <SidebarMenuItem>
-                      <SidebarMenuButton asChild>
-                        <NavLink to="/about" className={getNavClass}>
-                          <LifeBuoy className="h-4 w-4" />
-                          {!isCollapsed && <span>Help / Contact</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  </SidebarMenu>
-                </SidebarGroupContent>
-              </CollapsibleContent>
-            </SidebarGroup>
-          </Collapsible>
-        </div>
-
-        {/* Secret Section - Bottom positioned, collapsed by default */}
-        <div className="mt-auto">
-          <Collapsible open={secretOpen} onOpenChange={setSecretOpen}>
-            <SidebarGroup>
-              <CollapsibleTrigger asChild>
-                <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
-                  Secret 🔒
-                  <ChevronDown
-                    className={`h-4 w-4 transition-transform ${secretOpen ? "rotate-180" : ""}`}
-                  />
-                </SidebarGroupLabel>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <SidebarGroupContent>
-                  <SidebarMenu>
-                    <SidebarMenuItem>
-                      <SidebarMenuButton asChild>
-                        <NavLink to="/vault" className={getNavClass}>
-                          <Lock className="h-4 w-4" />
-                          {!isCollapsed && <span>Secret Vault</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  </SidebarMenu>
-                </SidebarGroupContent>
-              </CollapsibleContent>
-            </SidebarGroup>
-          </Collapsible>
-        </div>
+        {/* Secret Vault Section (Standalone) */}
+        <SidebarGroup>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <NavLink to="/vault" className={getNavClass}>
+                  <Lock className="h-4 w-4" />
+                  {!isCollapsed && <span>Secret Vault</span>}
+                </NavLink>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
       </SidebarContent>
 
       {/* Theme Toggle Footer */}
