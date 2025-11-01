@@ -178,70 +178,35 @@ const Investing = () => {
 
           {/* Data (edit freely) */}
           {(() => {
-            // === UPDATED POSITIONS ===
-            // Use the tag to keep your chips simple: "Core", "ETF", "Income", "Hedge", "Growth", "Spec", "Crypto", "CEF"
-            const INDIVIDUAL = [
-              // Core index / broad market
-              { ticker: "VOO", name: "Vanguard S&P 500", tag: "Core" },
-              { ticker: "QQQM", name: "Nasdaq-100 ETF", tag: "ETF" },
-              { ticker: "IWM", name: "iShares Russell 2000", tag: "ETF" },
-              { ticker: "SCHG", name: "Schwab U.S. Growth", tag: "ETF" },
-              { ticker: "AVUV", name: "Avantis U.S. Small Value", tag: "ETF" },
-
-              // Income / cash
-              { ticker: "SCHD", name: "Schwab U.S. Dividend", tag: "Income" },
-              { ticker: "VYMI", name: "Intl High Dividend", tag: "Income" },
-              { ticker: "SGOV", name: "iShares 0–3M T-Bills", tag: "Income" },
-              { ticker: "BIL", name: "SPDR 1–3M T-Bill", tag: "Income" },
-              { ticker: "SHY", name: "iShares 1–3Y Treasury", tag: "Income" },
-              { ticker: "TEM", name: "Templeton EM (CEF)", tag: "CEF" },
-
-              // Real assets
-              { ticker: "GLD", name: "SPDR Gold Trust", tag: "Hedge" },
-              { ticker: "VNQ", name: "Vanguard REIT", tag: "Income" },
-
-              // Mega-cap tech
-              { ticker: "MSFT", name: "Microsoft", tag: "Core" },
-              { ticker: "AAPL", name: "Apple", tag: "Core" },
-              { ticker: "GOOGL", name: "Alphabet", tag: "Growth" },
-              { ticker: "AMZN", name: "Amazon", tag: "Growth" },
-              { ticker: "NVDA", name: "NVIDIA", tag: "Growth" },
-              { ticker: "TSLA", name: "Tesla", tag: "Growth" },
-              { ticker: "BRK.B", name: "Berkshire Hathaway", tag: "Core" },
-              { ticker: "UNH", name: "UnitedHealth", tag: "Core" },
-
-              // AI / software / cyber
-              { ticker: "PLTR", name: "Palantir", tag: "Growth" },
-              { ticker: "CRWD", name: "CrowdStrike", tag: "Growth" },
-              { ticker: "PATH", name: "UiPath", tag: "Growth" },
-              { ticker: "TTD", name: "The Trade Desk", tag: "Growth" },
-              { ticker: "AIQ", name: "Global X AI", tag: "ETF" },
-
-              // Fintech / brokers
-              { ticker: "SOFI", name: "SoFi", tag: "Growth" },
-              { ticker: "HOOD", name: "Robinhood", tag: "Spec" },
-
-              // International / EM
-              { ticker: "BABA", name: "Alibaba", tag: "Spec" },
-
-              // Crypto & proxies
-              { ticker: "BTC", name: "Bitcoin", tag: "Crypto" },
-              { ticker: "ETH", name: "Ethereum", tag: "Crypto" },
-              { ticker: "XRP", name: "XRP", tag: "Crypto" },
-              { ticker: "DOGE", name: "Dogecoin", tag: "Crypto" },
-              { ticker: "TRUMP", name: "TRUMP token", tag: "Crypto" },
-              { ticker: "MSTR", name: "MicroStrategy", tag: "Spec" },
-              { ticker: "FBTC", name: "Fidelity Bitcoin ETF", tag: "Crypto" },
-
-              // Speculative / small caps
-              { ticker: "APLD", name: "Applied Digital", tag: "Spec" },
-              { ticker: "BBAI", name: "BigBear.ai", tag: "Spec" },
-              { ticker: "WULF", name: "TeraWulf", tag: "Spec" },
-              { ticker: "RGTI", name: "Rigetti", tag: "Spec" },
-              { ticker: "QUBT", name: "Quantum Computing", tag: "Spec" },
-              { ticker: "MEME", name: "Roundhill MEME", tag: "ETF" },
-              { ticker: "ENTO", name: "Entero", tag: "Spec" },
+            // === INDIVIDUAL: cleaned to only stocks & ETFs; simple display ===
+            const INDIVIDUAL_TICKERS = [
+              "BBAI","WULF","ENTO","MEME","MSTR","PATH","IWM","RGTI","TTD",
+              "VYMI","CRWV","SCHG","BABA","UNH","QUBT"
             ];
+
+            // Optional: plain names when confidently known; leave blank if unsure
+            const NAME_BY_TICKER: Record<string, string> = {
+              BBAI: "BigBear.ai",
+              WULF: "TeraWulf",
+              ENTO: "Entero Therapeutics",
+              MEME: "Roundhill MEME ETF",
+              MSTR: "MicroStrategy",
+              PATH: "UiPath",
+              IWM: "iShares Russell 2000 ETF",
+              RGTI: "Rigetti Computing",
+              TTD: "The Trade Desk",
+              VYMI: "Vanguard Intl High Dividend ETF",
+              SCHG: "Schwab U.S. Large-Cap Growth ETF",
+              BABA: "Alibaba Group",
+              UNH: "UnitedHealth Group",
+              QUBT: "Quantum Computing, Inc.",
+              // CRWV left blank intentionally
+            };
+
+            const INDIVIDUAL = INDIVIDUAL_TICKERS.map((t) => ({
+              ticker: t,
+              name: NAME_BY_TICKER[t] ?? "",
+            }));
 
             const ROTH_IRA = [
               { ticker: "JEPI", name: "JPM Equity Premium", tag: "Income" },
@@ -252,6 +217,16 @@ const Investing = () => {
               { ticker: "VNQ", name: "Vanguard REIT", tag: "Income" },
               { ticker: "FBTC", name: "Fidelity Bitcoin ETF", tag: "Crypto" },
             ];
+
+            // Minimal, clean card: ticker + (optional) name. No icons, no tags.
+            const SimpleHoldingCard = ({ p }: { p: { ticker: string; name?: string } }) => (
+              <div className="rounded-2xl border bg-background/70 p-5 shadow-sm hover:shadow-md transition">
+                <div>
+                  <div className="text-2xl font-extrabold tracking-tight">{p.ticker}</div>
+                  {p.name ? <div className="text-sm text-muted-foreground mt-1">{p.name}</div> : null}
+                </div>
+              </div>
+            );
 
             const Card3D = ({ p }: { p: any }) => (
               <div
@@ -301,7 +276,7 @@ const Investing = () => {
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     {INDIVIDUAL.map((p, i) => (
-                      <Card3D key={p.ticker + i} p={p} />
+                      <SimpleHoldingCard key={p.ticker + i} p={p} />
                     ))}
                   </div>
                 </div>
