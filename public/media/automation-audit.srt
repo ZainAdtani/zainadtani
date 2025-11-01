@@ -1,0 +1,476 @@
+1
+00:00:00,200 --> 00:00:02,094
+Here’s The Problem...
+
+2
+00:00:02,294 --> 00:00:03,761
+Most entrepreneurs and
+
+3
+00:00:03,761 --> 00:00:05,668
+professionals are still doing
+
+4
+00:00:05,668 --> 00:00:08,602
+tasks every week that don’t
+actually need them.
+
+5
+00:00:08,602 --> 00:00:10,729
+They’re stuck inside a mental loop
+
+6
+00:00:10,729 --> 00:00:13,809
+that says, “It’ll be faster if I
+just do it myself.”
+
+7
+00:00:13,809 --> 00:00:16,082
+But it’s never faster in
+the long run.
+
+8
+00:00:16,082 --> 00:00:18,064
+Repetitive work quietly drains
+
+9
+00:00:18,064 --> 00:00:21,144
+focus, decision-making energy, and
+creativity.
+
+10
+00:00:21,144 --> 00:00:22,978
+Every time you retype the same
+
+11
+00:00:22,978 --> 00:00:25,105
+email, schedule the same meeting,
+
+12
+00:00:25,105 --> 00:00:26,866
+or copy-paste the same data,
+
+13
+00:00:26,866 --> 00:00:30,827
+you’re burning mental fuel that
+could be spent on real progress.
+
+14
+00:00:30,827 --> 00:00:32,807
+Tony often says, “You can’t grow
+
+15
+00:00:32,807 --> 00:00:35,154
+if you’re doing what
+keeps you small.”
+
+16
+00:00:35,154 --> 00:00:37,795
+Automation isn’t about
+replacing effort.
+
+17
+00:00:37,795 --> 00:00:39,849
+It’s about reclaiming energy for
+
+18
+00:00:39,849 --> 00:00:43,076
+the work that actually moves your
+business forward.
+
+19
+00:00:43,276 --> 00:00:44,920
+Here’s the Shift...
+
+20
+00:00:45,120 --> 00:00:47,543
+AI is no longer just a tool for
+tech experts.
+
+21
+00:00:47,543 --> 00:00:49,966
+It’s your personal operations
+assistant.
+
+22
+00:00:49,966 --> 00:00:51,783
+It can find the repetitive tasks
+
+23
+00:00:51,783 --> 00:00:53,264
+that are slowing you down,
+
+24
+00:00:53,264 --> 00:00:56,562
+organize them, and even recommend
+what to automate first.
+
+25
+00:00:56,562 --> 00:00:58,379
+Once you see how much of your week
+
+26
+00:00:58,379 --> 00:01:00,331
+is filled with repeat work, you’ll
+
+27
+00:01:00,331 --> 00:01:02,081
+start to notice how much of your
+
+28
+00:01:02,081 --> 00:01:04,235
+potential has been
+trapped inside it.
+
+29
+00:01:04,435 --> 00:01:05,977
+So Here’s Your Hack
+
+30
+00:01:06,177 --> 00:01:07,739
+We’re going to build a 3-step
+
+31
+00:01:07,739 --> 00:01:09,627
+AI-powered Automation Audit that
+
+32
+00:01:09,627 --> 00:01:12,687
+reveals where you’re wasting time
+and how to reclaim it.
+
+33
+00:01:12,887 --> 00:01:14,689
+This process helps you:
+
+34
+00:01:14,889 --> 00:01:17,883
+Identify hidden bottlenecks that
+drain hours weekly.
+
+35
+00:01:17,883 --> 00:01:20,162
+Classify tasks by automation
+potential.
+
+36
+00:01:20,362 --> 00:01:22,685
+Build your first “AI Task Stack”.
+
+37
+00:01:22,885 --> 00:01:26,335
+A list of automations that will
+save you time every single week.
+
+38
+00:01:26,335 --> 00:01:28,550
+Step 1 – Create Your Task Inventory
+
+39
+00:01:28,550 --> 00:01:30,841
+Open ChatGPT and paste this prompt:
+
+40
+00:01:30,841 --> 00:01:33,896
+“I want to find the top 3 tasks I
+should automate.
+
+41
+00:01:33,896 --> 00:01:36,646
+I’ll list everything I do in a
+typical week.
+
+42
+00:01:36,646 --> 00:01:38,479
+Please organize each task by
+
+43
+00:01:38,479 --> 00:01:40,694
+category (Admin, Communication,
+
+44
+00:01:40,694 --> 00:01:45,124
+Creative, Strategy) and estimate
+how much time it consumes weekly.”
+
+45
+00:01:45,124 --> 00:01:47,491
+Example categories AI might create:
+
+46
+00:01:47,491 --> 00:01:50,776
+Admin (scheduling, invoices, file
+organization)
+
+47
+00:01:50,776 --> 00:01:54,136
+Communication (emails, follow-ups,
+meeting prep)
+
+48
+00:01:54,136 --> 00:01:57,115
+Creative (content creation,
+brainstorming)
+
+49
+00:01:57,115 --> 00:02:00,552
+Strategy (planning, reporting,
+reviewing metrics)
+
+50
+00:02:00,552 --> 00:02:02,461
+By seeing your tasks laid out,
+
+51
+00:02:02,461 --> 00:02:04,371
+you’ll notice how much of your
+
+52
+00:02:04,371 --> 00:02:07,426
+week is spent maintaining instead
+of creating.
+
+53
+00:02:07,426 --> 00:02:09,832
+Step 2 – Find What’s Ripe for
+Automation
+
+54
+00:02:10,032 --> 00:02:11,917
+Now paste this prompt:
+
+55
+00:02:12,117 --> 00:02:14,085
+“Based on my task list, identify
+
+56
+00:02:14,085 --> 00:02:17,657
+which items could be automated
+with AI tools or workflows.
+
+57
+00:02:17,657 --> 00:02:19,553
+For each, suggest one possible
+
+58
+00:02:19,553 --> 00:02:21,812
+tool or system that could
+handle it.”
+
+59
+00:02:22,012 --> 00:02:23,096
+Example:
+
+60
+00:02:23,296 --> 00:02:26,795
+Scheduling meetings → Automate
+with Calendly or Motion.
+
+61
+00:02:26,795 --> 00:02:30,221
+Summarizing notes → Automate with
+Fathom or Fireflies.
+
+62
+00:02:30,221 --> 00:02:33,356
+Rewriting posts → Automate with
+ChatGPT or Jasper.
+
+63
+00:02:33,556 --> 00:02:34,858
+Pro Tip: Ask,
+
+64
+00:02:35,058 --> 00:02:36,516
+“Rank these automation
+
+65
+00:02:36,516 --> 00:02:40,307
+opportunities from easiest to
+implement to highest impact.”
+
+66
+00:02:40,307 --> 00:02:42,129
+That way, you start with quick
+
+67
+00:02:42,129 --> 00:02:44,389
+wins that save you time
+immediately.
+
+68
+00:02:44,389 --> 00:02:46,413
+Step 3 – Build Your “AI Task Stack”
+
+69
+00:02:46,613 --> 00:02:48,993
+Once you’ve got your list, say:
+
+70
+00:02:49,193 --> 00:02:50,640
+“Turn these automation
+
+71
+00:02:50,640 --> 00:02:52,736
+opportunities into a simple table
+
+72
+00:02:52,736 --> 00:02:56,207
+with three columns: Task, Tool,
+and Time Saved per Week.”
+
+73
+00:02:56,207 --> 00:02:59,244
+You’ll now have a personal
+Automation Dashboard.
+
+74
+00:02:59,244 --> 00:03:01,775
+Your roadmap to reclaim hours
+every week.
+
+75
+00:03:01,975 --> 00:03:03,487
+Example output:
+
+76
+00:03:03,687 --> 00:03:06,724
+That’s 6 hours back this week and
+every week after.
+
+77
+00:03:06,924 --> 00:03:08,634
+Real-World Example
+
+78
+00:03:09,034 --> 00:03:10,175
+Before AI:
+
+79
+00:03:10,375 --> 00:03:12,368
+Alex, a business coach, spent 10+
+
+80
+00:03:12,368 --> 00:03:14,433
+hours each week scheduling calls,
+
+81
+00:03:14,433 --> 00:03:17,495
+writing recap notes, and drafting
+client updates.
+
+82
+00:03:17,495 --> 00:03:20,841
+His calendar looked full, but his
+creativity was fried.
+
+83
+00:03:21,041 --> 00:03:22,110
+After AI:
+
+84
+00:03:22,310 --> 00:03:24,161
+He ran the Automation Audit and
+
+85
+00:03:24,161 --> 00:03:27,792
+realized 70% of those tasks could
+be handled automatically.
+
+86
+00:03:27,792 --> 00:03:29,857
+Now, his week starts with clarity,
+
+87
+00:03:29,857 --> 00:03:31,708
+his follow-ups happen without
+
+88
+00:03:31,708 --> 00:03:33,630
+fail, and his creativity is back
+
+89
+00:03:33,630 --> 00:03:37,261
+where it belongs — serving
+clients, not chasing admin tasks.
+
+90
+00:03:37,461 --> 00:03:38,958
+Mistake to Avoid
+
+91
+00:03:39,158 --> 00:03:41,650
+Don’t try to automate
+everything at once.
+
+92
+00:03:41,650 --> 00:03:45,423
+Start small, automate one system,
+test it, then layer the next.
+
+93
+00:03:45,623 --> 00:03:47,974
+You want evolution, not chaos.
+
+94
+00:03:48,374 --> 00:03:49,586
+Action Step
+
+95
+00:03:49,986 --> 00:03:51,981
+Make your list right now.
+
+96
+00:03:52,181 --> 00:03:54,103
+Drop your top 10 recurring tasks
+
+97
+00:03:54,103 --> 00:03:56,453
+into ChatGPT and run the
+prompts above.
+
+98
+00:03:56,453 --> 00:04:00,369
+Circle the three that will save
+you the most time or mental energy.
+
+99
+00:04:00,369 --> 00:04:03,501
+That’s your Automation Starter
+Stack for this week.
+
+100
+00:04:03,701 --> 00:04:05,625
+💡 AI Amplifier Insight
+
+101
+00:04:06,025 --> 00:04:07,024
+Prompt:
+
+102
+00:04:07,224 --> 00:04:09,549
+“Analyze my weekly task list and
+
+103
+00:04:09,549 --> 00:04:11,961
+identify which 3 tasks would save
+
+104
+00:04:11,961 --> 00:04:15,493
+me the most time, energy, and
+focus if automated.
+
+105
+00:04:15,493 --> 00:04:19,024
+Rank them by impact and ease of
+implementation.”
+
+106
+00:04:19,024 --> 00:04:21,437
+This single exercise often gives
+
+107
+00:04:21,437 --> 00:04:25,744
+people back 3–5 hours a week… and
+an enormous sense of peace.
+
