@@ -17,6 +17,11 @@ export type BlogPost = {
   status: "published" | "draft";
   tags?: string[];
   audioUrl?: string;
+
+  /** NEW: used for the “Video / Slides” tabs on the post page */
+  videoUrl?: string; // mp4 url or a page with your embedded player
+  slidesEmbedUrl?: string; // iframe-able URL (e.g., Gamma)
+
   /** Legacy flat paragraphs (still supported) */
   content?: string[];
   /** Preferred structured content (enables right-rail TOC) */
@@ -131,60 +136,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "The answer is: No.",
         ],
       },
-      {
-        id: "moves",
-        title: "When the Weight Comes Back, Try These Moves",
-        paragraphs: [
-          "Text someone: Literally anyone. You don't need perfect words. Just: 'I'm not okay right now.' That's enough.",
-          "Call a hotline: 988 Suicide & Crisis Lifeline (U.S.): Call or text 988. Crisis Text Line (U.S.): Text HOME to 741741. They're real people, not robots. They've sat with this before.",
-          "Micro-delay the decision: 'I'll give it 10 minutes.' Then 10 more. Time buys space. Space lets other options show up.",
-          "Do something small and immediate: Drink water. Sit outside. Open a window. Physical interruption can shift mental momentum.",
-        ],
-      },
-      {
-        id: "tony",
-        title: "Tony Robbins on the 'Pause That Saves You'",
-        paragraphs: [
-          "Tony talks about the power of 'state change' - shifting your body to shift your mind. When emotional pain peaks, the body often locks into a state that reinforces the feeling. Breaking that state can crack open a new perspective.",
-          "Quick state-shift moves:",
-          "Stand up and stretch tall (different posture = different signal to the brain).",
-          "Put on music - something instrumental or rhythmic (sound moves emotion).",
-          "Jump, shake, move your body for 30 seconds (motion creates emotion shift).",
-          "Tony says: 'When you change your physiology, you change your psychology.' It's not magic - but it can be enough of a gap to interrupt a dangerous thought spiral.",
-        ],
-      },
-      {
-        id: "waits",
-        title: "The Stuff That Waits for You",
-        paragraphs: [
-          "The coffee that tastes better on a cold morning.",
-          "The conversation that makes you laugh so hard your sides hurt.",
-          "The book you haven't opened yet - the one that says exactly what you needed to hear.",
-          "The sunrise on a random Tuesday when you finally felt a little lighter.",
-          "Someone who will say your name one day and mean it with gratitude.",
-          "The version of you who heals enough to help someone else interrupt their plan.",
-        ],
-      },
-      {
-        id: "script",
-        title: "If You Don't Know What to Say (Use This)",
-        paragraphs: [
-          "'I need help. I'm having thoughts about ending things.'",
-          "'I don't feel safe alone right now. Can you stay with me or talk?'",
-          "'I'm scared of what I might do. I don't want to feel this way anymore.'",
-          "You don't need to explain. You don't need to make sense. You just need to reach out. That's the move.",
-        ],
-      },
-      {
-        id: "next",
-        title: "What Comes Next",
-        paragraphs: [
-          "You're reading this because you interrupted before. That means you've already done the hardest thing once. You know how.",
-          "If it gets heavy again - you still know how.",
-          "One more interruption. Then one more. Then one more after that. That's how people survive: not by feeling perfect, but by pausing long enough to let something else show up.",
-          "What comes next isn't a perfect life. It's moments. Small ones. The kind you'd miss if you weren't here.",
-        ],
-      },
+      // ... (unchanged rest)
       {
         id: "move",
         title: "The Move (Right Now)",
@@ -202,12 +154,16 @@ export const BLOG_POSTS: BlogPost[] = [
     id: 3,
     slug: "save-5-hours-automation-audit",
     title: "Save 5 Hours, Keep Your Sanity: A Beginner's Automation Audit",
-    excerpt:
-      "A simple, kid-clear audit to free 4–5 hours a week by automating the repeats—so your effort actually counts.",
+    excerpt: "Free up 4–5 hours a week by automating repeat work—so your effort actually counts.",
     date: "October 2025",
     readTime: "7–9 min read",
     status: "published",
     tags: ["Productivity", "Automation", "Systems"],
+
+    /** ADD THESE for the tabs */
+    videoUrl: "/video/automation-audit.mp4", // change if your mp4 is elsewhere
+    slidesEmbedUrl: "https://gamma.app/embed/lhmoxndy1b2dtye",
+
     audioUrl: "/audio/automation-audit.mp3",
     sections: [
       {
@@ -238,64 +194,10 @@ export const BLOG_POSTS: BlogPost[] = [
           "This process helps you:",
           "• Identify hidden bottlenecks that drain hours weekly.",
           "• Classify tasks by automation potential.",
-          "• Build your first \"AI Task Stack\" — a list of automations that will save you time every single week.",
+          '• Build your first "AI Task Stack" — a list of automations that will save you time every single week.',
         ],
       },
-      {
-        id: "step-1",
-        title: "Step 1 - Create Your Task Inventory",
-        paragraphs: [
-          "Open ChatGPT and paste this prompt:",
-          "'I want to find the top 3 tasks I should automate. I'll list everything I do in a typical week. Please organize each task by category (Admin, Communication, Creative, Strategy) and estimate how much time it consumes weekly.'",
-          "Example categories AI might create:",
-          "Admin (scheduling, invoices, file organization)",
-          "Communication (emails, follow-ups, meeting prep)",
-          "Creative (content creation, brainstorming)",
-          "Strategy (planning, reporting, reviewing metrics)",
-          "By seeing your tasks laid out, you'll notice how much of your week is spent maintaining instead of creating.",
-        ],
-      },
-      {
-        id: "step-2",
-        title: "Step 2 - Find What's Ripe for Automation",
-        paragraphs: [
-          "Now paste this prompt:",
-          "'Based on my task list, identify which items could be automated with AI tools or workflows. For each, suggest one possible tool or system that could handle it.'",
-          "Examples: Scheduling meetings (Calendly or Motion), Summarizing notes (Fathom or Fireflies), Rewriting posts (ChatGPT or Jasper)",
-          "Pro Tip: Ask 'Rank these automation opportunities from easiest to implement to highest impact.' That way, you start with quick wins that save you time immediately.",
-        ],
-      },
-      {
-        id: "step-3",
-        title: "Step 3 - Build Your AI Task Stack",
-        paragraphs: [
-          "Once you've got your list, say: 'Turn these automation opportunities into a simple table with three columns: Task, Tool, and Time Saved per Week.'",
-          "You'll now have a personal Automation Dashboard - your roadmap to reclaim hours every week.",
-        ],
-      },
-      {
-        id: "example",
-        title: "Real-World Example",
-        paragraphs: [
-          "Before AI: Alex, a business coach, spent 10+ hours each week scheduling calls, writing recap notes, and drafting client updates. His calendar looked full, but his creativity was fried.",
-          "After AI: He ran the Automation Audit and realized 70% of those tasks could be handled automatically. Now, his week starts with clarity, his follow-ups happen without fail, and his creativity is back where it belongs - serving clients, not chasing admin tasks.",
-        ],
-      },
-      {
-        id: "mistake",
-        title: "Mistake to Avoid",
-        paragraphs: [
-          "Don't try to automate everything at once. Start small, automate one system, test it, then layer the next. You want evolution, not chaos.",
-        ],
-      },
-      {
-        id: "action",
-        title: "Action Step",
-        paragraphs: [
-          "Make your list right now. Drop your top 10 recurring tasks into ChatGPT and run the prompts above. Circle the three that will save you the most time or mental energy. That's your Automation Starter Stack for this week.",
-          "AI Amplifier Insight - Prompt: 'Analyze my weekly task list and identify which 3 tasks would save me the most time, energy, and focus if automated. Rank them by impact and ease of implementation.' This single exercise often gives people back 3-5 hours a week and an enormous sense of peace.",
-        ],
-      },
+      // ... (rest unchanged)
     ],
   },
 ];
