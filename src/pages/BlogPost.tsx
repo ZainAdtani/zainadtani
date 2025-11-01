@@ -4,7 +4,8 @@ import { Helmet } from "react-helmet-async";
 import { BLOG_POSTS } from "@/data/blog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Clock, ArrowLeft, Play, Pause, Headphones } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Calendar, Clock, ArrowLeft, Play, Pause, Headphones, PlayCircle, FileDown, Presentation } from "lucide-react";
 import { monthYear } from "@/lib/dates";
 
 /* Audio bar unchanged style */
@@ -80,6 +81,85 @@ function AudioBar({ src, title }: { src?: string; title: string }) {
   );
 }
 
+/* Multi-media component for automation audit post */
+function WatchOrListen() {
+  return (
+    <section className="w-full rounded-2xl border bg-card/80 backdrop-blur shadow-sm p-6 mb-6">
+      <h3 className="text-xl font-semibold mb-2">Watch or listen — your choice</h3>
+      <p className="text-muted-foreground mb-4 text-sm">
+        Click a tab to watch the video, browse the slides, or play the downloadable version with captions.
+      </p>
+
+      <Tabs defaultValue="video" className="w-full">
+        <TabsList className="grid grid-cols-3 w-full md:w-auto">
+          <TabsTrigger value="video" className="gap-2">
+            <PlayCircle className="h-4 w-4" /> Video
+          </TabsTrigger>
+          <TabsTrigger value="slides" className="gap-2">
+            <Presentation className="h-4 w-4" /> Slides
+          </TabsTrigger>
+          <TabsTrigger value="download" className="gap-2">
+            <FileDown className="h-4 w-4" /> Download
+          </TabsTrigger>
+        </TabsList>
+
+        {/* HeyGen embed */}
+        <TabsContent value="video" className="mt-4">
+          <div className="aspect-video w-full overflow-hidden rounded-xl shadow-sm border">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://app.heygen.com/embedded-player/5bee2415e200460398e1c032bc52f2c2"
+              title="HeyGen video player"
+              frameBorder="0"
+              allow="encrypted-media; fullscreen;"
+              allowFullScreen
+            />
+          </div>
+        </TabsContent>
+
+        {/* Gamma embed */}
+        <TabsContent value="slides" className="mt-4">
+          <div className="w-full overflow-hidden rounded-xl shadow-sm border">
+            <iframe
+              src="https://gamma.app/embed/lhmoxndy1b2dtye"
+              style={{ width: "100%", height: "450px" }}
+              allow="fullscreen"
+              title="Here's The Problem..."
+            />
+          </div>
+        </TabsContent>
+
+        {/* Native player + captions + download */}
+        <TabsContent value="download" className="mt-4">
+          <video
+            className="w-full rounded-xl shadow-sm border"
+            controls
+            preload="metadata"
+          >
+            <source src="/media/automation-audit.mp4" type="video/mp4" />
+            <track
+              kind="subtitles"
+              srcLang="en"
+              label="English"
+              src="/media/automation-audit.srt"
+              default
+            />
+            Your browser does not support the video tag.
+          </video>
+          <div className="mt-3 text-sm text-muted-foreground">
+            Prefer offline?{" "}
+            <a className="underline hover:text-foreground transition-colors" href="/media/automation-audit.mp4" download>
+              Download the video
+            </a>
+            .
+          </div>
+        </TabsContent>
+      </Tabs>
+    </section>
+  );
+}
+
 export default function BlogPost() {
   const { slug } = useParams();
   const post = useMemo(() => BLOG_POSTS.find((p) => p.slug === slug), [slug]);
@@ -152,7 +232,12 @@ export default function BlogPost() {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-10">
           {/* Main */}
           <div>
-            <AudioBar src={post.audioUrl} title={`Listen — ${post.title}`} />
+            {/* Show WatchOrListen for automation audit, AudioBar for others */}
+            {post.slug === "save-5-hours-automation-audit" ? (
+              <WatchOrListen />
+            ) : (
+              <AudioBar src={post.audioUrl} title={`Listen — ${post.title}`} />
+            )}
 
             {post.excerpt && <p className="text-lg text-muted-foreground mt-6">{post.excerpt}</p>}
 
@@ -194,21 +279,6 @@ export default function BlogPost() {
               </div>
             )}
 
-            {/* Subscribe card */}
-            <div className="rounded-2xl border bg-card/70 backdrop-blur p-5">
-              <div className="text-base font-semibold">Subscribe to LifeNotes</div>
-              <p className="text-sm text-muted-foreground mt-1">
-                Short, useful notes on AI, productivity, and the EA path.
-              </p>
-              <form className="mt-3 space-y-2">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="w-full rounded-lg border bg-background px-3 py-2 text-sm"
-                />
-                <Button className="w-full">Subscribe</Button>
-              </form>
-            </div>
           </aside>
         </div>
       </main>
