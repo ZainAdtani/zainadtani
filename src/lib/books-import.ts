@@ -41,57 +41,66 @@ export function parseNotionMarkdown(markdown: string): ImportedBook[] {
     
     // Check for category headers (### followed by category name)
     if (line.startsWith('###') && !line.toLowerCase().includes('table of contents')) {
-      currentCategory = line.replace(/^###\s*/, '').replace(/\*\*/g, '').trim();
+      // Normalize weird markdown like S**elf-help** -> Self-help
+      currentCategory = line
+        .replace(/^###\s*/, '')
+        .replace(/\*/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
       i++;
       continue;
     }
-    
-    // Check for book entries (numbered list with link)
-    // Format: **1)** [**Title](link) by Author (S3 E5)**
-    const bookMatch = line.match(/^\*\*\d+\)\*\*\s*\[?\*\*(.+?)\*\*\]?\(([^)]+)\)\s+by\s+(.+?)(?:\s*\([^)]*\))?\*\*?$/);
-    
-    if (bookMatch) {
-      const title = bookMatch[1].trim();
-      const link = bookMatch[2].trim();
-      let author = bookMatch[3].trim();
-      
-      // Remove podcast episode markers like (S3 E5)
-      author = author.replace(/\s*\([^)]*\)\s*$/g, '').trim();
-      
-      // Look ahead for notes (next non-empty, non-numbered paragraph)
-      let notes = '';
-      let j = i + 1;
-      
-      while (j < lines.length) {
-        const nextLine = lines[j].trim();
-        
-        // Stop if we hit another book entry or category
-        if (nextLine.startsWith('**') && /^\*\*\d+\)/.test(nextLine)) break;
-        if (nextLine.startsWith('###')) break;
-        
-        // Accumulate non-empty lines as notes
-        if (nextLine && !nextLine.startsWith('**Table of contents**')) {
-          notes += (notes ? ' ' : '') + nextLine;
-        } else if (nextLine === '' && notes) {
-          // Stop at first blank line after we have notes
-          break;
+
+    // Try to detect a book entry line more loosely
+    // Examples observed:
+    // "**1)** [**Rip It up](https://...) by Richard Wiseman (S3 E5)**"
+    // "**29) [The War Of Art](https://...) by Steven Pressfield (S3 E10)"
+    // "6) [Think Big](https://...) by Dr Grace Lordan (S1 E6)"
+    // Strategy: look for [title](link) by author ....
+    if (line.includes('](') && /\bby\b/i.test(line)) {
+      const linkTitleMatch = line.match(/\[(.+?)\]\((https?:\/\/[^)\s]+)\)/);
+      if (linkTitleMatch) {
+        let rawTitle = linkTitleMatch[1];
+        const link = linkTitleMatch[2];
+
+        // Remove stray bold markers from title if present
+        const title = rawTitle.replace(/\*\*/g, '').trim();
+
+        // Extract author: take substring after " by "
+        const byIndex = line.toLowerCase().lastIndexOf(' by ');
+        let author = line.slice(byIndex + 4).trim();
+        // Remove any trailing episode markers and trailing bold markers
+        author = author.replace(/\s*\([^)]*\)\s*\**$/g, '').replace(/\*\*/g, '').trim();
+
+        // Look ahead for notes (next non-empty lines until next item or category)
+        let notes = '';
+        let j = i + 1;
+        while (j < lines.length) {
+          const nextLine = lines[j].trim();
+          const isNextBook = /^\**\d+\)\s*\[/.test(nextLine); // e.g., **10) [ ...
+          const isHeader = nextLine.startsWith('###');
+          if (isNextBook || isHeader) break;
+          if (nextLine) {
+            notes += (notes ? ' ' : '') + nextLine;
+          } else if (notes) {
+            break; // stop at first blank line after we have notes
+          }
+          j++;
         }
-        
-        j++;
+
+        books.push({
+          title,
+          author,
+          category: currentCategory || undefined,
+          link,
+          notes: notes || undefined,
+        });
       }
-      
-      books.push({
-        title,
-        author,
-        category: currentCategory || undefined,
-        link: link.startsWith('http') ? link : undefined,
-        notes: notes || undefined,
-      });
     }
-    
+
     i++;
   }
-  
+
   return books;
 }
 
