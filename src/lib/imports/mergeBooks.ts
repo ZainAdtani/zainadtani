@@ -82,7 +82,7 @@ export function mergeIntoBooks(incoming: BookImport[]): void {
       existing.status = chooseStatus(existing.status, undefined); // Keep existing status (no incoming status)
       existing.link = prefer(existing.link, item.link);
       existing.notes = prefer(existing.notes, item.notes);
-      // Preserve: cover, rating, progress, tags, myNotes
+      // Preserve: cover, rating, progress, tags, myThoughts
     } else {
       // Create new entry
       const newBook: Book = {

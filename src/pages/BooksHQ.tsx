@@ -307,7 +307,7 @@ export default function BooksHQ() {
                   </Button>
 
                   {/* "View my thoughts" modal - only if notes exist */}
-                  {(book.myNotes || book.notes) && (
+                  {(book.myThoughts || book.notes) && (
                     <Dialog>
                       <DialogTrigger asChild>
                         <Button variant="outline" size="sm" className="mt-2 w-full">
@@ -320,10 +320,10 @@ export default function BooksHQ() {
                           <DialogDescription>{book.author}</DialogDescription>
                         </DialogHeader>
                         <div className="space-y-4 text-sm text-foreground">
-                          {book.myNotes && (
+                          {book.myThoughts && (
                             <div>
                               <p className="font-semibold mb-1">My thoughts</p>
-                              <p className="whitespace-pre-wrap">{book.myNotes}</p>
+                              <p className="whitespace-pre-wrap">{book.myThoughts}</p>
                             </div>
                           )}
                           {book.notes && (

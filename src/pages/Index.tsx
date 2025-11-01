@@ -11,7 +11,6 @@ import {
   Book,
   Award,
   Cpu,
-  Activity,
   Sparkles,
   Music,
   BookOpen,
@@ -22,6 +21,7 @@ import {
   X,
 } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
 import { useState, useEffect, lazy, Suspense } from "react";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -270,7 +270,7 @@ const Index = () => {
             {/* Button 1: Full Course */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
               <a href="https://whop.com/eng2ea/?a=eng2ea" target="_blank" rel="noopener noreferrer" className="block">
-                <GraduationCap className="w-12 h-12 text-primary mb-4" />
+                <GraduationCap className="w-12 h-12 text-primary mb-4 animate-bounce" />
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Take the Full Course</h3>
                 <p className="text-muted-foreground">Engineer to Enrolled Agent Part 1</p>
               </a>
@@ -279,7 +279,7 @@ const Index = () => {
             {/* Button 2: My Toolkit */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
               <Link to="/tools" className="block">
-                <Cpu className="w-12 h-12 text-primary mb-4" />
+                <Cpu className="w-12 h-12 text-primary mb-4 animate-bounce" />
                 <h3 className="text-2xl font-bold mb-2 text-foreground">My Toolkit</h3>
                 <p className="text-muted-foreground">AI, software, and systems I actually use</p>
               </Link>
@@ -288,16 +288,18 @@ const Index = () => {
             {/* Button 3: NBA Tracker Hub */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
               <Link to="/nba" className="block">
-                <Activity className="w-12 h-12 text-primary mb-4" />
+                <div className="w-12 h-12 mb-4 flex items-center justify-center">
+                  <span className="text-4xl animate-bounce" aria-hidden="true" role="img">🏀</span>
+                </div>
                 <h3 className="text-2xl font-bold mb-2 text-foreground">NBA Tracker Hub</h3>
-                <p className="text-muted-foreground">Live scores, stats, and standings</p>
+                <p className="text-muted-foreground">Live scores & standings</p>
               </Link>
             </Card>
 
             {/* Button 4: Certifications */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
               <a href="#certifications" className="block">
-                <Award className="w-12 h-12 text-primary mb-4" />
+                <Award className="w-12 h-12 text-primary mb-4 animate-bounce" />
                 <h3 className="text-2xl font-bold mb-2 text-foreground">My Certifications</h3>
                 <p className="text-muted-foreground">Professional credentials & achievements</p>
               </a>
@@ -542,7 +544,38 @@ const Index = () => {
                       )}
 
                       {/* CTA Buttons */}
-                      <div className="flex gap-2 mt-auto">
+                      <div className="flex flex-col gap-2 mt-auto">
+                        {(book.myThoughts || book.notes) && (
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button variant="outline" size="sm" className="w-full text-xs rounded-full">
+                                View my thoughts
+                              </Button>
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-lg">
+                              <DialogHeader>
+                                <DialogTitle>{book.title}</DialogTitle>
+                                <DialogDescription>by {book.author}</DialogDescription>
+                              </DialogHeader>
+                              <div className="space-y-4 text-sm text-foreground">
+                                {book.myThoughts && (
+                                  <div>
+                                    <p className="font-semibold mb-1">My thoughts</p>
+                                    <p className="whitespace-pre-wrap">{book.myThoughts}</p>
+                                  </div>
+                                )}
+                                {book.notes && (
+                                  <div>
+                                    <p className="font-semibold mb-1">Summary / notes</p>
+                                    <p className="italic text-muted-foreground whitespace-pre-wrap">
+                                      {book.notes.length > 600 ? book.notes.slice(0, 597) + "..." : book.notes}
+                                    </p>
+                                  </div>
+                                )}
+                              </div>
+                            </DialogContent>
+                          </Dialog>
+                        )}
                         {book.link && (
                           <Button
                             asChild

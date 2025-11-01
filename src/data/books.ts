@@ -11,7 +11,7 @@ export type Book = {
   cover?: string;
   rating?: number; // 1-5
   notes?: string; // Book summary/description
-  myNotes?: string; // Personal thoughts/reviews
+  myThoughts?: string; // Personal thoughts/reviews
   isbn?: string;
 };
 
