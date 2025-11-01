@@ -19,8 +19,7 @@ export default function BlogPostPage() {
   // ---- IF RENDER (only for this slug) ----
   const isAutomation = slug === "save-5-hours-automation-audit";
 
-  // Replace HEYGEN_IFRAME_SRC with my actual HeyGen embed player URL later.
-  const HEYGEN_IFRAME_SRC = "https://app.heygen.com/embedded-player/REPLACE_ME";
+  const HEYGEN_IFRAME_SRC = "https://app.heygen.com/embedded-player/8ba283951a04402f8b9f625377fb3086";
   const GAMMA_IFRAME_SRC = "https://gamma.app/embed/lhmoxndy1b2dtye";
 
   return (
