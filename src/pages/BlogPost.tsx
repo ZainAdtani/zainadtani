@@ -1,7 +1,5 @@
-// src/pages/blog-post.tsx
+// src/pages/BlogPost.tsx
 import React from "react";
-import Head from "next/head";
-import { useRouter } from "next/router";
 import { BLOG_POSTS } from "@/data/blog";
 
 function WatchTabs({ videoUrl, slidesEmbedUrl }: { videoUrl?: string; slidesEmbedUrl?: string }) {
@@ -51,56 +49,59 @@ function WatchTabs({ videoUrl, slidesEmbedUrl }: { videoUrl?: string; slidesEmbe
 }
 
 export default function BlogPostPage() {
-  const router = useRouter();
-  const slug = (router.query.slug as string) || (router.query.s as string) || "";
+  const slug = React.useMemo(() => {
+    if (typeof window === "undefined") return "";
+    return new URLSearchParams(window.location.search).get("slug") ?? "";
+  }, []);
 
   const post = BLOG_POSTS.find((p) => p.slug === slug);
-  if (!post) return <div className="container mx-auto p-6">Post not found.</div>;
+
+  React.useEffect(() => {
+    if (post) document.title = `${post.title} • Blog`;
+  }, [post]);
+
+  if (!post) {
+    return <main className="container mx-auto px-4 max-w-3xl py-10">Post not found.</main>;
+  }
 
   return (
-    <>
-      <Head>
-        <title>{post.title} • Blog</title>
-      </Head>
+    <main className="container mx-auto px-4 max-w-3xl py-10">
+      {/* TITLE — top of page (no hero video above) */}
+      <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{post.title}</h1>
 
-      <main className="container mx-auto px-4 max-w-3xl py-10">
-        {/* TITLE — top of page (no hero video above) */}
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{post.title}</h1>
+      {/* Meta row (date • read time • tags) */}
+      <div className="mt-2 text-sm text-muted-foreground flex flex-wrap gap-x-3 gap-y-1">
+        <span>{post.date ?? "—"}</span>
+        <span>•</span>
+        <span>{post.readTime ?? "—"}</span>
+        {post.tags && post.tags.length > 0 && (
+          <>
+            <span>•</span>
+            <span>{post.tags.join(", ")}</span>
+          </>
+        )}
+      </div>
 
-        {/* Meta row (date • read time • tags) */}
-        <div className="mt-2 text-sm text-muted-foreground flex flex-wrap gap-x-3 gap-y-1">
-          <span>{post.date ?? "—"}</span>
-          <span>•</span>
-          <span>{post.readTime ?? "—"}</span>
-          {post.tags && post.tags.length > 0 && (
-            <>
-              <span>•</span>
-              <span>{post.tags.join(", ")}</span>
-            </>
-          )}
-        </div>
+      {/* NO EXCERPT ON THE SINGLE POST PAGE */}
 
-        {/* NO EXCERPT ON THE SINGLE POST PAGE */}
+      {/* Video / Slides (no Download tab) */}
+      <div className="mt-6">
+        <WatchTabs videoUrl={post.videoUrl} slidesEmbedUrl={post.slidesEmbedUrl} />
+      </div>
 
-        {/* Video / Slides (no Download tab) */}
-        <div className="mt-6">
-          <WatchTabs videoUrl={post.videoUrl} slidesEmbedUrl={post.slidesEmbedUrl} />
-        </div>
-
-        {/* Content */}
-        <article className="prose dark:prose-invert mt-8">
-          {post.sections
-            ? post.sections.map((sec) => (
-                <section key={sec.id} id={sec.id}>
-                  {sec.title ? <h2>{sec.title}</h2> : null}
-                  {sec.paragraphs.map((p, i) => (
-                    <p key={i}>{p}</p>
-                  ))}
-                </section>
-              ))
-            : post.content?.map((p, i) => <p key={i}>{p}</p>)}
-        </article>
-      </main>
-    </>
+      {/* Content */}
+      <article className="prose dark:prose-invert mt-8">
+        {post.sections
+          ? post.sections.map((sec) => (
+              <section key={sec.id} id={sec.id}>
+                {sec.title ? <h2>{sec.title}</h2> : null}
+                {sec.paragraphs.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </section>
+            ))
+          : post.content?.map((p, i) => <p key={i}>{p}</p>)}
+      </article>
+    </main>
   );
 }
