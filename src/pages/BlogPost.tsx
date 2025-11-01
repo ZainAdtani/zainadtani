@@ -200,6 +200,23 @@ export default function BlogPost() {
           </Button>
         </div>
 
+        {/* HeyGen Video Embed at Top */}
+        {post.slug === "save-5-hours-automation-audit" && (
+          <div className="mb-8">
+            <div className="aspect-video w-full overflow-hidden rounded-xl shadow-lg border">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://app.heygen.com/embedded-player/8ba283951a04402f8b9f625377fb3086"
+                title="HeyGen video player"
+                frameBorder="0"
+                allow="encrypted-media; fullscreen;"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        )}
+
         {/* Hero */}
         <header className="mb-8">
           <h1 className="text-5xl font-extrabold leading-tight">{post.title}</h1>
