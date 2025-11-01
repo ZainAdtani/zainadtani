@@ -1,5 +1,4 @@
-import type { ImportedBook } from '@/lib/books-sync';
-import { createMergedBooks } from '@/lib/books-merge';
+// No imports needed at top - see bottom of file
 
 export type BookStatus = 'READ' | 'IN_PROGRESS' | 'TBR';
 
@@ -611,15 +610,9 @@ const LOCAL_BOOKS: Book[] = [
   }
 ];
 
-let IMPORTED_BOOKS: ImportedBook[] = [];
+// Import and merge books from Notion
+import notionBooksRaw from '@/assets/100-books-notion.md?raw';
+import { mergeImportedBooks } from '@/lib/books-import';
 
-try {
-  IMPORTED_BOOKS = require('../public/data/books_notionsync.json');
-  console.log('✅ Loaded Notion books:', IMPORTED_BOOKS.length);
-} catch {
-  // File doesn't exist yet - will use LOCAL_BOOKS only until sync:books is run
-}
-
-// Export LOCAL_BOOKS as BOOKS
-// This will be merged with Notion import after running npm run sync:books
-export const BOOKS: Book[] = createMergedBooks(LOCAL_BOOKS, IMPORTED_BOOKS);
+// Merge imported books with local books
+export const BOOKS = mergeImportedBooks(notionBooksRaw, LOCAL_BOOKS);

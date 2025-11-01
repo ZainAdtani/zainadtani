@@ -17,7 +17,6 @@ import { ExternalLink, Search, Star } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { BOOKS, type BookStatus } from "@/data/books";
 import { findCover } from "@/lib/covers";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 /** ---------- helpers ---------- **/
 
@@ -117,15 +116,14 @@ export default function BooksHQ() {
   const filteredAndSortedBooks = useMemo(() => {
     let result = [...BOOKS];
 
-    // filter by query (using debounced value)
+    // filter by query (using debounced value) - search by title/author only
     if (debouncedQuery.trim()) {
       const q = debouncedQuery.toLowerCase();
-      result = result.filter(
-        (book) =>
-          book.title.toLowerCase().includes(q) ||
-          book.author.toLowerCase().includes(q) ||
-          book.tags?.some((tag) => tag.toLowerCase().includes(q))
-      );
+      result = result.filter((book) => {
+        // Support multi-author search
+        const authors = book.author.split(/[,;&]| and /i).map(a => a.trim().toLowerCase());
+        return book.title.toLowerCase().includes(q) || authors.some(a => a.includes(q));
+      });
     }
 
     // filter by status
@@ -193,7 +191,7 @@ export default function BooksHQ() {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
               type="search"
-              placeholder="Search by title, author, or tags..."
+              placeholder="Search by title or author..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10"
@@ -294,48 +292,46 @@ export default function BooksHQ() {
                     </div>
                   )}
 
-                  {/* Button row */}
-                  <div className="flex gap-2 mt-auto">
-                    <Button asChild variant="outline" size="sm" className="flex-1">
+                  {/* Stacked CTA buttons */}
+                  <div className="flex flex-col gap-2 mt-auto">
+                    <Button asChild variant="outline" size="sm" className="w-full">
                       <a href={href} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
                         View on Amazon
                         <ExternalLink className="w-3 h-3" />
                       </a>
                     </Button>
 
-                    {/* Notes popover with status-based label */}
+                    {/* Notes dialog with status-based label */}
                     {(book.myThoughts || book.notes) && (
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <Button variant="outline" size="sm" className="flex-1">
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button variant="ghost" size="sm" className="w-full">
                             {book.status === "READ" ? "View my thoughts" : "View notes"}
                           </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-80 max-h-96 overflow-y-auto">
-                          <div className="space-y-3">
-                            <div>
-                              <h4 className="font-semibold text-sm mb-1">{book.title}</h4>
-                              <p className="text-xs text-muted-foreground">{book.author}</p>
-                            </div>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                          <DialogHeader>
+                            <DialogTitle>{book.title}</DialogTitle>
+                            <DialogDescription>{book.author}</DialogDescription>
+                          </DialogHeader>
+                          <div className="space-y-4 mt-4">
                             {book.myThoughts && (
                               <div>
-                                <p className="text-xs font-semibold text-muted-foreground mb-1">My thoughts</p>
-                                <p className="text-sm leading-relaxed">
-                                  {book.myThoughts.length > 280 ? book.myThoughts.slice(0, 280) + "..." : book.myThoughts}
-                                </p>
+                                <p className="text-sm font-semibold text-muted-foreground mb-2">My Thoughts</p>
+                                <p className="text-base leading-relaxed">{book.myThoughts}</p>
                               </div>
                             )}
                             {book.notes && (
                               <div>
-                                <p className="text-xs font-semibold text-muted-foreground mb-1">Notes</p>
-                                <p className="text-sm leading-relaxed italic text-muted-foreground">
-                                  {book.notes.length > 280 ? book.notes.slice(0, 280) + "..." : book.notes}
+                                <p className="text-sm font-semibold text-muted-foreground mb-2">
+                                  {book.myThoughts ? "Book Description" : "Notes"}
                                 </p>
+                                <p className="text-base leading-relaxed italic text-muted-foreground">{book.notes}</p>
                               </div>
                             )}
                           </div>
-                        </PopoverContent>
-                      </Popover>
+                        </DialogContent>
+                      </Dialog>
                     )}
                   </div>
                 </CardContent>
