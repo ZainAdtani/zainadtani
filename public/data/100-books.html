@@ -1,0 +1,708 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>100 Books to Live your Best Life </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="27b2c62a-2779-808b-b6fd-fab11cba6f09" class="page sans"><header><h1 class="page-title">100 Books to Live your Best Life </h1><p class="page-description"></p></header><div class="page-body"><h3 id="27b2c62a-2779-8069-adbf-dccc45ee252b" class=""><span style="border-bottom:0.05em solid">Table of contents </span></h3><p id="27b2c62a-2779-80ce-9471-f6d7ade8012b" class=""><span style="border-bottom:0.05em solid">Self-help </span></p><p id="27b2c62a-2779-80ce-9f12-dc8f474febcd" class=""><span style="border-bottom:0.05em solid">Work-life balance</span></p><p id="27b2c62a-2779-800e-a344-dfc6ab9e0655" class=""><span style="border-bottom:0.05em solid">Productivity</span></p><p id="27b2c62a-2779-8000-89f0-d0cd392e4277" class=""><span style="border-bottom:0.05em solid">Money and Finance </span></p><p id="27b2c62a-2779-800c-b4fb-cf37883d3ab7" class=""><span style="border-bottom:0.05em solid">Happiness and Fulfilment </span></p><p id="27b2c62a-2779-80a6-b14b-ce889bfe9600" class=""><span style="border-bottom:0.05em solid">Memoir </span></p><p id="27b2c62a-2779-8006-b087-fcbf27ee2be7" class=""><span style="border-bottom:0.05em solid">Creativity </span></p><p id="27b2c62a-2779-806d-8bea-f1618e4f9c73" class=""><span style="border-bottom:0.05em solid">Entrepreneurship </span></p><p id="27b2c62a-2779-80ea-8741-de295237fe72" class=""><span style="border-bottom:0.05em solid">Love, relationships, and family </span></p><p id="27b2c62a-2779-80d1-b8b0-f980b28cbd98" class=""><span style="border-bottom:0.05em solid">Psychology </span></p><p id="27b2c62a-2779-80d9-b5fe-d13ba3c67972" class=""><span style="border-bottom:0.05em solid">Philosophy </span></p><p id="27b2c62a-2779-80e7-aa94-cb3e29980b54" class=""><span style="border-bottom:0.05em solid">Politics </span></p><p id="27b2c62a-2779-8043-8a3e-ec0a94aa2ec8" class=""><span style="border-bottom:0.05em solid">Health </span></p><p id="27b2c62a-2779-803f-8fa0-e28f4d097e13" class="">
+</p><p id="27b2c62a-2779-8084-acce-ca1a83cfcecf" class=""><span style="border-bottom:0.05em solid">Fiction</span></p><h3 id="27b2c62a-2779-80c0-8e17-dd5090a6fb7f" class=""><span style="border-bottom:0.05em solid">S</span><strong><span style="border-bottom:0.05em solid">elf-help</span></strong><strong> </strong></h3><p id="27b2c62a-2779-8061-b525-c2d138f5773c" class=""><strong>1)</strong> <strong><a href="https://geni.us/GXE4">Rip It up</a></strong><strong> by Richard Wiseman (S3 E5)</strong></p><p id="27b2c62a-2779-8079-a462-fe5ff47c8a68" class="">Richard Wiseman has had an eclectic career - working as a magician in Vegas, running a successful YouTube channel, and becoming a professor of psychology. This is an unconventional self-help book, because Wiseman rejects the idea of positive thinking, and focuses instead on positive action. Basically, we can change how we think and feel by changing how we behave and act. For example, if you smile, you can almost trick your brain into happiness. At the moment, positive thinking, manifesting and daily affirmations are super popular, and I really like this book because it provides an alternative way of creating what you want from life. </p><p id="27b2c62a-2779-80d2-8f05-f02a825d5e3d" class=""><strong>2)</strong> <strong><a href="https://geni.us/WYewnv">How To Win Friends and Influence People</a></strong><strong> by Dale Carnegie (S3 E5) </strong></p><p id="27b2c62a-2779-806c-8d38-c97da5ac867c" class="">‘How To Win Friends and Influence People’ is such a classic. It is <em>the </em>self-help book, written before self-help books were really even a thing as we know them now. Since 1936 it has sold over 30 million copies and was a smash hit almost 100 years ago. Thinking about self-help has certainly moved on since then, but this was the foundation from which a lot of my favourite thinkers have built their ideas. If you’re in to self-help stuff this is a must read, and it’s fun to compare what people were thinking and feeling in the 1930s to what we think and feel now.</p><p id="27b2c62a-2779-8022-b8df-cac52c78c7db" class=""><strong>3)</strong> <strong><a href="https://geni.us/tGlQF">How To Stop Worrying And Start Living</a></strong><strong> by Dale Carnegie (S3 E5)</strong></p><p id="27b2c62a-2779-80eb-ba1e-d200d6b8914d" class="">In 1948 Dale Carnegie followed up his smash success ‘How To Win Friends and Influence People’ with ‘How To Stop Worrying And Start Living’. Carnegie was writing about his own experiences of stress and anxiety after being born into poverty, and he has some great insights about how to make your life more fulfilling. Worry and anxiety can bother us all - some of us way more than others - and this is a compassionate and actionable look at how to manage these problems in our day-to-day lives. </p><p id="27b2c62a-2779-807c-89c3-fa8d0eb50f75" class=""><strong>4)</strong> <strong><a href="https://geni.us/5HCN">Why Has No One Told Me This Before?</a></strong><strong> by Dr Julie Smith (S2 E1)</strong></p><p id="27b2c62a-2779-8072-bff9-cb20affa92a1" class="">Julie Smith was one of my favourite guests on the podcast and first gained popularity on TikTok, where she offers bitesized and compelling tips and insight from her career as a clinical psychologist. Her book is a guide to mental health, anxiety, and how to cope with all the things that life throws at us. The sections are short and compact - this is not a book to read cover to cover, but it’s more like an advice manual to turn to when you’re struggling with a particular problem, like self-confidence, anxiety, or forgiveness. This makes it super accessible to read: it’s basically a toolkit that Julie has put together to help us out as and when we need it . </p><p id="27b2c62a-2779-8011-8340-da4f361e6d75" class=""><strong>6) </strong><strong><a href="https://geni.us/v3Y6">Think Big</a></strong><strong> by Dr Grace Lordan (S1 E6)</strong></p><p id="27b2c62a-2779-801d-bcd9-d3e73295eaf9" class="">This is an encyclopedia of careers advice that asks us to think about who we want to be and how we break down goals into small steps. <em>Think Big</em> is a surprising and interesting read that’ll help you achieve your goals by working out exactly how you’re going to reach that dream. Lordan’s research is at the forefront of behavioural science and she’s put together the six key ideas that help you to not just dream about your future, but take the steps you need to get there. Her advice is practical and evidence based - so whatever you want to do, <em>Think Big </em>will help you get there. </p><p id="27b2c62a-2779-8056-b7e1-e8ea69b0b30e" class=""><strong>7) </strong><strong><a href="https://geni.us/ogBn79">12 Rules For Life</a></strong><strong> by Jordan Peterson (S2 E2)</strong></p><p id="27b2c62a-2779-8098-bb28-e12f7ec052b1" class="">A self-help classic. Peterson draws on the history of philosophy and psychology to deliver surprisingly simple tips on how to get your life back on track and take responsibility for yourself. It’s not the most groundbreaking book in the world, but ‘12 Rules For Life’ can be a good gateway to reading more self-help books by some of the other authors in our reading list. Think of it as an ‘Intro to Self-Help 101’. </p><p id="27b2c62a-2779-8073-9373-ce3ba2d1b37a" class=""><strong>8) </strong><strong><a href="https://geni.us/ICtN">The One Thing</a></strong><strong> by Gary W. Keller and Jay Papasan</strong> <strong>(S1 E10)</strong></p><p id="27b2c62a-2779-8018-a8f7-d1490f5360a3" class="">We all know that feeling of being overwhelmed and stressed out. With constant access to emails, work accounts and social media, it’s hard to sit down and actually get anything done that matters to us. ‘The One Thing’<em> </em>tells us we need to set aside all that noise and prioritise the single most important thing we need to get done each day. Think of it like dominoes - you only need to knock one down for the rest to fall. We need to give absolute focus to our goal day to day in order to succeed. The book helps you figure out what your big goal is, and lays out exactly how you can get there. </p><p id="27b2c62a-2779-80bf-b374-f21fdafd222f" class=""><strong>10) </strong><strong><a href="https://geni.us/PD9p7dm">Effortless</a></strong><strong> by Greg McKeown (S2 E2) </strong></p><p id="27b2c62a-2779-8011-8ba5-c1bf86324300" class="">Named ‘Best Self-Help Book of 2021’ by The Times, ‘Effortless’<em> </em>is a really exciting read. McKeown pushes back on this idea that we always have to be working harder and harder and harder. Since the pandemic it can feel as if we’re wading through mud to get anything done, but this book is all about decluttering, simplifying, and leveraging our skills to get the results we want. It turns out that we can avoid burnout and exhaustion and still be productive and successful, just by looking for the easy way. </p><h3 id="27b2c62a-2779-80e0-bfcc-fdf3ae3906b9" class=""><strong><span style="border-bottom:0.05em solid">Work-life balance</span></strong></h3><p id="27b2c62a-2779-80ff-9d81-ccbc02f959ac" class=""><strong>11)</strong> <strong><a href="https://geni.us/oZwL">Four Thousand Weeks</a></strong><strong> by Oliver Burkeman (S2 E11) (S3 E3) (S3 E10)</strong></p><p id="27b2c62a-2779-8072-acde-ee93e926ffce" class="">If you live to be 80, your life will contain 4000 weeks. That’s <em>nothing</em>. Oliver fully confronts the finitude of our existence and our struggle to make the most of our time. What I like about this book is how it’s upfront about the fact that we’re all, one day, going to die. Although it might sound bleak at first, acknowledging that our time is limited, precious and will run out one day can help be so much more intentional about what we should make a priority and what we should cut totally from our to-do lists. <em>Four Thousand Weeks</em> is philosophical, spiritual, and engaging. This book has really changed my thinking about what I want from life and how I manage my time.</p><p id="27b2c62a-2779-8071-b030-f88fa020d497" class=""><strong>13) </strong><strong><a href="https://geni.us/LvvriRs">The Pathless Path</a></strong><strong> by Paul Millard (S2 E11) (S2 E13) </strong></p><p id="27b2c62a-2779-8098-8e60-e87615497e96" class=""><em>The Pathless Path </em>is absolutely sick - I’ve given away eight copies as gifts because I think it’s that good. I have a whole stack of them on my bookshelf too. This book is all about leaving the default, more stable path of work and life for a more uncertain yet more fulfilling one. Millard left his job, and started a mission to find out what really matters in life. It’s a personal account of his journey around the world, and the writing itself is great and super enjoyable to read. It might help you break free from expectation and find your own way to fulfilment. </p><h3 id="27b2c62a-2779-807b-8aa7-ef16440e8ed1" class=""><span style="border-bottom:0.05em solid">Productivity</span>  </h3><p id="27b2c62a-2779-80c7-aa88-c486b28bab2a" class=""><strong>15) </strong><strong><a href="https://geni.us/UVgx">Getting Things Done</a></strong><strong> by David Allen (S2 E2)</strong></p><p id="27b2c62a-2779-8072-9f4e-db6fe1c572e8" class="">I’m such a huge fan of this book. The whole premise is that in order to be productive - ultimately to have time for all the things we want to do - then we need to dump all of our distractions some place outside of our own heads. We aren’t actually very good at remembering things, which is why we often have this feeling that we need to be working on something else when we sit down to do a task. By giving all our brainpower to one thing at a time, we’ll be much more successful. <em>Getting Things Done</em> sets out exactly how you can organise all your thoughts to be more productive. </p><p id="27b2c62a-2779-80ba-aab6-c7ae0660cf51" class=""><strong>16)</strong> <strong><a href="https://geni.us/RbB8ZP">The Art of Procrastination</a></strong><strong> by John Perry (S3 E10)</strong></p><p id="27b2c62a-2779-8076-b3a4-f5d57497eedf" class="">I’m writing a whole book about productivity and procrastination at the moment, so this is a must. Conventional wisdom says that procrastination is only a negative - it stops us doing the things we really need and want to do. John Perry instead tries to look at the positives - what are all the things we’re doing while we’re procrastinating? It’s all about perfectionism, and the way that it can kind of ruin our lives. He gives also some helpful tips on how to overcome this hurdle of perfectionism so we can actually get on with the stuff that matters. </p><p id="27b2c62a-2779-8047-910c-c424350e9025" class=""><strong>17)</strong> <strong><a href="https://geni.us/ozQzpn">The Power of Habit</a></strong><strong> by Charles Duhigg (S3 E10)</strong></p><p id="27b2c62a-2779-80c5-99d0-c3d4d200835a" class="">If you’re a fan of <em>Atomic Habits</em> by James Clear (I certainly am) then this book will probably be for you. Charles Duhigg is a journalist who’s spent years studying how and why we make habits - as well as why bad habits are so hard to break. What I like about this book is the fact that it uses a practical framework - it doesn’t just teach you the theory behind habit, but it also spells out exactly how you can adapt the habits in your life so that you’re happier and healthier. </p><h3 id="27b2c62a-2779-80b0-80b8-fcc7452a8256" class=""><span style="border-bottom:0.05em solid">Money and finance </span></h3><p id="27b2c62a-2779-80b3-b908-c1eb5e5586f8" class=""><strong>18)</strong> <strong><a href="https://geni.us/INFt">Die With Zero</a></strong><strong> by Bill Perkins (S3 E5)</strong></p><p id="27b2c62a-2779-803f-8237-d3b2df62f5da" class="">The premise of this book is that if you die with something still left in your bank account, you’ve done something wrong. It tells us how to maximise our life experience, without money being the thing we exchange for experience. One tip it gave me was to give your money to your kids when they are young so they can make the most of it, and to give to charity now - because charities need money now. Even though it doesn’t seem that strange to use your money for happiness, it’s actually quite hard to put into practice - especially if you have experience being broke and have the impulse to save and not spend. No matter what your current tendencies when it comes to money, the advice in this book will really change your perspective for the better. </p><p id="27b2c62a-2779-80ca-a5c7-f5f9fb2f0a9c" class=""><strong>19) </strong><strong><a href="https://geni.us/jxr3a">Freakonomics</a></strong><strong> by Steven D. Levitt And Stephen J. Dubner (S3 E1)</strong></p><p id="27b2c62a-2779-801a-b309-f537cf43a913" class="">This is economics for people who hate economics. Basically, instead of being pages and pages of statistical analysis and dry numbers, this book explains the real world applications of economic theory to show just how much it’s an influential factor in all aspects of our lives.</p><h3 id="27b2c62a-2779-8015-a993-efb5a80c296b" class=""><strong><span style="border-bottom:0.05em solid">Happiness and fulfilment </span></strong></h3><p id="27b2c62a-2779-80f7-bc80-d964f2dbb475" class=""><strong>20)</strong> <strong><a href="https://geni.us/BqH3">Happy Sexy Millionaire</a></strong><strong> by Steven Bartlett (S1 E11) (S3 E3) </strong></p><p id="27b2c62a-2779-8039-8fe7-f738b1152ca6" class="">When Steven Bartlett was a teenager he wrote in his diary that by the time he was 20, he wanted to be a ‘happy sexy millionaire’. But contrary to its title, the book won’t teach you how to be these three things, it’ll show you why this isn’t what you want - which is what Steven realised when he came to achieve fame and fortune. The book tackles the problem of finding happiness in the modern world head on offering 20 important life lessons and, as the tagline describes, unexpected truths about fulfilment, love and success.</p><p id="27b2c62a-2779-80d9-bd67-d7c714873fde" class=""><strong>21)</strong> <strong><a href="https://geni.us/m1V3SiA">Solve For Happy</a></strong><strong> by Mo Gawdat (S3 E1)</strong></p><p id="27b2c62a-2779-8097-9707-f9fc6cc2dac2" class="">Mo Gawdat is an incredible guy and his episode on <em>Deep Dive </em>was probably the most impactful. He was the CBO of Google X, made lots of money, and had a lovely family. But he was deeply unhappy. When his son died he made it his mission to discover how to be happier and make #onebillionhappy in his memory. This book is great because it’s backed by science and data, but it is full of heart and driven by a genuine desire to improve people’s lives - the introduction to the book brought tears to my eyes. Mo wants to make 1 billion people happier, and by picking up this book you can definitely be one of them. </p><p id="27b2c62a-2779-80b8-bff2-ef9e0e761e00" class=""><strong>22) </strong><strong><a href="https://geni.us/8KGGM">That Little Voice in Your Head</a></strong><strong> by Mo Gawdat (S3 E1) </strong></p><p id="27b2c62a-2779-8035-8fa6-dbb7bced7de0" class=""><em>That Little Voice in Your Head </em>is pretty much the sequel to <em>Solve For Happy and </em>focuses on how to rewire your brain so that happiness becomes natural to you. It’s full of exercises using coding and neuroscience to allow us to find ways to be more generous and empathetic. Mo is motivated by the memory of this late son, also called Ali, to inspire as many people as possible to live happier lives (the goal is actually 1 billion happier people). The steps in this new book will help you reconsider how you think about happiness, and how to actually build more of it into your life. We all deserve to be happy, and Mo can help you out. </p><p id="27b2c62a-2779-80bf-960c-cf8cd67e3858" class=""><strong>23)</strong> <strong><a href="https://geni.us/JcNZpUa">Empowered</a></strong><strong> by Vee Kativhu (S1 E12)</strong></p><p id="27b2c62a-2779-80f6-80a4-eb69407daf22" class="">Such a beautiful book from Vee, another podcast guest. Vee’s a YouTuber and education activist, whose book <em>Empowered</em> guides you through how to achieve your dreams by taking chances and learning from mistakes. It’s a fascinating look into Vee’s experience growing up and her journey to overcoming adversity as well as sharing tips and skills to guide you through life and become more fulfilled and empowered. I also recommend opting for the hard copy over kindle edition because the physical book is like a work of art inside. </p><p id="27b2c62a-2779-8013-b809-ec1068da3a81" class=""><strong>24) </strong><strong><a href="https://geni.us/cYJIs0">The Antidote</a></strong><strong> by Oliver Burkeman (S2 E2) </strong></p><p id="27b2c62a-2779-8086-8974-e441bdd953b6" class="">The subtitle of this book is ‘happiness for people who can’t stand positive thinking’. Even though manifesting and affirmations and ‘finding the positives’ are all super popular right now, for some of us the thought of standing in front of the mirror and repeating ‘I am happy, I am successful’ is both ridiculous and insulting. So, in this book Oliver Burkeman argues against mindless optimism, and instead offers a new way of finding happiness and fulfilment, by no longer avoiding uncomfortable feelings or experiences. </p><h3 id="27b2c62a-2779-80a9-8101-d92fa595aee3" class=""><strong><span style="border-bottom:0.05em solid">Memoirs </span></strong></h3><p id="27b2c62a-2779-803a-8f26-f32e91b4ee44" class=""><strong>25)</strong> <strong><a href="https://geni.us/FVvBD8Y">Educated</a></strong><strong> by Tara Westover (S1 E12) (S3 E9)</strong></p><p id="27b2c62a-2779-8052-bf42-c06d6ff95be3" class="">This best-seller is a memoir of a woman who grew up in a survivalist mormon family. Tara wasn’t allowed to go to school or even see a doctor because her father didn’t believe in modern medicine. Her memoir tells the story of how she gained an education, from not having ever seen a classroom up until the age of 17, to degrees and PhDs at Harvard and Cambridge. It is at times a harrowing read, and it actually made me cry lots. Even though her experiences are extreme, Tara’s writing feels universal and relevant to us all, especially those of us who are teachers and learners, but mostly anyone who values education. </p><p id="27b2c62a-2779-8034-834a-c019b75dc3f0" class=""><strong>26)</strong> <strong><a href="https://geni.us/PYKqw">Can&#x27;t Hurt Me</a></strong><strong> by David Goggins (S1 E10)</strong></p><p id="27b2c62a-2779-8027-bb03-db34fb6eb816" class=""><em>Can’t Hurt Me</em> is a super motivating read. I’m personally not a fan of what Goggins believes about suffering - that we have to suffer to grow - but it’s still a great story. Goggins has lived an interesting and difficult life, and his story of overcoming prejudice, abuse, and poverty to become one of the world’s most incredible athletes is truly inspiring. The book combines personal memoir and self-help advice to make an incredibly compelling book. </p><p id="27b2c62a-2779-8074-8612-ce98cc15f2f9" class=""><strong>27) </strong><strong><a href="https://geni.us/iAHJoH">When Breath Becomes Air</a></strong><strong> by Kalanithi Paul (S1 E12)</strong></p><p id="27b2c62a-2779-80ab-a705-e5736dab0c43" class="">Kalanithi Paul was diagnosed with lung cancer while training to be a neurosurgeon. His account of life and death reads more like a novel - it is a very beautiful book. He experiences death and loss as both a patient and a doctor. It’s a deeply personal memoir which also reaches out into the universal human experience. This is such a wonderful book which helps us understand what it is to live in the face of mortality. </p><h3 id="27b2c62a-2779-804b-8e44-ed811774d358" class=""><strong><span style="border-bottom:0.05em solid">Creativity </span></strong></h3><p id="27b2c62a-2779-8064-81e4-c8e65295ee3a" class=""><strong>28) </strong><strong><a href="https://geni.us/kYDRQX">How Writers Journey To Comfort And Fluency</a></strong><strong> by Robert Boice (S2 E2) </strong></p><p id="27b2c62a-2779-8042-b517-cd5e8eb667d0" class="">Robert Boice is a psychologist who has studied how writers write. This book explores how writers get into the creative flow, why they are compelled to write, and how they actually get words on the page. All the tips and strategies are backed up by research, so you can learn exactly how some writers are able to write so easily. A must read for anyone struggling with writers’ block.</p><p id="27b2c62a-2779-8005-9f82-d145cebec222" class=""><strong>29) </strong><strong><a href="https://geni.us/H7z29S">The War Of Art</a></strong><strong> by Steven Pressfield (S2 E1) (S3 E10)</strong></p><p id="27b2c62a-2779-80df-9f03-d379f583d3c4" class="">One of the biggest things that holds creative people back from putting their work out into the world is fear. We doubt our skills, our talent, and whether anyone will actually read/see/watch what we have to make. <em>The War Of Art </em>lays out why creative people feel insecure about their art, and gives us the best ways of overcoming our fears. Before I started my YouTube channel, I had a blog which I wish I’d started it sooner, because it really did change my life. But for a long time I was too scared to start. This book would’ve really helped me - a necessary read for all creatives. </p><p id="27b2c62a-2779-8070-af80-ca6d7524b5f3" class=""><strong>30)</strong> <strong><a href="https://geni.us/uBtRIkM">Steal Like An Artist</a></strong><strong> by Austin Kleon (BONUS EPISODE) </strong>                                                          </p><p id="27b2c62a-2779-807b-b267-db5c5e35a472" class="">Austin Kleon’s first book <em>Show Your Work!</em> completely changed my life, and I highly recommend all his work. <em>Steal Like An Artist </em>is all about how you can surround yourself with creative and like-minded people so that you can flourish as a creative. It’s hard to find the time and space to pursue your creative ambitions, but with these ten suggestions from Austin you’ll be able to build the creative community you need to thrive. It’s also super short and full of illustrations. Love it. </p><p id="27b2c62a-2779-80cd-a463-e399d4048034" class=""><strong>31) </strong><strong><a href="https://geni.us/MV8a">Mastery</a></strong><strong> by Robert Greene (S1 E10)</strong></p><p id="27b2c62a-2779-8042-8aee-c6b280b7f6d6" class="">Robert Greene defines ‘mastery’ as performing at the very highest level of creative excellence. Sounds like a huge task. But this book lays out exactly how the greats do it, to help you achieve mastery of your chosen field. This will give you a fulfilling life and creative brilliance - something that we all reach towards. A really good book, which reminds us that anything is possible when we decide to sit down and work. </p><h3 id="27b2c62a-2779-8075-845e-cfbe39ec7058" class=""><strong><span style="border-bottom:0.05em solid">Love, relationships, and family </span></strong></h3><p id="27b2c62a-2779-804b-8af9-e0439eba238c" class=""><strong>32) </strong><strong><a href="https://geni.us/SVgB">How To Not Die Alone</a></strong><strong> by Logan Ury (S2 E5) (S3 E1)</strong></p><p id="27b2c62a-2779-80ef-8bc9-eaecd0627c73" class="">This book was actually recommended to me by my girlfriend when we first started dating, and it’s been the single most important book in changing my thinking about my love life. Logan Ury is behavioural scientist and dating expert who coaches people on how to date more effectively. Logan uses data and science to understand why we often struggle to date or have successful relationships. The book will help you work out exactly what’s holding you back, as chapter by chapter Ury works though all the decisions we have to make when trying to find love. When you think about it, a relationship is a huge choice in your life, so it should be given as much time and attention as we give something like our careers.</p><p id="27b2c62a-2779-80cd-8b65-e97586abb017" class=""><strong>33)</strong> <strong><a href="https://geni.us/ZHR4S">Men Are From Mars Women are from Venus</a></strong><strong> by John Gray (S3 E1) </strong></p><p id="27b2c62a-2779-80e6-a54e-f7ed10190fe5" class="">I first read this book seven years ago, and I’ve re-read it a few times since then. It’s a bit controversial because some of its concepts are quite gendered. But it was super helpful for understanding the way I communicate in contrast to how some of my female friends do. It has sold 15 million copies and it’s great for limiting and resolving conflicts. John Gray is a relationship counsellor and he wrote this book from years of experience and understanding working with couples to build better conversations. Even if you’re not on the look out for love, understanding how we communicate with people around us will definitely improve lots of different types of relationships in our lives. </p><p id="27b2c62a-2779-80ce-a9c2-ebafcacc088f" class=""><strong>34) </strong><strong><a href="https://geni.us/44nc9qi">Nonviolent Communication</a></strong><strong> by Marshall B. Rosenberg (S2 E3) (S2 E5)</strong></p><p id="27b2c62a-2779-8065-b84f-ce3f777a8eb7" class="">We talk a lot about this book in the office, because it’s great not just for romantic relationships, but for all of your day-to day-interactions with people. The premise of nonviolent communication is to find a way to talk to others from a place of empathy, understanding and compassion. If we stop our strong feelings from overwhelming us in a conversation, we can begin to understand our needs and the needs of those around us. This takes a lot of practice, but I think this book is a really compelling case for why we should all try to be a bit kinder - not just because it’s the right thing to do, but because it also makes us more effective where it counts. </p><p id="27b2c62a-2779-808f-902b-efde94b37310" class=""><strong>35) </strong><strong><a href="https://geni.us/NHCwMR">Come As You Are</a></strong><strong> by Emily Nagoski (S2 E5)</strong></p><p id="27b2c62a-2779-806d-8e05-ebdfd106dc2a" class="">This book helps us to understand why women often feel that their sexual needs come second to those of men. It looks at history, psychology, and anatomy to explain why this difference exists. Nagoski then gets into the science of desire and arousal by debunking common misconceptions and myths which can harm our sex lives - especially the sex lives of women. </p><p id="27b2c62a-2779-8041-bdbc-f5e4c019e81b" class=""><strong>36) </strong><strong><a href="https://geni.us/NmzoIhT">Mating In Captivity</a></strong><strong> by Esther Perel (S2 E5)</strong></p><p id="27b2c62a-2779-80bb-b50d-f174042e8820" class="">Esther Perel is a couples’ therapist who specialises in working on long term relationships. The outline of this book is that the most important way to maintain a committed relationship is to maintain desire. This may seem obvious, but in fact having busy and overwhelming lives often leaves us with little room for intimacy. It’s a good book informed by years of experience working with real couples, and explains some of the reasons that we behave as we do in relationships, and how we can work to be happier. </p><p id="27b2c62a-2779-8093-8f2e-dc8ef6f10b29" class=""><strong>37) </strong><strong><a href="https://geni.us/Lnu2T">Far From The Tree</a></strong><strong> by Andrew Solomon (S2 E5)</strong></p><p id="27b2c62a-2779-8012-8c44-db97f2e6fe42" class="">Andrew Solomon, a psychologist at Columbia, has interviewed over three hundred families to write this book. It’s all about the relationships between parents and their children - when children are completely different from their parents. This is an award winning book which ultimately argues for empathy and compassion. It’s a testament to the powerful love parents have for their children and it makes for a fascinating read - whether you’re thinking about having kids or not. </p><p id="27b2c62a-2779-8024-b301-f69bc9738f0d" class=""><strong>38) </strong><strong><a href="https://geni.us/ZGpEE">Mind The Gap</a></strong><strong> by Dr Karen Gurney (S1 E3)</strong></p><p id="27b2c62a-2779-8034-98b9-e532cdc6949a" class="">This book is super recent and up to date. Backed by the science and expert interviews and case studies, <em>Mind the Gap</em> examines the differences between how men and women experience sexuality. It is full of insight, exercises, and fascinating research. I like the angle this book has on long-term desire - it’s not just about finding the spark, but about building attraction and fun over the course of a relationship, so that we don’t miss out as we get older. </p><p id="27b2c62a-2779-80b1-be90-d37ebe0f19b4" class=""><strong>39) </strong><strong><a href="https://geni.us/KCA6sh4">The Evolution Of Desire</a></strong><strong> by David M Buss (S2 E2)</strong></p><p id="27b2c62a-2779-80a7-8a27-cba347f504ee" class="">If you’re looking for some light reading, this isn’t it. <em>The Evolution of Desire i</em>s a massive and impressive piece of work, documenting the history and trajectory of human desire across time and across cultures. We often think of love as something otherworldly and inexplicable, but this book brings us right back to the science so we can think about why relationships are often so difficult, even though they can offer us fulfilment and happiness. I’m a big fan of stuff that blends science, psychology, and history - it’s rich and full of information and knowledge. </p><p id="27b2c62a-2779-8057-85d3-f54e8b4a22a8" class=""><strong>40)</strong> <strong><a href="https://geni.us/u1a3dL">Unconditional Parenting</a></strong><strong> by Alfie Kohn (S2 E1) </strong></p><p id="27b2c62a-2779-8096-8698-f66435c72b6f" class="">Basically, children just want unconditional love. I’ve listened to this twice, because one of my biggest goals in life is to be a good father when I have children. It’s not only great for parents or prospective parents, but I’d also recommend it for anyone who has ever been a child. Instead of thinking about how to get kids to do what we want, the book asks how we can work alongside children to help them live happier and more confident lives. It has changed so many people’s thinking about parenting, and might change your mind about your own upbringing. A really revolutionary read. </p><p id="27b2c62a-2779-8069-be0a-db8860aecd25" class=""><strong>41)</strong> <strong><a href="https://geni.us/55Ar">The Moral Animal</a></strong><strong> by Robert Wright (S3 E10)</strong></p><p id="27b2c62a-2779-80e0-8d56-d50b33ff16e5" class="">This is a provocative book all about why men and women behave differently. It focusses on genetics to explain human behaviour, from evolutionary psychologist Robert Wright. It’s quite lengthy and can get quite scientific in places, but it’s a classic of evolutionary science. </p><h3 id="27b2c62a-2779-80df-8c1a-d63a34775749" class=""><strong><span style="border-bottom:0.05em solid">Business and entrepreneurship </span></strong></h3><p id="27b2c62a-2779-801b-9a12-fc148b345da1" class=""><strong>42)</strong> <strong><a href="https://geni.us/tErBuC">The Minimalist Entrepreneur</a></strong><strong> by Sahil Lavingia (S3 E5) </strong></p><p id="27b2c62a-2779-80c2-96be-ec9a97172f08" class="">I recommend this most to people who are just starting their businesses. It’s all about building a community first and a business second - definitely the right order in 2022. Sahil built Gumroad, the online marketplace for digital products, so he knows all about founding a business in the modern world. His basic premise is that we want to create businesses which aren’t just huge for the sake of it, but are instead effective, sustainable, and future-proof. I really like the sections on handling remote working and freelance employees - super relevant right now. If you’re an aspiring entrepreneur, especially if you are working in the digital sector (like me lol), then this is absolutely a must read. </p><p id="27b2c62a-2779-8024-a2f2-f2b17776f545" class=""><strong>43) </strong><strong><a href="https://geni.us/QCPFUr">The Art Of Persuasion</a></strong><strong> by Bob Berg (S2 E7) </strong></p><p id="27b2c62a-2779-8039-9853-fdf98ffe2974" class="">We’ve all heard of the art of persuasion - that ability some people have to get what they want from others. It turns out this isn’t just innate skill or talent, but instead something we can all learn. This book is a case study by Bob Burg, a business advisor who works with some of the biggest companies in the world. He unpacks why some people are so effective at winning others over, and gives some practical tips to help us do the same. </p><p id="27b2c62a-2779-80cc-9905-f5c257ecd0e2" class=""><strong>44)</strong> <strong><a href="https://geni.us/1QX4qql">Start With Why</a></strong><strong> by Simon Sinek (S2 E1) (S3 E9)</strong></p><p id="27b2c62a-2779-805f-b44e-d86afe65cc8b" class="">Whether you want to build a business, start a newsletter or begin posting videos on YouTube, you shouldn’t immediately begin thinking about exactly what you want it to look like, or the outcomes you’ll have done the line - instead, you should focus on <em>why</em> you want to start the thing. Do you want to help solve a problem, or do you see a really big gap in the market you want to fill, or will it improve your happiness and fulfilment in life? By answering these questions first, you stand a much better chance of getting your new venture off the ground.</p><p id="27b2c62a-2779-80f8-bb9e-f26ba2ef4a0b" class=""><strong>45) </strong><strong><a href="https://geni.us/2WlU5f">Rich Dad, Poor Dad</a></strong><strong> by Robert T. Kiyosaki (S3 E3) </strong></p><p id="27b2c62a-2779-802e-b6f0-d316422f455d" class="">When I first came across this book, I thought it might be advice on parenting, but it’s one of the most popular business books in the world. The dads in the title belong to Kiyosaki - one was his actual father, a man with a traditional career and a PhD, but no money. The other dad was his father’s best friend, who dropped out of high school, started a business, and was very wealthy. Basically, Kiyosaki argues that you want to be like rich dad - going off the beaten path, striking out, taking risks. If your goal is financial independence, you won’t reach it if you follow poor dad and stick to a traditional path like many of us are taught to do. This book is popular for a reason - it has great business insight and will inspire you to take control of your future and your finances. </p><p id="27b2c62a-2779-80f6-9089-f199e9891c15" class=""><strong>46) </strong><strong><a href="https://geni.us/S4M2fl">The E Myth Revisited</a></strong><strong> by Michael E. Gerber (S1 E9) (S2 E10) (S2 E12) (S3 E4) </strong></p><p id="27b2c62a-2779-801d-83f6-c06c5fc4ed77" class="">This book changed my life post business success. I was feeling burnt out by not delegating tasks, and I wasn’t building a team to help because I didn’t know how. The book is thirty years old, but it still absolutely holds up. It’s conceptual and philosophical, but also super practical and it helped me master the art of delegation once my business was off the ground. It totally debunked myths about starting a business - that all it takes if grit and determination, and that you have to do it alone - so that you can actually create a successful company. </p><p id="27b2c62a-2779-80fb-b444-d5e24c2e13e5" class=""><strong>47)</strong> <strong><a href="https://geni.us/P9nSqEm">Traction</a></strong><strong> by Gino Wickman (S2 E2) (S2 E12) (S3 E4) </strong></p><p id="27b2c62a-2779-8066-a1be-c0ac268efb64" class="">I first read this book in 2021, and it became <em>the</em> book which accelerated my business in that year. It’s perfect for anyone who has more than three employees, but is struggling to grow and maintain the pace of development in their business. Hard work and determination will only take you so far, and this book will help you take the next step to keep scaling up your entrepreneurship. So many of my podcast guests who are founders and CEO’s recommended it, so once you’ve got your business off the ground, this is essential reading.</p><p id="27b2c62a-2779-8078-a531-ea652a849d89" class=""><strong>48) </strong><strong><a href="https://geni.us/01l5T">Rocket Fuel</a></strong><strong> by Gino Wickman and Mark C. Winters (S3 E4) </strong></p><p id="27b2c62a-2779-807c-869d-c71d2ebc2c00" class="">Another book that’s been recommended to me over and over again. Gino Wickman has the best insights into the world of business and development, and <em>Rocket Fuel</em> is no exception. It’s all about finding the right people who can enhance your skill set and work well with your abilities. It also introduces this idea of the visionary vs the integrator which has been incredibly useful for me. A visionary has all the big ideas, the goals, the dreams, and the integrator knows how to make them happen. You can’t have one without the other, so this book helps you figure out which one you are, and then helps you find your counterpart to give your business lift-off. </p><p id="27b2c62a-2779-80f6-839a-e6a8821925db" class=""><strong>49)</strong> <strong><a href="https://geni.us/A9aSqx">Anything You Want</a></strong><strong> by Derek Sivers (S1 E5) (S2 E11) (S3 E1) </strong></p><p id="27b2c62a-2779-8051-ba5c-e84337a1dd8e" class="">This is one of my favourite books of all time. It’s certainly in my top three. Sivers was actually a musician before he was an entrepreneur, and he built his first online business selling CDs. He argues that you don’t need a business plan - instead you need to focus on your customers. A lot of his advice is very common sense, but it will help you focus through all the noise around starting a business to actually create something worthwhile and valuable - for your clients and for yourself. Sivers writes in a great, easy-to-read style, and I genuinely love this book. 10/10. </p><p id="27b2c62a-2779-80fb-8647-dd1f64eaa7f9" class=""><strong>50)</strong> <strong><a href="https://geni.us/XyaGcL">Oversubscribed</a></strong><strong> by Daniel Priestley (Q&amp;A)</strong></p><p id="27b2c62a-2779-80f2-83e5-f24870630f62" class="">You won’t just read this book once - you’ll read it repeatedly. It’s absolutely sick, perfect for those with a creator type business like mine. I think this is actually my most highlighted book on kindle of all time. Daniel Priestley is a world expert in accelerating businesses, and he specialises in turning solo projects into team enterprises, and small scale businesses into large scale powerhouses. His advice is gold, and I recommend all of his books, but <em>Oversubscribed </em>is the one that really clicked for me because it was so applicable to my own business career. </p><p id="27b2c62a-2779-802b-9678-d5ce0152860a" class=""><strong>51) </strong><strong><a href="https://geni.us/4Ebew">Inspired</a></strong><strong> by Marty Cagan (S2 E12) </strong></p><p id="27b2c62a-2779-8013-8544-f93b1c3c3ca6" class="">Marty Cagan works in Silicon Valley. This book is all about developing the best digital products and online businesses. It was updated in 2018 so it’s super relevant and focused on modern day problems entrepreneurs in the tech world face. The main argument of the book is that team building is key for making successful tech products. It lays out exactly who needs to do what - project managers, designers, and engineers are all given outlines of the key aspect of their roles. Rather than seeing employees as cogs in a machine, Cagan finds a way to give everyone ownership of what they create. A really interesting read. </p><p id="27b2c62a-2779-809d-aafb-fb0ee6859c17" class=""><strong>52) </strong><strong><a href="https://geni.us/BMhEg">The Great CEO Within</a></strong><strong> by Matt Mochary (S2 E10)</strong></p><p id="27b2c62a-2779-8020-a40a-c8385b80d180" class="">Another book from a Silicon Valley expert. Matt Mochary coaches CEOs leading some of the biggest companies in the world, so he has hands on experience working with truly successful people. When building your business from the ground up, there isn’t any time to learn all the tricks of the trade from the people who know best. This book gives you everything you need to access the CEO you can be. Taking the time to read it is like a cheat code for success and growth. </p><p id="27b2c62a-2779-80ef-8787-e7ca72b0271c" class=""><strong>53) </strong><strong><a href="https://geni.us/7LKlbk">Grit</a></strong><strong> by Angela Duckworth (S2 E9) </strong></p><p id="27b2c62a-2779-8052-8de6-f6294ec8e4ba" class="">Talent, intelligence, and skill are all useful tools for creating a business. But Angela Duckworth says that the most important thing for any leader is grit, which she defines as the ability to keep persevering, push through challenges, and not give up. We should try to raise our children with grit so they can grow up to be resilient and resourceful and achieve what they want to from life. But adults can also develop grit, and this can make them great leaders. The book sparked an ongoing debate among psychologists about what the most important factor is for success - so check out the book and see what you think. </p><p id="27b2c62a-2779-8046-9c73-fd97aaeb5433" class=""><strong>54)</strong> <strong><a href="https://geni.us/Ru4zaO">22 Immutable Laws Of Marketing</a></strong><strong> by Ale Ries and Jack Trout (S2 E7)</strong></p><p id="27b2c62a-2779-80b1-afd8-c1178914311f" class="">I’ve encouraged everyone on my team to read this book since it was recommended to my by Julian Hearn, the founder of<em> Huel </em>when he came on the podcast. It’s an essential read mainly because it addresses the misconceptions we have about marketing. We often think it’s super simple - just let people know your product exists and is good and they should buy it. But it’s actually really complicated - and these guys should know. Ries and Trout spent 25 years studying all kinds of businesses with all kinds of success rates to find out what really works. The book lays out all their findings so that you can avoid some common mistakes and increase your sales.         </p><p id="27b2c62a-2779-8006-af1d-d76d4aad04f5" class=""><strong>55) </strong><strong><a href="https://geni.us/5bnKse">Built To Last</a></strong><strong> by Jerry I. Porras and Jim Collins (S1 E8)</strong></p><p id="27b2c62a-2779-807a-bf2f-c4bc896b6030" class="">Like a lot of books on this list, <em>Built to Last </em>argues that it’s no good building a massive company if it will collapse in just a couple of years. Instead, Porras and Collins are interested in the big-name brands which become famous world wide and last for decades. It includes some great case studies of some of he biggest companies which have ever existed, and will teach you how to build longevity and security into your own business. </p><p id="27b2c62a-2779-800f-8431-d45d97021d02" class=""><strong>56)</strong> <strong><a href="https://geni.us/QQht9">Bootstrap Your Life</a></strong><strong> by Oliver Cookson (S1 E7)</strong></p><p id="27b2c62a-2779-80d1-a1e8-fda9dea00175" class="">The tagline of this book is ‘How to turn $500 into $350000 million’, which is exactly what its author, Oliver Cookson did when he left school with no qualifications and very little money. Oliver founded <em>Myprotein</em>, combining his love of fitness with a business-savy and opportunity hungry mindset. His writing is relatable and easy for everyone - and he gives you all you ned to pick yourself up and create the business of your dreams. He was just an ordinary guy, and now he’s totally changed his life. A really positive and affirming read, highly recommend. </p><p id="27b2c62a-2779-80f8-84f8-e14210cde734" class=""><strong>57) </strong><strong><a href="https://geni.us/BiDluw3">Radical Candor</a></strong><strong> by Kim Scott (S1 E2)</strong></p><p id="27b2c62a-2779-80ca-abd1-d40a07761bac" class="">There are plenty of books out there teaching you how to become the boss and create a team, but there are less telling you how to behave when you actually get there - which is arguably the hardest part. Scott says a good leader knows how to communicate with their employees at a human level - not just as employees, but as people with lives outside of their jobs. Sounds simple enough, but it needs to be paired with the ability to have tough conversations with your employees when things aren’t going to plan. By being honest, compassionate, and direct, a boss can build a team that doesn’t just function well, but is also happy.   </p><p id="27b2c62a-2779-80f8-855d-dd19bd93541d" class=""><strong>58)</strong> <strong><a href="https://geni.us/o4vxnd2">Black Box Thinking</a></strong><strong> by Matthew Syed (S3 E9)</strong></p><p id="27b2c62a-2779-8006-82a8-eed7a15ad804" class="">Humans hate failure. We’re taught to hate it from an early age, and as we get older we often find that there’s no room for failure in our daily lives. Syed argues that we actually need to learn from failure - but many institutions, like the law and politics, have failed to appreciate failure. By not tolerating it, people think they are filling their organisations with the best. But they’re actually limiting their opportunities to learn from mistakes. This book explores why we should embrace failure so that we can promote learning and growth. </p><p id="27b2c62a-2779-80fa-9bf3-d027b562cd75" class=""><strong>59)</strong> <strong><a href="https://geni.us/uHaAH5a">Rework</a></strong><strong> by Jason Fried and David Heinemeier Hansson (S3 E9)</strong></p><p id="27b2c62a-2779-8009-be2f-f4a44895d01f" class="">The world of work is changing. It was changing even before the pandemic, but now with the rise of remote working, the ease of being able to access resources online, and people reluctant to return to the office, starting a business is going to be a completely different process compared to what it was ten years ago. Fried and Hansson argue that we no longer need to work a million hours a week and hire a massive team to get things off the ground - instead, we can keep it simple and easy by using all the resources available to us. A really great book for those starting businesses right now. </p><p id="27b2c62a-2779-807f-ab9a-e35095da49cc" class=""><strong>60) </strong><strong><a href="https://geni.us/irLBYz">The Working Woman’s Handbook</a></strong><strong> by Phoebe Lovatt (S3 E9)</strong></p><p id="27b2c62a-2779-8077-9ba5-cb81d00b7ab1" class="">Grace Beverley suggested this one as recommended reading during our podcast interview. It’s super actionable, with outlines, agendas, and all the tips and tricks you need to know to balance your work life with your personal life. Seems like a great addition to our list of business books. </p><p id="27b2c62a-2779-8029-a82a-ca74fc97e2ae" class=""><strong>61) </strong><strong><a href="https://geni.us/q5lyAF">Work Rules!</a></strong><strong> by Lazslo Bock - </strong><strong><a href="https://www.youtube.com/redirect?event=video_description&amp;redir_token=QUFFLUhqbTBPbGc1M0dLSUk2WEJjMVlva3M1UFZOUkdkQXxBQ3Jtc0ttd3Y0bUl0SER3X0h6Nkxhek9TdFFLZl91am5zbFhtdURycC1nVXNFc1ZHRENlM2V0MDk0TUVHRHBoUjN4d0J4d29RT2RqRFc2WkJwOXBlMno1WTZWWGlDTDFiR1VZSkJSeGszUXF1TDBDMUZFMUZOQQ&amp;q=https%3A%2F%2Fgeni.us%2Fq5lyAF&amp;v=7_hNRR6K6z4">https://geni.us/q5lyAF</a></strong><strong> (S3 E9)</strong></p><p id="27b2c62a-2779-8008-9968-d2ba767f31c7" class="">A New York Times Bestseller, this book from Google employee Lazslo Bock is all about the ways the world of work is changing. Working at Google has given Block insight into the new and exciting ways that work is adapting and evolving to meet the needs of the market and technological improvement. It outlines how you - like Google - can attract the best minds and the best talent to your business. Super fascinating writing from a true expert. </p><p id="27b2c62a-2779-8031-b9f9-ce2acfef7dff" class=""><strong>62) </strong><strong><a href="https://geni.us/GBiLBf">So Good They Can&#x27;t Ignore You</a></strong><strong> by Cal Newport (S2 E13)</strong></p><p id="27b2c62a-2779-80ea-bc51-dba0a54b6aed" class="">‘Follow your passion’ is really bad advice for job hunting. That’s the premise of this super popular book by Cal Newport. Instead, we need to find a niche that we can become experts in, where we can develop skills and talents which make us valuable employees so we can go on to have successful careers. Along the way we’ll also develop a passion for what we do. Allow passion to come naturally when you get really really good at something. Cal’s New York times op-ed summarising the book was one of the most shared articles in 2012 - this is a great read. </p><h3 id="27b2c62a-2779-8026-be9a-f41787d48853" class=""><strong><span style="border-bottom:0.05em solid">Psychology</span></strong><span style="border-bottom:0.05em solid"> </span></h3><p id="27b2c62a-2779-80ba-b7df-df4e2455721a" class=""><strong>63)</strong> <strong><a href="https://geni.us/rwy6bIP">The</a></strong><a href="https://geni.us/rwy6bIP"> </a><strong><a href="https://geni.us/rwy6bIP">Luck Factor</a></strong><strong> by Richard Wiseman (S3 E5) </strong></p><p id="27b2c62a-2779-80ad-ad84-d47fe59ea7f3" class="">Richard Wiseman is an immensely cool guy. He’s a magician, psychology professor and YouTuber. He specialises in the science of luck, deception, and the paranormal. This book is the culmination of ten years worth of research into the science of luck, and it actually shows us how we can bring more luck into our lives. Basically, Richard found that self-described ‘lucky people’ are more open to opportunity, chance, and they quite simply look on the bright side. This is a great science book if you’re interested in psychology and behavioural sciences, but it also doubles up as a guide to becoming one of those lucky people.</p><p id="27b2c62a-2779-80ab-a77e-ec417f58aab2" class=""><strong>64) </strong><strong><a href="https://geni.us/Rin8m">Mindset</a></strong><strong> by Dr Carol Dweck (S2 E9) </strong></p><p id="27b2c62a-2779-80fe-aa9e-ee95fddc9298" class="">Mindset has been a buzzword for a while now, and with good reason. In this book Dr Carol Dweck argues that how we think really can change what we do. There are two mindsets that we get from people around us when we’re young - the fixed mindset or the growth mindset. We either believe that certain qualities like intelligence are unchangeable, or we believe that change is possible. This book can help you shift the way you see yourself and others, so that you can grow and improve in your life and career. A great book - but it’s pretty dense and academic, so it might be better to ingest its ideas in summary - check out Shortform for just this! </p><p id="27b2c62a-2779-804b-86f3-e6e93efa9511" class=""><strong>65) </strong><strong><a href="https://geni.us/K7nF75g">Possessed</a></strong><strong> by Bruce Hood (S2 E8)</strong></p><p id="27b2c62a-2779-809a-86d8-ee65c091edb4" class="">We love owning things. Mostly because it drives us and makes us feel good. That’s what psychologist Bruce Hood argues in this book which explores consumerism. We all know that overconsumption is bad for our brains and bad for the planet, so why do we keep doing it? Hood looks at the psychology behind buying and owning stuff so that we can learn to have a better relationship with our possessions. </p><p id="27b2c62a-2779-807c-827e-ca3feff74a26" class=""><strong>66) </strong><strong><a href="https://geni.us/f110">Bounce</a></strong><strong> by Matthew Syed (S2 E9)</strong></p><p id="27b2c62a-2779-801e-86d9-d7312bdd7e4d" class="">This is a great book for any sports fan - but also anyone interested in talent, practice, and high performance. Bounce is all about uncovering how and why great sportspeople get so great - is it talent, or is it practice? It’s a really gripping book. Even if you’re not super into sports like me, it will give you a great insight into how to perform better under pressure - in a new job, as a CEO, or starting your business. It reaches into all areas of society to give a brilliant overview of how high performance works. Syed’s also a great writer, making this really fun to read. </p><p id="27b2c62a-2779-80b7-9c13-d899b5f2b3f1" class=""><strong>67) </strong><strong><a href="https://geni.us/YcONWgx">Predictably Irrational</a></strong><strong> by Dan Ariely (S2 E5)</strong></p><p id="27b2c62a-2779-80c1-8a83-d8ae74373c63" class="">We all like to think that we are rational, logical people who make rational, logical choices. The truth is that we’re actually way more complex than that, and we often make irrational decisions without even realising that that’s what we’re doing. This book is part psychology, part economics, and it explains why we often make the same mistakes over and over again. Basically, we’re irrational, but in a predictable way. By reading this book you’ll not only understand your mind a bit better, but you’ll also be able to improve your decision making skills. </p><p id="27b2c62a-2779-8008-bda8-e60e925606c9" class=""><strong>68) </strong><strong><a href="https://geni.us/5VBbt">Algorithms To Live By</a></strong><strong> by Brian Christian and Tom Griffiths (S2 E5)</strong></p><p id="27b2c62a-2779-80d1-931f-c6b5c7efb751" class="">Humans and computers are complete opposites, right? Actually, it turns out that we’re pretty similar, and there’s lots we can learn from the field of computer science. I love coding and I’m fascinated by computer systems, so this book was right up my street. A computer scientist and a psychologist have teamed up to write this book, so that you can learn all the tips and tricks of a computer in easy to access and applicable ways. Your day-to-day life could be so much more streamlined and effective. </p><p id="27b2c62a-2779-8031-b529-cf8e08089bc0" class=""><strong>69) </strong><strong><a href="https://geni.us/XuvdkP6">Quiet</a></strong><strong> by Susan Cain (S1 E10)</strong></p><p id="27b2c62a-2779-8039-a0f3-ebec50d2932f" class="">Lots of people are introverted, but it seems that the world is set up for bold, outgoing people. Charisma is important, of course, but it can be dangerous (think of the 2008 financial crash). The power of introversion is what Cain explores in this book. Instead of allowing both types of people to work together, introverts are often sidelined in favour of extroverts. This means that everyone loses out on their creativity, observation skills, and ability to problem solve. The book runs through the differences between introverts and extroverts and how we can all better work together to achieve greatness. </p><p id="27b2c62a-2779-80f3-b853-f583d23c7699" class=""><strong>70) </strong><strong><a href="https://geni.us/pCLg">Think Again</a></strong><strong> by Adam Grant (S1 E6) </strong></p><p id="27b2c62a-2779-8017-9e7b-f26eb15c6ad1" class="">When I was talking to Dr Grace Lordan on the podcast one of the things she said that really stuck with me was that the best leaders know how to change their minds. This may seem counterintuitive, because we like people who stick to their values and their beliefs. But <em>Think Again</em> explores how we learn and change our minds, and why this ability to update our thinking when we’re given new information is actually super important. And, we can even learn how to learn things better. It’s a great book. </p><p id="27b2c62a-2779-801a-8b9b-d2aa148a0ecd" class=""><strong>71) </strong><strong><a href="https://geni.us/pfB7v">Talking to Strangers</a></strong><strong> by Malcolm Gladwell (S1 E5) </strong></p><p id="27b2c62a-2779-8050-9986-db60890a93d7" class="">In our day-to-day life it’s pretty common that we have to talk to complete strangers from time to time. These interactions can be small and insignificant, or they can be massive and life-changing. There are lots of different ways we can approach these conversations, and Gladwell argues that most of the ones we choose are wrong. This book explains why this happens, and what we can do to overcome these challenges to have better conversations with strangers. Another great book on communication. </p><p id="27b2c62a-2779-8079-a43f-ededdc19f310" class=""><strong>72) </strong><strong><a href="https://geni.us/b19T">The Power of Vulnerability</a></strong><strong> by Berné Brown (S3 E10)</strong></p><p id="27b2c62a-2779-8099-957e-c85d41112c13" class="">This was recommended to me by Dr Tim Pychyl, who’s a leading expert on productivity and procrastination. This book is a lecture series all about how our inability to confront the shameful and embarrassing parts of ourselves - either to ourselves or to others - means that we are much less happy and healthy than we could be. It also includes ten steps to help you bring more vulnerability into your life - even though it can be uncomfortable in the short term, Brown says it’s absolutely the right thing to do for long-term happiness. </p><p id="27b2c62a-2779-80d5-a0f8-ec215c823871" class=""><strong>73)</strong> <strong><a href="https://geni.us/L8oK5">The Willpower Instinct</a></strong><strong> by Kelly McGonigal (S3 E10)</strong></p><p id="27b2c62a-2779-80bf-9474-c7586a045b31" class="">I used to think that willpower was just one of those things you either had or you didn’t. But it turns out that everyone has pretty strong willpower, we just need to learn how to harness it. In this book, Psychologist Kelly McGonigal explores how we make ourselves do things. There are all sorts of things that can diminish our willpower, and the book lays them all out in turn as well as giving some great insight into how we can structure self-discipline into our lives.</p><p id="27b2c62a-2779-80db-a4e5-d8cf3d8cd8ea" class=""><strong>74)</strong> <strong><a href="https://geni.us/UlSk9z">Affect Regulation Training</a></strong><strong> by Matthias Berking (S3 E10)</strong></p><p id="27b2c62a-2779-80e6-8084-dc7c54f5568f" class="">Dr Tim Pychyl argues that procrastination is a problem humans have with emotional regulation. So how exactly do we regulate our emotions? This book develops a type of therapy to help us do just that. This one is pretty dense and scientific - certainly not any kind of pop psychology. But if you’re really interested in the thinking behind Dr Pychyl’s research - or you’ve powered through this list of psychology books - then this could be an interesting read. </p><h3 id="27b2c62a-2779-80ee-bfd1-e17e38d296d3" class=""><strong><span style="border-bottom:0.05em solid">Philosophy </span></strong></h3><p id="27b2c62a-2779-802f-97be-e89dc3843f31" class=""><strong>75) </strong><strong><a href="https://geni.us/KlVy">Self Confidence: A Philosophy</a></strong><strong> by Charles Pépin (S2 E9)</strong></p><p id="27b2c62a-2779-80b3-83c7-ccb871bbcad7" class="">This is a philosophical essay from French thinker Charles Pépin. He’s studied lots of incredible, successful people from lots of walks of life to try and figure out exactly where self-confidence comes from and how we can nurture it. This is not your typical self-help book, and is instead more of an academic read full of case studies in confidence. </p><p id="27b2c62a-2779-8001-ae0d-d789aa1bac87" class=""><strong>76) </strong><strong><a href="https://geni.us/GHHI">Happy</a></strong><strong> by Derren Brown (S2 E2) (S2 E8) (S3 E10)</strong></p><p id="27b2c62a-2779-805e-95ae-e681ca624084" class="">You might not expect a philosophy book from magician Derren Brown, but that’s exactly what <em>Happy</em> is. Derren compiles and explains centuries worth of philosophical wisdom to try and work out what happiness is, and how exactly we can get our hands on it - I particularly vibe with his Stoic approach. This could be an insightful read if like me you’re into self-help books, because it discusses why the self-help industry can actually be damaging to us.</p><p id="27b2c62a-2779-80dc-8ccb-e2217ce9e36b" class=""><strong>77)</strong> <strong><a href="https://geni.us/alvI2o">The Daily Stoic</a></strong><strong> - Ryan Holiday (S1 E7) (S3 E10)</strong></p><p id="27b2c62a-2779-80bd-8cad-d66a9ec918c9" class="">If you’ve been watching my channel for a while then you’ll know that I love talking about philosophy, and I’m especially interested in Stoicism. In a nutshell, Stoicism is an ancient school of thought which says we cause our own negative emotions and this hold us back from achieving and purpose and contentment. It’s obviously way more complex than that, but if you’re interested in this idea then I couldn’t recommend this book more. Holiday offers little digestible daily snippets of stoic wisdom - it’s not something to read cover to cover, but rather you can dip into it when you want a little bit of insight.              </p><p id="27b2c62a-2779-80a8-9e19-e5e8f048cb3d" class=""><strong>78) </strong><strong><a href="https://geni.us/W4mtK">The Untethered Soul</a></strong><strong> by Michael Singer (S1 EP5)</strong></p><p id="27b2c62a-2779-8096-ab75-ef249013bd80" class="">Michael Singer is a spiritual teacher who has written a book on where consciousness comes from, how we can develop it, and what makes us who we are. This is a really accessible book, and won’t prove challenging to those new to spirituality. At the end of each chapter there are exercises which help you to work on the ideas the book introduces. It has a focus on daily life and daily happiness - something we all care about and strive for. </p><p id="27b2c62a-2779-8046-b6c4-ddcdfa596b51" class=""><strong>79) </strong><strong><a href="https://geni.us/nFjoNo">Man’s Search For Meaning</a></strong><strong> by Viktor E. Frankl (S3 E1) (S3 E10)</strong></p><p id="27b2c62a-2779-800d-9a52-efe2141202bd" class="">Victor Frankl survived four different concentration camps. This book is about his experiences of the Holocaust, and what he went on to theorise about human nature. He argues that rather than pleasure being the driving force behind human actions, as Freud said, a need for meaning and purpose is actually what motivates us. Frankl developed a form of therapy from these ideas and experiences, which is contained within this book. Tough reading, but necessary. </p><p id="27b2c62a-2779-8005-8182-dd5a8866dfd8" class=""><strong>80) </strong><strong><a href="https://geni.us/VEoIK">The Top 5 Regrets Of The Dying</a></strong><strong> by Bronnie Ware (S1 E11)</strong></p><p id="27b2c62a-2779-8054-a8f5-f322aeddbccf" class="">As humans we really don’t like to think about death. We kind of hide from it, or pretend it isn’t going to happen. Death isn’t really a visible part of society. Bronnie Ware saw death and dying close up during her work in palliative care and this book was inspired by a viral blogpost Bronnie wrote with the same title. It’s heart-warming, earnest, and sensitive. It’s all about the ways we can live more fulfilling lives - so that when we are dying, we don’t have any regrets. </p><p id="27b2c62a-2779-809c-9c46-c32253c04493" class=""><strong>81) </strong><strong><a href="https://geni.us/TTH1IC">The School Of Life</a></strong><strong> by Alain de Botton (S1 E9)</strong></p><p id="27b2c62a-2779-80ad-8958-fbfa463f3666" class="">There’s lots we’re not taught in school - how to do taxes, how to do laundry, how to have an emotionally fulfilling life. Alain de Botton is working on teaching us about that last skill. Reading this book will help you better understand yourself, your feelings, and the world around you. Botton’s goal is to help you achieve emotional maturity, so you can cope with all the difficult things the world can throw at you. It’s super helpful and insightful and I wish I had read it at school. </p><p id="27b2c62a-2779-800a-bbb2-efd680e90d75" class=""><strong>82)</strong> <strong><a href="https://geni.us/Guu0YQ">The Life You Can Save</a></strong><strong> by Peter Singer</strong> <strong>(S3 E8)</strong></p><p id="27b2c62a-2779-8064-9b4f-cf7e68305510" class="">Moral philosopher Will MacAskill recommended this to me. Peter Singer is a very influential thinker - he inspired Will to start 80,000 Hours, a nonprofit which helps people find work with which impacts the world in a positive way. The book is about how we respond to extreme poverty, as well as the great advancements we have made in limiting suffering worldwide in recent years. If it inspired Will to change his life, it might do the same for you.</p><p id="27b2c62a-2779-8074-8991-e279dc8219b8" class=""><strong>83) </strong><strong><a href="https://geni.us/3MyMuX3">The Precipice</a></strong><strong> by Toby Ord (S3 E8)</strong></p><p id="27b2c62a-2779-8013-a912-df4d3b636483" class="">Toby Ord is the co-founder of 80,000 Hours, an organisation which works to improve the world by helping people find jobs where they can do the most good. The argument of this book is that, if we follow the numbers, humanity could only be in its early days right now. We have the power to stretch out into the future and change ourselves and our world in unimaginable ways. We are full of potential. But at the same time, we are also facing unprecedented risks to the future of our species - nuclear war, climate change, or genetically modified diseases could all spell the end. This book is ambitious - it aims to lay out exactly how we can save humanity. </p><p id="27b2c62a-2779-803d-a207-da5f59a7ee2f" class=""><strong>84)</strong> <strong><a href="https://geni.us/7Aa9a5">The Courage to Teach</a></strong><strong> by Parker Palmer (S3 E10)</strong></p><p id="27b2c62a-2779-80a0-ae9a-cc58df094163" class="">So many of the people I interview are teachers in some form or another. I love teaching - it’s part of the reason I left medicine, so that I could teach a large audience of people on YouTube. So this book really spoke to me. Palmer’s premise is that you can be taught to teach all you want, but real teaching is about moments of clarity and inspiration between teachers and students. A teacher needs integrity, strength, and courage. A great book, truly. </p><p id="27b2c62a-2779-8019-97b3-dbad12018aa7" class=""><strong>85)</strong> <strong><a href="https://geni.us/JBQN">A Guide to the Good Life</a></strong><strong> by William Irvine (S3 E10)</strong></p><p id="27b2c62a-2779-8074-8e29-f5ae02101160" class="">If you’re interested in Stoicism like I am, then this book should be on your reading list. It’s quite a practical book - it doesn’t just explain and explore Stoic philosophy, but it offers a guide on how to bring these ideas into your own life. This way, you can be happier, less anxious, and more at peace with yourself and the world. </p><p id="27b2c62a-2779-8064-9a32-d14b589cf3bf" class=""><strong>86)</strong> <strong><a href="https://geni.us/kKtg">The Way of Zen</a></strong><strong> by Alan Watts (S3 E10)</strong></p><p id="27b2c62a-2779-8075-b1ad-eb1dc69b84f0" class="">Alan Watts is a Zen scholar who has been recommended to me by countless podcast guests. This book is a short guide to the Buddhist philosophy of Zen. This is something relatively new to me, so this handy guide should be perfect. </p><p id="27b2c62a-2779-80a4-8bcd-d9dea5319f26" class=""><strong>87)</strong> <strong><a href="https://geni.us/zypL">Radical Compassion</a></strong><strong> by Tara Brach (S3 E10)</strong></p><p id="27b2c62a-2779-8054-9559-f4a0028058fd" class="">Lots of people swear by meditation. It’s a technique that can be super helpful not just for our spiritual lives, but also in helping us find more clarity and time for ourselves amongst the day-to-day busyness. Tara Brach is famous for teaching meditation, and this book is all of her wisdom distilled down into a helpful guide. It focusses on allowing you to be more at peace with yourself and the world. </p><p id="27b2c62a-2779-8000-a5bf-e21a5261da55" class=""><strong>88)</strong> <strong><a href="https://geni.us/lsI1I0">The Courage to Be</a></strong><strong> by Paul Tillich (S3 E10)</strong></p><p id="27b2c62a-2779-8067-aa20-d5410c8717a1" class="">Paul Tillich first published this book in the 20th century. It brings together a vast array of religious and philosophical thinking in order to discuss what it means to be human. It’s very popular and one of the most acclaimed philosophy books from the past fifty years. </p><p id="27b2c62a-2779-808e-a0c0-dac62c5af5e2" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

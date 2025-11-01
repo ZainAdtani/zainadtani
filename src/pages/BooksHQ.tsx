@@ -15,8 +15,9 @@ import {
 } from "@/components/ui/dialog";
 import { ExternalLink, Search, Star } from "lucide-react";
 import { Helmet } from "react-helmet-async";
-import { BOOKS, type BookStatus, importHundredBooksIfNeeded } from "@/data/books";
+import { BOOKS, type BookStatus } from "@/data/books";
 import { findCover } from "@/lib/covers";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 /** ---------- helpers ---------- **/
 
@@ -101,11 +102,6 @@ export default function BooksHQ() {
   const [statusFilter, setStatusFilter] = useState<BookStatus | "ALL">("ALL");
   const [sortBy, setSortBy] = useState<SortOption>("title-asc");
   const [refreshTrigger, setRefreshTrigger] = useState(0);
-
-  // Import 100 books list once on mount (non-blocking)
-  useEffect(() => {
-    importHundredBooksIfNeeded();
-  }, []);
 
   // counts
   const bookCounts = useMemo(() => {
@@ -298,46 +294,50 @@ export default function BooksHQ() {
                     </div>
                   )}
 
-                  {/* Always show button */}
-                  <Button asChild variant="outline" size="sm" className="mt-auto">
-                    <a href={href} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-                      View on Amazon
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  </Button>
+                  {/* Button row */}
+                  <div className="flex gap-2 mt-auto">
+                    <Button asChild variant="outline" size="sm" className="flex-1">
+                      <a href={href} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                        View on Amazon
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </Button>
 
-                  {/* "View my thoughts" modal - only if notes exist */}
-                  {(book.myThoughts || book.notes) && (
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button variant="outline" size="sm" className="mt-2 w-full">
-                          View my thoughts
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="sm:max-w-lg">
-                        <DialogHeader>
-                          <DialogTitle>{book.title}</DialogTitle>
-                          <DialogDescription>{book.author}</DialogDescription>
-                        </DialogHeader>
-                        <div className="space-y-4 text-sm text-foreground">
-                          {book.myThoughts && (
+                    {/* Notes popover with status-based label */}
+                    {(book.myThoughts || book.notes) && (
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button variant="outline" size="sm" className="flex-1">
+                            {book.status === "READ" ? "View my thoughts" : "View notes"}
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-80 max-h-96 overflow-y-auto">
+                          <div className="space-y-3">
                             <div>
-                              <p className="font-semibold mb-1">My thoughts</p>
-                              <p className="whitespace-pre-wrap">{book.myThoughts}</p>
+                              <h4 className="font-semibold text-sm mb-1">{book.title}</h4>
+                              <p className="text-xs text-muted-foreground">{book.author}</p>
                             </div>
-                          )}
-                          {book.notes && (
-                            <div>
-                              <p className="font-semibold mb-1">Summary / notes</p>
-                              <p className="italic text-muted-foreground whitespace-pre-wrap">
-                                {book.notes.length > 600 ? book.notes.slice(0, 597) + "..." : book.notes}
-                              </p>
-                            </div>
-                          )}
-                        </div>
-                      </DialogContent>
-                    </Dialog>
-                  )}
+                            {book.myThoughts && (
+                              <div>
+                                <p className="text-xs font-semibold text-muted-foreground mb-1">My thoughts</p>
+                                <p className="text-sm leading-relaxed">
+                                  {book.myThoughts.length > 280 ? book.myThoughts.slice(0, 280) + "..." : book.myThoughts}
+                                </p>
+                              </div>
+                            )}
+                            {book.notes && (
+                              <div>
+                                <p className="text-xs font-semibold text-muted-foreground mb-1">Notes</p>
+                                <p className="text-sm leading-relaxed italic text-muted-foreground">
+                                  {book.notes.length > 280 ? book.notes.slice(0, 280) + "..." : book.notes}
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        </PopoverContent>
+                      </Popover>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
             );
