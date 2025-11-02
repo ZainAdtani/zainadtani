@@ -19,6 +19,9 @@ import {
   Heart,
   X,
   FileText,
+  Mic,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
@@ -59,6 +62,61 @@ const QUOTES_AND_NOTES = [
   "Nothing meaningful in life is easy, and nothing easy in life is meaningful. We think we'd like to have everything handed to us on a silver platter, but the truth is that we don't appreciate or enjoy things that we don't struggle for. So stop avoiding the difficult things in your life and instead find the difficult things you enjoy.",
   "It's never too late to change. It's never too late. I get emails all the time from people asking me, \"Hey, I'm 20 or 40 or 60 or 80, is it too late? Can I change? Is there time?\" The answer is it's never too late, there's always time. The only question is how long we're gonna sit here and make excuses and pretend there's not.",
 ];
+
+// ---- Podcasts I Follow (data) ----
+const PODCASTS = [
+  {
+    title: "Huberman Lab",
+    host: "Andrew Huberman",
+    listen: "https://open.spotify.com/show/79CkJF3UJTHFV8Dse3Oy0P",
+    website: "https://www.hubermanlab.com/podcast",
+  },
+  {
+    title: "Ear Biscuits",
+    host: "Rhett & Link",
+    listen: "https://open.spotify.com/show/6W1lDKH2AQAB3vmmL5Eu6O",
+    website: "https://www.youtube.com/@earbiscuits",
+  },
+  {
+    title: "Morning Brew Daily",
+    host: "Morning Brew",
+    listen: "https://open.spotify.com/show/0dV6qgH7YkT9JdE6QxM4O5",
+    website: "https://www.morningbrew.com/podcasts/morning-brew-daily",
+  },
+  {
+    title: "The Tim Ferriss Show",
+    host: "Tim Ferriss",
+    listen: "https://open.spotify.com/show/5qSUyCrk9KR69lEiXbjwXM",
+    website: "https://tim.blog/podcast/",
+  },
+  {
+    title: "Ultimate Human",
+    host: "Gary Brecka",
+    listen: "https://open.spotify.com/show/2z8sv2bQ1b1B0qz3t5GQmK",
+    website: "https://www.ultimatehumanpodcast.com/",
+  },
+  {
+    title: "On Purpose",
+    host: "Jay Shetty",
+    listen: "https://open.spotify.com/show/5EqqB52m2bsr4k1Ii7sStc",
+    website: "https://jayshetty.me/podcast/",
+  },
+  {
+    title: "Impact Theory",
+    host: "Tom Bilyeu",
+    listen: "https://open.spotify.com/show/1bJRgaFZHuzifad4IAApFR",
+    website: "https://impacttheory.com/podcast",
+  },
+] as const;
+
+function faviconFor(url: string) {
+  try {
+    const u = new URL(url);
+    return `https://www.google.com/s2/favicons?domain=${u.hostname}&sz=128`;
+  } catch {
+    return "https://www.google.com/s2/favicons?domain=example.com&sz=128";
+  }
+}
 
 const TABS = ["digital-products", "books", "certifications", "role-models"] as const;
 type TabKey = (typeof TABS)[number];
@@ -1129,6 +1187,127 @@ const Index = () => {
                 </Button>
               </Card>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Podcasts I Follow — Carousel */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="flex items-end justify-between mb-8 md:mb-12">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold leading-tight text-foreground">
+                Podcasts I Follow <span className="italic">🎙️</span>
+              </h2>
+              <div className="mt-2 h-1.5 w-24 rounded-full bg-primary/30" />
+              <p className="mt-3 text-lg text-muted-foreground">
+                A rolling list of shows I learn from every week
+              </p>
+            </div>
+            <div className="hidden md:flex gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  const rail = document.getElementById("podcast-rail");
+                  if (rail) rail.scrollBy({ left: -340, behavior: "smooth" });
+                }}
+                className="inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-sm hover:bg-muted"
+                aria-label="Previous"
+              >
+                <ChevronLeft className="w-4 h-4" /> Prev
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  const rail = document.getElementById("podcast-rail");
+                  if (rail) rail.scrollBy({ left: 340, behavior: "smooth" });
+                }}
+                className="inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-sm hover:bg-muted"
+                aria-label="Next"
+              >
+                Next <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Rail */}
+          <div
+            id="podcast-rail"
+            className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2 px-1 [-ms-overflow-style:none] [scrollbar-width:none]"
+            style={{ scrollbarWidth: "none" }}
+          >
+            {/* hide scrollbar (WebKit) */}
+            <style>{`#podcast-rail::-webkit-scrollbar{display:none}`}</style>
+
+            {PODCASTS.map((p) => (
+              <div key={p.title} className="snap-start shrink-0 w-[300px] md:w-[340px]">
+                <div className="h-full rounded-2xl border-2 bg-card overflow-hidden hover:shadow-lg transition-shadow">
+                  {/* Image/header */}
+                  <div className="relative h-40 bg-muted flex items-center justify-center">
+                    <img
+                      src={faviconFor(p.website)}
+                      alt={`${p.title} icon`}
+                      className="w-14 h-14 rounded-xl border bg-background"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  {/* Body */}
+                  <div className="p-5">
+                    <p className="text-xs text-muted-foreground mb-1">{p.host}</p>
+                    <h3 className="text-lg font-semibold leading-snug text-foreground line-clamp-2">
+                      {p.title}
+                    </h3>
+
+                    <div className="mt-4 flex items-center justify-between">
+                      <a
+                        href={p.listen}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm font-medium hover:underline"
+                      >
+                        <Mic className="w-4 h-4" />
+                        Listen
+                      </a>
+                      <a
+                        href={p.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+                        aria-label="Website"
+                        title="Website"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Mobile buttons */}
+          <div className="mt-4 flex md:hidden justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                const rail = document.getElementById("podcast-rail");
+                if (rail) rail.scrollBy({ left: -280, behavior: "smooth" });
+              }}
+              className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm hover:bg-muted"
+            >
+              <ChevronLeft className="w-4 h-4" /> Prev
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                const rail = document.getElementById("podcast-rail");
+                if (rail) rail.scrollBy({ left: 280, behavior: "smooth" });
+              }}
+              className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm hover:bg-muted"
+            >
+              Next <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </section>
