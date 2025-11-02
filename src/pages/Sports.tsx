@@ -166,54 +166,78 @@ export default function Sports() {
     try {
       setStLoading(true);
       setStError(null);
-      // ESPN standings endpoint (public, CORS-friendly)
-      const url = `https://site.api.espn.com/apis/v2/sports/basketball/nba/standings?season=${seasonYear}`;
+
+      const url = `https://site.web.api.espn.com/apis/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&region=us&lang=en`;
       const r = await fetch(url, { cache: "no-store" });
       if (!r.ok) throw new Error("standings fetch failed");
       const data = await r.json();
 
-      // ESPN returns groups (Conferences) -> standings -> entries
-      const groups = (data?.children ?? data?.children?.groups ?? data?.children) || data?.children;
-      const byName = new Map<string, any>();
-      (groups ?? []).forEach((g: any) => byName.set((g?.name || g?.abbreviation || "").toLowerCase(), g));
+      const groups: any[] = Array.isArray(data?.children) ? data.children : [];
+      const findGroup = (needle: string) =>
+        groups.find(g => (g?.name || g?.abbreviation || "").toLowerCase().includes(needle));
 
-      const parseConf = (groupKey: "eastern conference" | "western conference"): StandingRow[] => {
-        const g =
-          byName.get(groupKey) || (data?.children || []).find((x: any) => (x?.name || "").toLowerCase() === groupKey);
-        const entries = g?.standings?.entries ?? g?.children?.[0]?.standings?.entries ?? [];
-        const rows: StandingRow[] = entries
-          .map((e: any, idx: number) => {
-            const team = e?.team ?? {};
-            const stats = Object.fromEntries(
-              (e?.stats ?? []).map((s: any) => [String(s?.type || s?.name).toLowerCase(), s?.value ?? s?.displayValue]),
-            );
+      const entriesOf = (g: any) => g?.standings?.entries ?? g?.children?.[0]?.standings?.entries ?? [];
 
-            const wins = Number(stats.wins ?? 0);
-            const losses = Number(stats.losses ?? 0);
-            const pct = Number(stats.winpercent ?? stats.winpercentage ?? stats.pct ?? 0);
-            const gbRaw = (stats.gamesback ?? stats.gb ?? "—") as string;
+      const parseRows = (g: any) => {
+        const entries = entriesOf(g) || [];
+        const rows: StandingRow[] = entries.map((e: any, idx: number) => {
+          const team = e?.team ?? {};
+          const statsArr = e?.stats ?? [];
+          const sMap = new Map<string, any>();
+          statsArr.forEach((s: any) => sMap.set(String(s?.type || s?.name || "").toLowerCase(), s));
 
-            return {
-              rank: Number(e?.rank ?? idx + 1),
-              teamId: String(team?.id ?? ""),
-              team: team?.displayName ?? team?.shortDisplayName ?? "",
-              abbr: team?.abbreviation ?? "",
-              logo: team?.logo || team?.logos?.[0]?.href || team?.logos?.[0]?.url,
-              wins,
-              losses,
-              pct,
-              gb: gbRaw === "0" ? "—" : String(gbRaw),
-            } as StandingRow;
-          })
-          .sort((a, b) => a.rank - b.rank);
-        return rows.slice(0, 15); // safety
+          const num = (key: string) => {
+            const s = sMap.get(key);
+            if (!s) return undefined;
+            return typeof s.value === "number" ? s.value : Number(s.displayValue ?? s.value);
+          };
+          const txt = (key: string) => {
+            const s = sMap.get(key);
+            return (s?.displayValue ?? s?.value ?? "") + "";
+          };
+
+          const wins   = num("wins") ?? 0;
+          const losses = num("losses") ?? 0;
+
+          let pct = num("winpercent");
+          if (pct === undefined) pct = num("winpercentage");
+          if (pct === undefined) pct = num("pct");
+          if (pct === undefined) pct = Number((txt("winpercent") || txt("pct") || "0").replace(/^\.?/, "0."));
+
+          const gb = txt("gamesback") || txt("gamesbehind") || "—";
+
+          const logo =
+            team.logo ||
+            team.logos?.[0]?.href ||
+            team.logos?.[0]?.url ||
+            undefined;
+
+          const rank =
+            Number(e?.rank) ||
+            Number(sMap.get("rankconf")?.value) ||
+            idx + 1;
+
+          return {
+            rank,
+            teamId: String(team.id ?? ""),
+            team: team.displayName ?? team.shortDisplayName ?? "",
+            abbr: team.abbreviation ?? "",
+            logo,
+            wins,
+            losses,
+            pct: typeof pct === "number" && !Number.isNaN(pct) ? pct : 0,
+            gb: gb === "0" ? "—" : gb,
+          } as StandingRow;
+        });
+
+        return rows.sort((a, b) => a.rank - b.rank).slice(0, 15);
       };
 
-      setStandings({
-        east: parseConf("eastern conference"),
-        west: parseConf("western conference"),
-      });
-    } catch {
+      const east = parseRows(findGroup("eastern"));
+      const west = parseRows(findGroup("western"));
+
+      setStandings({ east, west });
+    } catch (e) {
       setStError("Unable to load standings right now.");
     } finally {
       setStLoading(false);
@@ -253,10 +277,10 @@ export default function Sports() {
           0%, 100% { transform: translateY(0) scale(1); }
           50% { transform: translateY(-18px) scale(1.02); }
         }
-        .playoff-cut { border-bottom: 2px dashed rgba(0,0,0,.12); }
-        .playin-cut  { border-bottom: 2px solid rgba(255,138,0,.35); }
-        .dark .playoff-cut { border-bottom-color: rgba(255,255,255,.15); }
-        .dark .playin-cut  { border-bottom-color: rgba(255,180,0,.45); }
+        .cut-8  { border-bottom: 2px dashed rgba(0,0,0,.12); }
+        .cut-10 { border-bottom: 2px dashed rgba(0,0,0,.12); }
+        .dark .cut-8,
+        .dark .cut-10 { border-bottom-color: rgba(255,255,255,.15); }
       `}</style>
 
       {showBall && (
@@ -495,10 +519,10 @@ function StandingsTable({ title, rows }: { title: string; rows: StandingRow[] })
             </tr>
           </thead>
           <tbody>
-            {rows.map((r, i) => {
-              const borderClass = r.rank === 8 ? "playoff-cut" : r.rank === 10 ? "playin-cut" : "";
+            {rows.map((r) => {
+              const borderClass = r.rank === 8 ? "cut-8" : r.rank === 10 ? "cut-10" : "";
               return (
-                <tr key={r.teamId || r.rank} className={`${borderClass}`}>
+                <tr key={r.teamId || r.rank} className={borderClass}>
                   <td className="px-4 py-2 tabular-nums text-muted-foreground">{r.rank}</td>
                   <td className="px-4 py-2">
                     <div className="flex items-center gap-2">
@@ -523,9 +547,6 @@ function StandingsTable({ title, rows }: { title: string; rows: StandingRow[] })
             })}
           </tbody>
         </table>
-      </div>
-      <div className="px-4 py-2 text-xs text-muted-foreground border-t border-black/5 dark:border-white/10">
-        Legend: <span className="font-medium">—</span> leader; dashed line = #8 cutoff; orange line = play-in end (#10).
       </div>
     </div>
   );
