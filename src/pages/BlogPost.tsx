@@ -53,8 +53,7 @@ function VideoOnlyBlock({ iframeSrc }: { iframeSrc?: string }) {
           ) : (
             // Placeholder (you will paste your HeyGen iframe later)
             <div className="text-center p-6 text-sm text-muted-foreground">
-              <div className="mb-2 font-medium">Video coming soon</div>
-              <div className="opacity-80">When you have the HeyGen iframe, paste it here (inside VideoOnlyBlock).</div>
+              <div className="mb-2 font-medium">Video coming soon — I'll add the HeyGen iframe here.</div>
             </div>
           )}
         </div>
