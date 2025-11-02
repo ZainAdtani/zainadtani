@@ -34,7 +34,6 @@ function VideoOnlyBlock({ iframeSrc }: { iframeSrc?: string }) {
     <div className="rounded-xl border bg-card">
       <div className="p-4">
         <h3 className="text-sm font-semibold">Watch or listen — your choice</h3>
-        <p className="text-sm text-muted-foreground">Click to play the video when it’s available.</p>
       </div>
 
       <div className="px-4 pb-4">
@@ -167,7 +166,6 @@ export default function BlogPostPage() {
           <Tabs>
             <div className="p-4">
               <h3 className="text-sm font-semibold">Watch or browse — your choice</h3>
-              <p className="text-sm text-muted-foreground">Click a tab to watch the video or go through the slides.</p>
             </div>
             <TabBlock videoIframeSrc={HEYGEN_IFRAME_SRC} slidesIframeSrc={GAMMA_IFRAME_SRC} />
           </Tabs>
@@ -177,7 +175,7 @@ export default function BlogPostPage() {
       </div>
 
       {/* Content */}
-      <article className="prose dark:prose-invert mt-8 max-w-none text-lg leading-relaxed [&>p]:mb-6 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mt-12 [&>h2]:mb-4 [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:mt-8 [&>h3]:mb-3 [&>ul]:space-y-2 [&>ul]:pl-6 [&>ol]:space-y-2 [&>ol]:pl-6 [&>blockquote]:border-l-4 [&>blockquote]:border-primary/30 [&>blockquote]:bg-muted/30 [&>blockquote]:pl-6 [&>blockquote]:py-3 [&>blockquote]:text-lg [&>blockquote]:italic [&>a]:text-primary [&>a]:no-underline hover:[&>a]:underline [&_img]:rounded-lg [&_img]:border [&_img]:shadow-sm [&_iframe]:rounded-lg [&_iframe]:border [&_iframe]:shadow-sm" style={{ maxWidth: '65ch' }}>
+      <article className="prose prose-lg dark:prose-invert mt-12 max-w-none leading-8 [&>p]:my-5 [&>p]:indent-6 [&>p:first-of-type]:indent-0 [&>*+p:first-of-type]:indent-0 [&>h2+p]:indent-0 [&>h3+p]:indent-0 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mt-10 [&>h2]:mb-3 [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:mt-8 [&>h3]:mb-2 [&>ul]:my-5 [&>ul]:space-y-1.5 [&>ul]:pl-6 [&>ol]:my-5 [&>ol]:space-y-1.5 [&>ol]:pl-6 [&>li>p]:indent-0 [&>blockquote]:border-l-2 [&>blockquote]:border-primary/40 [&>blockquote]:bg-muted/20 [&>blockquote]:pl-5 [&>blockquote]:py-4 [&>blockquote]:my-6 [&>blockquote]:text-lg [&>blockquote]:italic [&>blockquote>p]:indent-0 [&>a]:text-primary [&>a]:no-underline hover:[&>a]:underline [&_img]:rounded-lg [&_img]:border [&_img]:shadow-sm [&_iframe]:rounded-lg [&_iframe]:border [&_iframe]:shadow-sm" style={{ maxWidth: '65ch' }}>
         {post.sections
           ? post.sections.map((sec) => (
               <section key={sec.id} id={sec.id}>
