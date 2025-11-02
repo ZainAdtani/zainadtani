@@ -132,6 +132,12 @@ export default function BlogPostPage() {
   // Embed sources (kept inline per your current approach)
   const HEYGEN_IFRAME_SRC = "https://app.heygen.com/embedded-player/8ba283951a04402f8b9f625377fb3086";
   const GAMMA_IFRAME_SRC = "https://gamma.app/embed/lhmoxndy1b2dtye";
+  
+  // Video-only iframes for other posts
+  const videoIframes: Record<string, string> = {
+    "interrupt-plan": "https://app.heygen.com/embedded-player/822374bf341e4b9f8ad5591bf8d7124b",
+    "tims-tough-journey-teacher": "https://app.heygen.com/embedded-player/0a37b67086c14515a6dba8520cae5452",
+  };
 
   return (
     <main className="container mx-auto px-4 max-w-3xl py-10">
@@ -166,12 +172,12 @@ export default function BlogPostPage() {
             <TabBlock videoIframeSrc={HEYGEN_IFRAME_SRC} slidesIframeSrc={GAMMA_IFRAME_SRC} />
           </Tabs>
         ) : (
-          <VideoOnlyBlock /* later: iframeSrc={YOUR_HEYGEN_URL} */ />
+          <VideoOnlyBlock iframeSrc={videoIframes[slug]} />
         )}
       </div>
 
       {/* Content */}
-      <article className="prose dark:prose-invert mt-8">
+      <article className="prose dark:prose-invert mt-8 max-w-none text-lg leading-relaxed [&>p]:mb-6 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mt-12 [&>h2]:mb-4 [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:mt-8 [&>h3]:mb-3 [&>ul]:space-y-2 [&>ul]:pl-6 [&>ol]:space-y-2 [&>ol]:pl-6 [&>blockquote]:border-l-4 [&>blockquote]:border-primary/30 [&>blockquote]:bg-muted/30 [&>blockquote]:pl-6 [&>blockquote]:py-3 [&>blockquote]:text-lg [&>blockquote]:italic [&>a]:text-primary [&>a]:no-underline hover:[&>a]:underline [&_img]:rounded-lg [&_img]:border [&_img]:shadow-sm [&_iframe]:rounded-lg [&_iframe]:border [&_iframe]:shadow-sm" style={{ maxWidth: '65ch' }}>
         {post.sections
           ? post.sections.map((sec) => (
               <section key={sec.id} id={sec.id}>
