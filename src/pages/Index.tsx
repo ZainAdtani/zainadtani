@@ -64,50 +64,81 @@ const QUOTES_AND_NOTES = [
 ];
 
 // ---- Podcasts I Follow (data) ----
-const PODCASTS = [
+type Podcast = {
+  title: string;
+  host: string;
+  listen: string;
+  website?: string;
+  image?: string | null;
+  embedHtml?: string | null;
+};
+
+const PODCASTS: Podcast[] = [
   {
     title: "Huberman Lab",
     host: "Andrew Huberman",
     listen: "https://open.spotify.com/show/79CkJF3UJTHFV8Dse3Oy0P",
     website: "https://www.hubermanlab.com/podcast",
+    image: "/images/podcasts/huberman-lab.png",
   },
   {
     title: "Ear Biscuits",
     host: "Rhett & Link",
-    listen: "https://open.spotify.com/show/6W1lDKH2AQAB3vmmL5Eu6O",
+    listen: "https://open.spotify.com/show/3j9nu2qpJrUxEXp5qMudM7",
     website: "https://www.youtube.com/@earbiscuits",
+    image: "/images/podcasts/ear-biscuits.png",
+    embedHtml: `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/show/3j9nu2qpJrUxEXp5qMudM7?utm_source=generator&t=420" width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`,
   },
   {
     title: "Morning Brew Daily",
     host: "Morning Brew",
-    listen: "https://open.spotify.com/show/0dV6qgH7YkT9JdE6QxM4O5",
+    listen: "https://open.spotify.com/show/7nc7OQdPTekErtFSRxOBKh",
     website: "https://www.morningbrew.com/podcasts/morning-brew-daily",
+    image: "/images/podcasts/morning-brew-daily.png",
   },
   {
     title: "The Tim Ferriss Show",
     host: "Tim Ferriss",
     listen: "https://open.spotify.com/show/5qSUyCrk9KR69lEiXbjwXM",
     website: "https://tim.blog/podcast/",
+    image: "/images/podcasts/tim-ferriss-show.png",
   },
   {
     title: "Ultimate Human",
     host: "Gary Brecka",
-    listen: "https://open.spotify.com/show/2z8sv2bQ1b1B0qz3t5GQmK",
+    listen: "https://open.spotify.com/show/5Faf5ecAnYW7AzGdblqd6R",
     website: "https://www.ultimatehumanpodcast.com/",
+    image: null,
   },
   {
     title: "On Purpose",
     host: "Jay Shetty",
     listen: "https://open.spotify.com/show/5EqqB52m2bsr4k1Ii7sStc",
     website: "https://jayshetty.me/podcast/",
+    image: "/images/podcasts/on-purpose.png",
   },
   {
     title: "Impact Theory",
     host: "Tom Bilyeu",
-    listen: "https://open.spotify.com/show/1bJRgaFZHuzifad4IAApFR",
+    listen: "https://open.spotify.com/show/1nARKz2vTIOb7gC9dusE4b",
     website: "https://impacttheory.com/podcast",
+    image: "/images/podcasts/impact-theory.png",
   },
-] as const;
+  {
+    title: "The Diary Of A CEO",
+    host: "Steven Bartlett",
+    listen: "https://open.spotify.com/show/7iQXmUT7XGuZSzAMjoNWlX",
+    website: "https://www.diaryofaceo.com/",
+    image: null,
+  },
+  {
+    title: "Brian Windhorst & The Hoop Collective",
+    host: "Brian Windhorst",
+    listen: "https://open.spotify.com/show/4mOLvZqMud0JromeBgLpIh",
+    website: "https://www.espn.com/podcenter/",
+    image: "/images/podcasts/brian-windhorst.png",
+  },
+];
 
 function faviconFor(url: string) {
   try {
@@ -1243,13 +1274,22 @@ const Index = () => {
               <div key={p.title} className="snap-start shrink-0 w-[300px] md:w-[340px]">
                 <div className="h-full rounded-2xl border-2 bg-card overflow-hidden hover:shadow-lg transition-shadow">
                   {/* Image/header */}
-                  <div className="relative h-40 bg-muted flex items-center justify-center">
-                    <img
-                      src={faviconFor(p.website)}
-                      alt={`${p.title} icon`}
-                      className="w-14 h-14 rounded-xl border bg-background"
-                      loading="lazy"
-                    />
+                  <div className="relative h-40 bg-muted flex items-center justify-center overflow-hidden">
+                    {p.image ? (
+                      <img
+                        src={p.image}
+                        alt={`${p.title} cover`}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <img
+                        src={faviconFor(p.website || p.listen)}
+                        alt={`${p.title} icon`}
+                        className="w-14 h-14 rounded-xl border bg-background"
+                        loading="lazy"
+                      />
+                    )}
                   </div>
 
                   {/* Body */}
@@ -1269,17 +1309,29 @@ const Index = () => {
                         <Mic className="w-4 h-4" />
                         Listen
                       </a>
-                      <a
-                        href={p.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
-                        aria-label="Website"
-                        title="Website"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
+                      {p.website && (
+                        <a
+                          href={p.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+                          aria-label="Website"
+                          title="Website"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      )}
                     </div>
+
+                    {/* Optional embed preview */}
+                    {p.embedHtml && (
+                      <details className="mt-3">
+                        <summary className="cursor-pointer text-sm text-muted-foreground hover:text-foreground">
+                          Preview
+                        </summary>
+                        <div className="mt-2" dangerouslySetInnerHTML={{ __html: p.embedHtml }} />
+                      </details>
+                    )}
                   </div>
                 </div>
               </div>
