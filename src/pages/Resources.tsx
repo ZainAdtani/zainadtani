@@ -44,8 +44,8 @@ export default function Resources() {
                   {r.copy && <CopyBlock text={r.copy} />}
                   {r.href && (
                     <Button asChild size="sm">
-                      <a href={r.href} target={r.href.startsWith("/") ? "_self" : "_blank"} rel="noreferrer">
-                        <ExternalLink className="w-4 h-4 mr-2" /> Open
+                      <a href={r.href} target="_blank" rel="noreferrer">
+                        <ExternalLink className="w-4 h-4 mr-2" /> {r.kind === "PDF" ? "Download" : "Open"}
                       </a>
                     </Button>
                   )}
