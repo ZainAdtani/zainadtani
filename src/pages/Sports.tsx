@@ -171,9 +171,17 @@ export default function Sports() {
       setStLoading(true);
       setStError(null);
 
-      const url = `https://site.web.api.espn.com/apis/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&group=conference&section=overall&_=${Date.now()}`;
-      const r = await fetch(url, { cache: "no-store" });
-      if (!r.ok) throw new Error("standings fetch failed");
+      // Try primary CORS-friendly endpoint first
+      let url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&region=us&lang=en`;
+      let r = await fetch(url, { cache: "no-store" });
+      
+      // Fallback to web API if primary fails
+      if (!r.ok) {
+        url = `https://site.web.api.espn.com/apis/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&group=conference&section=overall&region=us&lang=en`;
+        r = await fetch(url, { cache: "no-store" });
+        if (!r.ok) throw new Error("standings fetch failed");
+      }
+      
       const data = await r.json();
 
       const groups: any[] = Array.isArray(data?.children) ? data.children : [];
