@@ -1,25 +1,23 @@
 import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Home, Play, Download, ExternalLink } from "lucide-react";
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Play, Download, ExternalLink } from "lucide-react";
 
 type Missionary = {
   id: string;
   name: string;
   alias?: string;
-  portrait?: string;
+  images?: string[];
   shortBio: string;
   bullets?: string[];
   links?: { label: string; url: string }[];
@@ -35,6 +33,7 @@ type Recording = {
   srcType: "mp3" | "gdrive" | "external";
   src: string;
   notes?: string;
+  listened?: boolean;
 };
 
 const MISSIONARIES: Missionary[] = [
@@ -42,7 +41,12 @@ const MISSIONARIES: Missionary[] = [
     id: "abu-ali",
     name: "Rai Dr. Abualy Alibhai Aziz",
     alias: "Abu Ali",
-    portrait: "/images/waez/abu-ali.jpg",
+    images: [
+      "/images/waez/abu-ali-1.png",
+      "/images/waez/abu-ali-2.png",
+      "/images/waez/abu-ali-3.png",
+      "/images/waez/abu-ali-4.png",
+    ],
     shortBio: "Global missionary and scholar whose 10,000+ lectures emphasized contemplation, discipline, and a purposeful life.",
     bullets: [
       "Born 1919 (Amritsar, India); delivered waez worldwide across eight decades.",
@@ -65,7 +69,8 @@ const RECORDINGS: Recording[] = [
     tags: ["Waez", "1991"],
     srcType: "mp3",
     src: "/media/waez-131-april-24-1991.mp3",
-    notes: "Recorded in Toronto, Canada"
+    notes: "Recorded in Toronto, Canada",
+    listened: true
   }
 ];
 
@@ -79,6 +84,10 @@ function getStreamAndDownload(r: Recording) {
   return { stream: null, download: r.src };
 }
 
+function normalizeDigits(s: string) {
+  return (s.match(/\d+/g) || []).join("");
+}
+
 export default function Waez() {
   const [searchQuery, setSearchQuery] = useState("");
   const [playingId, setPlayingId] = useState<string | null>(null);
@@ -86,22 +95,19 @@ export default function Waez() {
   const filteredRecordings = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
     if (!q) return RECORDINGS;
+    const qDigits = normalizeDigits(q);
     return RECORDINGS.filter((r) => {
+      const titleDigits = normalizeDigits(r.title);
       return (
         r.title.toLowerCase().includes(q) ||
         r.speaker.toLowerCase().includes(q) ||
         r.alias?.toLowerCase().includes(q) ||
         r.dateISO?.includes(q) ||
-        r.tags?.some((t) => t.toLowerCase().includes(q))
+        r.tags?.some((t) => t.toLowerCase().includes(q)) ||
+        (titleDigits === qDigits && qDigits.length > 0)
       );
     });
   }, [searchQuery]);
-
-  const today = new Date().toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-accent/5 to-background">
@@ -115,41 +121,10 @@ export default function Waez() {
       </Helmet>
 
       <div className="max-w-5xl mx-auto px-4 py-12">
-        {/* Breadcrumb */}
-        <Breadcrumb className="mb-8">
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link to="/" className="flex items-center gap-1">
-                  <Home className="w-4 h-4" />
-                  Home
-                </Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>Waez</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-
-        <div className="mb-4">
-          <Button variant="ghost" size="sm" asChild>
-            <Link to="/" className="flex items-center gap-1">
-              Back to Home
-            </Link>
-          </Button>
-        </div>
-
         {/* Hero Section */}
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-br from-primary via-primary/80 to-accent bg-clip-text text-transparent">
-            Waez Timeline
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            A journey through the teachings of Rai Dr. Abualy Alibhai Aziz
-          </p>
-        </div>
+        <header className="mb-8">
+          <h1 className="text-5xl md:text-6xl font-bold text-foreground">Waez</h1>
+        </header>
 
         <div className="space-y-12">
           {/* Missionary Spotlight */}
@@ -161,29 +136,36 @@ export default function Waez() {
                 className="rounded-2xl border bg-white/90 dark:bg-white/[.06] dark:border-white/10 p-6 md:p-8"
               >
                 <div className="flex flex-col md:flex-row gap-6 md:items-start">
-                  {missionary.portrait && (
-                    <img
-                      src={missionary.portrait}
-                      alt={missionary.name}
-                      className="w-28 h-28 md:w-36 md:h-36 rounded-xl object-cover bg-white/30 dark:bg-white/10"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = "none";
-                      }}
-                    />
+                  {missionary.images && missionary.images.length > 0 && (
+                    <div className="w-full md:w-48 shrink-0">
+                      <Carousel className="w-full">
+                        <CarouselContent>
+                          {missionary.images.map((img, idx) => (
+                            <CarouselItem key={idx}>
+                              <img
+                                src={img}
+                                alt={`${missionary.name} - ${idx + 1}`}
+                                className="w-full h-48 md:h-56 rounded-xl object-cover bg-white/30 dark:bg-white/10"
+                                onError={(e) => {
+                                  (e.target as HTMLImageElement).style.display = "none";
+                                }}
+                              />
+                            </CarouselItem>
+                          ))}
+                        </CarouselContent>
+                        <CarouselPrevious />
+                        <CarouselNext />
+                      </Carousel>
+                    </div>
                   )}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-4 mb-3">
-                      <div>
-                        <h3 className="text-2xl font-bold">{missionary.name}</h3>
-                        {missionary.alias && (
-                          <p className="text-sm text-muted-foreground mt-1">
-                            Known as "{missionary.alias}"
-                          </p>
-                        )}
-                      </div>
-                      <Badge variant="outline" className="shrink-0 bg-amber-50 text-amber-900 dark:bg-amber-900/20 dark:text-amber-50 border-amber-200 dark:border-amber-800">
-                        Updated: {today}
-                      </Badge>
+                    <div className="mb-3">
+                      <h3 className="text-2xl font-bold">{missionary.name}</h3>
+                      {missionary.alias && (
+                        <p className="text-sm text-muted-foreground mt-1">
+                          Known as "{missionary.alias}"
+                        </p>
+                      )}
                     </div>
                     <p className="text-base leading-relaxed mb-4">{missionary.shortBio}</p>
                     {missionary.bullets && missionary.bullets.length > 0 && (
@@ -200,7 +182,7 @@ export default function Waez() {
                             key={idx}
                             href={link.url}
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel="noreferrer"
                             className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-sm border dark:border-white/10 hover:bg-white/50 dark:hover:bg-white/10 transition-colors"
                           >
                             {link.label}
@@ -244,9 +226,19 @@ export default function Waez() {
                     >
                       <div className="space-y-3">
                         <div>
-                          <h3 className="font-bold text-base leading-tight mb-2">
-                            {recording.title}
-                          </h3>
+                          <div className="flex items-center gap-2 mb-2">
+                            <h3 className="font-bold text-base leading-tight">
+                              {recording.title}
+                            </h3>
+                            {recording.listened && (
+                              <Badge
+                                variant="outline"
+                                className="shrink-0 border-emerald-500/30 text-emerald-700 bg-emerald-50 dark:text-emerald-200 dark:bg-emerald-900/30"
+                              >
+                                Listened
+                              </Badge>
+                            )}
+                          </div>
                           <p className="text-xs text-muted-foreground">
                             {recording.alias || recording.speaker}
                             {recording.dateISO && (
