@@ -90,4 +90,127 @@ export const AI_PROMPTS: AIPrompt[] = [
     prompt:
 `I'm learning {topic}. Here's my current understanding: <text>. Critique it—strengths, weaknesses, likely misconceptions, and next concepts to study.`,
   },
+  // Additional Construct prompts
+  {
+    id: 11,
+    title: "Construct: 10 Key Concepts List",
+    category: "Learning",
+    tags: ["roadmap","beginner"],
+    prompt:
+`Give me a bullet list of the 10 most important concepts to start learning as a complete beginner to the topic of XX. Briefly define each concept and then explain to me why I should learn them in this order.`,
+  },
+  {
+    id: 12,
+    title: "Construct: Simple Explanation + Big Picture",
+    category: "Learning",
+    tags: ["fundamentals","context"],
+    prompt:
+`Explain the concept of XX in simple terms for a beginner. Then explain how it relates to the big picture of XX.`,
+  },
+  {
+    id: 13,
+    title: "Construct: Next Learning Path",
+    category: "Learning",
+    tags: ["roadmap","progression"],
+    prompt:
+`I just started learning about the topic of XX. Which concepts should I learn next and in which order to get a more well-rounded perspective of the topic?`,
+  },
+  // Additional Connect prompts
+  {
+    id: 14,
+    title: "Connect: Relate to Other Concepts",
+    category: "Learning",
+    tags: ["relationships","understanding"],
+    prompt:
+`I'm having trouble understanding the concept of XX and how it relates to [other concepts]. Explain it to me in simple terms and then explain how it relates to these other concepts.`,
+  },
+  {
+    id: 15,
+    title: "Connect: 3 Examples + Use Cases",
+    category: "Learning",
+    tags: ["examples","practical"],
+    prompt:
+`I'm having difficulty understanding XX. Explain it to me in simple terms and provide 3 examples and real world use cases to help me understand it better.`,
+  },
+  {
+    id: 16,
+    title: "Connect: Compare & Contrast Table",
+    category: "Learning",
+    tags: ["comparison","analysis"],
+    prompt:
+`Create a table to compare and contrast XX, XX, XX. Then explain why the relationship between these concepts is important and how it helps me understand [big picture concept] as a whole.`,
+  },
+  {
+    id: 17,
+    title: "Connect: Explore Related Concepts",
+    category: "Learning",
+    tags: ["depth","connections"],
+    prompt:
+`I understand that the concept of XX is related to XX because of XX. Help me explore related concepts to XX that would create a more well rounded understanding of it and explain why.`,
+  },
+  {
+    id: 18,
+    title: "Connect: Multiple Perspectives",
+    category: "Learning",
+    tags: ["perspective","depth"],
+    prompt:
+`You are an expert in XX topic. I just learned that XX is XX and relates to the concepts of XX in XX way. Give me other perspectives I can look at XX to get a more complete and well-rounded understanding.`,
+  },
+  {
+    id: 19,
+    title: "Connect: Industry Implications",
+    category: "Learning",
+    tags: ["application","context"],
+    prompt:
+`Discuss the implications of XX on XX industry / relevant field.`,
+  },
+  // Additional Challenge prompts
+  {
+    id: 20,
+    title: "Challenge: Critical Evaluation",
+    category: "Learning",
+    tags: ["critical thinking","analysis"],
+    prompt:
+`You are an expert at XX. Guide me in critically evaluating the strengths and weaknesses of [theory, concept, or argument] related to [topic]?`,
+  },
+  {
+    id: 21,
+    title: "Challenge: Analyze Consequences",
+    category: "Learning",
+    tags: ["analysis","implications"],
+    prompt:
+`Help me analyze the implications and potential consequences of [topic] in [specific context].`,
+  },
+  {
+    id: 22,
+    title: "Challenge: Develop Argument",
+    category: "Learning",
+    tags: ["reasoning","perspective"],
+    prompt:
+`Provide different perspectives on [topic] and help me develop a well-reasoned argument.`,
+  },
+  {
+    id: 23,
+    title: "Challenge: Practice Test",
+    category: "Learning",
+    tags: ["testing","evaluation"],
+    prompt:
+`You are an expert professor in XX. Create a 10 question short answer practice test on the topics of XX to evaluate how well I understand why this topic is important.`,
+  },
+  {
+    id: 24,
+    title: "Challenge: Test Answers + Explanations",
+    category: "Learning",
+    tags: ["feedback","learning"],
+    prompt:
+`Thanks I just took the test. Now provide me with the answers along with detailed explanations about why the answers are correct and common pitfalls that students make who answer them incorrectly.`,
+  },
+  {
+    id: 25,
+    title: "Challenge: Thought Process Check",
+    category: "Learning",
+    tags: ["self-assessment","feedback"],
+    prompt:
+`I am learning about XX. Is my thought process for this topic accurate? What are the strengths of my understanding and weaknesses of my understanding. And what are other concepts I should consider to form a well rounded perspective?`,
+  },
 ];
