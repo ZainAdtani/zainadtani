@@ -607,6 +607,33 @@ const LOCAL_BOOKS: Book[] = [
     author: 'Sahil Bloom',
     status: 'TBR',
     link: 'https://www.amazon.com/Types-Wealth-Transformative-Guide-Design/dp/059372318X'
+  },
+  {
+    id: 'chicken-soup-20th-anniversary',
+    title: 'Chicken Soup for the Soul: 20th Anniversary Edition',
+    author: 'Chicken Soup for the Soul; Jack Canfield; Mark Victor Hansen',
+    status: 'TBR',
+    tags: ['Self-Improvement', 'Inspirational'],
+    link: 'https://www.amazon.com/Chicken-Soup-Soul-20th-Anniversary-ebook/dp/B012YEQS3W/?tag=eng2ea-20',
+    cover: '/book-covers/chicken-soup-20th-anniversary.jpg'
+  },
+  {
+    id: 'chicken-soup-laughter-medicine',
+    title: 'Chicken Soup for the Soul: Laughter Is the Best Medicine',
+    author: 'Chicken Soup for the Soul; Amy Newmark',
+    status: 'TBR',
+    tags: ['Self-Improvement', 'Inspirational', 'Humor'],
+    link: 'https://www.amazon.com/Chicken-Soup-Soul-Laughter-Medicine-ebook/dp/B07V1HXF3P/?tag=eng2ea-20',
+    cover: '/book-covers/chicken-soup-laughter-medicine.jpg'
+  },
+  {
+    id: 'chicken-soup-inspirational-blessings',
+    title: 'Chicken Soup for the Soul: Inspirational Stories & Blessings',
+    author: 'Chicken Soup for the Soul',
+    status: 'TBR',
+    tags: ['Self-Improvement', 'Inspirational'],
+    link: 'https://www.amazon.com/Chicken-Soup-Soul-Inspirational-Blessings-ebook/dp/B004ASOYCI/?tag=eng2ea-20',
+    cover: '/book-covers/chicken-soup-inspirational-blessings.jpg'
   }
 ];
 
