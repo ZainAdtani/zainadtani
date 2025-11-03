@@ -73,6 +73,15 @@ const SUBS: Sub[] = [
     nextDueISO: "2026-10-23",
     bucket: "Work",
   },
+  {
+    name: "Gamma (Plus)",
+    cadence: "Yearly",
+    amount: 96,
+    payer: "American Express •••• 1034",
+    note: "Plus Annual • Current subscription: Plus • Next billing date: 05/28/2026",
+    nextDueISO: "2026-05-28",
+    bucket: "Work",
+  },
 ];
 
 // ---------- component ----------
