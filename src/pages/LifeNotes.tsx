@@ -12,9 +12,32 @@ export default function LifeNotes() {
     const t = q.trim().toLowerCase();
     if (!t) return LIFE_NOTES;
     return LIFE_NOTES.filter(n =>
-      [n.title, n.text, n.tags.join(" "), n.source].filter(Boolean).join(" ").toLowerCase().includes(t)
+      [n.title, n.body, n.tags.join(" "), n.section].filter(Boolean).join(" ").toLowerCase().includes(t)
     );
   }, [q]);
+
+  const sectionOrder = [
+    "Education & Career",
+    "Productivity",
+    "Mindset",
+    "Health",
+    "Standards",
+    "Compassion & Perspective",
+    "Confidence",
+    "Courage",
+    "Growth & Change"
+  ];
+
+  const grouped = useMemo(() => {
+    const map = new Map<string, typeof list>();
+    list.forEach(n => {
+      if (!map.has(n.section)) map.set(n.section, []);
+      map.get(n.section)!.push(n);
+    });
+    return sectionOrder
+      .filter(s => map.has(s))
+      .map(s => ({ section: s, notes: map.get(s)! }));
+  }, [list]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -27,21 +50,30 @@ export default function LifeNotes() {
           <Input value={q} onChange={(e)=>setQ(e.target.value)} placeholder="Search notes…" className="h-11" />
         </div>
 
-        <div className="grid gap-4">
-          {list.map((n) => (
-            <Card key={n.id} className="p-5 rounded-2xl border">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    {n.tags.map(t => <Badge key={t} variant="outline">{t}</Badge>)}
-                  </div>
-                  <h2 className="text-lg font-semibold">{n.title}</h2>
-                  <p className="text-sm text-muted-foreground mt-1 whitespace-pre-wrap">{n.text}</p>
-                  {n.source && <p className="text-xs text-muted-foreground mt-2">Source: {n.source}</p>}
-                </div>
-                <CopyBlock text={n.text} />
+        <div className="space-y-8">
+          {grouped.map(({ section, notes }) => (
+            <div key={section}>
+              <h2 className="text-2xl font-bold mb-4">{section}</h2>
+              <div className="grid gap-4">
+                {notes.map((n, idx) => {
+                  const preview = n.body.length > 140 ? n.body.slice(0, 140) + "…" : n.body;
+                  return (
+                    <Card key={`${section}-${idx}`} className="p-5 rounded-2xl border">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-2 mb-1">
+                            {n.tags.map(t => <Badge key={t} variant="outline">{t}</Badge>)}
+                          </div>
+                          <h3 className="text-lg font-semibold">{n.title}</h3>
+                          <p className="text-sm text-muted-foreground mt-1">{preview}</p>
+                        </div>
+                        <CopyBlock text={n.body} />
+                      </div>
+                    </Card>
+                  );
+                })}
               </div>
-            </Card>
+            </div>
           ))}
         </div>
       </main>
