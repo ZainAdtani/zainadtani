@@ -25,6 +25,9 @@ import BlogPost from "./pages/BlogPost";
 import Resources from "./pages/Resources";
 import AIPrompts from "./pages/AIPrompts";
 import LifeNotes from "./pages/LifeNotes";
+import QuickBooks from "./pages/QuickBooks";
+import QuickBooksFastTrack from "./pages/QuickBooksFastTrack";
+import QuickBooksCleanup from "./pages/QuickBooksCleanup";
 
 const queryClient = new QueryClient();
 
@@ -56,6 +59,9 @@ const App = () => (
             <Route path="/resources" element={<Resources />} />
             <Route path="/ai-prompts" element={<AIPrompts />} />
             <Route path="/life-notes" element={<LifeNotes />} />
+            <Route path="/quickbooks" element={<QuickBooks />} />
+            <Route path="/quickbooks/fast-track" element={<QuickBooksFastTrack />} />
+            <Route path="/quickbooks/cleanup" element={<QuickBooksCleanup />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

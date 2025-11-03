@@ -1,4 +1,4 @@
-import { Home, GraduationCap, TrendingUp, Wrench, Lock, ShoppingBag, Trophy, BookOpen, Music, HelpCircle, Search, ChevronDown, FolderKanban, FileText, Paperclip, Zap, StickyNote } from "lucide-react";
+import { Home, GraduationCap, TrendingUp, Wrench, Lock, ShoppingBag, Trophy, BookOpen, Music, HelpCircle, Search, ChevronDown, FolderKanban, FileText, Paperclip, Zap, StickyNote, Calculator } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
   Sidebar,
@@ -41,6 +41,7 @@ const searchIndex: SearchableItem[] = [
   { title: "Resources", route: "/resources", section: "Resources", tags: ["PDFs", "tools", "quick reference"] },
   { title: "AI Prompts", route: "/ai-prompts", section: "Resources", tags: ["prompts", "coaching", "productivity"] },
   { title: "Life Notes", route: "/life-notes", section: "Resources", tags: ["quotes", "wisdom", "mindset"] },
+  { title: "QuickBooks", route: "/quickbooks", section: "Resources", tags: ["training", "bookkeeping", "cleanup"] },
   { title: "Tools", route: "/tools", section: "Resources", tags: ["utilities"] },
   { title: "Sports", route: "/sports", section: "Resources", tags: ["NBA", "scores"] },
   { title: "Waez", route: "/waez", section: "Resources", tags: ["religious", "lectures", "Abu Ali"] },
@@ -282,6 +283,14 @@ export function AppSidebar() {
                   <NavLink to="/life-notes" className={getNavClass}>
                     <StickyNote className="h-4 w-4" />
                     {!isCollapsed && <span>Life Notes</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/quickbooks" className={getNavClass}>
+                    <Calculator className="h-4 w-4" />
+                    {!isCollapsed && <span>QuickBooks</span>}
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
