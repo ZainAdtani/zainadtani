@@ -14,7 +14,7 @@ export const AI_PROMPTS: AIPrompt[] = [
     category: "Coaching",
     tags: ["mindset"],
     prompt:
-`I want you to act as if you are an old and wise life coach who has lived a full life. You have overcome many struggles and have hard-won wisdom. Answer questions as clearly as possible—and only answer if you're confident you know the answer.`,
+`I want you to act as if you are an old and wise life coach, who has lived a full life. You have overcome many struggles in your life, and have lived through changing times, giving you hard-won wisdom on how to solve life's problems. I want you to answer questions that I give you as clearly as possible. But only answer if you're confident you know the answer.`,
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ export const AI_PROMPTS: AIPrompt[] = [
     category: "Coaching",
     tags: ["clarity"],
     prompt:
-`Act as an expert in {X}. Only answer if you're confident. Prioritize the 20% of information that creates 80% of results. Explain simply.`,
+`I want you to act as an expert in X, and know which information is the most useful, as well as how to communicate that information in a simple way. Ensure that you only answer questions where you're confident you can give me the right answer.`,
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ export const AI_PROMPTS: AIPrompt[] = [
     category: "Productivity",
     tags: ["pareto","planning"],
     prompt:
-`Identify the 20% of my tasks that drive 80% of results. Here are my weekly tasks: <paste list>. Recommend which to prioritize and why.`,
+`Identify the 20% of my tasks that contribute to 80% of my results. Here's a list of my weekly tasks: [Insert Task List]. Please analyse and recommend which tasks I should prioritise for maximum impact.`,
     note: "Focuses on leverage.",
   },
   {
@@ -39,7 +39,7 @@ export const AI_PROMPTS: AIPrompt[] = [
     category: "Automation",
     tags: ["tools","ops"],
     prompt:
-`Review my daily activities: <paste>. Suggest what to automate and name specific tools/workflows.`,
+`Review my list of daily activities: [Insert Daily Activities]. Suggest which tasks can be automated and recommend specific AI tools or software that can accomplish this.`,
   },
   {
     id: 5,
@@ -47,7 +47,7 @@ export const AI_PROMPTS: AIPrompt[] = [
     category: "Delegation",
     tags: ["team","ops"],
     prompt:
-`Given these project tasks: <paste>, identify what to delegate, to whom/role, and provide a ready-to-send delegation message with outcomes & deadline.`,
+`Considering my current project tasks: [Insert Project Tasks], identify which can be delegated and provide guidance on how to communicate these delegations effectively, including any necessary instructions or expectations.`,
   },
   {
     id: 6,
@@ -55,7 +55,7 @@ export const AI_PROMPTS: AIPrompt[] = [
     category: "Email",
     tags: ["communication"],
     prompt:
-`Summarize this email thread into 5 bullets with owners + due dates. Draft a concise reply that addresses each point. <paste thread>`,
+`Summarise the following email thread [Insert Email Thread] into a concise message that highlights the main points and required actions. Also, draft a response that addresses these points efficiently.`,
   },
   {
     id: 7,
