@@ -11,7 +11,16 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Play, Download, ExternalLink } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Play, Download, FileText, Copy, Square } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 type Missionary = {
   id: string;
@@ -61,6 +70,17 @@ const MISSIONARIES: Missionary[] = [
 
 const RECORDINGS: Recording[] = [
   {
+    id: "14",
+    title: "#14 — April 28, 1991 — Abu Ali — BAITUL KHAYAL",
+    speaker: "Rai Dr. Abualy Alibhai Aziz",
+    alias: "Abu Ali",
+    dateISO: "1991-04-28",
+    tags: ["Waez", "1991", "Baitul Khayal"],
+    srcType: "mp3",
+    src: "/media/waez-14-april-28-1991.mp3",
+    listened: false
+  },
+  {
     id: "131",
     title: "#131 — April 24, 1991 — Abu Ali",
     speaker: "Rai Dr. Abualy Alibhai Aziz",
@@ -71,6 +91,18 @@ const RECORDINGS: Recording[] = [
     src: "/media/waez-131-april-24-1991.mp3",
     notes: "Recorded in Toronto, Canada",
     listened: true
+  },
+  {
+    id: "canada-akh",
+    title: "Canada Youth Address — Imam (Aga Khan IV)",
+    speaker: "Shah Karim al-Hussaini (Aga Khan IV)",
+    alias: "Imam",
+    dateISO: "",
+    tags: ["Canada", "Youth", "Address"],
+    srcType: "mp3",
+    src: "/media/canada-youth-address-imam.mp3",
+    notes: "The Imam urges the youth of his Jamat in Canada to build a strong, united foundation rooted in faith and values. He reminds them not to react with anger to misunderstandings about Islam but to respond with wisdom and dignity. He emphasizes preserving family unity, making good choices, and staying true to Islamic principles—so future generations can thrive in Canada. He ends with his special blessings and a call to think long-term about the legacy they are creating.",
+    listened: false
   }
 ];
 
@@ -137,7 +169,7 @@ export default function Waez() {
               >
                 <div className="flex flex-col md:flex-row gap-6 md:items-start">
                   {missionary.images && missionary.images.length > 0 && (
-                    <div className="w-full md:w-48 shrink-0">
+                    <div className="w-full md:w-48 shrink-0 relative">
                       <Carousel className="w-full">
                         <CarouselContent>
                           {missionary.images.map((img, idx) => (
@@ -153,8 +185,8 @@ export default function Waez() {
                             </CarouselItem>
                           ))}
                         </CarouselContent>
-                        <CarouselPrevious />
-                        <CarouselNext />
+                        <CarouselPrevious className="left-2" />
+                        <CarouselNext className="right-2" />
                       </Carousel>
                     </div>
                   )}
@@ -169,27 +201,11 @@ export default function Waez() {
                     </div>
                     <p className="text-base leading-relaxed mb-4">{missionary.shortBio}</p>
                     {missionary.bullets && missionary.bullets.length > 0 && (
-                      <ul className="list-disc list-inside space-y-1 text-sm opacity-80 mb-4">
+                      <ul className="list-disc list-inside space-y-1 text-sm opacity-80">
                         {missionary.bullets.map((bullet, idx) => (
                           <li key={idx}>{bullet}</li>
                         ))}
                       </ul>
-                    )}
-                    {missionary.links && missionary.links.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
-                        {missionary.links.map((link, idx) => (
-                          <a
-                            key={idx}
-                            href={link.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-sm border dark:border-white/10 hover:bg-white/50 dark:hover:bg-white/10 transition-colors"
-                          >
-                            {link.label}
-                            <ExternalLink className="w-3 h-3" />
-                          </a>
-                        ))}
-                      </div>
                     )}
                   </div>
                 </div>
@@ -264,22 +280,24 @@ export default function Waez() {
                           </div>
                         )}
 
-                        {recording.notes && (
-                          <p className="text-xs text-muted-foreground italic">
-                            {recording.notes}
-                          </p>
-                        )}
-
-                        <div className="flex gap-2">
+                        <div className="flex flex-wrap gap-2">
                           {stream && (
                             <Button
                               size="sm"
                               variant={isPlaying ? "secondary" : "default"}
                               onClick={() => setPlayingId(isPlaying ? null : recording.id)}
-                              className="flex-1"
                             >
-                              <Play className="w-3 h-3 mr-1" />
-                              {isPlaying ? "Hide" : "Play"}
+                              {isPlaying ? (
+                                <>
+                                  <Square className="w-3 h-3 mr-1" />
+                                  Hide
+                                </>
+                              ) : (
+                                <>
+                                  <Play className="w-3 h-3 mr-1" />
+                                  Play
+                                </>
+                              )}
                             </Button>
                           )}
                           <Button size="sm" variant="outline" asChild>
@@ -288,6 +306,40 @@ export default function Waez() {
                               Download
                             </a>
                           </Button>
+                          {recording.notes && (
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <Button size="sm" variant="outline">
+                                  <FileText className="w-3 h-3 mr-1" />
+                                  View Notes
+                                </Button>
+                              </DialogTrigger>
+                              <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                                <DialogHeader>
+                                  <DialogTitle>{recording.title}</DialogTitle>
+                                  <DialogDescription>Recording notes</DialogDescription>
+                                </DialogHeader>
+                                <div className="mt-4 text-sm leading-relaxed">
+                                  {recording.notes}
+                                </div>
+                                <div className="flex gap-2 mt-6">
+                                  <Button
+                                    variant="outline"
+                                    onClick={() => {
+                                      navigator.clipboard.writeText(recording.notes || "");
+                                      toast({
+                                        title: "Copied!",
+                                        description: "Notes copied to clipboard",
+                                      });
+                                    }}
+                                  >
+                                    <Copy className="w-4 h-4 mr-2" />
+                                    Copy Notes
+                                  </Button>
+                                </div>
+                              </DialogContent>
+                            </Dialog>
+                          )}
                         </div>
 
                         {isPlaying && stream && (
