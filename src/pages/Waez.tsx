@@ -1,254 +1,107 @@
-import { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { 
-  BookOpen, 
-  Sparkles, 
-  Heart, 
-  CheckCircle, 
-  Link as LinkIcon,
-  Home as HomeIcon,
-  ArrowLeft,
-  Copy,
-  Check
-} from "lucide-react";
+import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { Home, Play, Download, ExternalLink } from "lucide-react";
 
-// Timeline step data structure
-type TimelineStep = {
+type Missionary = {
   id: string;
-  icon: React.ElementType;
-  badge?: string;
-  heading: string;
-  body: string[];
-  color: string;
-  copyable?: string; // Optional text to copy (for duas/quotes)
-  resources?: Array<{ label: string; url: string }>;
+  name: string;
+  alias?: string;
+  portrait?: string;
+  shortBio: string;
+  bullets?: string[];
+  links?: { label: string; url: string }[];
 };
 
-const TIMELINE_STEPS: TimelineStep[] = [
+type Recording = {
+  id: string;
+  title: string;
+  speaker: string;
+  alias?: string;
+  dateISO?: string;
+  tags?: string[];
+  srcType: "mp3" | "gdrive" | "external";
+  src: string;
+  notes?: string;
+};
+
+const MISSIONARIES: Missionary[] = [
   {
-    id: "opening",
-    icon: BookOpen,
-    badge: "Introduction",
-    heading: "Why this Waez matters",
-    body: [
-      "A curated collection of talks from Rai Dr. Abualy Alibhai Aziz (Abu Ali), focused on spiritual practice, contemplation, and living with purpose.",
-      "These teachings offer timeless wisdom on cultivating inner awareness and connecting with higher meaning."
+    id: "abu-ali",
+    name: "Rai Dr. Abualy Alibhai Aziz",
+    alias: "Abu Ali",
+    portrait: "/images/waez/abu-ali.jpg",
+    shortBio: "Global missionary and scholar whose 10,000+ lectures emphasized contemplation, discipline, and a purposeful life.",
+    bullets: [
+      "Born 1919 (Amritsar, India); delivered waez worldwide across eight decades.",
+      "Known for clarity, structure, and practical spiritual guidance."
     ],
-    color: "bg-blue-500/10 border-blue-500/20"
-  },
-  {
-    id: "origin",
-    icon: BookOpen,
-    badge: "Early Life",
-    heading: "Origin",
-    body: [
-      "Born in Amritsar, India (1919), Abu Ali dedicated his life to religious service from an early age.",
-      "He traveled extensively, delivering over 10,000 lectures worldwide across eight decades."
-    ],
-    color: "bg-emerald-500/10 border-emerald-500/20"
-  },
-  {
-    id: "turning-point",
-    icon: Sparkles,
-    badge: "Turning Point",
-    heading: "A Life of Service",
-    body: [
-      "His clarity, discipline, and devotion made him one of the most recognized missionaries of the 20th century.",
-      "Thousands of recordings preserve his legacy, offering guidance for future generations."
-    ],
-    color: "bg-amber-500/10 border-amber-500/20"
-  },
-  {
-    id: "lesson",
-    icon: Heart,
-    badge: "Key Lesson",
-    heading: "The Power of Contemplation",
-    body: [
-      "Bait-ul-Khayal—a practice of contemplative reflection—helps cultivate inner awareness, gratitude, and spiritual discipline.",
-      "Through structured thought exercises, we connect with higher purpose and meaning in daily life."
-    ],
-    color: "bg-rose-500/10 border-rose-500/20",
-    copyable: "Ya Ali Madad - May divine grace guide us in our reflections"
-  },
-  {
-    id: "action",
-    icon: CheckCircle,
-    badge: "Try This",
-    heading: "Practical Takeaways",
-    body: [
-      "Start with 5 minutes of daily contemplation—reflect on your purpose, gratitude, and spiritual goals.",
-      "Listen to one short waez this week and apply its teachings to your daily routine.",
-      "Share insights with your community to deepen understanding through dialogue."
-    ],
-    color: "bg-violet-500/10 border-violet-500/20"
-  },
-  {
-    id: "resources",
-    icon: LinkIcon,
-    badge: "Further Study",
-    heading: "Resources & Links",
-    body: [
-      "Explore the full collection of lectures and notes to deepen your practice."
-    ],
-    color: "bg-indigo-500/10 border-indigo-500/20",
-    resources: [
+    links: [
       { label: "Khoja Wiki", url: "https://khojawiki.org" },
-      { label: "Ismaili Heritage", url: "https://ismailiheritage.org" },
-      { label: "UTM Collections", url: "https://utm.utoronto.ca" },
-      { label: "Learn about Bait-ul-Khayal", url: "https://www.youtube.com/results?search_query=bait+ul+khayal+ismaili" }
+      { label: "Ismaili Heritage", url: "https://ismailiheritage.org" }
     ]
   }
 ];
 
-function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false);
+const RECORDINGS: Recording[] = [
+  {
+    id: "131",
+    title: "#131 — April 24, 1991 — Abu Ali",
+    speaker: "Rai Dr. Abualy Alibhai Aziz",
+    alias: "Abu Ali",
+    dateISO: "1991-04-24",
+    tags: ["Waez", "1991"],
+    srcType: "mp3",
+    src: "/media/waez-131-april-24-1991.mp3",
+    notes: "Recorded in Toronto, Canada"
+  }
+];
 
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <Button
-      variant="ghost"
-      size="sm"
-      onClick={handleCopy}
-      className="gap-2"
-      aria-label={copied ? "Copied" : "Copy to clipboard"}
-    >
-      {copied ? (
-        <>
-          <Check className="w-4 h-4" />
-          Copied!
-        </>
-      ) : (
-        <>
-          <Copy className="w-4 h-4" />
-          Copy
-        </>
-      )}
-    </Button>
-  );
-}
-
-function TimelineCard({ step, index }: { step: TimelineStep; index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      setIsVisible(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [prefersReducedMotion]);
-
-  const Icon = step.icon;
-
-  return (
-    <div
-      ref={cardRef}
-      className={`relative transition-all duration-500 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      }`}
-      style={{ transitionDelay: prefersReducedMotion ? "0ms" : `${index * 100}ms` }}
-    >
-      {/* Connecting line dot */}
-      <div className="absolute left-0 top-8 w-3 h-3 rounded-full bg-primary border-2 border-background shadow-lg -translate-x-1/2" />
-
-      {/* Card content */}
-      <div className={`ml-8 p-6 rounded-2xl border-2 ${step.color} backdrop-blur-sm shadow-md hover:shadow-lg transition-shadow`}>
-        <div className="flex items-start gap-4 mb-4">
-          <div className="flex-shrink-0 w-12 h-12 rounded-full bg-background border-2 border-primary/20 flex items-center justify-center">
-            <Icon className="w-6 h-6 text-primary" />
-          </div>
-          <div className="flex-1">
-            {step.badge && (
-              <Badge variant="secondary" className="mb-2 text-xs">
-                {step.badge}
-              </Badge>
-            )}
-            <h3 className="text-xl font-bold text-foreground mb-2">
-              {step.heading}
-            </h3>
-          </div>
-        </div>
-
-        <div className="space-y-3 text-base leading-relaxed text-muted-foreground">
-          {step.body.map((para, i) => (
-            <p key={i}>{para}</p>
-          ))}
-        </div>
-
-        {step.copyable && (
-          <div className="mt-4 p-3 rounded-lg bg-background/50 border border-primary/20 flex items-center justify-between gap-3">
-            <p className="text-sm italic text-foreground">{step.copyable}</p>
-            <CopyButton text={step.copyable} />
-          </div>
-        )}
-
-        {step.resources && (
-          <div className="mt-4 space-y-2">
-            {step.resources.map((res, i) => (
-              <a
-                key={i}
-                href={res.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-sm text-primary hover:underline"
-              >
-                → {res.label}
-              </a>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
+function getStreamAndDownload(r: Recording) {
+  if (r.srcType === "mp3") return { stream: r.src, download: r.src };
+  if (r.srcType === "gdrive") {
+    const stream = `https://drive.google.com/uc?export=download&id=${r.src}`;
+    const view = `https://drive.google.com/file/d/${r.src}/view?usp=sharing`;
+    return { stream, download: view };
+  }
+  return { stream: null, download: r.src };
 }
 
 export default function Waez() {
-  const [activeSection, setActiveSection] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [playingId, setPlayingId] = useState<string | null>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    TIMELINE_STEPS.forEach((step) => {
-      const el = document.getElementById(step.id);
-      if (el) observer.observe(el);
+  const filteredRecordings = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return RECORDINGS;
+    return RECORDINGS.filter((r) => {
+      return (
+        r.title.toLowerCase().includes(q) ||
+        r.speaker.toLowerCase().includes(q) ||
+        r.alias?.toLowerCase().includes(q) ||
+        r.dateISO?.includes(q) ||
+        r.tags?.some((t) => t.toLowerCase().includes(q))
+      );
     });
+  }, [searchQuery]);
 
-    return () => observer.disconnect();
-  }, []);
+  const today = new Date().toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-accent/5 to-background">
@@ -261,85 +114,210 @@ export default function Waez() {
         <meta property="og:type" content="website" />
       </Helmet>
 
-      {/* Sticky TOC - Desktop only */}
-      <nav className="hidden lg:block fixed right-8 top-1/2 -translate-y-1/2 z-30">
-        <div className="space-y-3">
-          {TIMELINE_STEPS.map((step) => (
-            <a
-              key={step.id}
-              href={`#${step.id}`}
-              className={`block w-3 h-3 rounded-full border-2 transition-all ${
-                activeSection === step.id
-                  ? "bg-primary border-primary scale-150"
-                  : "bg-background border-muted-foreground/30 hover:border-primary"
-              }`}
-              aria-label={`Jump to ${step.heading}`}
-            />
-          ))}
-        </div>
-      </nav>
-
-      <div className="max-w-3xl mx-auto px-4 py-12">
+      <div className="max-w-5xl mx-auto px-4 py-12">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-3 mb-8 text-sm text-muted-foreground">
-          <Link to="/" className="flex items-center gap-1 hover:text-primary transition-colors">
-            <HomeIcon className="w-4 h-4" />
-            Home
-          </Link>
-          <span>▸</span>
-          <span className="text-foreground font-medium">Waez</span>
-        </nav>
+        <Breadcrumb className="mb-8">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link to="/" className="flex items-center gap-1">
+                  <Home className="w-4 h-4" />
+                  Home
+                </Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Waez</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
 
         <div className="mb-4">
           <Button variant="ghost" size="sm" asChild>
             <Link to="/" className="flex items-center gap-1">
-              <ArrowLeft className="w-4 h-4" />
               Back to Home
             </Link>
           </Button>
         </div>
 
-        {/* Hero */}
-        <header className="text-center mb-16 space-y-4">
-          <h1 className="text-5xl md:text-6xl font-bold text-foreground">
+        {/* Hero Section */}
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-br from-primary via-primary/80 to-accent bg-clip-text text-transparent">
             Waez Timeline
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground">
             A journey through the teachings of Rai Dr. Abualy Alibhai Aziz
           </p>
-          <Badge variant="secondary" className="text-xs">
-            Updated: {new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
-          </Badge>
-        </header>
-
-        {/* Vertical Timeline */}
-        <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-transparent" />
-
-          {/* Timeline steps */}
-          <div className="space-y-12">
-            {TIMELINE_STEPS.map((step, index) => (
-              <div key={step.id} id={step.id}>
-                <TimelineCard step={step} index={index} />
-              </div>
-            ))}
-          </div>
         </div>
 
-        {/* Footer CTA */}
-        <div className="mt-20 text-center p-8 rounded-2xl bg-primary/5 border-2 border-primary/20">
-          <h2 className="text-2xl font-bold text-foreground mb-3">
-            Continue Your Journey
-          </h2>
-          <p className="text-muted-foreground mb-6">
-            Explore more teachings and resources to deepen your practice
-          </p>
-          <Button asChild size="lg">
-            <Link to="/">
-              Return to Home
-            </Link>
-          </Button>
+        <div className="space-y-12">
+          {/* Missionary Spotlight */}
+          <section>
+            <h2 className="text-2xl font-bold mb-6">Missionary Spotlight</h2>
+            {MISSIONARIES.map((missionary) => (
+              <Card
+                key={missionary.id}
+                className="rounded-2xl border bg-white/90 dark:bg-white/[.06] dark:border-white/10 p-6 md:p-8"
+              >
+                <div className="flex flex-col md:flex-row gap-6 md:items-start">
+                  {missionary.portrait && (
+                    <img
+                      src={missionary.portrait}
+                      alt={missionary.name}
+                      className="w-28 h-28 md:w-36 md:h-36 rounded-xl object-cover bg-white/30 dark:bg-white/10"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = "none";
+                      }}
+                    />
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-4 mb-3">
+                      <div>
+                        <h3 className="text-2xl font-bold">{missionary.name}</h3>
+                        {missionary.alias && (
+                          <p className="text-sm text-muted-foreground mt-1">
+                            Known as "{missionary.alias}"
+                          </p>
+                        )}
+                      </div>
+                      <Badge variant="outline" className="shrink-0 bg-amber-50 text-amber-900 dark:bg-amber-900/20 dark:text-amber-50 border-amber-200 dark:border-amber-800">
+                        Updated: {today}
+                      </Badge>
+                    </div>
+                    <p className="text-base leading-relaxed mb-4">{missionary.shortBio}</p>
+                    {missionary.bullets && missionary.bullets.length > 0 && (
+                      <ul className="list-disc list-inside space-y-1 text-sm opacity-80 mb-4">
+                        {missionary.bullets.map((bullet, idx) => (
+                          <li key={idx}>{bullet}</li>
+                        ))}
+                      </ul>
+                    )}
+                    {missionary.links && missionary.links.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {missionary.links.map((link, idx) => (
+                          <a
+                            key={idx}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-sm border dark:border-white/10 hover:bg-white/50 dark:hover:bg-white/10 transition-colors"
+                          >
+                            {link.label}
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </section>
+
+          {/* Waez Library */}
+          <section>
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold mb-4">Waez Library</h2>
+              <Input
+                type="text"
+                placeholder="Search waez by title, date, or tag…"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="max-w-md"
+              />
+            </div>
+
+            {filteredRecordings.length === 0 ? (
+              <p className="text-muted-foreground text-center py-8">
+                No recordings found matching "{searchQuery}"
+              </p>
+            ) : (
+              <div className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible">
+                {filteredRecordings.map((recording) => {
+                  const { stream, download } = getStreamAndDownload(recording);
+                  const isPlaying = playingId === recording.id;
+                  return (
+                    <Card
+                      key={recording.id}
+                      className="rounded-2xl border bg-white/90 dark:bg-white/[.06] dark:border-white/10 p-4 md:p-5 w-[300px] shrink-0 snap-start md:w-auto"
+                    >
+                      <div className="space-y-3">
+                        <div>
+                          <h3 className="font-bold text-base leading-tight mb-2">
+                            {recording.title}
+                          </h3>
+                          <p className="text-xs text-muted-foreground">
+                            {recording.alias || recording.speaker}
+                            {recording.dateISO && (
+                              <>
+                                {" · "}
+                                {new Date(recording.dateISO).toLocaleDateString("en-US", {
+                                  month: "short",
+                                  day: "numeric",
+                                  year: "numeric",
+                                })}
+                              </>
+                            )}
+                          </p>
+                        </div>
+
+                        {recording.tags && recording.tags.length > 0 && (
+                          <div className="flex flex-wrap gap-1">
+                            {recording.tags.map((tag) => (
+                              <Badge key={tag} variant="outline" className="text-xs">
+                                {tag}
+                              </Badge>
+                            ))}
+                          </div>
+                        )}
+
+                        {recording.notes && (
+                          <p className="text-xs text-muted-foreground italic">
+                            {recording.notes}
+                          </p>
+                        )}
+
+                        <div className="flex gap-2">
+                          {stream && (
+                            <Button
+                              size="sm"
+                              variant={isPlaying ? "secondary" : "default"}
+                              onClick={() => setPlayingId(isPlaying ? null : recording.id)}
+                              className="flex-1"
+                            >
+                              <Play className="w-3 h-3 mr-1" />
+                              {isPlaying ? "Hide" : "Play"}
+                            </Button>
+                          )}
+                          <Button size="sm" variant="outline" asChild>
+                            <a href={download} target="_blank" rel="noopener noreferrer">
+                              <Download className="w-3 h-3 mr-1" />
+                              Download
+                            </a>
+                          </Button>
+                        </div>
+
+                        {isPlaying && stream && (
+                          <audio
+                            controls
+                            autoPlay
+                            className="w-full mt-2"
+                            src={stream}
+                            onError={() => {
+                              console.error("Audio failed to load");
+                            }}
+                          >
+                            Your browser does not support the audio element.
+                          </audio>
+                        )}
+                      </div>
+                    </Card>
+                  );
+                })}
+              </div>
+            )}
+          </section>
         </div>
       </div>
     </div>
