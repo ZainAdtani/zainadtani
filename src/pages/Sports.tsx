@@ -159,63 +159,58 @@ export default function Sports() {
   }, []);
 
   /** ---------- standings (new) ---------- **/
-  // crude season resolver: good enough for display
-  const seasonYear = useMemo(() => selectedDate.getFullYear(), [selectedDate]);
+  // NBA season logic: Oct-Dec uses current year, Jan-Aug uses prior year
+  const seasonYear = useMemo(() => {
+    const y = selectedDate.getFullYear();
+    const m = selectedDate.getMonth(); // 0=Jan ... 11=Dec
+    return m <= 7 ? y - 1 : y;
+  }, [selectedDate]);
 
   const loadStandings = useCallback(async () => {
     try {
       setStLoading(true);
       setStError(null);
 
-      const url = `https://site.web.api.espn.com/apis/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&region=us&lang=en`;
+      const url = `https://site.web.api.espn.com/apis/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&group=conference&section=overall&_=${Date.now()}`;
       const r = await fetch(url, { cache: "no-store" });
       if (!r.ok) throw new Error("standings fetch failed");
       const data = await r.json();
 
       const groups: any[] = Array.isArray(data?.children) ? data.children : [];
       const findGroup = (needle: string) =>
-        groups.find(g => (g?.name || g?.abbreviation || "").toLowerCase().includes(needle));
+        groups.find(g => ((g?.name || g?.abbreviation || "") + "").toLowerCase().includes(needle));
+      const entriesOf = (g: any) =>
+        g?.standings?.entries ??
+        g?.children?.find((c: any) => ((c?.name || c?.abbreviation || "") + "").toLowerCase().includes("overall"))?.standings?.entries ??
+        g?.children?.[0]?.standings?.entries ?? [];
 
-      const entriesOf = (g: any) => g?.standings?.entries ?? g?.children?.[0]?.standings?.entries ?? [];
-
-      const parseRows = (g: any) => {
-        const entries = entriesOf(g) || [];
-        const rows: StandingRow[] = entries.map((e: any, idx: number) => {
+      const toRows = (entries: any[]) =>
+        (entries || []).map((e: any, i: number) => {
           const team = e?.team ?? {};
-          const statsArr = e?.stats ?? [];
           const sMap = new Map<string, any>();
-          statsArr.forEach((s: any) => sMap.set(String(s?.type || s?.name || "").toLowerCase(), s));
+          (e?.stats ?? []).forEach((s: any) => sMap.set(String(s?.type || s?.name).toLowerCase(), s));
 
-          const num = (key: string) => {
-            const s = sMap.get(key);
-            if (!s) return undefined;
-            return typeof s.value === "number" ? s.value : Number(s.displayValue ?? s.value);
+          const num = (k: string) => {
+            const s = sMap.get(k);
+            return s ? (typeof s.value === "number" ? s.value : Number(s.displayValue ?? s.value)) : undefined;
           };
-          const txt = (key: string) => {
-            const s = sMap.get(key);
+          const txt = (k: string) => {
+            const s = sMap.get(k);
             return (s?.displayValue ?? s?.value ?? "") + "";
           };
 
-          const wins   = num("wins") ?? 0;
-          const losses = num("losses") ?? 0;
+          const wins   = num("wins") ?? num("overallwins") ?? 0;
+          const losses = num("losses") ?? num("overalllosses") ?? 0;
 
-          let pct = num("winpercent");
-          if (pct === undefined) pct = num("winpercentage");
-          if (pct === undefined) pct = num("pct");
-          if (pct === undefined) pct = Number((txt("winpercent") || txt("pct") || "0").replace(/^\.?/, "0."));
+          let pct = num("winpercent") ?? num("winpercentage") ?? num("pct");
+          if (pct === undefined) {
+            const raw = txt("winpercent") || txt("pct") || "0";
+            pct = Number(raw.startsWith(".") ? "0" + raw : raw);
+          }
 
           const gb = txt("gamesback") || txt("gamesbehind") || "—";
-
-          const logo =
-            team.logo ||
-            team.logos?.[0]?.href ||
-            team.logos?.[0]?.url ||
-            undefined;
-
-          const rank =
-            Number(e?.rank) ||
-            Number(sMap.get("rankconf")?.value) ||
-            idx + 1;
+          const rank = Number(e?.rank) || Number(sMap.get("rankconf")?.value) || i + 1;
+          const logo = team.logo || team.logos?.[0]?.href || team.logos?.[0]?.url || undefined;
 
           return {
             rank,
@@ -225,19 +220,18 @@ export default function Sports() {
             logo,
             wins,
             losses,
-            pct: typeof pct === "number" && !Number.isNaN(pct) ? pct : 0,
+            pct: Number.isFinite(pct) ? pct : 0,
             gb: gb === "0" ? "—" : gb,
           } as StandingRow;
-        });
+        })
+        .sort((a, b) => a.rank - b.rank)
+        .slice(0, 15);
 
-        return rows.sort((a, b) => a.rank - b.rank).slice(0, 15);
-      };
-
-      const east = parseRows(findGroup("eastern"));
-      const west = parseRows(findGroup("western"));
-
-      setStandings({ east, west });
-    } catch (e) {
+      setStandings({
+        east: toRows(entriesOf(findGroup("eastern"))),
+        west: toRows(entriesOf(findGroup("western"))),
+      });
+    } catch {
       setStError("Unable to load standings right now.");
     } finally {
       setStLoading(false);
@@ -277,10 +271,8 @@ export default function Sports() {
           0%, 100% { transform: translateY(0) scale(1); }
           50% { transform: translateY(-18px) scale(1.02); }
         }
-        .cut-8  { border-bottom: 2px dashed rgba(0,0,0,.12); }
-        .cut-10 { border-bottom: 2px dashed rgba(0,0,0,.12); }
-        .dark .cut-8,
-        .dark .cut-10 { border-bottom-color: rgba(255,255,255,.15); }
+        .cut { border-bottom: 2px dashed rgba(0,0,0,.12); }
+        .dark .cut { border-bottom-color: rgba(255,255,255,.15); }
       `}</style>
 
       {showBall && (
@@ -466,7 +458,7 @@ export default function Sports() {
             <div>
               <CardTitle className="text-xl sm:text-2xl">Standings — {seasonYear}</CardTitle>
               <p className="text-xs sm:text-sm text-muted-foreground">
-                Lines after #8 (cutoff) and #10 (play-in). Top 6 = automatic playoff spots.
+                Top 6 earn automatic playoff spots; lines after #6 and #10.
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -520,7 +512,7 @@ function StandingsTable({ title, rows }: { title: string; rows: StandingRow[] })
           </thead>
           <tbody>
             {rows.map((r) => {
-              const borderClass = r.rank === 8 ? "cut-8" : r.rank === 10 ? "cut-10" : "";
+              const borderClass = (r.rank === 6 || r.rank === 10) ? "cut" : "";
               return (
                 <tr key={r.teamId || r.rank} className={borderClass}>
                   <td className="px-4 py-2 tabular-nums text-muted-foreground">{r.rank}</td>
