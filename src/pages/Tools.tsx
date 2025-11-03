@@ -28,6 +28,27 @@ const TOOLS: Tool[] = [
     category: "AI & Agents",
   },
   {
+    id: "perplexity",
+    name: "Perplexity",
+    url: "https://www.perplexity.ai",
+    description: "AI answer engine for fast, cited results",
+    category: "AI & Agents",
+  },
+  {
+    id: "gemini",
+    name: "Gemini",
+    url: "https://gemini.google.com",
+    description: "Google's AI assistant for planning, writing, and more",
+    category: "AI & Agents",
+  },
+  {
+    id: "microsoft-copilot",
+    name: "Microsoft Copilot",
+    url: "https://copilot.microsoft.com",
+    description: "AI companion from Microsoft",
+    category: "AI & Agents",
+  },
+  {
     id: "elevenlabs",
     name: "ElevenLabs (TTS)",
     url: "https://elevenlabs.io",
@@ -115,11 +136,68 @@ const TOOLS: Tool[] = [
     description: "Organize and manage your music playlists",
     category: "Utilities",
   },
+  // Apps
+  {
+    id: "bookmory",
+    name: "Bookmory",
+    url: "https://apps.apple.com/us/app/bookmory-reading-tracker/id1515533482",
+    description: "Reading tracker & notes",
+    category: "Apps",
+  },
+  {
+    id: "heygen",
+    name: "HeyGen",
+    url: "https://www.heygen.com",
+    description: "AI avatar video creator",
+    category: "Apps",
+  },
+  {
+    id: "dr-berg-junk-food-meter",
+    name: "Dr. Berg – Junk Food Meter",
+    url: "https://play.google.com/store/apps/details?id=com.passio.drberg",
+    description: "Scan barcodes to spot ultra-processed ingredients",
+    category: "Apps",
+  },
+  {
+    id: "audible",
+    name: "Audible",
+    url: "https://www.audible.com/ep/howtolisten",
+    description: "Audiobooks & podcasts",
+    category: "Apps",
+  },
+  {
+    id: "elevenreader",
+    name: "ElevenReader",
+    url: "https://apps.apple.com/us/app/elevenreader-voice-reader/id6479373050",
+    description: "High-quality AI reader for web pages, PDFs, and text",
+    category: "Apps",
+  },
+  {
+    id: "delta-emulator",
+    name: "Delta – Game Emulator",
+    url: "https://apps.apple.com/us/app/delta-game-emulator/id1048524688",
+    description: "Play classic Nintendo-era games (bring your own legal ROMs)",
+    category: "Apps",
+  },
+  {
+    id: "nba-app",
+    name: "NBA App",
+    url: "https://www.nba.com/app",
+    description: "Live scores, highlights, League Pass",
+    category: "Apps",
+  },
+  {
+    id: "chatgpt-app",
+    name: "ChatGPT",
+    url: "https://chatgpt.com/download/",
+    description: "Official ChatGPT app",
+    category: "Apps",
+  },
 ];
 
 const HIDDEN_IDS = new Set(["showmypc", "euless-public-library", "reddit"]);
 
-const SECTION_ORDER = ["AI & Agents", "Productivity", "Research & Writing", "Courses & Learning", "Utilities"];
+const SECTION_ORDER = ["AI & Agents", "Productivity", "Research & Writing", "Courses & Learning", "Utilities", "Apps"];
 
 function ToolCard({ tool }: { tool: Tool }) {
   const getFavicon = (url: string) => {
@@ -158,6 +236,11 @@ function ToolCard({ tool }: { tool: Tool }) {
             <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
               {tool.description}
             </p>
+            {tool.id === "delta-emulator" && (
+              <p className="text-xs text-muted-foreground/70 mt-1 italic">
+                Use only game files you own.
+              </p>
+            )}
           </div>
         </div>
         <Button
@@ -281,6 +364,11 @@ export default function Tools() {
                           <p className="text-sm text-muted-foreground line-clamp-2">
                             {tool.description}
                           </p>
+                          {tool.id === "delta-emulator" && (
+                            <p className="text-xs text-muted-foreground/70 mt-1 italic">
+                              Use only game files you own.
+                            </p>
+                          )}
                         </div>
                       </div>
                       <Button
