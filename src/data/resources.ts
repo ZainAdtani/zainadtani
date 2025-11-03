@@ -38,15 +38,15 @@ export const RESOURCES: Resource[] = [
     title: "Start Your Bookkeeping Biz — Checklist (PDF)",
     kind: "PDF",
     tags: ["Business", "Bookkeeping", "Checklist"],
-    href: "/resources/start-bookkeeping-biz-checklist.pdf",
+    href: "/resources/start-your-bookkeeping-biz-checklist.pdf",
     note: "From naming & EIN to pricing & first clients—your quick-start list.",
   },
   {
     id: 5,
-    title: "My Morning Routine — Dean Graziosi (PDF)",
+    title: "My Morning Routine (PDF)",
     kind: "PDF",
     tags: ["Habits", "Morning", "Mindset"],
-    href: "/resources/my-morning-routine-dean-graziosi.pdf",
+    href: "/resources/my-morning-routine.pdf",
     note: "A simple, repeatable AM routine to start the day on offense.",
   },
   {
