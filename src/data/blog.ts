@@ -246,7 +246,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: "Step 1 - Create Your Task Inventory",
         paragraphs: [
           "Open ChatGPT and paste this prompt:",
-          "'I want to find the top 3 tasks I should automate. I'll list everything I do in a typical week. Please organize each task by category (Admin, Communication, Creative, Strategy) and estimate how much time it consumes weekly.'",
+          `'I want to find the top 3 tasks I should automate. I'll list everything I do in a typical week. Please organize each task by category (Admin, Communication, Creative, Strategy) and estimate how much time it consumes weekly.'`,
           "Example categories AI might create:",
           "Admin (scheduling, invoices, file organization)",
           "Communication (emails, follow-ups, meeting prep)",
@@ -260,7 +260,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: "Step 2 - Find What's Ripe for Automation",
         paragraphs: [
           "Now paste this prompt:",
-          "'Based on my task list, identify which items could be automated with AI tools or workflows. For each, suggest one possible tool or system that could handle it.'",
+          `'Based on my task list, identify which items could be automated with AI tools or workflows. For each, suggest one possible tool or system that could handle it.'`,
           "Examples: Scheduling meetings (Calendly or Motion), Summarizing notes (Fathom or Fireflies), Rewriting posts (ChatGPT or Jasper)",
           "Pro Tip: Ask 'Rank these automation opportunities from easiest to implement to highest impact.' That way, you start with quick wins that save you time immediately.",
         ],
@@ -269,7 +269,8 @@ export const BLOG_POSTS: BlogPost[] = [
         id: "step-3",
         title: "Step 3 - Build Your AI Task Stack",
         paragraphs: [
-          "Once you've got your list, say: 'Turn these automation opportunities into a simple table with three columns: Task, Tool, and Time Saved per Week.'",
+          "Once you've got your list, say:",
+          `'Turn these automation opportunities into a simple table with three columns: Task, Tool, and Time Saved per Week.'`,
           "You'll now have a personal Automation Dashboard - your roadmap to reclaim hours every week.",
         ],
       },
@@ -293,7 +294,9 @@ export const BLOG_POSTS: BlogPost[] = [
         title: "Action Step",
         paragraphs: [
           "Make your list right now. Drop your top 10 recurring tasks into ChatGPT and run the prompts above. Circle the three that will save you the most time or mental energy. That's your Automation Starter Stack for this week.",
-          "AI Amplifier Insight - Prompt: 'Analyze my weekly task list and identify which 3 tasks would save me the most time, energy, and focus if automated. Rank them by impact and ease of implementation.' This single exercise often gives people back 3-5 hours a week and an enormous sense of peace.",
+          "AI Amplifier Insight - Prompt:",
+          `'Analyze my weekly task list and identify which 3 tasks would save me the most time, energy, and focus if automated. Rank them by impact and ease of implementation.'`,
+          "This single exercise often gives people back 3-5 hours a week and an enormous sense of peace.",
         ],
       },
     ],

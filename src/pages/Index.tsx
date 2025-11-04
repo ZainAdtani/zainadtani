@@ -1574,62 +1574,21 @@ const Index = () => {
             Weekly: one useful idea, one highlight, one tiny experiment.
           </p>
 
-          {/* BEEHIIV_EMBED_PLACEHOLDER - Paste your Beehiiv Inline Embed code here */}
-          <div id="beehiiv-embed-container">
-            {/* The Beehiiv form will be pasted here */}
+          {/* Beehiiv Embed */}
+          <div className="flex justify-center">
+            <div dangerouslySetInnerHTML={{__html: `
+              <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+              <iframe
+                src="https://subscribe-forms.beehiiv.com/ed8bbf49-11ab-4008-a5ff-266eb7752d75"
+                class="beehiiv-embed"
+                data-test-id="beehiiv-embed"
+                frameborder="0"
+                scrolling="no"
+                style="width: 344px; height: 340px; margin: 0; border-radius: 12px; background-color: transparent; box-shadow: 0 0 #0000; max-width: 100%;"
+              ></iframe>
+              <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+            `}} />
           </div>
-
-          <style dangerouslySetInnerHTML={{__html: `
-            #newsletter form {
-              max-width: 520px;
-              margin: 0 auto;
-              display: flex;
-              gap: 12px;
-              align-items: center;
-            }
-            #newsletter form input[type="email"] {
-              height: 48px;
-              border: 1px solid #E5E7EB;
-              border-radius: 12px;
-              padding: 0 14px;
-              width: 100%;
-              background: #FFFFFF;
-              color: #111827;
-              flex: 1;
-            }
-            @media (prefers-color-scheme: dark) {
-              #newsletter form input[type="email"] {
-                border-color: #374151;
-                background: #111827;
-                color: #F9FAFB;
-              }
-            }
-            #newsletter form ::placeholder {
-              color: #9CA3AF;
-            }
-            #newsletter form button[type="submit"] {
-              height: 48px;
-              padding: 0 20px;
-              border-radius: 999px;
-              border: 0;
-              background: #111827;
-              color: #FFFFFF;
-              cursor: pointer;
-              flex-shrink: 0;
-            }
-            #newsletter form button[type="submit"]:hover {
-              background: #0B1220;
-            }
-            @media (max-width: 640px) {
-              #newsletter form {
-                flex-direction: column;
-                width: 100%;
-              }
-              #newsletter form button[type="submit"] {
-                width: 100%;
-              }
-            }
-          `}} />
         </div>
       </section>
       {/* Footer */}

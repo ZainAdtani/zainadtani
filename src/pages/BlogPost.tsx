@@ -2,6 +2,9 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { BLOG_POSTS } from "@/data/blog";
+import { CopyBlock } from "@/components/CopyBlock";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 /* ---------- UI helpers ---------- */
 
@@ -175,18 +178,72 @@ export default function BlogPostPage() {
       </div>
 
       {/* Content */}
-      <article className="prose prose-lg dark:prose-invert mt-12 max-w-none leading-8 [&>p]:my-5 [&>p]:indent-6 [&>p:first-of-type]:indent-0 [&>*+p:first-of-type]:indent-0 [&>h2+p]:indent-0 [&>h3+p]:indent-0 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mt-10 [&>h2]:mb-3 [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:mt-8 [&>h3]:mb-2 [&>ul]:my-5 [&>ul]:space-y-1.5 [&>ul]:pl-6 [&>ol]:my-5 [&>ol]:space-y-1.5 [&>ol]:pl-6 [&>li>p]:indent-0 [&>blockquote]:border-l-2 [&>blockquote]:border-primary/40 [&>blockquote]:bg-muted/20 [&>blockquote]:pl-5 [&>blockquote]:py-4 [&>blockquote]:my-6 [&>blockquote]:text-lg [&>blockquote]:italic [&>blockquote>p]:indent-0 [&>a]:text-primary [&>a]:no-underline hover:[&>a]:underline [&_img]:rounded-lg [&_img]:border [&_img]:shadow-sm [&_iframe]:rounded-lg [&_iframe]:border [&_iframe]:shadow-sm" style={{ maxWidth: '65ch' }}>
+      <article className="prose prose-lg dark:prose-invert mt-12 max-w-none" style={{ maxWidth: '65ch' }}>
         {post.sections
           ? post.sections.map((sec) => (
-              <section key={sec.id} id={sec.id}>
-                {sec.title ? <h2>{sec.title}</h2> : null}
-                {sec.paragraphs.map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
+              <section key={sec.id} id={sec.id} className="mb-10">
+                {sec.title ? (
+                  <h2 className="text-2xl md:text-3xl font-bold tracking-tight mt-12 mb-4 first:mt-0">
+                    {sec.title}
+                  </h2>
+                ) : null}
+                <div className="space-y-5 leading-8 text-[#CBD5E1]">
+                  {sec.paragraphs.map((p, i) => {
+                    // Check if it's a bullet list (starts with •)
+                    if (p.trim().startsWith('•')) {
+                      const items = p.split('\n').filter(line => line.trim().startsWith('•'));
+                      return (
+                        <ul key={i} className="list-disc pl-6 space-y-2 my-5">
+                          {items.map((item, idx) => (
+                            <li key={idx}>{item.replace(/^•\s*/, '')}</li>
+                          ))}
+                        </ul>
+                      );
+                    }
+                    // Check if it's a prompt (wrapped in quotes or backticks)
+                    if ((p.startsWith("'") && p.endsWith("'")) || (p.startsWith('`') && p.endsWith('`'))) {
+                      const promptText = p.replace(/^['`]|['`]$/g, '');
+                      return (
+                        <Card key={i} className="p-4 bg-[#0B1220] border-[#1F2937] my-6">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-sm font-semibold text-[#93A4B8]">Prompt</span>
+                            <CopyBlock text={promptText} label="Copy" className="h-8" />
+                          </div>
+                          <pre className="whitespace-pre-wrap font-mono text-sm text-[#CBD5E1] leading-relaxed">
+                            {promptText}
+                          </pre>
+                        </Card>
+                      );
+                    }
+                    // Regular paragraph
+                    return (
+                      <p key={i} className="my-5 first:mt-0">
+                        {p}
+                      </p>
+                    );
+                  })}
+                </div>
               </section>
             ))
-          : post.content?.map((p, i) => <p key={i}>{p}</p>)}
+          : post.content?.map((p, i) => <p key={i} className="my-5 leading-8">{p}</p>)}
       </article>
+
+      {/* Bottom CTA */}
+      <Card className="mt-16 p-8 text-center bg-card/70 backdrop-blur border-border">
+        <h3 className="text-xl font-bold mb-2">Enjoyed this post?</h3>
+        <p className="text-muted-foreground mb-6">
+          Subscribe to Zain's World for weekly insights on AI, productivity, and growth.
+        </p>
+        <Button asChild size="lg">
+          <a
+            href="https://zains-world.beehiiv.com/?utm_source=site&utm_medium=post_footer&utm_campaign=subscribe"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Subscribe to Zain's World
+          </a>
+        </Button>
+      </Card>
     </main>
   );
 }
