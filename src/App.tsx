@@ -28,6 +28,7 @@ import LifeNotes from "./pages/LifeNotes";
 import QuickBooks from "./pages/QuickBooks";
 import QuickBooksFastTrack from "./pages/QuickBooksFastTrack";
 import QuickBooksCleanup from "./pages/QuickBooksCleanup";
+import Thanks from "./pages/Thanks";
 
 const queryClient = new QueryClient();
 
