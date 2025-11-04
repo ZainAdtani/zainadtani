@@ -1566,114 +1566,152 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Newsletter Section - Beehiiv Integration (Globe Hero) */}
-      <section
-        id="newsletter"
-        className="relative overflow-hidden py-20"
-        aria-labelledby="newsletter-title"
-      >
-        {/* Background: stars + radial glow */}
+      {/* Newsletter Section — Wide Native Form + iPhone Mock (Light/Dark Ready) */}
+      <section id="newsletter" className="relative overflow-hidden py-20">
+        {/* Background: adaptive gradients (stronger in light mode) */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(800px 400px at 50% 0%, rgba(34,197,94,0.12), transparent 60%), radial-gradient(600px 300px at 80% 20%, rgba(59,130,246,0.10), transparent 60%)"
-          }}
-        />
+        >
+          <div className="hidden dark:block w-full h-full"
+            style={{
+              background:
+                "radial-gradient(900px 420px at 50% 0%, rgba(37,99,235,0.10), transparent 60%), radial-gradient(700px 360px at 85% 20%, rgba(34,197,94,0.10), transparent 60%)"
+            }}
+          />
+          <div className="block dark:hidden w-full h-full"
+            style={{
+              background:
+                "radial-gradient(900px 420px at 50% 0%, rgba(37,99,235,0.20), transparent 60%), radial-gradient(700px 360px at 85% 20%, rgba(34,197,94,0.18), transparent 60%)"
+            }}
+          />
+        </div>
 
-        {/* Animated stars */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.35) 50%, transparent 51%), radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,0.35) 50%, transparent 51%), radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,0.35) 50%, transparent 51%)",
-            backgroundRepeat: "no-repeat"
-          }}
-        />
-
-        {/* Animated globe */}
-        <div className="absolute -right-32 -top-20 md:-right-10 md:-top-10 opacity-20 md:opacity-30"
+        {/* Subtle spinning globe */}
+        <div className="absolute -right-28 -top-10 opacity-25 md:opacity-30 animate-[spin_55s_linear_infinite]"
              aria-hidden="true">
-          <svg width="420" height="420" viewBox="0 0 420 420" className="animate-[spin_60s_linear_infinite]">
+          <svg width="420" height="420" viewBox="0 0 420 420">
             <defs>
-              <radialGradient id="glow" cx="50%" cy="50%">
-                <stop offset="0%" stopColor="#60A5FA" stopOpacity=".9" />
-                <stop offset="60%" stopColor="#60A5FA" stopOpacity=".25" />
+              <radialGradient id="gw" cx="50%" cy="50%">
+                <stop offset="0%" stopColor="#60A5FA" stopOpacity=".8" />
+                <stop offset="60%" stopColor="#60A5FA" stopOpacity=".2" />
                 <stop offset="100%" stopColor="transparent" />
               </radialGradient>
             </defs>
-            <circle cx="210" cy="210" r="120" fill="url(#glow)" />
-            {/* longitude/latitude lines */}
+            <circle cx="210" cy="210" r="120" fill="url(#gw)"/>
             {[...Array(6)].map((_, i) => (
-              <ellipse key={i}
-                cx="210" cy="210" rx={30 + i*15} ry={120}
-                fill="none" stroke="#93C5FD" strokeOpacity=".25" />
+              <ellipse key={i} cx="210" cy="210" rx={30 + i*15} ry={120}
+                       fill="none" stroke="#93C5FD" strokeOpacity=".25"/>
             ))}
             {[...Array(6)].map((_, i) => (
-              <ellipse key={`lat-${i}`}
-                cx="210" cy="210" rx={120} ry={30 + i*15}
-                fill="none" stroke="#93C5FD" strokeOpacity=".25" />
+              <ellipse key={`lat-${i}`} cx="210" cy="210" rx={120} ry={30 + i*15}
+                       fill="none" stroke="#93C5FD" strokeOpacity=".25"/>
             ))}
-            {/* Z badge */}
-            <g transform="translate(180,190)">
-              <rect rx="12" width="60" height="60" fill="#0B1220" opacity=".85" />
-              <text x="30" y="38" textAnchor="middle" fontSize="34" fill="#FFFFFF" fontWeight="700">Z</text>
+            <g transform="translate(182,188)">
+              <rect rx="12" width="56" height="56" className="fill-black/80 dark:fill-[#0B1220]/85"/>
+              <text x="28" y="36" textAnchor="middle" fontSize="32" fill="#FFFFFF" fontWeight="700">Z</text>
             </g>
           </svg>
         </div>
 
         <div className="relative container mx-auto px-4">
-          <div className="mx-auto max-w-3xl text-center mb-8 animate-[fadeIn_600ms_ease_1]">
-            <h2 id="newsletter-title" className="text-4xl md:text-5xl font-extrabold tracking-tight">
-              Join Zain&apos;s World
-            </h2>
-            <p className="mt-3 text-base md:text-lg text-muted-foreground">
-              Weekly: one useful idea, one highlight, one tiny experiment.
-            </p>
-          </div>
-
-          {/* Glass card around Beehiiv embed */}
-          <div className="mx-auto max-w-md rounded-2xl border border-white/10 bg-white/5 backdrop-blur
-                          shadow-xl p-6 animate-[rise_500ms_ease_1]">
-            <div className="flex justify-center">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: `
-<script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-<iframe
-  src="https://subscribe-forms.beehiiv.com/ed8bbf49-11ab-4008-a5ff-266eb7752d75"
-  class="beehiiv-embed"
-  data-test-id="beehiiv-embed"
-  frameborder="0"
-  scrolling="no"
-  style="width: 344px; height: 340px; margin: 0; border-radius: 12px; background-color: transparent; box-shadow: 0 0 #0000; max-width: 100%;"
-></iframe>
-<script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
-                  `
-                }}
-              />
+          <div className="grid md:grid-cols-2 gap-10 items-center">
+            {/* Left: iPhone mock with mini cards */}
+            <div className="order-2 md:order-1 flex justify-center md:justify-end">
+              <div className="relative w-[290px] h-[560px] rounded-[36px] border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur shadow-2xl p-4">
+                <div className="absolute left-1/2 -translate-x-1/2 top-0 w-36 h-6 bg-black/60 rounded-b-2xl" />
+                <div className="mt-10 space-y-3">
+                  <div className="rounded-xl border border-black/10 dark:border-white/10 bg-white/80 dark:bg-[#0B1220] p-3 animate-[float_6s_ease-in-out_infinite]">
+                    <div className="h-3 w-24 rounded bg-black/10 dark:bg-white/20 mb-2" />
+                    <div className="h-3 w-44 rounded bg-black/5 dark:bg-white/10 mb-3" />
+                    <div className="h-24 rounded-lg bg-gradient-to-br from-blue-500/20 to-emerald-400/10" />
+                  </div>
+                  <div className="rounded-xl border border-black/10 dark:border-white/10 bg-white/80 dark:bg-[#0B1220] p-3 animate-[float_7s_ease-in-out_infinite]">
+                    <div className="h-3 w-28 rounded bg-black/10 dark:bg-white/20 mb-2" />
+                    <div className="h-3 w-40 rounded bg-black/5 dark:bg-white/10 mb-3" />
+                    <div className="h-24 rounded-lg bg-gradient-to-br from-emerald-400/20 to-indigo-400/10" />
+                  </div>
+                  <div className="rounded-xl border border-black/10 dark:border-white/10 bg-white/80 dark:bg-[#0B1220] p-3 animate-[float_8s_ease-in-out_infinite]">
+                    <div className="h-3 w-24 rounded bg-black/10 dark:bg-white/20 mb-2" />
+                    <div className="h-3 w-36 rounded bg-black/5 dark:bg-white/10 mb-3" />
+                    <div className="h-24 rounded-lg bg-gradient-to-br from-indigo-400/20 to-sky-400/10" />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Privacy + archive link */}
-            <div className="mt-4 text-center text-xs text-muted-foreground">
-              No spam. Unsubscribe anytime.{" "}
-              <a
-                href="https://zains-world.beehiiv.com/?utm_source=site&utm_medium=footer&utm_campaign=archive"
-                target="_blank" rel="noopener"
-                className="underline"
+            {/* Right: copy + wide native form */}
+            <div className="order-1 md:order-2">
+              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
+                Join Zain&apos;s World
+              </h2>
+              <p className="mt-3 text-base md:text-lg text-muted-foreground">
+                Weekly: one useful idea, one highlight, one tiny experiment. ✨
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Bonus: get my <span className="font-medium">Automation Starter</span> checklist free 📱
+              </p>
+
+              {/* Native form using Beehiiv magic link */}
+              <form
+                className="mt-6 flex flex-col sm:flex-row items-stretch gap-3"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const email = (e.currentTarget.elements.namedItem("email") as HTMLInputElement)?.value.trim();
+                  if (!email) return;
+                  const magic = `https://magic.beehiiv.com/v1/dd1643e2-f274-43e4-b193-62276e3e3b48?email=${encodeURIComponent(email)}`;
+                  window.location.href = magic;
+                }}
               >
-                Browse the archive →
-              </a>
+                <label htmlFor="email" className="sr-only">Email address</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  inputMode="email"
+                  placeholder="you@example.com"
+                  className="flex-1 h-14 rounded-full px-5 bg-white text-gray-900 placeholder-gray-500
+                             border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                />
+                <button
+                  type="submit"
+                  className="h-14 px-8 rounded-full bg-indigo-600 text-white font-semibold
+                             hover:bg-indigo-500 transition"
+                >
+                  Subscribe
+                </button>
+              </form>
+
+              <p className="mt-3 text-xs text-muted-foreground">
+                No spam. Unsubscribe anytime.{" "}
+                <a
+                  href="https://zains-world.beehiiv.com/?utm_source=site&utm_medium=footer&utm_campaign=archive"
+                  target="_blank" rel="noopener" className="underline"
+                >
+                  Browse the archive →
+                </a>
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Animations */}
+        {/* Optional fallback: original Beehiiv iframe (keep commented) */}
+        {/*
+        <div className="mt-10 flex justify-center">
+          <div
+            dangerouslySetInnerHTML={{ __html: `
+      <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+      <iframe src="https://subscribe-forms.beehiiv.com/ed8bbf49-11ab-4008-a5ff-266eb7752d75"
+        class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no"
+        style="width: 344px; height: 340px; margin: 0; border-radius: 12px; background-color: transparent; box-shadow: 0 0 #0000; max-width: 100%;"></iframe>
+      <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>`}}
+          />
+        </div>
+        */}
+
         <style>{`
-          @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-          @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+          @keyframes float { 0%{transform:translateY(0)} 50%{transform:translateY(-6px)} 100%{transform:translateY(0)} }
         `}</style>
       </section>
       {/* Footer */}
