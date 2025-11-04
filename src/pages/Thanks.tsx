@@ -8,7 +8,7 @@ export default function Thanks() {
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <Helmet>
         <title>Thank You | Zain Adtani</title>
-        <meta name="description" content="Thank you for subscribing to Zane's World newsletter." />
+        <meta name="description" content="Thank you for subscribing to Zain's World newsletter." />
       </Helmet>
 
       <div className="max-w-2xl mx-auto text-center">

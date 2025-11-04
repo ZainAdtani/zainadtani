@@ -1569,7 +1569,7 @@ const Index = () => {
       {/* Newsletter Section - Beehiiv Integration */}
       <section id="newsletter" className="max-w-3xl mx-auto px-4 py-16">
         <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">Join Zane's World</h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">Join Zain's World</h2>
           <p className="text-muted-foreground mb-6">
             Weekly: one useful idea, one highlight, one tiny experiment.
           </p>
@@ -1580,15 +1580,29 @@ const Index = () => {
           </div>
 
           <style dangerouslySetInnerHTML={{__html: `
+            #newsletter form {
+              max-width: 520px;
+              margin: 0 auto;
+              display: flex;
+              gap: 12px;
+              align-items: center;
+            }
             #newsletter form input[type="email"] {
               height: 48px;
               border: 1px solid #E5E7EB;
               border-radius: 12px;
               padding: 0 14px;
               width: 100%;
-              max-width: 520px;
               background: #FFFFFF;
               color: #111827;
+              flex: 1;
+            }
+            @media (prefers-color-scheme: dark) {
+              #newsletter form input[type="email"] {
+                border-color: #374151;
+                background: #111827;
+                color: #F9FAFB;
+              }
             }
             #newsletter form ::placeholder {
               color: #9CA3AF;
@@ -1596,21 +1610,23 @@ const Index = () => {
             #newsletter form button[type="submit"] {
               height: 48px;
               padding: 0 20px;
-              margin-left: 8px;
               border-radius: 999px;
               border: 0;
               background: #111827;
               color: #FFFFFF;
               cursor: pointer;
+              flex-shrink: 0;
             }
             #newsletter form button[type="submit"]:hover {
               background: #0B1220;
             }
             @media (max-width: 640px) {
-              #newsletter form button[type="submit"] {
-                display: block;
+              #newsletter form {
+                flex-direction: column;
                 width: 100%;
-                margin: 10px 0 0 0;
+              }
+              #newsletter form button[type="submit"] {
+                width: 100%;
               }
             }
           `}} />

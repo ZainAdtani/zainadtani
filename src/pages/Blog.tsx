@@ -76,7 +76,7 @@ export default function Blog() {
 
         {/* Latest from Zane's World - RSS Section */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold mb-6">Latest from Zane's World</h2>
+          <h2 className="text-3xl font-bold mb-6">Latest from Zain's World</h2>
           {rssError ? (
             <div className="text-center py-8">
               <Button asChild variant="default" size="lg">
