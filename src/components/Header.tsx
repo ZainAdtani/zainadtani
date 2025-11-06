@@ -123,22 +123,6 @@ export const Header = () => {
             <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
           </Link>
 
-          <a
-            href="https://zains-world.beehiiv.com/?utm_source=site&utm_medium=nav&utm_campaign=archive"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-3 py-1.5 rounded-full font-semibold text-sm transition-all duration-300 relative overflow-hidden group hover:shadow-lg hover:-translate-y-0.5"
-            style={{
-              border: '1px solid transparent',
-              backgroundImage: 'linear-gradient(var(--background), var(--background)), linear-gradient(30deg, hsl(var(--primary)), hsl(var(--accent)))',
-              backgroundOrigin: 'border-box',
-              backgroundClip: 'padding-box, border-box'
-            }}
-          >
-            <span className="relative z-10">Newsletter</span>
-            <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          </a>
-
           {/* Hamburger Menu */}
           <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
