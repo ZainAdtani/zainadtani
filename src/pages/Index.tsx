@@ -1741,10 +1741,19 @@ const Index = () => {
                 className="mt-6 flex flex-col sm:flex-row items-stretch gap-3"
                 onSubmit={(e) => {
                   e.preventDefault();
-                  const email = (e.currentTarget.elements.namedItem("email") as HTMLInputElement)?.value.trim();
+                  const input = e.currentTarget.elements.namedItem("email") as HTMLInputElement | null;
+                  const email = input?.value.trim();
                   if (!email) return;
+
                   const magic = `https://magic.beehiiv.com/v1/dd1643e2-f274-43e4-b193-62276e3e3b48?email=${encodeURIComponent(email)}`;
-                  window.location.href = magic;
+
+                  // Try to open in a new tab (user gesture → should not be blocked)
+                  const w = window.open(magic, "_blank", "noopener,noreferrer");
+
+                  // Fallback: if blocked, use same tab
+                  if (!w) {
+                    window.location.href = magic;
+                  }
                 }}
               >
                 <label htmlFor="email" className="sr-only">Email address</label>
