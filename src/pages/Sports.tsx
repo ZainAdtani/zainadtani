@@ -171,74 +171,99 @@ export default function Sports() {
       setStLoading(true);
       setStError(null);
 
-      // Try primary CORS-friendly endpoint first
+      // Primary -> Web fallback (CORS friendly)
       let url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&region=us&lang=en`;
       let r = await fetch(url, { cache: "no-store" });
-      
-      // Fallback to web API if primary fails
+
       if (!r.ok) {
         url = `https://site.web.api.espn.com/apis/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&group=conference&section=overall&region=us&lang=en`;
         r = await fetch(url, { cache: "no-store" });
         if (!r.ok) throw new Error("standings fetch failed");
       }
-      
+
       const data = await r.json();
 
-      const groups: any[] = Array.isArray(data?.children) ? data.children : [];
+      // --- NEW: make "children" discovery more lenient (handles early-season shape changes) ---
+      const flattenChildren = (node: any): any[] => {
+        if (!node) return [];
+        const kids = Array.isArray(node.children) ? node.children : [];
+        // one level
+        let out = [...kids];
+        // one more level (common ESPN shape)
+        for (const c of kids) {
+          if (Array.isArray(c?.children) && c.children.length) {
+            out.push(...c.children);
+          }
+        }
+        return out;
+      };
+
+      const allGroups: any[] = flattenChildren(data);
       const findGroup = (needle: string) =>
-        groups.find(g => ((g?.name || g?.abbreviation || "") + "").toLowerCase().includes(needle));
-      const entriesOf = (g: any) =>
-        g?.standings?.entries ??
-        g?.children?.find((c: any) => ((c?.name || c?.abbreviation || "") + "").toLowerCase().includes("overall"))?.standings?.entries ??
-        g?.children?.[0]?.standings?.entries ?? [];
+        allGroups.find((g) => ((g?.name || g?.abbreviation || "") + "").toLowerCase().includes(needle));
+
+      const entriesOf = (g: any) => {
+        if (!g) return [];
+        // try common locations
+        const direct = g?.standings?.entries ?? [];
+        const nestedOverall =
+          g?.children?.find((c: any) => ((c?.name || c?.abbreviation || "") + "").toLowerCase().includes("overall"))
+            ?.standings?.entries ?? [];
+        const firstChild = g?.children?.[0]?.standings?.entries ?? [];
+        return direct.length ? direct : nestedOverall.length ? nestedOverall : firstChild;
+      };
 
       const toRows = (entries: any[]) =>
-        (entries || []).map((e: any, i: number) => {
-          const team = e?.team ?? {};
-          const sMap = new Map<string, any>();
-          (e?.stats ?? []).forEach((s: any) => sMap.set(String(s?.type || s?.name).toLowerCase(), s));
+        (entries || [])
+          .map((e: any, i: number) => {
+            const team = e?.team ?? {};
+            const sMap = new Map<string, any>();
+            (e?.stats ?? []).forEach((s: any) => sMap.set(String(s?.type || s?.name).toLowerCase(), s));
 
-          const num = (k: string) => {
-            const s = sMap.get(k);
-            return s ? (typeof s.value === "number" ? s.value : Number(s.displayValue ?? s.value)) : undefined;
-          };
-          const txt = (k: string) => {
-            const s = sMap.get(k);
-            return (s?.displayValue ?? s?.value ?? "") + "";
-          };
+            const num = (k: string) => {
+              const s = sMap.get(k);
+              const v = s?.value ?? s?.displayValue;
+              if (typeof v === "number") return v;
+              const nv = Number(v);
+              return Number.isFinite(nv) ? nv : undefined;
+            };
+            const txt = (k: string) => {
+              const s = sMap.get(k);
+              return (s?.displayValue ?? s?.value ?? "") + "";
+            };
 
-          const wins   = num("wins") ?? num("overallwins") ?? 0;
-          const losses = num("losses") ?? num("overalllosses") ?? 0;
+            const wins = num("wins") ?? num("overallwins") ?? 0;
+            const losses = num("losses") ?? num("overalllosses") ?? 0;
 
-          let pct = num("winpercent") ?? num("winpercentage") ?? num("pct");
-          if (pct === undefined) {
-            const raw = txt("winpercent") || txt("pct") || "0";
-            pct = Number(raw.startsWith(".") ? "0" + raw : raw);
-          }
+            let pct = num("winpercent") ?? num("winpercentage") ?? num("pct");
+            if (pct === undefined) {
+              const raw = txt("winpercent") || txt("pct") || "0";
+              pct = Number(raw.startsWith(".") ? "0" + raw : raw);
+            }
 
-          const gb = txt("gamesback") || txt("gamesbehind") || "—";
-          const rank = Number(e?.rank) || Number(sMap.get("rankconf")?.value) || i + 1;
-          const logo = team.logo || team.logos?.[0]?.href || team.logos?.[0]?.url || undefined;
+            const gb = txt("gamesback") || txt("gamesbehind") || "—";
+            const rank = Number(e?.rank) || Number(sMap.get("rankconf")?.value) || i + 1;
+            const logo = team.logo || team.logos?.[0]?.href || team.logos?.[0]?.url || undefined;
 
-          return {
-            rank,
-            teamId: String(team.id ?? ""),
-            team: team.displayName ?? team.shortDisplayName ?? "",
-            abbr: team.abbreviation ?? "",
-            logo,
-            wins,
-            losses,
-            pct: Number.isFinite(pct) ? pct : 0,
-            gb: gb === "0" ? "—" : gb,
-          } as StandingRow;
-        })
-        .sort((a, b) => a.rank - b.rank)
-        .slice(0, 15);
+            return {
+              rank,
+              teamId: String(team.id ?? ""),
+              team: team.displayName ?? team.shortDisplayName ?? "",
+              abbr: team.abbreviation ?? "",
+              logo,
+              wins,
+              losses,
+              pct: Number.isFinite(pct) ? pct : 0,
+              gb: gb === "0" ? "—" : gb,
+            } as StandingRow;
+          })
+          .sort((a, b) => a.rank - b.rank)
+          .slice(0, 15);
 
-      setStandings({
-        east: toRows(entriesOf(findGroup("eastern"))),
-        west: toRows(entriesOf(findGroup("western"))),
-      });
+      const east = toRows(entriesOf(findGroup("eastern")));
+      const west = toRows(entriesOf(findGroup("western")));
+
+      setStandings({ east, west });
     } catch {
       setStError("Unable to load standings right now.");
     } finally {
@@ -495,6 +520,55 @@ export default function Sports() {
             )}
           </CardContent>
         </Card>
+
+        {/* ---------------- UNOFFICIAL STREAM LINKS (new) ---------------- */}
+        <Card className="mt-8 border border-amber-300/40 bg-amber-50/80 dark:bg-amber-950/20 dark:border-amber-300/20 backdrop-blur">
+          <CardHeader>
+            <CardTitle className="text-lg sm:text-xl flex items-center gap-2">
+              <span className="text-amber-600 dark:text-amber-300">⚠️</span>
+              Where to watch (unofficial) — use at your own risk
+            </CardTitle>
+            <p className="text-sm text-amber-800/90 dark:text-amber-200/80">
+              These are third-party sites. Expect pop-ups. Close them quickly and repeatedly. On Mac,{" "}
+              <span className="font-semibold">⌘ + W</span> closes the current tab/window. Links may change—I'll update
+              when I can.
+            </p>
+          </CardHeader>
+          <CardContent>
+            <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                "https://crackstreams.ms/stream/brooklyn-nets-vs-minnesota-timberwolves",
+                "https://crackstreams.io/nba-streams2",
+                "https://app.buffstream.io/index-version-24",
+                "https://streameasthd.com/v11",
+                "https://crackstreams.io/nba-streams2", // duplicate on purpose in source; we'll dedupe below
+                "https://crackstreams.ms/",
+              ]
+                // de-dupe
+                .filter((v, i, a) => a.indexOf(v) === i)
+                .map((href, i) => (
+                  <li key={href} className="group">
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                      className="flex items-center justify-between rounded-xl border bg-white/90 dark:bg-neutral-900/80 dark:border-white/10 border-black/5 px-4 py-3 hover:shadow-sm transition"
+                    >
+                      <div>
+                        <div className="font-medium">Link {i + 1}</div>
+                        <div className="text-xs text-muted-foreground truncate max-w-[32ch]">{href}</div>
+                      </div>
+                      <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground" />
+                    </a>
+                  </li>
+                ))}
+            </ul>
+            <p className="mt-3 text-xs text-muted-foreground">
+              Tip: If a page spawns a pop-up, close it immediately and return to the main player. Use an ad-blocker if
+              possible.
+            </p>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
@@ -520,7 +594,7 @@ function StandingsTable({ title, rows }: { title: string; rows: StandingRow[] })
           </thead>
           <tbody>
             {rows.map((r) => {
-              const borderClass = (r.rank === 6 || r.rank === 10) ? "cut" : "";
+              const borderClass = r.rank === 6 || r.rank === 10 ? "cut" : "";
               return (
                 <tr key={r.teamId || r.rank} className={borderClass}>
                   <td className="px-4 py-2 tabular-nums text-muted-foreground">{r.rank}</td>
