@@ -32,6 +32,7 @@ import { Helmet } from "react-helmet-async";
 import { TimeBar } from "@/components/TimeBar";
 import { ALL_PRODUCTS } from "@/data/products";
 import { BOOKS } from "@/data/books";
+import { NEWSLETTERS } from "@/data/newsletters";
 import headshotImage from "@/assets/zain-headshot.png";
 import qbBadge from "@/assets/quickbooks-level2-badge.png";
 import awsBadge from "@/assets/aws-cloud-practitioner-badge.png";
@@ -283,6 +284,61 @@ const Index = () => {
     const el = document.getElementById("tabs-section");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [activeTab]);
+
+  // Newsletter carousel loop helpers
+  useEffect(() => {
+    const rail = document.getElementById("nl-rail");
+    if (!rail) return;
+    // start at the real first item (index 1) since we added a leading clone
+    const first = rail.children[1] as HTMLElement | undefined;
+    if (first) rail.scrollTo({ left: first.offsetLeft - 12, behavior: "instant" as ScrollBehavior });
+    
+    const onScrollEnd = () => {
+      const items = Array.from(rail.children) as HTMLElement[];
+      const at = rail.scrollLeft;
+      const w = rail.clientWidth;
+      // snap detection tolerance
+      const tol = 6;
+      // if we're at the trailing clone (last element)
+      if (rail.scrollLeft + w >= rail.scrollWidth - tol) {
+        const realFirst = items[1];
+        rail.scrollTo({ left: realFirst.offsetLeft - 12, behavior: "instant" as ScrollBehavior });
+      }
+      // if we're at the leading clone (first element)
+      if (at <= tol) {
+        const realLast = items[items.length - 2];
+        rail.scrollTo({ left: realLast.offsetLeft - 12, behavior: "instant" as ScrollBehavior });
+      }
+    };
+    rail.addEventListener("scrollend" as any, onScrollEnd);
+    return () => rail.removeEventListener("scrollend" as any, onScrollEnd);
+  }, []);
+
+  function snap(dir: 1 | -1) {
+    const rail = document.getElementById("nl-rail");
+    if (!rail) return;
+    const cards = Array.from(rail.children) as HTMLElement[];
+    // find the nearest card and move one step
+    const center = rail.scrollLeft + rail.clientWidth / 2;
+    let nearest = 0, best = Infinity;
+    cards.forEach((el, i) => {
+      const mid = el.offsetLeft + el.offsetWidth / 2;
+      const d = Math.abs(mid - center);
+      if (d < best) { best = d; nearest = i; }
+    });
+    const nextIndex = Math.max(0, Math.min(cards.length - 1, nearest + dir));
+    rail.scrollTo({ left: cards[nextIndex].offsetLeft - 12, behavior: "smooth" });
+  }
+
+  // Helper: favicon fallback
+  function favicon32(u?: string) {
+    try { 
+      const x = new URL(u!); 
+      return `https://www.google.com/s2/favicons?domain=${x.hostname}&sz=128`; 
+    } catch { 
+      return ""; 
+    }
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -1177,46 +1233,55 @@ const Index = () => {
               <p className="text-lg text-muted-foreground">My favorite weekly reads for growth, health, and finance</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* 5-Bullet Friday */}
-              <Card className="p-6 hover-lift border-2 flex flex-col">
-                <h3 className="text-xl font-bold mb-2 text-foreground">5-Bullet Friday</h3>
-                <p className="text-sm text-primary font-semibold mb-3">by Tim Ferriss</p>
-                <p className="text-sm text-muted-foreground mb-4 flex-grow">
-                  Five cool things each week—books, hacks, tools.
-                </p>
-                <Button asChild className="w-full">
-                  <a href="https://go.tim.blog/5-bullet-friday-1/" target="_blank" rel="noopener noreferrer">
-                    Subscribe
-                  </a>
-                </Button>
-              </Card>
+            <div className="relative">
+              {/* arrows */}
+              <button
+                type="button"
+                onClick={() => snap(-1)}
+                aria-label="Previous newsletters"
+                className="hidden md:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 rounded-full border bg-background/80 backdrop-blur px-3.5 py-2 shadow hover:bg-muted"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => snap(1)}
+                aria-label="Next newsletters"
+                className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 rounded-full border bg-background/80 backdrop-blur px-3.5 py-2 shadow hover:bg-muted"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
 
-              {/* High Performance Journal */}
-              <Card className="p-6 hover-lift border-2 flex flex-col">
-                <h3 className="text-xl font-bold mb-2 text-foreground">High Performance Journal</h3>
-                <p className="text-sm text-primary font-semibold mb-3">by Dan Go</p>
-                <p className="text-sm text-muted-foreground mb-4 flex-grow">One practical health tip in ~4 minutes.</p>
-                <Button asChild className="w-full">
-                  <a href="https://www.dango.co/newsletter" target="_blank" rel="noopener noreferrer">
-                    Subscribe
-                  </a>
-                </Button>
-              </Card>
+              {/* rail */}
+              <div
+                id="nl-rail"
+                className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2 px-1 [-ms-overflow-style:none] [scrollbar-width:none]"
+                style={{ scrollbarWidth: "none" }}
+              >
+                <style>{`#nl-rail::-webkit-scrollbar{display:none}`}</style>
 
-              {/* Market Briefs */}
-              <Card className="p-6 hover-lift border-2 flex flex-col">
-                <h3 className="text-xl font-bold mb-2 text-foreground">Market Briefs</h3>
-                <p className="text-sm text-primary font-semibold mb-3">by Briefs Media</p>
-                <p className="text-sm text-muted-foreground mb-4 flex-grow">
-                  Daily 5-minute finance for regular investors.
-                </p>
-                <Button asChild className="w-full">
-                  <a href="https://www.briefs.co/" target="_blank" rel="noopener noreferrer">
-                    Subscribe
-                  </a>
-                </Button>
-              </Card>
+                {/* clone last → first for seamless loop */}
+                {[NEWSLETTERS[NEWSLETTERS.length-1], ...NEWSLETTERS, NEWSLETTERS[0]].map((n, i) => (
+                  <div key={`${n.title}-${i}`} className="snap-start shrink-0 w-[300px] md:w-[360px]">
+                    <Card className="h-full p-5 border-2 bg-card hover:shadow-lg transition-shadow flex flex-col">
+                      {/* image header */}
+                      <div className="relative h-36 mb-4 rounded-lg overflow-hidden bg-muted flex items-center justify-center">
+                        {n.image ? (
+                          <img src={n.image} alt={`${n.title} header`} className="w-full h-full object-cover" loading="lazy" />
+                        ) : (
+                          <img src={favicon32(n.href)} alt={`${n.title} icon`} className="w-12 h-12 rounded-xl border bg-background" />
+                        )}
+                      </div>
+                      <h3 className="text-lg font-bold text-foreground">{n.title}</h3>
+                      {n.byline && <p className="text-xs text-primary font-semibold mt-0.5">{n.byline}</p>}
+                      <p className="text-sm text-muted-foreground mt-2 flex-1">{n.blurb}</p>
+                      <Button asChild className="mt-4 w-full">
+                        <a href={n.href} target="_blank" rel="noopener noreferrer">Subscribe</a>
+                      </Button>
+                    </Card>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
