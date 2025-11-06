@@ -635,6 +635,14 @@ const LOCAL_BOOKS: Book[] = [
     link: 'https://www.amazon.com/Chicken-Soup-Soul-Inspirational-Blessings-ebook/dp/B004ASOYCI/?tag=eng2ea-20',
     cover: '/book-covers/chicken-soup-inspirational-blessings.jpg'
   }
+   {
+    id: "the-richest-man-in-babylon",
+    title: "The Richest Man in Babylon",
+    author: "George S. Clason",
+    cover: null,
+    link: "https://amzn.to/3XRs4ao",
+    status: "TO_READ",
+  }
 ];
 
 // Import and merge books from Notion
