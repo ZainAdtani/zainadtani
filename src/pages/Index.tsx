@@ -103,13 +103,14 @@ const PODCASTS: Podcast[] = [
     listen: "https://open.spotify.com/show/5qSUyCrk9KR69lEiXbjwXM",
     website: "https://tim.blog/podcast/",
     image: "/images/podcasts/tim-ferriss-show.png",
+    embedHtml: `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/show/5qSUyCrk9KR69lEiXbjwXM?utm_source=generator" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`,
   },
   {
     title: "Ultimate Human",
     host: "Gary Brecka",
     listen: "https://open.spotify.com/show/5Faf5ecAnYW7AzGdblqd6R",
     website: "https://www.ultimatehumanpodcast.com/",
-    image: null,
+    image: "/images/podcasts/ultimate-human.jpg",
   },
   {
     title: "On Purpose",
@@ -130,7 +131,7 @@ const PODCASTS: Podcast[] = [
     host: "Steven Bartlett",
     listen: "https://open.spotify.com/show/7iQXmUT7XGuZSzAMjoNWlX",
     website: "https://www.diaryofaceo.com/",
-    image: null,
+    image: "/images/podcasts/diary-of-a-ceo.jpg",
   },
   {
     title: "Brian Windhorst & The Hoop Collective",
@@ -328,6 +329,44 @@ const Index = () => {
     });
     const nextIndex = Math.max(0, Math.min(cards.length - 1, nearest + dir));
     rail.scrollTo({ left: cards[nextIndex].offsetLeft - 12, behavior: "smooth" });
+  }
+
+  // Podcasts carousel loop helpers
+  useEffect(() => {
+    const rail = document.getElementById("podcast-rail");
+    if (!rail) return;
+    const firstReal = rail.children[1] as HTMLElement | undefined;
+    if (firstReal) rail.scrollTo({ left: firstReal.offsetLeft - 12, behavior: "instant" as ScrollBehavior });
+
+    const onScrollEnd = () => {
+      const items = Array.from(rail.children) as HTMLElement[];
+      const tol = 6, w = rail.clientWidth;
+      if (rail.scrollLeft + w >= rail.scrollWidth - tol) {
+        const realFirst = items[1];
+        rail.scrollTo({ left: realFirst.offsetLeft - 12, behavior: "instant" as ScrollBehavior });
+      }
+      if (rail.scrollLeft <= tol) {
+        const realLast = items[items.length - 2];
+        rail.scrollTo({ left: realLast.offsetLeft - 12, behavior: "instant" as ScrollBehavior });
+      }
+    };
+    rail.addEventListener("scrollend" as any, onScrollEnd);
+    return () => rail.removeEventListener("scrollend" as any, onScrollEnd);
+  }, []);
+
+  function snapPodcast(dir: 1 | -1) {
+    const rail = document.getElementById("podcast-rail");
+    if (!rail) return;
+    const cards = Array.from(rail.children) as HTMLElement[];
+    const center = rail.scrollLeft + rail.clientWidth / 2;
+    let nearest = 0, best = Infinity;
+    cards.forEach((el, i) => {
+      const mid = el.offsetLeft + el.offsetWidth / 2;
+      const d = Math.abs(mid - center);
+      if (d < best) { best = d; nearest = i; }
+    });
+    const next = Math.max(0, Math.min(cards.length - 1, nearest + dir));
+    rail.scrollTo({ left: cards[next].offsetLeft - 12, behavior: "smooth" });
   }
 
   // Helper: favicon fallback
@@ -1264,14 +1303,6 @@ const Index = () => {
                 {[NEWSLETTERS[NEWSLETTERS.length-1], ...NEWSLETTERS, NEWSLETTERS[0]].map((n, i) => (
                   <div key={`${n.title}-${i}`} className="snap-start shrink-0 w-[300px] md:w-[360px]">
                     <Card className="h-full p-5 border-2 bg-card hover:shadow-lg transition-shadow flex flex-col">
-                      {/* image header */}
-                      <div className="relative h-36 mb-4 rounded-lg overflow-hidden bg-muted flex items-center justify-center">
-                        {n.image ? (
-                          <img src={n.image} alt={`${n.title} header`} className="w-full h-full object-cover" loading="lazy" />
-                        ) : (
-                          <img src={favicon32(n.href)} alt={`${n.title} icon`} className="w-12 h-12 rounded-xl border bg-background" />
-                        )}
-                      </div>
                       <h3 className="text-lg font-bold text-foreground">{n.title}</h3>
                       {n.byline && <p className="text-xs text-primary font-semibold mt-0.5">{n.byline}</p>}
                       <p className="text-sm text-muted-foreground mt-2 flex-1">{n.blurb}</p>
@@ -1303,10 +1334,7 @@ const Index = () => {
             <div className="hidden md:flex gap-2">
               <button
                 type="button"
-                onClick={() => {
-                  const rail = document.getElementById("podcast-rail");
-                  if (rail) rail.scrollBy({ left: -340, behavior: "smooth" });
-                }}
+                onClick={() => snapPodcast(-1)}
                 className="inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-sm hover:bg-muted"
                 aria-label="Previous"
               >
@@ -1314,10 +1342,7 @@ const Index = () => {
               </button>
               <button
                 type="button"
-                onClick={() => {
-                  const rail = document.getElementById("podcast-rail");
-                  if (rail) rail.scrollBy({ left: 340, behavior: "smooth" });
-                }}
+                onClick={() => snapPodcast(1)}
                 className="inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-sm hover:bg-muted"
                 aria-label="Next"
               >
@@ -1335,8 +1360,8 @@ const Index = () => {
             {/* hide scrollbar (WebKit) */}
             <style>{`#podcast-rail::-webkit-scrollbar{display:none}`}</style>
 
-            {PODCASTS.map((p) => (
-              <div key={p.title} className="snap-start shrink-0 w-[300px] md:w-[340px]">
+            {[PODCASTS[PODCASTS.length - 1], ...PODCASTS, PODCASTS[0]].map((p, i) => (
+              <div key={`${p.title}-${i}`} className="snap-start shrink-0 w-[300px] md:w-[340px]">
                 <div className="h-full rounded-2xl border-2 bg-card overflow-hidden hover:shadow-lg transition-shadow">
                   {/* Image/header */}
                   <div className="relative h-40 bg-muted flex items-center justify-center overflow-hidden">
@@ -1407,20 +1432,14 @@ const Index = () => {
           <div className="mt-4 flex md:hidden justify-center gap-3">
             <button
               type="button"
-              onClick={() => {
-                const rail = document.getElementById("podcast-rail");
-                if (rail) rail.scrollBy({ left: -280, behavior: "smooth" });
-              }}
+              onClick={() => snapPodcast(-1)}
               className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm hover:bg-muted"
             >
               <ChevronLeft className="w-4 h-4" /> Prev
             </button>
             <button
               type="button"
-              onClick={() => {
-                const rail = document.getElementById("podcast-rail");
-                if (rail) rail.scrollBy({ left: 280, behavior: "smooth" });
-              }}
+              onClick={() => snapPodcast(1)}
               className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm hover:bg-muted"
             >
               Next <ChevronRight className="w-4 h-4" />

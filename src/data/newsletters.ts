@@ -3,36 +3,49 @@ export type Newsletter = {
   byline?: string;
   blurb: string;
   href: string;
-  image?: string | null;
 };
 
 export const NEWSLETTERS: Newsletter[] = [
   {
+    title: "5-Bullet Friday",
+    byline: "by Tim Ferriss",
+    blurb: "Five cool things each week—books, hacks, tools.",
+    href: "https://go.tim.blog/5-bullet-friday-1/",
+  },
+  {
+    title: "High Performance Journal",
+    byline: "by Dan Go",
+    blurb: "One practical health tip in ~4 minutes.",
+    href: "https://www.dango.co/newsletter",
+  },
+  {
+    title: "Market Briefs",
+    byline: "by Briefs Media",
+    blurb: "Daily 5-minute finance for regular investors.",
+    href: "https://www.briefs.co/",
+  },
+  {
     title: "LifeNotes",
     byline: "by Ali Abdaal",
-    blurb: "Weekly, friendly notes on productivity, practical life advice, and book takeaways—concise, actionable, and easy to apply.",
+    blurb: "Weekly, friendly notes on productivity, practical life advice, and book takeaways.",
     href: "https://aliabdaal.com/newsletter/",
-    image: "https://aliabdaal.com/wp-content/uploads/2024/09/Avatars.png",
   },
   {
-    title: "Starting 5 (Daily)",
+    title: "The Starting Five",
     byline: "by NBA",
-    blurb: "The quickest way to catch up: last night's action, today's must-knows, and storylines to watch—every morning.",
+    blurb: "Everything from last night and the best of today—daily, fast, and fun.",
     href: "https://www.nba.com/starting5",
-    image: "https://cdn.nba.com/manage/2023/10/STARTING5-ACTION-FINAL-HEADER-1.jpg",
-  },
-  {
-    title: "The Curiosity Chronicle",
-    byline: "by Sahil Bloom",
-    blurb: "Simple, well-researched ideas on wealth, health, and living better—mental models, playbooks, and stories you can use this week.",
-    href: "https://www.sahilbloom.com/newsletter",
-    image: null,
   },
   {
     title: "The Rundown AI",
     byline: "",
-    blurb: "Learn AI in minutes a day—clear summaries of what's new, why it matters, and practical ways to use it.",
+    blurb: "Learn AI in minutes a day—what's new, why it matters, and how to apply it.",
     href: "http://therundown.ai/subscribe",
-    image: null,
+  },
+  {
+    title: "The Curiosity Chronicle",
+    byline: "by Sahil Bloom",
+    blurb: "Ideas and playbooks for wealth, health, and a better life—clear and actionable.",
+    href: "https://www.sahilbloom.com/newsletter",
   },
 ];
