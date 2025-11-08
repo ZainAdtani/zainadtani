@@ -1300,7 +1300,7 @@ const Index = () => {
                 <style>{`#nl-rail::-webkit-scrollbar{display:none}`}</style>
 
                 {/* clone last → first for seamless loop */}
-                {[NEWSLETTERS[NEWSLETTERS.length-1], ...NEWSLETTERS, NEWSLETTERS[0]].map((n, i) => (
+                {NEWSLETTERS.map((n, i) => (
                   <div key={`${n.title}-${i}`} className="snap-start shrink-0 w-[300px] md:w-[360px]">
                     <Card className="h-full p-5 border-2 bg-card hover:shadow-lg transition-shadow flex flex-col">
                       <h3 className="text-lg font-bold text-foreground">{n.title}</h3>
@@ -1360,7 +1360,7 @@ const Index = () => {
             {/* hide scrollbar (WebKit) */}
             <style>{`#podcast-rail::-webkit-scrollbar{display:none}`}</style>
 
-            {[PODCASTS[PODCASTS.length - 1], ...PODCASTS, PODCASTS[0]].map((p, i) => (
+            {PODCASTS.map((p, i) => (
               <div key={`${p.title}-${i}`} className="snap-start shrink-0 w-[300px] md:w-[340px]">
                 <div className="h-full rounded-2xl border-2 bg-card overflow-hidden hover:shadow-lg transition-shadow">
                   {/* Image/header */}
@@ -1651,7 +1651,7 @@ const Index = () => {
       </section>
 
       {/* Newsletter Section — Wide Native Form + iPhone Mock (Light/Dark Ready) */}
-      <section id="newsletter" className="relative overflow-hidden py-20">
+      <section id="newsletter" className="relative overflow-hidden py-16 md:py-20">
         {/* Background: adaptive gradients (stronger in light mode) */}
         <div
           aria-hidden="true"
@@ -1672,7 +1672,7 @@ const Index = () => {
         </div>
 
         {/* Subtle spinning globe */}
-        <div className="absolute -right-28 -top-10 opacity-25 md:opacity-30 animate-[spin_55s_linear_infinite]"
+        <div className="absolute -right-28 -top-10 opacity-25 md:opacity-30 animate-[spin_55s_linear_infinite] z-0"
              aria-hidden="true">
           <svg width="420" height="420" viewBox="0 0 420 420">
             <defs>
@@ -1698,11 +1698,11 @@ const Index = () => {
           </svg>
         </div>
 
-        <div className="relative container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-10 items-center">
+        <div className="relative z-10 container mx-auto max-w-6xl px-6">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left: iPhone mock with mini cards */}
             <div className="order-2 md:order-1 flex justify-center md:justify-end">
-              <div className="relative w-[290px] h-[560px] rounded-[36px] border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur shadow-2xl p-4">
+              <div className="relative w-[260px] sm:w-[290px] h-[520px] sm:h-[560px] rounded-[36px] border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur shadow-2xl p-4">
                 <div className="absolute left-1/2 -translate-x-1/2 top-0 w-36 h-6 bg-black/60 rounded-b-2xl" />
                 <div className="mt-10 space-y-3">
                   <div className="rounded-xl border border-black/10 dark:border-white/10 bg-white/80 dark:bg-[#0B1220] p-3 animate-[float_6s_ease-in-out_infinite]">
@@ -1725,7 +1725,7 @@ const Index = () => {
             </div>
 
             {/* Right: copy + wide native form */}
-            <div className="order-1 md:order-2">
+            <div className="order-1 md:order-2 text-center md:text-left">
               <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
                 Join Zain&apos;s World
               </h2>
@@ -1733,15 +1733,15 @@ const Index = () => {
                 Weekly: one useful idea, one highlight, one tiny experiment. ✨
               </p>
               <p className="mt-2 text-sm text-muted-foreground">
-                Bonus: get my <span className="font-medium">Automation Starter</span> checklist free 📱
+                Get my free How to Publish a Book PDF.
               </p>
               
-              <p className="mt-3">
+              <p className="mt-4 md:mt-5">
                 <a
                   href="https://zains-world.beehiiv.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block h-11 px-5 rounded-full bg-white text-gray-900 border border-gray-200 font-semibold hover:bg-gray-50"
+                  className="inline-block h-12 px-6 rounded-full bg-indigo-600 text-white font-semibold shadow-lg hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 transition"
                 >
                   Visit the newsletter site
                 </a>
@@ -1749,7 +1749,7 @@ const Index = () => {
 
               {/* Native form using Beehiiv magic link */}
               <form
-                className="mt-6 flex flex-col sm:flex-row items-stretch gap-3"
+                className="mt-5 md:mt-6 flex flex-col sm:flex-row items-stretch gap-3 sm:gap-4"
                 onSubmit={(e) => {
                   e.preventDefault();
                   const input = e.currentTarget.elements.namedItem("email") as HTMLInputElement | null;
@@ -1776,13 +1776,11 @@ const Index = () => {
                   required
                   inputMode="email"
                   placeholder="you@example.com"
-                  className="flex-1 h-14 rounded-full px-5 bg-white text-gray-900 placeholder-gray-500
-                             border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  className="flex-1 h-12 md:h-14 min-w-[240px] rounded-full px-5 bg-white text-gray-900 placeholder-gray-500 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 />
                 <button
                   type="submit"
-                  className="h-14 px-8 rounded-full bg-indigo-600 text-white font-semibold
-                             hover:bg-indigo-500 transition"
+                  className="h-12 md:h-14 px-7 md:px-8 rounded-full bg-indigo-600 text-white font-semibold shadow-md hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 transition"
                 >
                   Subscribe
                 </button>
