@@ -8,9 +8,21 @@ type ImportedBook = {
   notes?: string;
 };
 
+/**
+ * Strip all episode markers like (S1 E5), (S2 E11), etc. from text
+ * Handles multiple episode tags in one string
+ * Pattern: (S<digit(s)> E<digit(s)>)
+ */
+function stripEpisodeTags(text: string): string {
+  return text
+    .replace(/\s*\(S\d+\s+E\d+\)\s*/gi, ' ') // Remove (S1 E5), (S2 E11), etc.
+    .replace(/\s+/g, ' ') // Collapse multiple spaces
+    .trim();
+}
+
 // Normalize text for deduplication
 function slugify(text: string): string {
-  return text
+  return stripEpisodeTags(text)
     .toLowerCase()
     .replace(/[^\w\s]/g, '')
     .replace(/\s+/g, '-')
@@ -63,14 +75,17 @@ export function parseNotionMarkdown(markdown: string): ImportedBook[] {
         let rawTitle = linkTitleMatch[1];
         const link = linkTitleMatch[2];
 
-        // Remove stray bold markers from title if present
-        const title = rawTitle.replace(/\*\*/g, '').trim();
+        // Remove bold markers and episode tags from title
+        const title = stripEpisodeTags(rawTitle.replace(/\*\*/g, '')).trim();
 
         // Extract author: take substring after " by "
         const byIndex = line.toLowerCase().lastIndexOf(' by ');
-        let author = line.slice(byIndex + 4).trim();
-        // Remove any trailing episode markers and trailing bold markers
-        author = author.replace(/\s*\([^)]*\)\s*\**$/g, '').replace(/\*\*/g, '').trim();
+        let rawAuthor = line.slice(byIndex + 4).trim();
+        // Remove ALL episode tags and bold markers from author
+        const author = stripEpisodeTags(rawAuthor)
+          .replace(/\*\*/g, '')
+          .replace(/\s*\([^)]*\)\s*/g, '') // Remove any remaining parentheticals
+          .trim();
 
         // Look ahead for notes (next non-empty lines until next item or category)
         let notes = '';
@@ -126,16 +141,27 @@ export function mergeImportedBooks(markdown: string, existing: Book[]): Book[] {
     const existingBook = existingMap.get(key);
     
     if (existingBook) {
-      // Update existing book with missing fields
-      if (imp.notes && !existingBook.notes) {
-        existingBook.notes = imp.notes;
-      }
+      // Preserve existing book data, only fill in missing fields
+      
+      // Link: keep existing if present
       if (imp.link && !existingBook.link) {
         existingBook.link = imp.link;
       }
-      if (imp.category && !existingBook.tags?.includes(imp.category)) {
-        existingBook.tags = [...(existingBook.tags || []), imp.category];
+      
+      // Notes: keep existing if present
+      if (imp.notes && !existingBook.notes) {
+        existingBook.notes = imp.notes;
       }
+      
+      // Tags: merge unique values
+      if (imp.category) {
+        const existingTags = existingBook.tags || [];
+        if (!existingTags.includes(imp.category)) {
+          existingBook.tags = [...existingTags, imp.category];
+        }
+      }
+      
+      // Status, progress, rating, myThoughts, cover: NEVER overwrite from import
     } else {
       // Add new book
       const id = slugify(imp.title);

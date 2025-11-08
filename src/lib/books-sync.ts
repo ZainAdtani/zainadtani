@@ -9,10 +9,20 @@ export interface ImportedBook {
 }
 
 /**
+ * Strip all episode markers like (S1 E5), (S2 E11), etc. from text
+ */
+function stripEpisodeTags(text: string): string {
+  return text
+    .replace(/\s*\(S\d+\s+E\d+\)\s*/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/**
  * Normalize text for comparison: lowercase, strip punctuation, collapse whitespace
  */
 function norm(s: string): string {
-  return s
+  return stripEpisodeTags(s)
     .toLowerCase()
     .replace(/&amp;|&/g, 'and')
     .replace(/[^a-z0-9\s]/g, ' ')
@@ -87,14 +97,21 @@ export function mergeBooks(existing: Book[], imported: ImportedBook[]): Book[] {
     const key = keyOf(importedBook.title, importedBook.author);
     
     if (seenKeys.has(key)) {
-      // Update existing entry with imported data (but preserve existing status, cover, etc.)
+      // Update existing entry, preserve existing data
       const existing = seenKeys.get(key)!;
+      
+      // Merge tags uniquely
+      const existingTags = existing.tags || [];
+      const importedTags = importedBook.category ? [importedBook.category] : [];
+      const mergedTags = [...new Set([...existingTags, ...importedTags])];
+      
       seenKeys.set(key, {
         ...existing,
-        // Only fill in missing data
+        // Only fill in missing fields
         link: existing.link || importedBook.source_url,
         notes: existing.notes || importedBook.note,
-        tags: existing.tags || (importedBook.category ? [importedBook.category] : ['best-life']),
+        tags: mergedTags.length > 0 ? mergedTags : existing.tags,
+        // Preserve: status, cover, myThoughts, progress, rating
       });
     } else {
       // Add new book
