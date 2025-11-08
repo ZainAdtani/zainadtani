@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -1735,6 +1735,17 @@ const Index = () => {
               <p className="mt-2 text-sm text-muted-foreground">
                 Bonus: get my <span className="font-medium">Automation Starter</span> checklist free 📱
               </p>
+              
+              <p className="mt-3">
+                <a
+                  href="https://zains-world.beehiiv.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block h-11 px-5 rounded-full bg-white text-gray-900 border border-gray-200 font-semibold hover:bg-gray-50"
+                >
+                  Visit the newsletter site
+                </a>
+              </p>
 
               {/* Native form using Beehiiv magic link */}
               <form
@@ -1747,13 +1758,14 @@ const Index = () => {
 
                   const magic = `https://magic.beehiiv.com/v1/dd1643e2-f274-43e4-b193-62276e3e3b48?email=${encodeURIComponent(email)}`;
 
-                  // Try to open in a new tab (user gesture → should not be blocked)
-                  const w = window.open(magic, "_blank", "noopener,noreferrer");
-
-                  // Fallback: if blocked, use same tab
-                  if (!w) {
-                    window.location.href = magic;
-                  }
+                  // Open exactly one new tab. Do not change the current page.
+                  const a = document.createElement("a");
+                  a.href = magic;
+                  a.target = "_blank";
+                  a.rel = "noopener noreferrer";
+                  document.body.appendChild(a);
+                  a.click();
+                  a.remove();
                 }}
               >
                 <label htmlFor="email" className="sr-only">Email address</label>
