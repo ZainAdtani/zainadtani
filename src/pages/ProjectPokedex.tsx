@@ -27,7 +27,7 @@ export default function ProjectPokedex() {
         <img 
           src={pikachu} 
           alt="Pikachu mascot" 
-          className="fixed top-20 right-8 w-16 h-16 md:w-20 md:h-20 animate-bounce z-10 pointer-events-none opacity-90"
+          className="fixed bottom-8 right-8 sm:bottom-6 sm:right-6 w-16 h-16 md:w-20 md:h-20 animate-bounce z-30 pointer-events-none opacity-90"
         />
 
         {/* Header */}

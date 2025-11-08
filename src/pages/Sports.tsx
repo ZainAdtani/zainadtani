@@ -311,7 +311,7 @@ export default function Sports() {
       {showBall && (
         <div
           aria-hidden
-          className="fixed bottom-6 left-6 z-20"
+          className="fixed bottom-8 right-8 sm:bottom-6 sm:right-6 z-30 pointer-events-none"
           style={{
             width: 56,
             height: 56,
