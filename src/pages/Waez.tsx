@@ -4,13 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import {
   Dialog,
   DialogContent,
@@ -56,16 +50,17 @@ const MISSIONARIES: Missionary[] = [
       "/images/waez/abu-ali-3.png",
       "/images/waez/abu-ali-4.png",
     ],
-    shortBio: "Global missionary and scholar whose 10,000+ lectures emphasized contemplation, discipline, and a purposeful life.",
+    shortBio:
+      "Global missionary and scholar whose 10,000+ lectures emphasized contemplation, discipline, and a purposeful life.",
     bullets: [
       "Born 1919 (Amritsar, India); delivered waez worldwide across eight decades.",
-      "Known for clarity, structure, and practical spiritual guidance."
+      "Known for clarity, structure, and practical spiritual guidance.",
     ],
     links: [
       { label: "Khoja Wiki", url: "https://khojawiki.org" },
-      { label: "Ismaili Heritage", url: "https://ismailiheritage.org" }
-    ]
-  }
+      { label: "Ismaili Heritage", url: "https://ismailiheritage.org" },
+    ],
+  },
 ];
 
 const RECORDINGS: Recording[] = [
@@ -78,7 +73,7 @@ const RECORDINGS: Recording[] = [
     tags: ["Waez", "1991", "Baitul Khayal"],
     srcType: "mp3",
     src: "/media/waez-14-april-28-1991.mp3",
-    listened: false
+    listened: false,
   },
   {
     id: "131",
@@ -90,7 +85,7 @@ const RECORDINGS: Recording[] = [
     srcType: "mp3",
     src: "/media/waez-131-april-24-1991.mp3",
     notes: "Recorded in Toronto, Canada",
-    listened: true
+    listened: true,
   },
   {
     id: "canada-akh",
@@ -101,9 +96,10 @@ const RECORDINGS: Recording[] = [
     tags: ["Canada", "Youth", "Address"],
     srcType: "mp3",
     src: "/media/canada-youth-address-imam.mp3",
-    notes: "The Imam urges the youth of his Jamat in Canada to build a strong, united foundation rooted in faith and values. He reminds them not to react with anger to misunderstandings about Islam but to respond with wisdom and dignity. He emphasizes preserving family unity, making good choices, and staying true to Islamic principles—so future generations can thrive in Canada. He ends with his special blessings and a call to think long-term about the legacy they are creating.",
-    listened: false
-  }
+    notes:
+      "The Imam urges the youth of his Jamat in Canada to build a strong, united foundation rooted in faith and values. He reminds them not to react with anger to misunderstandings about Islam but to respond with wisdom and dignity. He emphasizes preserving family unity, making good choices, and staying true to Islamic principles—so future generations can thrive in Canada. He ends with his special blessings and a call to think long-term about the legacy they are creating.",
+    listened: false,
+  },
 ];
 
 function getStreamAndDownload(r: Recording) {
@@ -194,9 +190,7 @@ export default function Waez() {
                     <div className="mb-3">
                       <h3 className="text-2xl font-bold">{missionary.name}</h3>
                       {missionary.alias && (
-                        <p className="text-sm text-muted-foreground mt-1">
-                          Known as "{missionary.alias}"
-                        </p>
+                        <p className="text-sm text-muted-foreground mt-1">Known as "{missionary.alias}"</p>
                       )}
                     </div>
                     <p className="text-base leading-relaxed mb-4">{missionary.shortBio}</p>
@@ -213,6 +207,33 @@ export default function Waez() {
             ))}
           </section>
 
+          {/* USA Visit 2025 buttons, shown just above "Waez Library" */}
+          <section aria-label="USA Visit 2025">
+            <Card className="rounded-2xl border bg-white/90 dark:bg-white/[.06] dark:border-white/10 p-6">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <h2 className="text-2xl font-bold">USA Visit 2025</h2>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button asChild className="whitespace-normal text-left">
+                    <a href="/usa-visit-2025/devotional-literature">
+                      <span className="inline-flex items-center gap-2">
+                        <BookOpen className="w-4 h-4" />
+                        DEVOTIONAL LITERATURE SELECT TEXTS OF THE QUR'AN, GINANS, QASIDAS AND TASBIHS
+                      </span>
+                    </a>
+                  </Button>
+                  <Button asChild variant="secondary" className="whitespace-normal text-left">
+                    <a href="/usa-visit-2025/illuminate">
+                      <span className="inline-flex items-center gap-2">
+                        <Sparkles className="w-4 h-4" />
+                        ILLUMINATE - LIGHTING the path to MULAQAT
+                      </span>
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          </section>
+
           {/* Waez Library */}
           <section>
             <div className="mb-6">
@@ -227,9 +248,7 @@ export default function Waez() {
             </div>
 
             {filteredRecordings.length === 0 ? (
-              <p className="text-muted-foreground text-center py-8">
-                No recordings found matching "{searchQuery}"
-              </p>
+              <p className="text-muted-foreground text-center py-8">No recordings found matching "{searchQuery}"</p>
             ) : (
               <div className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible">
                 {filteredRecordings.map((recording) => {
@@ -243,9 +262,7 @@ export default function Waez() {
                       <div className="space-y-3">
                         <div>
                           <div className="flex items-center gap-2 mb-2">
-                            <h3 className="font-bold text-base leading-tight">
-                              {recording.title}
-                            </h3>
+                            <h3 className="font-bold text-base leading-tight">{recording.title}</h3>
                             {recording.listened && (
                               <Badge
                                 variant="outline"
@@ -319,9 +336,7 @@ export default function Waez() {
                                   <DialogTitle>{recording.title}</DialogTitle>
                                   <DialogDescription>Recording notes</DialogDescription>
                                 </DialogHeader>
-                                <div className="mt-4 text-sm leading-relaxed">
-                                  {recording.notes}
-                                </div>
+                                <div className="mt-4 text-sm leading-relaxed">{recording.notes}</div>
                                 <div className="flex gap-2 mt-6">
                                   <Button
                                     variant="outline"
