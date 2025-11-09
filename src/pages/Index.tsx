@@ -188,8 +188,6 @@ const Index = () => {
   const [quote, setQuote] = useState("");
   const [activeTab, setActiveTab] = useState<TabKey>(() => getTabFromHash(window.location.hash));
   const [searchQuery, setSearchQuery] = useState("");
-  const [nlIndex, setNlIndex] = useState(0);
-  const [podIndex, setPodIndex] = useState(0);
   const location = useLocation();
 
   // Filter products based on search query
@@ -886,19 +884,55 @@ const Index = () => {
                   <p>• AWS pricing models and cost optimization</p>
                   <p>• Cloud architecture design principles</p>
                 </div>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="border-primary text-primary hover:bg-primary/10 transition-all duration-300"
-                >
-                  <a
-                    href="https://www.credly.com/badges/2d636eb8-4677-4783-b829-47394e406a5a/public_url"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <p className="text-sm text-muted-foreground text-center mb-2">
+                  Game based training to renew Cloud Practitioner. No exam required.
+                </p>
+                <p className="text-xs text-muted-foreground text-center mb-4">
+                  Available in English, Japanese, Korean, French, and Portuguese.
+                </p>
+                <div className="space-y-2">
+                  <Button
+                    asChild
+                    className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white transition-all duration-300 hover:shadow-lg"
                   >
-                    View AWS Badge →
-                  </a>
-                </Button>
+                    <a
+                      href="https://skillbuilder.aws/learn/ZCQGNCDS54/aws-cloud-quest-recertify-cloud-practitioner/H5AC9MAA6A?sc_channel=em&trk=2d6615ea-2f04-4726-b969-0f8c555f74f4"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      tabIndex={0}
+                    >
+                      Recertify with Cloud Quest →
+                    </a>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="secondary"
+                    className="w-full transition-all duration-300 hover:shadow-md"
+                  >
+                    <a
+                      href="https://aws.amazon.com/training/digital/aws-cloud-quest/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      tabIndex={0}
+                    >
+                      About AWS Cloud Quest →
+                    </a>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="w-full border-primary text-primary hover:bg-primary/10 transition-all duration-300"
+                  >
+                    <a
+                      href="https://www.credly.com/badges/2d636eb8-4677-4783-b829-47394e406a5a/public_url"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      tabIndex={0}
+                    >
+                      View AWS Badge →
+                    </a>
+                  </Button>
+                </div>
               </Card>
 
               <Card className="p-8 hover-lift transition-all duration-300 shadow-lg border-2">
@@ -1356,44 +1390,39 @@ const Index = () => {
               <p className="text-lg text-muted-foreground">My favorite weekly reads for growth, health, and finance</p>
             </div>
 
-            <div className="relative min-h-[280px]">
-              {/* Current item display */}
-              <div className="flex justify-center">
-                <div className="w-full max-w-[360px]">
-                  <Card className="h-full p-5 border-2 bg-card shadow-lg flex flex-col">
-                    <h3 className="text-lg font-bold text-foreground">{NEWSLETTERS[nlIndex].title}</h3>
-                    {NEWSLETTERS[nlIndex].byline && (
-                      <p className="text-xs text-primary font-semibold mt-0.5">{NEWSLETTERS[nlIndex].byline}</p>
-                    )}
-                    <p className="text-sm text-muted-foreground mt-2 flex-1">{NEWSLETTERS[nlIndex].blurb}</p>
-                    <Button asChild className="mt-4 w-full">
-                      <a href={NEWSLETTERS[nlIndex].href} target="_blank" rel="noopener noreferrer">
-                        Subscribe
+            {/* Newsletter Cards Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {NEWSLETTERS.map((newsletter) => (
+                <Card key={newsletter.href} className="hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col p-5 border-2 bg-card">
+                  <div className="flex-grow">
+                    <h3 className="text-lg font-bold text-foreground">
+                      <a
+                        href={newsletter.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-primary transition-colors"
+                        aria-label={`Subscribe to ${newsletter.title}`}
+                      >
+                        {newsletter.title}
                       </a>
-                    </Button>
-                  </Card>
-                </div>
-              </div>
-
-              {/* Navigation buttons */}
-              <button
-                type="button"
-                onClick={() => setNlIndex((prev) => Math.max(0, prev - 1))}
-                disabled={nlIndex === 0}
-                aria-label="Previous newsletter"
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 rounded-full border bg-background/80 backdrop-blur px-3.5 py-2 shadow hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                type="button"
-                onClick={() => setNlIndex((prev) => Math.min(NEWSLETTERS.length - 1, prev + 1))}
-                disabled={nlIndex === NEWSLETTERS.length - 1}
-                aria-label="Next newsletter"
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 rounded-full border bg-background/80 backdrop-blur px-3.5 py-2 shadow hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
+                    </h3>
+                    {newsletter.byline && (
+                      <p className="text-xs text-primary font-semibold mt-0.5">{newsletter.byline}</p>
+                    )}
+                    <p className="text-sm text-muted-foreground mt-2">{newsletter.blurb}</p>
+                  </div>
+                  <Button asChild className="mt-4 w-full">
+                    <a
+                      href={newsletter.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Subscribe to ${newsletter.title}`}
+                    >
+                      Subscribe →
+                    </a>
+                  </Button>
+                </Card>
+              ))}
             </div>
           </div>
         </div>
@@ -1412,94 +1441,71 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="relative min-h-[340px]">
-            {/* Current podcast display */}
-            <div className="flex justify-center">
-              <div className="w-full max-w-[340px]">
-                <div className="h-full rounded-2xl border-2 bg-card overflow-hidden shadow-lg">
-                  {/* Image/header */}
-                  <div className="relative h-40 bg-muted flex items-center justify-center overflow-hidden">
-                    {PODCASTS[podIndex].image ? (
-                      <img
-                        src={PODCASTS[podIndex].image}
-                        alt={`${PODCASTS[podIndex].title} cover`}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <img
-                        src={faviconFor(PODCASTS[podIndex].website || PODCASTS[podIndex].listen)}
-                        alt={`${PODCASTS[podIndex].title} icon`}
-                        className="w-14 h-14 rounded-xl border bg-background"
-                        loading="lazy"
-                      />
-                    )}
-                  </div>
+          {/* Podcast Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {PODCASTS.map((podcast) => (
+              <Card key={podcast.listen} className="hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col rounded-2xl border-2 bg-card shadow-lg">
+                {/* Image/header */}
+                <div className="relative h-40 bg-muted flex items-center justify-center overflow-hidden">
+                  {podcast.image ? (
+                    <img
+                      src={podcast.image}
+                      alt={`${podcast.title} cover`}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <img
+                      src={faviconFor(podcast.website || podcast.listen)}
+                      alt={`${podcast.title} icon`}
+                      className="w-14 h-14 rounded-xl border bg-background"
+                      loading="lazy"
+                    />
+                  )}
+                </div>
 
-                  {/* Body */}
-                  <div className="p-5">
-                    <p className="text-xs text-muted-foreground mb-1">{PODCASTS[podIndex].host}</p>
-                    <h3 className="text-lg font-semibold leading-snug text-foreground line-clamp-2">
-                      {PODCASTS[podIndex].title}
-                    </h3>
+                {/* Body */}
+                <div className="p-5 flex flex-col flex-grow">
+                  <p className="text-xs text-muted-foreground mb-1">{podcast.host}</p>
+                  <h3 className="text-lg font-semibold leading-snug text-foreground line-clamp-2">
+                    <a
+                      href={podcast.listen}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-primary transition-colors"
+                      aria-label={`Listen to ${podcast.title}`}
+                    >
+                      {podcast.title}
+                    </a>
+                  </h3>
 
-                    <div className="mt-4 flex items-center justify-between">
+                  <div className="mt-auto pt-4 flex items-center justify-between">
+                    <a
+                      href={podcast.listen}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-sm font-medium hover:underline"
+                      aria-label={`Listen to ${podcast.title} on Spotify`}
+                    >
+                      <Mic className="w-4 h-4" />
+                      Listen
+                    </a>
+                    {podcast.website && (
                       <a
-                        href={PODCASTS[podIndex].listen}
+                        href={podcast.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm font-medium hover:underline"
+                        className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+                        aria-label={`Visit ${podcast.title} website`}
+                        title="Website"
                       >
-                        <Mic className="w-4 h-4" />
-                        Listen
+                        <ExternalLink className="w-4 h-4" />
                       </a>
-                      {PODCASTS[podIndex].website && (
-                        <a
-                          href={PODCASTS[podIndex].website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
-                          aria-label="Website"
-                          title="Website"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
-                      )}
-                    </div>
-
-                    {/* Optional embed preview */}
-                    {PODCASTS[podIndex].embedHtml && (
-                      <details className="mt-3">
-                        <summary className="cursor-pointer text-sm text-muted-foreground hover:text-foreground">
-                          Preview
-                        </summary>
-                        <div className="mt-2" dangerouslySetInnerHTML={{ __html: PODCASTS[podIndex].embedHtml }} />
-                      </details>
                     )}
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Navigation buttons */}
-            <button
-              type="button"
-              onClick={() => setPodIndex((prev) => Math.max(0, prev - 1))}
-              disabled={podIndex === 0}
-              aria-label="Previous podcast"
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 rounded-full border bg-background/80 backdrop-blur px-3.5 py-2 shadow hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              type="button"
-              onClick={() => setPodIndex((prev) => Math.min(PODCASTS.length - 1, prev + 1))}
-              disabled={podIndex === PODCASTS.length - 1}
-              aria-label="Next podcast"
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 rounded-full border bg-background/80 backdrop-blur px-3.5 py-2 shadow hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
