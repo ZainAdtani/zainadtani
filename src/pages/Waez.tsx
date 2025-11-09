@@ -13,7 +13,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Play, Download, FileText, Copy, Square } from "lucide-react";
+import { Play, Download, FileText, Copy, Square, BookOpen, Sparkles } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
 type Missionary = {
@@ -149,7 +149,7 @@ export default function Waez() {
       </Helmet>
 
       <div className="max-w-5xl mx-auto px-4 py-12">
-        {/* Hero Section */}
+        {/* Hero */}
         <header className="mb-8">
           <h1 className="text-5xl md:text-6xl font-bold text-foreground">Waez</h1>
         </header>
