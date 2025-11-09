@@ -46,6 +46,8 @@ import financialSorceryBook from "@/assets/financial-sorcery-book.png";
 import chrisHaroun from "@/assets/chris-haroun.png";
 import trentShelton from "@/assets/trent-shelton.png";
 import timFerriss from "@/assets/tim-ferriss.jpg";
+import engineerToEABanner2 from "@/assets/engineer-to-ea-banner-2.png";
+import eagleScoutBadge from "@/assets/eagle-scout-badge.png";
 
 const QUOTES_AND_NOTES = [
   "It is the unknown we fear when we look upon death and darkness, nothing more. - J.K. Rowling, Harry Potter and the Deathly Hallows",
@@ -62,6 +64,9 @@ const QUOTES_AND_NOTES = [
   "Develop a willingness to be disliked. It will grant you the freedom to do what needs to be done, even if it's unpopular.",
   "Nothing meaningful in life is easy, and nothing easy in life is meaningful. We think we'd like to have everything handed to us on a silver platter, but the truth is that we don't appreciate or enjoy things that we don't struggle for. So stop avoiding the difficult things in your life and instead find the difficult things you enjoy.",
   "It's never too late to change. It's never too late. I get emails all the time from people asking me, \"Hey, I'm 20 or 40 or 60 or 80, is it too late? Can I change? Is there time?\" The answer is it's never too late, there's always time. The only question is how long we're gonna sit here and make excuses and pretend there's not.",
+  "In some ways, suffering ceases to be suffering at the moment it finds a meaning, such as the meaning of a sacrifice. — Viktor Frankl",
+  "When you factor in every ancestor, timing, and genetic combination, your chances of being here are 1 in 400 trillion. These odds are like winning the lottery 12,996 times in a row. You may not know it, but you're a literal walking lottery winner. Start acting like it. — Me in a future thread I'm writing for my birthday",
+  "BEFORE YOU TEAR DOWN THE FENCE, MAKE SURE YOU KNOW THE WOLVES IT WAS KEEPING AT BAY. — @SahilBloom, The 5 Types of Wealth",
 ];
 
 // ---- Podcasts I Follow (data) ----
@@ -183,6 +188,8 @@ const Index = () => {
   const [quote, setQuote] = useState("");
   const [activeTab, setActiveTab] = useState<TabKey>(() => getTabFromHash(window.location.hash));
   const [searchQuery, setSearchQuery] = useState("");
+  const [nlIndex, setNlIndex] = useState(0);
+  const [podIndex, setPodIndex] = useState(0);
   const location = useLocation();
 
   // Filter products based on search query
@@ -893,6 +900,34 @@ const Index = () => {
                   </a>
                 </Button>
               </Card>
+
+              <Card className="p-8 hover-lift transition-all duration-300 shadow-lg border-2">
+                <div className="flex items-start gap-4 mb-6">
+                  <img
+                    src={eagleScoutBadge}
+                    alt="Eagle Scout Badge"
+                    className="w-24 h-24 object-contain flex-shrink-0"
+                  />
+                </div>
+                <h3 className="text-3xl font-bold mb-4 text-foreground">Eagle Scout</h3>
+                <p className="text-lg text-muted-foreground mb-4">Earned in 2017</p>
+                <p className="text-base text-muted-foreground mb-6">
+                  Leadership, service, outdoor skills, and community projects. 🧭🏕️🦅
+                </p>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-primary text-primary hover:bg-primary/10 transition-all duration-300"
+                >
+                  <a
+                    href="https://greatriversscouting.org/2023/11/03/eagle-scout-requirements/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    What is Eagle Scout →
+                  </a>
+                </Button>
+              </Card>
             </TabsContent>
 
             {/* Role Models Tab */}
@@ -1214,23 +1249,35 @@ const Index = () => {
         <div className="container mx-auto px-4 max-w-5xl">
           <Card className="p-8 md:p-10 border-2 shadow-lg bg-background/90 backdrop-blur-sm">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-              {/* Visual / Cover */}
-              <div
-                className="relative md:col-span-1 rounded-2xl overflow-hidden border-2 border-accent/40 bg-gradient-to-br from-yellow-300/40 via-yellow-200/30 to-yellow-100/40 dark:from-yellow-400/20 dark:via-yellow-300/15 dark:to-yellow-200/10"
-                style={{
-                  transformStyle: "preserve-3d",
-                }}
-              >
-                <div className="absolute -top-10 -left-10 w-40 h-40 bg-yellow-300/30 rounded-full blur-2xl pointer-events-none" />
-                <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-yellow-500/20 rounded-full blur-3xl pointer-events-none" />
-                <div className="aspect-[16/10] flex items-center justify-center p-6">
-                  <div className="text-center">
-                    <p className="text-sm font-semibold text-yellow-800 dark:text-yellow-200 tracking-wide">
-                      Engineer → Enrolled Agent
-                    </p>
-                    <p className="text-xl md:text-2xl font-extrabold text-yellow-900 dark:text-yellow-100 mt-1">
-                      Free Community
-                    </p>
+              {/* Visual / Cover Images */}
+              <div className="md:col-span-1 space-y-4">
+                {/* New cover image */}
+                <div className="rounded-2xl overflow-hidden border-2 border-primary/30 shadow-lg">
+                  <img
+                    src={engineerToEABanner2}
+                    alt="Engineer to Enrolled Agent - Community Cover"
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+                
+                {/* Existing gradient cover */}
+                <div
+                  className="relative rounded-2xl overflow-hidden border-2 border-accent/40 bg-gradient-to-br from-yellow-300/40 via-yellow-200/30 to-yellow-100/40 dark:from-yellow-400/20 dark:via-yellow-300/15 dark:to-yellow-200/10"
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <div className="absolute -top-10 -left-10 w-40 h-40 bg-yellow-300/30 rounded-full blur-2xl pointer-events-none" />
+                  <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-yellow-500/20 rounded-full blur-3xl pointer-events-none" />
+                  <div className="aspect-[16/10] flex items-center justify-center p-6">
+                    <div className="text-center">
+                      <p className="text-sm font-semibold text-yellow-800 dark:text-yellow-200 tracking-wide">
+                        Engineer → Enrolled Agent
+                      </p>
+                      <p className="text-xl md:text-2xl font-extrabold text-yellow-900 dark:text-yellow-100 mt-1">
+                        Free Community
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1309,110 +1356,80 @@ const Index = () => {
               <p className="text-lg text-muted-foreground">My favorite weekly reads for growth, health, and finance</p>
             </div>
 
-            <div className="relative">
-              {/* arrows */}
+            <div className="relative min-h-[280px]">
+              {/* Current item display */}
+              <div className="flex justify-center">
+                <div className="w-full max-w-[360px]">
+                  <Card className="h-full p-5 border-2 bg-card shadow-lg flex flex-col">
+                    <h3 className="text-lg font-bold text-foreground">{NEWSLETTERS[nlIndex].title}</h3>
+                    {NEWSLETTERS[nlIndex].byline && (
+                      <p className="text-xs text-primary font-semibold mt-0.5">{NEWSLETTERS[nlIndex].byline}</p>
+                    )}
+                    <p className="text-sm text-muted-foreground mt-2 flex-1">{NEWSLETTERS[nlIndex].blurb}</p>
+                    <Button asChild className="mt-4 w-full">
+                      <a href={NEWSLETTERS[nlIndex].href} target="_blank" rel="noopener noreferrer">
+                        Subscribe
+                      </a>
+                    </Button>
+                  </Card>
+                </div>
+              </div>
+
+              {/* Navigation buttons */}
               <button
                 type="button"
-                onClick={() => snap(-1)}
-                aria-label="Previous newsletters"
-                className="hidden md:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 rounded-full border bg-background/80 backdrop-blur px-3.5 py-2 shadow hover:bg-muted"
+                onClick={() => setNlIndex((prev) => Math.max(0, prev - 1))}
+                disabled={nlIndex === 0}
+                aria-label="Previous newsletter"
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 rounded-full border bg-background/80 backdrop-blur px-3.5 py-2 shadow hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 type="button"
-                onClick={() => snap(1)}
-                aria-label="Next newsletters"
-                className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 rounded-full border bg-background/80 backdrop-blur px-3.5 py-2 shadow hover:bg-muted"
+                onClick={() => setNlIndex((prev) => Math.min(NEWSLETTERS.length - 1, prev + 1))}
+                disabled={nlIndex === NEWSLETTERS.length - 1}
+                aria-label="Next newsletter"
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 rounded-full border bg-background/80 backdrop-blur px-3.5 py-2 shadow hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
-
-              {/* rail */}
-              <div
-                id="nl-rail"
-                className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2 px-1 [-ms-overflow-style:none] [scrollbar-width:none]"
-                style={{ scrollbarWidth: "none" }}
-              >
-                <style>{`#nl-rail::-webkit-scrollbar{display:none}`}</style>
-
-                {/* clone last → first for seamless loop */}
-                {NEWSLETTERS.map((n, i) => (
-                  <div key={`${n.title}-${i}`} className="snap-start shrink-0 w-[300px] md:w-[360px]">
-                    <Card className="h-full p-5 border-2 bg-card hover:shadow-lg transition-shadow flex flex-col">
-                      <h3 className="text-lg font-bold text-foreground">{n.title}</h3>
-                      {n.byline && <p className="text-xs text-primary font-semibold mt-0.5">{n.byline}</p>}
-                      <p className="text-sm text-muted-foreground mt-2 flex-1">{n.blurb}</p>
-                      <Button asChild className="mt-4 w-full">
-                        <a href={n.href} target="_blank" rel="noopener noreferrer">Subscribe</a>
-                      </Button>
-                    </Card>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Podcasts I Follow — Carousel */}
+      {/* Podcasts I Follow — Frame-by-Frame Navigation */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="flex items-end justify-between mb-8 md:mb-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold leading-tight text-foreground">
-                Podcasts I Follow <span className="italic">🎙️</span>
-              </h2>
-              <div className="mt-2 h-1.5 w-24 rounded-full bg-primary/30" />
-              <p className="mt-3 text-lg text-muted-foreground">
-                A rolling list of shows I learn from every week
-              </p>
-            </div>
-            <div className="hidden md:flex gap-2">
-              <button
-                type="button"
-                onClick={() => snapPodcast(-1)}
-                className="inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-sm hover:bg-muted"
-                aria-label="Previous"
-              >
-                <ChevronLeft className="w-4 h-4" /> Prev
-              </button>
-              <button
-                type="button"
-                onClick={() => snapPodcast(1)}
-                className="inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-sm hover:bg-muted"
-                aria-label="Next"
-              >
-                Next <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold leading-tight text-foreground">
+              Podcasts I Follow <span className="italic">🎙️</span>
+            </h2>
+            <div className="mt-2 h-1.5 w-24 rounded-full bg-primary/30 mx-auto" />
+            <p className="mt-3 text-lg text-muted-foreground">
+              A rolling list of shows I learn from every week
+            </p>
           </div>
 
-          {/* Rail */}
-          <div
-            id="podcast-rail"
-            className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2 px-1 [-ms-overflow-style:none] [scrollbar-width:none]"
-            style={{ scrollbarWidth: "none" }}
-          >
-            {/* hide scrollbar (WebKit) */}
-            <style>{`#podcast-rail::-webkit-scrollbar{display:none}`}</style>
-
-            {PODCASTS.map((p, i) => (
-              <div key={`${p.title}-${i}`} className="snap-start shrink-0 w-[300px] md:w-[340px]">
-                <div className="h-full rounded-2xl border-2 bg-card overflow-hidden hover:shadow-lg transition-shadow">
+          <div className="relative min-h-[340px]">
+            {/* Current podcast display */}
+            <div className="flex justify-center">
+              <div className="w-full max-w-[340px]">
+                <div className="h-full rounded-2xl border-2 bg-card overflow-hidden shadow-lg">
                   {/* Image/header */}
                   <div className="relative h-40 bg-muted flex items-center justify-center overflow-hidden">
-                    {p.image ? (
+                    {PODCASTS[podIndex].image ? (
                       <img
-                        src={p.image}
-                        alt={`${p.title} cover`}
+                        src={PODCASTS[podIndex].image}
+                        alt={`${PODCASTS[podIndex].title} cover`}
                         className="w-full h-full object-cover"
                         loading="lazy"
                       />
                     ) : (
                       <img
-                        src={faviconFor(p.website || p.listen)}
-                        alt={`${p.title} icon`}
+                        src={faviconFor(PODCASTS[podIndex].website || PODCASTS[podIndex].listen)}
+                        alt={`${PODCASTS[podIndex].title} icon`}
                         className="w-14 h-14 rounded-xl border bg-background"
                         loading="lazy"
                       />
@@ -1421,14 +1438,14 @@ const Index = () => {
 
                   {/* Body */}
                   <div className="p-5">
-                    <p className="text-xs text-muted-foreground mb-1">{p.host}</p>
+                    <p className="text-xs text-muted-foreground mb-1">{PODCASTS[podIndex].host}</p>
                     <h3 className="text-lg font-semibold leading-snug text-foreground line-clamp-2">
-                      {p.title}
+                      {PODCASTS[podIndex].title}
                     </h3>
 
                     <div className="mt-4 flex items-center justify-between">
                       <a
-                        href={p.listen}
+                        href={PODCASTS[podIndex].listen}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 text-sm font-medium hover:underline"
@@ -1436,9 +1453,9 @@ const Index = () => {
                         <Mic className="w-4 h-4" />
                         Listen
                       </a>
-                      {p.website && (
+                      {PODCASTS[podIndex].website && (
                         <a
-                          href={p.website}
+                          href={PODCASTS[podIndex].website}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
@@ -1451,35 +1468,37 @@ const Index = () => {
                     </div>
 
                     {/* Optional embed preview */}
-                    {p.embedHtml && (
+                    {PODCASTS[podIndex].embedHtml && (
                       <details className="mt-3">
                         <summary className="cursor-pointer text-sm text-muted-foreground hover:text-foreground">
                           Preview
                         </summary>
-                        <div className="mt-2" dangerouslySetInnerHTML={{ __html: p.embedHtml }} />
+                        <div className="mt-2" dangerouslySetInnerHTML={{ __html: PODCASTS[podIndex].embedHtml }} />
                       </details>
                     )}
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
 
-          {/* Mobile buttons */}
-          <div className="mt-4 flex md:hidden justify-center gap-3">
+            {/* Navigation buttons */}
             <button
               type="button"
-              onClick={() => snapPodcast(-1)}
-              className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm hover:bg-muted"
+              onClick={() => setPodIndex((prev) => Math.max(0, prev - 1))}
+              disabled={podIndex === 0}
+              aria-label="Previous podcast"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 rounded-full border bg-background/80 backdrop-blur px-3.5 py-2 shadow hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed"
             >
-              <ChevronLeft className="w-4 h-4" /> Prev
+              <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               type="button"
-              onClick={() => snapPodcast(1)}
-              className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm hover:bg-muted"
+              onClick={() => setPodIndex((prev) => Math.min(PODCASTS.length - 1, prev + 1))}
+              disabled={podIndex === PODCASTS.length - 1}
+              aria-label="Next podcast"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 rounded-full border bg-background/80 backdrop-blur px-3.5 py-2 shadow hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed"
             >
-              Next <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
