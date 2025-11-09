@@ -29,6 +29,7 @@ import QuickBooks from "./pages/QuickBooks";
 import QuickBooksFastTrack from "./pages/QuickBooksFastTrack";
 import QuickBooksCleanup from "./pages/QuickBooksCleanup";
 import Thanks from "./pages/Thanks";
+import TalkToAI from "./pages/projects/TalkToAI";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ const App = () => (
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/pokedex" element={<ProjectPokedex />} />
             <Route path="/projects/ai-avatars" element={<AiAvatars />} />
+            <Route path="/projects/ai" element={<TalkToAI />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/resources" element={<Resources />} />

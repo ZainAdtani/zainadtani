@@ -1070,15 +1070,52 @@ const Index = () => {
                         </ul>
                       </div>
 
-                      {/* CTA Button */}
-                      <Button
-                        asChild
-                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 hover:shadow-lg text-base py-6"
-                      >
-                        <a href={person.website} target="_blank" rel="noopener noreferrer" tabIndex={0}>
-                          Learn More →
-                        </a>
-                      </Button>
+                      {/* CTA Buttons */}
+                      {index === 3 ? (
+                        // Chris Haroun - special buttons
+                        <div className="space-y-3">
+                          <p className="text-sm text-muted-foreground text-center mb-3">
+                            MBA-level lessons, live coaching, and a kind peer community.
+                          </p>
+                          <Button
+                            asChild
+                            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 hover:shadow-lg text-base py-6"
+                          >
+                            <a 
+                              href="https://www.linkedin.com/in/charoun/" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              tabIndex={0}
+                            >
+                              Visit Chris's LinkedIn →
+                            </a>
+                          </Button>
+                          <Button
+                            asChild
+                            variant="secondary"
+                            className="w-full transition-all duration-300 hover:shadow-md text-base py-6"
+                          >
+                            <a 
+                              href="https://community.harounventures.com/joinhev" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              tabIndex={0}
+                            >
+                              Join HEV Community →
+                            </a>
+                          </Button>
+                        </div>
+                      ) : (
+                        // Default button for other role models
+                        <Button
+                          asChild
+                          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 hover:shadow-lg text-base py-6"
+                        >
+                          <a href={person.website} target="_blank" rel="noopener noreferrer" tabIndex={0}>
+                            Learn More →
+                          </a>
+                        </Button>
+                      )}
                     </div>
                   </Card>
                 ))}

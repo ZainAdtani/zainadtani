@@ -47,6 +47,7 @@ const searchIndex: SearchableItem[] = [
   { title: "Waez", route: "/waez", section: "Resources", tags: ["religious", "lectures", "Abu Ali"] },
   { title: "Projects", route: "/projects", section: "Explore", tags: ["pokedex", "builds"] },
   { title: "Pokédex", route: "/projects/pokedex", section: "Explore", tags: ["pokemon", "notion"] },
+  { title: "Talk to AI", route: "/projects/ai", section: "Explore", tags: ["ai", "assistant", "chat", "voice"] },
   { title: "Secret Vault", route: "/vault", section: "Secret Vault", tags: ["premium", "exclusive"] },
   { title: "Help / Contact", route: "/about", section: "Support" },
 ];
@@ -345,6 +346,15 @@ export function AppSidebar() {
                     {!isCollapsed && <span>Projects</span>}
                   </NavLink>
                 </SidebarMenuButton>
+                <SidebarMenuSub>
+                  <SidebarMenuSubItem>
+                    <SidebarMenuSubButton asChild>
+                      <NavLink to="/projects/ai" className={getNavClass}>
+                        {!isCollapsed && <span>Talk to AI</span>}
+                      </NavLink>
+                    </SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+                </SidebarMenuSub>
               </SidebarMenuItem>
             </SidebarMenu>
               </SidebarGroupContent>

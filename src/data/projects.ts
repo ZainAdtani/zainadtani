@@ -23,5 +23,12 @@ export const projects: Project[] = [
     description: 'AI avatar video project powered by HeyGen.',
     route: '/projects/ai-avatars',
     tags: ['ai', 'video', 'heygen']
+  },
+  {
+    id: 'talk-to-ai',
+    title: 'Talk to AI',
+    description: 'Get personalized guidance with voice or text AI.',
+    route: '/projects/ai',
+    tags: ['ai', 'assistant', 'chat', 'voice']
   }
 ];

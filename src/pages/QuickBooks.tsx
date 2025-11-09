@@ -16,6 +16,13 @@ export default function QuickBooks() {
       </Helmet>
 
       <div className="container max-w-6xl mx-auto px-4 py-12 space-y-16">
+        {/* Breadcrumbs */}
+        <nav className="text-sm text-muted-foreground">
+          <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+          <span className="mx-2">/</span>
+          <span className="text-foreground">QuickBooks</span>
+        </nav>
+
         {/* Hero */}
         <header className="text-center space-y-4">
           <h1 className="text-5xl md:text-6xl font-bold text-foreground">QuickBooks HQ</h1>
