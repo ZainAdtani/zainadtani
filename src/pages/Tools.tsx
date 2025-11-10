@@ -233,11 +233,95 @@ const TOOLS: Tool[] = [
     description: "Official ChatGPT app",
     category: "Apps",
   },
+  // Marketplaces
+  {
+    id: "etsy",
+    name: "Etsy",
+    url: "https://www.etsy.com/",
+    description: "Handmade, vintage, and unique goods marketplace",
+    category: "Marketplaces",
+  },
+  {
+    id: "ebay",
+    name: "eBay",
+    url: "https://www.ebay.com/",
+    description: "Online marketplace for buying and selling",
+    category: "Marketplaces",
+  },
+  {
+    id: "whop",
+    name: "WHOP",
+    url: "https://whop.com/",
+    description: "Digital products and memberships marketplace",
+    category: "Marketplaces",
+  },
+  {
+    id: "mastermind-marketplace",
+    name: "Mastermind.com",
+    url: "https://www.mastermind.com/",
+    description: "Connect with experts and join mastermind groups",
+    category: "Marketplaces",
+  },
+  {
+    id: "udemy-marketplace",
+    name: "Udemy",
+    url: "https://www.udemy.com/",
+    description: "Online learning and teaching marketplace",
+    category: "Marketplaces",
+  },
+  {
+    id: "youtube-marketplace",
+    name: "YouTube",
+    url: "https://www.youtube.com/",
+    description: "Video sharing and discovery platform",
+    category: "Marketplaces",
+    iconUrl: "/logos/youtube.png",
+  },
+  // Courses I Recommend
+  {
+    id: "aws-cloud-practitioner-essentials",
+    name: "AWS Cloud Practitioner Essentials",
+    url: "https://www.coursera.org/learn/aws-cloud-practitioner-essentials",
+    description: "Foundational AWS cloud concepts and services",
+    category: "Courses I Recommend",
+    iconUrl: "/logos/coursera.png",
+  },
+  {
+    id: "aws-cloud-technical-essentials-course",
+    name: "AWS Cloud Technical Essentials",
+    url: "https://www.coursera.org/learn/aws-cloud-technical-essentials",
+    description: "Technical fundamentals of AWS cloud",
+    category: "Courses I Recommend",
+    iconUrl: "/logos/coursera.png",
+  },
+  {
+    id: "aws-fundamentals-migrating",
+    name: "AWS Fundamentals, Migrating to the Cloud",
+    url: "https://www.coursera.org/learn/aws-fundamentals-migrating-to-the-cloud",
+    description: "Learn cloud migration strategies with AWS",
+    category: "Courses I Recommend",
+    iconUrl: "/logos/coursera.png",
+  },
+  {
+    id: "aws-fundamentals-specialization-course",
+    name: "AWS Fundamentals Specialization",
+    url: "https://www.coursera.org/specializations/aws-fundamentals",
+    description: "Complete AWS fundamentals learning path",
+    category: "Courses I Recommend",
+    iconUrl: "/logos/coursera.png",
+  },
+  {
+    id: "nlp-practitioner-course",
+    name: "NLP Practitioner plus Master",
+    url: "https://www.udemy.com/course/nlp-practitioner-master-practitioner-certification-course/",
+    description: "Comprehensive NLP certification training",
+    category: "Courses I Recommend",
+  },
 ];
 
 const HIDDEN_IDS = new Set(["showmypc", "euless-public-library", "reddit"]);
 
-const SECTION_ORDER = ["AI & Agents", "Productivity", "Images & Design", "Courses & Learning", "Utilities", "Apps"];
+const SECTION_ORDER = ["AI & Agents", "Productivity", "Images & Design", "Courses & Learning", "Utilities", "Apps", "Marketplaces", "Courses I Recommend"];
 
 function ToolCard({ tool }: { tool: Tool }) {
   const getIcon = (tool: Tool) => {
