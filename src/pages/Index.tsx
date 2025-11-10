@@ -67,6 +67,8 @@ const QUOTES_AND_NOTES = [
   "In some ways, suffering ceases to be suffering at the moment it finds a meaning, such as the meaning of a sacrifice. — Viktor Frankl",
   "When you factor in every ancestor, timing, and genetic combination, your chances of being here are 1 in 400 trillion. These odds are like winning the lottery 12,996 times in a row. You may not know it, but you're a literal walking lottery winner. Start acting like it. — Me in a future thread I'm writing for my birthday",
   "BEFORE YOU TEAR DOWN THE FENCE, MAKE SURE YOU KNOW THE WOLVES IT WAS KEEPING AT BAY. — @SahilBloom, The 5 Types of Wealth",
+  "When you complain, you make yourself a victim. Leave the situation, change the situation, or accept it. All else is madness. — Eckhart Tolle",
+  "Material success is not success. I define success as someone who gives and shares what they have. Do not compete with others, compete in caring, respect, honesty, humility, and compassion in both professional and personal relationships. Success to me is someone who uplifts others. — Mawlana Hazar Imam",
 ];
 
 // ---- Podcasts I Follow (data) ----

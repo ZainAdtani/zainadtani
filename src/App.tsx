@@ -30,6 +30,10 @@ import QuickBooksFastTrack from "./pages/QuickBooksFastTrack";
 import QuickBooksCleanup from "./pages/QuickBooksCleanup";
 import Thanks from "./pages/Thanks";
 import TalkToAI from "./pages/projects/TalkToAI";
+import DevotionalLiterature from "./pages/usa-visit-2025/DevotionalLiterature";
+import Illuminate from "./pages/usa-visit-2025/Illuminate";
+import Workout from "./pages/Workout";
+import Services from "./pages/Services";
 
 const queryClient = new QueryClient();
 
@@ -65,6 +69,10 @@ const App = () => (
             <Route path="/quickbooks" element={<QuickBooks />} />
             <Route path="/quickbooks/fast-track" element={<QuickBooksFastTrack />} />
             <Route path="/quickbooks/cleanup" element={<QuickBooksCleanup />} />
+            <Route path="/usa-visit-2025/devotional-literature" element={<DevotionalLiterature />} />
+            <Route path="/usa-visit-2025/illuminate" element={<Illuminate />} />
+            <Route path="/workout" element={<Workout />} />
+            <Route path="/services" element={<Services />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

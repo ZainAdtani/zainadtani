@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Moon, Sun, Menu, Lock, Award, Home as HomeIcon, GraduationCap, BookOpen, TrendingUp, FileText, Paperclip, Zap, StickyNote, Calculator, Wrench, Trophy, Music, FolderKanban, HelpCircle, ChevronDown } from "lucide-react";
+import { Moon, Sun, Menu, Lock, Award, Home as HomeIcon, GraduationCap, BookOpen, TrendingUp, FileText, Paperclip, Zap, StickyNote, Calculator, Wrench, Trophy, Music, FolderKanban, HelpCircle, ChevronDown, Dumbbell, Briefcase } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "@/components/ui/sheet";
@@ -212,6 +212,10 @@ export const Header = () => {
                           <Music className="w-4 h-4" />
                           <span>Waez</span>
                         </Link>
+                        <Link to="/workout" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
+                          <Dumbbell className="w-4 h-4" />
+                          <span>Workout</span>
+                        </Link>
                       </div>
                     </CollapsibleContent>
                   </div>
@@ -247,6 +251,10 @@ export const Header = () => {
                         <Link to="/about" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
                           <HelpCircle className="w-4 h-4" />
                           <span>Help / Contact</span>
+                        </Link>
+                        <Link to="/services" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
+                          <Briefcase className="w-4 h-4" />
+                          <span>Services</span>
                         </Link>
                       </div>
                     </CollapsibleContent>

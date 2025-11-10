@@ -210,25 +210,44 @@ export default function Waez() {
           {/* USA Visit 2025 buttons, shown just above "Waez Library" */}
           <section aria-label="USA Visit 2025">
             <Card className="rounded-2xl border bg-white/90 dark:bg-white/[.06] dark:border-white/10 p-6">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <h2 className="text-2xl font-bold">USA Visit 2025</h2>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button asChild className="whitespace-normal text-left">
-                    <a href="/usa-visit-2025/devotional-literature">
-                      <span className="inline-flex items-center gap-2">
-                        <BookOpen className="w-4 h-4" />
-                        DEVOTIONAL LITERATURE SELECT TEXTS OF THE QUR'AN, GINANS, QASIDAS AND TASBIHS
-                      </span>
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <h2 className="text-2xl font-bold">USA Visit 2025</h2>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button asChild className="whitespace-normal text-left">
+                      <a href="/usa-visit-2025/devotional-literature">
+                        <span className="inline-flex items-center gap-2">
+                          <BookOpen className="w-4 h-4" />
+                          DEVOTIONAL LITERATURE SELECT TEXTS OF THE QUR'AN, GINANS, QASIDAS AND TASBIHS
+                        </span>
+                      </a>
+                    </Button>
+                    <Button asChild variant="secondary" className="whitespace-normal text-left">
+                      <a href="/usa-visit-2025/illuminate">
+                        <span className="inline-flex items-center gap-2">
+                          <Sparkles className="w-4 h-4" />
+                          ILLUMINATE - LIGHTING the path to MULAQAT
+                        </span>
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Coloring Pages Callout */}
+                <div className="relative mt-4 pt-4 border-t border-primary/20 animate-fade-in">
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+                  <h3 className="text-lg font-semibold mb-2">Ismaili Center Houston Coloring Pages</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Familiarise yourself and your little ones with the newest Ismaili Center with these special colouring pages, 
+                    a fun way for children and families to celebrate the opening of the Ismaili Center, Houston.
+                  </p>
+                  <Button asChild>
+                    <a href="/uploads/Ismaili_Center_Houston_Colouring_Pages.pdf" target="_blank" rel="noopener noreferrer">
+                      <Download className="w-4 h-4 mr-2" />
+                      Download PDF
                     </a>
                   </Button>
-                  <Button asChild variant="secondary" className="whitespace-normal text-left">
-                    <a href="/usa-visit-2025/illuminate">
-                      <span className="inline-flex items-center gap-2">
-                        <Sparkles className="w-4 h-4" />
-                        ILLUMINATE - LIGHTING the path to MULAQAT
-                      </span>
-                    </a>
-                  </Button>
+                  <p className="text-xs text-muted-foreground mt-2">Ismaili_Center_Houston_Colouring_Pages.pdf</p>
                 </div>
               </div>
             </Card>

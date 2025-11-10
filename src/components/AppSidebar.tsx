@@ -1,4 +1,4 @@
-import { Home, GraduationCap, TrendingUp, Wrench, Lock, ShoppingBag, Trophy, BookOpen, Music, HelpCircle, Search, ChevronDown, FolderKanban, FileText, Paperclip, Zap, StickyNote, Calculator } from "lucide-react";
+import { Home, GraduationCap, TrendingUp, Wrench, Lock, ShoppingBag, Trophy, BookOpen, Music, HelpCircle, Search, ChevronDown, FolderKanban, FileText, Paperclip, Zap, StickyNote, Calculator, Dumbbell, Briefcase } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
   Sidebar,
@@ -45,10 +45,12 @@ const searchIndex: SearchableItem[] = [
   { title: "Tools", route: "/tools", section: "Resources", tags: ["utilities"] },
   { title: "Sports", route: "/sports", section: "Resources", tags: ["NBA", "scores"] },
   { title: "Waez", route: "/waez", section: "Resources", tags: ["religious", "lectures", "Abu Ali"] },
+  { title: "Workout", route: "/workout", section: "Resources", tags: ["fitness", "health", "exercise"] },
   { title: "Projects", route: "/projects", section: "Explore", tags: ["pokedex", "builds"] },
   { title: "Pokédex", route: "/projects/pokedex", section: "Explore", tags: ["pokemon", "notion"] },
   { title: "Secret Vault", route: "/vault", section: "Secret Vault", tags: ["premium", "exclusive"] },
   { title: "Help / Contact", route: "/about", section: "Support" },
+  { title: "Services", route: "/services", section: "Support", tags: ["website", "lovable", "build"] },
 ];
 
 export function AppSidebar() {
@@ -318,6 +320,14 @@ export function AppSidebar() {
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/workout" className={getNavClass}>
+                    <Dumbbell className="h-4 w-4" />
+                    {!isCollapsed && <span>Workout</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
               </SidebarGroupContent>
             </CollapsibleContent>
@@ -371,6 +381,14 @@ export function AppSidebar() {
                   <NavLink to="/about" className={getNavClass}>
                     <HelpCircle className="h-4 w-4" />
                     {!isCollapsed && <span>Help / Contact</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to="/services" className={getNavClass}>
+                    <Briefcase className="h-4 w-4" />
+                    {!isCollapsed && <span>Services</span>}
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
