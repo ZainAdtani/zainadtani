@@ -17,6 +17,59 @@ export type Book = {
   isbn?: string;
 };
 
+// Helper function to normalize strings for deduplication
+function norm(s: string): string {
+  return s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim().replace(/\s+/g, " ");
+}
+
+// Deduplicate books, keeping the richer card with notes/thoughts
+function dedupeBooks(arr: Book[]): Book[] {
+  const aliasAuthor = (a: string) => {
+    const normalized = a.toLowerCase();
+    if (normalized.includes("paul millard")) return "paul millerd";
+    return a;
+  };
+  
+  const out: Book[] = [];
+  const seen = new Map<string, { idx: number; hasNotes: boolean; hasThoughts: boolean }>();
+  
+  for (const b of arr) {
+    const key = norm(b.title) + "::" + norm(aliasAuthor(b.author || ""));
+    const hasNotes = !!b.notes;
+    const hasThoughts = !!b.myThoughts;
+    const hasRichData = hasNotes || hasThoughts;
+    
+    if (!seen.has(key)) {
+      seen.set(key, { idx: out.length, hasNotes, hasThoughts });
+      out.push(b);
+    } else {
+      const prior = seen.get(key)!;
+      const priorHasRichData = prior.hasNotes || prior.hasThoughts;
+      
+      // Replace if current has richer data and prior doesn't
+      if (hasRichData && !priorHasRichData) {
+        out[prior.idx] = b;
+        prior.hasNotes = hasNotes;
+        prior.hasThoughts = hasThoughts;
+      }
+      // If both have rich data, merge them
+      else if (hasRichData && priorHasRichData) {
+        const existing = out[prior.idx];
+        out[prior.idx] = {
+          ...existing,
+          notes: existing.notes || b.notes,
+          myThoughts: existing.myThoughts || b.myThoughts,
+          link: existing.link || b.link,
+          cover: existing.cover || b.cover,
+          rating: existing.rating || b.rating,
+        };
+      }
+    }
+  }
+  
+  return out;
+}
+
 const LOCAL_BOOKS: Book[] = [
   // Read Books
   {
@@ -1048,11 +1101,159 @@ const LOCAL_BOOKS: Book[] = [
     link: "https://www.amazon.com/Chicken-Soup-Soul-Inspirational-Blessings-ebook/dp/B004ASOYCI/?tag=eng2ea-20",
     cover: "/book-covers/chicken-soup-inspirational-blessings.jpg",
   },
+  // Personal Finance additions
+  {
+    id: "outwitting-the-devil",
+    title: "Outwitting the Devil",
+    author: "Napoleon Hill",
+    status: "TBR",
+    tags: ["Personal Finance"],
+    link: "https://amzn.to/3HxKaIO",
+  },
+  {
+    id: "the-more-of-less",
+    title: "The More of Less",
+    author: "Joshua Becker",
+    status: "TBR",
+    tags: ["Personal Finance"],
+    link: "https://amzn.to/3kIfxHO",
+  },
+  {
+    id: "boom-or-busted",
+    title: "Boom or Busted",
+    author: "Ed Hutka",
+    status: "TBR",
+    tags: ["Personal Finance"],
+    link: "https://shorturl.at/tux48",
+  },
+  {
+    id: "the-million-dollar-decision",
+    title: "The Million Dollar Decision",
+    author: "Robert Rolih",
+    status: "TBR",
+    tags: ["Personal Finance"],
+    link: "https://amzn.to/3HyJIdu",
+  },
+  {
+    id: "the-simple-path-to-wealth",
+    title: "The Simple Path to Wealth",
+    author: "JL Collins",
+    status: "TBR",
+    tags: ["Personal Finance"],
+    link: "https://amzn.to/3HdjWKm",
+  },
+  {
+    id: "the-millionaire-next-door",
+    title: "The Millionaire Next Door",
+    author: "William D. Danko",
+    status: "TBR",
+    tags: ["Personal Finance"],
+    link: "https://amzn.to/3XAZQke",
+  },
+  {
+    id: "your-money-and-your-brain",
+    title: "Your Money and Your Brain",
+    author: "Jason Zweig",
+    status: "TBR",
+    tags: ["Personal Finance"],
+    link: "https://amzn.to/3Hd3Ssb",
+  },
+  {
+    id: "personal-finance-quickstart-guide",
+    title: "Personal Finance QuickStart Guide",
+    author: "Morgen Rochard",
+    status: "TBR",
+    tags: ["Personal Finance"],
+    link: "https://amzn.to/3j7gusM",
+  },
+  {
+    id: "the-almanack-of-naval-ravikant",
+    title: "The Almanack of Naval Ravikant",
+    author: "Eric Jorgenson",
+    status: "TBR",
+    tags: ["Personal Finance"],
+    link: "https://amzn.to/3JgOP36",
+  },
+  {
+    id: "rich-20-something-dipiazza",
+    title: "Rich 20 Something",
+    author: "Daniel DiPiazza",
+    status: "TBR",
+    tags: ["Personal Finance"],
+    link: "https://amzn.to/3jfi0ck",
+  },
+  // Biography additions
+  {
+    id: "what-i-know-for-sure",
+    title: "What I Know For Sure",
+    author: "Oprah Winfrey",
+    status: "TBR",
+    tags: ["Biography"],
+    link: "https://amzn.to/3WHvIHY",
+  },
+  {
+    id: "cant-hurt-me",
+    title: "Can't Hurt Me",
+    author: "David Goggins",
+    status: "TBR",
+    tags: ["Biography"],
+    link: "https://amzn.to/3jaSzbV",
+  },
+  {
+    id: "elon-musk-vance",
+    title: "Elon Musk",
+    author: "Ashlee Vance",
+    status: "TBR",
+    tags: ["Biography"],
+    link: "https://amzn.to/3XErHA7",
+  },
+  {
+    id: "the-everything-store",
+    title: "The Everything Store",
+    author: "Brad Stone",
+    status: "TBR",
+    tags: ["Biography"],
+    link: "https://amzn.to/3Y0hlug",
+  },
+  {
+    id: "extreme-ownership",
+    title: "Extreme Ownership",
+    author: "Jocko Willink & Leif Babin",
+    status: "TBR",
+    tags: ["Biography", "Leadership"],
+    link: "https://amzn.to/3JjByak",
+  },
+  // Philosophy additions
+  {
+    id: "meditations-marcus-aurelius",
+    title: "Meditations",
+    author: "Marcus Aurelius",
+    status: "TBR",
+    tags: ["Philosophy"],
+    link: "https://amzn.to/3wylXuw",
+  },
+  {
+    id: "sophies-world",
+    title: "Sophie's World",
+    author: "Jostein Gaarder",
+    status: "TBR",
+    tags: ["Philosophy"],
+    link: "https://amzn.to/3RarWjL",
+  },
+  {
+    id: "ikigai-garcia",
+    title: "Ikigai",
+    author: "Héctor García",
+    status: "TBR",
+    tags: ["Philosophy"],
+    link: "https://amzn.to/3wxodTX",
+  },
 ];
 
 // Import and merge books from Notion
 import notionBooksRaw from "@/assets/100-books-notion.md?raw";
 import { mergeImportedBooks } from "@/lib/books-import";
 
-// Merge imported books with local books
-export const BOOKS = mergeImportedBooks(notionBooksRaw, LOCAL_BOOKS);
+// Merge imported books with local books and deduplicate
+const mergedBooks = mergeImportedBooks(notionBooksRaw, LOCAL_BOOKS);
+export const BOOKS = dedupeBooks(mergedBooks);

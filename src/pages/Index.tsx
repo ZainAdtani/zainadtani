@@ -214,7 +214,7 @@ const Index = () => {
 
   // Auto-fetch missing book covers
   useEffect(() => {
-    const KEY = "bookCoversV1";
+    const KEY = "bookCoversV2";
     const cache = JSON.parse(localStorage.getItem(KEY) || "{}");
 
     async function findCover({ title, author }: { title: string; author: string }): Promise<string | null> {
