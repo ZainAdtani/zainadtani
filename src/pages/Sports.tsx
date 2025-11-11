@@ -26,8 +26,8 @@ type StandingRow = {
   logo?: string;
   wins: number;
   losses: number;
-  pct: number; // 0..1
-  gb: string; // "—" or "1.5"
+  pct: number;
+  gb: string;
 };
 
 type StandingsState = {
@@ -36,7 +36,6 @@ type StandingsState = {
 };
 
 /** ---------- page ---------- **/
-
 export default function Sports() {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [games, setGames] = useState<LiveGame[]>([]);
@@ -62,7 +61,7 @@ export default function Sports() {
 
   const espnDate = useMemo(() => format(selectedDate, "yyyyMMdd"), [selectedDate]);
 
-  /** ---------- live scores (existing) ---------- **/
+  /** ---------- live scores ---------- **/
   const load = useCallback(
     async (manual = false) => {
       if (!manual) setLoading(true);
@@ -147,7 +146,6 @@ export default function Sports() {
   const goPrev = () => setSelectedDate((d) => addDays(d, -1));
   const goNext = () => setSelectedDate((d) => addDays(d, 1));
   const goToday = () => setSelectedDate(new Date());
-  const doRefresh = () => setRefreshNonce((n) => n + 1);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -158,11 +156,11 @@ export default function Sports() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  /** ---------- standings (new) ---------- **/
-  // NBA season logic: Oct–Dec uses current year, Jan–Aug uses prior year
+  /** ---------- standings ---------- **/
+  // Oct to Dec uses current year, Jan to Aug uses prior year
   const seasonYear = useMemo(() => {
     const y = selectedDate.getFullYear();
-    const m = selectedDate.getMonth(); // 0=Jan ... 11=Dec
+    const m = selectedDate.getMonth();
     return m <= 7 ? y - 1 : y;
   }, [selectedDate]);
 
@@ -171,60 +169,51 @@ export default function Sports() {
       setStLoading(true);
       setStError(null);
 
-      // Primary, grouped by conference
-      let url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&group=conference&section=overall&region=us&lang=en`;
+      // Primary
+      let url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&region=us&lang=en`;
       let r = await fetch(url, { cache: "no-store" });
 
       // Fallback
       if (!r.ok) {
-        url = `https://site.web.api.espn.com/apis/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&group=conference&section=overall&region=us&lang=en`;
+        url = `https://site.web.api.espn.com/apis/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&region=us&lang=en`;
         r = await fetch(url, { cache: "no-store" });
         if (!r.ok) throw new Error("standings fetch failed");
       }
 
       const data = await r.json();
 
-      // Collect all possible group nodes
-      const collectGroups = (root: any): any[] => {
+      // breadth-first collect of all nodes that might contain standings
+      const collect = (root: any) => {
         const out: any[] = [];
-        const walk = (n: any) => {
-          if (!n) return;
-          const kids = Array.isArray(n.children) ? n.children : [];
-          for (const c of kids) {
-            out.push(c);
-            walk(c);
-          }
-          const sKids = Array.isArray(n?.standings?.children) ? n.standings.children : [];
-          for (const c of sKids) {
-            out.push(c);
-            walk(c);
-          }
-        };
-        walk(root);
+        const q: any[] = [root];
+        while (q.length) {
+          const n = q.shift();
+          if (!n || typeof n !== "object") continue;
+          out.push(n);
+          const kids1 = Array.isArray(n.children) ? n.children : [];
+          const kids2 = Array.isArray(n?.standings?.children) ? n.standings.children : [];
+          const kids3 = Array.isArray(n?.groups) ? n.groups : [];
+          q.push(...kids1, ...kids2, ...kids3);
+        }
         return out;
       };
 
-      const groups = collectGroups(data);
-
-      const findGroup = (needle: string) => {
-        const q = needle.toLowerCase();
-        return groups.find((g: any) => {
-          const label = `${g?.name || ""} ${g?.abbreviation || ""}`.toLowerCase();
-          return label.includes(q);
-        });
+      const nodes = collect(data);
+      const match = (n: any, term: string) => {
+        const s = `${n?.name || ""} ${n?.abbreviation || ""} ${n?.shortName || ""}`.toLowerCase();
+        return s.includes(term);
       };
+
+      const findGroup = (term: "eastern" | "western") =>
+        nodes.find((n) => match(n, term)) || nodes.find((n) => match(n, term === "eastern" ? "east" : "west"));
 
       const entriesOf = (g: any) => {
         if (!g) return [];
-        const direct = g?.standings?.entries ?? [];
-        if (direct.length) return direct;
-        const overallChild = (g.children || []).find((c: any) => {
-          const label = `${c?.name || ""} ${c?.abbreviation || ""}`.toLowerCase();
-          return label.includes("overall");
-        });
-        if (overallChild?.standings?.entries?.length) return overallChild.standings.entries;
-        const firstWith = (g.children || []).find((c: any) => c?.standings?.entries?.length);
-        return firstWith?.standings?.entries ?? [];
+        if (Array.isArray(g?.standings?.entries) && g.standings.entries.length) return g.standings.entries;
+        const childWith = (Array.isArray(g.children) ? g.children : []).find(
+          (c: any) => Array.isArray(c?.standings?.entries) && c.standings.entries.length,
+        );
+        return childWith?.standings?.entries ?? [];
       };
 
       const toRows = (entries: any[]): StandingRow[] =>
@@ -351,21 +340,23 @@ export default function Sports() {
 
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight mb-1">Sports</h1>
-        <p className="text-sm text-muted-foreground mb-6">NBA live scores &amp; schedules</p>
+        <p className="text-sm text-muted-foreground mb-6">NBA live scores & schedules</p>
 
-        {/* ---------------- LIVE SCORES (unchanged) ---------------- */}
+        {/* ---------------- LIVE SCORES ---------------- */}
         <Card className="border border-black/5 dark:border-white/10 bg-white/90 dark:bg-neutral-900/80 backdrop-blur shadow-sm">
           <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <CardTitle className="text-xl sm:text-2xl">NBA — {format(selectedDate, "EEE, MMM d")}</CardTitle>
-              <p className="text-xs sm:text-sm text-muted-foreground">{headerSubtitle}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">
+                {lastUpdated ? `Updated ${format(lastUpdated, "h:mm:ss a")}` : "Live NBA scores"}
+              </p>
             </div>
 
             <div className="flex items-center gap-2">
               <Button variant="outline" size="sm" onClick={goPrev} aria-label="Previous day">
                 <ChevronLeft className="h-4 w-4" />
               </Button>
-              <Button variant="outline" size="sm" onClick={goToday}>
+              <Button variant="outline" size="sm" onClick={() => setSelectedDate(new Date())}>
                 Today
               </Button>
               <Button variant="outline" size="sm" onClick={goNext} aria-label="Next day">
@@ -389,7 +380,6 @@ export default function Sports() {
                 Refresh
               </Button>
 
-              {/* Ball toggle */}
               <Button
                 variant={showBall ? "default" : "outline"}
                 size="sm"
@@ -499,13 +489,58 @@ export default function Sports() {
           </CardContent>
         </Card>
 
-        {/* ---------------- STANDINGS (new) ---------------- */}
+        {/* ---------------- UNOFFICIAL LINKS now in the middle ---------------- */}
+        <Card className="mt-8 border border-amber-300/40 bg-amber-50/80 dark:bg-amber-950/20 dark:border-amber-300/20 backdrop-blur">
+          <CardHeader>
+            <CardTitle className="text-lg sm:text-xl flex items-center gap-2">
+              <span className="text-amber-600 dark:text-amber-300">⚠️</span>
+              Where to watch unofficial
+            </CardTitle>
+            <p className="text-sm text-amber-800/90 dark:text-amber-200/80">
+              These are third-party sites. Expect pop-ups. Close them quickly. On Mac, ⌘ + W closes the current tab.
+            </p>
+          </CardHeader>
+          <CardContent>
+            <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                "https://crackstreams.ms/stream/brooklyn-nets-vs-minnesota-timberwolves",
+                "https://crackstreams.io/nba-streams2",
+                "https://app.buffstream.io/index-version-24",
+                "https://streameasthd.com/v11",
+                "https://crackstreams.io/nba-streams2",
+                "https://crackstreams.ms/",
+              ]
+                .filter((v, i, a) => a.indexOf(v) === i)
+                .map((href, i) => (
+                  <li key={href} className="group">
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="nofollow noreferrer"
+                      className="flex items-center justify-between rounded-xl border bg-white/90 dark:bg-neutral-900/80 dark:border-white/10 border-black/5 px-4 py-3 hover:shadow-sm transition"
+                    >
+                      <div>
+                        <div className="font-medium">Link {i + 1}</div>
+                        <div className="text-xs text-muted-foreground truncate max-w-[32ch]">{href}</div>
+                      </div>
+                      <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground" />
+                    </a>
+                  </li>
+                ))}
+            </ul>
+            <p className="mt-3 text-xs text-muted-foreground">
+              If a page spawns a pop-up, close it and return to the main player. Use an ad blocker if possible.
+            </p>
+          </CardContent>
+        </Card>
+
+        {/* ---------------- STANDINGS last ---------------- */}
         <Card className="mt-8 border border-black/5 dark:border-white/10 bg-white/90 dark:bg-neutral-900/80 backdrop-blur shadow-sm">
           <CardHeader className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <CardTitle className="text-xl sm:text-2xl">Standings — {seasonYear}</CardTitle>
+              <CardTitle className="text-xl sm:text-2xl">Standings {seasonYear}</CardTitle>
               <p className="text-xs sm:text-sm text-muted-foreground">
-                Top 6 earn automatic playoff spots; lines after #6 and #10.
+                Top 6 earn automatic playoff spots. Lines after 6 and 10.
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -532,55 +567,6 @@ export default function Sports() {
                 <StandingsTable title="Western Conference" rows={standings.west} />
               </div>
             )}
-          </CardContent>
-        </Card>
-
-        {/* ---------------- UNOFFICIAL STREAM LINKS (new) ---------------- */}
-        <Card className="mt-8 border border-amber-300/40 bg-amber-50/80 dark:bg-amber-950/20 dark:border-amber-300/20 backdrop-blur">
-          <CardHeader>
-            <CardTitle className="text-lg sm:text-xl flex items-center gap-2">
-              <span className="text-amber-600 dark:text-amber-300">⚠️</span>
-              Where to watch (unofficial) — use at your own risk
-            </CardTitle>
-            <p className="text-sm text-amber-800/90 dark:text-amber-200/80">
-              These are third-party sites. Expect pop-ups. Close them quickly and repeatedly. On Mac,{" "}
-              <span className="font-semibold">⌘ + W</span> closes the current tab/window. Links may change—I'll update
-              when I can.
-            </p>
-          </CardHeader>
-          <CardContent>
-            <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {[
-                "https://crackstreams.ms/stream/brooklyn-nets-vs-minnesota-timberwolves",
-                "https://crackstreams.io/nba-streams2",
-                "https://app.buffstream.io/index-version-24",
-                "https://streameasthd.com/v11",
-                "https://crackstreams.io/nba-streams2", // duplicate on purpose in source; we'll dedupe below
-                "https://crackstreams.ms/",
-              ]
-                // de-dupe
-                .filter((v, i, a) => a.indexOf(v) === i)
-                .map((href, i) => (
-                  <li key={href} className="group">
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="nofollow noreferrer"
-                      className="flex items-center justify-between rounded-xl border bg-white/90 dark:bg-neutral-900/80 dark:border-white/10 border-black/5 px-4 py-3 hover:shadow-sm transition"
-                    >
-                      <div>
-                        <div className="font-medium">Link {i + 1}</div>
-                        <div className="text-xs text-muted-foreground truncate max-w-[32ch]">{href}</div>
-                      </div>
-                      <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground" />
-                    </a>
-                  </li>
-                ))}
-            </ul>
-            <p className="mt-3 text-xs text-muted-foreground">
-              Tip: If a page spawns a pop-up, close it immediately and return to the main player. Use an ad-blocker if
-              possible.
-            </p>
           </CardContent>
         </Card>
       </div>
