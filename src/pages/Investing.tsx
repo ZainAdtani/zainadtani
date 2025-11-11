@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, DollarSign, PiggyBank, LineChart, BookOpen, Target } from "lucide-react";
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, ExternalLink, RefreshCw, TrendingUp } from "lucide-react";
+
 
 const Investing = () => {
   return (
@@ -166,57 +167,142 @@ const Investing = () => {
         </div>
       </section>
 
-      {/* === Portfolio Breakdown (3D Cards) === */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-background via-accent/5 to-secondary/10">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-4xl font-bold text-center mb-4">
-            My <span className="text-primary">Portfolio Breakdown</span>
-          </h2>
-          <p className="text-center text-muted-foreground mb-12">
-            Live list from my notes — not financial advice. I’ll update positions as I go.
-          </p>
+     /* === Portfolio Breakdown (3D Cards) === */
+<section className="py-16 md:py-24 bg-gradient-to-br from-background via-accent/5 to-secondary/10">
+  <div className="container mx-auto px-4 max-w-6xl">
+    <h2 className="text-4xl font-bold text-center mb-4">
+      My <span className="text-primary">Portfolio Breakdown</span>
+    </h2>
+    <p className="text-center text-muted-foreground mb-12">
+      Live list from my notes, not financial advice. I’ll update positions as I go.
+    </p>
 
-          {/* Data (edit freely) */}
-          {(() => {
-            // === INDIVIDUAL: cleaned to only stocks & ETFs; simple display ===
-            const INDIVIDUAL_TICKERS = [
-              "BBAI","WULF","ENTO","MEME","MSTR","PATH","IWM","RGTI","TTD",
-              "VYMI","CRWV","SCHG","BABA","UNH","QUBT"
-            ];
+    {(() => {
+      // Favorites
+      const FAVORITES = new Set(["VOO", "SCHD", "QQQM", "BTC"]);
 
-            // Optional: plain names when confidently known; leave blank if unsure
-            const NAME_BY_TICKER: Record<string, string> = {
-              BBAI: "BigBear.ai",
-              WULF: "TeraWulf",
-              ENTO: "Entero Therapeutics",
-              MEME: "Roundhill MEME ETF",
-              MSTR: "MicroStrategy",
-              PATH: "UiPath",
-              IWM: "iShares Russell 2000 ETF",
-              RGTI: "Rigetti Computing",
-              TTD: "The Trade Desk",
-              VYMI: "Vanguard Intl High Dividend ETF",
-              SCHG: "Schwab U.S. Large-Cap Growth ETF",
-              BABA: "Alibaba Group",
-              UNH: "UnitedHealth Group",
-              QUBT: "Quantum Computing, Inc.",
-              // CRWV left blank intentionally
-            };
+      // Individual holdings from Robinhood, tickers only with brief names
+      const INDIVIDUAL = [
+        { ticker: "SCHD", name: "Schwab U.S. Dividend Equity ETF" },
+        { ticker: "NVDA", name: "NVIDIA" },
+        { ticker: "QQQM", name: "Invesco NASDAQ-100 ETF" },
+        { ticker: "VOO", name: "Vanguard S&P 500 ETF" },
+        { ticker: "SOFI", name: "SoFi Technologies" },
+        { ticker: "GOOGL", name: "Alphabet Inc." },
+        { ticker: "AAPL", name: "Apple" },
+        { ticker: "PLTR", name: "Palantir Technologies" },
+        { ticker: "GLD", name: "SPDR Gold Shares" },
+        { ticker: "SGOV", name: "iShares 0–3 Month T-Bill ETF" },
+        { ticker: "AMZN", name: "Amazon.com" },
+        { ticker: "VNQ", name: "Vanguard REIT ETF" },
+        { ticker: "AVUV", name: "Avantis U.S. Sm-Cap Value ETF" },
+        { ticker: "SHY", name: "iShares 1–3 Year Treasury ETF" },
+        { ticker: "AIQ", name: "Global X Artificial Intelligence & Tech ETF" },
+        { ticker: "BRK.B", name: "Berkshire Hathaway Class B" },
+        { ticker: "HOOD", name: "Robinhood Markets" },
+        { ticker: "TSLA", name: "Tesla" },
+        { ticker: "MSFT", name: "Microsoft" },
+        { ticker: "APLD", name: "Applied Digital" },
+        { ticker: "BBAI", name: "BigBear.ai" },
+        { ticker: "ENTO", name: "Entero Therapeutics" },
+        { ticker: "WULF", name: "TeraWulf" },
+        { ticker: "MEME", name: "Roundhill MEME ETF" },
+        { ticker: "PATH", name: "UiPath" },
+        { ticker: "MSTR", name: "MicroStrategy" },
+        { ticker: "IWM", name: "iShares Russell 2000 ETF" },
+        { ticker: "VYMI", name: "Vanguard Intl High Dividend ETF" },
+        { ticker: "TTD", name: "The Trade Desk" },
+        { ticker: "BTC", name: "Bitcoin" },
+        { ticker: "RGTI", name: "Rigetti Computing" },
+        { ticker: "SCHG", name: "Schwab U.S. Large-Cap Growth ETF" },
+        { ticker: "CRWV", name: "" }, // left blank if uncertain
+        { ticker: "TEM", name: "Tempus AI" },
+        { ticker: "BABA", name: "Alibaba Group" },
+        { ticker: "UNH", name: "UnitedHealth Group" },
+        { ticker: "QUBT", name: "Quantum Computing, Inc." },
+      ];
 
-            const INDIVIDUAL = INDIVIDUAL_TICKERS.map((t) => ({
-              ticker: t,
-              name: NAME_BY_TICKER[t] ?? "",
-            }));
+      // Roth IRA positions unchanged in count and tickers, tags removed
+      const ROTH_IRA = [
+        { ticker: "JEPI", name: "JPM Equity Premium" },
+        { ticker: "JEPQ", name: "JPM Nasdaq Premium" },
+        { ticker: "VOO", name: "Vanguard S&P 500" },
+        { ticker: "VXUS", name: "Vanguard Total Intl" },
+        { ticker: "BND", name: "Vanguard Total Bond" },
+        { ticker: "VNQ", name: "Vanguard REIT" },
+        { ticker: "FBTC", name: "Fidelity Bitcoin ETF" },
+      ];
 
-            const ROTH_IRA = [
-              { ticker: "JEPI", name: "JPM Equity Premium", tag: "Income" },
-              { ticker: "JEPQ", name: "JPM Nasdaq Premium", tag: "Income" },
-              { ticker: "VOO", name: "Vanguard S&P 500", tag: "Core" },
-              { ticker: "VXUS", name: "Vanguard Total Intl", tag: "ETF" },
-              { ticker: "BND", name: "Vanguard Total Bond", tag: "Income" },
-              { ticker: "VNQ", name: "Vanguard REIT", tag: "Income" },
-              { ticker: "FBTC", name: "Fidelity Bitcoin ETF", tag: "Crypto" },
-            ];
+      // Shared 3D card, with arrow icon and favorite star
+      const Card3D = ({ p }: { p: { ticker: string; name?: string } }) => (
+        <div
+          className="group relative rounded-2xl border-2 bg-background/70 backdrop-blur-sm p-5 shadow-lg hover:shadow-2xl transition-all duration-300"
+          onMouseMove={(e) => {
+            const el = e.currentTarget as HTMLDivElement;
+            const r = el.getBoundingClientRect();
+            const x = e.clientX - r.left;
+            const y = e.clientY - r.top;
+            const rx = (y / r.height - 0.5) * -6;
+            const ry = (x / r.width - 0.5) * 6;
+            el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLDivElement).style.transform =
+              "perspective(900px) rotateX(0) rotateY(0) translateY(0)";
+          }}
+          style={{ transformStyle: "preserve-3d" }}
+        >
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/10 via-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div className="relative">
+            <div className="flex items-center justify-between">
+              <h4 className="text-2xl font-extrabold tracking-tight">
+                {p.ticker}
+                {FAVORITES.has(p.ticker) ? <span className="ml-2 text-primary">★</span> : null}
+              </h4>
+              <TrendingUp className="w-5 h-5 text-primary opacity-70" />
+            </div>
+            {p.name ? <p className="text-sm text-muted-foreground mt-1">{p.name}</p> : null}
+          </div>
+        </div>
+      );
+
+      return (
+        <>
+          {/* Individual */}
+          <div className="mb-12">
+            <div className="flex items-baseline justify-between gap-4 mb-6">
+              <h3 className="text-3xl font-bold">
+                Individual <span className="text-primary">Stocks & ETFs</span>
+              </h3>
+              <span className="text-xs text-muted-foreground">{INDIVIDUAL.length} positions</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {INDIVIDUAL.map((p, i) => (
+                <Card3D key={p.ticker + i} p={p} />
+              ))}
+            </div>
+          </div>
+
+          {/* Roth IRA */}
+          <div>
+            <div className="flex items-baseline justify-between gap-4 mb-6">
+              <h3 className="text-3xl font-bold">
+                Roth IRA <span className="text-primary">Holdings</span>
+              </h3>
+              <span className="text-xs text-muted-foreground">{ROTH_IRA.length} positions</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {ROTH_IRA.map((p, i) => (
+                <Card3D key={p.ticker + i} p={p} />
+              ))}
+            </div>
+          </div>
+        </>
+      );
+    })()}
+  </div>
+</section>
+
 
             // Minimal, clean card: ticker + (optional) name. No icons, no tags.
             const SimpleHoldingCard = ({ p }: { p: { ticker: string; name?: string } }) => (
