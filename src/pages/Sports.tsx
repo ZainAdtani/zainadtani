@@ -159,7 +159,7 @@ export default function Sports() {
   }, []);
 
   /** ---------- standings (new) ---------- **/
-  // NBA season logic: Oct-Dec uses current year, Jan-Aug uses prior year
+  // NBA season logic: Oct–Dec uses current year, Jan–Aug uses prior year
   const seasonYear = useMemo(() => {
     const y = selectedDate.getFullYear();
     const m = selectedDate.getMonth(); // 0=Jan ... 11=Dec
@@ -171,10 +171,11 @@ export default function Sports() {
       setStLoading(true);
       setStError(null);
 
-      // Primary -> Web fallback (CORS friendly)
-      let url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&region=us&lang=en`;
+      // Primary, grouped by conference
+      let url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&group=conference&section=overall&region=us&lang=en`;
       let r = await fetch(url, { cache: "no-store" });
 
+      // Fallback
       if (!r.ok) {
         url = `https://site.web.api.espn.com/apis/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&group=conference&section=overall&region=us&lang=en`;
         r = await fetch(url, { cache: "no-store" });
@@ -183,42 +184,55 @@ export default function Sports() {
 
       const data = await r.json();
 
-      // --- NEW: make "children" discovery more lenient (handles early-season shape changes) ---
-      const flattenChildren = (node: any): any[] => {
-        if (!node) return [];
-        const kids = Array.isArray(node.children) ? node.children : [];
-        // one level
-        let out = [...kids];
-        // one more level (common ESPN shape)
-        for (const c of kids) {
-          if (Array.isArray(c?.children) && c.children.length) {
-            out.push(...c.children);
+      // Collect all possible group nodes
+      const collectGroups = (root: any): any[] => {
+        const out: any[] = [];
+        const walk = (n: any) => {
+          if (!n) return;
+          const kids = Array.isArray(n.children) ? n.children : [];
+          for (const c of kids) {
+            out.push(c);
+            walk(c);
           }
-        }
+          const sKids = Array.isArray(n?.standings?.children) ? n.standings.children : [];
+          for (const c of sKids) {
+            out.push(c);
+            walk(c);
+          }
+        };
+        walk(root);
         return out;
       };
 
-      const allGroups: any[] = flattenChildren(data);
-      const findGroup = (needle: string) =>
-        allGroups.find((g) => ((g?.name || g?.abbreviation || "") + "").toLowerCase().includes(needle));
+      const groups = collectGroups(data);
+
+      const findGroup = (needle: string) => {
+        const q = needle.toLowerCase();
+        return groups.find((g: any) => {
+          const label = `${g?.name || ""} ${g?.abbreviation || ""}`.toLowerCase();
+          return label.includes(q);
+        });
+      };
 
       const entriesOf = (g: any) => {
         if (!g) return [];
-        // try common locations
         const direct = g?.standings?.entries ?? [];
-        const nestedOverall =
-          g?.children?.find((c: any) => ((c?.name || c?.abbreviation || "") + "").toLowerCase().includes("overall"))
-            ?.standings?.entries ?? [];
-        const firstChild = g?.children?.[0]?.standings?.entries ?? [];
-        return direct.length ? direct : nestedOverall.length ? nestedOverall : firstChild;
+        if (direct.length) return direct;
+        const overallChild = (g.children || []).find((c: any) => {
+          const label = `${c?.name || ""} ${c?.abbreviation || ""}`.toLowerCase();
+          return label.includes("overall");
+        });
+        if (overallChild?.standings?.entries?.length) return overallChild.standings.entries;
+        const firstWith = (g.children || []).find((c: any) => c?.standings?.entries?.length);
+        return firstWith?.standings?.entries ?? [];
       };
 
-      const toRows = (entries: any[]) =>
+      const toRows = (entries: any[]): StandingRow[] =>
         (entries || [])
           .map((e: any, i: number) => {
-            const team = e?.team ?? {};
+            const team = e?.team || {};
             const sMap = new Map<string, any>();
-            (e?.stats ?? []).forEach((s: any) => sMap.set(String(s?.type || s?.name).toLowerCase(), s));
+            for (const s of e?.stats || []) sMap.set(String(s?.type || s?.name).toLowerCase(), s);
 
             const num = (k: string) => {
               const s = sMap.get(k);
@@ -255,7 +269,7 @@ export default function Sports() {
               losses,
               pct: Number.isFinite(pct) ? pct : 0,
               gb: gb === "0" ? "—" : gb,
-            } as StandingRow;
+            };
           })
           .sort((a, b) => a.rank - b.rank)
           .slice(0, 15);
