@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -18,7 +18,6 @@ import { toast } from "@/hooks/use-toast";
 
 /** ---------- editable constants ---------- **/
 const CONTACT_EMAIL = "hello@zainadtani.com";
-const YT_VIDEO_ID = "REPLACE_ME";
 const HERO_TITLE = "Services";
 const HERO_SUBTITLE = "I build and update your Lovable site";
 
@@ -70,7 +69,6 @@ const isEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
 const isUrl = (v: string) => {
   try {
-    // allow social handles without protocol by prepending https
     const probe = v.startsWith("http") ? v : `https://${v}`;
     new URL(probe);
     return true;
@@ -112,7 +110,6 @@ export default function Services() {
 
   const closeModal = () => {
     setOpen(false);
-    // small timeout to ensure dialog has unmounted before focusing
     setTimeout(() => lastClickedBtn.current?.focus(), 50);
   };
 
@@ -137,8 +134,6 @@ export default function Services() {
 
     const body = lines.join("\n");
     const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    // try to open the user's mail app
     window.location.href = mailto;
 
     toast({
@@ -224,13 +219,135 @@ export default function Services() {
                     data-evt={tier.id === "free" ? "pricing-free-cta" : "pricing-care-cta"}
                     onClick={openModal}
                     aria-label={`Open submit website form for ${tier.name}`}
-                    ref={tier.id === "free" ? undefined : undefined}
                   >
                     Submit your website
                   </Button>
                 </div>
               </Card>
             ))}
+          </div>
+        </section>
+
+        {/* full overview */}
+        <section className="mb-14">
+          <div className="relative mb-6">
+            <h2 className="text-3xl font-bold text-center text-foreground mb-2">Everything I offer</h2>
+            <div className="h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card className="rounded-xl p-6 shadow-md">
+              <h3 className="text-xl font-bold mb-3">What I build</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>Landing pages and full sites</li>
+                <li>Blogs with categories and tags</li>
+                <li>Books hub with covers and links</li>
+                <li>Investing or dashboard pages</li>
+                <li>Newsletter signup and embeds</li>
+                <li>Podcast embeds, Spotify and RSS</li>
+                <li>Resource libraries and search</li>
+                <li>Course outlines and lesson pages</li>
+                <li>Pricing, FAQs, and contact forms</li>
+                <li>Carousels with buttons and keyboard nav</li>
+                <li>Galleries, lightboxes, and modals</li>
+                <li>Tables with sort and filter</li>
+                <li>Dark and light themes</li>
+              </ul>
+            </Card>
+
+            <Card className="rounded-xl p-6 shadow-md">
+              <h3 className="text-xl font-bold mb-3">AI and automation</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>OpenAI features for summaries and helpers</li>
+                <li>Prompt templates for repeatable tasks</li>
+                <li>HeyGen video blocks and scripts</li>
+                <li>Automated copy drafts for pages</li>
+                <li>Simple chat widgets for FAQs</li>
+              </ul>
+            </Card>
+
+            <Card className="rounded-xl p-6 shadow-md">
+              <h3 className="text-xl font-bold mb-3">Data and auth</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>Supabase auth and profiles</li>
+                <li>Public and private pages</li>
+                <li>Forms that save to a table</li>
+                <li>Row level security basics</li>
+              </ul>
+            </Card>
+
+            <Card className="rounded-xl p-6 shadow-md">
+              <h3 className="text-xl font-bold mb-3">Payments and email</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>Stripe checkout links for plans</li>
+                <li>Customer portal link</li>
+                <li>Resend email templates for contact</li>
+                <li>Mailto fallback like this page</li>
+              </ul>
+            </Card>
+
+            <Card className="rounded-xl p-6 shadow-md">
+              <h3 className="text-xl font-bold mb-3">Design and UX</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>Hero sections and split layouts</li>
+                <li>Tabs, accordions, and timelines</li>
+                <li>Shadcn UI polish and icons</li>
+                <li>Animations that stay smooth</li>
+                <li>Mobile first spacing and grids</li>
+              </ul>
+            </Card>
+
+            <Card className="rounded-xl p-6 shadow-md">
+              <h3 className="text-xl font-bold mb-3">SEO and analytics</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>Meta titles and descriptions</li>
+                <li>Open Graph images and favicons</li>
+                <li>Clean URLs and internal links</li>
+                <li>Click data attributes for tracking</li>
+              </ul>
+            </Card>
+
+            <Card className="rounded-xl p-6 shadow-md md:col-span-2">
+              <h3 className="text-xl font-bold mb-3">Tips and workflow</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>Use small prompts and ship in steps</li>
+                <li>Edit copy in place to save credits</li>
+                <li>Reuse sections and keep styles tight</li>
+                <li>Keep images light for speed</li>
+                <li>Write short, clear headings</li>
+                <li>Always check mobile first</li>
+              </ul>
+              <div className="mt-4 flex flex-wrap gap-2 text-sm">
+                <a className="underline hover:no-underline" href="/resources">
+                  Resources
+                </a>
+                <span>•</span>
+                <a className="underline hover:no-underline" href="/ai-projects">
+                  AI Projects
+                </a>
+                <span>•</span>
+                <a className="underline hover:no-underline" href="/books">
+                  Books
+                </a>
+                <span>•</span>
+                <a className="underline hover:no-underline" href="/blog">
+                  Blog
+                </a>
+                <span>•</span>
+                <a className="underline hover:no-underline" href="/my-podcast">
+                  My Podcast
+                </a>
+                <span>•</span>
+                <a
+                  className="underline hover:no-underline"
+                  href="https://docs.lovable.dev/use-case/video-tutorials"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Lovable tutorials
+                </a>
+              </div>
+            </Card>
           </div>
         </section>
 
@@ -257,21 +374,6 @@ export default function Services() {
               </div>
             </div>
           </Card>
-        </section>
-
-        {/* YouTube */}
-        <section className="mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-4 text-center">Watch how I build</h2>
-          <div className="aspect-video w-full max-w-4xl mx-auto overflow-hidden rounded-xl shadow">
-            <iframe
-              className="h-full w-full"
-              src={`https://www.youtube.com/embed/${YT_VIDEO_ID}`}
-              title="YouTube video player"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-          </div>
         </section>
       </div>
 
