@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import fastTrackThumb from "@/assets/bookkeeping-fast-track-thumb.png";
+import cleanupThumb from "@/assets/qbo-cleanup-thumb.png";
 
 export default function QuickBooks() {
   return (
@@ -27,7 +29,7 @@ export default function QuickBooks() {
         <header className="text-center space-y-4">
           <h1 className="text-5xl md:text-6xl font-bold text-foreground">QuickBooks HQ</h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Two elite training paths—learn fast, deliver cleaner, charge premium.
+            Learn QuickBooks faster, clean up smarter, and deliver work you are proud of.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <Button asChild size="lg" className="gap-2">
@@ -47,11 +49,13 @@ export default function QuickBooks() {
 
         {/* Section A: Bookkeeping Fast Track */}
         <section className="grid md:grid-cols-2 gap-8 items-center">
-          {/* Left: Image placeholder */}
+          {/* Left: Image */}
           <div className="order-2 md:order-1">
-            <div className="rounded-2xl border bg-muted/30 aspect-[4/3] flex items-center justify-center">
-              <p className="text-muted-foreground text-sm">Course preview placeholder</p>
-            </div>
+            <img
+              src={fastTrackThumb}
+              alt="Bookkeeping Fast Track course thumbnail"
+              className="w-full aspect-video rounded-2xl object-cover shadow-md"
+            />
           </div>
 
           {/* Right: Content */}
@@ -59,39 +63,36 @@ export default function QuickBooks() {
             <CardContent className="p-6 md:p-8 space-y-4">
               <h2 className="text-3xl font-bold">Introducing: The Bookkeeping Fast Track™</h2>
               <p className="text-muted-foreground">
-                The first program designed with CPAs to create elite-level bookkeepers.
+                Build the skills and confidence to deliver QuickBooks work that stands out.
               </p>
               <ul className="space-y-2 text-sm">
                 <li className="flex gap-2">
-                  <span className="text-primary">✓</span>
-                  <span>Built alongside active CPAs (including former Big 4 + EAs)</span>
+                  <span>🚀</span>
+                  <span>Master the core moves that make QuickBooks click.</span>
                 </li>
                 <li className="flex gap-2">
-                  <span className="text-primary">✓</span>
-                  <span>Learn the why behind each entry—not just which buttons to click</span>
+                  <span>🧠</span>
+                  <span>Understand why each step matters so your work stays clean.</span>
                 </li>
                 <li className="flex gap-2">
-                  <span className="text-primary">✓</span>
-                  <span>Real-world practice on scenarios CPAs actually care about</span>
+                  <span>🧪</span>
+                  <span>Practice with guided scenarios and checkpoints.</span>
                 </li>
                 <li className="flex gap-2">
-                  <span className="text-primary">✓</span>
-                  <span>CPA communication framework to present work like a pro</span>
+                  <span>🧰</span>
+                  <span>Use checklists and notes to move faster every week.</span>
                 </li>
                 <li className="flex gap-2">
-                  <span className="text-primary">✓</span>
-                  <span>Become a trusted partner who commands premium rates</span>
+                  <span>💼</span>
+                  <span>Show organized books clients trust.</span>
                 </li>
               </ul>
-              <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                <Button asChild className="gap-2">
+              <div className="pt-4">
+                <Button asChild className="gap-2" aria-label="View Fast Track">
                   <Link to="/quickbooks/fast-track">
                     View Fast Track
                     <ArrowRight className="h-4 w-4" />
                   </Link>
-                </Button>
-                <Button asChild variant="ghost">
-                  <Link to="/quickbooks/fast-track">Learn more</Link>
                 </Button>
               </div>
             </CardContent>
@@ -105,49 +106,48 @@ export default function QuickBooks() {
             <CardContent className="p-6 md:p-8 space-y-4">
               <h2 className="text-3xl font-bold">Fast & Easy QBO Cleanup</h2>
               <p className="text-muted-foreground">
-                The complete system for turning financial messes into $5,000+ paydays—without more hours.
+                Turn messy books into premium projects with a proven playbook and pricing guide.
               </p>
               <ul className="space-y-2 text-sm">
                 <li className="flex gap-2">
-                  <span className="text-primary">✓</span>
-                  <span>Step-by-step cleanup workflows and comprehensive checklists</span>
+                  <span>🧩</span>
+                  <span>Step-by-step cleanup playbook from intake to handoff.</span>
                 </li>
                 <li className="flex gap-2">
-                  <span className="text-primary">✓</span>
-                  <span>Hands-on: complete a real cleanup project inside the course</span>
+                  <span>🧪</span>
+                  <span>Complete a hands-on cleanup project inside the training.</span>
                 </li>
                 <li className="flex gap-2">
-                  <span className="text-primary">✓</span>
-                  <span>Premium pricing scripts that feel natural</span>
+                  <span>💵</span>
+                  <span>Pricing guide and tiers so you quote with confidence.</span>
                 </li>
                 <li className="flex gap-2">
-                  <span className="text-primary">✓</span>
-                  <span>Time-saving techniques from an ex-Intuit specialist</span>
+                  <span>⚡</span>
+                  <span>Time savers for feeds, rules, and reconciliation.</span>
                 </li>
                 <li className="flex gap-2">
-                  <span className="text-primary">✓</span>
-                  <span>White-glove client experience templates that win referrals</span>
+                  <span>🤍</span>
+                  <span>Client-ready templates for a smooth experience.</span>
                 </li>
               </ul>
-              <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                <Button asChild className="gap-2">
+              <div className="pt-4">
+                <Button asChild className="gap-2" aria-label="View Cleanup Course">
                   <Link to="/quickbooks/cleanup">
                     View Cleanup Course
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
-                <Button asChild variant="ghost">
-                  <Link to="/quickbooks/cleanup">Learn more</Link>
-                </Button>
               </div>
             </CardContent>
           </Card>
 
-          {/* Right: Image placeholder */}
+          {/* Right: Image */}
           <div>
-            <div className="rounded-2xl border bg-muted/30 aspect-[4/3] flex items-center justify-center">
-              <p className="text-muted-foreground text-sm">Course preview placeholder</p>
-            </div>
+            <img
+              src={cleanupThumb}
+              alt="Fast and Easy QBO Cleanup course thumbnail"
+              className="w-full aspect-video rounded-2xl object-cover shadow-md"
+            />
           </div>
         </section>
 
