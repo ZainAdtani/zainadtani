@@ -34,6 +34,7 @@ import DevotionalLiterature from "./pages/usa-visit-2025/DevotionalLiterature";
 import Illuminate from "./pages/usa-visit-2025/Illuminate";
 import Workout from "./pages/Workout";
 import Services from "./pages/Services";
+import MyPodcast from "./pages/MyPodcast";
 
 const queryClient = new QueryClient();
 
@@ -73,6 +74,7 @@ const App = () => (
             <Route path="/usa-visit-2025/illuminate" element={<Illuminate />} />
             <Route path="/workout" element={<Workout />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/my-podcast" element={<MyPodcast />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

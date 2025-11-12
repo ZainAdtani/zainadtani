@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import { Moon, Sun, Menu, Lock, Award, Home as HomeIcon, GraduationCap, BookOpen, TrendingUp, FileText, Paperclip, Zap, StickyNote, Calculator, Wrench, Trophy, Music, FolderKanban, HelpCircle, ChevronDown, Dumbbell, Briefcase } from "lucide-react";
+import { Moon, Sun, Menu, ChevronDown } from "lucide-react";
 import { useTheme } from "next-themes";
+import { getNavItemsBySection } from "@/data/nav";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "@/components/ui/sheet";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -150,26 +151,17 @@ export const Header = () => {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-1 pt-2">
-                        <Link to="/" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
-                          <HomeIcon className="w-4 h-4" />
-                          <span>Home</span>
-                        </Link>
-                        <Link to="/enrolled-agent" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
-                          <GraduationCap className="w-4 h-4" />
-                          <span>Enrolled Agent</span>
-                        </Link>
-                        <Link to="/books" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
-                          <BookOpen className="w-4 h-4" />
-                          <span>Books</span>
-                        </Link>
-                        <Link to="/investing" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
-                          <TrendingUp className="w-4 h-4" />
-                          <span>Investing</span>
-                        </Link>
-                        <Link to="/blog" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
-                          <FileText className="w-4 h-4" />
-                          <span>Blog</span>
-                        </Link>
+                        {getNavItemsBySection("learn").map((item) => (
+                          <Link
+                            key={item.path}
+                            to={item.path}
+                            className="flex items-center gap-2 text-foreground hover:underline px-2 py-1"
+                            onClick={() => setSheetOpen(false)}
+                          >
+                            <item.icon className="w-4 h-4" />
+                            <span>{item.label}</span>
+                          </Link>
+                        ))}
                       </div>
                     </CollapsibleContent>
                   </div>
@@ -184,38 +176,17 @@ export const Header = () => {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-1 pt-2">
-                        <Link to="/resources" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
-                          <Paperclip className="w-4 h-4" />
-                          <span>Resources</span>
-                        </Link>
-                        <Link to="/ai-prompts" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
-                          <Zap className="w-4 h-4" />
-                          <span>AI Prompts</span>
-                        </Link>
-                        <Link to="/life-notes" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
-                          <StickyNote className="w-4 h-4" />
-                          <span>Life Notes</span>
-                        </Link>
-                        <Link to="/quickbooks" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
-                          <Calculator className="w-4 h-4" />
-                          <span>QuickBooks</span>
-                        </Link>
-                        <Link to="/tools" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
-                          <Wrench className="w-4 h-4" />
-                          <span>Tools</span>
-                        </Link>
-                        <Link to="/sports" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
-                          <Trophy className="w-4 h-4" />
-                          <span>Sports</span>
-                        </Link>
-                        <Link to="/waez" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
-                          <Music className="w-4 h-4" />
-                          <span>Waez</span>
-                        </Link>
-                        <Link to="/workout" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
-                          <Dumbbell className="w-4 h-4" />
-                          <span>Workout</span>
-                        </Link>
+                        {getNavItemsBySection("resources").map((item) => (
+                          <Link
+                            key={item.path}
+                            to={item.path}
+                            className="flex items-center gap-2 text-foreground hover:underline px-2 py-1"
+                            onClick={() => setSheetOpen(false)}
+                          >
+                            <item.icon className="w-4 h-4" />
+                            <span>{item.label}</span>
+                          </Link>
+                        ))}
                       </div>
                     </CollapsibleContent>
                   </div>
@@ -230,10 +201,17 @@ export const Header = () => {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-1 pt-2">
-                        <Link to="/projects" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
-                          <FolderKanban className="w-4 h-4" />
-                          <span>Projects</span>
-                        </Link>
+                        {getNavItemsBySection("explore").map((item) => (
+                          <Link
+                            key={item.path}
+                            to={item.path}
+                            className="flex items-center gap-2 text-foreground hover:underline px-2 py-1"
+                            onClick={() => setSheetOpen(false)}
+                          >
+                            <item.icon className="w-4 h-4" />
+                            <span>{item.label}</span>
+                          </Link>
+                        ))}
                       </div>
                     </CollapsibleContent>
                   </div>
@@ -248,14 +226,17 @@ export const Header = () => {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-1 pt-2">
-                        <Link to="/about" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
-                          <HelpCircle className="w-4 h-4" />
-                          <span>Help / Contact</span>
-                        </Link>
-                        <Link to="/services" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
-                          <Briefcase className="w-4 h-4" />
-                          <span>Services</span>
-                        </Link>
+                        {getNavItemsBySection("support").map((item) => (
+                          <Link
+                            key={item.path}
+                            to={item.path}
+                            className="flex items-center gap-2 text-foreground hover:underline px-2 py-1"
+                            onClick={() => setSheetOpen(false)}
+                          >
+                            <item.icon className="w-4 h-4" />
+                            <span>{item.label}</span>
+                          </Link>
+                        ))}
                       </div>
                     </CollapsibleContent>
                   </div>
@@ -263,10 +244,17 @@ export const Header = () => {
 
                 {/* Secret Vault */}
                 <div className="border-t border-border pt-4">
-                  <Link to="/vault" className="flex items-center gap-2 text-foreground hover:underline px-2 py-1" onClick={() => setSheetOpen(false)}>
-                    <Lock className="w-4 h-4 text-primary" />
-                    <span>Secret Vault</span>
-                  </Link>
+                  {getNavItemsBySection("vault").map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className="flex items-center gap-2 text-foreground hover:underline px-2 py-1"
+                      onClick={() => setSheetOpen(false)}
+                    >
+                      <item.icon className="w-4 h-4 text-primary" />
+                      <span>{item.label}</span>
+                    </Link>
+                  ))}
                 </div>
               </nav>
 

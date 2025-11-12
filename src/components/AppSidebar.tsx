@@ -1,5 +1,6 @@
-import { Home, GraduationCap, TrendingUp, Wrench, Lock, ShoppingBag, Trophy, BookOpen, Music, HelpCircle, Search, ChevronDown, FolderKanban, FileText, Paperclip, Zap, StickyNote, Calculator, Dumbbell, Briefcase } from "lucide-react";
+import { Search, ChevronDown } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { NAV_ITEMS, getNavItemsBySection } from "@/data/nav";
 import {
   Sidebar,
   SidebarContent,
@@ -32,26 +33,13 @@ interface SearchableItem {
   tags?: string[];
 }
 
-const searchIndex: SearchableItem[] = [
-  { title: "Home", route: "/", section: "Learn" },
-  { title: "Enrolled Agent", route: "/enrolled-agent", section: "Learn", tags: ["EA", "tax", "certification"] },
-  { title: "Books HQ", route: "/books", section: "Learn", tags: ["reading", "library"] },
-  { title: "Investing", route: "/investing", section: "Learn", tags: ["finance", "stocks"] },
-  { title: "Blog", route: "/blog", section: "Learn", tags: ["articles", "posts", "writing"] },
-  { title: "Resources", route: "/resources", section: "Resources", tags: ["PDFs", "tools", "quick reference"] },
-  { title: "AI Prompts", route: "/ai-prompts", section: "Resources", tags: ["prompts", "coaching", "productivity"] },
-  { title: "Life Notes", route: "/life-notes", section: "Resources", tags: ["quotes", "wisdom", "mindset"] },
-  { title: "QuickBooks", route: "/quickbooks", section: "Resources", tags: ["training", "bookkeeping", "cleanup"] },
-  { title: "Tools", route: "/tools", section: "Resources", tags: ["utilities"] },
-  { title: "Sports", route: "/sports", section: "Resources", tags: ["NBA", "scores"] },
-  { title: "Waez", route: "/waez", section: "Resources", tags: ["religious", "lectures", "Abu Ali"] },
-  { title: "Workout", route: "/workout", section: "Resources", tags: ["fitness", "health", "exercise"] },
-  { title: "Projects", route: "/projects", section: "Explore", tags: ["pokedex", "builds"] },
-  { title: "Pokédex", route: "/projects/pokedex", section: "Explore", tags: ["pokemon", "notion"] },
-  { title: "Secret Vault", route: "/vault", section: "Secret Vault", tags: ["premium", "exclusive"] },
-  { title: "Help / Contact", route: "/about", section: "Support" },
-  { title: "Services", route: "/services", section: "Support", tags: ["website", "lovable", "build"] },
-];
+// Build search index from NAV_ITEMS
+const searchIndex: SearchableItem[] = NAV_ITEMS.map((item) => ({
+  title: item.label,
+  route: item.path,
+  section: item.section.charAt(0).toUpperCase() + item.section.slice(1),
+  tags: item.searchTags,
+}));
 
 export function AppSidebar() {
   const { state } = useSidebar();
@@ -199,52 +187,22 @@ export function AppSidebar() {
             </CollapsibleTrigger>
             <CollapsibleContent>
               <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/" end className={getNavClass}>
-                    <Home className="h-4 w-4" />
-                    {!isCollapsed && <span>Home</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/enrolled-agent" className={getNavClass}>
-                    <GraduationCap className="h-4 w-4" />
-                    {!isCollapsed && <span>Enrolled Agent</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/books" className={getNavClass}>
-                    <BookOpen className="h-4 w-4" />
-                    {!isCollapsed && <span>Books</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/investing" className={getNavClass}>
-                    <TrendingUp className="h-4 w-4" />
-                    {!isCollapsed && <span>Investing</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/blog" className={getNavClass}>
-                    <FileText className="h-4 w-4" />
-                    {!isCollapsed && <span>Blog</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
+                <SidebarMenu>
+                  {getNavItemsBySection("learn").map((item) => (
+                    <SidebarMenuItem key={item.path}>
+                      <SidebarMenuButton asChild>
+                        <NavLink
+                          to={item.path}
+                          end={item.path === "/"}
+                          className={getNavClass}
+                        >
+                          <item.icon className="h-4 w-4" />
+                          {!isCollapsed && <span>{item.label}</span>}
+                        </NavLink>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
               </SidebarGroupContent>
             </CollapsibleContent>
           </SidebarGroup>
@@ -263,72 +221,18 @@ export function AppSidebar() {
             </CollapsibleTrigger>
             <CollapsibleContent>
               <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/resources" className={getNavClass}>
-                    <Paperclip className="h-4 w-4" />
-                    {!isCollapsed && <span>Resources</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/ai-prompts" className={getNavClass}>
-                    <Zap className="h-4 w-4" />
-                    {!isCollapsed && <span>AI Prompts</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/life-notes" className={getNavClass}>
-                    <StickyNote className="h-4 w-4" />
-                    {!isCollapsed && <span>Life Notes</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/quickbooks" className={getNavClass}>
-                    <Calculator className="h-4 w-4" />
-                    {!isCollapsed && <span>QuickBooks</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/tools" className={getNavClass}>
-                    <Wrench className="h-4 w-4" />
-                    {!isCollapsed && <span>Tools</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/sports" className={getNavClass}>
-                    <Trophy className="h-4 w-4" />
-                    {!isCollapsed && <span>Sports</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/waez" className={getNavClass}>
-                    <Music className="h-4 w-4" />
-                    {!isCollapsed && <span>Waez</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/workout" className={getNavClass}>
-                    <Dumbbell className="h-4 w-4" />
-                    {!isCollapsed && <span>Workout</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
+                <SidebarMenu>
+                  {getNavItemsBySection("resources").map((item) => (
+                    <SidebarMenuItem key={item.path}>
+                      <SidebarMenuButton asChild>
+                        <NavLink to={item.path} className={getNavClass}>
+                          <item.icon className="h-4 w-4" />
+                          {!isCollapsed && <span>{item.label}</span>}
+                        </NavLink>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
               </SidebarGroupContent>
             </CollapsibleContent>
           </SidebarGroup>
@@ -347,16 +251,18 @@ export function AppSidebar() {
             </CollapsibleTrigger>
             <CollapsibleContent>
               <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/projects" className={getNavClass}>
-                    <FolderKanban className="h-4 w-4" />
-                    {!isCollapsed && <span>Projects</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
+                <SidebarMenu>
+                  {getNavItemsBySection("explore").map((item) => (
+                    <SidebarMenuItem key={item.path}>
+                      <SidebarMenuButton asChild>
+                        <NavLink to={item.path} className={getNavClass}>
+                          <item.icon className="h-4 w-4" />
+                          {!isCollapsed && <span>{item.label}</span>}
+                        </NavLink>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
               </SidebarGroupContent>
             </CollapsibleContent>
           </SidebarGroup>
@@ -375,24 +281,18 @@ export function AppSidebar() {
             </CollapsibleTrigger>
             <CollapsibleContent>
               <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/about" className={getNavClass}>
-                    <HelpCircle className="h-4 w-4" />
-                    {!isCollapsed && <span>Help / Contact</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <NavLink to="/services" className={getNavClass}>
-                    <Briefcase className="h-4 w-4" />
-                    {!isCollapsed && <span>Services</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
+                <SidebarMenu>
+                  {getNavItemsBySection("support").map((item) => (
+                    <SidebarMenuItem key={item.path}>
+                      <SidebarMenuButton asChild>
+                        <NavLink to={item.path} className={getNavClass}>
+                          <item.icon className="h-4 w-4" />
+                          {!isCollapsed && <span>{item.label}</span>}
+                        </NavLink>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
               </SidebarGroupContent>
             </CollapsibleContent>
           </SidebarGroup>
@@ -401,14 +301,16 @@ export function AppSidebar() {
         {/* Secret Vault Section (Standalone) */}
         <SidebarGroup>
           <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <NavLink to="/vault" className={getNavClass}>
-                  <Lock className="h-4 w-4" />
-                  {!isCollapsed && <span>Secret Vault</span>}
-                </NavLink>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+            {getNavItemsBySection("vault").map((item) => (
+              <SidebarMenuItem key={item.path}>
+                <SidebarMenuButton asChild>
+                  <NavLink to={item.path} className={getNavClass}>
+                    <item.icon className="h-4 w-4" />
+                    {!isCollapsed && <span>{item.label}</span>}
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
