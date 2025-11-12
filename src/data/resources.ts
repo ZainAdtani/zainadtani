@@ -65,4 +65,28 @@ export const RESOURCES: Resource[] = [
     href: "/resources/12-rules-to-learn-to-code-angela-yu.pdf",
     note: "Motivation + tactics (20-min rule, copy smart, ship projects).",
   },
+  {
+    id: 8,
+    title: "The 4-Hour Workweek, free sample chapters",
+    kind: "PDF",
+    tags: ["PDF", "Productivity", "Books"],
+    href: "https://tim.blog/wp-content/uploads/2014/10/the-4-hour-workweek-expanded-and-updated-by-timothy-ferriss.pdf",
+    note: "Lifestyle design basics, elimination, automation, mini retirements. Fast intro to the core moves.",
+  },
+  {
+    id: 9,
+    title: "The 4-Hour Body, free sample chapters",
+    kind: "PDF",
+    tags: ["PDF", "Health", "Books"],
+    href: "https://tim.blog/wp-content/uploads/2014/10/4-hour-body.pdf",
+    note: "Slow-carb fundamentals, tracking, rapid body change principles.",
+  },
+  {
+    id: 10,
+    title: "The 4-Hour Chef, free sample chapters",
+    kind: "PDF",
+    tags: ["PDF", "Learning", "Books"],
+    href: "https://tim.blog/wp-content/uploads/2014/10/the-4-hour-chef.pdf",
+    note: "Meta-learning through cooking. Learn skills faster with a clear method.",
+  },
 ];
