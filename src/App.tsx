@@ -35,6 +35,7 @@ import Illuminate from "./pages/usa-visit-2025/Illuminate";
 import Workout from "./pages/Workout";
 import Services from "./pages/Services";
 import MyPodcast from "./pages/MyPodcast";
+import TaxQuest from "./pages/TaxQuest";
 
 const queryClient = new QueryClient();
 
@@ -75,6 +76,7 @@ const App = () => (
             <Route path="/workout" element={<Workout />} />
             <Route path="/services" element={<Services />} />
             <Route path="/my-podcast" element={<MyPodcast />} />
+            <Route path="/tax-quest" element={<TaxQuest />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
