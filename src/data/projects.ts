@@ -30,5 +30,12 @@ export const projects: Project[] = [
     description: 'Get personalized guidance with voice or text AI.',
     route: '/projects/ai',
     tags: ['ai', 'assistant', 'chat', 'voice']
+  },
+  {
+    id: 'harry-potter-world',
+    title: 'Harry Potter World',
+    description: 'A Hogwarts themed hub for books, audiobooks, and key story moments.',
+    route: '/projects/harry-potter-world',
+    tags: ['books', 'timeline', 'hogwarts']
   }
 ];

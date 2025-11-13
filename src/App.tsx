@@ -30,6 +30,7 @@ import QuickBooksFastTrack from "./pages/QuickBooksFastTrack";
 import QuickBooksCleanup from "./pages/QuickBooksCleanup";
 import Thanks from "./pages/Thanks";
 import TalkToAI from "./pages/projects/TalkToAI";
+import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
 import DevotionalLiterature from "./pages/usa-visit-2025/DevotionalLiterature";
 import Illuminate from "./pages/usa-visit-2025/Illuminate";
 import Workout from "./pages/Workout";
@@ -60,9 +61,10 @@ const App = () => (
             <Route path="/waez" element={<Waez />} />
             <Route path="/books" element={<BooksHQ />} />
             <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/pokedex" element={<ProjectPokedex />} />
-            <Route path="/projects/ai-avatars" element={<AiAvatars />} />
-            <Route path="/projects/ai" element={<TalkToAI />} />
+          <Route path="/projects/pokedex" element={<ProjectPokedex />} />
+          <Route path="/projects/ai-avatars" element={<AiAvatars />} />
+          <Route path="/projects/ai" element={<TalkToAI />} />
+          <Route path="/projects/harry-potter-world" element={<HarryPotterWorld />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/resources" element={<Resources />} />
