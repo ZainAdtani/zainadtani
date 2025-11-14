@@ -3,15 +3,101 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
-import { ExternalLink, Rss, Copy as CopyIcon, Headphones, Loader2, Play } from "lucide-react";
-import { useMemo, useState } from "react";
+import { ExternalLink, Rss, Copy as CopyIcon, Headphones, Loader2, Play, AlertCircle } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 
-const SPOTIFY_SHOW_URL = "https://open.spotify.com/show/1Wm3Z8yMzEImKXBPTxCJVF";
-const SPOTIFY_EMBED_URL = "https://open.spotify.com/embed/show/1Wm3Z8yMzEImKXBPTxCJVF";
+const SPOTIFY_SHOW_URL = "https://open.spotify.com/show/1Wm3Z8yMzEImKXBPTxCJVF?si=1141081c9bb446c1";
+const SPOTIFY_EMBED_URL = "https://open.spotify.com/embed/show/1Wm3Z8yMzEImKXBPTxCJVF?utm_source=generator";
 const PODCAST_RSS_URL = "https://rss.beehiiv.com/podcasts/uAS1OHdzkB.xml";
+
+type Episode = {
+  id: string;
+  title: string;
+  summary: string;
+  link: string;
+  audioUrl: string;
+  pubDate: string;
+  isoDate: string;
+};
+
+// Hook to fetch and parse Beehiiv podcast RSS
+function useBeehiivEpisodes() {
+  const [episodes, setEpisodes] = useState<Episode[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchEpisodes = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(PODCAST_RSS_URL);
+        if (!response.ok) throw new Error("Failed to fetch podcast RSS");
+        
+        const xmlText = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(xmlText, "text/xml");
+        
+        const items = Array.from(doc.querySelectorAll("item"));
+        const parsedEpisodes: Episode[] = items.map((item, index) => {
+          const title = item.querySelector("title")?.textContent || "Untitled Episode";
+          const link = item.querySelector("link")?.textContent || "#";
+          const pubDate = item.querySelector("pubDate")?.textContent || "";
+          const descriptionHtml = item.querySelector("description")?.textContent || "";
+          
+          // Get audio URL from enclosure
+          const enclosure = item.querySelector("enclosure");
+          const audioUrl = enclosure?.getAttribute("url") || "";
+          
+          // Strip HTML and create plain text summary
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = descriptionHtml;
+          const plainText = tempDiv.textContent || tempDiv.innerText || "";
+          const summary = plainText.trim().substring(0, 180) + (plainText.length > 180 ? "…" : "");
+          
+          // Format date
+          const dateObj = pubDate ? new Date(pubDate) : new Date();
+          const isoDate = dateObj.toISOString();
+          const dateFormatted = dateObj.toLocaleDateString("en-US", { 
+            month: "long",
+            day: "numeric",
+            year: "numeric" 
+          });
+          
+          return {
+            id: `episode-${index}`,
+            title,
+            summary,
+            link,
+            audioUrl,
+            pubDate: dateFormatted,
+            isoDate,
+          };
+        });
+        
+        // Sort by date descending
+        const sortedEpisodes = parsedEpisodes.sort(
+          (a, b) => new Date(b.isoDate).getTime() - new Date(a.isoDate).getTime()
+        );
+        
+        setEpisodes(sortedEpisodes);
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching podcast episodes:", err);
+        setError("Could not load episodes. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchEpisodes();
+  }, []);
+
+  return { episodes, loading, error };
+}
 
 export default function MyPodcast() {
   const [copying, setCopying] = useState(false);
+  const { episodes, loading, error } = useBeehiivEpisodes();
 
   const jsonLd = useMemo(
     () => ({
@@ -61,7 +147,7 @@ export default function MyPodcast() {
 
           <h1 className="mt-4 text-4xl font-extrabold tracking-tight md:text-5xl">Zain's World Podcast</h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground">
-            Stories, lessons, and notes from my life. Simple ideas you can use.
+            Stories, lessons, and notes from my life. Simple ideas you use.
           </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
@@ -85,9 +171,9 @@ export default function MyPodcast() {
               )}
             </Button>
 
-            <Button variant="outline" asChild>
+            <Button variant="secondary" asChild>
               <a href={PODCAST_RSS_URL} target="_blank" rel="noreferrer">
-                Open RSS
+                Subscribe on Beehiiv
                 <ExternalLink className="ml-2 h-4 w-4" />
               </a>
             </Button>
@@ -122,7 +208,7 @@ export default function MyPodcast() {
           <div className="aspect-[16/9] bg-background md:aspect-[21/9]">
             <iframe
               title="Spotify embed"
-              src={`${SPOTIFY_EMBED_URL}?utm_source=zain-site`}
+              src={SPOTIFY_EMBED_URL}
               width="100%"
               height="100%"
               frameBorder={0}
@@ -131,37 +217,55 @@ export default function MyPodcast() {
             />
           </div>
         </Card>
-        <p className="mt-3 text-sm text-muted-foreground">
-          If the player looks empty, Spotify is still processing your show.
-        </p>
       </section>
 
-      {/* Roadmap */}
-      <section className="mt-12 grid gap-6 md:grid-cols-3">
-        <Card className="p-6">
-          <h3 className="text-lg font-semibold">Format</h3>
-          <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-            <li>5 to 12 minute solo episodes</li>
-            <li>One idea and clear steps</li>
-            <li>New episode weekly</li>
-          </ul>
-        </Card>
-        <Card className="p-6">
-          <h3 className="text-lg font-semibold">Topics</h3>
-          <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-            <li>Study systems for EA Part 1</li>
-            <li>QuickBooks and money habits</li>
-            <li>Faith, adab, and family</li>
-          </ul>
-        </Card>
-        <Card className="p-6">
-          <h3 className="text-lg font-semibold">What is next</h3>
-          <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-            <li>Add Apple link after approval</li>
-            <li>Auto list episodes from RSS</li>
-            <li>Post show notes on the blog</li>
-          </ul>
-        </Card>
+      {/* Episodes */}
+      <section className="mt-12">
+        <h2 className="text-3xl font-bold mb-6">Episodes</h2>
+        
+        {loading ? (
+          <div className="text-center py-12">
+            <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-muted-foreground" />
+            <p className="text-muted-foreground">Loading episodes...</p>
+          </div>
+        ) : error ? (
+          <div className="text-center py-12">
+            <AlertCircle className="h-8 w-8 mx-auto mb-4 text-muted-foreground" />
+            <p className="text-muted-foreground">{error}</p>
+          </div>
+        ) : episodes.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">No episodes available yet.</p>
+          </div>
+        ) : (
+          <div className="grid gap-6 md:grid-cols-2">
+            {episodes.map((episode) => (
+              <Card key={episode.id} className="p-6">
+                <h3 className="text-xl font-semibold mb-2">{episode.title}</h3>
+                <p className="text-sm text-muted-foreground mb-3">{episode.summary}</p>
+                <p className="text-xs text-muted-foreground mb-4">{episode.pubDate}</p>
+                <div className="flex gap-2">
+                  {episode.audioUrl && (
+                    <Button asChild variant="default" size="sm">
+                      <a href={episode.audioUrl} target="_blank" rel="noreferrer">
+                        Listen
+                        <ExternalLink className="ml-2 h-3 w-3" />
+                      </a>
+                    </Button>
+                  )}
+                  {episode.link && episode.link !== "#" && (
+                    <Button asChild variant="outline" size="sm">
+                      <a href={episode.link} target="_blank" rel="noreferrer">
+                        Show notes
+                        <ExternalLink className="ml-2 h-3 w-3" />
+                      </a>
+                    </Button>
+                  )}
+                </div>
+              </Card>
+            ))}
+          </div>
+        )}
       </section>
     </main>
   );
