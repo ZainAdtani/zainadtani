@@ -1,10 +1,10 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Clock, ArrowRight, ExternalLink, Youtube } from "lucide-react";
+import { Clock, ArrowRight, ExternalLink, Youtube, Loader2, AlertCircle } from "lucide-react";
 
 // ============= Link Constants =============
 const ZW_SPOTIFY_SHOW_URL = "https://open.spotify.com/show/1Wm3Z8yMzEImKXBPTxCJVF?si=1141081c9bb446c1";
@@ -22,52 +22,108 @@ type BlogPostCard = {
   tags: string[];
   href: string;
   date: string;
+  isoDate: string;
   readTime: string;
 };
 
-const BLOG_POSTS: BlogPostCard[] = [
-  {
-    id: "tims-tough-journey",
-    title: "Tim's Tough Journey, Told by a Teacher",
-    summary: "A classroom style retell of one person's slow path from hurt to healing with safety, skills, and kindness.",
-    tags: ["Mindset", "Healing"],
-    href: "https://zains-world.beehiiv.com/p/tough-journey",
-    date: "October 2025",
-    readTime: "6–8 min read",
-  },
-  {
-    id: "interrupt-the-plan",
-    title: "Interrupt the Plan — A Note to the Fighters Who Need Permission",
-    summary: "Stopping mid step and choosing something better. A note for anyone who never felt allowed to stop.",
-    tags: ["Hope", "Resilience"],
-    href: "https://zains-world.beehiiv.com/p/interrupt-the-plan",
-    date: "October 2025",
-    readTime: "5–7 min read",
-  },
-  {
-    id: "save-5-hours",
-    title: "Save 5 Hours, Keep Your Sanity: A Beginner's Automation Audit",
-    summary: "A simple weekly system to free 4–5 hours, protect your best energy, and keep the boring tasks handled.",
-    tags: ["Productivity", "Automation", "Systems"],
-    href: "https://zains-world.beehiiv.com/p/automation-audit",
-    date: "October 2025",
-    readTime: "7–9 min read",
-  },
-];
+// Hook to fetch and parse Beehiiv article RSS
+function useBeehiivPosts() {
+  const [posts, setPosts] = useState<BlogPostCard[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(ZW_BEEHIIV_FEED_RSS);
+        if (!response.ok) throw new Error("Failed to fetch RSS feed");
+        
+        const xmlText = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(xmlText, "text/xml");
+        
+        const items = Array.from(doc.querySelectorAll("item"));
+        const parsedPosts: BlogPostCard[] = items.map((item, index) => {
+          const title = item.querySelector("title")?.textContent || "Untitled";
+          const link = item.querySelector("link")?.textContent || "#";
+          const pubDate = item.querySelector("pubDate")?.textContent || "";
+          const descriptionHtml = item.querySelector("description")?.textContent || 
+                                  item.querySelector("content\\:encoded")?.textContent || "";
+          
+          // Extract categories as tags
+          const categoryElements = Array.from(item.querySelectorAll("category"));
+          const tags = categoryElements.map(cat => cat.textContent || "").filter(Boolean);
+          
+          // Strip HTML and create plain text summary
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = descriptionHtml;
+          const plainText = tempDiv.textContent || tempDiv.innerText || "";
+          const trimmedText = plainText.trim();
+          const summary = trimmedText.length > 220 
+            ? trimmedText.substring(0, 220).trim() + "…" 
+            : trimmedText;
+          
+          // Format date
+          const dateObj = pubDate ? new Date(pubDate) : new Date();
+          const isoDate = dateObj.toISOString();
+          const dateFormatted = dateObj.toLocaleDateString("en-US", { 
+            month: "long", 
+            year: "numeric" 
+          });
+          
+          // Estimate read time from description length
+          const wordCount = plainText.split(/\s+/).length;
+          const readMinutes = Math.max(1, Math.ceil(wordCount / 200));
+          const readTime = `${readMinutes}–${readMinutes + 2} min read`;
+          
+          return {
+            id: `post-${index}`,
+            title,
+            summary,
+            tags,
+            href: link,
+            date: dateFormatted,
+            isoDate,
+            readTime,
+          };
+        });
+        
+        // Sort by date descending and take first 9
+        const sortedPosts = parsedPosts
+          .sort((a, b) => new Date(b.isoDate).getTime() - new Date(a.isoDate).getTime())
+          .slice(0, 9);
+        
+        setPosts(sortedPosts);
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching Beehiiv posts:", err);
+        setError("Could not load posts. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchPosts();
+  }, []);
+
+  return { posts, loading, error };
+}
 
 export default function Blog() {
   const [q, setQ] = useState("");
+  const { posts, loading, error } = useBeehiivPosts();
 
   const filteredPosts = useMemo(() => {
     const term = q.trim().toLowerCase();
-    if (!term) return BLOG_POSTS;
-    return BLOG_POSTS.filter(
+    if (!term) return posts;
+    return posts.filter(
       (p) =>
         p.title.toLowerCase().includes(term) ||
         p.summary.toLowerCase().includes(term) ||
         p.tags.some((t) => t.toLowerCase().includes(term))
     );
-  }, [q]);
+  }, [q, posts]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -118,10 +174,10 @@ export default function Blog() {
 
             {/* YouTube Podcast Card */}
             <Card className="p-6 rounded-2xl border-border flex flex-col">
-              <div className="flex items-center gap-2 mb-2">
-                <Youtube className="h-6 w-6 text-primary" />
-                <h3 className="text-xl font-bold">Watch on YouTube</h3>
+              <div className="mb-4 flex items-center justify-center">
+                <Youtube className="h-24 w-24 text-primary" />
               </div>
+              <h3 className="text-xl font-bold mb-2">Watch on YouTube</h3>
               <p className="text-sm text-muted-foreground mb-4 flex-grow">Full episodes and clips on YouTube Podcasts.</p>
               
               <Button asChild variant="default" className="w-full">
@@ -133,8 +189,15 @@ export default function Blog() {
 
             {/* Newsletter Card */}
             <Card className="p-6 rounded-2xl border-border flex flex-col">
-              <h3 className="text-xl font-bold mb-2">Weekend newsletter</h3>
-              <p className="text-sm text-muted-foreground mb-4 flex-grow">One email each weekend with notes, tools, and small wins.</p>
+              <div className="mb-4">
+                <img 
+                  src="/images/zains-world-newsletter.png" 
+                  alt="Zain's World Newsletter" 
+                  className="w-full h-auto rounded-lg"
+                />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Zain's World Newsletter</h3>
+              <p className="text-sm text-muted-foreground mb-4 flex-grow">One email each week with notes, tools, and small wins.</p>
               
               <Button asChild variant="default" className="w-full">
                 <a href={ZW_BEEHIIV_ARCHIVE_URL} target="_blank" rel="noopener noreferrer">
@@ -156,7 +219,17 @@ export default function Blog() {
             </Button>
           </div>
 
-          {filteredPosts.length === 0 ? (
+          {loading ? (
+            <div className="text-center py-12">
+              <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-muted-foreground" />
+              <p className="text-muted-foreground">Loading posts...</p>
+            </div>
+          ) : error ? (
+            <div className="text-center py-12">
+              <AlertCircle className="h-8 w-8 mx-auto mb-4 text-muted-foreground" />
+              <p className="text-muted-foreground">{error}</p>
+            </div>
+          ) : filteredPosts.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-muted-foreground">No posts match your search.</p>
             </div>
