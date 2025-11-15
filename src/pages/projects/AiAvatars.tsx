@@ -2,38 +2,101 @@ import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Play } from "lucide-react";
 
-/** Brand flavor */
 const PINK = "#ff0083";
 const PINK_DARK = "#dc0073";
 
-/** Hero artwork */
 const HERO_BANNER = "/media/avatars/hero-ai-avatars.jpg";
 
 type AvatarItem = {
   id: string;
   title: string;
-  poster: string;
   embedUrl: string;
 };
 
 const AVATARS: AvatarItem[] = [
   {
-    id: "db8ce879a39c4148a60024e8c80b3033",
-    title: "EA Orientation — Soft Open",
-    poster: "/media/avatars/ea-orientation.jpg",
-    embedUrl: "https://app.heygen.com/embedded-player/db8ce879a39c4148a60024e8c80b3033",
+    id: "e41b9aec7c024e5bb44f4d05f5d4e3cf",
+    title: "Lesson 1 - Welcome + My Story (Mechanical → EA)",
+    embedUrl: "https://app.heygen.com/embedded-player/e41b9aec7c024e5bb44f4d05f5d4e3cf",
+  },
+  {
+    id: "24bafd9b40be43878fea66623e71bab7",
+    title: "Walking Workday System",
+    embedUrl: "https://app.heygen.com/embedded-player/24bafd9b40be43878fea66623e71bab7",
+  },
+  {
+    id: "b1021def417a4fb6972e860ee99c2391",
+    title: "Cartoon Zain",
+    embedUrl: "https://app.heygen.com/embedded-player/b1021def417a4fb6972e860ee99c2391",
+  },
+  {
+    id: "4cf5abe45c374d6bb8efaf98d5be2404",
+    title: "Study Smarter, Not Harder",
+    embedUrl: "https://app.heygen.com/embedded-player/4cf5abe45c374d6bb8efaf98d5be2404",
   },
   {
     id: "667c3764d19e49269ad40daea602c280",
-    title: "My Story — Mechanical → EA",
-    poster: "/media/avatars/mech-to-ea.jpg",
+    title: "Avatar IV - Walking Workday Ebook",
     embedUrl: "https://app.heygen.com/embedded-player/667c3764d19e49269ad40daea602c280",
   },
-  // add more here when you record new clips
+  {
+    id: "de240564e0f14ea28b64a04a8969cd16",
+    title: "Break Sedentary Momentum",
+    embedUrl: "https://app.heygen.com/embedded-player/de240564e0f14ea28b64a04a8969cd16",
+  },
+  {
+    id: "a210f5858abd4602a3db203f3fdf19c8",
+    title: "Tiny Teamwork Tokens",
+    embedUrl: "https://app.heygen.com/embedded-player/a210f5858abd4602a3db203f3fdf19c8",
+  },
+  {
+    id: "4bd881b9951f4b64b68304e51d19f127",
+    title: "Avatar IV - Cap Dua",
+    embedUrl: "https://app.heygen.com/embedded-player/4bd881b9951f4b64b68304e51d19f127",
+  },
+  {
+    id: "fccd47dfe16b47a8bbd89e4a4d3a0c39",
+    title: "Avatar IV - Maggie Says Hi",
+    embedUrl: "https://app.heygen.com/embedded-player/fccd47dfe16b47a8bbd89e4a4d3a0c39",
+  },
+  {
+    id: "6052a8714435408da6e73c61379bf5ce",
+    title: "Avatar IV - Maggie Intro Wants Treats And Love",
+    embedUrl: "https://app.heygen.com/embedded-player/6052a8714435408da6e73c61379bf5ce",
+  },
+  {
+    id: "482d49c1d51340d9b4b341a97ecfdaec",
+    title: "Avatar IV - Zain Journaling",
+    embedUrl: "https://app.heygen.com/embedded-player/482d49c1d51340d9b4b341a97ecfdaec",
+  },
+  {
+    id: "1f7090216ed448ae9cad4636b4f497ae",
+    title: "Busy Life Study",
+    embedUrl: "https://app.heygen.com/embedded-player/1f7090216ed448ae9cad4636b4f497ae",
+  },
+  {
+    id: "cace8e176b854b3eb7981d0db84aa107",
+    title: "Automate Your Week",
+    embedUrl: "https://app.heygen.com/embedded-player/cace8e176b854b3eb7981d0db84aa107",
+  },
+  {
+    id: "980beba2db1045a1b238df8be11c97d7",
+    title: "Imam's Forgiveness",
+    embedUrl: "https://app.heygen.com/embedded-player/980beba2db1045a1b238df8be11c97d7",
+  },
+  {
+    id: "8d00a9e82ca14f3d9d8b504014109d94",
+    title: "Life Is Like Basketball",
+    embedUrl: "https://app.heygen.com/embedded-player/8d00a9e82ca14f3d9d8b504014109d94",
+  },
+  {
+    id: "1c27650791f74c4c8a005a98b214df59",
+    title: "Value Investing Wisdom",
+    embedUrl: "https://app.heygen.com/embedded-player/1c27650791f74c4c8a005a98b214df59",
+  },
 ];
 
 export default function AiAvatars() {
@@ -43,14 +106,13 @@ export default function AiAvatars() {
   return (
     <>
       <Helmet>
-        <title>AI Avatars — Zain</title>
+        <title>AI Avatars - Zain</title>
         <meta
           name="description"
           content="Short avatar stories and explainer clips. Pick a video and watch in one tap."
         />
       </Helmet>
 
-      {/* Breadcrumbs */}
       <div className="container mx-auto px-4 pt-4 max-w-6xl">
         <nav className="text-sm text-muted-foreground mb-2">
           <Link to="/" className="hover:underline">
@@ -65,72 +127,40 @@ export default function AiAvatars() {
         </nav>
       </div>
 
-      {/* Hero */}
       <section className="mx-auto max-w-6xl px-4">
         <Card className="relative overflow-hidden rounded-3xl border-0 bg-gradient-to-r from-[#050816] via-[#050816] to-[#12001f] mb-10">
-          {/* Background image blur */}
           <div className="absolute inset-0 opacity-60">
             <img src={HERO_BANNER} alt="" className="h-full w-full object-cover blur-sm scale-105" />
           </div>
 
-          {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#050816]/90 via-[#050816]/70 to-[#050816]/40" />
 
-          <div className="relative z-10 grid gap-8 p-8 md:p-10 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-black tracking-tight" style={{ color: PINK }}>
-                AI Avatars
-              </h1>
-              <p className="mt-3 text-base md:text-lg text-muted-foreground max-w-xl">
-                A growing wall of avatar videos for stories, courses, and experiments. Tap a card to watch in a clean,
-                focused player.
-              </p>
-              <div className="mt-4 flex flex-wrap gap-3 text-xs md:text-sm text-foreground/80">
-                <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1">
-                  🎥 Built with HeyGen
-                </span>
-                <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1">
-                  ⚡ Perfect for short lessons
-                </span>
-                <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1">
-                  🧪 New clips added over time
-                </span>
-              </div>
-            </div>
-
-            <div className="hidden md:block">
-              <div className="relative mx-auto h-56 w-80 rounded-3xl bg-white/5 p-1 shadow-2xl">
-                <div className="h-full w-full rounded-2xl bg-black overflow-hidden flex items-center justify-center">
-                  <div className="relative h-full w-full">
-                    <img src={AVATARS[0]?.poster} alt="" className="h-full w-full object-cover opacity-80" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    <div className="absolute inset-0 grid place-items-center">
-                      <div
-                        className="grid place-items-center h-14 w-14 rounded-full shadow-lg"
-                        style={{ background: PINK }}
-                      >
-                        <Play className="h-7 w-7 text-white" />
-                      </div>
-                    </div>
-                    <div className="absolute left-4 bottom-4">
-                      <p className="text-xs text-white/70 uppercase tracking-wide">Featured</p>
-                      <p className="text-sm font-semibold text-white">{AVATARS[0]?.title}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div className="relative z-10 p-8 md:p-10 max-w-2xl">
+            <h1 className="text-4xl md:text-5xl font-black tracking-tight" style={{ color: PINK }}>
+              AI Avatars
+            </h1>
+            <p className="mt-3 text-base md:text-lg text-muted-foreground">
+              A growing wall of avatar videos for stories, courses, and experiments. Tap a card to watch in a clean,
+              focused player.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-3 text-xs md:text-sm text-foreground/80">
+              <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1">🎥 Built with HeyGen</span>
+              <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1">
+                ⚡ Great for short lessons
+              </span>
+              <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1">
+                🧪 New clips added over time
+              </span>
             </div>
           </div>
         </Card>
       </section>
 
-      {/* Gallery */}
       <section className="container mx-auto px-4 max-w-6xl pb-12">
         <div className="mb-4 flex items-baseline justify-between">
           <h2 className="text-2xl md:text-3xl font-bold">Avatar Library</h2>
           <p className="text-xs md:text-sm text-muted-foreground">
-            {AVATARS.length} video
-            {AVATARS.length === 1 ? "" : "s"} live today
+            {AVATARS.length} video{AVATARS.length === 1 ? "" : "s"} live today
           </p>
         </div>
 
@@ -143,20 +173,17 @@ export default function AiAvatars() {
               role="button"
               aria-label={`Play ${a.title}`}
             >
-              <div className="relative w-full" style={{ aspectRatio: "16 / 9" }}>
-                <img src={a.poster} alt="" className="h-full w-full object-cover" loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                <span
-                  className="absolute left-3 top-3 h-4 w-4 rounded-full border-2 border-white shadow-md"
-                  style={{ background: PINK }}
-                />
-                <div className="absolute inset-0 grid place-items-center">
+              <div className="relative w-full flex items-center justify-center" style={{ aspectRatio: "16 / 9" }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-[#050816] via-[#111827] to-[#12001f]" />
+                <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_top,_rgba(255,0,131,0.6),_transparent_55%)]" />
+                <div className="relative z-10 flex flex-col items-center justify-center gap-3">
                   <div
-                    className="grid place-items-center h-12 w-12 rounded-full shadow-lg group-hover:scale-105 transition-transform"
+                    className="grid place-items-center h-14 w-14 rounded-full shadow-lg group-hover:scale-105 transition-transform"
                     style={{ background: PINK }}
                   >
-                    <Play className="h-6 w-6 text-white" />
+                    <Play className="h-7 w-7 text-white" />
                   </div>
+                  <p className="px-4 text-center text-xs text-white/70">Tap to watch</p>
                 </div>
               </div>
               <div className="p-4">
@@ -168,12 +195,11 @@ export default function AiAvatars() {
 
         {AVATARS.length === 0 && (
           <div className="mt-8 text-center text-sm text-muted-foreground">
-            No avatar clips yet. Once you add iframes to the list above they will appear here.
+            No avatar clips yet. Add videos to the list above and they will appear here.
           </div>
         )}
       </section>
 
-      {/* Player dialog */}
       <Dialog open={!!openId} onOpenChange={(v) => !v && setOpenId(null)}>
         <DialogContent className="max-w-3xl p-0 overflow-hidden rounded-3xl">
           {active && (
