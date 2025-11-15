@@ -45,11 +45,6 @@ export default function MyPodcast() {
                     Listen on Spotify
                   </a>
                 </Button>
-                <Button variant="secondary" size="sm" asChild>
-                  <a href={PODCAST_RSS_URL} target="_blank" rel="noreferrer">
-                    Subscribe on Beehiiv
-                  </a>
-                </Button>
               </div>
             </div>
           </div>
@@ -74,7 +69,7 @@ export default function MyPodcast() {
           <Card className="p-6 rounded-2xl border-border flex flex-col">
             <h3 className="text-xl font-bold mb-2">Zain's World Podcast</h3>
             <p className="text-sm text-muted-foreground mb-4">Short solo episodes on taxes, tools, and growth.</p>
-            
+
             <div className="mb-4 flex-grow">
               <iframe
                 style={{ borderRadius: "12px" }}
@@ -87,7 +82,7 @@ export default function MyPodcast() {
                 title="Spotify Podcast Embed"
               />
             </div>
-            
+
             <Button asChild variant="default" className="w-full">
               <a href={SPOTIFY_SHOW_URL} target="_blank" rel="noopener noreferrer">
                 Listen on Spotify <ExternalLink className="ml-2 h-4 w-4" />
@@ -102,7 +97,7 @@ export default function MyPodcast() {
             </div>
             <h3 className="text-xl font-bold mb-2">Watch on YouTube</h3>
             <p className="text-sm text-muted-foreground mb-4 flex-grow">Full episodes and clips on YouTube Podcasts.</p>
-            
+
             <Button asChild className="w-full bg-red-600 hover:bg-red-700 text-white">
               <a href={YOUTUBE_PLAYLIST_URL} target="_blank" rel="noopener noreferrer">
                 Open playlist <ExternalLink className="ml-2 h-4 w-4" />
