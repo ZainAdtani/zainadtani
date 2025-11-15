@@ -17,6 +17,8 @@ export type BlogPost = {
   status: "published" | "draft";
   tags?: string[];
   audioUrl?: string;
+  /** Optional external URL (e.g., Beehiiv post) */
+  externalUrl?: string;
   /** Legacy flat paragraphs (still supported) */
   content?: string[];
   /** Preferred structured content (enables right-rail TOC) */
@@ -35,6 +37,7 @@ export const BLOG_POSTS: BlogPost[] = [
     status: "published",
     tags: ["Mindset", "Healing"],
     audioUrl: "/audio/tims-tough-journey.mp3",
+    externalUrl: "https://zains-world.beehiiv.com/p/tough-journey",
     sections: [
       {
         id: "intro",
@@ -113,6 +116,7 @@ export const BLOG_POSTS: BlogPost[] = [
     status: "published",
     tags: ["Hope", "Resilience"],
     audioUrl: "/audio/interrupt-plan.mp3",
+    externalUrl: "https://zains-world.beehiiv.com/p/interrupt-the-plan",
     sections: [
       {
         id: "intro",
@@ -209,6 +213,7 @@ export const BLOG_POSTS: BlogPost[] = [
     status: "published",
     tags: ["Productivity", "Automation", "Systems"],
     audioUrl: "/audio/automation-audit.mp3",
+    externalUrl: "https://zains-world.beehiiv.com/p/automation-audit",
     sections: [
       {
         id: "intro",
@@ -300,5 +305,17 @@ export const BLOG_POSTS: BlogPost[] = [
         ],
       },
     ],
+  },
+  {
+    id: 4,
+    slug: "mind-power-mail-reading-people",
+    title: "Mind Power Mail! Your Guide to Reading People (and Acing Life!)",
+    excerpt:
+      "A practical guide to reading people with more accuracy, using patterns, tells, and small daily reps instead of guesswork.",
+    date: "November 2025",
+    readTime: "6–8 min read",
+    status: "published",
+    tags: ["Mindset", "People Skills"],
+    externalUrl: "https://zains-world.beehiiv.com/p/guide-to-reading-people"
   },
 ];
