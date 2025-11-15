@@ -7,7 +7,8 @@ import { CheckCircle2, ChevronDown, ChevronUp, Moon } from "lucide-react";
 type TipCard = {
   id: string;
   section: string;
-  content: string;
+  intro: string;
+  bullets: string[];
   variant: "success" | "info";
 };
 
@@ -15,37 +16,96 @@ const tips: TipCard[] = [
   {
     id: "exercise-snacks",
     section: "Exercise Snacks",
-    content:
-      "A large review found that short bursts of exercise, five minutes or less, done two or more times a day, raised VO2 max by five to seventeen percent. Total weekly time ranged from five to sixty five minutes. Most gains were in aerobic fitness and muscular endurance for middle aged and older adults who were sedentary. Body fat, strength, and cholesterol did not change. Use five minute blocks of brisk walking, stairs, squats, or fast cycles to improve heart and lung health if time is tight.",
+    intro: "Short bursts of movement, even five minutes, improve heart and lung fitness for busy or sedentary adults.",
+    bullets: [
+      "Use five minute blocks of brisk walking, stairs, squats, or fast cycling.",
+      "Do sessions two or more times a day, total weekly time five to sixty five minutes.",
+      "Most gains appear in aerobic fitness and muscular endurance.",
+      "Body fat, strength, and cholesterol change less than fitness.",
+      "Helpful when long workouts feel hard to fit into the day.",
+    ],
     variant: "success",
   },
   {
     id: "gluten-worry",
     section: "Gluten Worry Check",
-    content:
-      "People who thought gluten triggered their IBS symptoms tried cereal bars in a blinded test. Some bars had gluten and some did not. Symptoms did not change between bars. True gluten intolerance exists, and some react to FODMAP carbs in wheat, but most do not need to avoid gluten. Unless you have celiac disease or a confirmed intolerance, bread is usually fine.",
+    intro: "Many people blame gluten, but tests show symptoms often stay the same whether food has gluten or not.",
+    bullets: [
+      "In blinded tests, cereal bars with and without gluten produced similar IBS symptoms.",
+      "Some people react to FODMAP carbs in wheat instead of gluten itself.",
+      "True gluten intolerance and celiac disease still need strict avoidance.",
+      "Without a diagnosis, most people tolerate normal bread in moderation.",
+      "Work with a professional before cutting whole food groups.",
+    ],
     variant: "info",
+  },
+  {
+    id: "aging-parents-supplements",
+    section: "5 Key Supplements For Aging Parents",
+    intro: "Five well studied nutrients support strength, brain function, mood, and sleep for adults over fifty.",
+    bullets: [
+      "Creatine, around 5 grams daily with light strength work, supports muscle, energy, and daily tasks.",
+      "Higher creatine doses in research support brain energy and memory, medical guidance is important here.",
+      "Vitamin D3 with K2 supports bones, immunity, and keeps calcium directed toward bones instead of arteries.",
+      "Omega 3s from fish oil or algae, around 1 to 2 grams combined EPA and DHA, support brain, heart, and inflammation control.",
+      "Magnesium glycinate before bed supports relaxation and sleep, magnesium L-threonate focuses more on mood and memory.",
+      "Glycine, around 3 grams in warm water before bed, supports deeper sleep and fresher mornings.",
+      "Best results show up when these stack with real food, walking, and a steady sleep routine.",
+    ],
+    variant: "success",
+  },
+  {
+    id: "fat-loss-day-plan",
+    section: "Simple Day Plan For Faster Fat Loss",
+    intro:
+      "A clear daily rhythm around hydration, protein, movement, and sleep drives steady fat loss without extreme rules.",
+    bullets: [
+      "Morning, drink water with electrolytes or mineral salt before coffee, add 5 grams of creatine if digestion feels fine.",
+      "Delay caffeine sixty to ninety minutes after waking, ideally after the first meal, for steadier energy.",
+      "First meal one to two hours after waking, focus on high protein, some fiber, and lower calories.",
+      "Lunch built around protein, vegetables, and purposeful carbs, higher carbs on training days, lower on rest days.",
+      "Use the raw veggie test for snacks, if raw carrots or celery sound unappealing, it is likely not true hunger.",
+      "Lift two to three days per week with full body sessions, use basic squat, hinge, push, pull, and carry patterns.",
+      "Move daily with a thirty minute walk or seven to ten thousand steps, walks after meals support blood sugar and cravings.",
+      "Finish dinner three to five hours before bed, use a balanced plate with enough protein and a moderate carb serving.",
+      "Night routine, cool dark room, light stretch or breathing, limited screens, magnesium and glycine if they fit your plan.",
+    ],
+    variant: "info",
+  },
+  {
+    id: "anti-aging-exercise",
+    section: "7 Exercises To Slow Aging",
+    intro: "Seven movements with strong research links to longer life, better fitness, and more independence.",
+    bullets: [
+      "Fast walking, aim for about seven thousand steps per day and include thirty minutes of brisk pace.",
+      "High intensity intervals once or twice per week, short hard efforts with longer easy recovery blocks.",
+      "Bar hangs, start with ten second holds to open shoulders, decompress the spine, and build grip strength.",
+      "Squats, use body weight or light loads to protect the ability to stand up, climb stairs, and move confidently.",
+      "Trap bar deadlifts, focus on hip drive and solid form to build whole body strength and bone density.",
+      "Farmer carries, walk while holding weights at your sides to train posture, balance, and real world strength.",
+      "Daily mobility, use moves like the World’s Greatest Stretch for a few minutes to keep hips and joints moving freely.",
+    ],
+    variant: "success",
   },
 ];
 
-/* NEW CONTENT: Japanese Sleep Playbook */
 const jpSummary =
-  "Adults in Japan often sleep 6 to 6.5 hours. Life expectancy in 2025 is 87.1 for women and 81.1 for men, the highest in the world. Obesity is near 4 to 6 percent. The system favors recovery with cooler rooms, warm baths before bed, firm sleep surfaces, less evening light, and short daytime naps.";
+  "Adults in Japan often sleep 6 to 6.5 hours. Life expectancy in 2025 is 87.1 for women and 81.1 for men, among the highest in the world. Obesity stays near 4 to 6 percent. The system favors recovery with cooler rooms, warm baths before bed, firm sleep surfaces, less evening light, and short daytime naps.";
 
 const jpHabits: string[] = [
-  "Cool the bedroom to about 65°F, 18°C",
-  "Take a warm bath or shower 90 minutes before bed",
-  "Use a firm sleep surface for spinal alignment",
-  "Reduce bright and blue light at night",
-  "Use a 20 to 30 minute nap in early afternoon when needed",
-  "Align meals and walking with daylight hours",
+  "Cool the bedroom to about 65°F, 18°C.",
+  "Take a warm bath or shower 90 minutes before bed.",
+  "Use a firm sleep surface for spinal alignment.",
+  "Reduce bright and blue light at night.",
+  "Use a 20 to 30 minute nap in early afternoon when needed.",
+  "Align meals and walking with daylight hours.",
 ];
 
 const jpWhyItWorks: string[] = [
-  "Thermoregulation helps the body start deep sleep faster",
-  "Short naps restore alertness without hurting night sleep",
-  "Movement and diet drive weight and metabolic health",
-  "Culture supports brief rest without stigma",
+  "Thermoregulation helps the body start deep sleep faster.",
+  "Short naps restore alertness without hurting night sleep.",
+  "Movement and diet support weight and metabolic health.",
+  "Norms around brief rest lower stress and support recovery.",
 ];
 
 export default function Workout() {
@@ -54,7 +114,11 @@ export default function Workout() {
   const toggleCard = (id: string) => {
     setCollapsedCards((prev) => {
       const next = new Set(prev);
-      next.has(id) ? next.delete(id) : next.add(id);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
       return next;
     });
   };
@@ -75,7 +139,6 @@ export default function Workout() {
           <p className="text-lg text-muted-foreground mt-4">Daily tips and quick wins for energy and health</p>
         </header>
 
-        {/* NEW SECTION: Japanese Sleep Playbook */}
         <section className="mb-8">
           <Card className="rounded-xl p-6 border bg-card/60">
             <div className="flex items-start gap-3">
@@ -119,7 +182,6 @@ export default function Workout() {
           </Card>
         </section>
 
-        {/* EXISTING TIPS */}
         <div className="space-y-6">
           {tips.map((tip) => {
             const isCollapsed = collapsedCards.has(tip.id);
@@ -152,10 +214,18 @@ export default function Workout() {
                     <div
                       id={`tip-${tip.id}`}
                       className={`mt-3 overflow-hidden transition-all duration-300 ${
-                        isCollapsed ? "max-h-0 opacity-0" : "max-h-96 opacity-100"
+                        isCollapsed ? "max-h-0 opacity-0" : "max-h-[520px] opacity-100"
                       }`}
                     >
-                      <p className="text-sm leading-relaxed text-foreground/90">{tip.content}</p>
+                      <p className="text-sm leading-relaxed text-foreground/90">{tip.intro}</p>
+                      <ul className="mt-3 space-y-2">
+                        {tip.bullets.map((point) => (
+                          <li key={point} className="flex items-start gap-2 text-sm leading-relaxed text-foreground/90">
+                            <span className="mt-1 h-1.5 w-1.5 rounded-full bg-foreground/60" />
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                 </div>
