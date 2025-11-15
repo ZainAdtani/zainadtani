@@ -97,10 +97,9 @@ const EnrolledAgent = () => {
         </div>
       </section>
 
-      {/* Main Content Grid */}
-      <section className="container mx-auto px-4 pb-16">
-        <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          {/* Section 1: EA Quest */}
+      {/* EA Quest section */}
+      <section className="container mx-auto px-4 pb-10">
+        <div className="max-w-7xl mx-auto">
           <Card
             id="ea-quest"
             className="relative border-2 border-dashed border-primary/40 p-8 hover:border-primary transition-all hover-lift bg-card"
@@ -112,11 +111,11 @@ const EnrolledAgent = () => {
             <div className="space-y-4">
               <h2 className="text-3xl font-bold text-foreground mt-2">EA Quest</h2>
               <p className="text-muted-foreground">
-                Test your knowledge with interactive trivia. Master EA fundamentals with an embedded practice game.
+                Test your knowledge with interactive trivia. Master EA fundamentals with a mini practice game.
               </p>
 
               <Button onClick={() => setShowGame(!showGame)} className="w-full group" size="lg">
-                {showGame ? "Hide Quest" : "Start Quest (Embedded)"}
+                {showGame ? "Hide Quest" : "Start Quest"}
                 <ChevronRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
 
@@ -125,24 +124,15 @@ const EnrolledAgent = () => {
                   <EAGame />
                 </div>
               )}
-
-              <p className="text-xs text-muted-foreground pt-2">
-                Want the full screen experience
-                {"? "}
-                <a
-                  href={LINKS.TAX_QUEST}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary underline-offset-2 hover:underline"
-                >
-                  Open Tax Quest in a new tab
-                </a>
-                .
-              </p>
             </div>
           </Card>
+        </div>
+      </section>
 
-          {/* Section 2: Learning Materials */}
+      {/* Learning Materials + Community grid */}
+      <section className="container mx-auto px-4 pb-16">
+        <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+          {/* Learning Materials */}
           <Card
             id="learning-materials"
             className="relative border-2 border-dashed border-secondary/40 p-8 hover:border-secondary transition-all hover-lift bg-card"
@@ -190,7 +180,7 @@ const EnrolledAgent = () => {
             </div>
           </Card>
 
-          {/* Section 3: Community & Tools */}
+          {/* Community & Tools */}
           <Card
             id="community-tools"
             className="relative border-2 border-dashed border-primary/40 p-8 hover:border-primary transition-all hover-lift bg-card"
@@ -200,12 +190,7 @@ const EnrolledAgent = () => {
             </div>
 
             <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <h2 className="text-3xl font-bold text-foreground mt-2">Community & Tools</h2>
-                <span className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm font-semibold">
-                  Free Skool
-                </span>
-              </div>
+              <h2 className="text-3xl font-bold text-foreground mt-2">Community & Tools</h2>
 
               <p className="text-muted-foreground">
                 Join other EA candidates in a focused space for questions, wins, and weekly momentum.
