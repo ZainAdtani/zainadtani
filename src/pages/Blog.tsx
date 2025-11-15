@@ -52,20 +52,20 @@ export default function Blog() {
         </div>
 
         {/* Newsletter Banner */}
-        <section className="mb-16">
+        <section className="mb-12">
           <Card className="overflow-hidden rounded-2xl border-border">
-            <div className="flex flex-col md:flex-row items-center gap-6 p-6 md:p-8">
-              <div className="w-full md:w-1/3 flex-shrink-0">
+            <div className="flex flex-col md:flex-row items-center gap-4 p-4 md:p-6">
+              <div className="w-full md:w-1/4 flex-shrink-0">
                 <img 
                   src="/images/zains-world-newsletter.png" 
                   alt="Zain's World Newsletter" 
-                  className="w-full h-auto rounded-lg"
+                  className="w-full h-32 object-contain rounded-lg"
                 />
               </div>
-              <div className="flex-1 flex flex-col gap-4">
-                <div>
-                  <h2 className="text-2xl font-bold mb-2">Zain's World Newsletter</h2>
-                  <p className="text-muted-foreground">One email each week with notes, tools, and small wins.</p>
+              <div className="flex-1 flex flex-col md:flex-row md:items-center gap-4">
+                <div className="flex-1">
+                  <h2 className="text-xl font-bold mb-1">Zain's World Newsletter</h2>
+                  <p className="text-sm text-muted-foreground">One email each week with notes, tools, and small wins.</p>
                 </div>
                 <Button asChild variant="default" className="w-full md:w-auto">
                   <a href={ZW_BEEHIIV_ARCHIVE_URL} target="_blank" rel="noopener noreferrer">
