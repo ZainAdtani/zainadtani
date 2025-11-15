@@ -160,10 +160,8 @@ const Investing = () => {
           </p>
 
           {(() => {
-            // favorites to star
             const FAVORITES = new Set(["VOO", "SCHD", "QQQM", "BTC"]);
 
-            // Individual stocks and ETFs, description only
             const INDIVIDUAL = [
               { ticker: "SCHD", name: "Schwab U.S. Dividend Equity ETF" },
               { ticker: "NVDA", name: "NVIDIA" },
@@ -204,7 +202,6 @@ const Investing = () => {
               { ticker: "QUBT", name: "Quantum Computing, Inc." },
             ];
 
-            // Roth IRA, keep tickers and counts the same, remove tags, match card style
             const ROTH_IRA = [
               { ticker: "JEPI", name: "JPM Equity Premium" },
               { ticker: "JEPQ", name: "JPM Nasdaq Premium" },
@@ -215,7 +212,17 @@ const Investing = () => {
               { ticker: "FBTC", name: "Fidelity Bitcoin ETF" },
             ];
 
-            // shared 3D card with arrow icon and optional star
+            const sortByFavorites = (items: { ticker: string; name?: string }[]) =>
+              [...items].sort((a, b) => {
+                const aFav = FAVORITES.has(a.ticker) ? 0 : 1;
+                const bFav = FAVORITES.has(b.ticker) ? 0 : 1;
+                if (aFav !== bFav) return aFav - bFav;
+                return a.ticker.localeCompare(b.ticker);
+              });
+
+            const INDIVIDUAL_SORTED = sortByFavorites(INDIVIDUAL);
+            const ROTH_SORTED = sortByFavorites(ROTH_IRA);
+
             const Card3D = ({ p }: { p: { ticker: string; name?: string } }) => (
               <div
                 className="group relative rounded-2xl border-2 bg-background/70 backdrop-blur-sm p-5 shadow-lg hover:shadow-2xl transition-all duration-300"
@@ -241,7 +248,6 @@ const Investing = () => {
                       {p.ticker}
                       {FAVORITES.has(p.ticker) ? <span className="ml-2 text-primary">★</span> : null}
                     </h4>
-                    <TrendingUp className="w-5 h-5 text-primary opacity-70" />
                   </div>
                   {p.name ? <p className="text-sm text-muted-foreground mt-1">{p.name}</p> : null}
                 </div>
@@ -256,11 +262,11 @@ const Investing = () => {
                     <h3 className="text-3xl font-bold">
                       Individual <span className="text-primary">Stocks & ETFs</span>
                     </h3>
-                    <span className="text-xs text-muted-foreground">{INDIVIDUAL.length} positions</span>
+                    <span className="text-xs text-muted-foreground">{INDIVIDUAL_SORTED.length} positions</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {INDIVIDUAL.map((p, i) => (
-                      <Card3D key={p.ticker + i} p={p} />
+                    {INDIVIDUAL_SORTED.map((p) => (
+                      <Card3D key={p.ticker} p={p} />
                     ))}
                   </div>
                 </div>
@@ -271,11 +277,11 @@ const Investing = () => {
                     <h3 className="text-3xl font-bold">
                       Roth IRA <span className="text-primary">Holdings</span>
                     </h3>
-                    <span className="text-xs text-muted-foreground">{ROTH_IRA.length} positions</span>
+                    <span className="text-xs text-muted-foreground">{ROTH_SORTED.length} positions</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {ROTH_IRA.map((p, i) => (
-                      <Card3D key={p.ticker + i} p={p} />
+                    {ROTH_SORTED.map((p) => (
+                      <Card3D key={p.ticker} p={p} />
                     ))}
                   </div>
                 </div>
