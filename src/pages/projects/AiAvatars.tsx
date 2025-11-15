@@ -1,23 +1,23 @@
-import { useMemo, useRef, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { Play } from "lucide-react";
 
-/** Brand flavor — Lemonade-esque */
+/** Brand flavor */
 const PINK = "#ff0083";
 const PINK_DARK = "#dc0073";
 
-/** Full-bleed banner image (16:9 or wider). Replace with your hero. */
+/** Hero artwork */
 const HERO_BANNER = "/media/avatars/hero-ai-avatars.jpg";
 
 type AvatarItem = {
   id: string;
   title: string;
-  poster: string; // required: nice cover image
-  embedUrl: string; // required: HeyGen iframe URL
+  poster: string;
+  embedUrl: string;
 };
 
 const AVATARS: AvatarItem[] = [
@@ -33,35 +33,24 @@ const AVATARS: AvatarItem[] = [
     poster: "/media/avatars/mech-to-ea.jpg",
     embedUrl: "https://app.heygen.com/embedded-player/667c3764d19e49269ad40daea602c280",
   },
-  // add more…
+  // add more here when you record new clips
 ];
 
 export default function AiAvatars() {
   const [openId, setOpenId] = useState<string | null>(null);
   const active = useMemo(() => AVATARS.find((a) => a.id === openId) ?? null, [openId]);
-  const railRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (!railRef.current) return;
-      const dx = 640;
-      if (e.key === "ArrowRight") railRef.current.scrollBy({ left: dx, behavior: "smooth" });
-      if (e.key === "ArrowLeft") railRef.current.scrollBy({ left: -dx, behavior: "smooth" });
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  const nudge = (dx: number) => railRef.current?.scrollBy({ left: dx, behavior: "smooth" });
 
   return (
     <>
       <Helmet>
         <title>AI Avatars — Zain</title>
-        <meta name="description" content="Poster-first carousel of AI avatar videos. Click to play." />
+        <meta
+          name="description"
+          content="Short avatar stories and explainer clips. Pick a video and watch in one tap."
+        />
       </Helmet>
 
-      {/* Minimal breadcrumbs */}
+      {/* Breadcrumbs */}
       <div className="container mx-auto px-4 pt-4 max-w-6xl">
         <nav className="text-sm text-muted-foreground mb-2">
           <Link to="/" className="hover:underline">
@@ -76,114 +65,128 @@ export default function AiAvatars() {
         </nav>
       </div>
 
-      {/* Hero banner */}
-      <section className="relative">
-        <div className="mx-auto max-w-7xl px-0">
-          <div className="relative h-[34rem] w-full overflow-hidden rounded-none md:rounded-[2.5rem]">
-            <img src={HERO_BANNER} alt="" className="h-full w-full object-cover" />
-            {/* playful gradient wash */}
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(180deg, rgba(255,0,131,0.10) 0%, rgba(255,255,255,0.0) 40%, rgba(255,255,255,0.85) 100%)",
-              }}
-            />
-            {/* Headline */}
-            <div className="absolute bottom-8 left-6 md:left-10">
-              <h1 className="text-4xl md:text-6xl font-black tracking-tight drop-shadow-sm" style={{ color: PINK }}>
+      {/* Hero */}
+      <section className="mx-auto max-w-6xl px-4">
+        <Card className="relative overflow-hidden rounded-3xl border-0 bg-gradient-to-r from-[#050816] via-[#050816] to-[#12001f] mb-10">
+          {/* Background image blur */}
+          <div className="absolute inset-0 opacity-60">
+            <img src={HERO_BANNER} alt="" className="h-full w-full object-cover blur-sm scale-105" />
+          </div>
+
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#050816]/90 via-[#050816]/70 to-[#050816]/40" />
+
+          <div className="relative z-10 grid gap-8 p-8 md:p-10 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] items-center">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-black tracking-tight" style={{ color: PINK }}>
                 AI Avatars
               </h1>
-              <p className="mt-2 text-base md:text-lg text-foreground/70">Click a poster. Hit play. Magic happens.</p>
+              <p className="mt-3 text-base md:text-lg text-muted-foreground max-w-xl">
+                A growing wall of avatar videos for stories, courses, and experiments. Tap a card to watch in a clean,
+                focused player.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-3 text-xs md:text-sm text-foreground/80">
+                <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1">
+                  🎥 Built with HeyGen
+                </span>
+                <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1">
+                  ⚡ Perfect for short lessons
+                </span>
+                <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1">
+                  🧪 New clips added over time
+                </span>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Carousel */}
-      <section className="container mx-auto px-4 py-8 max-w-6xl">
-        <div className="flex items-center justify-end gap-2 mb-3">
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => nudge(-640)}
-            className="rounded-full border-2"
-            style={{ borderColor: PINK, color: PINK }}
-            aria-label="Previous"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => nudge(640)}
-            className="rounded-full border-2"
-            style={{ borderColor: PINK, color: PINK }}
-            aria-label="Next"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </Button>
-        </div>
-
-        <div
-          ref={railRef}
-          className="relative flex gap-6 overflow-x-auto snap-x snap-mandatory pb-2 pt-1
-                     [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          style={{
-            maskImage:
-              "linear-gradient(to right, transparent 0, black 3rem, black calc(100% - 3rem), transparent 100%)",
-            WebkitMaskImage:
-              "linear-gradient(to right, transparent 0, black 3rem, black calc(100% - 3rem), transparent 100%)",
-          }}
-        >
-          {AVATARS.map((a) => (
-            <Card
-              key={a.id}
-              className="snap-start shrink-0 overflow-hidden rounded-3xl border-0 bg-white min-w-[320px] sm:min-w-[420px] max-w-[520px]
-                         hover:shadow-2xl hover:-translate-y-0.5 transition will-change-transform"
-              role="button"
-              onClick={() => setOpenId(a.id)}
-              aria-label={`Open ${a.title}`}
-              style={{ boxShadow: "0 12px 26px rgba(0,0,0,0.07)" }}
-            >
-              {/* Poster with centered play */}
-              <div className="relative w-full" style={{ aspectRatio: "16 / 9" }}>
-                <img src={a.poster} alt="" className="h-full w-full object-cover" loading="lazy" />
-                {/* tiny pink tab for flair */}
-                <span className="absolute left-3 top-3 h-5 w-5 rounded-sm" style={{ background: PINK }} />
-                {/* play button */}
-                <div className="absolute inset-0 grid place-items-center">
-                  <div
-                    className="grid place-items-center h-14 w-14 rounded-full shadow-lg"
-                    style={{ background: PINK }}
-                  >
-                    <Play className="h-7 w-7 text-white" />
+            <div className="hidden md:block">
+              <div className="relative mx-auto h-56 w-80 rounded-3xl bg-white/5 p-1 shadow-2xl">
+                <div className="h-full w-full rounded-2xl bg-black overflow-hidden flex items-center justify-center">
+                  <div className="relative h-full w-full">
+                    <img src={AVATARS[0]?.poster} alt="" className="h-full w-full object-cover opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 grid place-items-center">
+                      <div
+                        className="grid place-items-center h-14 w-14 rounded-full shadow-lg"
+                        style={{ background: PINK }}
+                      >
+                        <Play className="h-7 w-7 text-white" />
+                      </div>
+                    </div>
+                    <div className="absolute left-4 bottom-4">
+                      <p className="text-xs text-white/70 uppercase tracking-wide">Featured</p>
+                      <p className="text-sm font-semibold text-white">{AVATARS[0]?.title}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-              {/* Title only */}
+            </div>
+          </div>
+        </Card>
+      </section>
+
+      {/* Gallery */}
+      <section className="container mx-auto px-4 max-w-6xl pb-12">
+        <div className="mb-4 flex items-baseline justify-between">
+          <h2 className="text-2xl md:text-3xl font-bold">Avatar Library</h2>
+          <p className="text-xs md:text-sm text-muted-foreground">
+            {AVATARS.length} video
+            {AVATARS.length === 1 ? "" : "s"} live today
+          </p>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {AVATARS.map((a) => (
+            <Card
+              key={a.id}
+              className="group overflow-hidden rounded-2xl border border-border/60 bg-card hover:border-[rgba(255,0,131,0.6)] hover:shadow-2xl hover:-translate-y-1 transition-all cursor-pointer"
+              onClick={() => setOpenId(a.id)}
+              role="button"
+              aria-label={`Play ${a.title}`}
+            >
+              <div className="relative w-full" style={{ aspectRatio: "16 / 9" }}>
+                <img src={a.poster} alt="" className="h-full w-full object-cover" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                <span
+                  className="absolute left-3 top-3 h-4 w-4 rounded-full border-2 border-white shadow-md"
+                  style={{ background: PINK }}
+                />
+                <div className="absolute inset-0 grid place-items-center">
+                  <div
+                    className="grid place-items-center h-12 w-12 rounded-full shadow-lg group-hover:scale-105 transition-transform"
+                    style={{ background: PINK }}
+                  >
+                    <Play className="h-6 w-6 text-white" />
+                  </div>
+                </div>
+              </div>
               <div className="p-4">
-                <h3 className="text-lg md:text-xl font-extrabold leading-tight">{a.title}</h3>
+                <h3 className="text-base md:text-lg font-semibold leading-snug">{a.title}</h3>
               </div>
             </Card>
           ))}
         </div>
+
+        {AVATARS.length === 0 && (
+          <div className="mt-8 text-center text-sm text-muted-foreground">
+            No avatar clips yet. Once you add iframes to the list above they will appear here.
+          </div>
+        )}
       </section>
 
-      {/* Modal player */}
+      {/* Player dialog */}
       <Dialog open={!!openId} onOpenChange={(v) => !v && setOpenId(null)}>
         <DialogContent className="max-w-3xl p-0 overflow-hidden rounded-3xl">
           {active && (
             <div className="w-full">
-              <div className="px-6 pt-6 pb-3">
-                <h2 className="text-xl md:text-2xl font-black" style={{ color: PINK }}>
+              <div className="px-6 pt-6 pb-3 flex items-center justify-between">
+                <h2 className="text-lg md:text-xl font-bold" style={{ color: PINK_DARK }}>
                   {active.title}
                 </h2>
               </div>
               <div className="px-6 pb-6">
                 <div
-                  className="aspect-video w-full overflow-hidden rounded-2xl border"
-                  style={{ borderColor: `${PINK}20` }}
+                  className="aspect-video w-full overflow-hidden rounded-2xl border bg-black"
+                  style={{ borderColor: `${PINK}33` }}
                 >
                   <iframe
                     src={active.embedUrl}
