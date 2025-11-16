@@ -270,7 +270,7 @@ export default function BooksHQ() {
                   )}
 
                   {/* Rating */}
-                  {book.rating && (
+                  {book.rating && book.rating > 0 && (
                     <div className="flex items-center gap-1 mb-2">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <Star key={i} className={`w-3.5 h-3.5 ${i < book.rating! ? "fill-yellow-500 text-yellow-500" : "text-muted"}`} />
