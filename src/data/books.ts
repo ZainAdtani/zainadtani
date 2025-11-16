@@ -19,7 +19,11 @@ export type Book = {
 
 // Helper function to normalize strings for deduplication
 function norm(s: string): string {
-  return s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim().replace(/\s+/g, " ");
+  return s
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim()
+    .replace(/\s+/g, " ");
 }
 
 // Deduplicate books, keeping the richer card with notes/thoughts
@@ -29,23 +33,23 @@ function dedupeBooks(arr: Book[]): Book[] {
     if (normalized.includes("paul millard")) return "paul millerd";
     return a;
   };
-  
+
   const out: Book[] = [];
   const seen = new Map<string, { idx: number; hasNotes: boolean; hasThoughts: boolean }>();
-  
+
   for (const b of arr) {
     const key = norm(b.title) + "::" + norm(aliasAuthor(b.author || ""));
     const hasNotes = !!b.notes;
     const hasThoughts = !!b.myThoughts;
     const hasRichData = hasNotes || hasThoughts;
-    
+
     if (!seen.has(key)) {
       seen.set(key, { idx: out.length, hasNotes, hasThoughts });
       out.push(b);
     } else {
       const prior = seen.get(key)!;
       const priorHasRichData = prior.hasNotes || prior.hasThoughts;
-      
+
       // Replace if current has richer data and prior doesn't
       if (hasRichData && !priorHasRichData) {
         out[prior.idx] = b;
@@ -66,7 +70,7 @@ function dedupeBooks(arr: Book[]): Book[] {
       }
     }
   }
-  
+
   return out;
 }
 
