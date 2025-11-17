@@ -6,6 +6,7 @@ export type Resource = {
   href?: string;     // url or /files/file.pdf
   note?: string;     // short description
   copy?: string;     // optional text to copy
+  moreInfo?: string; // longer description for popup
 };
 
 export const RESOURCES: Resource[] = [
@@ -88,5 +89,59 @@ export const RESOURCES: Resource[] = [
     tags: ["PDF", "Learning", "Books"],
     href: "https://tim.blog/wp-content/uploads/2014/10/the-4-hour-chef.pdf",
     note: "Meta-learning through cooking. Learn skills faster with a clear method.",
+  },
+  {
+    id: 11,
+    title: "How to Confidently Explore the AI Frontier — with Igor Pogany",
+    kind: "PDF",
+    tags: ["PDF", "AI", "Mindset"],
+    href: "/resources/ai-frontier-igor-pogany.pdf",
+    note: "Explorer style guide for using curiosity, small experiments, and pattern prompts to turn AI chaos into a clear map for your work.",
+    moreInfo: "Most people feel lost in AI. This blueprint helps you shift into explorer mode and treat AI like new territory to survey. You learn why curiosity beats fear, how to use Igor's four step expedition framework with a To Do List Challenge, and how to run a fifteen minute pattern prompt session to train AI on your own voice and style. Real examples show Igor reclaiming hours by automating accounting work and breaking out of an outdated identity. You leave with a simple map for your own AI territory and a repeatable way to stack small wins.",
+  },
+  {
+    id: 12,
+    title: "Stop Chasing Tools: Build a Problem-First AI System — with Sabrina Romanoff",
+    kind: "PDF",
+    tags: ["PDF", "AI", "Strategy"],
+    href: "/resources/problem-first-sabrina-romanoff.pdf",
+    note: "Problem first playbook that trades tool FOMO for one clear KPI, one model, and a stack of compounding wins in your business.",
+    moreInfo: "This blueprint shows you how to drop the learn-a-new-tool grind and switch to a problem first philosophy. Sabrina walks through her three partner model for AI, where AI helps with brainstorming, research, and sparring instead of dumping generic drafts on your desk. You see examples like her confidence building career plan, a viral hook engine for short form content, and a solopreneur distribution system that turns one video into platform native posts across multiple channels. The workbook includes filters to pick the one problem that matters, prompt starters for each AI partner, a repurposing checklist, an AI board of directors template, and a short seven day action plan that turns all of this into a system.",
+  },
+  {
+    id: 13,
+    title: "From Idea to Impact Without Writing a Line of Code — with Amjad Masad",
+    kind: "PDF",
+    tags: ["PDF", "AI", "No Code", "Entrepreneurship"],
+    href: "/resources/idea-to-impact-amjad-masad.pdf",
+    note: "No code guide from the Replit CEO on turning domain knowledge into products and automation without a traditional dev stack.",
+    moreInfo: "This blueprint treats your own domain knowledge as the main asset and shows how AI and no code tools remove gates around product building. Amjad shares his shift from a safe career path into founder work and explains why AI is an equalizer for people with insight but no coding background. The workbook walks you through a script for moving from consumer to creator, a three step intrapreneur flywheel for spotting friction and testing ideas at work, and real stories such as a contractor who automated a million dollars of manual work and an HR leader who runs a whole department with AI help. A one hour automation challenge helps you pick one repetitive task, automate it, and win back hours right away.",
+  },
+  {
+    id: 14,
+    title: "Optimism as a Strategy: Thriving in the Age of AI — with Zack Kass",
+    kind: "PDF",
+    tags: ["PDF", "AI", "Leadership", "Culture"],
+    href: "/resources/optimism-strategy-zack-kass.pdf",
+    note: "Leadership playbook for using AI to remove sludge while protecting trust, culture, and the human moments that matter.",
+    moreInfo: "Zack pushes back on the default advice to automate everything and argues that human qualities are the true moat in an AI rich world. Through stories like his father's career as an oncologist, he shows how people remember presence and care more than tools. This blueprint teaches you how to anchor a team in grounded optimism, apply an inch wide mile deep focus to one bottleneck, and direct AI toward low value sludge such as CRM entries and prep docs. You also receive a seven day culture diagnostic to find champions, skeptics, and priority workflows. The goal is a faster, more creative team that keeps its soul while still using AI in a smart way.",
+  },
+  {
+    id: 15,
+    title: "Clear the Noise, Free Your Genius — with Marie Forleo",
+    kind: "PDF",
+    tags: ["PDF", "AI", "Productivity"],
+    href: "/resources/clear-the-noise-marie-forleo.pdf",
+    note: "Practical workbook for using AI to clear drudgery, protect your energy, and stay in your own genius zone.",
+    moreInfo: "Marie reframes AI as a shield for your best work instead of a threat to it. In this blueprint you learn how she uses AI to draft letters in minutes, brainstorm without draining her team, and even create a vent bot to process emotion before tough conversations. The workbook guides you through building a personal drudgery list, turning it into an automation roadmap, and setting up cultural rituals such as regular AI win sharing. You also learn how to protect the last mile for humans so voice, connection, and ethics stay intact while hours of busywork fall away.",
+  },
+  {
+    id: 16,
+    title: "Train The Teammate, Not The Tool — with Rachel Woods",
+    kind: "PDF",
+    tags: ["PDF", "AI", "Systems", "Teams"],
+    href: "/resources/train-the-teammate-rachel-woods.pdf",
+    note: "System builder's guide for treating AI like a trainable teammate with playbooks, not a one off gadget for random prompts.",
+    moreInfo: "Rachel lays out an operating system for AI inside teams. The blueprint starts with philosophy, defines the role of AI, then moves into strategy and only then tools. You learn how to onboard AI with deep context so outputs return close to client ready, how to appoint an internal AI operator who chains workflows together, and how to turn scattered experiments into repeatable plays. The guide includes patterns for intake, review, and improvement loops so the system keeps getting better over time. The outcome is an AI teammate that behaves like a reliable intern at scale rather than a set of disconnected tricks.",
   },
 ];
