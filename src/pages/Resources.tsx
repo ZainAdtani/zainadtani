@@ -5,7 +5,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { ExternalLink } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { ExternalLink, Info } from "lucide-react";
 import { CopyBlock } from "@/components/CopyBlock";
 
 export default function Resources() {
@@ -42,6 +43,21 @@ export default function Resources() {
                 </div>
                 <div className="flex gap-2">
                   {r.copy && <CopyBlock text={r.copy} />}
+                  {r.moreInfo && (
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="outline" size="sm">
+                          <Info className="w-4 h-4 mr-2" /> More info
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-2xl">
+                        <DialogHeader>
+                          <DialogTitle>{r.title}</DialogTitle>
+                        </DialogHeader>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{r.moreInfo}</p>
+                      </DialogContent>
+                    </Dialog>
+                  )}
                   {r.href && (
                     <Button asChild size="sm">
                       <a href={r.href} target="_blank" rel="noreferrer">
