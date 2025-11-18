@@ -28,7 +28,8 @@ const characters: Character[] = [
   {
     name: "Harry Potter",
     role: "The Boy Who Lived",
-    summary: "Survived Voldemort as a baby, discovers he's a wizard, and starts his first year at Hogwarts learning magic and making friends.",
+    summary:
+      "Survived Voldemort as a baby, discovers he's a wizard, and starts his first year at Hogwarts learning magic and making friends.",
   },
   {
     name: "Ron Weasley",
@@ -79,7 +80,8 @@ const magicObjects: MagicObject[] = [
   },
   {
     name: "Philosopher's Stone",
-    summary: "Object hidden under the trapdoor, able to create gold and grant eternal life, guarded by multiple challenges.",
+    summary:
+      "Object hidden under the trapdoor, able to create gold and grant eternal life, guarded by multiple challenges.",
   },
   {
     name: "Elder Wand",
@@ -407,17 +409,9 @@ export default function HarryPotterWorld() {
         <div className="container mx-auto px-4 py-16">
           <Card className="bg-gradient-to-br from-amber-950/40 to-amber-900/30 border-amber-700/30 overflow-hidden">
             <div className="grid md:grid-cols-2 gap-8 items-center p-8">
-              <div className="order-2 md:order-1">
-                <img 
-                  src="/images/hp-listen-magic.png" 
-                  alt="Listen to the magic" 
-                  className="rounded-lg shadow-2xl w-full"
-                />
-              </div>
-              <div className="order-1 md:order-2 text-center md:text-left">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-amber-100">
-                  Listen to the magic
-                </h2>
+              {/* Text left on desktop */}
+              <div className="order-1 md:order-1 text-center md:text-left">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-amber-100">Listen to the magic</h2>
                 <p className="text-lg text-amber-100/80 mb-6">
                   Tap the button and let Hogwarts audio play while you scroll.
                 </p>
@@ -428,9 +422,16 @@ export default function HarryPotterWorld() {
                 >
                   {audioPlaying ? "Sound Off 🔇" : "Sound On 🔊"}
                 </Button>
-                <p className="text-sm text-amber-200/60 mt-3">
-                  Best with headphones at low volume.
-                </p>
+                <p className="text-sm text-amber-200/60 mt-3">Best with headphones at low volume.</p>
+              </div>
+
+              {/* Image right on desktop */}
+              <div className="order-2 md:order-2">
+                <img
+                  src="/images/hp-listen-magic.png"
+                  alt="Listen to the magic"
+                  className="rounded-lg shadow-2xl w-full"
+                />
               </div>
             </div>
           </Card>
@@ -481,7 +482,10 @@ export default function HarryPotterWorld() {
             <TabsContent value="characters">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {characters.map((character, index) => (
-                  <Card key={index} className="hover:shadow-lg transition-shadow border-amber-500/20 hover:border-amber-500/40">
+                  <Card
+                    key={index}
+                    className="hover:shadow-lg transition-shadow border-amber-500/20 hover:border-amber-500/40"
+                  >
                     <CardHeader>
                       <CardTitle className="text-lg">{character.name}</CardTitle>
                       <p className="text-sm text-muted-foreground">{character.role}</p>
@@ -497,7 +501,10 @@ export default function HarryPotterWorld() {
             <TabsContent value="objects">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {magicObjects.map((object, index) => (
-                  <Card key={index} className="hover:shadow-lg transition-shadow border-amber-500/20 hover:border-amber-500/40">
+                  <Card
+                    key={index}
+                    className="hover:shadow-lg transition-shadow border-amber-500/20 hover:border-amber-500/40"
+                  >
                     <CardHeader>
                       <CardTitle className="text-lg">{object.name}</CardTitle>
                     </CardHeader>
