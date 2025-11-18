@@ -400,25 +400,40 @@ export default function HarryPotterWorld() {
             <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-2xl">
               Books, audiobooks, and a timeline through the wizarding year.
             </p>
-
-            <Button
-              onClick={toggleAudio}
-              variant="outline"
-              className="gap-2 bg-background/50 backdrop-blur-sm border-amber-500/30 hover:bg-amber-500/10 hover:border-amber-500/50"
-            >
-              {audioPlaying ? (
-                <>
-                  <Volume2 className="w-4 h-4" />
-                  Sound On
-                </>
-              ) : (
-                <>
-                  <VolumeX className="w-4 h-4" />
-                  Sound Off
-                </>
-              )}
-            </Button>
           </div>
+        </div>
+
+        {/* Listen to the Magic Section */}
+        <div className="container mx-auto px-4 py-16">
+          <Card className="bg-gradient-to-br from-amber-950/40 to-amber-900/30 border-amber-700/30 overflow-hidden">
+            <div className="grid md:grid-cols-2 gap-8 items-center p-8">
+              <div className="order-2 md:order-1">
+                <img 
+                  src="/images/hp-listen-magic.png" 
+                  alt="Listen to the magic" 
+                  className="rounded-lg shadow-2xl w-full"
+                />
+              </div>
+              <div className="order-1 md:order-2 text-center md:text-left">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-amber-100">
+                  Listen to the magic
+                </h2>
+                <p className="text-lg text-amber-100/80 mb-6">
+                  Tap the button and let Hogwarts audio play while you scroll.
+                </p>
+                <Button
+                  onClick={toggleAudio}
+                  size="lg"
+                  className="bg-amber-600 hover:bg-amber-700 text-white font-semibold px-8 py-6 text-lg w-full md:w-auto"
+                >
+                  {audioPlaying ? "Sound Off 🔇" : "Sound On 🔊"}
+                </Button>
+                <p className="text-sm text-amber-200/60 mt-3">
+                  Best with headphones at low volume.
+                </p>
+              </div>
+            </div>
+          </Card>
         </div>
 
         {/* Books and Audiobooks Section */}

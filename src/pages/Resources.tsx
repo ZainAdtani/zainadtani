@@ -31,41 +31,42 @@ export default function Resources() {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {list.map((r) => (
-            <Card key={r.id} className="p-5 rounded-2xl border-2 hover:-translate-y-1 hover:shadow-xl transition-all duration-200">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <Badge variant="secondary">{r.kind}</Badge>
-                    {r.tags.map(t => <Badge key={t} variant="outline">{t}</Badge>)}
-                  </div>
-                  <h2 className="text-lg font-semibold">{r.title}</h2>
-                  {r.note && <p className="text-sm text-muted-foreground mt-1">{r.note}</p>}
+            <Card key={r.id} className="p-5 rounded-2xl border-2 hover:-translate-y-1 hover:shadow-xl transition-all duration-200 flex flex-col h-full">
+              {/* Content area that grows */}
+              <div className="flex-1 mb-4">
+                <div className="flex items-center gap-2 mb-2 flex-wrap">
+                  <Badge variant="secondary">{r.kind}</Badge>
+                  {r.tags.map(t => <Badge key={t} variant="outline">{t}</Badge>)}
                 </div>
-                <div className="flex gap-2">
-                  {r.copy && <CopyBlock text={r.copy} />}
-                  {r.moreInfo && (
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button variant="outline" size="sm">
-                          <Info className="w-4 h-4 mr-2" /> More info
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-2xl">
-                        <DialogHeader>
-                          <DialogTitle>{r.title}</DialogTitle>
-                        </DialogHeader>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{r.moreInfo}</p>
-                      </DialogContent>
-                    </Dialog>
-                  )}
-                  {r.href && (
-                    <Button asChild size="sm">
-                      <a href={r.href} target="_blank" rel="noreferrer">
-                        <ExternalLink className="w-4 h-4 mr-2" /> {r.kind === "PDF" ? "Download" : "Open"}
-                      </a>
-                    </Button>
-                  )}
-                </div>
+                <h2 className="text-lg font-semibold mb-2">{r.title}</h2>
+                {r.note && <p className="text-sm text-muted-foreground">{r.note}</p>}
+              </div>
+              
+              {/* Button area fixed at bottom */}
+              <div className="flex gap-2 items-stretch">
+                {r.copy && <CopyBlock text={r.copy} />}
+                {r.moreInfo && (
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" size="sm" className="flex-1">
+                        <Info className="w-4 h-4 mr-2" /> More info
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-2xl">
+                      <DialogHeader>
+                        <DialogTitle>{r.title}</DialogTitle>
+                      </DialogHeader>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{r.moreInfo}</p>
+                    </DialogContent>
+                  </Dialog>
+                )}
+                {r.href && (
+                  <Button asChild size="sm" className={r.moreInfo ? "flex-1" : "w-full"}>
+                    <a href={r.href} target="_blank" rel="noreferrer">
+                      <ExternalLink className="w-4 h-4 mr-2" /> {r.kind === "PDF" ? "Download" : "Open"}
+                    </a>
+                  </Button>
+                )}
               </div>
             </Card>
           ))}
