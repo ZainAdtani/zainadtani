@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Volume2, VolumeX } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 type Book = {
   title: string;
@@ -11,6 +12,92 @@ type Book = {
   bookUrl?: string;
   audibleUrl?: string;
 };
+
+type Character = {
+  name: string;
+  role: string;
+  summary: string;
+};
+
+type MagicObject = {
+  name: string;
+  summary: string;
+};
+
+const characters: Character[] = [
+  {
+    name: "Harry Potter",
+    role: "The Boy Who Lived",
+    summary: "Survived Voldemort as a baby, discovers he's a wizard, and starts his first year at Hogwarts learning magic and making friends.",
+  },
+  {
+    name: "Ron Weasley",
+    role: "Best friend",
+    summary: "Loyal friend from a big wizard family who loves chess and worries about living up to his brothers.",
+  },
+  {
+    name: "Hermione Granger",
+    role: "Brightest witch in her year",
+    summary: "Top student who loves books and slowly relaxes into friendship and rule bending when needed.",
+  },
+  {
+    name: "Albus Dumbledore",
+    role: "Headmaster",
+    summary: "Wise leader of Hogwarts who keeps watch over Harry and the fight against Voldemort.",
+  },
+  {
+    name: "Professor McGonagall",
+    role: "Head of Gryffindor",
+    summary: "Strict but fair teacher who believes in Harry and guides Gryffindor house.",
+  },
+  {
+    name: "Hagrid",
+    role: "Keeper of Keys",
+    summary: "Gentle giant who introduces Harry to the wizarding world and becomes a trusted friend.",
+  },
+  {
+    name: "Severus Snape",
+    role: "Potions Master",
+    summary: "Harsh teacher with secret motives who seems to dislike Harry from day one.",
+  },
+  {
+    name: "Draco Malfoy",
+    role: "Rival",
+    summary: "Pure blood student who clashes with Harry from their first meeting and represents old wizard prejudice.",
+  },
+  {
+    name: "The Weasley Family",
+    role: "Gryffindor family",
+    summary: "Warm, busy household that gives Harry his first taste of a real loving family.",
+  },
+];
+
+const magicObjects: MagicObject[] = [
+  {
+    name: "Invisibility Cloak",
+    summary: "Cloak Harry receives at Christmas that lets him move unseen through the castle and explore after hours.",
+  },
+  {
+    name: "Philosopher's Stone",
+    summary: "Object hidden under the trapdoor, able to create gold and grant eternal life, guarded by multiple challenges.",
+  },
+  {
+    name: "Elder Wand",
+    summary: "Legendary wand linked to Dumbledore, one of the three Deathly Hallows with immense power.",
+  },
+  {
+    name: "Marauder's Map",
+    summary: "Magical map that shows every hallway and moving person in Hogwarts, created by a group of pranksters.",
+  },
+  {
+    name: "Sorting Hat",
+    summary: "Ancient battered hat that reads students' minds and places them into their Hogwarts house.",
+  },
+  {
+    name: "Time Turner",
+    summary: "Hourglass necklace used for time travel, introduced in later years for attending multiple classes.",
+  },
+];
 
 const books: Book[] = [
   {
@@ -248,7 +335,7 @@ const timelineEvents: TimelineEvent[] = [
 export default function HarryPotterWorld() {
   const [audioPlaying, setAudioPlaying] = useState(false);
   const [audio] = useState(() => {
-    const audioElement = new Audio("/audio/harry-potter-ambient.mp3");
+    const audioElement = new Audio("/audio/harry-potter-audible-intro.mp3");
     audioElement.loop = true;
     audioElement.volume = 0.3;
     return audioElement;
@@ -363,6 +450,50 @@ export default function HarryPotterWorld() {
               </Card>
             ))}
           </div>
+        </div>
+
+        {/* Characters and Magic Objects Section */}
+        <div className="container mx-auto px-4 py-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2">Characters and Magic Objects</h2>
+          <p className="text-muted-foreground mb-8">Quick notes on key people and items from Harry's first year.</p>
+
+          <Tabs defaultValue="characters" className="w-full">
+            <TabsList className="grid w-full max-w-md grid-cols-2 mb-8">
+              <TabsTrigger value="characters">Characters</TabsTrigger>
+              <TabsTrigger value="objects">Objects</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="characters">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {characters.map((character, index) => (
+                  <Card key={index} className="hover:shadow-lg transition-shadow border-amber-500/20 hover:border-amber-500/40">
+                    <CardHeader>
+                      <CardTitle className="text-lg">{character.name}</CardTitle>
+                      <p className="text-sm text-muted-foreground">{character.role}</p>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm">{character.summary}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="objects">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {magicObjects.map((object, index) => (
+                  <Card key={index} className="hover:shadow-lg transition-shadow border-amber-500/20 hover:border-amber-500/40">
+                    <CardHeader>
+                      <CardTitle className="text-lg">{object.name}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm">{object.summary}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
 
         {/* Hogwarts Year Timeline Section */}

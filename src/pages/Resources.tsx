@@ -29,9 +29,9 @@ export default function Resources() {
           <Input value={q} onChange={(e)=>setQ(e.target.value)} placeholder="Search resources…" className="h-11" />
         </div>
 
-        <div className="grid gap-4">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {list.map((r) => (
-            <Card key={r.id} className="p-5 rounded-2xl border hover:shadow-sm">
+            <Card key={r.id} className="p-5 rounded-2xl border-2 hover:-translate-y-1 hover:shadow-xl transition-all duration-200">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
