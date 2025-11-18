@@ -22,6 +22,10 @@ import {
   Mic,
   ChevronLeft,
   ChevronRight,
+  FolderOpen,
+  Lightbulb,
+  Grid3x3,
+  GraduationCapIcon,
 } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
@@ -495,6 +499,43 @@ const Index = () => {
                 <p className="text-muted-foreground">Articles, notes, and ideas</p>
               </a>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Links Section */}
+      <section className="py-12 bg-muted/30">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">Quick Links</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <Link to="/resources">
+              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
+                <FolderOpen className="w-8 h-8 text-primary mb-3" />
+                <h3 className="text-lg font-semibold mb-1">Resources</h3>
+                <p className="text-sm text-muted-foreground">Handy PDFs, tools, and bonus material.</p>
+              </Card>
+            </Link>
+            <Link to="/waez">
+              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
+                <Lightbulb className="w-8 h-8 text-primary mb-3" />
+                <h3 className="text-lg font-semibold mb-1">WAEZ</h3>
+                <p className="text-sm text-muted-foreground">WAEZ project hub and experiments.</p>
+              </Card>
+            </Link>
+            <Link to="/projects">
+              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
+                <Grid3x3 className="w-8 h-8 text-primary mb-3" />
+                <h3 className="text-lg font-semibold mb-1">Projects</h3>
+                <p className="text-sm text-muted-foreground">All current experiments and public builds.</p>
+              </Card>
+            </Link>
+            <Link to="/enrolled-agent">
+              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
+                <GraduationCapIcon className="w-8 h-8 text-primary mb-3" />
+                <h3 className="text-lg font-semibold mb-1">Enrolled Agent Hub</h3>
+                <p className="text-sm text-muted-foreground">Central hub for EA study material and tools.</p>
+              </Card>
+            </Link>
           </div>
         </div>
       </section>
