@@ -32,9 +32,9 @@ export default function DigitalProductsPage() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Digital Products — MAJESTY HQ | Zain Adtani</title>
+        <title>Digital Product HQ | Zain Adtani</title>
         <meta name="description" content="Search courses, guides, and tools—all in one place." />
-        <meta property="og:title" content="Digital Products — MAJESTY HQ | Zain Adtani" />
+        <meta property="og:title" content="Digital Product HQ | Zain Adtani" />
         <meta property="og:description" content="Search courses, guides, and tools—all in one place." />
       </Helmet>
       
@@ -43,7 +43,7 @@ export default function DigitalProductsPage() {
           <div className="flex justify-center mb-4">
             <Logo3D />
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-foreground">MAJESTY HQ</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-foreground">Digital Product HQ</h1>
           <p className="text-muted-foreground mt-2 text-lg">
             Search courses, guides, and tools—all in one place.
           </p>
