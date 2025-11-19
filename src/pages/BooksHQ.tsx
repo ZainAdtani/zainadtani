@@ -98,7 +98,7 @@ function useDebounced<T>(value: T, delay = 150): T {
 export default function BooksHQ() {
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedQuery = useDebounced(searchQuery, 150);
-  const [statusFilter, setStatusFilter] = useState<BookStatus | "ALL">("ALL");
+  const [statusFilter, setStatusFilter] = useState<BookStatus | "ALL" | "DIGITAL_FILES">("ALL");
   const [sortBy, setSortBy] = useState<SortOption>("title-asc");
   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
@@ -109,6 +109,7 @@ export default function BooksHQ() {
       READ: BOOKS.filter((b) => b.status === "READ").length,
       IN_PROGRESS: BOOKS.filter((b) => b.status === "IN_PROGRESS").length,
       TBR: BOOKS.filter((b) => b.status === "TBR").length,
+      DIGITAL_FILES: BOOKS.filter((b) => b.hasDigitalFile).length,
     };
   }, []);
 
@@ -127,7 +128,9 @@ export default function BooksHQ() {
     }
 
     // filter by status
-    if (statusFilter !== "ALL") {
+    if (statusFilter === "DIGITAL_FILES") {
+      result = result.filter((book) => book.hasDigitalFile);
+    } else if (statusFilter !== "ALL") {
       result = result.filter((book) => book.status === statusFilter);
     }
 
@@ -211,6 +214,13 @@ export default function BooksHQ() {
             </Button>
             <Button variant={statusFilter === "TBR" ? "default" : "outline"} onClick={() => setStatusFilter("TBR")} size="sm">
               To Read ({bookCounts.TBR})
+            </Button>
+            <Button 
+              className={statusFilter === "DIGITAL_FILES" ? "bg-red-600 text-white hover:bg-red-700" : "bg-red-600/10 text-red-600 border border-red-600/20 hover:bg-red-600/20"}
+              onClick={() => setStatusFilter("DIGITAL_FILES")} 
+              size="sm"
+            >
+              Digital files ({bookCounts.DIGITAL_FILES})
             </Button>
           </div>
 

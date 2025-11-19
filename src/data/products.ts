@@ -97,22 +97,6 @@ export const ALL_PRODUCTS: Product[] = [
     order: 6,
   },
   {
-    id: "joint-family-boundaries",
-    title: "Joint Family Boundaries Blueprint",
-    category: "Courses",
-    desc: "Navigate joint family dynamics with proven strategies for setting healthy boundaries while maintaining harmony. Coming soon.",
-    media: jointFamilyBoundaries,
-    cta: { 
-      label: "Coming Soon", 
-      href: "#",
-      disabled: true
-    },
-    tags: ["Course", "Coming Soon"],
-    badge: "Soon",
-    featured: true,
-    order: 7,
-  },
-  {
     id: "free-community",
     title: "Engineer → Enrolled Agent (Free Community)",
     category: "Communities",
@@ -121,7 +105,67 @@ export const ALL_PRODUCTS: Product[] = [
     tags: ["Free", "Community"],
     badge: "#1 Starter",
     featured: true,
+    order: 7,
+  },
+  {
+    id: "clinicClarityKit",
+    title: "Clinic Clarity Kit for MAs",
+    badge: "New",
+    category: "Guides",
+    desc: "Three simple Ask, Confirm, Summarize phone scripts for medical assistants to cut callbacks and confusion.",
+    media: "/images/products/clinic_clarity_kit_cover.png",
+    tags: ["Medical assistant", "Scripts", "Clinic"],
+    cta: {
+      label: "Get it on Whop",
+      href: "https://whop.com/ask-confirm-summarize-playbook/"
+    },
+    featured: true,
     order: 8,
+  },
+  {
+    id: "calmSoloTime",
+    title: "Calm Solo Time",
+    badge: "New",
+    category: "Wellness",
+    desc: "Thirty day clicker and brown noise plan to reduce dog whining and build relaxed alone time.",
+    media: "/images/products/calm_solo_time_cover.png",
+    tags: ["Dogs", "Training", "Behavior"],
+    cta: {
+      label: "Get it on Whop",
+      href: "https://whop.com/calm-solo-time/"
+    },
+    featured: true,
+    order: 9,
+  },
+  {
+    id: "texasLlcRoadmap",
+    title: "The Texas LLC Roadmap",
+    badge: "New",
+    category: "Guides",
+    desc: "Simple launch kit with mind map and templates so a Texas LLC setup feels clear and step by step.",
+    media: "/images/products/texas_llc_roadmap_cover.png",
+    tags: ["Business", "Texas", "LLC"],
+    cta: {
+      label: "Get it on Whop",
+      href: "https://whop.com/the-texas-llc-roadmap/"
+    },
+    featured: true,
+    order: 10,
+  },
+  {
+    id: "zenDetachment30",
+    title: "Thirty Day Zen Detachment",
+    badge: "New",
+    category: "Wellness",
+    desc: "A thirty day process plan to shift from outcome obsession to calm daily action in one life area.",
+    media: "/images/products/zen_detachment_30_cover.png",
+    tags: ["Mindset", "Habits", "Stress"],
+    cta: {
+      label: "Get it on Whop",
+      href: "https://whop.com/30-day-zen-detachment/"
+    },
+    featured: true,
+    order: 11,
   },
 ];
 

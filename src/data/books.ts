@@ -15,6 +15,7 @@ export type Book = {
   notes?: string; // Book summary/description
   myThoughts?: string; // Personal thoughts/reviews
   isbn?: string;
+  hasDigitalFile?: boolean;
 };
 
 // Helper function to normalize strings for deduplication
@@ -117,6 +118,7 @@ const LOCAL_BOOKS: Book[] = [
     link: "https://amzn.to/48O4ccW",
     cover: "/book-covers/millionaire-fastlane.jpg",
     rating: 5,
+    hasDigitalFile: true,
   },
 
   // In Progress Books
@@ -161,6 +163,7 @@ const LOCAL_BOOKS: Book[] = [
     tags: ["Productivity", "Lifestyle"],
     link: "https://www.amazon.com/4-Hour-Workweek-Escape-Live-Anywhere/dp/0307465357",
     cover: "/book-covers/4hr.jpeg",
+    hasDigitalFile: true,
   },
   {
     id: "work-the-system",
@@ -296,6 +299,7 @@ const LOCAL_BOOKS: Book[] = [
     link: "https://a.co/d/8Hz7Npq",
     cover: "https://m.media-amazon.com/images/I/71aFt4+OTOL._SY466_.jpg",
     rating: 5,
+    hasDigitalFile: true,
   },
   {
     id: "brief-illustrated-guide-islam",
@@ -1331,6 +1335,7 @@ const LOCAL_BOOKS: Book[] = [
     status: "TBR",
     tags: [],
     link: "https://a.co/d/eymslYJ",
+    hasDigitalFile: true,
   },
   {
     id: "between-shades-of-gray",
