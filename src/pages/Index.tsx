@@ -411,7 +411,7 @@ const Index = () => {
       <TimeBar />
 
       {/* Hero Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary/5 via-background to-accent/5">
+      <section className="pt-8 md:pt-16 pb-16 md:pb-24 bg-gradient-to-br from-primary/5 via-background to-accent/5">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col md:flex-row items-center gap-12">
             {/* Headshot with decorative background */}
@@ -428,8 +428,7 @@ const Index = () => {
             <div className="flex-1 text-center md:text-left">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground">Hey Friends 👋</h1>
               <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8">
-                I'm Zain. I'm an Engineer turned Enrolled Agent, helping busy beginners pass the EA exam and get
-                confident with taxes.
+                I'm Zain. I'm an engineer turned tax guide for beginners, helping busy learners pass the EA exam and get confident with taxes. I am here to share tools, stories, and study notes so you grow in skills, confidence, and peace with your money. 📚
               </p>
 
               {/* Daily Motivation Generator */}
@@ -507,7 +506,7 @@ const Index = () => {
       <section className="py-12 bg-muted/30">
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">Quick Links</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <Link to="/resources">
               <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
                 <FolderOpen className="w-8 h-8 text-primary mb-3" />
@@ -534,6 +533,20 @@ const Index = () => {
                 <GraduationCapIcon className="w-8 h-8 text-primary mb-3" />
                 <h3 className="text-lg font-semibold mb-1">Enrolled Agent Hub</h3>
                 <p className="text-sm text-muted-foreground">Central hub for EA study material and tools.</p>
+              </Card>
+            </Link>
+            <Link to="/ai-prompts">
+              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
+                <Sparkles className="w-8 h-8 text-primary mb-3" />
+                <h3 className="text-lg font-semibold mb-1">AI Prompts</h3>
+                <p className="text-sm text-muted-foreground">My favorite prompts and scripts for study, work, and life.</p>
+              </Card>
+            </Link>
+            <Link to="/life-notes">
+              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
+                <BookOpen className="w-8 h-8 text-primary mb-3" />
+                <h3 className="text-lg font-semibold mb-1">Life Notes</h3>
+                <p className="text-sm text-muted-foreground">Short reflections, wins, and lessons from my own journey.</p>
               </Card>
             </Link>
           </div>

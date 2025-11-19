@@ -319,15 +319,13 @@ const Investing = () => {
                 Financial <span className="text-accent">Treasure Map</span>
               </h2>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
-                An interactive game to plan and track goals with smart money choices. Coming soon.
+                An interactive game to plan and track goals with smart money choices.
               </p>
-              <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-accent/20 to-primary/20 text-foreground font-bold rounded-lg">
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-accent"></span>
-                </span>
-                COMING SOON
-              </div>
+              <Button asChild className="w-full md:w-auto px-8">
+                <a href="/financial-treasure-map">
+                  Enter the Financial Treasure Map
+                </a>
+              </Button>
             </Card>
           </div>
         </div>
