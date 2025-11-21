@@ -80,6 +80,13 @@ const TOOLS: Tool[] = [
   },
   // Productivity
   {
+    id: "fathom",
+    name: "Fathom AI Meeting Assistant",
+    url: "https://www.fathom.ai/",
+    description: "AI meeting assistant that records, transcribes, and summarizes calls from Zoom and other platforms. Helps you capture key moments, action items, and highlights without manual note taking.",
+    category: "Productivity",
+  },
+  {
     id: "gamma",
     name: "Gamma",
     url: "https://gamma.app",
@@ -115,6 +122,13 @@ const TOOLS: Tool[] = [
     category: "Productivity",
   },
   // Images & Design
+  {
+    id: "canva",
+    name: "Canva Pro",
+    url: "https://www.canva.com",
+    description: "Visual design tool for presentations, thumbnails, course covers, and social posts. Great for quick, polished graphics that match my brand colors and fonts.",
+    category: "Images & Design",
+  },
   {
     id: "bing-image-creator",
     name: "Bing Image Creator",
