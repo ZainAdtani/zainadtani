@@ -35,6 +35,24 @@ type StandingsState = {
   west: StandingRow[];
 };
 
+const EAST_TEAM_ABBR = new Set([
+  "ATL",
+  "BOS",
+  "BKN",
+  "CHA",
+  "CHI",
+  "CLE",
+  "DET",
+  "IND",
+  "MIA",
+  "MIL",
+  "NYK",
+  "ORL",
+  "PHI",
+  "TOR",
+  "WAS",
+]);
+
 /** ---------- page ---------- **/
 export default function Sports() {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
@@ -169,11 +187,11 @@ export default function Sports() {
       setStLoading(true);
       setStError(null);
 
-      // Primary
+      // try main endpoint for this season
       let url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&region=us&lang=en`;
       let r = await fetch(url, { cache: "no-store" });
 
-      // Fallback
+      // fallback endpoint
       if (!r.ok) {
         url = `https://site.web.api.espn.com/apis/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&region=us&lang=en`;
         r = await fetch(url, { cache: "no-store" });
@@ -182,46 +200,59 @@ export default function Sports() {
 
       const data = await r.json();
 
-      // breadth first collect of all nodes, not only children or groups
+      // walk the whole JSON tree and collect every object node
       const collect = (root: any) => {
-        const out: any[] = []
-        const q: any[] = [root]
+        const out: any[] = [];
+        const q: any[] = [root];
 
         while (q.length) {
-          const n = q.shift()
-          if (!n || typeof n !== "object") continue
+          const n = q.shift();
+          if (!n || typeof n !== "object") continue;
 
-          out.push(n)
+          out.push(n);
 
           if (Array.isArray(n)) {
-            // walk every item in arrays
-            for (const item of n) q.push(item)
+            for (const item of n) q.push(item);
           } else {
-            // walk every value of plain objects
-            for (const value of Object.values(n)) q.push(value)
+            for (const value of Object.values(n)) q.push(value);
           }
         }
 
-        return out
-      }
+        return out;
+      };
 
       const nodes = collect(data);
-      const match = (n: any, term: string) => {
-        const s = `${n?.name || ""} ${n?.abbreviation || ""} ${n?.shortName || ""}`.toLowerCase();
-        return s.includes(term);
-      };
 
-      const findGroup = (term: "eastern" | "western") =>
-        nodes.find((n) => match(n, term)) || nodes.find((n) => match(n, term === "eastern" ? "east" : "west"));
+      // find nodes that look like conference level standings
+      const conferenceNodes = nodes.filter(
+        (n) =>
+          Array.isArray(n?.standings?.entries) &&
+          n.standings.entries.length >= 10 &&
+          n.standings.entries.length <= 20,
+      );
 
-      const entriesOf = (g: any) => {
-        if (!g) return [];
-        if (Array.isArray(g?.standings?.entries) && g.standings.entries.length) return g.standings.entries;
-        const childWith = (Array.isArray(g.children) ? g.children : []).find(
-          (c: any) => Array.isArray(c?.standings?.entries) && c.standings.entries.length,
-        );
-        return childWith?.standings?.entries ?? [];
-      };
+      if (!conferenceNodes.length) {
+        throw new Error("no standings entries found in response");
+      }
+
+      // score each group by how many east teams it contains
+      const scored = conferenceNodes.map((g) => {
+        const entries = g.standings.entries || [];
+        let eastScore = 0;
+        for (const e of entries) {
+          const abbr = e?.team?.abbreviation;
+          if (abbr && EAST_TEAM_ABBR.has(abbr)) eastScore++;
+        }
+        return { group: g, eastScore };
+      });
+
+      // sort so first is east group
+      scored.sort((a, b) => b.eastScore - a.eastScore);
+      const eastGroup = scored[0].group;
+      const westGroup = scored[1] ? scored[1].group : null;
+
+      const entriesOf = (g: any) =>
+        g && Array.isArray(g?.standings?.entries) ? g.standings.entries : [];
 
       const toRows = (entries: any[]): StandingRow[] =>
         (entries || [])
@@ -253,7 +284,8 @@ export default function Sports() {
 
             const gb = txt("gamesback") || txt("gamesbehind") || "—";
             const rank = Number(e?.rank) || Number(sMap.get("rankconf")?.value) || i + 1;
-            const logo = team.logo || team.logos?.[0]?.href || team.logos?.[0]?.url || undefined;
+            const logo =
+              team.logo || team.logos?.[0]?.href || team.logos?.[0]?.url || undefined;
 
             return {
               rank,
@@ -270,12 +302,18 @@ export default function Sports() {
           .sort((a, b) => a.rank - b.rank)
           .slice(0, 15);
 
-      const east = toRows(entriesOf(findGroup("eastern")));
-      const west = toRows(entriesOf(findGroup("western")));
+      const east = toRows(entriesOf(eastGroup));
+      const west = westGroup ? toRows(entriesOf(westGroup)) : [];
+
+      if (!east.length && !west.length) {
+        throw new Error("parsed zero rows");
+      }
 
       setStandings({ east, west });
-    } catch {
+    } catch (err) {
+      console.error("standings error", err);
       setStError("Unable to load standings right now.");
+      setStandings({ east: [], west: [] });
     } finally {
       setStLoading(false);
     }
