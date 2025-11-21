@@ -182,21 +182,28 @@ export default function Sports() {
 
       const data = await r.json();
 
-      // breadth-first collect of all nodes that might contain standings
+      // breadth first collect of all nodes, not only children or groups
       const collect = (root: any) => {
-        const out: any[] = [];
-        const q: any[] = [root];
+        const out: any[] = []
+        const q: any[] = [root]
+
         while (q.length) {
-          const n = q.shift();
-          if (!n || typeof n !== "object") continue;
-          out.push(n);
-          const kids1 = Array.isArray(n.children) ? n.children : [];
-          const kids2 = Array.isArray(n?.standings?.children) ? n.standings.children : [];
-          const kids3 = Array.isArray(n?.groups) ? n.groups : [];
-          q.push(...kids1, ...kids2, ...kids3);
+          const n = q.shift()
+          if (!n || typeof n !== "object") continue
+
+          out.push(n)
+
+          if (Array.isArray(n)) {
+            // walk every item in arrays
+            for (const item of n) q.push(item)
+          } else {
+            // walk every value of plain objects
+            for (const value of Object.values(n)) q.push(value)
+          }
         }
-        return out;
-      };
+
+        return out
+      }
 
       const nodes = collect(data);
       const match = (n: any, term: string) => {
