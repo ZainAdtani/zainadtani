@@ -506,47 +506,54 @@ const Index = () => {
       <section className="py-12 bg-muted/30">
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">Quick Links</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <Link to="/resources">
               <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
                 <FolderOpen className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-semibold mb-1">Resources</h3>
-                <p className="text-sm text-muted-foreground">Handy PDFs, tools, and bonus material.</p>
-              </Card>
-            </Link>
-            <Link to="/waez">
-              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
-                <Lightbulb className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-semibold mb-1">WAEZ</h3>
-                <p className="text-sm text-muted-foreground">WAEZ project hub and experiments.</p>
+                <h3 className="text-lg font-semibold mb-1">Resource Vault</h3>
+                <p className="text-sm text-muted-foreground">PDF guides, checklists, and tools you download in a few clicks.</p>
               </Card>
             </Link>
             <Link to="/projects">
               <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
                 <Grid3x3 className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-semibold mb-1">Projects</h3>
-                <p className="text-sm text-muted-foreground">All current experiments and public builds.</p>
+                <h3 className="text-lg font-semibold mb-1">WAEZ Lab</h3>
+                <p className="text-sm text-muted-foreground">My experiment space, AI builds, and weird projects I try in public.</p>
+              </Card>
+            </Link>
+            <Link to="/">
+              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
+                <Lightbulb className="w-8 h-8 text-primary mb-3" />
+                <h3 className="text-lg font-semibold mb-1">Build Log</h3>
+                <p className="text-sm text-muted-foreground">A timeline of what I am building right now, wins and mistakes included.</p>
               </Card>
             </Link>
             <Link to="/enrolled-agent">
               <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
                 <GraduationCapIcon className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-semibold mb-1">Enrolled Agent Hub</h3>
-                <p className="text-sm text-muted-foreground">Central hub for EA study material and tools.</p>
+                <h3 className="text-lg font-semibold mb-1">EA Study Hub</h3>
+                <p className="text-sm text-muted-foreground">All my EA notes, lessons, and practice tools in one simple place.</p>
               </Card>
             </Link>
             <Link to="/ai-prompts">
               <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
                 <Sparkles className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-semibold mb-1">AI Prompts</h3>
-                <p className="text-sm text-muted-foreground">My favorite prompts and scripts for study, work, and life.</p>
+                <h3 className="text-lg font-semibold mb-1">AI Prompt Library</h3>
+                <p className="text-sm text-muted-foreground">Ready to use prompts for study, work, money, and daily life.</p>
               </Card>
             </Link>
             <Link to="/life-notes">
               <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
                 <BookOpen className="w-8 h-8 text-primary mb-3" />
                 <h3 className="text-lg font-semibold mb-1">Life Notes</h3>
-                <p className="text-sm text-muted-foreground">Short reflections, wins, and lessons from my own journey.</p>
+                <p className="text-sm text-muted-foreground">Short stories, wins, and hard lessons from my own journey.</p>
+              </Card>
+            </Link>
+            <Link to="/personal-learning-vault">
+              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
+                <BookOpen className="w-8 h-8 text-primary mb-3" />
+                <h3 className="text-lg font-semibold mb-1">Personal Learning Vault</h3>
+                <p className="text-sm text-muted-foreground">A home for summaries of videos, courses, and lessons you want to remember.</p>
               </Card>
             </Link>
           </div>
@@ -582,7 +589,7 @@ const Index = () => {
               <div className="flex flex-col items-center gap-4 mb-6">
                 <div className="flex items-center justify-between w-full mb-2">
                   <div className="flex-1" />
-                  <p className="text-sm font-semibold text-muted-foreground tracking-wider">MAJESTY HQ</p>
+                  <p className="text-sm font-semibold text-muted-foreground tracking-wider">Digital Product HQ</p>
                   <div className="flex-1 flex justify-end">
                     <Button asChild variant="outline" size="sm">
                       <Link to="/digital-products">View All Products →</Link>

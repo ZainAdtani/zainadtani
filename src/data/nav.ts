@@ -94,6 +94,13 @@ export const NAV_ITEMS: NavItem[] = [
     searchTags: ["quotes", "wisdom", "mindset"],
   },
   {
+    label: "Personal Learning Vault",
+    path: "/personal-learning-vault",
+    icon: BookOpen,
+    section: "resources",
+    searchTags: ["videos", "learning", "notes", "summaries"],
+  },
+  {
     label: "QuickBooks",
     path: "/quickbooks",
     icon: Calculator,

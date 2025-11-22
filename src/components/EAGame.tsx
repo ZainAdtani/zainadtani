@@ -5,22 +5,37 @@ import { Wand2, Shield, Zap } from "lucide-react";
 
 const questions = [
   {
-    question: "What does EA stand for?",
-    options: ["Enrolled Agent", "Executive Accountant", "Expert Advisor", "Educational Associate"],
+    question: "Ali is single, age twenty eight, a United States citizen, with wage income of fifty eight thousand and no dependents. He lived alone all year. Which filing status applies to him for this year?",
+    options: [
+      "Single",
+      "Head of household",
+      "Qualifying widower with dependent child",
+      "Married filing separate",
+    ],
     correct: 0,
-    spell: "Identifica Agentus"
+    spell: "Status Clarity Spell"
   },
   {
-    question: "Who regulates Enrolled Agents?",
-    options: ["State Government", "IRS", "Department of Commerce", "Federal Reserve"],
+    question: "Maria and Omar have a nineteen year old son, Sam. He was a full time student for the whole year, lived with them all year, and they paid most of his support. Sam earned four thousand from a part time job. Which statement about dependency is correct?",
+    options: [
+      "Sam is their qualifying child, and they choose which parent claims him as a dependent.",
+      "Sam is not a dependent because he earned more than four thousand.",
+      "Sam is a qualifying relative, not a qualifying child.",
+      "Sam cannot be claimed because he is over age eighteen.",
+    ],
+    correct: 0,
+    spell: "Dependent Rules Insight"
+  },
+  {
+    question: "Which taxpayer is most likely to benefit from itemizing deductions instead of using the standard deduction?",
+    options: [
+      "Leah, single, no dependents, rents an apartment, and has no deductible expenses.",
+      "Jamal, single, owns a home, pays high mortgage interest and property tax, and gives large gifts to charity.",
+      "Omar, married, only has wage income reported on one W two and no other deductions.",
+      "Nina, single, has only small medical expenses below seven and a half percent of adjusted gross income.",
+    ],
     correct: 1,
-    spell: "Regulatus Revealo"
-  },
-  {
-    question: "Can EAs represent taxpayers in all 50 states?",
-    options: ["Yes", "No", "Only with special permission", "Only in their home state"],
-    correct: 0,
-    spell: "Jurisdiction Maximus"
+    spell: "Itemization Wisdom Charm"
   }
 ];
 

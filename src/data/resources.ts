@@ -171,4 +171,13 @@ export const RESOURCES: Resource[] = [
     note: "A free sample from Million Dollar Weekend that introduces the core 48 hour launch framework and gets readers ready for their first small win.",
     moreInfo: "This sample from Million Dollar Weekend gives you a taste of Noah Kagan's 48 hour launch method. You read the core promise of the book, why a small offer beats a huge plan, and how to score a quick win over one weekend. Ideal for people who are curious about the book and want a test drive before grabbing the full edition.",
   },
+  {
+    id: 20,
+    title: "MDW Journal",
+    kind: "PDF",
+    tags: ["PDF", "Business", "Planning", "Journal"],
+    href: "/resources/MDW_Journal.pdf",
+    note: "A guided journal to plan and review your Million Dollar Weekend experiments.",
+    moreInfo: "The MDW Journal helps you track your Million Dollar Weekend journey from idea to execution. Inside you find worksheets for choosing your freedom number, finding million dollar ideas, validating market size, defining your unique angle, setting up your content circle, tracking your Law of 100 progress, and reviewing wins and lessons. Use this journal alongside Million Dollar Weekend to turn reading into action.",
+  },
 ];

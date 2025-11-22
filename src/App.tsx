@@ -38,6 +38,7 @@ import Services from "./pages/Services";
 import MyPodcast from "./pages/MyPodcast";
 import TaxQuest from "./pages/TaxQuest";
 import FinancialTreasureMap from "./pages/FinancialTreasureMap";
+import PersonalLearningVault from "./pages/PersonalLearningVault";
 
 const queryClient = new QueryClient();
 
@@ -81,6 +82,7 @@ const App = () => (
             <Route path="/my-podcast" element={<MyPodcast />} />
             <Route path="/tax-quest" element={<TaxQuest />} />
             <Route path="/financial-treasure-map" element={<FinancialTreasureMap />} />
+            <Route path="/personal-learning-vault" element={<PersonalLearningVault />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
