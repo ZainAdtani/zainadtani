@@ -90,7 +90,7 @@ const About = () => {
               {/* Yellow highlight effect like Dean Graziosi */}
               <div className="absolute inset-0 bg-accent rounded-2xl blur-2xl opacity-40" />
               <div className="relative border-4 border-accent rounded-2xl overflow-hidden shadow-2xl hover-scale">
-                <img src={zainSimba} alt="Zain with Simba" className="w-full h-auto object-cover" />
+                <img src={zainHeadshot} alt="Zain Adtani professional headshot" className="w-full h-auto object-cover" />
               </div>
             </div>
 
