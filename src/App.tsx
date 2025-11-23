@@ -31,6 +31,7 @@ import QuickBooksCleanup from "./pages/QuickBooksCleanup";
 import Thanks from "./pages/Thanks";
 import TalkToAI from "./pages/projects/TalkToAI";
 import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
+import AiSongs from "./pages/projects/AiSongs";
 import DevotionalLiterature from "./pages/usa-visit-2025/DevotionalLiterature";
 import Illuminate from "./pages/usa-visit-2025/Illuminate";
 import Workout from "./pages/Workout";
@@ -67,6 +68,7 @@ const App = () => (
           <Route path="/projects/ai-avatars" element={<AiAvatars />} />
           <Route path="/projects/ai" element={<TalkToAI />} />
           <Route path="/projects/harry-potter-world" element={<HarryPotterWorld />} />
+          <Route path="/projects/ai-songs" element={<AiSongs />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/resources" element={<Resources />} />
@@ -83,6 +85,7 @@ const App = () => (
             <Route path="/tax-quest" element={<TaxQuest />} />
             <Route path="/financial-treasure-map" element={<FinancialTreasureMap />} />
             <Route path="/personal-learning-vault" element={<PersonalLearningVault />} />
+            <Route path="/thanks" element={<Thanks />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
