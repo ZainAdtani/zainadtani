@@ -82,6 +82,24 @@ const SUBS: Sub[] = [
     nextDueISO: "2026-05-28",
     bucket: "Work",
   },
+  {
+    name: "Canva Pro",
+    cadence: "Yearly",
+    amount: 120,
+    payer: "MasterCard ••5913",
+    note: "Yearly at $120/year",
+    nextDueISO: "2025-12-19",
+    bucket: "Work",
+  },
+  {
+    name: "Suno Pro",
+    cadence: "Yearly",
+    amount: 96,
+    payer: "Blue Business Plus ••1034",
+    note: "Yearly at $96/year",
+    nextDueISO: "2026-11-23",
+    bucket: "Business",
+  },
 ];
 
 // ---------- component ----------
