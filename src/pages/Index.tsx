@@ -514,14 +514,14 @@ const Index = () => {
                 <p className="text-sm text-muted-foreground">PDF guides, checklists, and tools you download in a few clicks.</p>
               </Card>
             </Link>
-            <Link to="/projects">
+            <Link to="/waez">
               <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
                 <Grid3x3 className="w-8 h-8 text-primary mb-3" />
                 <h3 className="text-lg font-semibold mb-1">WAEZ Lab</h3>
                 <p className="text-sm text-muted-foreground">My experiment space, AI builds, and weird projects I try in public.</p>
               </Card>
             </Link>
-            <Link to="/">
+            <Link to="/projects">
               <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
                 <Lightbulb className="w-8 h-8 text-primary mb-3" />
                 <h3 className="text-lg font-semibold mb-1">Build Log</h3>
@@ -1855,10 +1855,10 @@ const Index = () => {
                 Join Zain&apos;s World
               </h2>
               <p className="mt-3 text-base md:text-lg text-muted-foreground">
-                Weekly: one useful idea, one highlight, one tiny experiment. ✨
+                Weekly email with one tax idea, one useful tool, and one tiny growth experiment.
               </p>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Get my free How to Publish a Book PDF.
+              <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+                One short email each week about taxes, tools, and personal growth plus a free <em>How to Publish a Book</em> PDF.
               </p>
               
               <p className="mt-4 md:mt-5">
@@ -1868,9 +1868,23 @@ const Index = () => {
                   rel="noopener noreferrer"
                   className="inline-block h-12 px-6 rounded-full bg-indigo-600 text-white font-semibold shadow-lg hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 transition"
                 >
-                  Visit the newsletter site
+                  Open the newsletter site
                 </a>
               </p>
+              
+              {/* HeyGen Video Embed */}
+              <div className="mt-6 rounded-xl overflow-hidden shadow-lg">
+                <iframe 
+                  width="100%" 
+                  height="315" 
+                  src="https://app.heygen.com/embedded-player/920e2ee2b96c44249ca0571f8f8b0d13" 
+                  title="HeyGen video player" 
+                  frameBorder="0" 
+                  allow="encrypted-media; fullscreen" 
+                  allowFullScreen
+                  className="rounded-xl"
+                ></iframe>
+              </div>
 
               {/* Native form using Beehiiv magic link */}
               <form
@@ -1907,17 +1921,17 @@ const Index = () => {
                   type="submit"
                   className="h-12 md:h-14 px-7 md:px-8 rounded-full bg-indigo-600 text-white font-semibold shadow-md hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 transition"
                 >
-                  Subscribe
+                  Subscribe to Zain&apos;s World
                 </button>
               </form>
 
               <p className="mt-3 text-xs text-muted-foreground">
-                No spam. Unsubscribe anytime.{" "}
+                No spam. Leave any time.{" "}
                 <a
                   href="https://zains-world.beehiiv.com/?utm_source=site&utm_medium=footer&utm_campaign=archive"
                   target="_blank" rel="noopener" className="underline"
                 >
-                  Browse the archive →
+                  Browse the archive first if you like →
                 </a>
               </p>
             </div>

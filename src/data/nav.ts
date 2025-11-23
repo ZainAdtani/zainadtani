@@ -143,19 +143,19 @@ export const NAV_ITEMS: NavItem[] = [
     section: "explore",
     searchTags: ["pokedex", "builds"],
   },
+  {
+    label: "Services",
+    path: "/services",
+    icon: Briefcase,
+    section: "explore",
+    searchTags: ["website", "lovable", "build"],
+  },
   // Support Section
   {
     label: "Help / Contact",
     path: "/about",
     icon: HelpCircle,
     section: "support",
-  },
-  {
-    label: "Services",
-    path: "/services",
-    icon: Briefcase,
-    section: "support",
-    searchTags: ["website", "lovable", "build"],
   },
   // Vault Section (Standalone)
   {

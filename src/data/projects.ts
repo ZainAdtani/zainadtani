@@ -40,5 +40,12 @@ export const projects: Project[] = [
     thumbnail: '/images/projects/harry-potter-world-cover.png',
     route: '/projects/harry-potter-world',
     tags: ['books', 'timeline', 'hogwarts']
+  },
+  {
+    id: 'ai-songs',
+    title: 'AI Songs',
+    description: 'Fun study music made with AI to help you remember tricky topics.',
+    route: '/projects/ai-songs',
+    tags: ['ai', 'music', 'education', 'study']
   }
 ];
