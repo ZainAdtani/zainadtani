@@ -1825,27 +1825,28 @@ const Index = () => {
 
         <div className="relative z-10 container mx-auto max-w-6xl px-6">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            {/* Left: iPhone mock with mini cards */}
-            <div className="order-2 md:order-1 flex justify-center md:justify-end">
-              <div className="relative w-[260px] sm:w-[290px] h-[520px] sm:h-[560px] rounded-[36px] border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur shadow-2xl p-4">
-                <div className="absolute left-1/2 -translate-x-1/2 top-0 w-36 h-6 bg-black/60 rounded-b-2xl" />
-                <div className="mt-10 space-y-3">
-                  <div className="rounded-xl border border-black/10 dark:border-white/10 bg-white/80 dark:bg-[#0B1220] p-3 animate-[float_6s_ease-in-out_infinite]">
-                    <div className="h-3 w-24 rounded bg-black/10 dark:bg-white/20 mb-2" />
-                    <div className="h-3 w-44 rounded bg-black/5 dark:bg-white/10 mb-3" />
-                    <div className="h-24 rounded-lg bg-gradient-to-br from-blue-500/20 to-emerald-400/10" />
-                  </div>
-                  <div className="rounded-xl border border-black/10 dark:border-white/10 bg-white/80 dark:bg-[#0B1220] p-3 animate-[float_7s_ease-in-out_infinite]">
-                    <div className="h-3 w-28 rounded bg-black/10 dark:bg-white/20 mb-2" />
-                    <div className="h-3 w-40 rounded bg-black/5 dark:bg-white/10 mb-3" />
-                    <div className="h-24 rounded-lg bg-gradient-to-br from-emerald-400/20 to-indigo-400/10" />
-                  </div>
-                  <div className="rounded-xl border border-black/10 dark:border-white/10 bg-white/80 dark:bg-[#0B1220] p-3 animate-[float_8s_ease-in-out_infinite]">
-                    <div className="h-3 w-24 rounded bg-black/10 dark:bg-white/20 mb-2" />
-                    <div className="h-3 w-36 rounded bg-black/5 dark:bg-white/10 mb-3" />
-                    <div className="h-24 rounded-lg bg-gradient-to-br from-indigo-400/20 to-sky-400/10" />
-                  </div>
-                </div>
+            {/* Left: Zain's World Image and Video */}
+            <div className="order-2 md:order-1 space-y-6">
+              {/* Zain's World Newsletter Image - Visible on all devices */}
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="/images/zains-world-newsletter.png" 
+                  alt="Zain's World Newsletter - Weekly insights on taxes, tools, and growth" 
+                  className="w-full h-auto"
+                />
+              </div>
+              
+              {/* HeyGen Video */}
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <iframe 
+                  width="100%" 
+                  height="315" 
+                  src="https://app.heygen.com/embedded-player/920e2ee2b96c44249ca0571f8f8b0d13" 
+                  title="HeyGen video player" 
+                  className="border-0 rounded-2xl"
+                  allow="encrypted-media; fullscreen" 
+                  allowFullScreen
+                />
               </div>
             </div>
 
@@ -1871,20 +1872,6 @@ const Index = () => {
                   Open the newsletter site
                 </a>
               </p>
-              
-              {/* HeyGen Video Embed */}
-              <div className="mt-6 rounded-xl overflow-hidden shadow-lg">
-                <iframe 
-                  width="100%" 
-                  height="315" 
-                  src="https://app.heygen.com/embedded-player/920e2ee2b96c44249ca0571f8f8b0d13" 
-                  title="HeyGen video player" 
-                  frameBorder="0" 
-                  allow="encrypted-media; fullscreen" 
-                  allowFullScreen
-                  className="rounded-xl"
-                ></iframe>
-              </div>
 
               {/* Native form using Beehiiv magic link */}
               <form

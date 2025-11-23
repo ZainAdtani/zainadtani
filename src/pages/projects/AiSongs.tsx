@@ -8,104 +8,117 @@ import {
 } from "@/components/ui/collapsible";
 import { ChevronDown } from "lucide-react";
 
-const FILE_SIZE_LYRICS = `[Verse 1]
-Started with a bit, just a zero or one
-Binary basic, that's where we begun
-Eight bits together, that's a byte you see
-The building block of all technology
+const FILE_SIZE_LYRICS = `[Intro]
+Scroll through my phone, see a download size
+Brain feels stuck, numbers in disguise
+KB MB GB on the line
+Time to learn the code, turn data to mine
 
-Thousand bytes together, that's a kilobyte my friend
-KB on your screen, let the data comprehend
-Million bytes stacking, megabyte's the name
-MB for your photos in the digital game
+[Hook]
+KB tiny, MB normal, GB huge
+Now I read the numbers like a file size guru
+KB tiny, MB normal, GB huge
+No more panic when I hit the queue
 
-[Chorus]
-It's the file size flow, from the smallest to the great
-Bits to bytes to kilobytes, now let me educate
-Megabytes to gigabytes, watch the numbers elevate
-Understanding storage, man, isn't it just great?
+[Verse 1]
+Start with a bit, zero one in a row
+Eight bits make a byte, simple smooth flow
+Then kilo byte, thousand in the stack
+Tiny text file, light in the pack
+Mega byte next, million in the crew
+Photos and songs, all sliding through
+Giga byte big, billion on stage
+Movies and games, full storage page
+
+[Pre Hook]
+Look at the letters, feel the size vibe
+Small, medium, giant, pick the right tribe
+
+[Hook]
+KB tiny, MB normal, GB huge
+Now I read the numbers like a file size guru
+KB tiny, MB normal, GB huge
+No more panic when I hit the queue
 
 [Verse 2]
-Thousand megabytes, now we're talking gigabyte
-GB for your movies, keep your hard drive tight
-Every step is thousand times, that's the pattern here
-From the tiny bit to gigs, let me make it clear
-
-Documents are kilobytes, songs are megs you know
-Videos are gigabytes when you let them flow
-Understanding size helps you manage what you save
-From your texts to your streams, be a storage wave
-
-[Chorus]
-It's the file size flow, from the smallest to the great
-Bits to bytes to kilobytes, now let me educate
-Megabytes to gigabytes, watch the numbers elevate
-Understanding storage, man, isn't it just great?
+Text on the screen, three KB weight
+Message to a friend, simple, great
+Photo of the squad, four MB each
+Ten shots total, forty MB reach
+App on my phone, ninety MB wide
+Needs wifi now, big digital ride
+Game at five GB, better clear space
+One big file takes a lot of place
 
 [Bridge]
-One bit, eight bits byte
-Thousand KB in sight
-Thousand MB that's a GB right
-File size flow taking flight
+Under ten MB, I relax, hit go
+Ten to a hundred, wifi, smooth flow
+Hundred to a GB, check space, move slow
+Over one GB, think twice, then download
+
+[Hook]
+KB tiny, MB normal, GB huge
+Now I read the numbers like a file size guru
+KB tiny, MB normal, GB huge
+Brain unlocked in the data groove
 
 [Outro]
-Now you know the progression, from bit to byte to more
-Kilobyte, megabyte, gigabyte core
-Next time you save a file, you'll understand the score
-File size flow, that's what knowledge is for!`;
+Kilo then Mega then Giga in time
+File size ladder in a simple rhyme
+Next time a number pops up on screen
+I know what it means, I keep my storage clean`;
 
 const CARRY_IT_FORWARD_LYRICS = `[Verse 1]
-Got my coffee and my files from last year
-Pulling up returns, making everything clear
-Client asks me "Why you need my old stuff?"
-I say "Trust me friend, this year's not enough"
+Open last years file, flip the page and see
+Names match, numbers clean, that is step one for me
+Spot the little notes, circle what I owe
+Tiny breadcrumbs from the past that help the story flow
 
 [Pre-Chorus]
-'Cause what you lost last year isn't really gone
-Those NOLs and credits? Man they carry on
+Capital loss limit, three thousand on the line
+Did not use it all? Cool, roll it to this time
+Charity too high? NOL in the air?
+Write it in the margin, bring it over with care
 
 [Chorus]
-We gotta carry it forward, carry it forward
-Don't let those losses disappear into the void
-Carry it forward, carry it forward
-Past year's pain becomes this year's employed
-Check the carryovers, don't ignore them
-Read the footnotes, file before them
-Carry it forward, forward
-That's how we score
+Carry it forward, do not leave it behind
+Money on the table is money you will find
+Last year talks, listen close to the clues
+Carry it forward so nothing gets bruised
 
 [Verse 2]
-Capital loss from stocks that fell?
-Offset your gains, I know it well
-Three thousand off your ordinary income
-Prior year returns? Where they come from!
+Check the prior credits sleeping in the stack
+Foreign tax leftover waiting to come back
+AMT memory, notes in blue pen
+If it started last year, it can help you again
 
-Education credits, depreciation too
-Charitable gifts when deduction's due
-Every carryforward's got an expiration date
-File it right or you'll learn too late
-
-[Bridge]
-Twenty years for NOLs if you qualify
-Five years for capital, don't let 'em pass you by
-Check that 1040, line by line we'll go
-Last year's return is the start of this year's show
+[Pre-Chorus]
+Compare this years picture to the one before
+If a number looks wild, pause and explore
+Consistency wins, that is how pros play
+Prior year roadmap shows you the way
 
 [Chorus]
-We gotta carry it forward, carry it forward
-Don't let those losses disappear into the void
-Carry it forward, carry it forward
-Past year's pain becomes this year's employed
-Check the carryovers, don't ignore them
-Read the footnotes, file before them
-Carry it forward, forward
-That's how we score
+Carry it forward, do not leave it behind
+Money on the table is money you will find
+Last year talks, listen close to the clues
+Carry it forward so nothing gets bruised
+
+[Bridge]
+Past is a mentor, future is a friend
+Tie them together, start to end
+Audit your habits, tighten the seam
+Little carryovers power the dream
+
+[Final Chorus]
+Carry it forward, sing it again
+Bring every credit, every win
+Line by line, make the numbers rhyme
+Carry it forward, this is your time
 
 [Outro]
-So next time you file, bring your history
-Prior year returns solve the mystery
-Those carryforwards are money you can claim
-Carry it forward, forward, play the game!`;
+Check, compare, then move along
+Prior year whisper becomes your song`;
 
 export default function AiSongs() {
   return (
@@ -119,16 +132,25 @@ export default function AiSongs() {
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/20">
-        <div className="container mx-auto px-4 py-12 max-w-4xl">
-          {/* Hero Section */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+        {/* Hero Banner */}
+        <div className="relative w-full h-64 md:h-80 overflow-hidden mb-8">
+          <img 
+            src="/images/ai-songs-banner.jpg" 
+            alt="AI Songs - Play and Pause buttons with musical notes" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg">
               AI Songs
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-white/90 max-w-2xl mx-auto drop-shadow-md">
               Fun study music made with AI to help you remember tricky topics.
             </p>
           </div>
+        </div>
+
+        <div className="container mx-auto px-4 pb-12 max-w-4xl">
 
           {/* Songs Section */}
           <div className="space-y-8">
