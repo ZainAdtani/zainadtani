@@ -37,7 +37,7 @@ import { TimeBar } from "@/components/TimeBar";
 import { ALL_PRODUCTS } from "@/data/products";
 import { BOOKS } from "@/data/books";
 import { NEWSLETTERS } from "@/data/newsletters";
-import headshotImage from "@/assets/zain-simba.png";
+import headshotImage from "@/assets/zain-headshot.png";
 import qbBadge from "@/assets/quickbooks-level2-badge.png";
 import awsBadge from "@/assets/aws-cloud-practitioner-badge.png";
 import millionaireFastlane from "@/assets/millionaire-fastlane-cover.jpg";
