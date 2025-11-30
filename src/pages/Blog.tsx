@@ -1,36 +1,48 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Clock, ArrowRight, ExternalLink } from "lucide-react";
-import { Link } from "react-router-dom";
-import { BLOG_POSTS } from "@/data/blog";
+import { BEEHIIV_POSTS } from "@/data/beehiivPosts";
 
 // ============= Link Constants =============
 const ZW_BEEHIIV_ARCHIVE_URL = "https://zains-world.beehiiv.com/?utm_source=site&utm_medium=blog&utm_campaign=archive";
 
 export default function Blog() {
   const [q, setQ] = useState("");
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
-  // Filter and sort published posts
-  const publishedPosts = useMemo(() => {
-    return BLOG_POSTS
-      .filter(p => p.status === "published")
-      .sort((a, b) => b.id - a.id);
+  // All available tags
+  const allTags = useMemo(() => {
+    const tags = new Set<string>();
+    BEEHIIV_POSTS.forEach(post => tags.add(post.primaryTag));
+    return Array.from(tags).sort();
   }, []);
 
+  // Filter posts
   const filteredPosts = useMemo(() => {
+    let posts = [...BEEHIIV_POSTS];
+    
+    // Filter by tag
+    if (selectedTag) {
+      posts = posts.filter(p => p.primaryTag === selectedTag);
+    }
+    
+    // Filter by search query
     const term = q.trim().toLowerCase();
-    if (!term) return publishedPosts;
-    return publishedPosts.filter(
-      (p) =>
-        p.title.toLowerCase().includes(term) ||
-        p.excerpt.toLowerCase().includes(term) ||
-        (p.tags && p.tags.some((t) => t.toLowerCase().includes(term)))
-    );
-  }, [q, publishedPosts]);
+    if (term) {
+      posts = posts.filter(
+        (p) =>
+          p.title.toLowerCase().includes(term) ||
+          p.shortSubtitle.toLowerCase().includes(term) ||
+          p.primaryTag.toLowerCase().includes(term)
+      );
+    }
+    
+    return posts;
+  }, [q, selectedTag]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -77,6 +89,31 @@ export default function Blog() {
           </Card>
         </section>
 
+        {/* Tag Filter Pills */}
+        <section className="mb-8">
+          <div className="flex flex-wrap gap-2 justify-center">
+            <Button
+              variant={selectedTag === null ? "default" : "outline"}
+              size="sm"
+              onClick={() => setSelectedTag(null)}
+              className="rounded-full"
+            >
+              All Posts
+            </Button>
+            {allTags.map((tag) => (
+              <Button
+                key={tag}
+                variant={selectedTag === tag ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSelectedTag(tag)}
+                className="rounded-full"
+              >
+                {tag}
+              </Button>
+            ))}
+          </div>
+        </section>
+
         {/* Latest Posts Section */}
         <section>
           <div className="flex items-center justify-between mb-6">
@@ -93,61 +130,47 @@ export default function Blog() {
               <p className="text-muted-foreground">No posts match your search.</p>
             </div>
           ) : (
-            <div className="space-y-6">
-              {filteredPosts.map((post) => {
-                const cardContent = (
-                  <Card className="p-6 rounded-2xl border-border hover:shadow-lg hover:border-primary/50 transition-all">
-                    {/* Tags */}
-                    {post.tags && post.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mb-3">
-                        {post.tags.map((tag) => (
-                          <Badge key={tag} variant="secondary" className="text-xs">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                    )}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredPosts.map((post) => (
+                <a
+                  key={post.id}
+                  href={post.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block group"
+                >
+                  <Card className="p-6 rounded-2xl border-border hover:shadow-xl hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+                    {/* Tag */}
+                    <Badge variant="secondary" className="text-xs w-fit mb-3">
+                      {post.primaryTag}
+                    </Badge>
 
                     {/* Title */}
-                    <h3 className="text-xl font-bold mb-3">{post.title}</h3>
+                    <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
 
-                    {/* Summary */}
-                    <p className="text-sm text-muted-foreground mb-4">{post.excerpt}</p>
+                    {/* Subtitle */}
+                    <p className="text-sm text-muted-foreground mb-4 line-clamp-3 flex-grow">
+                      {post.shortSubtitle}
+                    </p>
 
                     {/* Footer */}
-                    <div className="flex items-center justify-between text-xs text-muted-foreground pt-3 border-t border-border">
-                      <div className="flex items-center gap-4">
-                        {post.date && <span>{post.date}</span>}
-                        {post.readTime && (
-                          <span className="flex items-center gap-1">
-                            <Clock className="h-3 w-3" />
-                            {post.readTime}
-                          </span>
-                        )}
+                    <div className="flex items-center justify-between text-xs text-muted-foreground pt-3 border-t border-border mt-auto">
+                      <div className="flex items-center gap-3">
+                        <span>{post.date}</span>
+                        <span className="flex items-center gap-1">
+                          <Clock className="h-3 w-3" />
+                          {post.readTime}
+                        </span>
                       </div>
                       <div className="flex items-center gap-1 text-primary font-medium">
-                        Read on Zain's World <ArrowRight className="h-3 w-3" />
+                        Read <ExternalLink className="h-3 w-3" />
                       </div>
                     </div>
                   </Card>
-                );
-
-                return post.externalUrl ? (
-                  <a
-                    key={post.id}
-                    href={post.externalUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                  >
-                    {cardContent}
-                  </a>
-                ) : (
-                  <Link key={post.id} to={`/blog/${post.slug}`} className="block">
-                    {cardContent}
-                  </Link>
-                );
-              })}
+                </a>
+              ))}
             </div>
           )}
         </section>

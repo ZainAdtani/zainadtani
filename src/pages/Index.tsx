@@ -34,6 +34,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { TimeBar } from "@/components/TimeBar";
+import { SunriseWidget } from "@/components/SunriseWidget";
 import { ALL_PRODUCTS } from "@/data/products";
 import { BOOKS } from "@/data/books";
 import { NEWSLETTERS } from "@/data/newsletters";
@@ -409,6 +410,7 @@ const Index = () => {
       </Helmet>
 
       <TimeBar />
+      <SunriseWidget />
 
       {/* Hero Section */}
       <section className="pt-8 md:pt-16 pb-16 md:pb-24 bg-gradient-to-br from-primary/5 via-background to-accent/5">
@@ -425,11 +427,39 @@ const Index = () => {
             </div>
 
             {/* Hero Text */}
-            <div className="flex-1 text-center md:text-left">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground">Hey Friends 👋</h1>
-              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8">
-                I'm Zain. I'm an engineer turned tax guide for beginners, helping busy learners pass the EA exam and get confident with taxes. I am here to share tools, stories, and study notes so you grow in skills, confidence, and peace with your money. 📚
-              </p>
+            <div className="flex-1 text-center md:text-left space-y-8">
+              <div>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground">Hey Friends 👋</h1>
+                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-4">
+                  I'm Zain, an engineer turned teacher. I help busy beginners pass the EA exam and understand taxes, and I help small business owners build simple websites they feel proud of. Together we focus on skills, confidence, and calm money decisions.
+                </p>
+                <p className="text-base text-primary font-medium">
+                  Teacher for taxes and tiny business sites.
+                </p>
+              </div>
+
+              {/* Focus Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Card className="p-6 border-2 hover:shadow-lg hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
+                  <h3 className="text-lg font-bold mb-2 text-foreground">Learn Taxes with Me</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Help passing the EA exam and feeling calm with the IRS.
+                  </p>
+                  <Button asChild className="w-full">
+                    <Link to="/enrolled-agent">Explore EA Study Hub</Link>
+                  </Button>
+                </Card>
+
+                <Card className="p-6 border-2 hover:shadow-lg hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
+                  <h3 className="text-lg font-bold mb-2 text-foreground">Build a Simple Site</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Help for small business owners who want a clean site that fits their story.
+                  </p>
+                  <Button asChild className="w-full">
+                    <Link to="/website-lab">See Website Projects</Link>
+                  </Button>
+                </Card>
+              </div>
 
               {/* Daily Motivation Generator */}
               <Card className="p-6 shadow-lg border-2 border-primary/20 bg-card text-card-foreground">
@@ -475,7 +505,7 @@ const Index = () => {
               <Link to="/tools" className="block">
                 <Cpu className="w-12 h-12 text-primary mb-4 animate-bounce" />
                 <h3 className="text-2xl font-bold mb-2 text-foreground">My Toolkit</h3>
-                <p className="text-muted-foreground">AI, software, and systems I actually use</p>
+                <p className="text-muted-foreground">AI, software, and systems I use for EA prep and building sites</p>
               </Link>
             </Card>
 
@@ -554,6 +584,13 @@ const Index = () => {
                 <BookOpen className="w-8 h-8 text-primary mb-3" />
                 <h3 className="text-lg font-semibold mb-1">Personal Learning Vault</h3>
                 <p className="text-sm text-muted-foreground">A home for summaries of videos, courses, and lessons you want to remember.</p>
+              </Card>
+            </Link>
+            <Link to="/website-lab">
+              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
+                <Cpu className="w-8 h-8 text-primary mb-3" />
+                <h3 className="text-lg font-semibold mb-1">Website Starter Lab</h3>
+                <p className="text-sm text-muted-foreground">Simple site templates and case studies for small business owners.</p>
               </Card>
             </Link>
           </div>
