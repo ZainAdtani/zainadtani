@@ -123,7 +123,7 @@ const LOCAL_BOOKS: Book[] = [
     rating: 5,
     hasDigitalFile: true,
     hasFreePdf: true,
-    whopUrl: "TODO_REPLACE_WITH_WHOP_URL_FOR_MILLIONAIRE_FASTLANE",
+    whopUrl: "https://whop.com/zain-book-vault/the-millionaire-fast-copy/?utm_source=store_page&funnelId=product_f1dbda3a-d0c7-4fc0-a9a2-64d581275d1c",
   },
 
   // In Progress Books
@@ -170,7 +170,7 @@ const LOCAL_BOOKS: Book[] = [
     cover: "/book-covers/4hr.jpeg",
     hasDigitalFile: true,
     hasFreePdf: true,
-    whopUrl: "TODO_REPLACE_WITH_WHOP_URL_FOR_4_HOUR_WORKWEEK",
+    whopUrl: "https://whop.com/zain-book-vault/the-4-hour-workweek-copy/?utm_source=store_page&funnelId=product_f1dbda3a-d0c7-4fc0-a9a2-64d581275d1c",
   },
   {
     id: "work-the-system",
@@ -268,7 +268,7 @@ const LOCAL_BOOKS: Book[] = [
     cover: "/book-covers/tuesdays-with-morrie.png",
     rating: 5,
     hasFreePdf: true,
-    whopUrl: "TODO_REPLACE_WITH_WHOP_URL_FOR_TUESDAYS_WITH_MORRIE",
+    whopUrl: "https://whop.com/zain-book-vault/tuesdays-with-morrie-copy/?utm_source=store_page&funnelId=product_f1dbda3a-d0c7-4fc0-a9a2-64d581275d1c",
   },
   {
     id: "how-to-win-friends",
@@ -299,7 +299,7 @@ const LOCAL_BOOKS: Book[] = [
     link: "https://www.amazon.com/Unshakeable-Financial-Freedom-Playbook-Robbins/dp/1501164589",
     rating: 5,
     hasFreePdf: true,
-    whopUrl: "TODO_REPLACE_WITH_WHOP_URL_FOR_UNSHAKEABLE",
+    whopUrl: "https://whop.com/zain-book-vault/unshakeable-ebook/?utm_source=store_page&funnelId=product_f1dbda3a-d0c7-4fc0-a9a2-64d581275d1c",
   },
   {
     id: "100m-offers",
@@ -321,7 +321,7 @@ const LOCAL_BOOKS: Book[] = [
     rating: 5,
     hasDigitalFile: true,
     hasFreePdf: true,
-    whopUrl: "TODO_REPLACE_WITH_WHOP_URL_FOR_THE_ALCHEMIST",
+    whopUrl: "https://whop.com/zain-book-vault/unshakeable-ebook-copy/?utm_source=store_page&funnelId=product_f1dbda3a-d0c7-4fc0-a9a2-64d581275d1c",
   },
   {
     id: "brief-illustrated-guide-islam",
@@ -473,7 +473,7 @@ const LOCAL_BOOKS: Book[] = [
     rating: 5,
     notes: "Probably need to reread once a month and watch the movie once a month",
     hasFreePdf: true,
-    whopUrl: "TODO_REPLACE_WITH_WHOP_URL_FOR_THE_SECRET",
+    whopUrl: "https://whop.com/zain-book-vault/the-secret-ebook/?utm_source=store_page&funnelId=product_f1dbda3a-d0c7-4fc0-a9a2-64d581275d1c",
   },
   {
     id: "the-sht-they-never-taught-you",
@@ -1361,7 +1361,7 @@ const LOCAL_BOOKS: Book[] = [
     link: "https://a.co/d/eymslYJ",
     hasDigitalFile: true,
     hasFreePdf: true,
-    whopUrl: "TODO_REPLACE_WITH_WHOP_URL_FOR_48_LAWS_OF_POWER",
+    whopUrl: "https://whop.com/zain-book-vault/the-48-laws-of-power-copy-04/?utm_source=store_page&funnelId=product_f1dbda3a-d0c7-4fc0-a9a2-64d581275d1c",
   },
   {
     id: "between-shades-of-gray",
