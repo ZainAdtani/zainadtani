@@ -109,7 +109,7 @@ export default function BooksHQ() {
       READ: BOOKS.filter((b) => b.status === "READ").length,
       IN_PROGRESS: BOOKS.filter((b) => b.status === "IN_PROGRESS").length,
       TBR: BOOKS.filter((b) => b.status === "TBR").length,
-      DIGITAL_FILES: BOOKS.filter((b) => b.hasDigitalFile).length,
+      DIGITAL_FILES: BOOKS.filter((b) => b.hasFreePdf).length,
     };
   }, []);
 
@@ -129,7 +129,7 @@ export default function BooksHQ() {
 
     // filter by status
     if (statusFilter === "DIGITAL_FILES") {
-      result = result.filter((book) => book.hasDigitalFile);
+      result = result.filter((book) => book.hasFreePdf);
     } else if (statusFilter !== "ALL") {
       result = result.filter((book) => book.status === statusFilter);
     }
@@ -259,6 +259,18 @@ export default function BooksHQ() {
                 </div>
 
                 <CardContent className="p-4 flex-1 flex flex-col">
+                  {/* Whop Free PDF Banner */}
+                  {book.whopUrl && (
+                    <a
+                      href={book.whopUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mb-2 inline-flex w-full items-center justify-center rounded-full bg-red-500 px-3 py-1 text-xs font-semibold text-white shadow-sm hover:bg-red-600 transition-colors"
+                    >
+                      🎁 Get free PDF
+                    </a>
+                  )}
+
                   {/* Title & Author */}
                   <h3 className="font-semibold text-base mb-1 line-clamp-2 text-foreground">{book.title}</h3>
                   <p className="text-sm text-muted-foreground mb-3">{book.author}</p>
