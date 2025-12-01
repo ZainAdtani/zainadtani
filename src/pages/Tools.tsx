@@ -63,27 +63,6 @@ const TOOLS: Tool[] = [
     description: "AI-powered research and note-taking assistant",
     category: "AI & Agents",
   },
-  {
-    id: "coach-ma-students",
-    name: "Coach for Medical Assistant Students",
-    url: "https://chatgpt.com/g/g-6917706435b88191989c57ace3b9551a-coach-for-medical-assistant-students",
-    description: "Friendly study coach for medical assistant students. Uses your uploaded chapters to explain topics in simple language, quiz you, and turn each unit into mini games and practice exams.",
-    category: "AI & Agents",
-  },
-  {
-    id: "whop-monetize",
-    name: "WHOP Monetize",
-    url: "https://chatgpt.com/g/g-68c8d04eca78819195b0601516bb9c9d-whop-monetize",
-    description: "Guides you step by step to design, launch, and refine digital products on Whop. Helps with offer ideas, product pages, bonuses, and simple marketing plans.",
-    category: "AI & Agents",
-  },
-  {
-    id: "ea-gpt",
-    name: "EA GPT",
-    url: "https://chatgpt.com/g/g-68e11a2ec4688191a07e8f83eef33861-ea-gpt",
-    description: "Your friendly Enrolled Agent study coach. Ask tax questions, get walkthroughs at a beginner level, practice exam style problems, and turn your notes into quick drills. Built for daily 15 minute reps and calm mastery, one concept at a time.",
-    category: "AI & Agents",
-  },
   // Courses & Learning
   {
     id: "udemy",
