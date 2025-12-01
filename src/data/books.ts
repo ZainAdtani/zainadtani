@@ -1,4 +1,5 @@
-// No imports needed at top - see bottom of file
+// TODO: Replace placeholder Whop URLs below with real product links from https://whop.com/zain-book-vault/
+// Search for "TODO_REPLACE_WITH_WHOP_URL" to find all placeholders
 
 export type BookStatus = "READ" | "IN_PROGRESS" | "TBR";
 
@@ -16,6 +17,8 @@ export type Book = {
   myThoughts?: string; // Personal thoughts/reviews
   isbn?: string;
   hasDigitalFile?: boolean;
+  whopUrl?: string; // Link to free PDF on Whop
+  hasFreePdf?: boolean; // True if book has a free PDF available
 };
 
 // Helper function to normalize strings for deduplication
@@ -119,6 +122,8 @@ const LOCAL_BOOKS: Book[] = [
     cover: "/book-covers/millionaire-fastlane.jpg",
     rating: 5,
     hasDigitalFile: true,
+    hasFreePdf: true,
+    whopUrl: "TODO_REPLACE_WITH_WHOP_URL_FOR_MILLIONAIRE_FASTLANE",
   },
 
   // In Progress Books
@@ -164,6 +169,8 @@ const LOCAL_BOOKS: Book[] = [
     link: "https://www.amazon.com/4-Hour-Workweek-Escape-Live-Anywhere/dp/0307465357",
     cover: "/book-covers/4hr.jpeg",
     hasDigitalFile: true,
+    hasFreePdf: true,
+    whopUrl: "TODO_REPLACE_WITH_WHOP_URL_FOR_4_HOUR_WORKWEEK",
   },
   {
     id: "work-the-system",
@@ -260,6 +267,8 @@ const LOCAL_BOOKS: Book[] = [
     link: "https://a.co/d/3Bz9Kpw",
     cover: "/book-covers/tuesdays-with-morrie.png",
     rating: 5,
+    hasFreePdf: true,
+    whopUrl: "TODO_REPLACE_WITH_WHOP_URL_FOR_TUESDAYS_WITH_MORRIE",
   },
   {
     id: "how-to-win-friends",
@@ -282,6 +291,17 @@ const LOCAL_BOOKS: Book[] = [
     cover: "/book-covers/awaken-the-giant-within.jpg",
   },
   {
+    id: "unshakeable",
+    title: "Unshakeable: Your Financial Freedom Playbook",
+    author: "Tony Robbins",
+    status: "READ",
+    tags: ["Personal Finance", "Investing"],
+    link: "https://www.amazon.com/Unshakeable-Financial-Freedom-Playbook-Robbins/dp/1501164589",
+    rating: 5,
+    hasFreePdf: true,
+    whopUrl: "TODO_REPLACE_WITH_WHOP_URL_FOR_UNSHAKEABLE",
+  },
+  {
     id: "100m-offers",
     title: "$100M Offers: How to Make Offers So Good People Feel Stupid Saying No",
     author: "Alex Hormozi",
@@ -300,6 +320,8 @@ const LOCAL_BOOKS: Book[] = [
     cover: "https://m.media-amazon.com/images/I/71aFt4+OTOL._SY466_.jpg",
     rating: 5,
     hasDigitalFile: true,
+    hasFreePdf: true,
+    whopUrl: "TODO_REPLACE_WITH_WHOP_URL_FOR_THE_ALCHEMIST",
   },
   {
     id: "brief-illustrated-guide-islam",
@@ -450,6 +472,8 @@ const LOCAL_BOOKS: Book[] = [
     isbn: "9781582701707",
     rating: 5,
     notes: "Probably need to reread once a month and watch the movie once a month",
+    hasFreePdf: true,
+    whopUrl: "TODO_REPLACE_WITH_WHOP_URL_FOR_THE_SECRET",
   },
   {
     id: "the-sht-they-never-taught-you",
@@ -1336,6 +1360,8 @@ const LOCAL_BOOKS: Book[] = [
     tags: [],
     link: "https://a.co/d/eymslYJ",
     hasDigitalFile: true,
+    hasFreePdf: true,
+    whopUrl: "TODO_REPLACE_WITH_WHOP_URL_FOR_48_LAWS_OF_POWER",
   },
   {
     id: "between-shades-of-gray",
