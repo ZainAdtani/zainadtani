@@ -114,6 +114,27 @@ const Investing = () => {
         </div>
       </section>
 
+      {/* Private Finance Dashboard Section */}
+      <section className="py-16 md:py-24 bg-gradient-to-br from-primary/5 via-background to-accent/5">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <Card className="p-8 hover-lift transition-all duration-300 border-2 border-primary/20 max-w-2xl mx-auto">
+            <div className="text-center space-y-6">
+              <h2 className="text-3xl md:text-4xl font-bold">
+                Private <span className="text-primary">Finance Dashboard</span>
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Log in to your personal dashboard to see your money picture in one place. Start simple, track progress, and adjust over time.
+              </p>
+              <Button asChild size="lg" className="w-full md:w-auto px-8">
+                <a href="https://zadtani.com/login" target="_blank" rel="noopener noreferrer">
+                  Log in to dashboard
+                </a>
+              </Button>
+            </div>
+          </Card>
+        </div>
+      </section>
+
       {/* Options Trading Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 max-w-6xl">
