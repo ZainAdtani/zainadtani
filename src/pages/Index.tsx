@@ -1731,7 +1731,7 @@ const Index = () => {
             <p className="text-lg text-muted-foreground">AI assistants I've built and recommend</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {/* Book Architect - Recommended */}
             <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
               <div className="mb-4">
@@ -1784,6 +1784,86 @@ const Index = () => {
               <Button asChild variant="default" className="w-full mt-auto">
                 <a
                   href="https://chatgpt.com/g/g-68c1e0fa113c8191940474d7a1653fce-the-time-of-your-life-method"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open on ChatGPT ↗
+                </a>
+              </Button>
+            </Card>
+
+            {/* Coach for Medical Assistant Students - My Custom */}
+            <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
+              <div className="mb-4">
+                <h3 className="text-lg font-bold mb-1">Coach for Medical Assistant Students</h3>
+                <p className="text-xs text-muted-foreground mb-3">by Zain Adtani</p>
+                <p className="text-sm mb-3">
+                  Friendly study coach for medical assistant students. Uses your uploaded chapters to explain topics in simple language, quiz you, and turn each unit into mini games and practice exams.
+                </p>
+              </div>
+              <Button asChild variant="default" className="w-full mt-auto">
+                <a
+                  href="https://chatgpt.com/g/g-6917706435b88191989c57ace3b9551a-coach-for-medical-assistant-students"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open on ChatGPT ↗
+                </a>
+              </Button>
+            </Card>
+
+            {/* WHOP Monetize - My Custom */}
+            <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
+              <div className="mb-4">
+                <h3 className="text-lg font-bold mb-1">WHOP Monetize</h3>
+                <p className="text-xs text-muted-foreground mb-3">by Zain Adtani</p>
+                <p className="text-sm mb-3">
+                  Step by step helper for turning your skills into simple digital products on Whop, from first offer to store layout.
+                </p>
+              </div>
+              <Button asChild variant="default" className="w-full mt-auto">
+                <a
+                  href="https://chatgpt.com/g/g-68c8d04eca78819195b0601516bb9c9d-whop-monetize"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open on ChatGPT ↗
+                </a>
+              </Button>
+            </Card>
+
+            {/* EA GPT - My Custom */}
+            <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
+              <div className="mb-4">
+                <h3 className="text-lg font-bold mb-1">EA GPT</h3>
+                <p className="text-xs text-muted-foreground mb-3">by Zain Adtani</p>
+                <p className="text-sm mb-3">
+                  Friendly Enrolled Agent study coach. Answers tax questions in plain language and turns exam topics into practice drills for daily reps.
+                </p>
+              </div>
+              <Button asChild variant="default" className="w-full mt-auto">
+                <a
+                  href="https://chatgpt.com/g/g-68e11a2ec4688191a07e8f83eef33861-ea-gpt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open on ChatGPT ↗
+                </a>
+              </Button>
+            </Card>
+
+            {/* Gamma Prompt Architect - My Custom */}
+            <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
+              <div className="mb-4">
+                <h3 className="text-lg font-bold mb-1">Gamma Prompt Architect</h3>
+                <p className="text-xs text-muted-foreground mb-3">by Zain Adtani</p>
+                <p className="text-sm mb-3">
+                  Turns a rough idea into a clear Gamma prompt with role, audience, structure, and numbers so you get strong slide decks on the first try.
+                </p>
+              </div>
+              <Button asChild variant="default" className="w-full mt-auto">
+                <a
+                  href="https://chatgpt.com/g/g-692de0d1379c8191a56a20503a2b1173-gamma-prompt-architect"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
