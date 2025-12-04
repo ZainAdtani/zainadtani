@@ -32,6 +32,7 @@ import Thanks from "./pages/Thanks";
 import TalkToAI from "./pages/projects/TalkToAI";
 import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
 import AiSongs from "./pages/projects/AiSongs";
+import EAStudyChatbot from "./pages/projects/EAStudyChatbot";
 import DevotionalLiterature from "./pages/usa-visit-2025/DevotionalLiterature";
 import Illuminate from "./pages/usa-visit-2025/Illuminate";
 import Workout from "./pages/Workout";
@@ -70,6 +71,7 @@ const App = () => (
           <Route path="/projects/ai" element={<TalkToAI />} />
           <Route path="/projects/harry-potter-world" element={<HarryPotterWorld />} />
           <Route path="/projects/ai-songs" element={<AiSongs />} />
+          <Route path="/projects/ea-study-chatbot" element={<EAStudyChatbot />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/resources" element={<Resources />} />

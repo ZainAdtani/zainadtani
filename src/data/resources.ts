@@ -10,6 +10,48 @@ export type Resource = {
 };
 
 export const RESOURCES: Resource[] = [
+  // Totally Fulfilled Training Bundle
+  {
+    id: 100,
+    title: "Totally Fulfilled Health Worksheet",
+    kind: "PDF",
+    tags: ["Totally Fulfilled", "Health", "Worksheet"],
+    href: "/resources/totally-fulfilled-health-worksheet.pdf",
+    note: "Training with Gary Brecka — Exercises and notes from the health training in the Totally Fulfilled bundle.",
+  },
+  {
+    id: 101,
+    title: "Totally Fulfilled Wealth Worksheet",
+    kind: "PDF",
+    tags: ["Totally Fulfilled", "Wealth", "Worksheet"],
+    href: "/resources/totally-fulfilled-wealth-worksheet.pdf",
+    note: "Training with Peter Mallouk and Tony Robbins — Wealth and investing action steps from the bundle.",
+  },
+  {
+    id: 102,
+    title: "Totally Fulfilled Relationships Worksheet",
+    kind: "PDF",
+    tags: ["Totally Fulfilled", "Relationships", "Worksheet"],
+    href: "/resources/totally-fulfilled-relationships-worksheet.pdf",
+    note: "Training with Tony and Sage Robbins — Reflection questions and actions to strengthen relationships.",
+  },
+  {
+    id: 103,
+    title: "Totally Fulfilled Mindset Worksheet",
+    kind: "PDF",
+    tags: ["Totally Fulfilled", "Mindset", "Worksheet"],
+    href: "/resources/totally-fulfilled-mindset-worksheet.pdf",
+    note: "Training with Dean Graziosi — Mindset shifts and daily practices from the mindset session.",
+  },
+  {
+    id: 104,
+    title: "Totally Fulfilled Ebook",
+    kind: "PDF",
+    tags: ["Totally Fulfilled", "Ebook", "Dean Graziosi"],
+    href: "/resources/totally-fulfilled-ebook.pdf",
+    note: "Dean Graziosi — Full digital book about more money, more freedom, more smiles, and less stress.",
+  },
+  // Other resources
   {
     id: 1,
     title: "Accelerate, Don't Replace — Dan Martell (Guide)",
