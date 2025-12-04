@@ -90,4 +90,22 @@ export const SEED_SUBSCRIPTIONS: Subscription[] = [
     cadence: 'Monthly',
     category: 'Utilities',
   },
+  {
+    id: '11',
+    name: 'NordVPN',
+    amount: '$149.88 / year',
+    method: 'Mastercard ••0632 Exp 12/28',
+    cadence: 'Yearly',
+    category: 'Work',
+    nextBillDate: '2028-01-16',
+  },
+  {
+    id: '12',
+    name: 'NordPass Premium',
+    amount: '$35.88 / year',
+    method: 'PayPal',
+    cadence: 'Yearly',
+    category: 'Work',
+    nextBillDate: '2026-03-01',
+  },
 ];

@@ -47,5 +47,12 @@ export const projects: Project[] = [
     description: 'Fun study music made with AI to help you remember tricky topics.',
     route: '/projects/ai-songs',
     tags: ['ai', 'music', 'education', 'study']
+  },
+  {
+    id: 'ea-study-chatbot',
+    title: 'EA Study Chatbot',
+    description: 'Test EA exam study helpers that use Lovable AI and Gemini without touching API keys.',
+    route: '/projects/ea-study-chatbot',
+    tags: ['ai', 'ea-exam', 'study', 'lovable-ai']
   }
 ];
