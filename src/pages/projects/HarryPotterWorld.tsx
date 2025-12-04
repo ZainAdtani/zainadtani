@@ -157,180 +157,131 @@ const timelineEvents: TimelineEvent[] = [
     date: "November 1, 1981",
     title: "Voldemort attacks the Potters",
     description:
-      "Voldemort murders James and Lily, baby Harry survives with a lightning scar, and Dumbledore, McGonagall, and Hagrid leave him at the Dursleys' house on Privet Drive.",
+      "James and Lily die protecting Harry. Voldemort's curse rebounds. Hagrid takes baby Harry to Dumbledore and they leave him with the Dursleys.",
   },
   {
-    date: "1981–1991",
-    title: "Growing up with the Dursleys",
+    date: "1981 to 1991",
+    title: "Harry's life with the Dursleys",
     description:
-      "Harry sleeps in the cupboard under the stairs, gets bullied by Dudley, and knows nothing about magic or the wizarding world.",
+      "Harry grows up in the cupboard under the stairs, wears Dudley's old clothes, and is treated like an outsider.",
   },
   {
-    date: "June 1991",
-    title: "Zoo trip and the vanished glass",
+    date: "Summer 1991",
+    title: "The trip to the zoo",
     description:
-      "On Dudley's birthday trip to the zoo, Harry talks to a snake and the glass on its enclosure vanishes, shocking the Dursleys.",
+      "On Dudley's birthday, Harry accidentally makes the glass vanish and a snake escapes, hinting at his hidden magic.",
   },
   {
     date: "Late July 1991",
     title: "Letters from Hogwarts",
     description:
-      "Letters addressed to Harry arrive in stranger and stranger ways, Vernon tries to block them, and the family hides in a hut on a rock in the sea.",
+      "Letters addressed to Harry arrive again and again until Vernon takes the family to a lonely hut on a rock in the sea.",
   },
   {
     date: "July 31, 1991",
-    title: "Hagrid arrives",
+    title: "Hagrid, keeper of the keys",
     description:
-      "Right at midnight on Harry's eleventh birthday, Hagrid bursts into the hut, explains that Harry is a wizard, gives him his Hogwarts letter, and stands up to the Dursleys.",
+      "Hagrid arrives at the hut, gives Harry a birthday cake, tells him he is a wizard, and hands him his Hogwarts letter.",
   },
   {
     date: "Early August 1991",
-    title: "Diagon Alley",
+    title: "Diagon Alley and Gringotts",
     description:
-      "Hagrid takes Harry to Diagon Alley, where Harry gets his wand, meets Draco in Madam Malkin's, first hears about Voldemort, and receives Hedwig as a birthday present.",
-  },
-  {
-    date: "Rest of August 1991",
-    title: "Waiting for Hogwarts",
-    description:
-      "Harry returns to the Dursleys with his school supplies, spends the month reading his new books, and counts down to September.",
+      "Hagrid and Harry visit Diagon Alley for school supplies, stop at Gringotts, and collect a mysterious package from a high security vault.",
   },
   {
     date: "September 1, 1991",
-    title: "Hogwarts Express and Sorting",
+    title: "Journey to Hogwarts",
     description:
-      "Harry finds Platform Nine and Three-Quarters with the Weasleys' help, meets Ron and Hermione, clashes with Draco, rides the Hogwarts Express, and is sorted into Gryffindor with Ron, Hermione, and Neville.",
+      "Harry reaches platform nine and three quarters, meets Ron and Hermione on the train, and rides to Hogwarts.",
   },
   {
-    date: "Early September 1991",
-    title: "First week of classes",
+    date: "September 1991",
+    title: "Sorting and first classes",
     description:
-      "Harry meets his teachers, including Professor Snape, who singles him out in Potions and treats him harshly.",
+      "The Sorting Hat places Harry in Gryffindor, and he begins classes with teachers like Snape and McGonagall.",
   },
   {
-    date: "September 12, 1991",
-    title: "Youngest Seeker in a century",
+    date: "Autumn 1991",
+    title: "Flying lesson and new Seeker",
     description:
-      "During flying lessons, Neville drops his Remembrall, Harry dives to catch it, impresses McGonagall, and becomes the youngest Gryffindor Seeker in a hundred years.",
-  },
-  {
-    date: "Late September 1991",
-    title: "Fluffy and the forbidden corridor",
-    description:
-      "Malfoy tricks Harry into a midnight duel, Harry, Ron, Hermione, and Neville flee from Filch, and they discover Fluffy, the three headed dog guarding a trapdoor.",
-  },
-  {
-    date: "October 1991",
-    title: "Mystery of the trapdoor",
-    description:
-      "The trio suspect that something important lies under the trapdoor and start guessing what Fluffy protects.",
+      "Harry shows natural talent on a broom during flying lessons and becomes Seeker for the Gryffindor Quidditch team.",
   },
   {
     date: "October 31, 1991",
-    title: "Halloween troll and new friendship",
+    title: "Troll in the castle",
     description:
-      "A troll enters the castle during the Halloween feast, Harry and Ron rescue Hermione in the bathroom, and the three become close friends.",
+      "A mountain troll gets into the castle. Harry and Ron save Hermione, and the three become close friends.",
   },
   {
-    date: "Early November 1991",
+    date: "November 1991",
     title: "First Quidditch match",
     description:
-      "During Gryffindor vs Slytherin, Harry's broom goes out of control, Hermione sets fire to Snape's robes, Harry regains control, catches the Snitch, and the trio suspect Snape is after whatever Fluffy guards.",
+      "Harry plays his first Quidditch match, someone tries to jinx his broom, and the trio grow more suspicious of Snape.",
   },
   {
-    date: "Late November 1991",
-    title: "Searching for Nicolas Flamel",
-    description: "The trio search the library for Nicolas Flamel but cannot find his name in any book.",
-  },
-  {
-    date: "Mid December 1991",
-    title: "Christmas at Hogwarts begins",
-    description:
-      "Snow covers the grounds, Ron and Harry stay at school, and Hogwarts fills with decorations for the holidays.",
-  },
-  {
-    date: "December 25, 1991",
+    date: "Christmas 1991",
     title: "The Mirror of Erised",
     description:
-      "Harry receives an invisibility cloak that once belonged to his father, explores the castle, and discovers the Mirror of Erised, where he sees his parents and extended family.",
+      "During the holidays, Harry discovers the Mirror of Erised, which shows him with his parents. Dumbledore later explains the danger of the mirror.",
   },
   {
-    date: "End of December 1991",
-    title: "Dumbledore and the mirror",
+    date: "Winter and spring 1992",
+    title: "Nicolas Flamel and the Stone",
     description:
-      "Harry keeps visiting the mirror until Dumbledore finds him, explains why the mirror is dangerous, and moves it to a new hiding place.",
+      "Harry, Ron, and Hermione discover who Nicolas Flamel is, learn about the Philosopher's Stone, and guess that someone wants to steal it.",
   },
   {
-    date: "January 1992",
-    title: "Back to classes and the Stone mystery",
+    date: "Spring 1992",
+    title: "Norbert and the Forbidden Forest",
     description:
-      "Hermione returns from the holidays, and the trio continue to search for information about Flamel and the guarded object.",
+      "Hagrid raises a dragon named Norbert. The trio help smuggle him away, get caught, and serve detention in the Forbidden Forest where Harry sees a hooded figure drinking unicorn blood.",
   },
   {
-    date: "Early spring 1992",
-    title: "Learning about the Philosopher's Stone",
-    description:
-      "From a library book, the trio learn that Nicolas Flamel made the Philosopher's Stone, realize that Fluffy guards it, and feel sure someone is trying to steal it.",
-  },
-  {
-    date: "April 24, 1992",
-    title: "Norbert the Norwegian Ridgeback",
-    description:
-      "Hagrid wins a dragon egg from a hooded stranger, the egg hatches into Norbert, and the dragon quickly grows wild and dangerous.",
-  },
-  {
-    date: "Late April 1992",
-    title: "Smuggling Norbert out",
-    description:
-      "Harry, Ron, and Hermione send Norbert to Charlie Weasley's dragon reserve in Romania, are caught out of bed afterward, and lose many points from Gryffindor.",
-  },
-  {
-    date: "May 1992",
-    title: "Detention in the Forbidden Forest",
-    description:
-      "Serving detention, Harry, Hermione, Neville, and Draco help Hagrid search for a wounded unicorn, Harry sees a hooded figure drinking its blood, his scar hurts, and Firenze warns that this points to Voldemort.",
-  },
-  {
-    date: "Late May 1992",
-    title: "Exam season",
-    description:
-      "Students prepare for and take end of year exams, Hermione excels, and the trio stay worried about the Stone.",
-  },
-  {
-    date: "Late May 1992",
-    title: "Realizing the plan",
-    description:
-      "The trio learn that Hagrid told the stranger how to calm Fluffy, realize someone now knows how to get past the dog, and decide the Stone is in real danger.",
-  },
-  {
-    date: "Early June 1992",
+    date: "June 1992",
     title: "Through the trapdoor",
     description:
-      "Thinking Snape will act, Harry, Ron, and Hermione go past Fluffy and face the teachers' challenges, including Devil's Snare, flying keys, giant wizard chess, and a logic puzzle.",
+      "The trio pass through the magical protections guarding the Stone. Harry faces Professor Quirrell and Voldemort's spirit.",
   },
   {
-    date: "Early June 1992",
-    title: "Quirrell and Voldemort",
+    date: "End of term 1992",
+    title: "House Cup and heading home",
     description:
-      "Harry reaches the final room, finds Quirrell serving Voldemort, gets the Stone from the Mirror of Erised, and defeats Quirrell when his touch burns him, forcing Voldemort to flee.",
+      "Dumbledore awards last minute points so Gryffindor wins the House Cup. Harry heads back to the Dursleys for the summer, now proud of his new life as a wizard.",
+  },
+];
+
+type ChapterSong = {
+  chapter: number;
+  title: string;
+  summary: string;
+  embedUrl: string;
+};
+
+const chapterSongs: ChapterSong[] = [
+  {
+    chapter: 1,
+    title: "The Boy Who Lived",
+    summary: "Voldemort attacks the Potters, baby Harry survives, and Dumbledore leaves him with the Dursleys.",
+    embedUrl: "https://suno.com/embed/7775f7ce-b30d-4ebd-94e8-ad71211e7b69",
   },
   {
-    date: "Mid June 1992",
-    title: "Recovery in the hospital wing",
-    description:
-      "Harry wakes in the hospital wing, and Dumbledore explains more about the Stone, Lily's protection, and why Voldemort failed to take over Harry.",
+    chapter: 2,
+    title: "The Vanishing Glass",
+    summary: "Harry grows up with the Dursleys, gets bullied by Dudley, and strange magic at the zoo makes the glass vanish.",
+    embedUrl: "https://suno.com/embed/3a09e3d2-52ee-4403-ae1d-9b17b049501c",
   },
   {
-    date: "Late June 1992",
-    title: "House Cup surprise",
-    description:
-      "At the leaving feast, Slytherin first appears to win the House Cup, then Dumbledore awards last minute points to Harry, Ron, Hermione, and Neville for courage, and Gryffindor wins instead.",
+    chapter: 3,
+    title: "The Letters from No One",
+    summary: "Mysterious letters from Hogwarts keep arriving no matter where Uncle Vernon moves the family.",
+    embedUrl: "https://suno.com/embed/32cbfd76-3b08-4044-8739-0d3927b5c821",
   },
   {
-    date: "End of June 1992",
-    title: "Back to Privet Drive",
-    description:
-      "Students ride the Hogwarts Express home, and Harry returns to the Dursleys, happy that he will return to Hogwarts next year.",
+    chapter: 4,
+    title: "The Keeper of the Keys",
+    summary: "Hagrid bursts into the hut on the rock, rescues Harry from the Dursleys, and delivers his Hogwarts letter.",
+    embedUrl: "https://suno.com/embed/29aaca2e-344a-4bbf-ab0c-7b91e98b36b9",
   },
 ];
 
@@ -423,6 +374,21 @@ export default function HarryPotterWorld() {
                   {audioPlaying ? "Sound Off 🔇" : "Sound On 🔊"}
                 </Button>
                 <p className="text-sm text-amber-200/60 mt-3">Best with headphones at low volume.</p>
+                
+                {/* Bonus track row */}
+                <div className="mt-6 pt-4 border-t border-amber-700/30 flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <span className="text-sm text-amber-200/70">Bonus track from the wizarding playlist</span>
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="sm"
+                    className="border-amber-500/40 text-amber-200 hover:bg-amber-700/30"
+                  >
+                    <a href="https://youtu.be/hV_InmMs_i0" target="_blank" rel="noopener noreferrer">
+                      Watch on YouTube
+                    </a>
+                  </Button>
+                </div>
               </div>
 
               {/* Image right on desktop */}
@@ -463,6 +429,33 @@ export default function HarryPotterWorld() {
                     </Button>
                   )}
                 </CardFooter>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Chapter Songs Section */}
+        <div className="container mx-auto px-4 py-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2">Chapter Songs, Book 1: The Philosopher's Stone</h2>
+          <p className="text-muted-foreground mb-8">Play a custom song for each chapter as you follow the story.</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {chapterSongs.map((song) => (
+              <Card key={song.chapter} className="hover:shadow-lg transition-shadow border-amber-500/20">
+                <CardHeader className="pb-2">
+                  <div className="text-sm font-semibold text-amber-500 mb-1">Chapter {song.chapter}</div>
+                  <CardTitle className="text-lg">{song.title}</CardTitle>
+                  <CardDescription>{song.summary}</CardDescription>
+                </CardHeader>
+                <CardContent className="pt-2">
+                  <iframe
+                    src={song.embedUrl}
+                    className="w-full rounded-lg"
+                    style={{ height: "240px" }}
+                    title={`Chapter ${song.chapter} - ${song.title}`}
+                    allow="autoplay"
+                  />
+                </CardContent>
               </Card>
             ))}
           </div>
