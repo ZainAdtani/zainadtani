@@ -395,15 +395,15 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <div id="top" />
       <Helmet>
-        <title>Engineer → Enrolled Agent | Zain Adtani</title>
+        <title>Zain Adtani | Teacher & Site Builder for Tiny Business Owners</title>
         <meta
           name="description"
-          content="Short lessons, no fluff. Pass the EA exam and get confident with taxes. Free community, full course, reading list, certifications."
+          content="I help small and tiny business owners turn ideas into simple sites and calm systems. Clear offers, honest copy, and small experiments so your business grows without chaos."
         />
-        <meta property="og:title" content="Engineer → Enrolled Agent | Zain Adtani" />
+        <meta property="og:title" content="Zain Adtani | Teacher & Site Builder for Tiny Business Owners" />
         <meta
           property="og:description"
-          content="Short lessons, no fluff. Pass the EA exam and get confident with taxes."
+          content="Helping tiny business owners build simple sites and calm systems."
         />
         <meta property="og:image" content={headshotImage} />
         <meta property="og:type" content="website" />
@@ -421,7 +421,7 @@ const Index = () => {
               <div className="absolute inset-0 bg-accent/20 rounded-full scale-110 -z-10"></div>
               <img
                 src={headshotImage}
-                alt="Zain Adtani - Enrolled Agent"
+                alt="Zain Adtani - Teacher and Site Builder"
                 className="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover object-top border-4 border-background"
               />
             </div>
@@ -429,34 +429,37 @@ const Index = () => {
             {/* Hero Text */}
             <div className="flex-1 text-center md:text-left space-y-8">
               <div>
+                {/* 
+                  Alternate headline options to swap in later:
+                  - "Hey Builders 👋"
+                  - "Hey Tiny Business Owners 👋"
+                  - "Hey Calm Creators 👋"
+                */}
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground">Hey Friends 👋</h1>
                 <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-4">
-                  I'm Zain, an engineer turned teacher. I help busy beginners pass the EA exam and understand taxes, and I help small business owners build simple websites they feel proud of. Together we focus on skills, confidence, and calm money decisions.
-                </p>
-                <p className="text-base text-primary font-medium">
-                  Teacher for taxes and tiny business sites.
+                  I am Zain, an engineer turned teacher. I help small and tiny business owners turn ideas into simple sites and calm systems. We work on clear offers, honest copy, and small experiments so your business grows without chaos.
                 </p>
               </div>
 
               {/* Focus Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Card className="p-6 border-2 hover:shadow-lg hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
-                  <h3 className="text-lg font-bold mb-2 text-foreground">Learn Taxes with Me</h3>
+                  <h3 className="text-lg font-bold mb-2 text-foreground">Build a Simple Site</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Help passing the EA exam and feeling calm with the IRS.
+                    Help for tiny and local business owners who want a clean site that feels like them.
                   </p>
                   <Button asChild className="w-full">
-                    <Link to="/enrolled-agent">Explore EA Study Hub</Link>
+                    <Link to="/website-lab">See Website Projects</Link>
                   </Button>
                 </Card>
 
                 <Card className="p-6 border-2 hover:shadow-lg hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
-                  <h3 className="text-lg font-bold mb-2 text-foreground">Build a Simple Site</h3>
+                  <h3 className="text-lg font-bold mb-2 text-foreground">Tiny Business Growth Lab</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Help for small business owners who want a clean site that fits their story.
+                    Simple ideas for offers, content, and systems that keep your business calm.
                   </p>
                   <Button asChild className="w-full">
-                    <Link to="/website-lab">See Website Projects</Link>
+                    <Link to="/blog">Explore Growth Ideas</Link>
                   </Button>
                 </Card>
               </div>
@@ -491,25 +494,7 @@ const Index = () => {
       <section className="py-16 md:py-24 bg-secondary/20">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Button 1: Full Course */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <a href="https://whop.com/eng2ea/?a=eng2ea" target="_blank" rel="noopener noreferrer" className="block">
-                <GraduationCap className="w-12 h-12 text-primary mb-4 animate-bounce" />
-                <h3 className="text-2xl font-bold mb-2 text-foreground">Take the Full Course</h3>
-                <p className="text-muted-foreground">Engineer to Enrolled Agent Part 1</p>
-              </a>
-            </Card>
-
-            {/* Button 2: My Toolkit */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <Link to="/tools" className="block">
-                <Cpu className="w-12 h-12 text-primary mb-4 animate-bounce" />
-                <h3 className="text-2xl font-bold mb-2 text-foreground">My Toolkit</h3>
-                <p className="text-muted-foreground">AI, software, and systems I use for EA prep and building sites</p>
-              </Link>
-            </Card>
-
-            {/* Button 3: NBA Tracker Hub */}
+            {/* Button 1: NBA Tracker Hub */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
               <Link to="/nba" className="block">
                 <div className="w-12 h-12 mb-4 flex items-center justify-center">
@@ -520,13 +505,31 @@ const Index = () => {
               </Link>
             </Card>
 
-            {/* Button 4: My Blog */}
+            {/* Button 2: My Toolkit */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <a href="https://zainadtani.com/blog" className="block">
+              <Link to="/tools" className="block">
+                <Cpu className="w-12 h-12 text-primary mb-4 animate-bounce" />
+                <h3 className="text-2xl font-bold mb-2 text-foreground">My Toolkit</h3>
+                <p className="text-muted-foreground">AI, software, and systems I use for building sites and growing ideas</p>
+              </Link>
+            </Card>
+
+            {/* Button 3: My Blog */}
+            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
+              <Link to="/blog" className="block">
                 <FileText className="w-12 h-12 text-primary mb-4 animate-bounce" />
                 <h3 className="text-2xl font-bold mb-2 text-foreground">My Blog</h3>
                 <p className="text-muted-foreground">Articles, notes, and ideas</p>
-              </a>
+              </Link>
+            </Card>
+
+            {/* Button 4: Resource Vault */}
+            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
+              <Link to="/resources" className="block">
+                <FolderOpen className="w-12 h-12 text-primary mb-4 animate-bounce" />
+                <h3 className="text-2xl font-bold mb-2 text-foreground">Resource Vault</h3>
+                <p className="text-muted-foreground">PDF guides, checklists, and tools you download in a few clicks</p>
+              </Link>
             </Card>
           </div>
         </div>
@@ -558,11 +561,18 @@ const Index = () => {
                 <p className="text-sm text-muted-foreground">A timeline of what I am building right now, wins and mistakes included.</p>
               </Card>
             </Link>
+            <a href="https://whop.com/eng2ea/?a=eng2ea" target="_blank" rel="noopener noreferrer">
+              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
+                <GraduationCapIcon className="w-8 h-8 text-primary mb-3" />
+                <h3 className="text-lg font-semibold mb-1">Take the Full Course</h3>
+                <p className="text-sm text-muted-foreground">Engineer to Enrolled Agent Part 1 — legacy free course from my EA study era.</p>
+              </Card>
+            </a>
             <Link to="/enrolled-agent">
               <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
                 <GraduationCapIcon className="w-8 h-8 text-primary mb-3" />
                 <h3 className="text-lg font-semibold mb-1">EA Study Hub</h3>
-                <p className="text-sm text-muted-foreground">All my EA notes, lessons, and practice tools in one simple place.</p>
+                <p className="text-sm text-muted-foreground">Legacy EA study resources — notes, lessons, and practice tools.</p>
               </Card>
             </Link>
             <Link to="/ai-prompts">
@@ -1378,103 +1388,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Join Free Community */}
-      <section className="py-12 bg-secondary/20" aria-label="Join Free Community">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <Card className="p-8 md:p-10 border-2 shadow-lg bg-background/90 backdrop-blur-sm">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-              {/* Visual / Cover Images */}
-              <div className="md:col-span-1 space-y-4">
-                {/* New cover image */}
-                <div className="rounded-2xl overflow-hidden border-2 border-primary/30 shadow-lg">
-                  <img
-                    src={engineerToEABanner2}
-                    alt="Engineer to Enrolled Agent - Community Cover"
-                    className="w-full h-auto object-cover"
-                  />
-                </div>
-                
-                {/* Existing gradient cover */}
-                <div
-                  className="relative rounded-2xl overflow-hidden border-2 border-accent/40 bg-gradient-to-br from-yellow-300/40 via-yellow-200/30 to-yellow-100/40 dark:from-yellow-400/20 dark:via-yellow-300/15 dark:to-yellow-200/10"
-                  style={{
-                    transformStyle: "preserve-3d",
-                  }}
-                >
-                  <div className="absolute -top-10 -left-10 w-40 h-40 bg-yellow-300/30 rounded-full blur-2xl pointer-events-none" />
-                  <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-yellow-500/20 rounded-full blur-3xl pointer-events-none" />
-                  <div className="aspect-[16/10] flex items-center justify-center p-6">
-                    <div className="text-center">
-                      <p className="text-sm font-semibold text-yellow-800 dark:text-yellow-200 tracking-wide">
-                        Engineer → Enrolled Agent
-                      </p>
-                      <p className="text-xl md:text-2xl font-extrabold text-yellow-900 dark:text-yellow-100 mt-1">
-                        Free Community
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="md:col-span-2">
-                <div className="flex items-center gap-2 mb-3 animate-[float_6s_ease-in-out_infinite]">
-                  <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-yellow-100 text-yellow-900 border border-yellow-300/70 dark:bg-yellow-900/30 dark:text-yellow-100 dark:border-yellow-700/50">
-                    ✅ Free to join
-                  </span>
-                  <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-yellow-100 text-yellow-900 border border-yellow-300/70 dark:bg-yellow-900/30 dark:text-yellow-100 dark:border-yellow-700/50">
-                    📚 Short lessons
-                  </span>
-                  <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-yellow-100 text-yellow-900 border border-yellow-300/70 dark:bg-yellow-900/30 dark:text-yellow-100 dark:border-yellow-700/50">
-                    🧠 Study systems
-                  </span>
-                </div>
-
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-                  Engineer → Enrolled Agent (Free Community)
-                </h3>
-                <p className="text-muted-foreground mt-2">
-                  Short lessons. No fluff. Study tips, resources, and support—built for busy beginners and career switchers.
-                </p>
-
-                <ul className="mt-5 grid sm:grid-cols-2 gap-3 text-sm">
-                  <li className="flex items-start gap-2">
-                    <span className="mt-0.5">🟡</span>
-                    <span>EA Part 1 bite-size lessons & weekly practice prompts</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-0.5">🟡</span>
-                    <span>Printable tools: one-pagers, flowcharts, study planners</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-0.5">🟡</span>
-                    <span>Author templates: outlines, chapter kits, publishing shortcuts</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-0.5">🟡</span>
-                    <span>Friendly accountability to keep you consistent</span>
-                  </li>
-                </ul>
-
-                <div className="mt-6 flex flex-wrap items-center gap-3">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold border-2 border-yellow-600/40 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-                  >
-                    <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer" aria-label="Join the free community on Skool">
-                      Join Free →
-                    </a>
-                  </Button>
-                  <span className="text-xs text-muted-foreground">
-                    100% free • No spam • Cancel anytime
-                  </span>
-                </div>
-              </div>
-            </div>
-          </Card>
-        </div>
-      </section>
 
       {/* Newsletters I Follow Section */}
       <section className="py-16 md:py-24 relative overflow-hidden bg-gradient-to-br from-primary/5 via-accent/10 to-secondary/5">
@@ -2060,9 +1973,113 @@ const Index = () => {
           @keyframes float { 0%{transform:translateY(0)} 50%{transform:translateY(-6px)} 100%{transform:translateY(0)} }
         `}</style>
       </section>
+
+      {/* Legacy: Engineer to Enrolled Agent Free Community - kept for people who still want EA resources */}
+      <section className="py-12 bg-secondary/20" aria-label="Join Free Community">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <Card className="p-8 md:p-10 border-2 shadow-lg bg-background/90 backdrop-blur-sm">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+              {/* Visual / Cover Images */}
+              <div className="md:col-span-1 space-y-4">
+                {/* New cover image */}
+                <div className="rounded-2xl overflow-hidden border-2 border-primary/30 shadow-lg">
+                  <img
+                    src={engineerToEABanner2}
+                    alt="Engineer to Enrolled Agent - Community Cover"
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+                
+                {/* Existing gradient cover */}
+                <div
+                  className="relative rounded-2xl overflow-hidden border-2 border-accent/40 bg-gradient-to-br from-yellow-300/40 via-yellow-200/30 to-yellow-100/40 dark:from-yellow-400/20 dark:via-yellow-300/15 dark:to-yellow-200/10"
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <div className="absolute -top-10 -left-10 w-40 h-40 bg-yellow-300/30 rounded-full blur-2xl pointer-events-none" />
+                  <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-yellow-500/20 rounded-full blur-3xl pointer-events-none" />
+                  <div className="aspect-[16/10] flex items-center justify-center p-6">
+                    <div className="text-center">
+                      <p className="text-sm font-semibold text-yellow-800 dark:text-yellow-200 tracking-wide">
+                        Engineer → Enrolled Agent
+                      </p>
+                      <p className="text-xl md:text-2xl font-extrabold text-yellow-900 dark:text-yellow-100 mt-1">
+                        Free Community
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="md:col-span-2">
+                <div className="flex items-center gap-2 mb-3 animate-[float_6s_ease-in-out_infinite]">
+                  <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-yellow-100 text-yellow-900 border border-yellow-300/70 dark:bg-yellow-900/30 dark:text-yellow-100 dark:border-yellow-700/50">
+                    ✅ Free to join
+                  </span>
+                  <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-yellow-100 text-yellow-900 border border-yellow-300/70 dark:bg-yellow-900/30 dark:text-yellow-100 dark:border-yellow-700/50">
+                    📚 Short lessons
+                  </span>
+                  <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-yellow-100 text-yellow-900 border border-yellow-300/70 dark:bg-yellow-900/30 dark:text-yellow-100 dark:border-yellow-700/50">
+                    🧠 Study systems
+                  </span>
+                </div>
+
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+                  Engineer → Enrolled Agent (Free Community)
+                </h3>
+                <p className="text-muted-foreground mt-2">
+                  Short lessons. No fluff. Study tips, resources, and support—built for busy beginners and career switchers.
+                </p>
+
+                <ul className="mt-5 grid sm:grid-cols-2 gap-3 text-sm">
+                  <li className="flex items-start gap-2">
+                    <span className="mt-0.5">🟡</span>
+                    <span>EA Part 1 bite-size lessons & weekly practice prompts</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-0.5">🟡</span>
+                    <span>Printable tools: one-pagers, flowcharts, study planners</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-0.5">🟡</span>
+                    <span>Author templates: outlines, chapter kits, publishing shortcuts</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-0.5">🟡</span>
+                    <span>Friendly accountability to keep you consistent</span>
+                  </li>
+                </ul>
+
+                <div className="mt-6 flex flex-wrap items-center gap-3">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold border-2 border-yellow-600/40 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                  >
+                    <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer" aria-label="Join the free community on Skool">
+                      Join Free →
+                    </a>
+                  </Button>
+                  <span className="text-xs text-muted-foreground">
+                    100% free • No spam • Cancel anytime
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-background border-t border-border py-8">
         <div className="container mx-auto px-4 max-w-6xl text-center text-sm text-muted-foreground">
+          {/* 
+            Internal note: This site is now focused on teaching and helping tiny business owners 
+            grow through simple sites and calm systems. EA and tax resources are legacy items 
+            kept for people who still want them.
+          */}
           © {new Date().getFullYear()} Zain Education Ventures. All rights reserved.
         </div>
       </footer>
