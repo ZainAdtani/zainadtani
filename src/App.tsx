@@ -42,6 +42,7 @@ import TaxQuest from "./pages/TaxQuest";
 import FinancialTreasureMap from "./pages/FinancialTreasureMap";
 import PersonalLearningVault from "./pages/PersonalLearningVault";
 import WebsiteLab from "./pages/WebsiteLab";
+import Resume from "./pages/Resume";
 
 const queryClient = new QueryClient();
 
@@ -89,6 +90,7 @@ const App = () => (
             <Route path="/financial-treasure-map" element={<FinancialTreasureMap />} />
             <Route path="/personal-learning-vault" element={<PersonalLearningVault />} />
             <Route path="/website-lab" element={<WebsiteLab />} />
+            <Route path="/resume" element={<Resume />} />
             <Route path="/thanks" element={<Thanks />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

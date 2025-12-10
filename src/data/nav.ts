@@ -152,6 +152,13 @@ export const NAV_ITEMS: NavItem[] = [
   },
   // Support Section
   {
+    label: "Interactive Resume",
+    path: "/resume",
+    icon: FileText,
+    section: "support",
+    searchTags: ["resume", "cv", "career", "experience"],
+  },
+  {
     label: "Help / Contact",
     path: "/about",
     icon: HelpCircle,
