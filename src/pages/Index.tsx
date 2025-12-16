@@ -25,7 +25,7 @@ import {
   FolderOpen,
   Lightbulb,
   Grid3x3,
-  GraduationCapIcon,
+  Archive,
 } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
@@ -45,14 +45,13 @@ import millionaireFastlane from "@/assets/millionaire-fastlane-cover.jpg";
 import deanGraziosi from "@/assets/dean-graziosi.jpg";
 import tonyRobbins from "@/assets/tony-robbins.jpg";
 import jasonFladlien from "@/assets/jason-fladlien.jpg";
-import engineerToEABook from "@/assets/engineer-to-ea-book.png";
 import maggieSimbaBook from "@/assets/maggie-simba-book.png";
 import financialSorceryBook from "@/assets/financial-sorcery-book.png";
 import chrisHaroun from "@/assets/chris-haroun.png";
 import trentShelton from "@/assets/trent-shelton.png";
 import timFerriss from "@/assets/tim-ferriss.jpg";
-import engineerToEABanner2 from "@/assets/engineer-to-ea-banner-2.png";
 import eagleScoutBadge from "@/assets/eagle-scout-badge.png";
+import alexHormozi from "@/assets/alex-hormozi.png";
 
 const QUOTES_AND_NOTES = [
   "It is the unknown we fear when we look upon death and darkness, nothing more. - J.K. Rowling, Harry Potter and the Deathly Hallows",
@@ -163,7 +162,7 @@ function faviconFor(url: string) {
   }
 }
 
-const TABS = ["digital-products", "books", "certifications", "role-models"] as const;
+const TABS = ["digital-products", "books", "credentials", "role-models"] as const;
 type TabKey = (typeof TABS)[number];
 
 // Helper function for formatting catalog numbers
@@ -173,6 +172,8 @@ function pad2(n: number) {
 
 function getTabFromHash(hash: string): TabKey {
   const clean = hash.replace("#", "") as TabKey;
+  // Support old "certifications" hash redirecting to "credentials"
+  if (clean === "certifications" as any) return "credentials";
   return (TABS as readonly string[]).includes(clean) ? clean : "digital-products";
 }
 
@@ -298,89 +299,6 @@ const Index = () => {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [activeTab]);
 
-  // Newsletter carousel loop helpers
-  useEffect(() => {
-    const rail = document.getElementById("nl-rail");
-    if (!rail) return;
-    // start at the real first item (index 1) since we added a leading clone
-    const first = rail.children[1] as HTMLElement | undefined;
-    if (first) rail.scrollTo({ left: first.offsetLeft - 12, behavior: "instant" as ScrollBehavior });
-    
-    const onScrollEnd = () => {
-      const items = Array.from(rail.children) as HTMLElement[];
-      const at = rail.scrollLeft;
-      const w = rail.clientWidth;
-      // snap detection tolerance
-      const tol = 6;
-      // if we're at the trailing clone (last element)
-      if (rail.scrollLeft + w >= rail.scrollWidth - tol) {
-        const realFirst = items[1];
-        rail.scrollTo({ left: realFirst.offsetLeft - 12, behavior: "instant" as ScrollBehavior });
-      }
-      // if we're at the leading clone (first element)
-      if (at <= tol) {
-        const realLast = items[items.length - 2];
-        rail.scrollTo({ left: realLast.offsetLeft - 12, behavior: "instant" as ScrollBehavior });
-      }
-    };
-    rail.addEventListener("scrollend" as any, onScrollEnd);
-    return () => rail.removeEventListener("scrollend" as any, onScrollEnd);
-  }, []);
-
-  function snap(dir: 1 | -1) {
-    const rail = document.getElementById("nl-rail");
-    if (!rail) return;
-    const cards = Array.from(rail.children) as HTMLElement[];
-    // find the nearest card and move one step
-    const center = rail.scrollLeft + rail.clientWidth / 2;
-    let nearest = 0, best = Infinity;
-    cards.forEach((el, i) => {
-      const mid = el.offsetLeft + el.offsetWidth / 2;
-      const d = Math.abs(mid - center);
-      if (d < best) { best = d; nearest = i; }
-    });
-    const nextIndex = Math.max(0, Math.min(cards.length - 1, nearest + dir));
-    rail.scrollTo({ left: cards[nextIndex].offsetLeft - 12, behavior: "smooth" });
-  }
-
-  // Podcasts carousel loop helpers
-  useEffect(() => {
-    const rail = document.getElementById("podcast-rail");
-    if (!rail) return;
-    const firstReal = rail.children[1] as HTMLElement | undefined;
-    if (firstReal) rail.scrollTo({ left: firstReal.offsetLeft - 12, behavior: "instant" as ScrollBehavior });
-
-    const onScrollEnd = () => {
-      const items = Array.from(rail.children) as HTMLElement[];
-      const tol = 6, w = rail.clientWidth;
-      if (rail.scrollLeft + w >= rail.scrollWidth - tol) {
-        const realFirst = items[1];
-        rail.scrollTo({ left: realFirst.offsetLeft - 12, behavior: "instant" as ScrollBehavior });
-      }
-      if (rail.scrollLeft <= tol) {
-        const realLast = items[items.length - 2];
-        rail.scrollTo({ left: realLast.offsetLeft - 12, behavior: "instant" as ScrollBehavior });
-      }
-    };
-    rail.addEventListener("scrollend" as any, onScrollEnd);
-    return () => rail.removeEventListener("scrollend" as any, onScrollEnd);
-  }, []);
-
-  function snapPodcast(dir: 1 | -1) {
-    const rail = document.getElementById("podcast-rail");
-    if (!rail) return;
-    const cards = Array.from(rail.children) as HTMLElement[];
-    const center = rail.scrollLeft + rail.clientWidth / 2;
-    let nearest = 0, best = Infinity;
-    cards.forEach((el, i) => {
-      const mid = el.offsetLeft + el.offsetWidth / 2;
-      const d = Math.abs(mid - center);
-      if (d < best) { best = d; nearest = i; }
-    });
-    const next = Math.max(0, Math.min(cards.length - 1, nearest + dir));
-    rail.scrollTo({ left: cards[next].offsetLeft - 12, behavior: "smooth" });
-  }
-
   // Helper: favicon fallback
   function favicon32(u?: string) {
     try { 
@@ -395,15 +313,15 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <div id="top" />
       <Helmet>
-        <title>Zain Adtani | Teacher & Site Builder for Tiny Business Owners</title>
+        <title>Zain Adtani | Simple Sites and Calm Systems</title>
         <meta
           name="description"
-          content="I help small and tiny business owners turn ideas into simple sites and calm systems. Clear offers, honest copy, and small experiments so your business grows without chaos."
+          content="I build simple sites and calm systems for small business owners. Clear offers, honest copy, simple workflows."
         />
-        <meta property="og:title" content="Zain Adtani | Teacher & Site Builder for Tiny Business Owners" />
+        <meta property="og:title" content="Zain Adtani | Simple Sites and Calm Systems" />
         <meta
           property="og:description"
-          content="Helping tiny business owners build simple sites and calm systems."
+          content="I build simple sites and calm systems for small business owners. Clear offers, honest copy, simple workflows."
         />
         <meta property="og:image" content={headshotImage} />
         <meta property="og:type" content="website" />
@@ -437,7 +355,7 @@ const Index = () => {
                 */}
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground">Hey Friends 👋</h1>
                 <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-4">
-                  I am Zain, an engineer turned teacher. I help small and tiny business owners turn ideas into simple sites and calm systems. We work on clear offers, honest copy, and small experiments so your business grows without chaos.
+                  I am Zain, an engineer turned teacher. I help small and tiny business owners turn ideas into simple sites and calm systems. We focus on clear offers, honest copy, and small experiments so your business grows without chaos.
                 </p>
               </div>
 
@@ -561,18 +479,11 @@ const Index = () => {
                 <p className="text-sm text-muted-foreground">A timeline of what I am building right now, wins and mistakes included.</p>
               </Card>
             </Link>
-            <a href="https://whop.com/eng2ea/?a=eng2ea" target="_blank" rel="noopener noreferrer">
-              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
-                <GraduationCapIcon className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-semibold mb-1">Take the Full Course</h3>
-                <p className="text-sm text-muted-foreground">Engineer to Enrolled Agent Part 1 — legacy free course from my EA study era.</p>
-              </Card>
-            </a>
-            <Link to="/enrolled-agent">
-              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
-                <GraduationCapIcon className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-semibold mb-1">EA Study Hub</h3>
-                <p className="text-sm text-muted-foreground">Legacy EA study resources — notes, lessons, and practice tools.</p>
+            <Link to="/legacy">
+              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full border-yellow-500/30">
+                <Archive className="w-8 h-8 text-yellow-500 mb-3" />
+                <h3 className="text-lg font-semibold mb-1">Legacy EA & Tax Hub</h3>
+                <p className="text-sm text-muted-foreground">All my old EA courses, tax tools, and QuickBooks notes in one place.</p>
               </Card>
             </Link>
             <Link to="/ai-prompts">
@@ -623,8 +534,8 @@ const Index = () => {
               <TabsTrigger value="books" className="text-xs sm:text-sm px-2 py-2.5">
                 Books
               </TabsTrigger>
-              <TabsTrigger value="certifications" className="text-xs sm:text-sm px-2 py-2.5">
-                Certifications
+              <TabsTrigger value="credentials" className="text-xs sm:text-sm px-2 py-2.5">
+                Credentials
               </TabsTrigger>
               <TabsTrigger value="role-models" className="text-xs sm:text-sm px-2 py-2.5">
                 Role Models
@@ -692,48 +603,24 @@ const Index = () => {
                           <div className="relative mb-4 overflow-hidden rounded-lg bg-muted/50 flex items-center justify-center">
                             <img
                               src={product.media}
-                              alt={`${product.title} preview`}
-                              className={`w-full h-44 rounded-lg shadow-md ${
-                                product.id === "walking-workday"
-                                  ? "object-cover object-top"
-                                  : product.id === "quiet-your-gut"
-                                    ? "object-contain p-4"
-                                    : "object-cover"
-                              }`}
+                              alt={product.title}
+                              className="w-full h-40 object-cover"
                               loading="lazy"
                             />
                           </div>
                         )}
 
-                        <div className="mt-auto pt-2">
-                          {product.cta?.disabled ? (
-                            <Button
-                              disabled
-                              className="w-full bg-muted text-muted-foreground cursor-not-allowed hover:bg-muted"
+                        <div className="mt-auto flex flex-col gap-2">
+                          <Button asChild className="w-full rounded-full bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg">
+                            <a
+                              href={product.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`Get ${product.title}`}
                             >
-                              {product.cta.label}
-                            </Button>
-                          ) : (
-                            <Button
-                              asChild
-                              variant={product.id === "author-guide" ? "outline" : "default"}
-                              className={
-                                product.id === "author-guide"
-                                  ? "w-full border-primary text-primary hover:bg-primary/10"
-                                  : "w-full"
-                              }
-                            >
-                              <a
-                                href={product.cta?.href ?? "#"}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                download={product.cta?.download}
-                                aria-label={product.cta?.label ?? "Open"}
-                              >
-                                {product.cta?.label ?? "Open"}
-                              </a>
-                            </Button>
-                          )}
+                              {product.cta || "Get It Now"} →
+                            </a>
+                          </Button>
                         </div>
                       </div>
                     </Card>
@@ -743,59 +630,22 @@ const Index = () => {
             </TabsContent>
 
             {/* Books Tab */}
-            <TabsContent id="books" value="books" className="space-y-6">
-              <div className="text-center mb-8">
-                <div className="flex items-center justify-center gap-3 mb-3">
-                  <h3 className="text-3xl md:text-4xl font-bold text-foreground bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                    My Books Portal
-                  </h3>
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground"
-                          onClick={() => {
-                            const element = document.getElementById("published-works");
-                            if (element) {
-                              const prefersReducedMotion = window.matchMedia(
-                                "(prefers-reduced-motion: reduce)",
-                              ).matches;
-                              element.scrollIntoView({
-                                behavior: prefersReducedMotion ? "auto" : "smooth",
-                                block: "start",
-                              });
-                            }
-                          }}
-                          aria-label="Scroll to my published works"
-                        >
-                          <BookOpen className="h-4 w-4" />
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>My Books</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
+            <TabsContent value="books" className="space-y-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+                <div>
+                  <h3 className="text-2xl font-bold text-foreground">Books I'm Reading & Recommend</h3>
+                  <p className="text-muted-foreground">A rotating selection from my reading journey</p>
                 </div>
-                <p className="text-lg text-muted-foreground">Books I've read, I'm reading, and want to read.</p>
-                <div className="mt-4">
-                  <Button asChild variant="outline">
-                    <Link to="/books">Browse all books →</Link>
-                  </Button>
-                </div>
+                <Button asChild variant="outline">
+                  <Link to="/books">View Full Book Portal →</Link>
+                </Button>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {topBooks.map((book) => (
                   <Card
-                    key={book.id}
-                    className="group relative overflow-hidden rounded-3xl border-2 bg-background/60 backdrop-blur-md shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-                    style={{
-                      transformStyle: "preserve-3d",
-                      perspective: "1200px",
-                    }}
+                    key={book.title + book.author}
+                    className="overflow-hidden hover-lift transition-all duration-500 shadow-lg border-2 group"
                   >
                     {/* Status Badge */}
                     <div className="absolute top-4 right-4 z-10 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm">
@@ -899,21 +749,8 @@ const Index = () => {
               </div>
             </TabsContent>
 
-            {/* Certifications Tab */}
-            <TabsContent value="certifications" className="space-y-6">
-              <Card className="p-8 hover-lift transition-all duration-300 shadow-lg border-2">
-                <Award className="w-16 h-16 text-primary mb-6" />
-                <h3 className="text-3xl font-bold mb-4 text-foreground">Enrolled Agent (EA)</h3>
-                <p className="text-lg text-muted-foreground mb-4">
-                  Federally-authorized tax practitioner with unlimited rights to represent taxpayers before the IRS.
-                </p>
-                <div className="space-y-2 text-muted-foreground">
-                  <p>✓ Passed all three parts of the Special Enrollment Examination</p>
-                  <p>✓ Licensed by the U.S. Department of the Treasury</p>
-                  <p>✓ Authorized to represent clients in all 50 states</p>
-                </div>
-              </Card>
-
+            {/* Credentials Tab (formerly Certifications) */}
+            <TabsContent value="credentials" className="space-y-6">
               <Card className="p-8 hover-lift transition-all duration-300 shadow-lg border-2">
                 <div className="flex items-start gap-4 mb-6">
                   <img
@@ -1116,6 +953,22 @@ const Index = () => {
                     website: "https://www.deangraziosi.com",
                   },
                   {
+                    name: "Alex Hormozi",
+                    role: "Founder, Acquisition.com",
+                    born: "",
+                    age: "",
+                    imageAlt: "Alex Hormozi headshot",
+                    bio: "Teaches offers, marketing, and business systems with simple frameworks. Known for $100M Offers and building acquisition.com portfolio.",
+                    bullets: [
+                      "Offers and pricing strategy",
+                      "Customer acquisition basics",
+                      "Systems and execution",
+                    ],
+                    image: alexHormozi,
+                    website: "https://www.acquisition.com",
+                    youtube: "https://www.youtube.com/c/alexhormozi",
+                  },
+                  {
                     name: "Jason Fladlien",
                     role: "Entrepreneur & Webinar Expert",
                     born: "Apr 7, 1983",
@@ -1136,165 +989,119 @@ const Index = () => {
                     born: "",
                     age: "",
                     imageAlt: "Chris Haroun headshot",
-                    bio: "Award-winning business school professor & CEO behind the 300+ hour Haroun MBA Degree Program; background in finance/VC.",
+                    bio: "Award-winning MBA professor and #1 bestselling business instructor on Udemy. Columbia MBA, Goldman Sachs alum, and VC.",
                     bullets: [
-                      "Created comprehensive online MBA program",
-                      "Former VC and finance executive",
-                      "Focus: business education, entrepreneurship, finance",
+                      "2M+ students taught on Udemy",
+                      "Speaker at Inc. 5000, TEDx, etc.",
+                      "Focus: finance, MBA skills, career strategy",
                     ],
                     image: chrisHaroun,
-                    website: "https://www.linkedin.com/in/charoun/",
+                    website: "https://www.harouneducationventures.com/",
                   },
                   {
                     name: "Trent Shelton",
-                    role: "Speaker & Author; Founder of RehabTime",
+                    role: "Former NFL Player & Motivational Speaker",
                     born: "Sep 21, 1984",
-                    age: "41 years old",
+                    age: "40 years old",
                     imageAlt: "Trent Shelton headshot",
-                    bio: "Former NFL WR turned globally followed motivational speaker. Focus: purpose, protecting your peace, and transformational habits.",
+                    bio: "Former NFL wide receiver turned motivational speaker. Founder of RehabTime, reaching millions with messages on self-worth and resilience.",
                     bullets: [
-                      "Founded RehabTime movement",
-                      "Former NFL wide receiver",
-                      "Focus: personal transformation, purpose, mindset",
+                      "Played for Seattle Seahawks, Indianapolis Colts, Washington Redskins",
+                      "Viral videos and millions of followers",
+                      "Focus: self-worth, mental strength, purpose",
                     ],
                     image: trentShelton,
                     website: "https://www.trentshelton.com/",
                   },
                   {
                     name: "Tim Ferriss",
-                    role: "Author & Investor",
+                    role: "Author & Podcast Host",
                     born: "Jul 20, 1977",
-                    age: "48 years old",
+                    age: "47 years old",
                     imageAlt: "Tim Ferriss headshot",
-                    bio: "Bestselling author of The 4-Hour Workweek. Angel investor and host of The Tim Ferriss Show. Curates 5-Bullet Friday.",
+                    bio: 'Author of The 4-Hour Workweek and host of The Tim Ferriss Show. Early-stage investor in Uber, Facebook, and 50+ companies. Known for "deconstructing world-class performers."',
                     bullets: [
-                      "Host of one of the world's biggest business podcasts",
-                      "Author: The 4-Hour Workweek, Tools of Titans, Tribe of Mentors",
-                      "Focus: experiments, lifestyle design, meta-learning",
+                      "700M+ podcast downloads",
+                      "Multiple NYT bestsellers",
+                      "Focus: productivity, self-experimentation, investing",
                     ],
                     image: timFerriss,
                     website: "https://tim.blog/",
                   },
-                ].map((person, index) => (
+                ].map((person) => (
                   <Card
-                    key={index}
-                    className="group overflow-hidden rounded-3xl shadow-lg border-2 bg-gradient-to-b from-background to-secondary/30 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-                    style={{
-                      transformStyle: "preserve-3d",
-                      perspective: "1000px",
-                    }}
-                    onMouseMove={(e) => {
-                      const card = e.currentTarget;
-                      const rect = card.getBoundingClientRect();
-                      const x = e.clientX - rect.left;
-                      const y = e.clientY - rect.top;
-                      const centerX = rect.width / 2;
-                      const centerY = rect.height / 2;
-                      const rotateX = ((y - centerY) / centerY) * 6;
-                      const rotateY = ((x - centerX) / centerX) * 6;
-                      card.style.transform = `perspective(1000px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform =
-                        "perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)";
-                    }}
+                    key={person.name}
+                    className="overflow-hidden hover-lift transition-all duration-500 shadow-lg border-2 group"
                   >
-                    <div className="p-8">
-                      {/* Profile Image with Parallax */}
-                      <div className="relative mb-6 rounded-full overflow-hidden shadow-2xl mx-auto w-48 h-48 border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-500 group-hover:scale-105">
-                        <img
-                          src={person.image}
-                          alt={person.imageAlt}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          loading="lazy"
-                          style={{ transformStyle: "preserve-3d", transform: "translateZ(20px)" }}
-                        />
-                      </div>
-
-                      {/* Name & Role */}
-                      <div className="text-center mb-4">
-                        <h4 className="font-bold text-2xl mb-2 text-foreground">{person.name}</h4>
-                        <p className="text-base text-primary font-semibold mb-1">{person.role}</p>
-                        {person.born && person.age && (
-                          <p className="text-sm text-muted-foreground">
-                            {person.born} • {person.age}
-                          </p>
+                    <div className="p-6 flex flex-col h-full">
+                      {/* Avatar */}
+                      <div className="relative w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-4 border-primary/30 shadow-xl group-hover:border-primary/60 transition-all duration-500">
+                        {person.image ? (
+                          <img
+                            src={person.image}
+                            alt={person.imageAlt}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-primary/20 flex items-center justify-center">
+                            <img
+                              src={faviconFor(person.website)}
+                              alt={person.name}
+                              className="w-14 h-14 rounded-full"
+                              loading="lazy"
+                            />
+                          </div>
                         )}
                       </div>
 
+                      {/* Name & Role */}
+                      <h4 className="text-xl font-bold text-center text-foreground">{person.name}</h4>
+                      <p className="text-sm text-primary text-center mb-2">{person.role}</p>
+                      {person.born && (
+                        <p className="text-xs text-muted-foreground text-center mb-3">
+                          {person.born} • {person.age}
+                        </p>
+                      )}
+
                       {/* Bio */}
-                      <p
-                        className="text-sm text-muted-foreground mb-5 leading-relaxed text-center"
-                        style={{ maxWidth: "55ch", margin: "0 auto 1.25rem" }}
-                      >
-                        {person.bio}
-                      </p>
+                      <p className="text-sm text-muted-foreground mb-4 text-center">{person.bio}</p>
 
                       {/* Bullets */}
-                      <div className="mb-6 bg-secondary/50 rounded-2xl p-5">
-                        <ul className="space-y-3 text-sm text-foreground">
-                          {person.bullets.map((point, i) => (
-                            <li
-                              key={i}
-                              className="flex items-start gap-3 opacity-0 animate-fade-in"
-                              style={{
-                                animationDelay: `${i * 120}ms`,
-                                animationFillMode: "forwards",
-                              }}
-                            >
-                              <span className="text-primary text-lg flex-shrink-0">✓</span>
-                              <span className="leading-snug">{point}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                      <ul className="text-xs text-muted-foreground space-y-1 mb-4 flex-grow">
+                        {person.bullets.map((b, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <span className="text-primary">•</span>
+                            {b}
+                          </li>
+                        ))}
+                      </ul>
 
-                      {/* CTA Buttons */}
-                      {index === 3 ? (
-                        // Chris Haroun - special buttons
-                        <div className="space-y-3">
-                          <p className="text-sm text-muted-foreground text-center mb-3">
-                            MBA-level lessons, live coaching, and a kind peer community.
-                          </p>
-                          <Button
-                            asChild
-                            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 hover:shadow-lg text-base py-6"
-                          >
-                            <a 
-                              href="https://www.linkedin.com/in/charoun/" 
-                              target="_blank" 
-                              rel="noopener noreferrer" 
-                              tabIndex={0}
-                            >
-                              Visit Chris's LinkedIn →
-                            </a>
-                          </Button>
-                          <Button
-                            asChild
-                            variant="secondary"
-                            className="w-full transition-all duration-300 hover:shadow-md text-base py-6"
-                          >
-                            <a 
-                              href="https://community.harounventures.com/joinhev" 
-                              target="_blank" 
-                              rel="noopener noreferrer" 
-                              tabIndex={0}
-                            >
-                              Join HEV Community →
-                            </a>
-                          </Button>
-                        </div>
-                      ) : (
-                        // Default button for other role models
+                      {/* CTA */}
+                      <div className="mt-auto flex flex-col gap-2">
                         <Button
                           asChild
-                          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 hover:shadow-lg text-base py-6"
+                          variant="outline"
+                          size="sm"
+                          className="w-full rounded-full border-primary/50 hover:bg-primary/10 transition-all duration-300"
                         >
-                          <a href={person.website} target="_blank" rel="noopener noreferrer" tabIndex={0}>
-                            Learn More →
+                          <a href={person.website} target="_blank" rel="noopener noreferrer">
+                            Website <ExternalLink className="w-3 h-3 ml-1" />
                           </a>
                         </Button>
-                      )}
+                        {(person as any).youtube && (
+                          <Button
+                            asChild
+                            variant="outline"
+                            size="sm"
+                            className="w-full rounded-full border-red-500/50 text-red-500 hover:bg-red-500/10 transition-all duration-300"
+                          >
+                            <a href={(person as any).youtube} target="_blank" rel="noopener noreferrer">
+                              <Youtube className="w-4 h-4 mr-1" /> YouTube Channel
+                            </a>
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   </Card>
                 ))}
@@ -1529,9 +1336,9 @@ const Index = () => {
           <Card className="p-8 shadow-lg border-2">
             <div className="text-center mb-8">
               <Music className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">Study Playlist 🎵</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">Focus Playlist 🎵</h2>
               <p className="text-lg text-muted-foreground">
-                My curated playlist to help you focus while studying for the EA exam
+                My curated playlist to help you focus while working or studying
               </p>
             </div>
             <div className="rounded-lg overflow-hidden shadow-xl">
@@ -1552,7 +1359,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Books I've Published Section - Updated with 3 books */}
+      {/* Books I've Published Section - Updated with 2 books */}
       <section id="published-works" className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 space-y-4">
@@ -1564,7 +1371,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* If Maggie & Simba Could Talk Book */}
             <Card className="overflow-hidden hover-lift group">
               <div className="relative">
@@ -1583,30 +1390,6 @@ const Index = () => {
                 <p className="text-sm text-muted-foreground mb-2">A Memoir of Love, Loss, and Life Lessons</p>
                 <p className="text-muted-foreground">
                   A heartfelt memoir exploring the profound lessons learned from two beloved companions.
-                </p>
-              </div>
-            </Card>
-
-            {/* Engineer to EA Book */}
-            <Card className="overflow-hidden hover-lift group">
-              <div className="relative">
-                <img
-                  src={engineerToEABook}
-                  alt="Engineer to Enrolled Agent: The Smartest Career Pivot You've Never Heard Of Book Cover"
-                  className="w-full h-auto object-cover"
-                />
-                {/* In The Works Banner */}
-                <div className="absolute top-8 -right-12 bg-gradient-to-r from-accent to-primary text-white px-16 py-2 transform rotate-45 shadow-lg">
-                  <span className="font-bold text-sm">IN THE WORKS</span>
-                </div>
-              </div>
-              <div className="p-6 space-y-3">
-                <h3 className="text-xl font-bold">
-                  Engineer to Enrolled Agent: The Smartest Career Pivot You've Never Heard Of
-                </h3>
-                <p className="text-muted-foreground">
-                  A practical, step-by-step roadmap showing how engineers can leverage their skills to build a rewarding
-                  tax career.
                 </p>
               </div>
             </Card>
@@ -1657,7 +1440,7 @@ const Index = () => {
               </div>
               <Button asChild variant="default" className="w-full mt-auto">
                 <a
-                  href="https://chatgpt.com/g/g-6867e586d500819189774562feffe01c-book-architect"
+                  href="https://chatgpt.com/g/g-680fb27f4d008191b55e91e6b8364da3-book-architect"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -1666,19 +1449,18 @@ const Index = () => {
               </Button>
             </Card>
 
-            {/* Skool.com GPT - My Custom */}
+            {/* Skool.com GPT - Recommended */}
             <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
               <div className="mb-4">
-                <h3 className="text-lg font-bold mb-1">Skool.com GPT: $10K/M Community Coach</h3>
-                <p className="text-xs text-muted-foreground mb-3">by Zain Adtani</p>
+                <h3 className="text-lg font-bold mb-1">Skool.com GPT 10K/M Community Coach</h3>
+                <p className="text-xs text-muted-foreground mb-3">by community builder</p>
                 <p className="text-sm mb-3">
-                  Action-first coach for launching & growing a Skool community to $10K+/mo—show up daily, batch work,
-                  funnel attention, ship simple offers, track MRR.
+                  Turn your skills into a $10K/month Skool community. Offers, pricing, content, and growth—step by step.
                 </p>
               </div>
               <Button asChild variant="default" className="w-full mt-auto">
                 <a
-                  href="https://chatgpt.com/g/g-68bf196615048191abb478d398627dd0-skool-com-gpt-10k-m-community-coach"
+                  href="https://chatgpt.com/g/g-678fd5b1e50c81918a3eea00ae300dd5-skool-com-gpt-10k-m-community-coach"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -1687,16 +1469,45 @@ const Index = () => {
               </Button>
             </Card>
 
-            {/* The Time of Your Life Method - My Custom */}
+            {/* Time of Your Life Method - My Custom */}
             <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
               <div className="mb-4">
-                <h3 className="text-lg font-bold mb-1">The Time of Your Life Method</h3>
+                <h3 className="text-lg font-bold mb-1">Time of Your Life Method</h3>
                 <p className="text-xs text-muted-foreground mb-3">by Zain Adtani</p>
-                <p className="text-sm mb-3">A planner won't change your life—a new system of thinking will.</p>
+                <p className="text-sm mb-3">
+                  Helps you plan your ideal week and align daily tasks with your Outcome Focusing Questions. Built on
+                  Tony Robbins' RPM system.
+                </p>
               </div>
               <Button asChild variant="default" className="w-full mt-auto">
                 <a
-                  href="https://chatgpt.com/g/g-68c1e0fa113c8191940474d7a1653fce-the-time-of-your-life-method"
+                  href="https://chatgpt.com/g/g-67e5ff2da45c8191a33ab6c21f05709d-time-of-your-life-method"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open on ChatGPT ↗
+                </a>
+              </Button>
+            </Card>
+
+            {/* Business Ideas for Beginners Coach - Recommended */}
+            <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
+              <div className="mb-4">
+                <h3 className="text-lg font-bold mb-1">Business Ideas for Beginners Coach</h3>
+                <p className="text-xs text-muted-foreground mb-3">by community builder</p>
+                <p className="text-sm mb-3">
+                  Form a 2k to 20k service business idea, based on Ali Abdaal's approach.
+                </p>
+                <div className="text-xs text-muted-foreground space-y-1 mt-2">
+                  <p>• "I have too many business ideas, help me choose."</p>
+                  <p>• "I do not have any business ideas, where do I start."</p>
+                  <p>• "Is my idea easy mode or hard mode."</p>
+                  <p>• "Help me turn my skills into a high ticket service idea."</p>
+                </div>
+              </div>
+              <Button asChild variant="default" className="w-full mt-auto">
+                <a
+                  href="https://chatgpt.com/g/g-6927f4b0a2bc8191b6f61b036a8d406a-business-ideas-for-beginners-coach"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -1737,26 +1548,6 @@ const Index = () => {
               <Button asChild variant="default" className="w-full mt-auto">
                 <a
                   href="https://chatgpt.com/g/g-68c8d04eca78819195b0601516bb9c9d-whop-monetize"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Open on ChatGPT ↗
-                </a>
-              </Button>
-            </Card>
-
-            {/* EA GPT - My Custom */}
-            <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
-              <div className="mb-4">
-                <h3 className="text-lg font-bold mb-1">EA GPT</h3>
-                <p className="text-xs text-muted-foreground mb-3">by Zain Adtani</p>
-                <p className="text-sm mb-3">
-                  Friendly Enrolled Agent study coach. Answers tax questions in plain language and turns exam topics into practice drills for daily reps.
-                </p>
-              </div>
-              <Button asChild variant="default" className="w-full mt-auto">
-                <a
-                  href="https://chatgpt.com/g/g-68e11a2ec4688191a07e8f83eef33861-ea-gpt"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -1861,7 +1652,7 @@ const Index = () => {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img 
                   src="/images/zains-world-newsletter.png" 
-                  alt="Zain's World Newsletter - Weekly insights on taxes, tools, and growth" 
+                  alt="Zain's World Newsletter - Weekly insights on simple sites and growth" 
                   className="w-full h-auto"
                 />
               </div>
@@ -1886,10 +1677,10 @@ const Index = () => {
                 Join Zain&apos;s World
               </h2>
               <p className="mt-3 text-base md:text-lg text-muted-foreground">
-                Weekly email with one tax idea, one useful tool, and one tiny growth experiment.
+                Weekly ideas for simple sites and calm business.
               </p>
               <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-                One short email each week about taxes, tools, and personal growth plus a free <em>How to Publish a Book</em> PDF.
+                Weekly email with one website idea, one useful tool, and one tiny growth experiment plus a free <em>How to Publish a Book</em> PDF.
               </p>
               
               <p className="mt-4 md:mt-5">
@@ -1955,131 +1746,14 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Optional fallback: original Beehiiv iframe (keep commented) */}
-        {/*
-        <div className="mt-10 flex justify-center">
-          <div
-            dangerouslySetInnerHTML={{ __html: `
-      <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-      <iframe src="https://subscribe-forms.beehiiv.com/ed8bbf49-11ab-4008-a5ff-266eb7752d75"
-        class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no"
-        style="width: 344px; height: 340px; margin: 0; border-radius: 12px; background-color: transparent; box-shadow: 0 0 #0000; max-width: 100%;"></iframe>
-      <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>`}}
-          />
-        </div>
-        */}
-
         <style>{`
           @keyframes float { 0%{transform:translateY(0)} 50%{transform:translateY(-6px)} 100%{transform:translateY(0)} }
         `}</style>
       </section>
 
-      {/* Legacy: Engineer to Enrolled Agent Free Community - kept for people who still want EA resources */}
-      <section className="py-12 bg-secondary/20" aria-label="Join Free Community">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <Card className="p-8 md:p-10 border-2 shadow-lg bg-background/90 backdrop-blur-sm">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-              {/* Visual / Cover Images */}
-              <div className="md:col-span-1 space-y-4">
-                {/* New cover image */}
-                <div className="rounded-2xl overflow-hidden border-2 border-primary/30 shadow-lg">
-                  <img
-                    src={engineerToEABanner2}
-                    alt="Engineer to Enrolled Agent - Community Cover"
-                    className="w-full h-auto object-cover"
-                  />
-                </div>
-                
-                {/* Existing gradient cover */}
-                <div
-                  className="relative rounded-2xl overflow-hidden border-2 border-accent/40 bg-gradient-to-br from-yellow-300/40 via-yellow-200/30 to-yellow-100/40 dark:from-yellow-400/20 dark:via-yellow-300/15 dark:to-yellow-200/10"
-                  style={{
-                    transformStyle: "preserve-3d",
-                  }}
-                >
-                  <div className="absolute -top-10 -left-10 w-40 h-40 bg-yellow-300/30 rounded-full blur-2xl pointer-events-none" />
-                  <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-yellow-500/20 rounded-full blur-3xl pointer-events-none" />
-                  <div className="aspect-[16/10] flex items-center justify-center p-6">
-                    <div className="text-center">
-                      <p className="text-sm font-semibold text-yellow-800 dark:text-yellow-200 tracking-wide">
-                        Engineer → Enrolled Agent
-                      </p>
-                      <p className="text-xl md:text-2xl font-extrabold text-yellow-900 dark:text-yellow-100 mt-1">
-                        Free Community
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="md:col-span-2">
-                <div className="flex items-center gap-2 mb-3 animate-[float_6s_ease-in-out_infinite]">
-                  <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-yellow-100 text-yellow-900 border border-yellow-300/70 dark:bg-yellow-900/30 dark:text-yellow-100 dark:border-yellow-700/50">
-                    ✅ Free to join
-                  </span>
-                  <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-yellow-100 text-yellow-900 border border-yellow-300/70 dark:bg-yellow-900/30 dark:text-yellow-100 dark:border-yellow-700/50">
-                    📚 Short lessons
-                  </span>
-                  <span className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-yellow-100 text-yellow-900 border border-yellow-300/70 dark:bg-yellow-900/30 dark:text-yellow-100 dark:border-yellow-700/50">
-                    🧠 Study systems
-                  </span>
-                </div>
-
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-                  Engineer → Enrolled Agent (Free Community)
-                </h3>
-                <p className="text-muted-foreground mt-2">
-                  Short lessons. No fluff. Study tips, resources, and support—built for busy beginners and career switchers.
-                </p>
-
-                <ul className="mt-5 grid sm:grid-cols-2 gap-3 text-sm">
-                  <li className="flex items-start gap-2">
-                    <span className="mt-0.5">🟡</span>
-                    <span>EA Part 1 bite-size lessons & weekly practice prompts</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-0.5">🟡</span>
-                    <span>Printable tools: one-pagers, flowcharts, study planners</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-0.5">🟡</span>
-                    <span>Author templates: outlines, chapter kits, publishing shortcuts</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-0.5">🟡</span>
-                    <span>Friendly accountability to keep you consistent</span>
-                  </li>
-                </ul>
-
-                <div className="mt-6 flex flex-wrap items-center gap-3">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold border-2 border-yellow-600/40 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-                  >
-                    <a href="https://www.skool.com/eng2ea/about" target="_blank" rel="noopener noreferrer" aria-label="Join the free community on Skool">
-                      Join Free →
-                    </a>
-                  </Button>
-                  <span className="text-xs text-muted-foreground">
-                    100% free • No spam • Cancel anytime
-                  </span>
-                </div>
-              </div>
-            </div>
-          </Card>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="bg-background border-t border-border py-8">
         <div className="container mx-auto px-4 max-w-6xl text-center text-sm text-muted-foreground">
-          {/* 
-            Internal note: This site is now focused on teaching and helping tiny business owners 
-            grow through simple sites and calm systems. EA and tax resources are legacy items 
-            kept for people who still want them.
-          */}
           © {new Date().getFullYear()} Zain Education Ventures. All rights reserved.
         </div>
       </footer>
