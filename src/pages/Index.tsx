@@ -611,16 +611,18 @@ const Index = () => {
                         )}
 
                         <div className="mt-auto flex flex-col gap-2">
-                          <Button asChild className="w-full rounded-full bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg">
-                            <a
-                              href={product.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label={`Get ${product.title}`}
-                            >
-                              {product.cta || "Get It Now"} →
-                            </a>
-                          </Button>
+                          {product.cta && (
+                            <Button asChild className="w-full rounded-full bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg">
+                              <a
+                                href={product.cta.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`Get ${product.title}`}
+                              >
+                                {product.cta.label}
+                              </a>
+                            </Button>
+                          )}
                         </div>
                       </div>
                     </Card>
