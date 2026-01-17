@@ -347,20 +347,14 @@ const Index = () => {
             {/* Hero Text */}
             <div className="flex-1 text-center md:text-left space-y-8">
               <div>
-                {/* 
-                  Alternate headline options to swap in later:
-                  - "Hey Builders 👋"
-                  - "Hey Tiny Business Owners 👋"
-                  - "Hey Calm Creators 👋"
-                */}
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground">Hey Friends 👋</h1>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground">Hi, I am Zain!</h1>
                 <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-4">
-                  I am Zain, an engineer turned teacher. I help small and tiny business owners turn ideas into simple sites and calm systems. We focus on clear offers, honest copy, and small experiments so your business grows without chaos.
+                  I build simple sites and calm systems for small business owners.
                 </p>
               </div>
 
-              {/* Focus Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Focus Card */}
+              <div className="max-w-md mx-auto md:mx-0">
                 <Card className="p-6 border-2 hover:shadow-lg hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
                   <h3 className="text-lg font-bold mb-2 text-foreground">Build a Simple Site</h3>
                   <p className="text-sm text-muted-foreground mb-4">
@@ -368,16 +362,6 @@ const Index = () => {
                   </p>
                   <Button asChild className="w-full">
                     <Link to="/website-lab">See Website Projects</Link>
-                  </Button>
-                </Card>
-
-                <Card className="p-6 border-2 hover:shadow-lg hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
-                  <h3 className="text-lg font-bold mb-2 text-foreground">Tiny Business Growth Lab</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Simple ideas for offers, content, and systems that keep your business calm.
-                  </p>
-                  <Button asChild className="w-full">
-                    <Link to="/blog">Explore Growth Ideas</Link>
                   </Button>
                 </Card>
               </div>
@@ -457,35 +441,7 @@ const Index = () => {
       <section className="py-12 bg-muted/30">
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">Quick Links</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <Link to="/resources">
-              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
-                <FolderOpen className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-semibold mb-1">Resource Vault</h3>
-                <p className="text-sm text-muted-foreground">PDF guides, checklists, and tools you download in a few clicks.</p>
-              </Card>
-            </Link>
-            <Link to="/waez">
-              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
-                <Grid3x3 className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-semibold mb-1">WAEZ Lab</h3>
-                <p className="text-sm text-muted-foreground">My experiment space, AI builds, and weird projects I try in public.</p>
-              </Card>
-            </Link>
-            <Link to="/projects">
-              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
-                <Lightbulb className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-semibold mb-1">Build Log</h3>
-                <p className="text-sm text-muted-foreground">A timeline of what I am building right now, wins and mistakes included.</p>
-              </Card>
-            </Link>
-            <Link to="/legacy">
-              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full border-yellow-500/30">
-                <Archive className="w-8 h-8 text-yellow-500 mb-3" />
-                <h3 className="text-lg font-semibold mb-1">Legacy EA & Tax Hub</h3>
-                <p className="text-sm text-muted-foreground">All my old EA courses, tax tools, and QuickBooks notes in one place.</p>
-              </Card>
-            </Link>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Link to="/ai-prompts">
               <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
                 <Sparkles className="w-8 h-8 text-primary mb-3" />
@@ -505,13 +461,6 @@ const Index = () => {
                 <BookOpen className="w-8 h-8 text-primary mb-3" />
                 <h3 className="text-lg font-semibold mb-1">Personal Learning Vault</h3>
                 <p className="text-sm text-muted-foreground">A home for summaries of videos, courses, and lessons you want to remember.</p>
-              </Card>
-            </Link>
-            <Link to="/website-lab">
-              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
-                <Cpu className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-semibold mb-1">Website Starter Lab</h3>
-                <p className="text-sm text-muted-foreground">Simple site templates and case studies for small business owners.</p>
               </Card>
             </Link>
           </div>
