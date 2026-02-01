@@ -30,7 +30,6 @@ import PersonalLearningVault from "./pages/PersonalLearningVault";
 import QuickBooksCleanup from "./pages/QuickBooksCleanup";
 import QuickBooksFastTrack from "./pages/QuickBooksFastTrack";
 import Sports from "./pages/Sports";
-import Workout from "./pages/Workout";
 import Health from "./pages/Health";
 import Archive from "./pages/Archive";
 import FinancialTreasureMap from "./pages/FinancialTreasureMap";

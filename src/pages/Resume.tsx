@@ -5,14 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
   contactInfo,
-  summary,
   skills,
   experience,
   education,
   certifications,
   type ExperienceItem,
 } from "@/data/resumeData";
-import { cn } from "@/lib/utils";
 
 // Short summary for the clean one-pager
 const shortSummary = `I build websites for small businesses. I focus on simple designs and tools that save time. I like to keep things calm and useful.`;
@@ -24,7 +22,7 @@ const tools = ["Lovable", "Notion", "Figma", "QuickBooks", "Canva", "GitHub"];
 const projects = [
   { name: "Zain's World Newsletter", result: "Weekly posts to 500+ subscribers" },
   { name: "Children's Book", result: "Published illustrated story on Amazon" },
-  { name: "EA Exam Course", result: "Free study course for tax certification" },
+  { name: "Simple Sites for Clients", result: "Built websites for small businesses" },
 ];
 
 export default function Resume() {
@@ -165,7 +163,7 @@ export default function Resume() {
                 </h2>
                 <div className="space-y-5">
                   {experience.map((job, index) => (
-                    <ExperienceItem
+                    <ExperienceItemCard
                       key={index}
                       job={job}
                       isExpanded={expandedJobs.has(index)}
@@ -219,6 +217,8 @@ export default function Resume() {
           body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           .print\\:hidden { display: none !important; }
           .print\\:block { display: block !important; }
+          [data-sidebar] { display: none !important; }
+          header[class*="border-b"] { display: none !important; }
         }
       `}</style>
     </>
@@ -226,7 +226,7 @@ export default function Resume() {
 }
 
 // Experience Item Component
-function ExperienceItem({
+function ExperienceItemCard({
   job,
   isExpanded,
   onToggle,
