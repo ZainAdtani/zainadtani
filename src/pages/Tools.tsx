@@ -57,6 +57,14 @@ const TOOLS: Tool[] = [
     category: "AI & Agents",
   },
   {
+    id: "hedra",
+    name: "Hedra",
+    url: "https://www.hedra.com/app/home",
+    description: "AI video, audio, and imagery creation. Great for talking character videos.",
+    category: "AI & Agents",
+    iconUrl: "/images/tools/hedra-icon.png",
+  },
+  {
     id: "notebooklm",
     name: "NotebookLM",
     url: "https://notebooklm.google",

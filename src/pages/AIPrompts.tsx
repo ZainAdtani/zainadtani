@@ -5,8 +5,15 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { CopyBlock } from "@/components/CopyBlock";
 import { toast } from "sonner";
+import { Copy, Star, ChevronDown, ChevronUp, Search, SlidersHorizontal } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const CUSTOM_INSTRUCTIONS = `Talk to me like I am thirteen. Use simple words. Use short sentences. Keep it fun and clear. Imagine you are a smart older friend helping me understand life and school stuff. 🙂
 
@@ -36,240 +43,257 @@ Avoid long intros. Avoid long wrap up lines. Get to the point, explain it, give 
 
 Keep everything clear, human, and easy enough for a thirteen year old who likes YouTube and games, but wants to improve life. 😄`;
 
+// Get unique tags from all prompts
+const getAllTags = () => {
+  const tags = new Set<string>();
+  AI_PROMPTS.forEach(p => p.tags.forEach(t => tags.add(t)));
+  return Array.from(tags).sort();
+};
+
+// Get unique categories
+const getAllCategories = () => {
+  const categories = new Set<string>();
+  AI_PROMPTS.forEach(p => categories.add(p.category));
+  return Array.from(categories).sort();
+};
+
 export default function AIPrompts() {
   const [q, setQ] = useState("");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [sortBy, setSortBy] = useState<"newest" | "a-z">("newest");
+  const [favorites, setFavorites] = useState<number[]>(() => {
+    try {
+      return JSON.parse(localStorage.getItem("ai-prompt-favorites") || "[]");
+    } catch {
+      return [];
+    }
+  });
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
+  const [expandedPrompts, setExpandedPrompts] = useState<number[]>([]);
+
+  const allTags = useMemo(() => getAllTags(), []);
+  const allCategories = useMemo(() => getAllCategories(), []);
+
   const list = useMemo(() => {
+    let filtered = AI_PROMPTS;
+
+    // Search filter
     const t = q.trim().toLowerCase();
-    if (!t) return AI_PROMPTS;
-    return AI_PROMPTS.filter(p =>
-      [p.title, p.category, p.tags.join(" "), p.note, p.prompt].filter(Boolean).join(" ").toLowerCase().includes(t)
-    );
-  }, [q]);
+    if (t) {
+      filtered = filtered.filter(p =>
+        [p.title, p.category, p.tags.join(" "), p.note, p.prompt].filter(Boolean).join(" ").toLowerCase().includes(t)
+      );
+    }
+
+    // Tag filter
+    if (selectedTags.length > 0) {
+      filtered = filtered.filter(p => 
+        selectedTags.some(tag => p.tags.includes(tag) || p.category === tag)
+      );
+    }
+
+    // Favorites filter
+    if (showFavoritesOnly) {
+      filtered = filtered.filter(p => favorites.includes(p.id));
+    }
+
+    // Sort
+    if (sortBy === "a-z") {
+      filtered = [...filtered].sort((a, b) => a.title.localeCompare(b.title));
+    }
+
+    return filtered;
+  }, [q, selectedTags, sortBy, favorites, showFavoritesOnly]);
 
   const copyToClipboard = (text: string, label: string) => {
     navigator.clipboard.writeText(text).then(() => {
-      toast.success(`${label} copied to clipboard!`);
+      toast.success(`${label} copied!`);
     });
   };
 
+  const toggleFavorite = (id: number) => {
+    const newFavorites = favorites.includes(id) 
+      ? favorites.filter(f => f !== id)
+      : [...favorites, id];
+    setFavorites(newFavorites);
+    localStorage.setItem("ai-prompt-favorites", JSON.stringify(newFavorites));
+  };
+
+  const toggleTag = (tag: string) => {
+    setSelectedTags(prev => 
+      prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
+    );
+  };
+
+  const toggleExpand = (id: number) => {
+    setExpandedPrompts(prev => 
+      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+    );
+  };
+
+  const isLongPrompt = (text: string) => text.length > 300;
+
   return (
     <div className="min-h-screen bg-background">
-      <Helmet><title>AI Prompts | Zain Adtani</title></Helmet>
-      <main className="container mx-auto px-4 py-12 max-w-4xl">
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-2">AI Prompts ⚡</h1>
-        <p className="text-muted-foreground mb-6">Battle-tested prompts. Search, tweak, copy.</p>
-
-        <div className="max-w-xl mb-8">
-          <Input value={q} onChange={(e)=>setQ(e.target.value)} placeholder="Search prompts…" className="h-11" />
+      <Helmet><title>AI Prompt Library | Zain Adtani</title></Helmet>
+      
+      <main className="container mx-auto px-4 py-8 md:py-12 max-w-6xl">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">AI Prompt Library ⚡</h1>
+          <p className="text-muted-foreground">Ready to use prompts for study, work, money, and daily life.</p>
         </div>
 
-        {/* Custom Instructions Block */}
-        <Card className="p-6 mb-8 rounded-2xl border-2 bg-card">
+        {/* Search and Filters */}
+        <div className="space-y-4 mb-8">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input 
+                value={q} 
+                onChange={(e) => setQ(e.target.value)} 
+                placeholder="Search prompts…" 
+                className="h-11 pl-10" 
+              />
+            </div>
+            <Select value={sortBy} onValueChange={(v) => setSortBy(v as "newest" | "a-z")}>
+              <SelectTrigger className="w-full sm:w-[140px] h-11">
+                <SlidersHorizontal className="w-4 h-4 mr-2" />
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="newest">Newest</SelectItem>
+                <SelectItem value="a-z">A to Z</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Filter Chips */}
+          <div className="flex flex-wrap gap-2">
+            <Button
+              variant={showFavoritesOnly ? "default" : "outline"}
+              size="sm"
+              onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
+              className="gap-1"
+            >
+              <Star className={`w-3 h-3 ${showFavoritesOnly ? "fill-current" : ""}`} />
+              Favorites
+            </Button>
+            {allCategories.map(cat => (
+              <Button
+                key={cat}
+                variant={selectedTags.includes(cat) ? "default" : "outline"}
+                size="sm"
+                onClick={() => toggleTag(cat)}
+              >
+                {cat}
+              </Button>
+            ))}
+          </div>
+        </div>
+
+        {/* Custom Instructions Card */}
+        <Card className="p-6 mb-8 rounded-xl border-2 bg-card">
           <div className="flex items-start justify-between gap-4 mb-4">
             <div>
-              <h2 className="text-2xl font-bold mb-1">Custom instructions: Talk to me like I am thirteen</h2>
+              <h2 className="text-xl font-bold mb-1">Custom Instructions</h2>
               <p className="text-sm text-muted-foreground">
-                Copy these instructions into ChatGPT or your AI settings for a fun, clear helper.
+                Copy into ChatGPT settings for a clearer, friendlier helper.
               </p>
             </div>
             <Button 
               onClick={() => copyToClipboard(CUSTOM_INSTRUCTIONS, "Custom instructions")}
               variant="outline"
               size="sm"
+              className="gap-2 shrink-0"
             >
-              Copy instructions
+              <Copy className="w-4 h-4" />
+              Copy
             </Button>
           </div>
-          <div className="bg-muted p-4 rounded-lg">
-            <pre className="text-sm whitespace-pre-wrap font-mono">{CUSTOM_INSTRUCTIONS}</pre>
+          <div className="bg-muted p-4 rounded-lg max-h-40 overflow-y-auto">
+            <pre className="text-sm whitespace-pre-wrap font-mono text-muted-foreground">{CUSTOM_INSTRUCTIONS}</pre>
           </div>
         </Card>
 
-        {/* Affirmation Prompts Section */}
-        <Card className="p-6 mb-8 rounded-2xl border bg-card">
-          <div className="flex items-start justify-between gap-4 mb-3">
-            <h2 className="text-2xl font-bold">Affirmation prompts for your AI learning journey</h2>
-            <Button 
-              onClick={() => copyToClipboard(
-                "I often find myself thinking the negative thought: [insert your exact negative self-talk]. Act as a cognitive behavioral therapist. Transform this negative thought into 3 powerful, present-tense affirmations. They must be believable and feel authentic to me, not overly grandiose. Base them on my strengths, which include [list 2-3 of your positive qualities].",
-                "Affirmation prompts"
-              )}
-              variant="outline"
-              size="sm"
-            >
-              Copy prompts
-            </Button>
-          </div>
-          <div>
-            <p className="text-muted-foreground mb-6">
-              You can use the following prompts in ChatGPT to generate highly personalized affirmations that support you while you learn AI. The prompts below are templates. Change the [input] and (instructions) placeholders so the requests become deeply personal and effective.
-            </p>
-
-            <div className="space-y-6">
-              {/* Prompt 1 */}
-              <div>
-                <div className="flex items-start justify-between gap-4 mb-1">
-                  <h3 className="text-lg font-semibold">1. The Core Belief Rewriter</h3>
-                  <Button 
-                    onClick={() => copyToClipboard(
-                      "I often find myself thinking the negative thought: [insert your exact negative self-talk]. Act as a cognitive behavioral therapist. Transform this negative thought into 3 powerful, present-tense affirmations. They must be believable and feel authentic to me, not overly grandiose. Base them on my strengths, which include [list 2-3 of your positive qualities].",
-                      "Prompt 1"
-                    )}
-                    variant="ghost"
-                    size="sm"
-                  >
-                    Copy
-                  </Button>
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">
-                  <strong>Purpose:</strong> To directly counter a specific negative self talk with a positive, believable affirmation.
-                </p>
-                <div className="bg-muted p-4 rounded-lg">
-                  <p className="text-sm whitespace-pre-wrap font-mono">
-                    "I often find myself thinking the negative thought: [insert your exact negative self-talk]. Act as a cognitive behavioral therapist. Transform this negative thought into 3 powerful, present-tense affirmations. They must be believable and feel authentic to me, not overly grandiose. Base them on my strengths, which include [list 2-3 of your positive qualities]."
-                  </p>
-                </div>
-              </div>
-
-              {/* Prompt 2 */}
-              <div>
-                <div className="flex items-start justify-between gap-4 mb-1">
-                  <h3 className="text-lg font-semibold">2. The Identity Focused Affirmation</h3>
-                  <Button 
-                    onClick={() => copyToClipboard(
-                      "I am working on becoming a person who is [desired quality, for example confident, disciplined, calm]. Craft 3 'I am' statements that reinforce this identity. Weave in a recent example where I showed a glimmer of this quality, like when [describe a small, recent positive action]. The affirmations should feel like a natural extension of this real evidence.",
-                      "Prompt 2"
-                    )}
-                    variant="ghost"
-                    size="sm"
-                  >
-                    Copy
-                  </Button>
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">
-                  <strong>Purpose:</strong> To build affirmations around who I am becoming, not only what I am doing.
-                </p>
-                <div className="bg-muted p-4 rounded-lg">
-                  <p className="text-sm whitespace-pre-wrap font-mono">
-                    "I am working on becoming a person who is [desired quality, for example confident, disciplined, calm]. Craft 3 'I am' statements that reinforce this identity. Weave in a recent example where I showed a glimmer of this quality, like when [describe a small, recent positive action]. The affirmations should feel like a natural extension of this real evidence."
-                  </p>
-                </div>
-              </div>
-
-              {/* Prompt 3 */}
-              <div>
-                <div className="flex items-start justify-between gap-4 mb-1">
-                  <h3 className="text-lg font-semibold">3. The Appreciation Amplifier</h3>
-                  <Button 
-                    onClick={() => copyToClipboard(
-                      "I am grateful for the current progress I have made in my learning of [AI, coding, a new skill]. I have already accomplished [list 1-2 specific wins or milestones, even if small]. Generate 3 affirmations that acknowledge these wins and frame them as evidence that I am capable of continuing this journey. Make them encouraging but grounded in the reality of what I have already done.",
-                      "Prompt 3"
-                    )}
-                    variant="ghost"
-                    size="sm"
-                  >
-                    Copy
-                  </Button>
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">
-                  <strong>Purpose:</strong> To deepen my sense of gratitude and remind me of existing resources rather than focusing solely on what I lack.
-                </p>
-                <div className="bg-muted p-4 rounded-lg">
-                  <p className="text-sm whitespace-pre-wrap font-mono">
-                    "I am grateful for the current progress I have made in my learning of [AI, coding, a new skill]. I have already accomplished [list 1-2 specific wins or milestones, even if small]. Generate 3 affirmations that acknowledge these wins and frame them as evidence that I am capable of continuing this journey. Make them encouraging but grounded in the reality of what I have already done."
-                  </p>
-                </div>
-              </div>
-
-              {/* Prompt 4 */}
-              <div>
-                <div className="flex items-start justify-between gap-4 mb-1">
-                  <h3 className="text-lg font-semibold">4. The Challenge Specific Anchor</h3>
-                  <Button 
-                    onClick={() => copyToClipboard(
-                      "I am facing [upcoming challenging situation] and I want to go into it with a calm and confident mindset. Create 3 short, memorable affirmations I can repeat to myself before and during this situation. They should focus on my ability to handle pressure, my inner strength, and my worth regardless of the outcome. Use strong, active verbs.",
-                      "Prompt 4"
-                    )}
-                    variant="ghost"
-                    size="sm"
-                  >
-                    Copy
-                  </Button>
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">
-                  <strong>Purpose:</strong> To generate affirmations for a specific upcoming stressful situation.
-                </p>
-                <div className="bg-muted p-4 rounded-lg">
-                  <p className="text-sm whitespace-pre-wrap font-mono">
-                    "I am facing [upcoming challenging situation] and I want to go into it with a calm and confident mindset. Create 3 short, memorable affirmations I can repeat to myself before and during this situation. They should focus on my ability to handle pressure, my inner strength, and my worth regardless of the outcome. Use strong, active verbs."
-                  </p>
-                </div>
-              </div>
-
-              {/* Prompt 5 */}
-              <div>
-                <div className="flex items-start justify-between gap-4 mb-1">
-                  <h3 className="text-lg font-semibold">5. The "Already Whole" Affirmation</h3>
-                  <Button 
-                    onClick={() => copyToClipboard(
-                      "I sometimes feel like I am not enough. Craft 3 affirmations that remind me of my inherent worth, which does not depend on my productivity, achievements, or others' opinions. The tone should be unconditional, gentle, and profound. Include the ideas of being enough, whole, and worthy simply by existing.",
-                      "Prompt 5"
-                    )}
-                    variant="ghost"
-                    size="sm"
-                  >
-                    Copy
-                  </Button>
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">
-                  <strong>Purpose:</strong> To counter conditional self esteem with affirmations of inherent worth.
-                </p>
-                <div className="bg-muted p-4 rounded-lg">
-                  <p className="text-sm whitespace-pre-wrap font-mono">
-                    "I sometimes feel like I am not enough. Craft 3 affirmations that remind me of my inherent worth, which does not depend on my productivity, achievements, or others' opinions. The tone should be unconditional, gentle, and profound. Include the ideas of being enough, whole, and worthy simply by existing."
-                  </p>
-                </div>
-              </div>
-
-              {/* How to use block */}
-              <div className="mt-6 p-4 bg-accent/50 rounded-lg">
-                <h3 className="text-md font-semibold mb-2">How to use these prompts</h3>
-                <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-                  <li>Be specific and honest in your inputs.</li>
-                  <li>Iterate and ask the AI to adjust the tone if needed.</li>
-                  <li>Tweak the wording so the affirmations sound like your own voice.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </Card>
-
-        <div className="grid gap-6 md:grid-cols-2">
-          {list.map((p) => (
-            <Card key={p.id} className="p-5 rounded-2xl border hover:-translate-y-1 hover:shadow-lg transition-all duration-200">
-              <div className="mb-3">
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <Badge variant="secondary">{p.category}</Badge>
-                    {p.tags.map(t => <Badge key={t} variant="outline">{t}</Badge>)}
-                  </div>
-                  <Button 
-                    onClick={() => copyToClipboard(p.prompt, p.title)}
-                    variant="ghost"
-                    size="sm"
-                  >
-                    Copy
-                  </Button>
-                </div>
-                <h2 className="text-lg font-semibold mb-1">{p.title}</h2>
-                {p.note && <p className="text-xs text-muted-foreground">{p.note}</p>}
-              </div>
-              <div className="bg-muted p-3 rounded-lg">
-                <p className="text-sm whitespace-pre-wrap">{p.prompt}</p>
-              </div>
-            </Card>
-          ))}
+        {/* Results Count */}
+        <div className="mb-4 text-sm text-muted-foreground">
+          {list.length} prompt{list.length !== 1 ? "s" : ""} found
         </div>
+
+        {/* Prompt Cards Grid */}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {list.map((p) => {
+            const isExpanded = expandedPrompts.includes(p.id);
+            const isLong = isLongPrompt(p.prompt);
+            const isFavorite = favorites.includes(p.id);
+
+            return (
+              <Card key={p.id} className="p-5 rounded-xl border hover:shadow-lg transition-all duration-200 flex flex-col">
+                {/* Header */}
+                <div className="flex items-start justify-between gap-2 mb-3">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-base leading-tight mb-2">{p.title}</h3>
+                    <div className="flex flex-wrap gap-1.5">
+                      <Badge variant="secondary" className="text-xs">{p.category}</Badge>
+                      {p.tags.slice(0, 2).map(t => (
+                        <Badge key={t} variant="outline" className="text-xs">{t}</Badge>
+                      ))}
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => toggleFavorite(p.id)}
+                    className="p-1 hover:bg-muted rounded transition-colors shrink-0"
+                    aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+                  >
+                    <Star className={`w-5 h-5 ${isFavorite ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground"}`} />
+                  </button>
+                </div>
+
+                {/* Note */}
+                {p.note && (
+                  <p className="text-xs text-muted-foreground mb-3">{p.note}</p>
+                )}
+
+                {/* Prompt Text */}
+                <div className="bg-muted p-3 rounded-lg mb-4 flex-1">
+                  <pre className={`text-sm whitespace-pre-wrap font-mono ${!isExpanded && isLong ? "line-clamp-4" : ""}`}>
+                    {p.prompt}
+                  </pre>
+                  {isLong && (
+                    <button
+                      onClick={() => toggleExpand(p.id)}
+                      className="text-xs text-primary hover:underline mt-2 flex items-center gap-1"
+                    >
+                      {isExpanded ? (
+                        <>Collapse <ChevronUp className="w-3 h-3" /></>
+                      ) : (
+                        <>Expand <ChevronDown className="w-3 h-3" /></>
+                      )}
+                    </button>
+                  )}
+                </div>
+
+                {/* Copy Button */}
+                <Button 
+                  onClick={() => copyToClipboard(p.prompt, p.title)}
+                  variant="outline"
+                  size="sm"
+                  className="w-full gap-2 mt-auto"
+                >
+                  <Copy className="w-4 h-4" />
+                  Copy prompt
+                </Button>
+              </Card>
+            );
+          })}
+        </div>
+
+        {list.length === 0 && (
+          <div className="text-center py-12 text-muted-foreground">
+            <p>No prompts found. Try a different search or filter.</p>
+          </div>
+        )}
       </main>
     </div>
   );
