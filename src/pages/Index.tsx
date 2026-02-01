@@ -289,27 +289,11 @@ const Index = () => {
             {/* Hero Text */}
             <div className="flex-1 text-center md:text-left space-y-8">
               <div>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground">Hi, I'm Zain!</h1>
-                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-4">
-                  I build simple sites and calm systems for small business owners.
-                </p>
-              </div>
-
-              {/* Focus Card */}
-              <div className="max-w-md mx-auto md:mx-0">
-                <Card className="p-6 border-2 hover:shadow-lg hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
-                  <h3 className="text-lg font-bold mb-2 text-foreground">Build a Simple Site</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Help for tiny and local business owners who want a clean site that feels like them.
-                  </p>
-                  <Button asChild className="w-full">
-                    <Link to="/website-lab">See Website Projects</Link>
-                  </Button>
-                </Card>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground">Hi, I'm Zain!</h1>
               </div>
 
               {/* Daily Motivation Generator */}
-              <Card className="p-6 shadow-lg border-2 border-primary/20 bg-card text-card-foreground">
+              <Card className="p-6 shadow-lg border-2 border-primary/20 bg-card text-card-foreground max-w-lg mx-auto md:mx-0">
                 <div className="space-y-4">
                   <h3 className="text-lg flex items-center justify-center gap-2 font-semibold text-foreground">
                     <Sparkles className="w-5 h-5 text-primary" />
@@ -321,6 +305,19 @@ const Index = () => {
                   </Button>
                 </div>
               </Card>
+
+              {/* Build a Simple Site Card - moved under motivation */}
+              <div className="max-w-lg mx-auto md:mx-0">
+                <Card className="p-6 border-2 hover:shadow-lg hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
+                  <h3 className="text-lg font-bold mb-2 text-foreground">Build a Simple Site</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Help for tiny and local business owners who want a clean site that feels like them.
+                  </p>
+                  <Button asChild className="w-full">
+                    <Link to="/website-lab">See Website Projects</Link>
+                  </Button>
+                </Card>
+              </div>
             </div>
           </div>
         </div>
@@ -1202,71 +1199,59 @@ const Index = () => {
           </svg>
         </div>
 
-        <div className="relative z-10 container mx-auto max-w-6xl px-6">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            {/* Left: Zain's World Image and Video */}
-            <div className="order-2 md:order-1 space-y-6">
-              {/* Zain's World Newsletter Image - Visible on all devices */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img src="/images/zains-world-newsletter.png" alt="Zain's World Newsletter - Weekly insights on simple sites and growth" className="w-full h-auto" />
-              </div>
-              
-              {/* HeyGen Video */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <iframe width="100%" height="315" src="https://app.heygen.com/embedded-player/920e2ee2b96c44249ca0571f8f8b0d13" title="HeyGen video player" className="border-0 rounded-2xl" allow="encrypted-media; fullscreen" allowFullScreen />
-              </div>
-            </div>
-
-            {/* Right: copy + wide native form */}
-            <div className="order-1 md:order-2 text-center md:text-left">
-              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-                Join Zain&apos;s World
+        <div className="relative z-10 container mx-auto max-w-3xl px-6">
+          <Card className="p-8 md:p-10 bg-card/80 backdrop-blur-sm border-2 shadow-xl">
+            <div className="text-center space-y-6">
+              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
+                Join Zain's World
               </h2>
-              <p className="mt-3 text-base md:text-lg text-muted-foreground">
-                Weekly ideas for simple sites and calm business.
-              </p>
-              <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-                Weekly email with one website idea, one useful tool, and one tiny growth experiment plus a free <em>How to Publish a Book</em> PDF.
-              </p>
               
-              <p className="mt-4 md:mt-5">
-                <a href="https://zains-world.beehiiv.com/" target="_blank" rel="noopener noreferrer" className="inline-block h-12 px-6 rounded-full bg-indigo-600 text-white font-semibold shadow-lg hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 transition">
-                  Open the newsletter site
-                </a>
-              </p>
+              <ul className="text-left max-w-md mx-auto space-y-2 text-muted-foreground">
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  <span>Get new tools and prompts</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  <span>Get updates when new resources drop</span>
+                </li>
+              </ul>
 
               {/* Native form using Beehiiv magic link */}
-              <form className="mt-5 md:mt-6 flex flex-col sm:flex-row items-stretch gap-3 sm:gap-4" onSubmit={e => {
-              e.preventDefault();
-              const input = e.currentTarget.elements.namedItem("email") as HTMLInputElement | null;
-              const email = input?.value.trim();
-              if (!email) return;
-              const magic = `https://magic.beehiiv.com/v1/dd1643e2-f274-43e4-b193-62276e3e3b48?email=${encodeURIComponent(email)}`;
-
-              // Open exactly one new tab. Do not change the current page.
-              const a = document.createElement("a");
-              a.href = magic;
-              a.target = "_blank";
-              a.rel = "noopener noreferrer";
-              document.body.appendChild(a);
-              a.click();
-              a.remove();
-            }}>
-                <label htmlFor="email" className="sr-only">Email address</label>
-                <input id="email" name="email" type="email" required inputMode="email" placeholder="you@example.com" className="flex-1 h-12 md:h-14 min-w-[240px] rounded-full px-5 bg-white text-gray-900 placeholder-gray-500 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-                <button type="submit" className="h-12 md:h-14 px-7 md:px-8 rounded-full bg-indigo-600 text-white font-semibold shadow-md hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 transition">
-                  Subscribe to Zain&apos;s World
-                </button>
+              <form className="flex flex-col sm:flex-row items-stretch gap-3 max-w-md mx-auto" onSubmit={e => {
+                e.preventDefault();
+                const input = e.currentTarget.elements.namedItem("email") as HTMLInputElement | null;
+                const email = input?.value.trim();
+                if (!email) return;
+                const magic = `https://magic.beehiiv.com/v1/dd1643e2-f274-43e4-b193-62276e3e3b48?email=${encodeURIComponent(email)}`;
+                const a = document.createElement("a");
+                a.href = magic;
+                a.target = "_blank";
+                a.rel = "noopener noreferrer";
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+              }}>
+                <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+                <input 
+                  id="newsletter-email" 
+                  name="email" 
+                  type="email" 
+                  required 
+                  inputMode="email" 
+                  placeholder="you@example.com" 
+                  className="flex-1 h-12 rounded-lg px-4 bg-background text-foreground placeholder-muted-foreground border border-border focus:outline-none focus:ring-2 focus:ring-primary" 
+                />
+                <Button type="submit" className="h-12 px-6">
+                  Join
+                </Button>
               </form>
 
-              <p className="mt-3 text-xs text-muted-foreground">
-                No spam. Leave any time.{" "}
-                <a href="https://zains-world.beehiiv.com/?utm_source=site&utm_medium=footer&utm_campaign=archive" target="_blank" rel="noopener" className="underline">
-                  Browse the archive first if you like →
-                </a>
+              <p className="text-xs text-muted-foreground">
+                No spam. Unsubscribe anytime.
               </p>
             </div>
-          </div>
+          </Card>
         </div>
 
         <style>{`
