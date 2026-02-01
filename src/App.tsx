@@ -31,6 +31,8 @@ import QuickBooksCleanup from "./pages/QuickBooksCleanup";
 import QuickBooksFastTrack from "./pages/QuickBooksFastTrack";
 import Sports from "./pages/Sports";
 import Workout from "./pages/Workout";
+import Health from "./pages/Health";
+import Archive from "./pages/Archive";
 import FinancialTreasureMap from "./pages/FinancialTreasureMap";
 import Waez from "./pages/Waez";
 import Services from "./pages/Services";
@@ -89,7 +91,9 @@ const App = () => (
             <Route path="/quickbooks/cleanup" element={<QuickBooksCleanup />} />
             <Route path="/usa-visit-2025/devotional-literature" element={<DevotionalLiterature />} />
             <Route path="/usa-visit-2025/illuminate" element={<Illuminate />} />
-            <Route path="/workout" element={<Workout />} />
+            <Route path="/health" element={<Health />} />
+            <Route path="/workout" element={<Navigate to="/health" replace />} />
+            <Route path="/archive" element={<Archive />} />
             <Route path="/services" element={<Services />} />
             <Route path="/my-podcast" element={<MyPodcast />} />
             <Route path="/tax-quest" element={<TaxQuest />} />

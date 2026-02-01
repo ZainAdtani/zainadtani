@@ -1215,16 +1215,9 @@ const Index = () => {
                 Join Zain's World
               </h2>
               
-              <ul className="text-left max-w-md mx-auto space-y-2 text-muted-foreground">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Get new tools and prompts</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Get updates when new resources drop</span>
-                </li>
-              </ul>
+              <p className="text-lg text-muted-foreground font-medium">
+                Free posts. Quick ideas. No fluff.
+              </p>
 
               {/* Native form using Beehiiv magic link */}
               <form className="flex flex-col sm:flex-row items-stretch gap-3 max-w-md mx-auto" onSubmit={e => {
@@ -1256,8 +1249,17 @@ const Index = () => {
                 </Button>
               </form>
 
+              {/* Buttons row */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <Button variant="outline" asChild className="w-full sm:w-auto">
+                  <a href="https://zains-world.beehiiv.com/" target="_blank" rel="noopener noreferrer">
+                    Read the Newsletter
+                  </a>
+                </Button>
+              </div>
+
               <p className="text-xs text-muted-foreground">
-                No spam. Unsubscribe anytime.
+                Read the archive on Beehiiv, then subscribe there too.
               </p>
             </div>
           </Card>
