@@ -123,8 +123,8 @@ export interface EducationItem {
 
 export const education: EducationItem[] = [
   {
-    institution: "University of Texas at Dallas",
-    degree: "Bachelor of Science in Software Engineering",
+    institution: "University of Texas at San Antonio",
+    degree: "Bachelor of Science in Engineering",
     date: "May 2018",
     honors: ["Dean's List", "President's List"],
   },

@@ -18,6 +18,7 @@ import {
   HelpCircle,
   Briefcase,
   Lock,
+  Archive,
 } from "lucide-react";
 
 export interface NavItem {
@@ -42,20 +43,6 @@ export const NAV_ITEMS: NavItem[] = [
     icon: BookOpen,
     section: "learn",
     searchTags: ["reading", "library"],
-  },
-  {
-    label: "Investing",
-    path: "/investing",
-    icon: TrendingUp,
-    section: "learn",
-    searchTags: ["finance", "stocks"],
-  },
-  {
-    label: "Blog",
-    path: "/blog",
-    icon: FileText,
-    section: "learn",
-    searchTags: ["articles", "posts", "writing"],
   },
   {
     label: "Investing",
@@ -99,13 +86,6 @@ export const NAV_ITEMS: NavItem[] = [
     icon: StickyNote,
     section: "resources",
     searchTags: ["quotes", "wisdom", "mindset"],
-  },
-  {
-    label: "Tools",
-    path: "/tools",
-    icon: Wrench,
-    section: "resources",
-    searchTags: ["utilities"],
   },
   {
     label: "Tools",
@@ -174,9 +154,9 @@ export const NAV_ITEMS: NavItem[] = [
   },
   // Archive Section
   {
-    label: "Archive",
+    label: "Archive Home",
     path: "/archive",
-    icon: FolderKanban,
+    icon: Archive,
     section: "archive",
     searchTags: ["old pages", "reference"],
   },
@@ -185,7 +165,7 @@ export const NAV_ITEMS: NavItem[] = [
     path: "/enrolled-agent",
     icon: GraduationCap,
     section: "archive",
-    searchTags: ["EA", "tax", "certification"],
+    searchTags: ["study", "certification"],
   },
   {
     label: "Personal Learning Vault",
@@ -199,7 +179,7 @@ export const NAV_ITEMS: NavItem[] = [
     path: "/quickbooks",
     icon: Calculator,
     section: "archive",
-    searchTags: ["training", "bookkeeping", "cleanup"],
+    searchTags: ["bookkeeping"],
   },
 ];
 

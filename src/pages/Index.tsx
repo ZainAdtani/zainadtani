@@ -1259,7 +1259,7 @@ const Index = () => {
               </div>
 
               <p className="text-xs text-muted-foreground">
-                Read the archive on Beehiiv, then subscribe there too.
+                Read past posts on Beehiiv, then subscribe there too.
               </p>
             </div>
           </Card>

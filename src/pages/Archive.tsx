@@ -7,19 +7,19 @@ import { GraduationCap, BookOpen, Calculator, ArrowRight } from "lucide-react";
 const archivePages = [
   {
     title: "Enrolled Agent",
-    description: "Tax prep certification and study resources.",
+    description: "Old study notes kept for reference.",
     path: "/enrolled-agent",
     icon: GraduationCap,
   },
   {
     title: "Personal Learning Vault",
-    description: "Video summaries and course notes.",
+    description: "Notes and templates I saved.",
     path: "/personal-learning-vault",
     icon: BookOpen,
   },
   {
     title: "QuickBooks",
-    description: "Bookkeeping training and tools.",
+    description: "Old bookkeeping notes kept for reference.",
     path: "/quickbooks",
     icon: Calculator,
   },
