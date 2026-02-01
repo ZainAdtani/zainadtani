@@ -24,7 +24,7 @@ export interface NavItem {
   label: string;
   path: string;
   icon: LucideIcon;
-  section: "learn" | "resources" | "explore" | "support" | "vault";
+  section: "learn" | "resources" | "explore" | "support" | "vault" | "archive";
   searchTags?: string[];
 }
 
@@ -37,18 +37,25 @@ export const NAV_ITEMS: NavItem[] = [
     section: "learn",
   },
   {
-    label: "Enrolled Agent",
-    path: "/enrolled-agent",
-    icon: GraduationCap,
-    section: "learn",
-    searchTags: ["EA", "tax", "certification"],
-  },
-  {
     label: "Books",
     path: "/books",
     icon: BookOpen,
     section: "learn",
     searchTags: ["reading", "library"],
+  },
+  {
+    label: "Investing",
+    path: "/investing",
+    icon: TrendingUp,
+    section: "learn",
+    searchTags: ["finance", "stocks"],
+  },
+  {
+    label: "Blog",
+    path: "/blog",
+    icon: FileText,
+    section: "learn",
+    searchTags: ["articles", "posts", "writing"],
   },
   {
     label: "Investing",
@@ -94,18 +101,11 @@ export const NAV_ITEMS: NavItem[] = [
     searchTags: ["quotes", "wisdom", "mindset"],
   },
   {
-    label: "Personal Learning Vault",
-    path: "/personal-learning-vault",
-    icon: BookOpen,
+    label: "Tools",
+    path: "/tools",
+    icon: Wrench,
     section: "resources",
-    searchTags: ["videos", "learning", "notes", "summaries"],
-  },
-  {
-    label: "QuickBooks",
-    path: "/quickbooks",
-    icon: Calculator,
-    section: "resources",
-    searchTags: ["training", "bookkeeping", "cleanup"],
+    searchTags: ["utilities"],
   },
   {
     label: "Tools",
@@ -129,11 +129,11 @@ export const NAV_ITEMS: NavItem[] = [
     searchTags: ["religious", "lectures", "Abu Ali"],
   },
   {
-    label: "Workout",
-    path: "/workout",
+    label: "Health",
+    path: "/health",
     icon: Dumbbell,
     section: "resources",
-    searchTags: ["fitness", "health", "exercise"],
+    searchTags: ["fitness", "wellness", "exercise"],
   },
   // Explore Section
   {
@@ -171,6 +171,35 @@ export const NAV_ITEMS: NavItem[] = [
     icon: Lock,
     section: "vault",
     searchTags: ["premium", "exclusive"],
+  },
+  // Archive Section
+  {
+    label: "Archive",
+    path: "/archive",
+    icon: FolderKanban,
+    section: "archive",
+    searchTags: ["old pages", "reference"],
+  },
+  {
+    label: "Enrolled Agent",
+    path: "/enrolled-agent",
+    icon: GraduationCap,
+    section: "archive",
+    searchTags: ["EA", "tax", "certification"],
+  },
+  {
+    label: "Personal Learning Vault",
+    path: "/personal-learning-vault",
+    icon: BookOpen,
+    section: "archive",
+    searchTags: ["videos", "learning", "notes", "summaries"],
+  },
+  {
+    label: "QuickBooks",
+    path: "/quickbooks",
+    icon: Calculator,
+    section: "archive",
+    searchTags: ["training", "bookkeeping", "cleanup"],
   },
 ];
 

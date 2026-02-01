@@ -60,6 +60,10 @@ export function AppSidebar() {
     const saved = localStorage.getItem("sidebar-support-open");
     return saved !== null ? JSON.parse(saved) : true;
   });
+  const [archiveOpen, setArchiveOpen] = useState(() => {
+    const saved = localStorage.getItem("sidebar-archive-open");
+    return saved !== null ? JSON.parse(saved) : false;
+  });
   const [exploreOpen, setExploreOpen] = useState(() => {
     const saved = localStorage.getItem("sidebar-explore-open");
     return saved !== null ? JSON.parse(saved) : true;
@@ -80,6 +84,9 @@ export function AppSidebar() {
   useEffect(() => {
     localStorage.setItem("sidebar-support-open", JSON.stringify(supportOpen));
   }, [supportOpen]);
+  useEffect(() => {
+    localStorage.setItem("sidebar-archive-open", JSON.stringify(archiveOpen));
+  }, [archiveOpen]);
   useEffect(() => {
     localStorage.setItem("sidebar-explore-open", JSON.stringify(exploreOpen));
   }, [exploreOpen]);
@@ -283,6 +290,36 @@ export function AppSidebar() {
               <SidebarGroupContent>
                 <SidebarMenu>
                   {getNavItemsBySection("support").map((item) => (
+                    <SidebarMenuItem key={item.path}>
+                      <SidebarMenuButton asChild>
+                        <NavLink to={item.path} className={getNavClass}>
+                          <item.icon className="h-4 w-4" />
+                          {!isCollapsed && <span>{item.label}</span>}
+                        </NavLink>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </CollapsibleContent>
+          </SidebarGroup>
+        </Collapsible>
+
+        {/* Archive Section */}
+        <Collapsible open={archiveOpen} onOpenChange={setArchiveOpen}>
+          <SidebarGroup>
+            <CollapsibleTrigger asChild>
+              <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
+                Archive
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${archiveOpen ? "rotate-180" : ""}`}
+                />
+              </SidebarGroupLabel>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {getNavItemsBySection("archive").map((item) => (
                     <SidebarMenuItem key={item.path}>
                       <SidebarMenuButton asChild>
                         <NavLink to={item.path} className={getNavClass}>
