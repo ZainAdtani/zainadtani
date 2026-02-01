@@ -1199,7 +1199,16 @@ const Index = () => {
           </svg>
         </div>
 
-        <div className="relative z-10 container mx-auto max-w-3xl px-6">
+        <div className="relative z-10 container mx-auto max-w-4xl px-6">
+          {/* Newsletter Banner Image */}
+          <div className="rounded-2xl overflow-hidden shadow-2xl mb-8">
+            <img 
+              src="/images/zains-world-newsletter-banner.png" 
+              alt="Zain's World Newsletter" 
+              className="w-full h-auto object-cover"
+            />
+          </div>
+
           <Card className="p-8 md:p-10 bg-card/80 backdrop-blur-sm border-2 shadow-xl">
             <div className="text-center space-y-6">
               <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
