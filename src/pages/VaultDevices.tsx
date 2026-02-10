@@ -27,6 +27,7 @@ type Device = {
   coverageEndsISO?: string;
   notes?: string;
   status?: Status;
+  imageUrl?: string;
 };
 
 type SortKey = "NEWEST" | "OLDEST" | "NAME_ASC" | "NAME_DESC";
@@ -37,62 +38,57 @@ type StatusFilter = "All" | Status;
 // ---------- seed data ----------
 const SEED_DEVICES: Device[] = [
   {
-    id: "iphone-14-pro-max",
-    name: "iPhone 14 Pro Max",
+    id: "iphone-15-pro-max",
+    name: "iPhone 15 Pro Max",
     brand: "Apple",
     type: "Phone",
-    model: "A2651 · 256GB · Deep Purple",
+    model: "iPhone 15 Pro Max · 256GB · Blue Titanium",
     status: "Active",
-    notes: "Primary phone. AppleCare+ included.",
+    notes: "Estimated trade-in value up to $450",
+    imageUrl: "/images/devices/iphone-15-pro-max.png",
+  },
+  {
+    id: "ipad-air",
+    name: "iPad Air",
+    brand: "Apple",
+    type: "Tablet",
+    model: '11-inch iPad Air · Wi-Fi · 128GB · Starlight',
+    purchaseDateISO: "2024-07-30",
+    status: "Active",
+    imageUrl: "/images/devices/ipad-air.png",
+  },
+  {
+    id: "apple-watch-s9",
+    name: "Apple Watch Series 9",
+    brand: "Apple",
+    type: "Watch",
+    model: "Series 9 GPS · 45mm · Midnight Aluminum · Sport Band M/L",
+    purchaseDateISO: "2024-06-18",
+    status: "Active",
+    notes: "Released Sep 2023 · S9 SiP · Double Tap gesture",
+    imageUrl: "/images/devices/apple-watch-s9.png",
   },
   {
     id: "airpods-pro-2",
     name: "AirPods Pro 2",
     brand: "Apple",
     type: "Audio",
-    model: "2nd generation · USB-C",
+    model: "AirPods Pro · 2nd generation · USB-C",
     status: "Active",
-    notes: "Daily driver for music and calls.",
-  },
-  {
-    id: "apple-watch",
-    name: "Apple Watch",
-    brand: "Apple",
-    type: "Watch",
-    model: "Series model",
-    status: "Active",
-    notes: "Fitness and notifications.",
-  },
-  {
-    id: "ipad-air-4",
-    name: "iPad Air 4th Gen",
-    brand: "Apple",
-    type: "Tablet",
-    model: "A2316 · 64GB · Sky Blue",
-    status: "Active",
-    notes: "Used for reading and note-taking.",
+    imageUrl: "/images/devices/airpods-pro-2.png",
   },
   {
     id: "remarkable-1",
     name: "reMarkable 1",
     brand: "reMarkable",
     type: "Tablet",
-    model: "Paper tablet · 1st generation",
+    model: "reMarkable · 1st generation · Paper tablet",
     status: "Active",
-    notes: "E-ink writing tablet. Great for deep focus.",
+    imageUrl: "/images/devices/remarkable-1.png",
   },
 ];
 
 // ---------- helpers ----------
-const TYPE_EMOJI: Record<DeviceType, string> = {
-  Phone: "📱",
-  Tablet: "📋",
-  Laptop: "💻",
-  Watch: "⌚",
-  Audio: "🎧",
-  Other: "🔌",
-};
-
 const BRAND_COLORS: Record<Brand, string> = {
   Apple: "bg-slate-700 text-white",
   reMarkable: "bg-amber-700 text-white",
@@ -130,14 +126,12 @@ export default function VaultDevices() {
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("All");
   const [selectedDevice, setSelectedDevice] = useState<Device | null>(null);
 
-  // Summary
   const summary = useMemo(() => {
     const total = SEED_DEVICES.length;
     const apple = SEED_DEVICES.filter((d) => d.brand === "Apple").length;
     return { total, apple, other: total - apple };
   }, []);
 
-  // Filter + sort
   const filteredSorted = useMemo(() => {
     let list = [...SEED_DEVICES];
 
@@ -272,11 +266,20 @@ export default function VaultDevices() {
             {selectedDevice && (
               <>
                 <DialogHeader>
-                  <DialogTitle className="flex items-center gap-2 text-xl">
-                    <span className="text-2xl">{TYPE_EMOJI[selectedDevice.type]}</span>
-                    {selectedDevice.name}
-                  </DialogTitle>
+                  <DialogTitle className="text-xl">{selectedDevice.name}</DialogTitle>
                 </DialogHeader>
+
+                {/* Dialog image */}
+                {selectedDevice.imageUrl && (
+                  <div className="flex justify-center rounded-xl bg-gradient-to-b from-slate-100 to-slate-50 p-6 dark:from-slate-800/60 dark:to-slate-900/60">
+                    <img
+                      src={selectedDevice.imageUrl}
+                      alt={selectedDevice.name}
+                      className="h-40 w-auto object-contain"
+                    />
+                  </div>
+                )}
+
                 <div className="space-y-3 text-sm">
                   {selectedDevice.model && (
                     <div>
@@ -293,7 +296,7 @@ export default function VaultDevices() {
                   </div>
                   {selectedDevice.purchaseDateISO && (
                     <div>
-                      <span className="font-medium text-slate-500 dark:text-slate-400">Purchased:</span>{" "}
+                      <span className="font-medium text-slate-500 dark:text-slate-400">Ordered:</span>{" "}
                       {fmtDate(selectedDevice.purchaseDateISO)}
                     </div>
                   )}
@@ -334,57 +337,53 @@ function SummaryTile({ label, value, emoji }: { label: string; value: string; em
 }
 
 function DeviceCard({ device, onClick }: { device: Device; onClick: () => void }) {
-  const { name, brand, type, model, status, purchaseDateISO, coverageEndsISO, notes } = device;
-  const emoji = TYPE_EMOJI[type];
+  const { name, brand, type, model, status, purchaseDateISO, coverageEndsISO, notes, imageUrl } = device;
 
   return (
     <Card
-      className="group relative cursor-pointer overflow-hidden rounded-2xl border bg-white/90 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-white/10 dark:bg-white/[.06]"
-      style={{ perspective: "800px" }}
+      className="group relative cursor-pointer overflow-hidden rounded-2xl border bg-white/90 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-white/10 dark:bg-white/[.06]"
       onClick={onClick}
     >
-      {/* Gradient overlay */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-60 mix-blend-overlay"
-        style={{
-          backgroundImage:
-            "radial-gradient(1200px 600px at 10% -10%, rgba(99,102,241,.18), transparent 60%), radial-gradient(1000px 500px at 120% 120%, rgba(16,185,129,.12), transparent 60%)",
-        }}
-      />
+      {/* Glass highlight */}
+      <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
 
       {/* Thumbnail area */}
-      <div className="relative flex h-32 items-center justify-center overflow-hidden rounded-t-2xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900">
-        <span
-          className="text-6xl transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-1"
-          style={{ filter: "drop-shadow(0 4px 12px rgba(0,0,0,.15))" }}
-        >
-          {emoji}
-        </span>
+      <div className="relative flex h-44 items-center justify-center overflow-hidden rounded-t-2xl bg-gradient-to-br from-slate-100 via-slate-50 to-white dark:from-slate-800/80 dark:via-slate-900/60 dark:to-slate-950/80">
+        {imageUrl ? (
+          <img
+            src={imageUrl}
+            alt={name}
+            className="h-32 w-auto object-contain transition-transform duration-500 ease-out group-hover:scale-105 group-hover:-translate-y-1"
+            style={{ filter: "drop-shadow(0 8px 20px rgba(0,0,0,.12))" }}
+          />
+        ) : (
+          <div className="text-6xl opacity-40">📦</div>
+        )}
       </div>
 
-      <CardHeader className="relative pb-2">
-        <div className="flex items-center justify-between">
-          <CardTitle className="text-lg">{name}</CardTitle>
-        </div>
-        {model && <div className="text-xs text-slate-500 dark:text-slate-400">{model}</div>}
+      <CardHeader className="relative pb-2 pt-4">
+        <CardTitle className="text-base font-semibold">{name}</CardTitle>
+        {model && (
+          <div className="mt-0.5 text-xs leading-snug text-slate-500 dark:text-slate-400">
+            {model}
+          </div>
+        )}
       </CardHeader>
 
-      <CardContent className="relative space-y-3">
+      <CardContent className="relative space-y-3 pb-5">
         {/* Badges */}
         <div className="flex flex-wrap gap-1.5">
           <Badge className={`text-xs ${BRAND_COLORS[brand]}`}>{brand}</Badge>
-          <Badge variant="outline" className="text-xs">
-            {type}
-          </Badge>
+          <Badge variant="outline" className="text-xs">{type}</Badge>
           <Badge variant="outline" className={`text-xs ${STATUS_COLORS[status ?? "Unknown"]}`}>
             {status ?? "Unknown"}
           </Badge>
         </div>
 
-        {/* Info lines */}
+        {/* Info */}
         <div className="space-y-1 text-xs text-slate-500 dark:text-slate-400">
-          {purchaseDateISO && <div>Purchased: {fmtDate(purchaseDateISO)}</div>}
-          {coverageEndsISO && <div>Coverage ends: {fmtDate(coverageEndsISO)}</div>}
+          {purchaseDateISO && <div>Ordered {fmtDate(purchaseDateISO)}</div>}
+          {coverageEndsISO && <div>Coverage ends {fmtDate(coverageEndsISO)}</div>}
           {notes && <div className="line-clamp-2">{notes}</div>}
         </div>
       </CardContent>
