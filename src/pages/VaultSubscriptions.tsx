@@ -86,9 +86,9 @@ const SUBS: Sub[] = [
     name: "Canva Pro",
     cadence: "Yearly",
     amount: 120,
-    payer: "MasterCard ••5913",
-    note: "Yearly at $120/year",
-    nextDueISO: "2025-12-19",
+    payer: "Mastercard •••• 5913",
+    note: "Plan renews on December 19, 2026. Price US$120 per year. Plus tax if applicable. Manage members (1). Payment method for your team is Personal. Expires November 2031.",
+    nextDueISO: "2026-12-19",
     bucket: "Work",
   },
   {

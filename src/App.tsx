@@ -26,6 +26,7 @@ import Thanks from "./pages/Thanks";
 import DigitalProductsPage from "./pages/DigitalProductsPage";
 import LifeNotes from "./pages/LifeNotes";
 import VaultSubscriptions from "./pages/VaultSubscriptions";
+import VaultDevices from "./pages/VaultDevices";
 import PersonalLearningVault from "./pages/PersonalLearningVault";
 import QuickBooksCleanup from "./pages/QuickBooksCleanup";
 import QuickBooksFastTrack from "./pages/QuickBooksFastTrack";
@@ -67,6 +68,7 @@ const App = () => (
             <Route path="/digital-products" element={<DigitalProductsPage />} />
             <Route path="/vault" element={<SecretVault />} />
             <Route path="/vault/subscriptions" element={<VaultSubscriptions />} />
+            <Route path="/vault/devices" element={<VaultDevices />} />
             <Route path="/tools" element={<Tools />} />
             <Route path="/enrolled-agent" element={<EnrolledAgent />} />
             <Route path="/sports" element={<Sports />} />
