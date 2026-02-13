@@ -1,7 +1,7 @@
 /* Scoped styles for Website Starter Lab — Junglekeepers-inspired green theme */
 /* All selectors scoped to .starter-lab-page to prevent leaks */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@400;500;600;700&display=swap');
 
 .starter-lab-page {
   --sl-green-50: 140 40% 97%;
@@ -18,6 +18,7 @@
   --sl-sand-50: 40 30% 97%;
   --sl-sand-100: 38 25% 93%;
   --sl-sand-200: 36 20% 86%;
+  --sl-paper: 38 30% 95%;
 
   --sl-bg: var(--sl-sand-50);
   --sl-fg: var(--sl-green-900);
@@ -31,6 +32,17 @@
   color: hsl(var(--sl-fg));
   background: hsl(var(--sl-bg));
   min-height: 100vh;
+}
+
+/* Reading progress bar */
+.starter-lab-page .sl-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: hsl(var(--sl-green-500));
+  z-index: 100;
+  transition: width 0.1s linear;
 }
 
 /* Hero */
@@ -72,6 +84,7 @@
   box-shadow:
     0 1px 3px hsl(var(--sl-green-200) / 0.3),
     0 8px 24px hsl(var(--sl-green-200) / 0.15);
+  transition: box-shadow 0.3s, transform 0.2s;
 }
 
 .starter-lab-page .sl-card:hover {
@@ -101,6 +114,61 @@
 
 .starter-lab-page .sl-input::placeholder {
   color: hsl(var(--sl-sand-200));
+}
+
+/* Checkbox chip toggle */
+.starter-lab-page .sl-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 9999px;
+  border: 1.5px solid hsl(var(--sl-green-200));
+  background: hsl(var(--sl-card-bg));
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+  color: hsl(var(--sl-green-600));
+}
+
+.starter-lab-page .sl-chip:hover {
+  border-color: hsl(var(--sl-green-300));
+  background: hsl(var(--sl-green-50));
+}
+
+.starter-lab-page .sl-chip.selected {
+  background: hsl(var(--sl-green-600));
+  border-color: hsl(var(--sl-green-600));
+  color: white;
+}
+
+/* Path toggle */
+.starter-lab-page .sl-path-toggle {
+  display: inline-flex;
+  background: hsl(var(--sl-card-bg));
+  border: 1.5px solid hsl(var(--sl-green-200));
+  border-radius: 9999px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.starter-lab-page .sl-path-toggle button {
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  border: none;
+  background: transparent;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: hsl(var(--sl-green-600));
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+.starter-lab-page .sl-path-toggle button.active {
+  background: hsl(var(--sl-green-600));
+  color: white;
 }
 
 /* Buttons */
@@ -151,6 +219,17 @@
   border-color: hsl(var(--sl-green-400));
 }
 
+.starter-lab-page .sl-btn-link {
+  background: none;
+  border: none;
+  color: hsl(var(--sl-green-500));
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
 /* Section dividers */
 .starter-lab-page .sl-section {
   padding: 5rem 1.5rem;
@@ -160,9 +239,25 @@
   background: hsl(var(--sl-green-100) / 0.4);
 }
 
-/* FAQ */
-.starter-lab-page .sl-faq-item {
-  border-bottom: 1px solid hsl(var(--sl-green-200));
+/* Section separator */
+.starter-lab-page .sl-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  color: hsl(var(--sl-green-300));
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+}
+
+.starter-lab-page .sl-separator::before,
+.starter-lab-page .sl-separator::after {
+  content: '';
+  flex: 1;
+  max-width: 80px;
+  height: 1px;
+  background: hsl(var(--sl-green-200));
 }
 
 /* Jump nav */
@@ -207,16 +302,109 @@
   color: hsl(var(--sl-green-700));
 }
 
-/* Leaf accent */
-.starter-lab-page .sl-leaf-accent {
+/* ===== "Why this works" crafted section ===== */
+
+.starter-lab-page .sl-crafted {
+  background:
+    linear-gradient(
+      180deg,
+      hsl(var(--sl-paper)) 0%,
+      hsl(var(--sl-sand-100)) 100%
+    );
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle paper grain */
+.starter-lab-page .sl-crafted::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Corner doodles */
+.starter-lab-page .sl-crafted::after {
+  content: '🌿';
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 1.5rem;
+  opacity: 0.15;
+  transform: rotate(15deg);
+}
+
+.starter-lab-page .sl-doodle-left {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  font-size: 1.25rem;
+  opacity: 0.12;
+  transform: rotate(-20deg);
+}
+
+/* Micro label */
+.starter-lab-page .sl-micro-label {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: hsl(var(--sl-green-400));
+  margin-bottom: 0.5rem;
+}
+
+/* Hand drawn underline */
+.starter-lab-page .sl-hand-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.starter-lab-page .sl-hand-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: -4%;
+  width: 108%;
+  height: 8px;
+  background: hsl(var(--sl-green-400) / 0.25);
+  border-radius: 4px;
+  transform: rotate(-0.5deg);
+}
+
+/* Marker highlight stroke */
+.starter-lab-page .sl-marker {
+  background: linear-gradient(
+    180deg,
+    transparent 55%,
+    hsl(35 80% 70% / 0.4) 55%,
+    hsl(35 80% 70% / 0.4) 90%,
+    transparent 90%
+  );
+  padding: 0 2px;
+}
+
+/* Handwritten note */
+.starter-lab-page .sl-handwritten {
+  font-family: 'Caveat', cursive;
+  color: hsl(var(--sl-green-600));
+  font-size: 1.35rem;
+  line-height: 1.6;
+}
+
+/* Sketched frame */
+.starter-lab-page .sl-sketched-frame {
+  border: 2px solid hsl(var(--sl-green-300));
+  border-radius: 0.75rem;
   position: relative;
 }
 
-.starter-lab-page .sl-leaf-accent::after {
-  content: '🌿';
+.starter-lab-page .sl-sketched-frame::before {
+  content: '';
   position: absolute;
-  font-size: 1.25rem;
-  opacity: 0.3;
-  right: -1.5rem;
-  top: 0;
+  inset: -3px;
+  border: 1px dashed hsl(var(--sl-green-200));
+  border-radius: 0.85rem;
+  pointer-events: none;
 }

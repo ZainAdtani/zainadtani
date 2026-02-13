@@ -16,30 +16,54 @@ export type Database = {
     Tables: {
       leads: {
         Row: {
+          business_description: string | null
+          business_name: string | null
           created_at: string
           email: string
-          goal: string
+          example_links: string[] | null
+          goal: string | null
           id: string
-          message: string
+          improvements: string[] | null
+          lead_type: string | null
+          message: string | null
           name: string
+          pages_wanted: string[] | null
+          style_vibe: string | null
+          website_goals: string[] | null
           website_url: string | null
         }
         Insert: {
+          business_description?: string | null
+          business_name?: string | null
           created_at?: string
           email: string
-          goal: string
+          example_links?: string[] | null
+          goal?: string | null
           id?: string
-          message: string
+          improvements?: string[] | null
+          lead_type?: string | null
+          message?: string | null
           name: string
+          pages_wanted?: string[] | null
+          style_vibe?: string | null
+          website_goals?: string[] | null
           website_url?: string | null
         }
         Update: {
+          business_description?: string | null
+          business_name?: string | null
           created_at?: string
           email?: string
-          goal?: string
+          example_links?: string[] | null
+          goal?: string | null
           id?: string
-          message?: string
+          improvements?: string[] | null
+          lead_type?: string | null
+          message?: string | null
           name?: string
+          pages_wanted?: string[] | null
+          style_vibe?: string | null
+          website_goals?: string[] | null
           website_url?: string | null
         }
         Relationships: []
