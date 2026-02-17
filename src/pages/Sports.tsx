@@ -2,10 +2,13 @@ import { useEffect, useMemo, useState, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, ExternalLink, RefreshCw } from "lucide-react";
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, ExternalLink, RefreshCw, Tv } from "lucide-react";
 import { addDays, format } from "date-fns";
+
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
 
 /** ---------- types ---------- **/
 type LiveGame = {
@@ -28,6 +31,7 @@ type StandingRow = {
   losses: number;
   pct: number;
   gb: string;
+  streak?: string;
 };
 
 type StandingsState = {
@@ -35,23 +39,6 @@ type StandingsState = {
   west: StandingRow[];
 };
 
-const EAST_TEAM_ABBR = new Set([
-  "ATL",
-  "BOS",
-  "BKN",
-  "CHA",
-  "CHI",
-  "CLE",
-  "DET",
-  "IND",
-  "MIA",
-  "MIL",
-  "NYK",
-  "ORL",
-  "PHI",
-  "TOR",
-  "WAS",
-]);
 
 /** ---------- page ---------- **/
 export default function Sports() {
@@ -67,6 +54,9 @@ export default function Sports() {
   const [standings, setStandings] = useState<StandingsState>({ east: [], west: [] });
   const [stLoading, setStLoading] = useState<boolean>(false);
   const [stError, setStError] = useState<string | null>(null);
+  const [stLastUpdated, setStLastUpdated] = useState<string | null>(null);
+  const [stStale, setStStale] = useState(false);
+  const [standingsTab, setStandingsTab] = useState<"east" | "west">("east");
 
   // load persisted toggle
   useEffect(() => {
@@ -175,153 +165,38 @@ export default function Sports() {
   }, []);
 
   /** ---------- standings ---------- **/
-  // Oct to Dec uses current year, Jan to Aug uses prior year
-  const seasonYear = useMemo(() => {
-    const y = selectedDate.getFullYear();
-    const m = selectedDate.getMonth();
-    return m <= 7 ? y - 1 : y;
-  }, [selectedDate]);
-
-  const loadStandings = useCallback(async () => {
+  const loadStandings = useCallback(async (forceRefresh = false) => {
     try {
       setStLoading(true);
       setStError(null);
+      setStStale(false);
 
-      // try main endpoint for this season
-      let url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&region=us&lang=en`;
-      let r = await fetch(url, { cache: "no-store" });
-
-      // fallback endpoint
-      if (!r.ok) {
-        url = `https://site.web.api.espn.com/apis/v2/sports/basketball/nba/standings?season=${seasonYear}&seasontype=2&region=us&lang=en`;
-        r = await fetch(url, { cache: "no-store" });
-        if (!r.ok) throw new Error("standings fetch failed");
-      }
-
-      const data = await r.json();
-
-      // walk the whole JSON tree and collect every object node
-      const collect = (root: any) => {
-        const out: any[] = [];
-        const q: any[] = [root];
-
-        while (q.length) {
-          const n = q.shift();
-          if (!n || typeof n !== "object") continue;
-
-          out.push(n);
-
-          if (Array.isArray(n)) {
-            for (const item of n) q.push(item);
-          } else {
-            for (const value of Object.values(n)) q.push(value);
-          }
-        }
-
-        return out;
-      };
-
-      const nodes = collect(data);
-
-      // find nodes that look like conference level standings
-      const conferenceNodes = nodes.filter(
-        (n) =>
-          Array.isArray(n?.standings?.entries) &&
-          n.standings.entries.length >= 10 &&
-          n.standings.entries.length <= 20,
-      );
-
-      if (!conferenceNodes.length) {
-        throw new Error("no standings entries found in response");
-      }
-
-      // score each group by how many east teams it contains
-      const scored = conferenceNodes.map((g) => {
-        const entries = g.standings.entries || [];
-        let eastScore = 0;
-        for (const e of entries) {
-          const abbr = e?.team?.abbreviation;
-          if (abbr && EAST_TEAM_ABBR.has(abbr)) eastScore++;
-        }
-        return { group: g, eastScore };
+      const url = `${SUPABASE_URL}/functions/v1/nba-standings${forceRefresh ? "?refresh=1" : ""}`;
+      const r = await fetch(url, {
+        headers: {
+          "apikey": import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string,
+        },
       });
 
-      // sort so first is east group
-      scored.sort((a, b) => b.eastScore - a.eastScore);
-      const eastGroup = scored[0].group;
-      const westGroup = scored[1] ? scored[1].group : null;
+      if (!r.ok) throw new Error("standings fetch failed");
+      const data = await r.json();
 
-      const entriesOf = (g: any) =>
-        g && Array.isArray(g?.standings?.entries) ? g.standings.entries : [];
+      if (data.error && !data.east) throw new Error(data.error);
 
-      const toRows = (entries: any[]): StandingRow[] =>
-        (entries || [])
-          .map((e: any, i: number) => {
-            const team = e?.team || {};
-            const sMap = new Map<string, any>();
-            for (const s of e?.stats || []) sMap.set(String(s?.type || s?.name).toLowerCase(), s);
-
-            const num = (k: string) => {
-              const s = sMap.get(k);
-              const v = s?.value ?? s?.displayValue;
-              if (typeof v === "number") return v;
-              const nv = Number(v);
-              return Number.isFinite(nv) ? nv : undefined;
-            };
-            const txt = (k: string) => {
-              const s = sMap.get(k);
-              return (s?.displayValue ?? s?.value ?? "") + "";
-            };
-
-            const wins = num("wins") ?? num("overallwins") ?? 0;
-            const losses = num("losses") ?? num("overalllosses") ?? 0;
-
-            let pct = num("winpercent") ?? num("winpercentage") ?? num("pct");
-            if (pct === undefined) {
-              const raw = txt("winpercent") || txt("pct") || "0";
-              pct = Number(raw.startsWith(".") ? "0" + raw : raw);
-            }
-
-            const gb = txt("gamesback") || txt("gamesbehind") || "—";
-            const rank = Number(e?.rank) || Number(sMap.get("rankconf")?.value) || i + 1;
-            const logo =
-              team.logo || team.logos?.[0]?.href || team.logos?.[0]?.url || undefined;
-
-            return {
-              rank,
-              teamId: String(team.id ?? ""),
-              team: team.displayName ?? team.shortDisplayName ?? "",
-              abbr: team.abbreviation ?? "",
-              logo,
-              wins,
-              losses,
-              pct: Number.isFinite(pct) ? pct : 0,
-              gb: gb === "0" ? "—" : gb,
-            };
-          })
-          .sort((a, b) => a.rank - b.rank)
-          .slice(0, 15);
-
-      const east = toRows(entriesOf(eastGroup));
-      const west = westGroup ? toRows(entriesOf(westGroup)) : [];
-
-      if (!east.length && !west.length) {
-        throw new Error("parsed zero rows");
-      }
-
-      setStandings({ east, west });
+      setStandings({ east: data.east || [], west: data.west || [] });
+      setStLastUpdated(data.fetchedAt || data.cachedAt || null);
+      setStStale(!!data.stale);
     } catch (err) {
       console.error("standings error", err);
       setStError("Unable to load standings right now.");
-      setStandings({ east: [], west: [] });
     } finally {
       setStLoading(false);
     }
-  }, [seasonYear]);
+  }, []);
 
   useEffect(() => {
     loadStandings();
-  }, [loadStandings, refreshNonce, seasonYear]);
+  }, [loadStandings, refreshNonce]);
 
   /** ---------- UI ---------- **/
   return (
@@ -534,63 +409,60 @@ export default function Sports() {
           </CardContent>
         </Card>
 
-        {/* ---------------- UNOFFICIAL LINKS now in the middle ---------------- */}
-        <Card className="mt-8 border border-amber-300/40 bg-amber-50/80 dark:bg-amber-950/20 dark:border-amber-300/20 backdrop-blur">
+        {/* ---------------- WHERE TO WATCH (official) ---------------- */}
+        <Card className="mt-8 border border-border bg-card backdrop-blur shadow-sm">
           <CardHeader>
             <CardTitle className="text-lg sm:text-xl flex items-center gap-2">
-              <span className="text-amber-600 dark:text-amber-300">⚠️</span>
-              Where to watch unofficial
+              <Tv className="w-5 h-5 text-primary" />
+              Where to Watch
             </CardTitle>
-            <p className="text-sm text-amber-800/90 dark:text-amber-200/80">
-              These are third-party sites. Expect pop-ups. Close them quickly. On Mac, ⌘ + W closes the current tab.
+            <p className="text-sm text-muted-foreground">
+              Official ways to catch NBA games live.
             </p>
           </CardHeader>
           <CardContent>
             <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {[
-                "https://crackstreams.ms/stream/brooklyn-nets-vs-minnesota-timberwolves",
-                "https://crackstreams.io/nba-streams2",
-                "https://app.buffstream.io/index-version-24",
-                "https://streameasthd.com/v11",
-                "https://crackstreams.io/nba-streams2",
-                "https://crackstreams.ms/",
-              ]
-                .filter((v, i, a) => a.indexOf(v) === i)
-                .map((href, i) => (
-                  <li key={href} className="group">
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="nofollow noreferrer"
-                      className="flex items-center justify-between rounded-xl border bg-white/90 dark:bg-neutral-900/80 dark:border-white/10 border-black/5 px-4 py-3 hover:shadow-sm transition"
-                    >
-                      <div>
-                        <div className="font-medium">Link {i + 1}</div>
-                        <div className="text-xs text-muted-foreground truncate max-w-[32ch]">{href}</div>
-                      </div>
-                      <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground" />
-                    </a>
-                  </li>
-                ))}
+                { label: "NBA League Pass", desc: "Official live & replay streaming", href: "https://www.nba.com/league-pass" },
+                { label: "ESPN / ABC", desc: "National broadcast games", href: "https://www.espn.com/watch/" },
+                { label: "TNT / Max", desc: "Select national games on TNT", href: "https://www.tntdrama.com/sports" },
+                { label: "Amazon Prime Video", desc: "Selected NBA games", href: "https://www.amazon.com/b?node=2858778011" },
+                { label: "YouTube TV", desc: "Live local + national channels", href: "https://tv.youtube.com/" },
+                { label: "Fubo TV", desc: "Sports-focused cable alternative", href: "https://www.fubo.tv/" },
+              ].map((opt) => (
+                <li key={opt.href} className="group">
+                  <a
+                    href={opt.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between rounded-xl border border-border bg-background px-4 py-3 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200"
+                  >
+                    <div>
+                      <div className="font-medium text-foreground">{opt.label}</div>
+                      <div className="text-xs text-muted-foreground">{opt.desc}</div>
+                    </div>
+                    <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground shrink-0" />
+                  </a>
+                </li>
+              ))}
             </ul>
-            <p className="mt-3 text-xs text-muted-foreground">
-              If a page spawns a pop-up, close it and return to the main player. Use an ad blocker if possible.
-            </p>
           </CardContent>
         </Card>
 
-        {/* ---------------- STANDINGS last ---------------- */}
-        <Card className="mt-8 border border-black/5 dark:border-white/10 bg-white/90 dark:bg-neutral-900/80 backdrop-blur shadow-sm">
+        {/* ---------------- STANDINGS ---------------- */}
+        <Card className="mt-8 border border-border bg-card backdrop-blur shadow-sm">
           <CardHeader className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <CardTitle className="text-xl sm:text-2xl">Standings {seasonYear}</CardTitle>
+              <CardTitle className="text-xl sm:text-2xl">NBA Standings</CardTitle>
               <p className="text-xs sm:text-sm text-muted-foreground">
-                Top 6 earn automatic playoff spots. Lines after 6 and 10.
+                {stLastUpdated
+                  ? `${stStale ? "⚠️ Stale — last updated" : "Updated"} ${format(new Date(stLastUpdated), "MMM d, h:mm a")}`
+                  : "Top 6 earn automatic playoff spots · Play-in: 7–10"}
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" onClick={loadStandings}>
-                <RefreshCw className="h-4 w-4 mr-1" />
+              <Button variant="outline" size="sm" onClick={() => loadStandings(true)} disabled={stLoading}>
+                <RefreshCw className={`h-4 w-4 mr-1 ${stLoading ? "animate-spin" : ""}`} />
                 Refresh
               </Button>
             </div>
@@ -598,19 +470,31 @@ export default function Sports() {
 
           <CardContent>
             {stLoading && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="h-72 rounded-2xl bg-neutral-200/70 dark:bg-neutral-800/70 animate-pulse" />
-                <div className="h-72 rounded-2xl bg-neutral-200/70 dark:bg-neutral-800/70 animate-pulse" />
+              <div className="h-72 rounded-2xl bg-muted/50 animate-pulse" />
+            )}
+
+            {stError && (
+              <div className="text-center py-10 space-y-3">
+                <p className="text-destructive">{stError}</p>
+                <Button variant="outline" size="sm" onClick={() => loadStandings(true)}>
+                  <RefreshCw className="h-4 w-4 mr-1" /> Retry
+                </Button>
               </div>
             )}
 
-            {stError && <p className="text-center py-10 text-red-600 dark:text-red-400">{stError}</p>}
-
             {!stLoading && !stError && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <StandingsTable title="Eastern Conference" rows={standings.east} />
-                <StandingsTable title="Western Conference" rows={standings.west} />
-              </div>
+              <Tabs value={standingsTab} onValueChange={(v) => setStandingsTab(v as "east" | "west")}>
+                <TabsList className="mb-4">
+                  <TabsTrigger value="east">Eastern Conference</TabsTrigger>
+                  <TabsTrigger value="west">Western Conference</TabsTrigger>
+                </TabsList>
+                <TabsContent value="east">
+                  <StandingsTable rows={standings.east} />
+                </TabsContent>
+                <TabsContent value="west">
+                  <StandingsTable rows={standings.west} />
+                </TabsContent>
+              </Tabs>
             )}
           </CardContent>
         </Card>
@@ -620,53 +504,79 @@ export default function Sports() {
 }
 
 /** ---------- components ---------- **/
-function StandingsTable({ title, rows }: { title: string; rows: StandingRow[] }) {
+function StandingsTable({ rows }: { rows: StandingRow[] }) {
   return (
-    <div className="rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-neutral-900 overflow-hidden">
-      <div className="px-4 py-3 border-b border-black/5 dark:border-white/10">
-        <h3 className="font-semibold">{title}</h3>
-      </div>
+    <div className="rounded-2xl border border-border bg-background overflow-hidden">
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
-          <thead className="text-left text-xs uppercase text-muted-foreground">
-            <tr className="[&>th]:px-4 [&>th]:py-2">
-              <th className="w-10">#</th>
-              <th>Team</th>
+          <thead className="text-left text-xs uppercase text-muted-foreground bg-muted/40">
+            <tr className="[&>th]:px-4 [&>th]:py-2.5">
+              <th className="w-10 sticky left-0 bg-muted/40">#</th>
+              <th className="sticky left-10 bg-muted/40 min-w-[140px]">Team</th>
               <th className="text-right w-16">W-L</th>
               <th className="text-right w-14">PCT</th>
               <th className="text-right w-14">GB</th>
+              <th className="text-right w-16">Streak</th>
             </tr>
           </thead>
           <tbody>
             {rows.map((r) => {
-              const borderClass = r.rank === 6 || r.rank === 10 ? "cut" : "";
+              const isPlayoffCutline = r.rank === 6;
+              const isPlayInCutline = r.rank === 10;
               return (
-                <tr key={r.teamId || r.rank} className={borderClass}>
-                  <td className="px-4 py-2 tabular-nums text-muted-foreground">{r.rank}</td>
-                  <td className="px-4 py-2">
+                <tr
+                  key={r.teamId || r.rank}
+                  className={[
+                    "border-b border-border/50 hover:bg-muted/30 transition-colors",
+                    isPlayoffCutline ? "border-b-2 border-b-primary/40" : "",
+                    isPlayInCutline ? "border-b-2 border-b-destructive/30" : "",
+                  ].join(" ")}
+                >
+                  <td className="px-4 py-2.5 tabular-nums sticky left-0 bg-background">
+                    <span className={[
+                      "inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold",
+                      r.rank <= 6 ? "bg-primary/10 text-primary" : r.rank <= 10 ? "bg-accent/20 text-foreground" : "text-muted-foreground",
+                    ].join(" ")}>{r.rank}</span>
+                  </td>
+                  <td className="px-4 py-2.5 sticky left-10 bg-background">
                     <div className="flex items-center gap-2">
                       {r.logo ? (
-                        <img src={r.logo} alt={r.team} className="w-6 h-6 object-contain" />
+                        <img src={r.logo} alt={r.team} className="w-6 h-6 object-contain shrink-0" />
                       ) : (
-                        <div className="w-6 h-6 rounded bg-neutral-100 dark:bg-neutral-800 grid place-items-center text-[10px]">
+                        <div className="w-6 h-6 rounded bg-muted grid place-items-center text-[10px] shrink-0">
                           {r.abbr || "—"}
                         </div>
                       )}
-                      <span className="font-medium">{r.team}</span>
-                      <span className="text-muted-foreground text-xs">({r.abbr})</span>
+                      <span className="font-medium text-foreground">{r.team}</span>
+                      <span className="text-muted-foreground text-xs hidden sm:inline">({r.abbr})</span>
                     </div>
                   </td>
-                  <td className="px-4 py-2 text-right tabular-nums">
+                  <td className="px-4 py-2.5 text-right tabular-nums text-foreground">
                     {r.wins}-{r.losses}
                   </td>
-                  <td className="px-4 py-2 text-right tabular-nums">{r.pct ? r.pct.toFixed(3).slice(1) : ".000"}</td>
-                  <td className="px-4 py-2 text-right tabular-nums">{r.gb || "—"}</td>
+                  <td className="px-4 py-2.5 text-right tabular-nums text-muted-foreground">
+                    {r.pct ? r.pct.toFixed(3).slice(1) : ".000"}
+                  </td>
+                  <td className="px-4 py-2.5 text-right tabular-nums text-muted-foreground">{r.gb || "—"}</td>
+                  <td className="px-4 py-2.5 text-right tabular-nums">
+                    <span className={[
+                      "text-xs font-medium",
+                      r.streak?.startsWith("W") ? "text-emerald-600 dark:text-emerald-400" : r.streak?.startsWith("L") ? "text-destructive" : "text-muted-foreground",
+                    ].join(" ")}>{r.streak || "—"}</span>
+                  </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
       </div>
+      {rows.length > 0 && (
+        <div className="px-4 py-2 border-t border-border/50 flex items-center gap-4 text-[11px] text-muted-foreground">
+          <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-3 rounded-full bg-primary/20" /> Top 6 — Playoffs</span>
+          <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-3 rounded-full bg-accent/30" /> 7–10 — Play-in</span>
+        </div>
+      )}
     </div>
   );
 }
+

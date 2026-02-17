@@ -12,7 +12,6 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { TimeBar } from "@/components/TimeBar";
-import { SunriseWidget } from "@/components/SunriseWidget";
 import { ALL_PRODUCTS } from "@/data/products";
 import { BOOKS } from "@/data/books";
 import { NEWSLETTERS } from "@/data/newsletters";
@@ -274,7 +273,6 @@ const Index = () => {
       </Helmet>
 
       <TimeBar />
-      <SunriseWidget />
 
       {/* Hero Section */}
       <section className="pt-8 md:pt-16 pb-16 md:pb-24 bg-gradient-to-br from-primary/5 via-background to-accent/5">
@@ -326,74 +324,71 @@ const Index = () => {
       {/* Main Action Buttons */}
       <section className="py-16 md:py-24 bg-secondary/20">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Button 1: NBA Tracker Hub */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {/* 1: NBA Tracker Hub */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
               <Link to="/nba" className="block">
                 <div className="w-12 h-12 mb-4 flex items-center justify-center">
-                  <span className="text-4xl animate-bounce" aria-hidden="true" role="img">🏀</span>
+                  <span className="text-4xl" aria-hidden="true" role="img">🏀</span>
                 </div>
-                <h3 className="text-2xl font-bold mb-2 text-foreground">NBA Tracker Hub</h3>
-                <p className="text-muted-foreground">Live scores & standings</p>
+                <h3 className="text-xl font-bold mb-2 text-foreground">NBA Tracker Hub</h3>
+                <p className="text-sm text-muted-foreground">Live scores & standings</p>
               </Link>
             </Card>
 
-            {/* Button 2: My Toolkit */}
+            {/* 2: My Toolkit */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
               <Link to="/tools" className="block">
-                <Cpu className="w-12 h-12 text-primary mb-4 animate-bounce" />
-                <h3 className="text-2xl font-bold mb-2 text-foreground">My Toolkit</h3>
-                <p className="text-muted-foreground">AI, software, and systems I use for building sites and growing ideas</p>
+                <Cpu className="w-12 h-12 text-primary mb-4" />
+                <h3 className="text-xl font-bold mb-2 text-foreground">My Toolkit</h3>
+                <p className="text-sm text-muted-foreground">AI, software, and systems I use for building sites and growing ideas</p>
               </Link>
             </Card>
 
-            {/* Button 3: My Blog */}
+            {/* 3: My Blog */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
               <Link to="/blog" className="block">
-                <FileText className="w-12 h-12 text-primary mb-4 animate-bounce" />
-                <h3 className="text-2xl font-bold mb-2 text-foreground">My Blog</h3>
-                <p className="text-muted-foreground">Articles, notes, and ideas</p>
+                <FileText className="w-12 h-12 text-primary mb-4" />
+                <h3 className="text-xl font-bold mb-2 text-foreground">My Blog</h3>
+                <p className="text-sm text-muted-foreground">Articles, notes, and ideas</p>
               </Link>
             </Card>
 
-            {/* Button 4: Resource Vault */}
+            {/* 4: Resource Vault */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
               <Link to="/resources" className="block">
-                <FolderOpen className="w-12 h-12 text-primary mb-4 animate-bounce" />
-                <h3 className="text-2xl font-bold mb-2 text-foreground">Resource Vault</h3>
-                <p className="text-muted-foreground">PDF guides, checklists, and tools you download in a few clicks</p>
+                <FolderOpen className="w-12 h-12 text-primary mb-4" />
+                <h3 className="text-xl font-bold mb-2 text-foreground">Resource Vault</h3>
+                <p className="text-sm text-muted-foreground">PDF guides, checklists, and tools you download in a few clicks</p>
               </Link>
             </Card>
-          </div>
-        </div>
-      </section>
 
-      {/* Quick Links Section */}
-      <section className="py-12 bg-muted/30">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">Quick Links</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Link to="/ai-prompts">
-              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
-                <Sparkles className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-semibold mb-1">AI Prompt Library</h3>
+            {/* 5: AI Prompt Library */}
+            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
+              <Link to="/ai-prompts" className="block">
+                <Sparkles className="w-12 h-12 text-primary mb-4" />
+                <h3 className="text-xl font-bold mb-2 text-foreground">AI Prompt Library</h3>
                 <p className="text-sm text-muted-foreground">Ready to use prompts for study, work, money, and daily life.</p>
-              </Card>
-            </Link>
-            <Link to="/life-notes">
-              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
-                <BookOpen className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-semibold mb-1">Life Notes</h3>
+              </Link>
+            </Card>
+
+            {/* 6: Life Notes */}
+            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
+              <Link to="/life-notes" className="block">
+                <BookOpen className="w-12 h-12 text-primary mb-4" />
+                <h3 className="text-xl font-bold mb-2 text-foreground">Life Notes</h3>
                 <p className="text-sm text-muted-foreground">Short stories, wins, and hard lessons from my own journey.</p>
-              </Card>
-            </Link>
-            <Link to="/personal-learning-vault">
-              <Card className="p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
-                <BookOpen className="w-8 h-8 text-primary mb-3" />
-                <h3 className="text-lg font-semibold mb-1">Personal Learning Vault</h3>
+              </Link>
+            </Card>
+
+            {/* 7: Personal Learning Vault */}
+            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
+              <Link to="/personal-learning-vault" className="block">
+                <BookOpen className="w-12 h-12 text-primary mb-4" />
+                <h3 className="text-xl font-bold mb-2 text-foreground">Personal Learning Vault</h3>
                 <p className="text-sm text-muted-foreground">A home for summaries of videos, courses, and lessons you want to remember.</p>
-              </Card>
-            </Link>
+              </Link>
+            </Card>
           </div>
         </div>
       </section>
