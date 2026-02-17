@@ -42,11 +42,11 @@ type StandingsState = {
 
 // ---- Watch links placeholders — paste your own URLs here ----
 const WATCH_LINKS: { label: string; url: string }[] = [
-  { label: "Link 1", url: "" },
-  { label: "Link 2", url: "" },
-  { label: "Link 3", url: "" },
-  { label: "Link 4", url: "" },
-  { label: "Link 5", url: "" },
+  { label: "CrackStreams — NBA Regular", url: "https://crackstreams.ms/league/nbaregular" },
+  { label: "CrackStreams — NBA Streams", url: "https://crackstreams.io/nba-streams2" },
+  { label: "BuffStream", url: "https://app.buffstream.io/index-version-24" },
+  { label: "StreamEast HD", url: "https://streameasthd.com/v11" },
+  { label: "CrackStreams — Main", url: "https://crackstreams.ms/" },
 ];
 
 /** ---------- page ---------- **/
