@@ -40,6 +40,13 @@ type StandingsState = {
 };
 
 
+// ---- Personal links placeholders (paste your own links here in code) ----
+// These are only shown when the local toggle is ON and never exposed by default.
+const PERSONAL_LINKS: { label: string; href: string; desc?: string }[] = [
+  // Paste your personal streaming links here. Example:
+  // { label: "My Stream", href: "https://example.com", desc: "Personal link" },
+];
+
 /** ---------- page ---------- **/
 export default function Sports() {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
@@ -49,6 +56,7 @@ export default function Sports() {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [refreshNonce, setRefreshNonce] = useState(0);
   const [showBall, setShowBall] = useState<boolean>(true);
+  const [showPersonalLinks, setShowPersonalLinks] = useState(false);
 
   // standings
   const [standings, setStandings] = useState<StandingsState>({ east: [], west: [] });
@@ -448,6 +456,53 @@ export default function Sports() {
             </ul>
           </CardContent>
         </Card>
+
+        {/* ---------------- PERSONAL LINKS (local-only toggle) ---------------- */}
+        <div className="mt-4 flex justify-end">
+          <button
+            onClick={() => setShowPersonalLinks((v) => !v)}
+            className="text-xs text-muted-foreground hover:text-foreground underline underline-offset-2 transition-colors"
+          >
+            {showPersonalLinks ? "Hide personal links" : "Show personal links"}
+          </button>
+        </div>
+        {showPersonalLinks && (
+          <Card className="mt-2 border border-dashed border-border bg-card/60 shadow-sm">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm text-muted-foreground font-medium">
+                Personal Links
+                <span className="ml-2 text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded-full">local only</span>
+              </CardTitle>
+              <p className="text-xs text-muted-foreground">
+                Add your own links in the <code className="bg-muted px-1 rounded text-xs">PERSONAL_LINKS</code> array at the top of <code className="bg-muted px-1 rounded text-xs">Sports.tsx</code>.
+              </p>
+            </CardHeader>
+            <CardContent>
+              {PERSONAL_LINKS.length === 0 ? (
+                <p className="text-sm text-muted-foreground italic">No personal links added yet. Paste your links in the code.</p>
+              ) : (
+                <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {PERSONAL_LINKS.map((opt) => (
+                    <li key={opt.href} className="group">
+                      <a
+                        href={opt.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between rounded-xl border border-border bg-background px-4 py-3 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200"
+                      >
+                        <div>
+                          <div className="font-medium text-foreground">{opt.label}</div>
+                          {opt.desc && <div className="text-xs text-muted-foreground">{opt.desc}</div>}
+                        </div>
+                        <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground shrink-0" />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </CardContent>
+          </Card>
+        )}
 
         {/* ---------------- STANDINGS ---------------- */}
         <Card className="mt-8 border border-border bg-card backdrop-blur shadow-sm">

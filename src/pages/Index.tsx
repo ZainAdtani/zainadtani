@@ -821,7 +821,7 @@ const Index = () => {
               <Button asChild size="lg" className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/50 hover:-translate-y-1 gap-3 px-8 py-6 text-lg group/btn border-2 border-red-500/50" style={{
               transformStyle: "preserve-3d"
             }}>
-                <a href="https://www.youtube.com/@engineer2ea" target="_blank" rel="noopener noreferrer">
+                <a href="https://youtube.com/@captainduaadventures?si=xPzuebAHwHZTl52V" target="_blank" rel="noopener noreferrer">
                   <Youtube className="w-6 h-6 group-hover/btn:scale-110 transition-transform" />
                   <span className="font-bold">YouTube Channel</span>
                   <span className="text-2xl">▶️</span>
@@ -961,207 +961,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Books I've Published Section - Updated with 2 books */}
-      <section id="published-works" className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold">
-              My <span className="text-accent">Published Works</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Books I'm writing to share knowledge and inspire others
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* If Maggie & Simba Could Talk Book */}
-            <Card className="overflow-hidden hover-lift group">
-              <div className="relative">
-                <img src={maggieSimbaBook} alt="If Maggie & Simba Could Talk Book Cover" className="w-full h-auto object-cover" />
-                {/* In The Works Banner */}
-                <div className="absolute top-8 -right-12 bg-gradient-to-r from-accent to-primary text-white px-16 py-2 transform rotate-45 shadow-lg">
-                  <span className="font-bold text-sm">IN THE WORKS</span>
-                </div>
-              </div>
-              <div className="p-6 space-y-3">
-                <h3 className="text-2xl font-bold">If Maggie & Simba Could Talk</h3>
-                <p className="text-sm text-muted-foreground mb-2">A Memoir of Love, Loss, and Life Lessons</p>
-                <p className="text-muted-foreground">
-                  A heartfelt memoir exploring the profound lessons learned from two beloved companions.
-                </p>
-              </div>
-            </Card>
-
-            {/* Financial Sorcery Book */}
-            <Card className="overflow-hidden hover-lift group">
-              <div className="relative">
-                <img src={financialSorceryBook} alt="The School of Financial Sorcery Book Cover" className="w-full h-auto object-cover" />
-                {/* In The Works Banner */}
-                <div className="absolute top-8 -right-12 bg-gradient-to-r from-accent to-primary text-white px-16 py-2 transform rotate-45 shadow-lg">
-                  <span className="font-bold text-sm">IN THE WORKS</span>
-                </div>
-              </div>
-              <div className="p-6 space-y-3">
-                <h3 className="text-xl font-bold">The School of Financial Sorcery</h3>
-                <p className="text-sm text-muted-foreground mb-2">How to Master Money Like Magic</p>
-                <p className="text-muted-foreground">
-                  Practical wisdom and transformative strategies for building wealth and financial freedom.
-                </p>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* My Custom & Recommended GPTs Section */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">My Custom & Recommended GPTs 🤖</h2>
-            <p className="text-lg text-muted-foreground">AI assistants I've built and recommend</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {/* Book Architect - Recommended */}
-            <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
-              <div className="mb-4">
-                <h3 className="text-lg font-bold mb-1">Book Architect</h3>
-                <p className="text-xs text-muted-foreground mb-3">by Daniel Martell</p>
-                <p className="text-sm mb-3">
-                  Create structured nonfiction book outlines based on the teachings, voice, and philosophies of public
-                  figures.
-                </p>
-              </div>
-              <Button asChild variant="default" className="w-full mt-auto">
-                <a href="https://chatgpt.com/g/g-680fb27f4d008191b55e91e6b8364da3-book-architect" target="_blank" rel="noopener noreferrer">
-                  Open on ChatGPT ↗
-                </a>
-              </Button>
-            </Card>
-
-            {/* Skool.com GPT - Recommended */}
-            <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
-              <div className="mb-4">
-                <h3 className="text-lg font-bold mb-1">Skool.com GPT 10K/M Community Coach</h3>
-                <p className="text-xs text-muted-foreground mb-3">by community builder</p>
-                <p className="text-sm mb-3">
-                  Turn your skills into a $10K/month Skool community. Offers, pricing, content, and growth—step by step.
-                </p>
-              </div>
-              <Button asChild variant="default" className="w-full mt-auto">
-                <a href="https://chatgpt.com/g/g-678fd5b1e50c81918a3eea00ae300dd5-skool-com-gpt-10k-m-community-coach" target="_blank" rel="noopener noreferrer">
-                  Open on ChatGPT ↗
-                </a>
-              </Button>
-            </Card>
-
-            {/* Time of Your Life Method - My Custom */}
-            <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
-              <div className="mb-4">
-                <h3 className="text-lg font-bold mb-1">Time of Your Life Method</h3>
-                <p className="text-xs text-muted-foreground mb-3">by Zain Adtani</p>
-                <p className="text-sm mb-3">
-                  Helps you plan your ideal week and align daily tasks with your Outcome Focusing Questions. Built on
-                  Tony Robbins' RPM system.
-                </p>
-              </div>
-              <Button asChild variant="default" className="w-full mt-auto">
-                <a href="https://chatgpt.com/g/g-67e5ff2da45c8191a33ab6c21f05709d-time-of-your-life-method" target="_blank" rel="noopener noreferrer">
-                  Open on ChatGPT ↗
-                </a>
-              </Button>
-            </Card>
-
-            {/* Business Ideas for Beginners Coach - Recommended */}
-            <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
-              <div className="mb-4">
-                <h3 className="text-lg font-bold mb-1">Business Ideas for Beginners Coach</h3>
-                <p className="text-xs text-muted-foreground mb-3">by community builder</p>
-                <p className="text-sm mb-3">
-                  Form a 2k to 20k service business idea, based on Ali Abdaal's approach.
-                </p>
-                <div className="text-xs text-muted-foreground space-y-1 mt-2">
-                  <p>• "I have too many business ideas, help me choose."</p>
-                  <p>• "I do not have any business ideas, where do I start."</p>
-                  <p>• "Is my idea easy mode or hard mode."</p>
-                  <p>• "Help me turn my skills into a high ticket service idea."</p>
-                </div>
-              </div>
-              <Button asChild variant="default" className="w-full mt-auto">
-                <a href="https://chatgpt.com/g/g-6927f4b0a2bc8191b6f61b036a8d406a-business-ideas-for-beginners-coach" target="_blank" rel="noopener noreferrer">
-                  Open on ChatGPT ↗
-                </a>
-              </Button>
-            </Card>
-
-            {/* Coach for Medical Assistant Students - My Custom */}
-            <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
-              <div className="mb-4">
-                <h3 className="text-lg font-bold mb-1">Coach for Medical Assistant Students</h3>
-                <p className="text-xs text-muted-foreground mb-3">by Zain Adtani</p>
-                <p className="text-sm mb-3">
-                  Friendly study coach for medical assistant students. Uses your uploaded chapters to explain topics in simple language, quiz you, and turn each unit into mini games and practice exams.
-                </p>
-              </div>
-              <Button asChild variant="default" className="w-full mt-auto">
-                <a href="https://chatgpt.com/g/g-6917706435b88191989c57ace3b9551a-coach-for-medical-assistant-students" target="_blank" rel="noopener noreferrer">
-                  Open on ChatGPT ↗
-                </a>
-              </Button>
-            </Card>
-
-            {/* WHOP Monetize - My Custom */}
-            <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
-              <div className="mb-4">
-                <h3 className="text-lg font-bold mb-1">WHOP Monetize</h3>
-                <p className="text-xs text-muted-foreground mb-3">by Zain Adtani</p>
-                <p className="text-sm mb-3">
-                  Step by step helper for turning your skills into simple digital products on Whop, from first offer to store layout.
-                </p>
-              </div>
-              <Button asChild variant="default" className="w-full mt-auto">
-                <a href="https://chatgpt.com/g/g-68c8d04eca78819195b0601516bb9c9d-whop-monetize" target="_blank" rel="noopener noreferrer">
-                  Open on ChatGPT ↗
-                </a>
-              </Button>
-            </Card>
-
-            {/* Gamma Prompt Architect - My Custom */}
-            <Card className="p-6 border-2 border-dashed border-primary/40 flex flex-col bg-background">
-              <div className="mb-4">
-                <h3 className="text-lg font-bold mb-1">Gamma Prompt Architect</h3>
-                <p className="text-xs text-muted-foreground mb-3">by Zain Adtani</p>
-                <p className="text-sm mb-3">
-                  Turns a rough idea into a clear Gamma prompt with role, audience, structure, and numbers so you get strong slide decks on the first try.
-                </p>
-              </div>
-              <Button asChild variant="default" className="w-full mt-auto">
-                <a href="https://chatgpt.com/g/g-692de0d1379c8191a56a20503a2b1173-gamma-prompt-architect" target="_blank" rel="noopener noreferrer">
-                  Open on ChatGPT ↗
-                </a>
-              </Button>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Buy Me a Coffee Section */}
-      <section className="py-16 bg-secondary/30">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <Card className="p-8 border-2 text-center shadow-lg">
-            <h2 className="text-2xl md:text-3xl font-bold mb-3 text-foreground">Was this helpful?</h2>
-            <p className="text-muted-foreground mb-6">
-              If anything here helped you, you can say thanks with a coffee. It means a lot.
-            </p>
-            <Button asChild size="lg" className="mx-auto bg-primary hover:bg-primary/90 transition-all duration-300">
-              <a href="https://buymeacoffee.com/curiouszen" target="_blank" rel="noopener" aria-label="Buy me a coffee">
-                Buy Me a Coffee ☕
-              </a>
-            </Button>
-          </Card>
-        </div>
-      </section>
-
       {/* Newsletter Section — Wide Native Form + iPhone Mock (Light/Dark Ready) */}
       <section id="newsletter" className="relative overflow-hidden py-16 md:py-20">
         {/* Background: adaptive gradients (stronger in light mode) */}
@@ -1263,6 +1062,75 @@ const Index = () => {
         <style>{`
           @keyframes float { 0%{transform:translateY(0)} 50%{transform:translateY(-6px)} 100%{transform:translateY(0)} }
         `}</style>
+      </section>
+
+      {/* My Published Works Section */}
+      <section id="published-works" className="py-20 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12 space-y-4">
+            <h2 className="text-4xl md:text-5xl font-bold">
+              My <span className="text-accent">Published Works</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Books I'm writing to share knowledge and inspire others
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <Card className="overflow-hidden hover-lift group">
+              <div className="relative">
+                <img src={maggieSimbaBook} alt="If Maggie & Simba Could Talk Book Cover" className="w-full h-auto object-cover" />
+                <div className="absolute top-8 -right-12 bg-gradient-to-r from-accent to-primary text-white px-16 py-2 transform rotate-45 shadow-lg">
+                  <span className="font-bold text-sm">IN THE WORKS</span>
+                </div>
+              </div>
+              <div className="p-6 space-y-3">
+                <h3 className="text-2xl font-bold">If Maggie & Simba Could Talk</h3>
+                <p className="text-sm text-muted-foreground mb-2">A Memoir of Love, Loss, and Life Lessons</p>
+                <p className="text-muted-foreground">A heartfelt memoir exploring the profound lessons learned from two beloved companions.</p>
+              </div>
+            </Card>
+
+            <Card className="overflow-hidden hover-lift group">
+              <div className="relative">
+                <img src={financialSorceryBook} alt="The School of Financial Sorcery Book Cover" className="w-full h-auto object-cover" />
+                <div className="absolute top-8 -right-12 bg-gradient-to-r from-accent to-primary text-white px-16 py-2 transform rotate-45 shadow-lg">
+                  <span className="font-bold text-sm">IN THE WORKS</span>
+                </div>
+              </div>
+              <div className="p-6 space-y-3">
+                <h3 className="text-xl font-bold">The School of Financial Sorcery</h3>
+                <p className="text-sm text-muted-foreground mb-2">How to Master Money Like Magic</p>
+                <p className="text-muted-foreground">Practical wisdom and transformative strategies for building wealth and financial freedom.</p>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Buy Me a Coffee — Final CTA */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4 max-w-2xl">
+          <Card className="relative overflow-hidden border-2 border-primary/20 bg-card shadow-2xl">
+            <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[inherit]" style={{ background: "radial-gradient(600px 300px at 50% 0%, hsl(var(--primary)/0.08), transparent 70%)" }} />
+            <div className="relative z-10 flex flex-col items-center text-center gap-6 p-10 md:p-14">
+              <div className="text-6xl leading-none select-none">☕</div>
+              <div className="space-y-3">
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground">Was this helpful?</h2>
+                <p className="text-lg text-muted-foreground max-w-sm mx-auto">
+                  If anything here sparked an idea or saved you time, you can say thanks with a coffee. It genuinely means a lot.
+                </p>
+              </div>
+              <Button asChild size="lg" className="gap-2 px-8 py-6 text-base font-semibold rounded-xl hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200">
+                <a href="https://buymeacoffee.com/curiouszen" target="_blank" rel="noopener noreferrer" aria-label="Buy me a coffee">
+                  <Heart className="w-5 h-5" />
+                  Buy Me a Coffee
+                </a>
+              </Button>
+              <p className="text-xs text-muted-foreground">No pressure. Just vibes. ✨</p>
+            </div>
+          </Card>
+        </div>
       </section>
 
       {/* Footer */}
