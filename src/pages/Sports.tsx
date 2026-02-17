@@ -40,11 +40,13 @@ type StandingsState = {
 };
 
 
-// ---- Personal links placeholders (paste your own links here in code) ----
-// These are only shown when the local toggle is ON and never exposed by default.
-const PERSONAL_LINKS: { label: string; href: string; desc?: string }[] = [
-  // Paste your personal streaming links here. Example:
-  // { label: "My Stream", href: "https://example.com", desc: "Personal link" },
+// ---- Watch links placeholders — paste your own URLs here ----
+const WATCH_LINKS: { label: string; url: string }[] = [
+  { label: "Link 1", url: "" },
+  { label: "Link 2", url: "" },
+  { label: "Link 3", url: "" },
+  { label: "Link 4", url: "" },
+  { label: "Link 5", url: "" },
 ];
 
 /** ---------- page ---------- **/
@@ -56,7 +58,6 @@ export default function Sports() {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [refreshNonce, setRefreshNonce] = useState(0);
   const [showBall, setShowBall] = useState<boolean>(true);
-  const [showPersonalLinks, setShowPersonalLinks] = useState(false);
 
   // standings
   const [standings, setStandings] = useState<StandingsState>({ east: [], west: [] });
@@ -417,92 +418,51 @@ export default function Sports() {
           </CardContent>
         </Card>
 
-        {/* ---------------- WHERE TO WATCH (official) ---------------- */}
-        <Card className="mt-8 border border-border bg-card backdrop-blur shadow-sm">
-          <CardHeader>
+        {/* ---------------- WHERE TO WATCH ---------------- */}
+        <Card className="mt-8 border border-amber-500/30 bg-card backdrop-blur shadow-sm">
+          <CardHeader className="pb-3">
             <CardTitle className="text-lg sm:text-xl flex items-center gap-2">
-              <Tv className="w-5 h-5 text-primary" />
-              Where to Watch
+              <span className="text-xl">⚠️</span>
+              Where to watch unofficial
             </CardTitle>
             <p className="text-sm text-muted-foreground">
-              Official ways to catch NBA games live.
+              These are third-party sites. Expect pop-ups. Close them quickly. On Mac, ⌘ + W closes the current tab.
             </p>
           </CardHeader>
           <CardContent>
-            <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {[
-                { label: "NBA League Pass", desc: "Official live & replay streaming", href: "https://www.nba.com/league-pass" },
-                { label: "ESPN / ABC", desc: "National broadcast games", href: "https://www.espn.com/watch/" },
-                { label: "TNT / Max", desc: "Select national games on TNT", href: "https://www.tntdrama.com/sports" },
-                { label: "Amazon Prime Video", desc: "Selected NBA games", href: "https://www.amazon.com/b?node=2858778011" },
-                { label: "YouTube TV", desc: "Live local + national channels", href: "https://tv.youtube.com/" },
-                { label: "Fubo TV", desc: "Sports-focused cable alternative", href: "https://www.fubo.tv/" },
-              ].map((opt) => (
-                <li key={opt.href} className="group">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {WATCH_LINKS.map((link) => {
+                const hasUrl = link.url.trim() !== "";
+                return (
                   <a
-                    href={opt.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between rounded-xl border border-border bg-background px-4 py-3 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200"
+                    key={link.label}
+                    href={hasUrl ? link.url : undefined}
+                    target={hasUrl ? "_blank" : undefined}
+                    rel={hasUrl ? "noopener noreferrer" : undefined}
+                    aria-disabled={!hasUrl}
+                    className={[
+                      "flex items-center justify-between rounded-xl border border-border px-4 py-3 transition-all duration-200",
+                      hasUrl
+                        ? "bg-muted/40 hover:bg-muted/70 hover:-translate-y-0.5 hover:shadow-md cursor-pointer"
+                        : "bg-muted/20 opacity-50 cursor-not-allowed pointer-events-none",
+                    ].join(" ")}
                   >
                     <div>
-                      <div className="font-medium text-foreground">{opt.label}</div>
-                      <div className="text-xs text-muted-foreground">{opt.desc}</div>
+                      <div className="font-semibold text-foreground">{link.label}</div>
+                      <div className="text-xs text-muted-foreground truncate max-w-[220px]">
+                        {hasUrl ? link.url : "Add link"}
+                      </div>
                     </div>
-                    <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground shrink-0" />
+                    <ExternalLink className="w-4 h-4 text-muted-foreground shrink-0" />
                   </a>
-                </li>
-              ))}
-            </ul>
+                );
+              })}
+            </div>
+            <p className="mt-3 text-[11px] text-muted-foreground">
+              Links are placeholders. Add your own in code.
+            </p>
           </CardContent>
         </Card>
-
-        {/* ---------------- PERSONAL LINKS (local-only toggle) ---------------- */}
-        <div className="mt-4 flex justify-end">
-          <button
-            onClick={() => setShowPersonalLinks((v) => !v)}
-            className="text-xs text-muted-foreground hover:text-foreground underline underline-offset-2 transition-colors"
-          >
-            {showPersonalLinks ? "Hide personal links" : "Show personal links"}
-          </button>
-        </div>
-        {showPersonalLinks && (
-          <Card className="mt-2 border border-dashed border-border bg-card/60 shadow-sm">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-muted-foreground font-medium">
-                Personal Links
-                <span className="ml-2 text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded-full">local only</span>
-              </CardTitle>
-              <p className="text-xs text-muted-foreground">
-                Add your own links in the <code className="bg-muted px-1 rounded text-xs">PERSONAL_LINKS</code> array at the top of <code className="bg-muted px-1 rounded text-xs">Sports.tsx</code>.
-              </p>
-            </CardHeader>
-            <CardContent>
-              {PERSONAL_LINKS.length === 0 ? (
-                <p className="text-sm text-muted-foreground italic">No personal links added yet. Paste your links in the code.</p>
-              ) : (
-                <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  {PERSONAL_LINKS.map((opt) => (
-                    <li key={opt.href} className="group">
-                      <a
-                        href={opt.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-between rounded-xl border border-border bg-background px-4 py-3 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200"
-                      >
-                        <div>
-                          <div className="font-medium text-foreground">{opt.label}</div>
-                          {opt.desc && <div className="text-xs text-muted-foreground">{opt.desc}</div>}
-                        </div>
-                        <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground shrink-0" />
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </CardContent>
-          </Card>
-        )}
 
         {/* ---------------- STANDINGS ---------------- */}
         <Card className="mt-8 border border-border bg-card backdrop-blur shadow-sm">
