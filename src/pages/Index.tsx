@@ -4,7 +4,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Mail, GraduationCap, Book, Award, Cpu, Sparkles, Music, BookOpen, ExternalLink, Youtube, Linkedin, Heart, X, FileText, Mic, ChevronLeft, ChevronRight, FolderOpen, Lightbulb, Grid3x3, Archive } from "lucide-react";
+import { Mail, GraduationCap, Book, Award, Cpu, Sparkles, Music, BookOpen, ExternalLink, Youtube, Linkedin, Heart, X, FileText, Mic, ChevronLeft, ChevronRight, FolderOpen, Lightbulb, Grid3x3, Archive, Dumbbell } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
@@ -381,12 +381,12 @@ const Index = () => {
               </Link>
             </Card>
 
-            {/* 7: Personal Learning Vault */}
+            {/* 7: Health */}
             <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <Link to="/personal-learning-vault" className="block">
-                <BookOpen className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2 text-foreground">Personal Learning Vault</h3>
-                <p className="text-sm text-muted-foreground">A home for summaries of videos, courses, and lessons you want to remember.</p>
+              <Link to="/health" className="block">
+                <Dumbbell className="w-12 h-12 text-primary mb-4" />
+                <h3 className="text-xl font-bold mb-2 text-foreground">Health</h3>
+                <p className="text-sm text-muted-foreground">Small daily habits for sleep, movement, and energy.</p>
               </Link>
             </Card>
           </div>
