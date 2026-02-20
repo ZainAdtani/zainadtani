@@ -124,6 +124,13 @@ export const NAV_ITEMS: NavItem[] = [
     searchTags: ["pokedex", "builds"],
   },
   {
+    label: "Archive",
+    path: "/archive",
+    icon: Archive,
+    section: "explore",
+    searchTags: ["old pages", "reference", "archived"],
+  },
+  {
     label: "Services",
     path: "/services",
     icon: Briefcase,
