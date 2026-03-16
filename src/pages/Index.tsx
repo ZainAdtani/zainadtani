@@ -275,19 +275,19 @@ const Index = () => {
       <TimeBar />
 
       {/* Hero Section */}
-      <section className="pt-8 md:pt-16 pb-16 md:pb-24 bg-gradient-to-br from-primary/5 via-background to-accent/5">
+      <section className="pt-8 md:pt-16 pb-16 md:pb-24 bg-gradient-hero">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col md:flex-row items-center gap-12">
             {/* Headshot with decorative background */}
             <div className="flex-shrink-0 relative">
-              <div className="absolute inset-0 bg-accent/20 rounded-full scale-110 -z-10"></div>
-              <img src={headshotImage} alt="Zain Adtani - Teacher and Site Builder" className="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover object-top border-4 border-background" />
+              <div className="absolute inset-0 bg-primary/20 rounded-full scale-110 -z-10"></div>
+              <img src={headshotImage} alt="Zain Adtani - Teacher and Site Builder" className="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover object-top" style={{ border: '3px solid #00D4AA', boxShadow: '0 0 30px rgba(0,212,170,0.2)' }} />
             </div>
 
             {/* Hero Text */}
             <div className="flex-1 text-center md:text-left space-y-8">
               <div>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground">Hi, I'm Zain!</h1>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-extrabold text-foreground">Hi, I'm Zain!</h1>
               </div>
 
               {/* Daily Motivation Generator */}
@@ -298,7 +298,7 @@ const Index = () => {
                     Daily Motivation Generator
                   </h3>
                   <Textarea value={quote} readOnly placeholder="Click the button below to generate a quote or life note..." className="min-h-[120px] text-base resize-none bg-muted text-foreground text-center" />
-                  <Button onClick={generateQuote} className="w-full bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg">
+                  <Button onClick={generateQuote} className="w-full bg-gradient-cta text-white hover:scale-[1.02] transition-all duration-300 hover:shadow-lg">
                     Generate Daily Motivation
                   </Button>
                 </div>
@@ -322,7 +322,7 @@ const Index = () => {
       </section>
 
       {/* Main Action Buttons */}
-      <section className="py-16 md:py-24 bg-secondary/20">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {/* 1: NBA Tracker Hub */}
@@ -394,7 +394,7 @@ const Index = () => {
       </section>
 
       {/* Tabbed Sections */}
-      <section id="tabs-section" className="py-16 md:py-24 bg-accent/5">
+      <section id="tabs-section" className="py-16 md:py-24 bg-muted/30">
         <div className="container mx-auto px-4 max-w-6xl">
           <Tabs value={activeTab} onValueChange={v => setActiveTab(v as TabKey)} className="w-full" aria-label="Zain site sections">
             <TabsList className="grid w-full grid-cols-4 mb-8 h-auto">
@@ -456,7 +456,7 @@ const Index = () => {
                           </div>}
 
                         <div className="mt-auto flex flex-col gap-2">
-                          {product.cta && <Button asChild className="w-full rounded-full bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg">
+                          {product.cta && <Button asChild className="w-full rounded-full bg-gradient-cta text-white hover:scale-[1.02] transition-all duration-300 hover:shadow-lg">
                               <a href={product.cta.href} target="_blank" rel="noopener noreferrer" aria-label={`Get ${product.title}`}>
                                 {product.cta.label}
                               </a>
@@ -1065,7 +1065,7 @@ const Index = () => {
       </section>
 
       {/* My Published Works Section */}
-      <section id="published-works" className="py-20 bg-secondary/30">
+      <section id="published-works" className="py-20 bg-muted/20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 space-y-4">
             <h2 className="text-4xl md:text-5xl font-bold">
