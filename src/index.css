@@ -117,6 +117,18 @@ All colors MUST be HSL.
   }
 }
 
+@layer utilities {
+  .bg-gradient-hero {
+    background: linear-gradient(135deg, #0A0F1A 0%, #0F2340 50%, #162038 100%);
+  }
+  .bg-gradient-cta {
+    background: linear-gradient(135deg, #00D4AA 0%, #3B82F6 100%);
+  }
+  .bg-gradient-badge {
+    background: linear-gradient(135deg, #3B82F6 0%, #4ADE80 100%);
+  }
+}
+
 /* Respect prefers-reduced-motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   .hover-lift:hover,
