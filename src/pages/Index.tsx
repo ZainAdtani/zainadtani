@@ -287,7 +287,7 @@ const Index = () => {
             {/* Hero Text */}
             <div className="flex-1 text-center md:text-left space-y-8">
               <div>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground">Hi, I'm Zain!</h1>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-extrabold text-foreground">Hi, I'm Zain!</h1>
               </div>
 
               {/* Daily Motivation Generator */}
