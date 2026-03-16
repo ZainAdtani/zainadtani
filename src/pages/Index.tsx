@@ -298,7 +298,7 @@ const Index = () => {
                     Daily Motivation Generator
                   </h3>
                   <Textarea value={quote} readOnly placeholder="Click the button below to generate a quote or life note..." className="min-h-[120px] text-base resize-none bg-muted text-foreground text-center" />
-                  <Button onClick={generateQuote} className="w-full bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg">
+                  <Button onClick={generateQuote} className="w-full bg-gradient-cta text-white hover:scale-[1.02] transition-all duration-300 hover:shadow-lg">
                     Generate Daily Motivation
                   </Button>
                 </div>
