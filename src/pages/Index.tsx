@@ -380,7 +380,7 @@ const Index = () => {
       {/* (7-card grid removed — pages still accessible via sidebar) */}
 
       {/* Tabbed Sections */}
-      <section id="tabs-section" className="py-16 md:py-24 bg-muted/30">
+      <section id="tabs-section" className="py-10 md:py-16 bg-muted/30">
         <div className="container mx-auto px-4 max-w-6xl">
           <Tabs value={activeTab} onValueChange={v => setActiveTab(v as TabKey)} className="w-full" aria-label="Zain site sections">
             <TabsList className="grid w-full grid-cols-4 mb-8 h-auto">
