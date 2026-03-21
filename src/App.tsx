@@ -51,6 +51,7 @@ import Illuminate from "./pages/usa-visit-2025/Illuminate";
 
 import Resume from "./pages/Resume";
 import LegacyEATax from "./pages/LegacyEATax";
+import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
@@ -103,6 +104,7 @@ const App = () => (
             <Route path="/website-lab" element={<WebsiteLab />} />
             <Route path="/resume" element={<Resume />} />
             <Route path="/thanks" element={<Thanks />} />
+            <Route path="/contact" element={<Contact />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

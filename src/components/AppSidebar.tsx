@@ -10,9 +10,6 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarMenuSub,
-  SidebarMenuSubItem,
-  SidebarMenuSubButton,
   SidebarHeader,
   SidebarFooter,
   useSidebar,
@@ -33,7 +30,6 @@ interface SearchableItem {
   tags?: string[];
 }
 
-// Build search index from NAV_ITEMS
 const searchIndex: SearchableItem[] = NAV_ITEMS.map((item) => ({
   title: item.label,
   route: item.path,
@@ -47,51 +43,19 @@ export function AppSidebar() {
   const navigate = useNavigate();
   const isCollapsed = state === "collapsed";
 
-  // Collapsible state with localStorage persistence
-  const [learnOpen, setLearnOpen] = useState(() => {
-    const saved = localStorage.getItem("sidebar-learn-open");
-    return saved !== null ? JSON.parse(saved) : true;
-  });
-  const [resourcesOpen, setResourcesOpen] = useState(() => {
-    const saved = localStorage.getItem("sidebar-resources-open");
-    return saved !== null ? JSON.parse(saved) : true;
-  });
-  const [supportOpen, setSupportOpen] = useState(() => {
-    const saved = localStorage.getItem("sidebar-support-open");
-    return saved !== null ? JSON.parse(saved) : true;
-  });
   const [archiveOpen, setArchiveOpen] = useState(() => {
     const saved = localStorage.getItem("sidebar-archive-open");
     return saved !== null ? JSON.parse(saved) : false;
   });
-  const [exploreOpen, setExploreOpen] = useState(() => {
-    const saved = localStorage.getItem("sidebar-explore-open");
-    return saved !== null ? JSON.parse(saved) : true;
-  });
 
-  // Search state
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<SearchableItem[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  // Persist collapsible state
-  useEffect(() => {
-    localStorage.setItem("sidebar-learn-open", JSON.stringify(learnOpen));
-  }, [learnOpen]);
-  useEffect(() => {
-    localStorage.setItem("sidebar-resources-open", JSON.stringify(resourcesOpen));
-  }, [resourcesOpen]);
-  useEffect(() => {
-    localStorage.setItem("sidebar-support-open", JSON.stringify(supportOpen));
-  }, [supportOpen]);
   useEffect(() => {
     localStorage.setItem("sidebar-archive-open", JSON.stringify(archiveOpen));
   }, [archiveOpen]);
-  useEffect(() => {
-    localStorage.setItem("sidebar-explore-open", JSON.stringify(exploreOpen));
-  }, [exploreOpen]);
 
-  // Fuse.js search
   const fuse = useMemo(
     () =>
       new Fuse(searchIndex, {
@@ -114,7 +78,6 @@ export function AppSidebar() {
 
   const handleSearchKeyDown = (e: React.KeyboardEvent) => {
     if (searchResults.length === 0) return;
-
     if (e.key === "ArrowDown") {
       e.preventDefault();
       setSelectedIndex((prev) => (prev + 1) % searchResults.length);
@@ -139,14 +102,13 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon" className="border-r">
-      {/* Search Header */}
       {!isCollapsed && (
         <SidebarHeader className="p-4">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               type="search"
-              placeholder="Search pages, sections..."
+              placeholder="Search pages..."
               className="pl-9 h-9"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -157,7 +119,7 @@ export function AppSidebar() {
                 <ScrollArea className="max-h-[300px]">
                   {searchResults.map((result, idx) => (
                     <button
-                      key={result.route}
+                      key={result.route + idx}
                       onClick={() => {
                         navigate(result.route);
                         setSearchQuery("");
@@ -181,131 +143,29 @@ export function AppSidebar() {
       )}
 
       <SidebarContent>
-        {/* Learn Section */}
-        <Collapsible open={learnOpen} onOpenChange={setLearnOpen}>
-          <SidebarGroup>
-            <CollapsibleTrigger asChild>
-              <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
-                Learn
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform ${learnOpen ? "rotate-180" : ""}`}
-                />
-              </SidebarGroupLabel>
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {getNavItemsBySection("learn").map((item) => (
-                    <SidebarMenuItem key={item.path}>
-                      <SidebarMenuButton asChild>
-                        <NavLink
-                          to={item.path}
-                          end={item.path === "/"}
-                          className={getNavClass}
-                        >
-                          <item.icon className="h-4 w-4" />
-                          {!isCollapsed && <span>{item.label}</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible>
+        {/* Main — flat list, no header */}
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {getNavItemsBySection("main").map((item) => (
+                <SidebarMenuItem key={item.path}>
+                  <SidebarMenuButton asChild>
+                    <NavLink
+                      to={item.path}
+                      end={item.path === "/"}
+                      className={getNavClass}
+                    >
+                      <item.icon className="h-4 w-4" />
+                      {!isCollapsed && <span>{item.label}</span>}
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
 
-        {/* Resources Section */}
-        <Collapsible open={resourcesOpen} onOpenChange={setResourcesOpen}>
-          <SidebarGroup>
-            <CollapsibleTrigger asChild>
-              <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
-                Resources
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform ${resourcesOpen ? "rotate-180" : ""}`}
-                />
-              </SidebarGroupLabel>
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {getNavItemsBySection("resources").map((item) => (
-                    <SidebarMenuItem key={item.path}>
-                      <SidebarMenuButton asChild>
-                        <NavLink to={item.path} className={getNavClass}>
-                          <item.icon className="h-4 w-4" />
-                          {!isCollapsed && <span>{item.label}</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible>
-
-        {/* Explore Section */}
-        <Collapsible open={exploreOpen} onOpenChange={setExploreOpen}>
-          <SidebarGroup>
-            <CollapsibleTrigger asChild>
-              <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
-                Explore
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform ${exploreOpen ? "rotate-180" : ""}`}
-                />
-              </SidebarGroupLabel>
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {getNavItemsBySection("explore").map((item) => (
-                    <SidebarMenuItem key={item.path}>
-                      <SidebarMenuButton asChild>
-                        <NavLink to={item.path} className={getNavClass}>
-                          <item.icon className="h-4 w-4" />
-                          {!isCollapsed && <span>{item.label}</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible>
-
-        {/* Support Section */}
-        <Collapsible open={supportOpen} onOpenChange={setSupportOpen}>
-          <SidebarGroup>
-            <CollapsibleTrigger asChild>
-              <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
-                Support
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform ${supportOpen ? "rotate-180" : ""}`}
-                />
-              </SidebarGroupLabel>
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {getNavItemsBySection("support").map((item) => (
-                    <SidebarMenuItem key={item.path}>
-                      <SidebarMenuButton asChild>
-                        <NavLink to={item.path} className={getNavClass}>
-                          <item.icon className="h-4 w-4" />
-                          {!isCollapsed && <span>{item.label}</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible>
-
-        {/* Archive Section */}
+        {/* Archive — collapsible */}
         <Collapsible open={archiveOpen} onOpenChange={setArchiveOpen}>
           <SidebarGroup>
             <CollapsibleTrigger asChild>
@@ -319,8 +179,8 @@ export function AppSidebar() {
             <CollapsibleContent>
               <SidebarGroupContent>
                 <SidebarMenu>
-                  {getNavItemsBySection("archive").map((item) => (
-                    <SidebarMenuItem key={item.path}>
+                  {getNavItemsBySection("archive").map((item, idx) => (
+                    <SidebarMenuItem key={item.path + idx}>
                       <SidebarMenuButton asChild>
                         <NavLink to={item.path} className={getNavClass}>
                           <item.icon className="h-4 w-4" />
@@ -335,7 +195,7 @@ export function AppSidebar() {
           </SidebarGroup>
         </Collapsible>
 
-        {/* Secret Vault Section (Standalone) */}
+        {/* Secret Vault */}
         <SidebarGroup>
           <SidebarMenu>
             {getNavItemsBySection("vault").map((item) => (
@@ -352,7 +212,6 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      {/* Theme Toggle Footer */}
       {!isCollapsed && (
         <SidebarFooter className="p-4 border-t">
           <div className="flex items-center gap-2">
