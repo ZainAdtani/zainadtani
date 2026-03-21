@@ -141,7 +141,7 @@ const Index = () => {
   // Filter products based on search query
   const filteredProducts = React.useMemo(() => {
     const featured = productCatalog.filter(p => p.featured).sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
-    if (!searchQuery.trim()) return featured.slice(0, 7);
+    if (!searchQuery.trim()) return featured.slice(0, 3);
     const query = searchQuery.toLowerCase();
     return featured.filter(p => p.title.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query));
   }, [searchQuery]);
