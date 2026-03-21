@@ -180,11 +180,33 @@ const Index = () => {
     return picked;
   }, [searchQuery, shuffleIndex, allFeatured]);
 
-  // Top books for home page display - randomly selected
-  const topBooks = React.useMemo(() => {
-    const shuffled = [...BOOKS].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, 9);
-  }, []);
+  // Books shuffle state (same pattern as products)
+  const [bookShuffleIndex, setBookShuffleIndex] = useState(0);
+  const [isHoveringBooks, setIsHoveringBooks] = useState(false);
+  const [booksFading, setBooksFading] = useState(false);
+
+  const displayedBooks = React.useMemo(() => {
+    const allBooks = [...BOOKS];
+    const start = (bookShuffleIndex * 3) % allBooks.length;
+    const picked: typeof allBooks = [];
+    for (let i = 0; i < 3 && i < allBooks.length; i++) {
+      picked.push(allBooks[(start + i) % allBooks.length]);
+    }
+    return picked;
+  }, [bookShuffleIndex]);
+
+  // Auto-shuffle books every 27 seconds
+  useEffect(() => {
+    if (isHoveringBooks) return;
+    const timer = setInterval(() => {
+      setBooksFading(true);
+      setTimeout(() => {
+        setBookShuffleIndex(prev => prev + 1);
+        setBooksFading(false);
+      }, 400);
+    }, 27000);
+    return () => clearInterval(timer);
+  }, [isHoveringBooks]);
   const generateQuote = () => {
     const randomIndex = Math.floor(Math.random() * QUOTES_AND_NOTES.length);
     const selectedQuote = QUOTES_AND_NOTES[randomIndex];
