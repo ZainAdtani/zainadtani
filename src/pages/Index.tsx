@@ -890,30 +890,7 @@ const Index = () => {
 
       {/* (Published Works section removed from homepage) */}
 
-      {/* Buy Me a Coffee — Final CTA */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 max-w-2xl">
-          <Card className="relative overflow-hidden border-2 border-primary/20 bg-card shadow-2xl">
-            <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[inherit]" style={{ background: "radial-gradient(600px 300px at 50% 0%, hsl(var(--primary)/0.08), transparent 70%)" }} />
-            <div className="relative z-10 flex flex-col items-center text-center gap-6 p-10 md:p-14">
-              <div className="text-6xl leading-none select-none">☕</div>
-              <div className="space-y-3">
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground">Was this helpful?</h2>
-                <p className="text-lg text-muted-foreground max-w-sm mx-auto">
-                  If anything here sparked an idea or saved you time, you can say thanks with a coffee. It genuinely means a lot.
-                </p>
-              </div>
-              <Button asChild size="lg" className="gap-2 px-8 py-6 text-base font-semibold rounded-xl hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200">
-                <a href="https://buymeacoffee.com/curiouszen" target="_blank" rel="noopener noreferrer" aria-label="Buy me a coffee">
-                  <Heart className="w-5 h-5" />
-                  Buy Me a Coffee
-                </a>
-              </Button>
-              <p className="text-xs text-muted-foreground">No pressure. Just vibes. ✨</p>
-            </div>
-          </Card>
-        </div>
-      </section>
+      {/* (Buy Me a Coffee moved to footer line below) */}
 
       {/* Footer */}
       <footer className="bg-background border-t border-border py-8">
