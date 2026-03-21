@@ -397,38 +397,33 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredProducts.map((product, idx) => {
-                const num = pad2(idx + 1);
-                return <Card key={product.id} className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2 flex flex-col">
-                      <div className="p-6 flex flex-col flex-grow">
-                        <div className="flex items-start justify-between mb-3">
-                          <div className="flex items-center gap-3">
-                            <Badge className="rounded-full text-xs">#{num}</Badge>
-                          </div>
-                          {product.badge && <Badge variant="secondary" className="text-[10px] px-2 py-0.5">
-                              {product.badge}
-                            </Badge>}
+              <div
+                className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-400 ${productsFading ? "opacity-0" : "opacity-100"}`}
+                onMouseEnter={() => setIsHoveringProducts(true)}
+                onMouseLeave={() => setIsHoveringProducts(false)}
+              >
+                {filteredProducts.map((product) => (
+                  <Card key={product.id} className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2 flex flex-col">
+                    <div className="p-6 flex flex-col flex-grow">
+                      <h3 className="text-xl font-bold mb-2 text-foreground line-clamp-2">{product.title}</h3>
+                      <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{product.desc}</p>
+                      {product.media && (
+                        <div className="relative mb-4 overflow-hidden rounded-lg bg-muted/50 flex items-center justify-center">
+                          <img src={product.media} alt={product.title} className="w-full h-40 object-cover" loading="lazy" />
                         </div>
-
-                        <h3 className="text-xl font-bold mb-2 text-foreground line-clamp-2">{product.title}</h3>
-
-                        <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{product.desc}</p>
-
-                        {product.media && <div className="relative mb-4 overflow-hidden rounded-lg bg-muted/50 flex items-center justify-center">
-                            <img src={product.media} alt={product.title} className="w-full h-40 object-cover" loading="lazy" />
-                          </div>}
-
-                        <div className="mt-auto flex flex-col gap-2">
-                          {product.cta && <Button asChild className="w-full rounded-full bg-gradient-cta text-white hover:scale-[1.02] transition-all duration-300 hover:shadow-lg">
-                              <a href={product.cta.href} target="_blank" rel="noopener noreferrer" aria-label={`Get ${product.title}`}>
-                                {product.cta.label}
-                              </a>
-                            </Button>}
-                        </div>
+                      )}
+                      <div className="mt-auto flex flex-col gap-2">
+                        {product.cta && (
+                          <Button asChild className="w-full rounded-full bg-gradient-cta text-white hover:scale-[1.02] transition-all duration-300 hover:shadow-lg">
+                            <a href={product.cta.href} target="_blank" rel="noopener noreferrer" aria-label={`Get ${product.title}`}>
+                              {product.cta.label}
+                            </a>
+                          </Button>
+                        )}
                       </div>
-                    </Card>;
-              })}
+                    </div>
+                  </Card>
+                ))}
               </div>
             </TabsContent>
 
