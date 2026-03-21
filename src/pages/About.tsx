@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Youtube, Linkedin } from "lucide-react";
+import { Youtube, Linkedin, Mail, Calendar } from "lucide-react";
 import zainSimba from "@/assets/zain-simba.png";
 
 const About = () => {
@@ -44,7 +44,7 @@ const About = () => {
             {/* Social Links */}
             <div className="flex gap-4 pt-4">
               <Button asChild size="lg" className="bg-red-600 hover:bg-red-700 shadow-[0_8px_0_0_rgb(153,27,27)] hover:shadow-[0_4px_0_0_rgb(153,27,27)] active:shadow-[0_0px_0_0_rgb(153,27,27)] hover:translate-y-1 active:translate-y-2 transition-all">
-                <a href="https://www.youtube.com/@engineer2ea" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                <a href="https://youtube.com/@captainduaadventures?si=xPzuebAHwHZTl52V" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                   <Youtube className="h-5 w-5" />
                   YouTube Channel
                 </a>
@@ -56,6 +56,62 @@ const About = () => {
                 </a>
               </Button>
             </div>
+          </div>
+        </div>
+
+        {/* Get In Touch Section */}
+        <div className="max-w-5xl mx-auto mt-20">
+          <h2 className="text-3xl font-bold text-foreground mb-2">Get In Touch</h2>
+          <p className="text-muted-foreground mb-8">
+            Have a question or want to work together? Reach out below.
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <Card className="p-6 flex flex-col items-center gap-3 text-center">
+              <Mail className="h-8 w-8 text-primary" />
+              <h3 className="font-display font-semibold text-foreground">Email</h3>
+              <a
+                href="mailto:zain@zainadtani.com"
+                className="text-primary hover:underline text-sm"
+              >
+                zain@zainadtani.com
+              </a>
+            </Card>
+
+            <Card className="p-6 flex flex-col items-center gap-3 text-center">
+              <Linkedin className="h-8 w-8 text-primary" />
+              <h3 className="font-display font-semibold text-foreground">LinkedIn</h3>
+              <Button asChild variant="outline" size="sm">
+                <a
+                  href="https://www.linkedin.com/in/zainadtani/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Connect
+                </a>
+              </Button>
+            </Card>
+
+            <Card className="p-6 flex flex-col items-center gap-3 text-center">
+              <Youtube className="h-8 w-8 text-primary" />
+              <h3 className="font-display font-semibold text-foreground">YouTube</h3>
+              <Button asChild variant="outline" size="sm">
+                <a
+                  href="https://youtube.com/@captainduaadventures?si=xPzuebAHwHZTl52V"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Subscribe
+                </a>
+              </Button>
+            </Card>
+
+            <Card className="p-6 flex flex-col items-center gap-3 text-center">
+              <Calendar className="h-8 w-8 text-primary" />
+              <h3 className="font-display font-semibold text-foreground">Book a Call</h3>
+              <Button variant="outline" size="sm" disabled>
+                Coming Soon
+              </Button>
+            </Card>
           </div>
         </div>
       </main>

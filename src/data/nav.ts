@@ -46,7 +46,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Life Notes", path: "/life-notes", icon: StickyNote, section: "main", searchTags: ["quotes", "wisdom", "mindset"] },
   { label: "Tools", path: "/tools", icon: Wrench, section: "main", searchTags: ["utilities"] },
   { label: "Health", path: "/health", icon: Dumbbell, section: "main", searchTags: ["fitness", "wellness", "exercise"] },
-  { label: "Contact", path: "/contact", icon: Mail, section: "main" },
+  
 
   // ── Archive (collapsible) ──
   { label: "Enrolled Agent", path: "/enrolled-agent", icon: GraduationCap, section: "archive", searchTags: ["study", "certification"] },
