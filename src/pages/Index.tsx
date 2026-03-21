@@ -738,82 +738,25 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About Me Section - Dark Mode with 3D Effects */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-10 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{
-          animationDelay: "1s"
-        }}></div>
-        </div>
-
-        <div className="container mx-auto px-4 max-w-4xl relative z-10">
-          <Card className="p-10 shadow-2xl border-2 border-slate-700 bg-slate-800/80 backdrop-blur-xl overflow-hidden relative group hover:scale-[1.02] transition-all duration-500" style={{
-          transformStyle: "preserve-3d"
-        }}>
-            {/* 3D Glow Effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-            <div className="text-center mb-10 relative" style={{
-            transform: "translateZ(30px)"
-          }}>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white flex items-center justify-center gap-3">
-                <span className="animate-bounce">👋</span>
-                Let's Connect!
-                <span className="animate-bounce" style={{
-                animationDelay: "0.2s"
-              }}>
-                  🚀
-                </span>
-              </h2>
-              <p className="text-xl text-slate-300 flex items-center justify-center gap-2">
-                <span>📚</span>
-                Follow my journey on social media
-                <span>💡</span>
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center relative" style={{
-            transform: "translateZ(40px)"
-          }}>
-              <Button asChild size="lg" className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/50 hover:-translate-y-1 gap-3 px-8 py-6 text-lg group/btn border-2 border-red-500/50" style={{
-              transformStyle: "preserve-3d"
-            }}>
-                <a href="https://youtube.com/@captainduaadventures?si=xPzuebAHwHZTl52V" target="_blank" rel="noopener noreferrer">
-                  <Youtube className="w-6 h-6 group-hover/btn:scale-110 transition-transform" />
-                  <span className="font-bold">YouTube Channel</span>
-                  <span className="text-2xl">▶️</span>
-                </a>
-              </Button>
-
-              <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/50 hover:-translate-y-1 gap-3 px-8 py-6 text-lg group/btn border-2 border-blue-500/50" style={{
-              transformStyle: "preserve-3d"
-            }}>
-                <a href="https://www.linkedin.com/in/zainadtani/" target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="w-6 h-6 group-hover/btn:scale-110 transition-transform" />
-                  <span className="font-bold">LinkedIn Profile</span>
-                  <span className="text-2xl">💼</span>
-                </a>
-              </Button>
-            </div>
-
-            {/* Fun Stats */}
-            <div className="mt-10 pt-8 border-t border-slate-700 grid grid-cols-3 gap-4 text-center">
-              <div className="group/stat hover:scale-110 transition-transform cursor-default">
-                <div className="text-3xl mb-2 group-hover/stat:animate-bounce">🎓</div>
-                <div className="text-slate-400 text-sm">Learning</div>
-              </div>
-              <div className="group/stat hover:scale-110 transition-transform cursor-default">
-                <div className="text-3xl mb-2 group-hover/stat:animate-bounce">📊</div>
-                <div className="text-slate-400 text-sm">Growing</div>
-              </div>
-              <div className="group/stat hover:scale-110 transition-transform cursor-default">
-                <div className="text-3xl mb-2 group-hover/stat:animate-bounce">🌟</div>
-                <div className="text-slate-400 text-sm">Sharing</div>
-              </div>
-            </div>
-          </Card>
+      {/* Let's Connect — Compact */}
+      <section className="py-6 md:py-8">
+        <div className="container mx-auto px-4 max-w-4xl text-center space-y-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground">Let's Connect</h2>
+          <p className="text-sm text-muted-foreground">Find me on these platforms</p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+            <Button asChild size="sm" className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white transition-all duration-300 hover:shadow-lg gap-2 px-6">
+              <a href="https://youtube.com/@captainduaadventures?si=xPzuebAHwHZTl52V" target="_blank" rel="noopener noreferrer">
+                <Youtube className="w-4 h-4" />
+                YouTube
+              </a>
+            </Button>
+            <Button asChild size="sm" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white transition-all duration-300 hover:shadow-lg gap-2 px-6">
+              <a href="https://www.linkedin.com/in/zainadtani/" target="_blank" rel="noopener noreferrer">
+                <Linkedin className="w-4 h-4" />
+                LinkedIn
+              </a>
+            </Button>
+          </div>
         </div>
       </section>
 
