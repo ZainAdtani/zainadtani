@@ -827,46 +827,41 @@ const Index = () => {
       </section>
 
       {/* Podcasts I Follow — Frame-by-Frame Navigation */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight text-foreground">
-              Podcasts I Follow <span className="italic">🎙️</span>
+      {/* Podcasts I Follow — Compact Shelf */}
+      <section className="py-12 md:py-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-card/80 via-muted/30 to-card/80 backdrop-blur-sm" />
+        <div className="relative z-10 container mx-auto px-4 max-w-5xl">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground flex items-center justify-center gap-2">
+              <Music className="w-5 h-5 text-primary" />
+              Podcasts I Follow
             </h2>
-            <div className="mt-2 h-1.5 w-24 rounded-full bg-primary/30 mx-auto" />
-            <p className="mt-3 text-lg text-muted-foreground">
-              A rolling list of shows I learn from every week
-            </p>
+            <p className="mt-1 text-sm text-muted-foreground">Shows I learn from every week</p>
           </div>
 
-          {/* Podcast Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {PODCASTS.map(podcast => <Card key={podcast.listen} className="hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col rounded-2xl border-2 bg-card shadow-lg">
-                {/* Image/header */}
-                <div className="relative h-40 bg-muted flex items-center justify-center overflow-hidden">
-                  {podcast.image ? <img src={podcast.image} alt={`${podcast.title} cover`} className="w-full h-full object-cover" loading="lazy" /> : <img src={faviconFor(podcast.website || podcast.listen)} alt={`${podcast.title} icon`} className="w-14 h-14 rounded-xl border bg-background" loading="lazy" />}
+          <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
+            {PODCASTS.map(podcast => (
+              <a
+                key={podcast.listen}
+                href={podcast.listen}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex-shrink-0 snap-start flex items-center gap-3 rounded-xl border border-border bg-card/80 backdrop-blur-sm px-4 py-3 w-[260px] transition-all duration-300 hover:border-primary hover:shadow-[0_8px_32px_rgba(0,212,170,0.1)] hover:-translate-y-0.5"
+                aria-label={`Listen to ${podcast.title}`}
+              >
+                <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 border border-border">
+                  {podcast.image ? (
+                    <img src={podcast.image} alt={podcast.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
+                  ) : (
+                    <img src={faviconFor(podcast.website || podcast.listen)} alt={podcast.title} className="w-full h-full object-cover" loading="lazy" />
+                  )}
                 </div>
-
-                {/* Body */}
-                <div className="p-5 flex flex-col flex-grow">
-                  <p className="text-xs text-muted-foreground mb-1">{podcast.host}</p>
-                  <h3 className="text-lg font-semibold leading-snug text-foreground line-clamp-2">
-                    <a href={podcast.listen} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label={`Listen to ${podcast.title}`}>
-                      {podcast.title}
-                    </a>
-                  </h3>
-
-                  <div className="mt-auto pt-4 flex items-center justify-between">
-                    <a href={podcast.listen} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-medium hover:underline" aria-label={`Listen to ${podcast.title} on Spotify`}>
-                      <Mic className="w-4 h-4" />
-                      Listen
-                    </a>
-                    {podcast.website && <a href={podcast.website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground" aria-label={`Visit ${podcast.title} website`} title="Website">
-                        <ExternalLink className="w-4 h-4" />
-                      </a>}
-                  </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-foreground truncate">{podcast.title}</p>
+                  <p className="text-xs text-muted-foreground truncate">{podcast.host}</p>
                 </div>
-              </Card>)}
+              </a>
+            ))}
           </div>
         </div>
       </section>
