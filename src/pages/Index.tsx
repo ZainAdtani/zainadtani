@@ -138,14 +138,47 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState<TabKey>(() => getTabFromHash(window.location.hash));
   const [searchQuery, setSearchQuery] = useState("");
   const location = useLocation();
+  const [shuffleIndex, setShuffleIndex] = useState(0);
+  const [isHoveringProducts, setIsHoveringProducts] = useState(false);
+  const [productsFading, setProductsFading] = useState(false);
 
-  // Filter products based on search query
+  // All featured products sorted
+  const allFeatured = React.useMemo(() => {
+    return productCatalog.filter(p => p.featured).sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
+  }, []);
+
+  // Auto-shuffle every 27 seconds
+  useEffect(() => {
+    if (isHoveringProducts || searchQuery.trim()) return;
+    const timer = setInterval(() => {
+      setProductsFading(true);
+      setTimeout(() => {
+        setShuffleIndex(prev => prev + 1);
+        setProductsFading(false);
+      }, 400);
+    }, 27000);
+    return () => clearInterval(timer);
+  }, [isHoveringProducts, searchQuery]);
+
+  // Filter products based on search query with shuffle
   const filteredProducts = React.useMemo(() => {
-    const featured = productCatalog.filter(p => p.featured).sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
-    if (!searchQuery.trim()) return featured.slice(0, 3);
-    const query = searchQuery.toLowerCase();
-    return featured.filter(p => p.title.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query));
-  }, [searchQuery]);
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      return allFeatured.filter(p => p.title.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query));
+    }
+    // Pick 3 based on shuffleIndex
+    const shuffled = [...allFeatured].sort(() => {
+      // Deterministic-ish shuffle based on shuffleIndex
+      return Math.sin(shuffleIndex * 9301 + allFeatured.indexOf(allFeatured[0])) - 0.5;
+    });
+    // Use a seeded approach: rotate by shuffleIndex
+    const start = (shuffleIndex * 3) % allFeatured.length;
+    const picked: typeof allFeatured = [];
+    for (let i = 0; i < 3 && i < allFeatured.length; i++) {
+      picked.push(allFeatured[(start + i) % allFeatured.length]);
+    }
+    return picked;
+  }, [searchQuery, shuffleIndex, allFeatured]);
 
   // Top books for home page display - randomly selected
   const topBooks = React.useMemo(() => {
