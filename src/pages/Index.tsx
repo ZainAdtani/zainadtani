@@ -765,22 +765,13 @@ const Index = () => {
       <WhatIFollow podcasts={PODCASTS} />
 
       {/* Spotify Playlist Section */}
-      <section className="py-16 md:py-24 bg-primary/5">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <Card className="p-8 shadow-lg border-2">
-            <div className="text-center mb-8">
-              <Music className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">Focus Playlist 🎵</h2>
-              <p className="text-lg text-muted-foreground">
-                My curated playlist to help you focus while working or studying
-              </p>
-            </div>
-            <div className="rounded-lg overflow-hidden shadow-xl">
-              <iframe style={{
-              borderRadius: "12px"
-            }} src="https://open.spotify.com/embed/playlist/4ZHa92ZbMSi2Fwps39XZl5?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" />
-            </div>
-          </Card>
+      <section className="py-6 md:py-10">
+        <div className="container mx-auto px-4 max-w-xl text-center space-y-3">
+          <h2 className="text-xl font-bold text-foreground">Focus Playlist</h2>
+          <p className="text-xs text-muted-foreground">Music I work and study to</p>
+          <div className="rounded-lg overflow-hidden shadow-lg">
+            <iframe style={{ borderRadius: "12px" }} src="https://open.spotify.com/embed/playlist/4ZHa92ZbMSi2Fwps39XZl5?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" />
+          </div>
         </div>
       </section>
 
