@@ -91,7 +91,6 @@ export default function DigitalProductsPage() {
           {/* Product grid with catalog numbers */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((p) => {
-              const num = pad2(p.catalogIndex);
               return (
                 <Card 
                   key={p.id} 
@@ -111,19 +110,11 @@ export default function DigitalProductsPage() {
                         }`}
                         loading="lazy"
                       />
-                      {p.badge && (
-                        <span className="absolute top-3 left-3 text-[10px] px-2 py-0.5 rounded-full bg-primary/90 text-primary-foreground tracking-wide">
-                          {p.badge}
-                        </span>
-                      )}
                     </div>
                   )}
 
                   <div className="p-5 flex flex-col flex-grow">
-                    <div className="flex items-start justify-between gap-2 mb-3">
-                      <div className="flex items-center gap-3">
-                        <Badge className="rounded-full">#{num}</Badge>
-                      </div>
+                    <div className="flex items-end justify-end gap-2 mb-3">
                       <Badge variant="secondary" className="shrink-0 text-xs">
                         {p.category}
                       </Badge>
