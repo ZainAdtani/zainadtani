@@ -43,6 +43,8 @@ export const Header = () => {
 
         {/* Navigation */}
         <nav className="flex items-center gap-3">
+          {/* Top nav links — desktop only */}
+          <div className="hidden md:flex items-center gap-3">
           {TOP_NAV.map((item) => (
             <Link
               key={item.path}
