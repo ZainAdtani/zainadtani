@@ -893,49 +893,7 @@ const Index = () => {
 
       {/* (Newsletter section removed from homepage) */}
 
-      {/* My Published Works Section */}
-      <section id="published-works" className="py-20 bg-muted/20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold">
-              My <span className="text-accent">Published Works</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Books I'm writing to share knowledge and inspire others
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="overflow-hidden hover-lift group">
-              <div className="relative">
-                <img src={maggieSimbaBook} alt="If Maggie & Simba Could Talk Book Cover" className="w-full h-auto object-cover" />
-                <div className="absolute top-8 -right-12 bg-gradient-to-r from-accent to-primary text-white px-16 py-2 transform rotate-45 shadow-lg">
-                  <span className="font-bold text-sm">IN THE WORKS</span>
-                </div>
-              </div>
-              <div className="p-6 space-y-3">
-                <h3 className="text-2xl font-bold">If Maggie & Simba Could Talk</h3>
-                <p className="text-sm text-muted-foreground mb-2">A Memoir of Love, Loss, and Life Lessons</p>
-                <p className="text-muted-foreground">A heartfelt memoir exploring the profound lessons learned from two beloved companions.</p>
-              </div>
-            </Card>
-
-            <Card className="overflow-hidden hover-lift group">
-              <div className="relative">
-                <img src={financialSorceryBook} alt="The School of Financial Sorcery Book Cover" className="w-full h-auto object-cover" />
-                <div className="absolute top-8 -right-12 bg-gradient-to-r from-accent to-primary text-white px-16 py-2 transform rotate-45 shadow-lg">
-                  <span className="font-bold text-sm">IN THE WORKS</span>
-                </div>
-              </div>
-              <div className="p-6 space-y-3">
-                <h3 className="text-xl font-bold">The School of Financial Sorcery</h3>
-                <p className="text-sm text-muted-foreground mb-2">How to Master Money Like Magic</p>
-                <p className="text-muted-foreground">Practical wisdom and transformative strategies for building wealth and financial freedom.</p>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </section>
+      {/* (Published Works section removed from homepage) */}
 
       {/* Buy Me a Coffee — Final CTA */}
       <section className="py-20 bg-background">
