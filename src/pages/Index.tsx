@@ -321,77 +321,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Main Action Buttons */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {/* 1: NBA Tracker Hub */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <Link to="/nba" className="block">
-                <div className="w-12 h-12 mb-4 flex items-center justify-center">
-                  <span className="text-4xl" aria-hidden="true" role="img">🏀</span>
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-foreground">NBA Tracker Hub</h3>
-                <p className="text-sm text-muted-foreground">Live scores & standings</p>
-              </Link>
-            </Card>
-
-            {/* 2: My Toolkit */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <Link to="/tools" className="block">
-                <Cpu className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2 text-foreground">My Toolkit</h3>
-                <p className="text-sm text-muted-foreground">AI, software, and systems I use for building sites and growing ideas</p>
-              </Link>
-            </Card>
-
-            {/* 3: My Blog */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <Link to="/blog" className="block">
-                <FileText className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2 text-foreground">My Blog</h3>
-                <p className="text-sm text-muted-foreground">Articles, notes, and ideas</p>
-              </Link>
-            </Card>
-
-            {/* 4: Resource Vault */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <Link to="/resources" className="block">
-                <FolderOpen className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2 text-foreground">Resource Vault</h3>
-                <p className="text-sm text-muted-foreground">PDF guides, checklists, and tools you download in a few clicks</p>
-              </Link>
-            </Card>
-
-            {/* 5: AI Prompt Library */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <Link to="/ai-prompts" className="block">
-                <Sparkles className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2 text-foreground">AI Prompt Library</h3>
-                <p className="text-sm text-muted-foreground">Ready to use prompts for study, work, money, and daily life.</p>
-              </Link>
-            </Card>
-
-            {/* 6: Life Notes */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <Link to="/life-notes" className="block">
-                <BookOpen className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2 text-foreground">Life Notes</h3>
-                <p className="text-sm text-muted-foreground">Short stories, wins, and hard lessons from my own journey.</p>
-              </Link>
-            </Card>
-
-            {/* 7: Health */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <Link to="/health" className="block">
-                <Dumbbell className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2 text-foreground">Health</h3>
-                <p className="text-sm text-muted-foreground">Small daily habits for sleep, movement, and energy.</p>
-              </Link>
-            </Card>
-          </div>
-        </div>
-      </section>
+      {/* (7-card grid removed — pages still accessible via sidebar) */}
 
       {/* Tabbed Sections */}
       <section id="tabs-section" className="py-16 md:py-24 bg-muted/30">
