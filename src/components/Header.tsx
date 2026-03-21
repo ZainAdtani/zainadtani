@@ -8,6 +8,14 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useState } from "react";
 
+const TOP_NAV = [
+  { label: "Home", path: "/" },
+  { label: "About", path: "/about" },
+  { label: "Services", path: "/services" },
+  { label: "Books", path: "/books" },
+  { label: "Blog", path: "/blog" },
+];
+
 export const Header = () => {
   const { theme, setTheme } = useTheme();
   const location = useLocation();
@@ -35,97 +43,28 @@ export const Header = () => {
 
         {/* Navigation */}
         <nav className="flex items-center gap-3">
-          <Link 
-            to="/" 
-            className={`px-3 py-1.5 rounded-full font-semibold text-sm transition-all duration-300 relative overflow-hidden group ${
-              isActive('/') && location.pathname === '/' 
-                ? 'bg-primary/10 shadow-md' 
-                : 'hover:shadow-lg hover:-translate-y-0.5'
-            }`}
-            style={{
-              border: '1px solid transparent',
-              backgroundImage: 'linear-gradient(var(--background), var(--background)), linear-gradient(30deg, hsl(var(--primary)), hsl(var(--accent)))',
-              backgroundOrigin: 'border-box',
-              backgroundClip: 'padding-box, border-box'
-            }}
-          >
-            <span className="relative z-10">Home</span>
-            <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          </Link>
-          
-          <Link 
-            to="/about" 
-            className={`px-3 py-1.5 rounded-full font-semibold text-sm transition-all duration-300 relative overflow-hidden group ${
-              isActive('/about') 
-                ? 'bg-primary/10 shadow-md' 
-                : 'hover:shadow-lg hover:-translate-y-0.5'
-            }`}
-            style={{
-              border: '1px solid transparent',
-              backgroundImage: 'linear-gradient(var(--background), var(--background)), linear-gradient(30deg, hsl(var(--primary)), hsl(var(--accent)))',
-              backgroundOrigin: 'border-box',
-              backgroundClip: 'padding-box, border-box'
-            }}
-          >
-            <span className="relative z-10">About Me</span>
-            <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          </Link>
-          
-          <Link 
-            to="/investing" 
-            className={`px-3 py-1.5 rounded-full font-semibold text-sm transition-all duration-300 relative overflow-hidden group ${
-              isActive('/investing') 
-                ? 'bg-primary/10 shadow-md' 
-                : 'hover:shadow-lg hover:-translate-y-0.5'
-            }`}
-            style={{
-              border: '1px solid transparent',
-              backgroundImage: 'linear-gradient(var(--background), var(--background)), linear-gradient(30deg, hsl(var(--primary)), hsl(var(--accent)))',
-              backgroundOrigin: 'border-box',
-              backgroundClip: 'padding-box, border-box'
-            }}
-          >
-            <span className="relative z-10">Investing</span>
-            <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          </Link>
-          
-          <Link 
-            to="/digital-products" 
-            className={`px-3 py-1.5 rounded-full font-semibold text-sm transition-all duration-300 relative overflow-hidden group ${
-              isActive('/digital-products') 
-                ? 'bg-primary/10 shadow-md' 
-                : 'hover:shadow-lg hover:-translate-y-0.5'
-            }`}
-            style={{
-              border: '1px solid transparent',
-              backgroundImage: 'linear-gradient(var(--background), var(--background)), linear-gradient(30deg, hsl(var(--primary)), hsl(var(--accent)))',
-              backgroundOrigin: 'border-box',
-              backgroundClip: 'padding-box, border-box'
-            }}
-          >
-            <span className="relative z-10">Digital Products</span>
-            <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          </Link>
-          
-          <Link 
-            to="/books" 
-            className={`px-3 py-1.5 rounded-full font-semibold text-sm transition-all duration-300 relative overflow-hidden group ${
-              isActive('/books') 
-                ? 'bg-primary/10 shadow-md' 
-                : 'hover:shadow-lg hover:-translate-y-0.5'
-            }`}
-            style={{
-              border: '1px solid transparent',
-              backgroundImage: 'linear-gradient(var(--background), var(--background)), linear-gradient(30deg, hsl(var(--primary)), hsl(var(--accent)))',
-              backgroundOrigin: 'border-box',
-              backgroundClip: 'padding-box, border-box'
-            }}
-          >
-            <span className="relative z-10">Books</span>
-            <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          </Link>
+          {TOP_NAV.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`px-3 py-1.5 rounded-full font-semibold text-sm transition-all duration-300 relative overflow-hidden group ${
+                isActive(item.path) && (item.path !== '/' || location.pathname === '/')
+                  ? 'bg-primary/10 shadow-md'
+                  : 'hover:shadow-lg hover:-translate-y-0.5'
+              }`}
+              style={{
+                border: '1px solid transparent',
+                backgroundImage: 'linear-gradient(var(--background), var(--background)), linear-gradient(30deg, hsl(var(--primary)), hsl(var(--accent)))',
+                backgroundOrigin: 'border-box',
+                backgroundClip: 'padding-box, border-box'
+              }}
+            >
+              <span className="relative z-10">{item.label}</span>
+              <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            </Link>
+          ))}
 
-          {/* Hamburger Menu */}
+          {/* Hamburger Menu — mirrors sidebar exactly */}
           <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon" aria-label="Open menu">
@@ -139,7 +78,7 @@ export const Header = () => {
               </SheetHeader>
 
               <nav className="mt-6 space-y-4">
-                {/* Main — flat list */}
+                {/* Main — flat list (mirrors sidebar main section) */}
                 <div className="space-y-1">
                   {getNavItemsBySection("main").map((item) => (
                     <Link
@@ -154,7 +93,7 @@ export const Header = () => {
                   ))}
                 </div>
 
-                {/* Archive — collapsible */}
+                {/* Archive — collapsible (mirrors sidebar archive section) */}
                 <Collapsible open={archiveOpen} onOpenChange={setArchiveOpen}>
                   <div className="border-t border-border pt-2">
                     <CollapsibleTrigger className="flex items-center justify-between w-full py-2 hover:bg-muted/50 rounded px-2">
