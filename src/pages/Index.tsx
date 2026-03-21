@@ -331,7 +331,7 @@ const Index = () => {
       <TimeBar />
 
       {/* Hero Section */}
-      <section className="pt-8 md:pt-16 pb-16 md:pb-24 bg-gradient-hero">
+      <section className="pt-8 md:pt-12 pb-10 md:pb-16 bg-gradient-hero">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col md:flex-row items-center gap-12">
             {/* Headshot with decorative background */}
