@@ -68,9 +68,10 @@ export const Header = () => {
           </div>
 
           {/* Hamburger Menu — mirrors sidebar exactly */}
+          {/* Hamburger Menu — mobile only */}
           <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" aria-label="Open menu">
+              <Button variant="outline" size="icon" aria-label="Open menu" className="md:hidden">
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
