@@ -139,93 +139,33 @@ export const Header = () => {
               </SheetHeader>
 
               <nav className="mt-6 space-y-4">
-                {/* Learn Section */}
-                <Collapsible open={learnOpen} onOpenChange={setLearnOpen}>
-                  <div className="border-b border-border pb-2">
-                    <CollapsibleTrigger className="flex items-center justify-between w-full py-2 hover:bg-muted/50 rounded px-2">
-                      <span className="text-sm font-semibold">Learn</span>
-                      <ChevronDown className={`h-4 w-4 transition-transform ${learnOpen ? "rotate-180" : ""}`} />
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
-                      <div className="space-y-1 pt-2">
-                        {getNavItemsBySection("learn").map((item) => (
-                          <Link
-                            key={item.path}
-                            to={item.path}
-                            className="flex items-center gap-2 text-foreground hover:underline px-2 py-1"
-                            onClick={() => setSheetOpen(false)}
-                          >
-                            <item.icon className="w-4 h-4" />
-                            <span>{item.label}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    </CollapsibleContent>
-                  </div>
-                </Collapsible>
+                {/* Main — flat list */}
+                <div className="space-y-1">
+                  {getNavItemsBySection("main").map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className="flex items-center gap-2 text-foreground hover:underline px-2 py-1"
+                      onClick={() => setSheetOpen(false)}
+                    >
+                      <item.icon className="w-4 h-4" />
+                      <span>{item.label}</span>
+                    </Link>
+                  ))}
+                </div>
 
-                {/* Resources Section */}
-                <Collapsible open={resourcesOpen} onOpenChange={setResourcesOpen}>
-                  <div className="border-b border-border pb-2">
+                {/* Archive — collapsible */}
+                <Collapsible open={archiveOpen} onOpenChange={setArchiveOpen}>
+                  <div className="border-t border-border pt-2">
                     <CollapsibleTrigger className="flex items-center justify-between w-full py-2 hover:bg-muted/50 rounded px-2">
-                      <span className="text-sm font-semibold">Resources</span>
-                      <ChevronDown className={`h-4 w-4 transition-transform ${resourcesOpen ? "rotate-180" : ""}`} />
+                      <span className="text-sm font-semibold">Archive</span>
+                      <ChevronDown className={`h-4 w-4 transition-transform ${archiveOpen ? "rotate-180" : ""}`} />
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="space-y-1 pt-2">
-                        {getNavItemsBySection("resources").map((item) => (
+                        {getNavItemsBySection("archive").map((item, idx) => (
                           <Link
-                            key={item.path}
-                            to={item.path}
-                            className="flex items-center gap-2 text-foreground hover:underline px-2 py-1"
-                            onClick={() => setSheetOpen(false)}
-                          >
-                            <item.icon className="w-4 h-4" />
-                            <span>{item.label}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    </CollapsibleContent>
-                  </div>
-                </Collapsible>
-
-                {/* Explore Section */}
-                <Collapsible open={exploreOpen} onOpenChange={setExploreOpen}>
-                  <div className="border-b border-border pb-2">
-                    <CollapsibleTrigger className="flex items-center justify-between w-full py-2 hover:bg-muted/50 rounded px-2">
-                      <span className="text-sm font-semibold">Explore</span>
-                      <ChevronDown className={`h-4 w-4 transition-transform ${exploreOpen ? "rotate-180" : ""}`} />
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
-                      <div className="space-y-1 pt-2">
-                        {getNavItemsBySection("explore").map((item) => (
-                          <Link
-                            key={item.path}
-                            to={item.path}
-                            className="flex items-center gap-2 text-foreground hover:underline px-2 py-1"
-                            onClick={() => setSheetOpen(false)}
-                          >
-                            <item.icon className="w-4 h-4" />
-                            <span>{item.label}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    </CollapsibleContent>
-                  </div>
-                </Collapsible>
-
-                {/* Support Section */}
-                <Collapsible open={supportOpen} onOpenChange={setSupportOpen}>
-                  <div className="border-b border-border pb-2">
-                    <CollapsibleTrigger className="flex items-center justify-between w-full py-2 hover:bg-muted/50 rounded px-2">
-                      <span className="text-sm font-semibold">Support</span>
-                      <ChevronDown className={`h-4 w-4 transition-transform ${supportOpen ? "rotate-180" : ""}`} />
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
-                      <div className="space-y-1 pt-2">
-                        {getNavItemsBySection("support").map((item) => (
-                          <Link
-                            key={item.path}
+                            key={item.path + idx}
                             to={item.path}
                             className="flex items-center gap-2 text-foreground hover:underline px-2 py-1"
                             onClick={() => setSheetOpen(false)}
