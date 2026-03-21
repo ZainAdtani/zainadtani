@@ -141,7 +141,7 @@ const Index = () => {
   // Filter products based on search query
   const filteredProducts = React.useMemo(() => {
     const featured = productCatalog.filter(p => p.featured).sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
-    if (!searchQuery.trim()) return featured.slice(0, 7);
+    if (!searchQuery.trim()) return featured.slice(0, 3);
     const query = searchQuery.toLowerCase();
     return featured.filter(p => p.title.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query));
   }, [searchQuery]);
@@ -321,77 +321,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Main Action Buttons */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {/* 1: NBA Tracker Hub */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <Link to="/nba" className="block">
-                <div className="w-12 h-12 mb-4 flex items-center justify-center">
-                  <span className="text-4xl" aria-hidden="true" role="img">🏀</span>
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-foreground">NBA Tracker Hub</h3>
-                <p className="text-sm text-muted-foreground">Live scores & standings</p>
-              </Link>
-            </Card>
-
-            {/* 2: My Toolkit */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <Link to="/tools" className="block">
-                <Cpu className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2 text-foreground">My Toolkit</h3>
-                <p className="text-sm text-muted-foreground">AI, software, and systems I use for building sites and growing ideas</p>
-              </Link>
-            </Card>
-
-            {/* 3: My Blog */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <Link to="/blog" className="block">
-                <FileText className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2 text-foreground">My Blog</h3>
-                <p className="text-sm text-muted-foreground">Articles, notes, and ideas</p>
-              </Link>
-            </Card>
-
-            {/* 4: Resource Vault */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <Link to="/resources" className="block">
-                <FolderOpen className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2 text-foreground">Resource Vault</h3>
-                <p className="text-sm text-muted-foreground">PDF guides, checklists, and tools you download in a few clicks</p>
-              </Link>
-            </Card>
-
-            {/* 5: AI Prompt Library */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <Link to="/ai-prompts" className="block">
-                <Sparkles className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2 text-foreground">AI Prompt Library</h3>
-                <p className="text-sm text-muted-foreground">Ready to use prompts for study, work, money, and daily life.</p>
-              </Link>
-            </Card>
-
-            {/* 6: Life Notes */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <Link to="/life-notes" className="block">
-                <BookOpen className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2 text-foreground">Life Notes</h3>
-                <p className="text-sm text-muted-foreground">Short stories, wins, and hard lessons from my own journey.</p>
-              </Link>
-            </Card>
-
-            {/* 7: Health */}
-            <Card className="p-8 hover-lift cursor-pointer transition-all duration-300 hover:shadow-xl border-2 shadow-lg">
-              <Link to="/health" className="block">
-                <Dumbbell className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2 text-foreground">Health</h3>
-                <p className="text-sm text-muted-foreground">Small daily habits for sleep, movement, and energy.</p>
-              </Link>
-            </Card>
-          </div>
-        </div>
-      </section>
+      {/* (7-card grid removed — pages still accessible via sidebar) */}
 
       {/* Tabbed Sections */}
       <section id="tabs-section" className="py-16 md:py-24 bg-muted/30">
@@ -897,46 +827,41 @@ const Index = () => {
       </section>
 
       {/* Podcasts I Follow — Frame-by-Frame Navigation */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight text-foreground">
-              Podcasts I Follow <span className="italic">🎙️</span>
+      {/* Podcasts I Follow — Compact Shelf */}
+      <section className="py-12 md:py-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-card/80 via-muted/30 to-card/80 backdrop-blur-sm" />
+        <div className="relative z-10 container mx-auto px-4 max-w-5xl">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground flex items-center justify-center gap-2">
+              <Music className="w-5 h-5 text-primary" />
+              Podcasts I Follow
             </h2>
-            <div className="mt-2 h-1.5 w-24 rounded-full bg-primary/30 mx-auto" />
-            <p className="mt-3 text-lg text-muted-foreground">
-              A rolling list of shows I learn from every week
-            </p>
+            <p className="mt-1 text-sm text-muted-foreground">Shows I learn from every week</p>
           </div>
 
-          {/* Podcast Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {PODCASTS.map(podcast => <Card key={podcast.listen} className="hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col rounded-2xl border-2 bg-card shadow-lg">
-                {/* Image/header */}
-                <div className="relative h-40 bg-muted flex items-center justify-center overflow-hidden">
-                  {podcast.image ? <img src={podcast.image} alt={`${podcast.title} cover`} className="w-full h-full object-cover" loading="lazy" /> : <img src={faviconFor(podcast.website || podcast.listen)} alt={`${podcast.title} icon`} className="w-14 h-14 rounded-xl border bg-background" loading="lazy" />}
+          <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
+            {PODCASTS.map(podcast => (
+              <a
+                key={podcast.listen}
+                href={podcast.listen}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex-shrink-0 snap-start flex items-center gap-3 rounded-xl border border-border bg-card/80 backdrop-blur-sm px-4 py-3 w-[260px] transition-all duration-300 hover:border-primary hover:shadow-[0_8px_32px_rgba(0,212,170,0.1)] hover:-translate-y-0.5"
+                aria-label={`Listen to ${podcast.title}`}
+              >
+                <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 border border-border">
+                  {podcast.image ? (
+                    <img src={podcast.image} alt={podcast.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
+                  ) : (
+                    <img src={faviconFor(podcast.website || podcast.listen)} alt={podcast.title} className="w-full h-full object-cover" loading="lazy" />
+                  )}
                 </div>
-
-                {/* Body */}
-                <div className="p-5 flex flex-col flex-grow">
-                  <p className="text-xs text-muted-foreground mb-1">{podcast.host}</p>
-                  <h3 className="text-lg font-semibold leading-snug text-foreground line-clamp-2">
-                    <a href={podcast.listen} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label={`Listen to ${podcast.title}`}>
-                      {podcast.title}
-                    </a>
-                  </h3>
-
-                  <div className="mt-auto pt-4 flex items-center justify-between">
-                    <a href={podcast.listen} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-medium hover:underline" aria-label={`Listen to ${podcast.title} on Spotify`}>
-                      <Mic className="w-4 h-4" />
-                      Listen
-                    </a>
-                    {podcast.website && <a href={podcast.website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground" aria-label={`Visit ${podcast.title} website`} title="Website">
-                        <ExternalLink className="w-4 h-4" />
-                      </a>}
-                  </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-foreground truncate">{podcast.title}</p>
+                  <p className="text-xs text-muted-foreground truncate">{podcast.host}</p>
                 </div>
-              </Card>)}
+              </a>
+            ))}
           </div>
         </div>
       </section>
@@ -961,182 +886,27 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Newsletter Section — Wide Native Form + iPhone Mock (Light/Dark Ready) */}
-      <section id="newsletter" className="relative overflow-hidden py-16 md:py-20">
-        {/* Background: adaptive gradients (stronger in light mode) */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="hidden dark:block w-full h-full" style={{
-          background: "radial-gradient(900px 420px at 50% 0%, rgba(37,99,235,0.10), transparent 60%), radial-gradient(700px 360px at 85% 20%, rgba(34,197,94,0.10), transparent 60%)"
-        }} />
-          <div className="block dark:hidden w-full h-full" style={{
-          background: "radial-gradient(900px 420px at 50% 0%, rgba(37,99,235,0.20), transparent 60%), radial-gradient(700px 360px at 85% 20%, rgba(34,197,94,0.18), transparent 60%)"
-        }} />
-        </div>
+      {/* (Newsletter section removed from homepage) */}
 
-        {/* Subtle spinning globe */}
-        <div className="absolute -right-28 -top-10 opacity-25 md:opacity-30 animate-[spin_55s_linear_infinite] z-0" aria-hidden="true">
-          <svg width="420" height="420" viewBox="0 0 420 420">
-            <defs>
-              <radialGradient id="gw" cx="50%" cy="50%">
-                <stop offset="0%" stopColor="#60A5FA" stopOpacity=".8" />
-                <stop offset="60%" stopColor="#60A5FA" stopOpacity=".2" />
-                <stop offset="100%" stopColor="transparent" />
-              </radialGradient>
-            </defs>
-            <circle cx="210" cy="210" r="120" fill="url(#gw)" />
-            {[...Array(6)].map((_, i) => <ellipse key={i} cx="210" cy="210" rx={30 + i * 15} ry={120} fill="none" stroke="#93C5FD" strokeOpacity=".25" />)}
-            {[...Array(6)].map((_, i) => <ellipse key={`lat-${i}`} cx="210" cy="210" rx={120} ry={30 + i * 15} fill="none" stroke="#93C5FD" strokeOpacity=".25" />)}
-            <g transform="translate(182,188)">
-              <rect rx="12" width="56" height="56" className="fill-black/80 dark:fill-[#0B1220]/85" />
-              <text x="28" y="36" textAnchor="middle" fontSize="32" fill="#FFFFFF" fontWeight="700">Z</text>
-            </g>
-          </svg>
-        </div>
+      {/* (Published Works section removed from homepage) */}
 
-        <div className="relative z-10 container mx-auto max-w-4xl px-6">
-          {/* Newsletter Banner Image */}
-          <div className="rounded-2xl overflow-hidden shadow-2xl mb-8">
-            <img 
-              src="/images/zains-world-newsletter-banner.png" 
-              alt="Zain's World Newsletter" 
-              className="w-full h-auto object-cover"
-            />
-          </div>
-
-          <Card className="p-8 md:p-10 bg-card/80 backdrop-blur-sm border-2 shadow-xl">
-            <div className="text-center space-y-6">
-              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-                Join Zain's World
-              </h2>
-              
-              <p className="text-lg text-muted-foreground font-medium">
-                Free posts. Quick ideas. No fluff.
-              </p>
-
-              {/* Native form using Beehiiv magic link */}
-              <form className="flex flex-col sm:flex-row items-stretch gap-3 max-w-md mx-auto" onSubmit={e => {
-                e.preventDefault();
-                const input = e.currentTarget.elements.namedItem("email") as HTMLInputElement | null;
-                const email = input?.value.trim();
-                if (!email) return;
-                const magic = `https://magic.beehiiv.com/v1/dd1643e2-f274-43e4-b193-62276e3e3b48?email=${encodeURIComponent(email)}`;
-                const a = document.createElement("a");
-                a.href = magic;
-                a.target = "_blank";
-                a.rel = "noopener noreferrer";
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-              }}>
-                <label htmlFor="newsletter-email" className="sr-only">Email address</label>
-                <input 
-                  id="newsletter-email" 
-                  name="email" 
-                  type="email" 
-                  required 
-                  inputMode="email" 
-                  placeholder="you@example.com" 
-                  className="flex-1 h-12 rounded-lg px-4 bg-background text-foreground placeholder-muted-foreground border border-border focus:outline-none focus:ring-2 focus:ring-primary" 
-                />
-                <Button type="submit" className="h-12 px-6">
-                  Join
-                </Button>
-              </form>
-
-              {/* Buttons row */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <Button variant="outline" asChild className="w-full sm:w-auto">
-                  <a href="https://zains-world.beehiiv.com/" target="_blank" rel="noopener noreferrer">
-                    Read the Newsletter
-                  </a>
-                </Button>
-              </div>
-
-              <p className="text-xs text-muted-foreground">
-                Read past posts on Beehiiv, then subscribe there too.
-              </p>
-            </div>
-          </Card>
-        </div>
-
-        <style>{`
-          @keyframes float { 0%{transform:translateY(0)} 50%{transform:translateY(-6px)} 100%{transform:translateY(0)} }
-        `}</style>
-      </section>
-
-      {/* My Published Works Section */}
-      <section id="published-works" className="py-20 bg-muted/20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold">
-              My <span className="text-accent">Published Works</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Books I'm writing to share knowledge and inspire others
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="overflow-hidden hover-lift group">
-              <div className="relative">
-                <img src={maggieSimbaBook} alt="If Maggie & Simba Could Talk Book Cover" className="w-full h-auto object-cover" />
-                <div className="absolute top-8 -right-12 bg-gradient-to-r from-accent to-primary text-white px-16 py-2 transform rotate-45 shadow-lg">
-                  <span className="font-bold text-sm">IN THE WORKS</span>
-                </div>
-              </div>
-              <div className="p-6 space-y-3">
-                <h3 className="text-2xl font-bold">If Maggie & Simba Could Talk</h3>
-                <p className="text-sm text-muted-foreground mb-2">A Memoir of Love, Loss, and Life Lessons</p>
-                <p className="text-muted-foreground">A heartfelt memoir exploring the profound lessons learned from two beloved companions.</p>
-              </div>
-            </Card>
-
-            <Card className="overflow-hidden hover-lift group">
-              <div className="relative">
-                <img src={financialSorceryBook} alt="The School of Financial Sorcery Book Cover" className="w-full h-auto object-cover" />
-                <div className="absolute top-8 -right-12 bg-gradient-to-r from-accent to-primary text-white px-16 py-2 transform rotate-45 shadow-lg">
-                  <span className="font-bold text-sm">IN THE WORKS</span>
-                </div>
-              </div>
-              <div className="p-6 space-y-3">
-                <h3 className="text-xl font-bold">The School of Financial Sorcery</h3>
-                <p className="text-sm text-muted-foreground mb-2">How to Master Money Like Magic</p>
-                <p className="text-muted-foreground">Practical wisdom and transformative strategies for building wealth and financial freedom.</p>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Buy Me a Coffee — Final CTA */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 max-w-2xl">
-          <Card className="relative overflow-hidden border-2 border-primary/20 bg-card shadow-2xl">
-            <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[inherit]" style={{ background: "radial-gradient(600px 300px at 50% 0%, hsl(var(--primary)/0.08), transparent 70%)" }} />
-            <div className="relative z-10 flex flex-col items-center text-center gap-6 p-10 md:p-14">
-              <div className="text-6xl leading-none select-none">☕</div>
-              <div className="space-y-3">
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground">Was this helpful?</h2>
-                <p className="text-lg text-muted-foreground max-w-sm mx-auto">
-                  If anything here sparked an idea or saved you time, you can say thanks with a coffee. It genuinely means a lot.
-                </p>
-              </div>
-              <Button asChild size="lg" className="gap-2 px-8 py-6 text-base font-semibold rounded-xl hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200">
-                <a href="https://buymeacoffee.com/curiouszen" target="_blank" rel="noopener noreferrer" aria-label="Buy me a coffee">
-                  <Heart className="w-5 h-5" />
-                  Buy Me a Coffee
-                </a>
-              </Button>
-              <p className="text-xs text-muted-foreground">No pressure. Just vibes. ✨</p>
-            </div>
-          </Card>
-        </div>
-      </section>
+      {/* (Buy Me a Coffee moved to footer line below) */}
 
       {/* Footer */}
       <footer className="bg-background border-t border-border py-8">
-        <div className="container mx-auto px-4 max-w-6xl text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Zain Education Ventures. All rights reserved.
+        <div className="container mx-auto px-4 max-w-6xl text-center space-y-2">
+          <a
+            href="https://buymeacoffee.com/curiouszen"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+            aria-label="Buy me a coffee"
+          >
+            ☕ Support my work
+          </a>
+          <p className="text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Zain Education Ventures. All rights reserved.
+          </p>
         </div>
       </footer>
 
