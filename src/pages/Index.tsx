@@ -818,82 +818,8 @@ const Index = () => {
       </section>
 
 
-      {/* Newsletters I Follow Section */}
-      <section className="py-16 md:py-24 relative overflow-hidden bg-gradient-to-br from-primary/5 via-accent/10 to-secondary/5">
-        {/* Gradient mesh background effect */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl"></div>
-        </div>
-        <div className="relative z-10">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">Newsletters I Follow 📬</h2>
-              <p className="text-lg text-muted-foreground">My favorite weekly reads for growth, health, and finance</p>
-            </div>
-
-            {/* Newsletter Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {NEWSLETTERS.map(newsletter => <Card key={newsletter.href} className="hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col p-5 border-2 bg-card">
-                  <div className="flex-grow">
-                    <h3 className="text-lg font-bold text-foreground">
-                      <a href={newsletter.href} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label={`Subscribe to ${newsletter.title}`}>
-                        {newsletter.title}
-                      </a>
-                    </h3>
-                    {newsletter.byline && <p className="text-xs text-primary font-semibold mt-0.5">{newsletter.byline}</p>}
-                    <p className="text-sm text-muted-foreground mt-2">{newsletter.blurb}</p>
-                  </div>
-                  <Button asChild className="mt-4 w-full">
-                    <a href={newsletter.href} target="_blank" rel="noopener noreferrer" aria-label={`Subscribe to ${newsletter.title}`}>
-                      Subscribe →
-                    </a>
-                  </Button>
-                </Card>)}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Podcasts I Follow — Frame-by-Frame Navigation */}
-      {/* Podcasts I Follow — Compact Shelf */}
-      <section className="py-12 md:py-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-card/80 via-muted/30 to-card/80 backdrop-blur-sm" />
-        <div className="relative z-10 container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground flex items-center justify-center gap-2">
-              <Music className="w-5 h-5 text-primary" />
-              Podcasts I Follow
-            </h2>
-            <p className="mt-1 text-sm text-muted-foreground">Shows I learn from every week</p>
-          </div>
-
-          <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
-            {PODCASTS.map(podcast => (
-              <a
-                key={podcast.listen}
-                href={podcast.listen}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex-shrink-0 snap-start flex items-center gap-3 rounded-xl border border-border bg-card/80 backdrop-blur-sm px-4 py-3 w-[260px] transition-all duration-300 hover:border-primary hover:shadow-[0_8px_32px_rgba(0,212,170,0.1)] hover:-translate-y-0.5"
-                aria-label={`Listen to ${podcast.title}`}
-              >
-                <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 border border-border">
-                  {podcast.image ? (
-                    <img src={podcast.image} alt={podcast.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
-                  ) : (
-                    <img src={faviconFor(podcast.website || podcast.listen)} alt={podcast.title} className="w-full h-full object-cover" loading="lazy" />
-                  )}
-                </div>
-                <div className="min-w-0">
-                  <p className="text-sm font-semibold text-foreground truncate">{podcast.title}</p>
-                  <p className="text-xs text-muted-foreground truncate">{podcast.host}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* What I Follow — Combined Newsletters + Podcasts */}
+      <WhatIFollow podcasts={PODCASTS} />
 
       {/* Spotify Playlist Section */}
       <section className="py-16 md:py-24 bg-primary/5">
