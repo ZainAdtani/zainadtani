@@ -19,175 +19,52 @@ import {
   Briefcase,
   Lock,
   Archive,
+  ShoppingBag,
+  Mail,
+  Globe,
+  Map,
+  Gamepad2,
 } from "lucide-react";
 
 export interface NavItem {
   label: string;
   path: string;
   icon: LucideIcon;
-  section: "learn" | "resources" | "explore" | "support" | "vault" | "archive";
+  section: "main" | "archive" | "vault";
   searchTags?: string[];
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  // Learn Section
-  {
-    label: "Home",
-    path: "/",
-    icon: Home,
-    section: "learn",
-  },
-  {
-    label: "Books",
-    path: "/books",
-    icon: BookOpen,
-    section: "learn",
-    searchTags: ["reading", "library"],
-  },
-  {
-    label: "Investing",
-    path: "/investing",
-    icon: TrendingUp,
-    section: "learn",
-    searchTags: ["finance", "stocks"],
-  },
-  {
-    label: "Blog",
-    path: "/blog",
-    icon: FileText,
-    section: "learn",
-    searchTags: ["articles", "posts", "writing"],
-  },
-  {
-    label: "My Podcast",
-    path: "/my-podcast",
-    icon: Mic,
-    section: "learn",
-    searchTags: ["podcast", "audio", "episodes"],
-  },
-  // Resources Section
-  {
-    label: "Resources",
-    path: "/resources",
-    icon: Paperclip,
-    section: "resources",
-    searchTags: ["PDFs", "tools", "quick reference"],
-  },
-  {
-    label: "AI Prompts",
-    path: "/ai-prompts",
-    icon: Zap,
-    section: "resources",
-    searchTags: ["prompts", "coaching", "productivity"],
-  },
-  {
-    label: "Life Notes",
-    path: "/life-notes",
-    icon: StickyNote,
-    section: "resources",
-    searchTags: ["quotes", "wisdom", "mindset"],
-  },
-  {
-    label: "Tools",
-    path: "/tools",
-    icon: Wrench,
-    section: "resources",
-    searchTags: ["utilities"],
-  },
-  {
-    label: "Sports",
-    path: "/sports",
-    icon: Trophy,
-    section: "resources",
-    searchTags: ["NBA", "scores"],
-  },
-  {
-    label: "Waez",
-    path: "/waez",
-    icon: Music,
-    section: "resources",
-    searchTags: ["religious", "lectures", "Abu Ali"],
-  },
-  {
-    label: "Health",
-    path: "/health",
-    icon: Dumbbell,
-    section: "resources",
-    searchTags: ["fitness", "wellness", "exercise"],
-  },
-  // Explore Section
-  {
-    label: "Projects",
-    path: "/projects",
-    icon: FolderKanban,
-    section: "explore",
-    searchTags: ["pokedex", "builds"],
-  },
-  {
-    label: "Archive",
-    path: "/archive",
-    icon: Archive,
-    section: "explore",
-    searchTags: ["old pages", "reference", "archived"],
-  },
-  {
-    label: "Services",
-    path: "/services",
-    icon: Briefcase,
-    section: "explore",
-    searchTags: ["website", "lovable", "build"],
-  },
-  // Support Section
-  {
-    label: "Interactive Resume",
-    path: "/resume",
-    icon: FileText,
-    section: "support",
-    searchTags: ["resume", "cv", "career", "experience"],
-  },
-  {
-    label: "Help / Contact",
-    path: "/about",
-    icon: HelpCircle,
-    section: "support",
-  },
-  // Vault Section (Standalone)
-  {
-    label: "Secret Vault",
-    path: "/vault",
-    icon: Lock,
-    section: "vault",
-    searchTags: ["premium", "exclusive"],
-  },
-  // Archive Section
-  {
-    label: "Archive Home",
-    path: "/archive",
-    icon: Archive,
-    section: "archive",
-    searchTags: ["old pages", "reference"],
-  },
-  {
-    label: "Enrolled Agent",
-    path: "/enrolled-agent",
-    icon: GraduationCap,
-    section: "archive",
-    searchTags: ["study", "certification"],
-  },
-  {
-    label: "Personal Learning Vault",
-    path: "/personal-learning-vault",
-    icon: BookOpen,
-    section: "archive",
-    searchTags: ["videos", "learning", "notes", "summaries"],
-  },
-  {
-    label: "QuickBooks",
-    path: "/quickbooks",
-    icon: Calculator,
-    section: "archive",
-    searchTags: ["bookkeeping"],
-  },
+  // ── Main (flat list) ──
+  { label: "Home", path: "/", icon: Home, section: "main" },
+  { label: "About", path: "/about", icon: HelpCircle, section: "main" },
+  { label: "Services", path: "/services", icon: Briefcase, section: "main" },
+  { label: "Books", path: "/books", icon: BookOpen, section: "main", searchTags: ["reading", "library"] },
+  { label: "Blog", path: "/blog", icon: FileText, section: "main", searchTags: ["articles", "posts", "writing"] },
+  { label: "Digital Products", path: "/digital-products", icon: ShoppingBag, section: "main", searchTags: ["products", "store"] },
+  { label: "AI Prompts", path: "/ai-prompts", icon: Zap, section: "main", searchTags: ["prompts", "coaching", "productivity"] },
+  { label: "Life Notes", path: "/life-notes", icon: StickyNote, section: "main", searchTags: ["quotes", "wisdom", "mindset"] },
+  { label: "Tools", path: "/tools", icon: Wrench, section: "main", searchTags: ["utilities"] },
+  { label: "Health", path: "/health", icon: Dumbbell, section: "main", searchTags: ["fitness", "wellness", "exercise"] },
+  { label: "Contact", path: "/contact", icon: Mail, section: "main" },
+
+  // ── Archive (collapsible) ──
+  { label: "Enrolled Agent", path: "/enrolled-agent", icon: GraduationCap, section: "archive", searchTags: ["study", "certification"] },
+  { label: "Tax Quest", path: "/tax-quest", icon: Gamepad2, section: "archive", searchTags: ["game", "EA"] },
+  { label: "QuickBooks", path: "/quickbooks", icon: Calculator, section: "archive", searchTags: ["bookkeeping"] },
+  { label: "NBA Tracker", path: "/sports", icon: Trophy, section: "archive", searchTags: ["NBA", "scores"] },
+  { label: "Interactive Resume", path: "/resume", icon: FileText, section: "archive", searchTags: ["resume", "cv", "career"] },
+  { label: "Financial Treasure Map", path: "/financial-treasure-map", icon: Map, section: "archive", searchTags: ["finance", "investing"] },
+  { label: "Personal Learning Vault", path: "/personal-learning-vault", icon: BookOpen, section: "archive", searchTags: ["videos", "learning"] },
+  { label: "Website Starter Lab", path: "/website-lab", icon: Globe, section: "archive", searchTags: ["website", "build"] },
+  { label: "Sports", path: "/sports", icon: Trophy, section: "archive", searchTags: ["NBA", "scores"] },
+  { label: "Investing", path: "/investing", icon: TrendingUp, section: "archive", searchTags: ["finance", "stocks"] },
+  { label: "Waez", path: "/waez", icon: Music, section: "archive", searchTags: ["religious", "lectures"] },
+  { label: "Projects", path: "/projects", icon: FolderKanban, section: "archive", searchTags: ["pokedex", "builds"] },
+  { label: "My Podcast", path: "/my-podcast", icon: Mic, section: "archive", searchTags: ["podcast", "audio"] },
+
+  // ── Vault (standalone) ──
+  { label: "Secret Vault", path: "/vault", icon: Lock, section: "vault", searchTags: ["premium", "exclusive"] },
 ];
 
 // Helper to get items by section

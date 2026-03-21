@@ -51,6 +51,7 @@ import Illuminate from "./pages/usa-visit-2025/Illuminate";
 
 import Resume from "./pages/Resume";
 import LegacyEATax from "./pages/LegacyEATax";
+import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
