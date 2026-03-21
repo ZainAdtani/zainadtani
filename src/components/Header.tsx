@@ -12,10 +12,7 @@ export const Header = () => {
   const { theme, setTheme } = useTheme();
   const location = useLocation();
   const [sheetOpen, setSheetOpen] = useState(false);
-  const [learnOpen, setLearnOpen] = useState(true);
-  const [resourcesOpen, setResourcesOpen] = useState(true);
-  const [exploreOpen, setExploreOpen] = useState(true);
-  const [supportOpen, setSupportOpen] = useState(true);
+  const [archiveOpen, setArchiveOpen] = useState(false);
 
   const isActive = (path: string) => {
     if (path === '/') return location.pathname === '/';
