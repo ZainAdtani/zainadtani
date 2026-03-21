@@ -894,8 +894,19 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="bg-background border-t border-border py-8">
-        <div className="container mx-auto px-4 max-w-6xl text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Zain Education Ventures. All rights reserved.
+        <div className="container mx-auto px-4 max-w-6xl text-center space-y-2">
+          <a
+            href="https://buymeacoffee.com/curiouszen"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+            aria-label="Buy me a coffee"
+          >
+            ☕ Support my work
+          </a>
+          <p className="text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Zain Education Ventures. All rights reserved.
+          </p>
         </div>
       </footer>
 
