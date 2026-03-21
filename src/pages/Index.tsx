@@ -510,104 +510,68 @@ const Index = () => {
             </TabsContent>
 
             {/* Credentials Tab (formerly Certifications) */}
-            <TabsContent value="credentials" className="space-y-6">
-              <Card className="p-8 hover-lift transition-all duration-300 shadow-lg border-2">
-                <div className="flex items-start gap-4 mb-6">
-                  <img src={qbBadge} alt="QuickBooks ProAdvisor Level 2 Badge" className="w-32 h-32 object-contain flex-shrink-0" />
-                  <div className="bg-primary/10 border-2 border-primary rounded-lg px-4 py-2 self-start">
-                    <p className="text-primary font-bold text-lg">Level 2 Certified</p>
+            <TabsContent value="credentials" className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* QuickBooks */}
+                <Card className="p-5 hover-lift transition-all duration-300 shadow-lg border-2">
+                  <div className="flex items-center gap-3 mb-3">
+                    <img src={qbBadge} alt="QuickBooks ProAdvisor Level 2 Badge" className="w-16 h-16 object-contain flex-shrink-0" />
+                    <div>
+                      <h3 className="text-lg font-bold text-foreground">QuickBooks Certified ProAdvisor</h3>
+                      <Badge className="bg-primary/10 text-primary border-primary text-xs">Level 2 Certified</Badge>
+                    </div>
                   </div>
-                </div>
-                <h3 className="text-3xl font-bold mb-4 text-foreground">QuickBooks Certified ProAdvisor</h3>
-                <p className="text-lg text-muted-foreground mb-4">
-                  Running a business is hard enough—your books shouldn't be. I'm a QuickBooks Certified ProAdvisor (now
-                  Level 2 certified!) and I help business owners get their books cleaned up, organized, and running like
-                  clockwork.
-                </p>
-                <p className="text-muted-foreground mb-4">
-                  Whether you're struggling to reconcile accounts, track expenses, or just keep things up to date, I'm
-                  here to take that weight off your shoulders.
-                </p>
-                <div className="space-y-2 text-muted-foreground mb-6">
-                  <p className="font-semibold">💼 What I offer:</p>
-                  <p>• Full QuickBooks Online setup & training</p>
-                  <p>• Monthly reconciliations & cleanups</p>
-                  <p>• Help with invoicing, payments, and reports</p>
-                  <p>• Personalized support (yes, real answers—not robots)</p>
-                </div>
-                <p className="text-muted-foreground mb-6">
-                  Check out my official badges—and let's chat about how we can make your bookkeeping the easiest part of
-                  your business.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button asChild className="flex-1 bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg">
-                    <a href="https://proadvisor.intuit.com/app/accountant/search?searchId=zainadtani" target="_blank" rel="noopener noreferrer">
-                      View My ProAdvisor Profile →
-                    </a>
-                  </Button>
-                  <Button asChild variant="outline" className="flex-1 border-primary text-primary hover:bg-primary/10 transition-all duration-300">
-                    <a href="https://www.credly.com/badges/31486029-a69d-462a-84d6-cf324f42fdfa/embedded" target="_blank" rel="noopener noreferrer">
-                      View My Badge →
-                    </a>
-                  </Button>
-                </div>
-              </Card>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Full QuickBooks Online setup, training, monthly reconciliations, cleanups, invoicing, payments, and reports.
+                  </p>
+                  <div className="flex gap-2">
+                    <Button asChild size="sm" className="flex-1 bg-primary hover:bg-primary/90 text-xs">
+                      <a href="https://proadvisor.intuit.com/app/accountant/search?searchId=zainadtani" target="_blank" rel="noopener noreferrer">ProAdvisor Profile →</a>
+                    </Button>
+                    <Button asChild variant="outline" size="sm" className="text-xs">
+                      <a href="https://www.credly.com/badges/31486029-a69d-462a-84d6-cf324f42fdfa/embedded" target="_blank" rel="noopener noreferrer">Badge →</a>
+                    </Button>
+                  </div>
+                </Card>
 
-              <Card className="p-8 hover-lift transition-all duration-300 shadow-lg border-2">
-                <img src={awsBadge} alt="AWS Certified Cloud Practitioner Badge" className="w-32 h-32 object-contain mb-6" />
-                <h3 className="text-3xl font-bold mb-4 text-foreground">AWS Certified Cloud Practitioner</h3>
-                <p className="text-lg text-muted-foreground mb-4">
-                  Foundational certification validating comprehensive understanding of AWS Cloud services, architecture,
-                  and best practices.
-                </p>
-                <div className="space-y-2 text-muted-foreground mb-6">
-                  <p className="font-semibold">Key Competencies:</p>
-                  <p>• Cloud concepts and AWS global infrastructure</p>
-                  <p>• Core AWS services (compute, storage, database, networking)</p>
-                  <p>• AWS security and compliance best practices</p>
-                  <p>• AWS pricing models and cost optimization</p>
-                  <p>• Cloud architecture design principles</p>
-                </div>
-                <p className="text-sm text-muted-foreground text-center mb-2">
-                  Game based training to renew Cloud Practitioner. No exam required.
-                </p>
-                <p className="text-xs text-muted-foreground text-center mb-4">
-                  Available in English, Japanese, Korean, French, and Portuguese.
-                </p>
-                <div className="space-y-2">
-                  <Button asChild className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white transition-all duration-300 hover:shadow-lg">
-                    <a href="https://skillbuilder.aws/learn/ZCQGNCDS54/aws-cloud-quest-recertify-cloud-practitioner/H5AC9MAA6A?sc_channel=em&trk=2d6615ea-2f04-4726-b969-0f8c555f74f4" target="_blank" rel="noopener noreferrer" tabIndex={0}>
-                      Recertify with Cloud Quest →
-                    </a>
-                  </Button>
-                  <Button asChild variant="secondary" className="w-full transition-all duration-300 hover:shadow-md">
-                    <a href="https://aws.amazon.com/training/digital/aws-cloud-quest/" target="_blank" rel="noopener noreferrer" tabIndex={0}>
-                      About AWS Cloud Quest →
-                    </a>
-                  </Button>
-                  <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary/10 transition-all duration-300">
-                    <a href="https://www.credly.com/badges/2d636eb8-4677-4783-b829-47394e406a5a/public_url" target="_blank" rel="noopener noreferrer" tabIndex={0}>
-                      View AWS Badge →
-                    </a>
-                  </Button>
-                </div>
-              </Card>
+                {/* AWS */}
+                <Card className="p-5 hover-lift transition-all duration-300 shadow-lg border-2">
+                  <div className="flex items-center gap-3 mb-3">
+                    <img src={awsBadge} alt="AWS Certified Cloud Practitioner Badge" className="w-16 h-16 object-contain flex-shrink-0" />
+                    <div>
+                      <h3 className="text-lg font-bold text-foreground">AWS Cloud Practitioner</h3>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Cloud concepts, core AWS services, security, compliance, pricing models, and architecture design principles.
+                  </p>
+                  <div className="flex gap-2 flex-wrap">
+                    <Button asChild size="sm" className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs">
+                      <a href="https://skillbuilder.aws/learn/ZCQGNCDS54/aws-cloud-quest-recertify-cloud-practitioner/H5AC9MAA6A" target="_blank" rel="noopener noreferrer">Recertify →</a>
+                    </Button>
+                    <Button asChild variant="outline" size="sm" className="text-xs">
+                      <a href="https://www.credly.com/badges/2d636eb8-4677-4783-b829-47394e406a5a/public_url" target="_blank" rel="noopener noreferrer">Badge →</a>
+                    </Button>
+                  </div>
+                </Card>
 
-              <Card className="p-8 hover-lift transition-all duration-300 shadow-lg border-2">
-                <div className="flex items-start gap-4 mb-6">
-                  <img src={eagleScoutBadge} alt="Eagle Scout Badge" className="w-24 h-24 object-contain flex-shrink-0" />
-                </div>
-                <h3 className="text-3xl font-bold mb-4 text-foreground">Eagle Scout</h3>
-                <p className="text-lg text-muted-foreground mb-4">Earned in 2017</p>
-                <p className="text-base text-muted-foreground mb-6">
-                  Leadership, service, outdoor skills, and community projects. 🧭🏕️🦅
-                </p>
-                <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/10 transition-all duration-300">
-                  <a href="https://greatriversscouting.org/2023/11/03/eagle-scout-requirements/" target="_blank" rel="noopener noreferrer">
-                    What is Eagle Scout →
-                  </a>
-                </Button>
-              </Card>
+                {/* Eagle Scout */}
+                <Card className="p-5 hover-lift transition-all duration-300 shadow-lg border-2">
+                  <div className="flex items-center gap-3 mb-3">
+                    <img src={eagleScoutBadge} alt="Eagle Scout Badge" className="w-16 h-16 object-contain flex-shrink-0" />
+                    <div>
+                      <h3 className="text-lg font-bold text-foreground">Eagle Scout</h3>
+                      <p className="text-xs text-muted-foreground">Earned 2017</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Leadership, service, outdoor skills, and community projects.
+                  </p>
+                  <Button asChild variant="outline" size="sm" className="text-xs">
+                    <a href="https://greatriversscouting.org/2023/11/03/eagle-scout-requirements/" target="_blank" rel="noopener noreferrer">What is Eagle Scout →</a>
+                  </Button>
+                </Card>
+              </div>
             </TabsContent>
 
             {/* Role Models Tab */}
