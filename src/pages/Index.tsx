@@ -451,54 +451,43 @@ const Index = () => {
 
             {/* Books Tab */}
             <TabsContent value="books" className="space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
                 <div>
                   <h3 className="text-2xl font-bold text-foreground">Books I'm Reading & Recommend</h3>
                   <p className="text-muted-foreground">A rotating selection from my reading journey</p>
                 </div>
                 <Button asChild variant="outline">
-                  <Link to="/books">View Full Book Portal →</Link>
+                  <Link to="/books">View All Books →</Link>
                 </Button>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {topBooks.map(book => <Card key={book.title + book.author} className="overflow-hidden hover-lift transition-all duration-500 shadow-lg border-2 group">
-                    {/* Status Badge */}
+              <div
+                className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-400 ${booksFading ? "opacity-0" : "opacity-100"}`}
+                onMouseEnter={() => setIsHoveringBooks(true)}
+                onMouseLeave={() => setIsHoveringBooks(false)}
+              >
+                {displayedBooks.map(book => <Card key={book.title + book.author} className="overflow-hidden hover-lift transition-all duration-500 shadow-lg border-2 group">
                     <div className="absolute top-4 right-4 z-10 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm">
                       {book.status === "READ" ? "✓ Read" : book.status === "IN_PROGRESS" ? "Reading" : "To Read"}
                     </div>
-
                     <div className="p-6 flex flex-col h-full">
-                      {/* Book Cover */}
                       <div className="relative mb-4 rounded-xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-shadow duration-500">
                         <div className="aspect-[2/3] bg-accent/20">
                           <img src={book.cover ?? "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'%3E%3Crect fill='%23e5e7eb' width='200' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%239ca3af'%3EBook Cover%3C/text%3E%3C/svg%3E"} alt={`Book cover: ${book.title} by ${book.author}`} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy" onError={e => {
-                        e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'%3E%3Crect fill='%23e5e7eb' width='200' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%239ca3af'%3EBook Cover%3C/text%3E%3C/svg%3E";
-                      }} />
+                            e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'%3E%3Crect fill='%23e5e7eb' width='200' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%239ca3af'%3EBook Cover%3C/text%3E%3C/svg%3E";
+                          }} />
                         </div>
                       </div>
-
-                      {/* Title & Author */}
                       <h4 className="font-bold text-xl mb-1 text-foreground line-clamp-2">{book.title}</h4>
                       <p className="text-sm text-muted-foreground mb-3">{book.author}</p>
-
-                      {/* Rating */}
                       {book.rating && <div className="flex items-center gap-1 mb-3">
-                          {[...Array(5)].map((_, i) => <span key={i} className={i < book.rating! ? "text-yellow-500" : "text-muted-foreground/30"}>
-                              ★
-                            </span>)}
+                          {[...Array(5)].map((_, i) => <span key={i} className={i < book.rating! ? "text-yellow-500" : "text-muted-foreground/30"}>★</span>)}
                         </div>}
-
-                      {/* Notes */}
                       {book.notes && <p className="text-xs text-muted-foreground mb-4 flex-grow italic">{book.notes}</p>}
-
-                      {/* CTA Buttons */}
                       <div className="flex flex-col gap-2 mt-auto">
                         {(book.myThoughts || book.notes) && <Dialog>
                             <DialogTrigger asChild>
-                              <Button variant="outline" size="sm" className="w-full text-xs rounded-full">
-                                View my thoughts
-                              </Button>
+                              <Button variant="outline" size="sm" className="w-full text-xs rounded-full">View my thoughts</Button>
                             </DialogTrigger>
                             <DialogContent className="sm:max-w-lg">
                               <DialogHeader>
@@ -506,23 +495,13 @@ const Index = () => {
                                 <DialogDescription>by {book.author}</DialogDescription>
                               </DialogHeader>
                               <div className="space-y-4 text-sm text-foreground">
-                                {book.myThoughts && <div>
-                                    <p className="font-semibold mb-1">My thoughts</p>
-                                    <p className="whitespace-pre-wrap">{book.myThoughts}</p>
-                                  </div>}
-                                {book.notes && <div>
-                                    <p className="font-semibold mb-1">Summary / notes</p>
-                                    <p className="italic text-muted-foreground whitespace-pre-wrap">
-                                      {book.notes.length > 600 ? book.notes.slice(0, 597) + "..." : book.notes}
-                                    </p>
-                                  </div>}
+                                {book.myThoughts && <div><p className="font-semibold mb-1">My thoughts</p><p className="whitespace-pre-wrap">{book.myThoughts}</p></div>}
+                                {book.notes && <div><p className="font-semibold mb-1">Summary / notes</p><p className="italic text-muted-foreground whitespace-pre-wrap">{book.notes.length > 600 ? book.notes.slice(0, 597) + "..." : book.notes}</p></div>}
                               </div>
                             </DialogContent>
                           </Dialog>}
                         {book.link && <Button asChild variant="outline" size="sm" className="w-full text-xs rounded-full font-semibold transition-all duration-300 hover:shadow-lg">
-                            <a href={book.link} target="_blank" rel="noopener noreferrer" aria-label={`View ${book.title} on Amazon`}>
-                              View on Amazon
-                            </a>
+                            <a href={book.link} target="_blank" rel="noopener noreferrer">View on Amazon</a>
                           </Button>}
                       </div>
                     </div>
