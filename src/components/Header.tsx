@@ -65,6 +65,7 @@ export const Header = () => {
               <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             </Link>
           ))}
+          </div>
 
           {/* Hamburger Menu — mirrors sidebar exactly */}
           <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
