@@ -195,21 +195,6 @@ export function AppSidebar() {
           </SidebarGroup>
         </Collapsible>
 
-        {/* Secret Vault */}
-        <SidebarGroup>
-          <SidebarMenu>
-            {getNavItemsBySection("vault").map((item) => (
-              <SidebarMenuItem key={item.path}>
-                <SidebarMenuButton asChild>
-                  <NavLink to={item.path} className={getNavClass}>
-                    <item.icon className="h-4 w-4" />
-                    {!isCollapsed && <span>{item.label}</span>}
-                  </NavLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
-          </SidebarMenu>
-        </SidebarGroup>
       </SidebarContent>
 
       {!isCollapsed && (

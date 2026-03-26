@@ -122,20 +122,6 @@ export const Header = () => {
                   </div>
                 </Collapsible>
 
-                {/* Secret Vault */}
-                <div className="border-t border-border pt-4">
-                  {getNavItemsBySection("vault").map((item) => (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      className="flex items-center gap-2 text-foreground hover:underline px-2 py-1"
-                      onClick={() => setSheetOpen(false)}
-                    >
-                      <item.icon className="w-4 h-4 text-primary" />
-                      <span>{item.label}</span>
-                    </Link>
-                  ))}
-                </div>
               </nav>
 
               {/* Theme Toggle */}
