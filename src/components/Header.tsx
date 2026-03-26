@@ -13,7 +13,7 @@ const TOP_NAV = [
   { label: "About", path: "/about" },
   { label: "Services", path: "/services" },
   { label: "Books", path: "/books" },
-  { label: "Blog", path: "/blog" },
+  { label: "Investing", path: "/investing" },
 ];
 
 export const Header = () => {
