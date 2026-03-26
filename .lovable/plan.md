@@ -1,199 +1,76 @@
 
-# Website Navigation & Pages Update Plan — COMPLETED ✅
 
-## Status: All 4 areas implemented
-This plan covers 4 major areas:
-1. Newsletter section updates (Home page)
-2. Archive page creation and navigation restructure
-3. Health page (rename from Workout)
-4. Resume page redesign
+## Site Cleanup — Deletion Plan
+
+### Summary
+Delete 21 page files, their routes, imports, nav entries, and supporting files. Keep all guarded pages untouched.
 
 ---
 
-## A. Newsletter Section Updates
+### Files to DELETE (21 pages + 4 components + 4 support files = 29 files)
 
-**File: `src/pages/Index.tsx`**
+**Pages:**
+1. `src/pages/Sports.tsx`
+2. `src/pages/Health.tsx`
+3. `src/pages/EnrolledAgent.tsx`
+4. `src/pages/TaxQuest.tsx`
+5. `src/pages/QuickBooks.tsx`
+6. `src/pages/QuickBooksFastTrack.tsx`
+7. `src/pages/QuickBooksCleanup.tsx`
+8. `src/pages/SecretVault.tsx`
+9. `src/pages/VaultSubscriptions.tsx`
+10. `src/pages/VaultDevices.tsx`
+11. `src/pages/Workout.tsx`
+12. `src/pages/LegacyEATax.tsx`
+13. `src/pages/Contact.tsx`
+14. `src/pages/PersonalLearningVault.tsx`
+15. `src/pages/FinancialTreasureMap.tsx`
+16. `src/pages/WebsiteLab.tsx`
+17. `src/pages/Resume.tsx`
+18. `src/pages/Thanks.tsx`
+19. `src/pages/projects/EAStudyChatbot.tsx`
+20. `src/pages/usa-visit-2025/DevotionalLiterature.tsx`
+21. `src/pages/usa-visit-2025/Illuminate.tsx`
 
-### Changes to "Join Zain's World" section (lines 1212-1263)
+**Components:**
+22. `src/components/TryTaxQuestCTA.tsx`
+23. `src/components/EAGame.tsx`
+24. `src/components/SubscriptionCard.tsx`
+25. `src/components/SubscriptionsVault.tsx`
 
-1. **Add second button** next to signup:
-   - Label: "Read the Newsletter"
-   - Links to: `https://zains-world.beehiiv.com/`
-   - Opens in new tab
+**Support files:**
+26. `src/types/subscription.ts`
+27. `src/styles/starter-lab.css`
+28. `src/config/links.ts`
+29. `src/utils/subscription-utils.ts`
 
-2. **Update hook text**:
-   - Replace current bullet list with: "Free posts. Quick ideas. No fluff."
-   - Add smaller line: "Read the archive on Beehiiv, then subscribe there too."
-
-3. **Button layout**: Side-by-side on desktop, stacked on mobile
-
----
-
-## B. Archive Page & Navigation Restructure
-
-### B1. Update Navigation Config
-
-**File: `src/data/nav.ts`**
-
-Add new section type "archive" and move these pages:
-- Enrolled Agent (`/enrolled-agent`)
-- Personal Learning Vault (`/personal-learning-vault`)
-- QuickBooks (`/quickbooks`)
-
-Remove from Learn/Resources sections, add to new "archive" section.
-
-**Changes:**
-```text
-1. Update NavItem interface to include "archive" section type
-2. Remove Enrolled Agent from "learn" section
-3. Remove Personal Learning Vault from "resources" section
-4. Remove QuickBooks from "resources" section
-5. Add all three to new "archive" section
-```
-
-### B2. Update Sidebar
-
-**File: `src/components/AppSidebar.tsx`**
-
-Add new "Archive" collapsible group after Support section, before Vault.
-
-### B3. Create Archive Page
-
-**New file: `src/pages/Archive.tsx`**
-
-Layout:
-- Header with note: "Old pages live here. I keep them for reference."
-- Grid of 3 cards:
-  - Enrolled Agent: "Tax prep certification and study resources." → `/enrolled-agent`
-  - Personal Learning Vault: "Video summaries and course notes." → `/personal-learning-vault`
-  - QuickBooks: "Bookkeeping training and tools." → `/quickbooks`
-- Each card has title, one-line description, "Open" button
-
-### B4. Add Route
-
-**File: `src/App.tsx`**
-
-Add: `<Route path="/archive" element={<Archive />} />`
+**Keep:** `src/styles/investing-ftw.css` (used by Investing.tsx)
 
 ---
 
-## C. Health Page (Rename Workout)
+### Files to EDIT
 
-### C1. Create New Health Page
+**`src/App.tsx`** — Remove all imports and `<Route>` entries for deleted pages. Remove redirects for `/nba`, `/workout`, `/contact`. Keep all guarded routes.
 
-**New file: `src/pages/Health.tsx`**
+**`src/data/nav.ts`** — Strip archive down to only Investing, Waez, Projects, My Podcast. Remove Health from main. Remove entire vault section. Clean up unused icon imports.
 
-Layout structure:
-
-**Hero Section:**
-- Title: "Health"
-- Subtitle: "Small steps. Better energy."
-- Two buttons: "Start here" and "Tools I use" (scroll to sections)
-
-**4-Card Grid:**
-| Card | Subtitle |
-|------|----------|
-| Move | Walk. Lift. Stretch. |
-| Food | Eat simple. |
-| Sleep | Protect your bedtime. |
-| Mind | Calm wins. |
-
-**Quick Checklist Section:**
-7 items with checkboxes:
-- Walk 10 minutes
-- Drink water
-- Protein with a meal
-- One veggie
-- Sunlight
-- Sleep time set
-- No screens last 20 minutes
-
-**Resources Section:**
-3 placeholder cards: "My routines", "My favorite tools", "My notes"
-
-### C2. Keep Workout Route with Redirect
-
-**File: `src/App.tsx`**
-
-```text
-Add: <Route path="/health" element={<Health />} />
-Change: <Route path="/workout" element={<Navigate to="/health" replace />} />
-```
-
-### C3. Update Navigation
-
-**File: `src/data/nav.ts`**
-
-Change "Workout" label to "Health" and update path to `/health`
+**`src/data/projects.ts`** — Remove the `ea-study-chatbot` entry from the projects array (the page is deleted, but the data entry would create a dead link on the Projects page).
 
 ---
 
-## D. Resume Page Redesign
+### Final nav.ts structure
 
-**File: `src/pages/Resume.tsx`**
+**Main:** Home, About, Services, Books, Blog, Digital Products, AI Prompts, Life Notes, Tools
 
-Complete redesign for clean white one-pager:
+**Archive:** Investing, Waez, Projects, My Podcast
 
-### Layout Structure
-
-**Header (centered):**
-- Name: "Zain Adtani"
-- Title line: "Website builder and systems guy"
-- Two buttons: "LinkedIn" and "Email"
-
-**Two-column layout on desktop, single column on mobile:**
-
-**Left Column:**
-- Summary: 3 short lines max
-- Skills: Grouped as small pills
-- Tools: Small list (Lovable, Notion, etc.)
-
-**Right Column:**
-- Experience: Newest first, simple bullets
-- Projects: 3 max, each with one-line result
-- Education: UTD engineering line
-
-### Interactivity
-- "Show details" toggle for each job/project
-- Default view stays collapsed
-- "Print" button that triggers `window.print()`
-
-### Style Changes
-- White background (`bg-white`)
-- Black text
-- Subtle gray lines/borders
-- Print-friendly CSS (`@media print`)
-- Remove side navigation
-- Remove dark theme styling
-
-### Data Adjustments
-
-**File: `src/data/resumeData.ts`**
-
-Update summary to 3 short lines. Keep existing content but display shorter version on page.
+**Vault:** (removed entirely)
 
 ---
 
-## Files Summary
+### Edge function references
+- `ea-study-chat` call in `EAStudyChatbot.tsx` — deleted with the page
+- `nba-standings` call in `Sports.tsx` — deleted with the page
+- `generate-quote` — untouched (homepage)
+- The edge function code files themselves (`supabase/functions/ea-study-chat/`, `supabase/functions/nba-standings/`) and `supabase/config.toml` entries are NOT deleted in this step (they're backend artifacts, not frontend). Can clean those separately if desired.
 
-| File | Action |
-|------|--------|
-| `src/pages/Index.tsx` | Update newsletter section |
-| `src/data/nav.ts` | Add "archive" section, rename Workout to Health |
-| `src/components/AppSidebar.tsx` | Add Archive collapsible group |
-| `src/pages/Archive.tsx` | **NEW** - Archive page with cards |
-| `src/pages/Health.tsx` | **NEW** - Health page with new design |
-| `src/pages/Workout.tsx` | Keep for reference (redirect handles routing) |
-| `src/pages/Resume.tsx` | Complete redesign |
-| `src/App.tsx` | Add routes for /archive, /health, redirect /workout |
-
----
-
-## Technical Notes
-
-- All existing page content preserved (Workout.tsx not deleted, just redirected)
-- Archive pages remain accessible via URL
-- Navigation stays clean with fewer items in main sections
-- Mobile-responsive design maintained throughout
-- Uses existing UI components (Card, Button, Badge)
-- No new dependencies required
