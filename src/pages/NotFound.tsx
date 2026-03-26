@@ -2,7 +2,7 @@ import { useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Home, BookOpen, Music } from "lucide-react";
+import { Search, Home, BookOpen, TrendingUp } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 
 const NotFound = () => {
@@ -82,9 +82,9 @@ const NotFound = () => {
             </Link>
           </Button>
           <Button asChild size="lg" variant="outline">
-            <Link to="/waez" className="flex items-center gap-2">
-              <Music className="w-5 h-5" />
-              Waez
+            <Link to="/investing" className="flex items-center gap-2">
+              <TrendingUp className="w-5 h-5" />
+              Investing
             </Link>
           </Button>
         </div>
