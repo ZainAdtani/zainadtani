@@ -24,8 +24,6 @@ import Services from "./pages/Services";
 
 // Project sub-pages
 import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
-import AiAvatars from "./pages/projects/AiAvatars";
-import TalkToAI from "./pages/projects/TalkToAI";
 import AiSongs from "./pages/projects/AiSongs";
 
 const queryClient = new QueryClient();
@@ -47,8 +45,6 @@ const App = () => (
             <Route path="/books" element={<BooksHQ />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/pokedex" element={<ProjectPokedex />} />
-            <Route path="/projects/ai-avatars" element={<AiAvatars />} />
-            <Route path="/projects/ai" element={<TalkToAI />} />
             <Route path="/projects/harry-potter-world" element={<HarryPotterWorld />} />
             <Route path="/projects/ai-songs" element={<AiSongs />} />
             <Route path="/resources" element={<Resources />} />

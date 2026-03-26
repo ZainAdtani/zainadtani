@@ -6,63 +6,39 @@ import { ArrowRight, ExternalLink } from "lucide-react";
 export default function Services() {
   const services = [
     {
-      id: "lovable-site-build",
-      title: "Lovable Site Build",
-      tagline: "Get a clean, fast site built on Lovable from start to finish.",
+      id: "launch-website",
+      title: "Launch Your Website",
+      tagline: "Go from zero to a polished, professional site — no coding required.",
       bullets: [
-        "One short call to map your goals and pages",
-        "Build or refresh your site in Lovable with mobile friendly layouts",
-        "Quick walkthrough so you feel safe making edits on your own",
+        "Quick discovery call to map your vision and pages",
+        "Custom build on Lovable with a mobile-first, brand-matched design",
+        "Hands-on walkthrough so you can update it yourself with confidence",
       ],
-      buttonText: "Request a Lovable site build",
+      buttonText: "Get started",
       buttonLink: "https://calendly.com/zkadtani/job",
     },
     {
-      id: "tax-review",
-      title: "Tax Review and Savings Plan",
-      tagline: "Simple one on one tax help to lower stress and spot savings.",
+      id: "sat-prep",
+      title: "SAT Prep & Academic Mentoring",
+      tagline: "Build confidence, sharpen skills, and crush your target score.",
       bullets: [
-        "Review of your recent return and current year situation",
-        "Clear list of credits, deductions, and red flags to watch",
-        "Action plan you follow or bring to your tax pro",
+        "Personalized study plan based on practice test diagnostics",
+        "One-on-one sessions covering math, reading, and test strategy",
+        "Ongoing mentoring for focus, time management, and college readiness",
       ],
-      buttonText: "Book a tax review",
+      buttonText: "Book a session",
       buttonLink: "https://calendly.com/zkadtani/job",
     },
     {
-      id: "quickbooks-cleanup",
-      title: "QuickBooks Cleanup and Care",
-      tagline: "Turn messy QuickBooks files into clean reports clients trust.",
+      id: "book-publishing",
+      title: "Book Writing & Publishing",
+      tagline: "Turn your idea into a published book — Kindle, paperback, and audiobook.",
       bullets: [
-        "One time cleanup of your current QuickBooks Online books",
-        "Fix chart of accounts, bank rules, and starting balances",
-        "Option for a simple monthly check in to keep things clean",
+        "Clarify your concept, audience, and unique angle",
+        "Structured writing plan with milestones that fit your schedule",
+        "End-to-end guidance on self-publishing for print, ebook, and audio",
       ],
-      buttonText: "Ask about QuickBooks cleanup",
-      buttonLink: "https://calendly.com/zkadtani/job",
-    },
-    {
-      id: "book-writing",
-      title: "Book Writing and Publishing Help",
-      tagline: "Help to plan, write, and publish your first book.",
-      bullets: [
-        "Clarify your book idea and audience",
-        "Build a simple outline and writing schedule that fits real life",
-        "Guidance on self publishing steps for print, ebook, and audio",
-      ],
-      buttonText: "Start my book plan",
-      buttonLink: "https://calendly.com/zkadtani/job",
-    },
-    {
-      id: "mentoring-tutoring",
-      title: "Mentoring and Math Tutoring",
-      tagline: "Support for study, career choices, and math courses.",
-      bullets: [
-        "One on one mentoring for goals, focus, and study habits",
-        "Tutoring for algebra, pre calculus, and calculus",
-        "Homework help and exam prep with calm, clear steps",
-      ],
-      buttonText: "Ask about mentoring and tutoring",
+      buttonText: "Start your book",
       buttonLink: "https://calendly.com/zkadtani/job",
     },
   ];
@@ -73,7 +49,7 @@ export default function Services() {
         <title>Services | Zain Adtani</title>
         <meta
           name="description"
-          content="Ways I help you with taxes, QuickBooks, writing, and study."
+          content="Website builds, SAT prep, and book publishing help — simple, premium services."
         />
       </Helmet>
 
@@ -82,12 +58,12 @@ export default function Services() {
         <header className="text-center space-y-4">
           <h1 className="text-5xl md:text-6xl font-bold">Services</h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Ways I help you with taxes, QuickBooks, writing, and study.
+            Premium help with websites, test prep, and publishing.
           </p>
         </header>
 
         {/* Service Cards Grid */}
-        <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section className="grid md:grid-cols-3 gap-6">
           {services.map((service) => (
             <Card
               key={service.id}

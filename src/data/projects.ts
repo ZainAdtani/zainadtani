@@ -18,22 +18,6 @@ export const projects: Project[] = [
     tags: ['notion', 'pokemon', 'database']
   },
   {
-    id: 'ai-avatars',
-    title: 'My AI Avatars',
-    description: 'AI avatar video project powered by HeyGen.',
-    thumbnail: '/images/projects/my-ai-avatars-cover.png',
-    route: '/projects/ai-avatars',
-    tags: ['ai', 'video', 'heygen']
-  },
-  {
-    id: 'talk-to-ai',
-    title: 'Talk to AI',
-    description: 'Get personalized guidance with voice or text AI.',
-    thumbnail: '/images/projects/talk-to-ai-cover.png',
-    route: '/projects/ai',
-    tags: ['ai', 'assistant', 'chat', 'voice']
-  },
-  {
     id: 'harry-potter-world',
     title: 'Harry Potter World',
     description: 'A Hogwarts themed hub for books, audiobooks, and key story moments.',
