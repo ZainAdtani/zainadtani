@@ -3,16 +3,14 @@ import authorGuide from "@/assets/author-kit-cover.png";
 import authorGuidePDF from "@/assets/author-guide.pdf";
 import walkingWorkday from "@/assets/walking-workday-new.png";
 import quietYourGut from "@/assets/quiet-your-gut.png";
-import engineerToEA from "@/assets/engineer-to-ea-banner.png";
 import jointFamilyBoundaries from "@/assets/joint-family-boundaries.png";
-import dailyLedgerMastery from "@/assets/daily-ledger-mastery.png";
 import newlywedsMoveout from "@/assets/newlyweds-moveout-blueprint.png";
 
 export type Product = {
   id: string;
   title: string;
   desc: string;
-  category: "Courses" | "Guides" | "Communities" | "Wellness";
+  category: "Guides" | "Wellness";
   media?: string;
   cta?: { label: string; href: string; download?: boolean; disabled?: boolean };
   tags?: string[];
@@ -22,18 +20,6 @@ export type Product = {
 };
 
 export const ALL_PRODUCTS: Product[] = [
-  {
-    id: "eng2ea-course",
-    title: "Engineer to EA — Part 1",
-    category: "Courses",
-    desc: "Covers Part 1 (Individuals) of the Enrolled Agent exam. Parts 2 & 3 will be released on request. Fast-track your path from engineer to tax professional.",
-    media: engineerToEA,
-    cta: { label: "Enroll Now →", href: "https://whop.com/eng2ea/?a=eng2ea" },
-    tags: ["Course", "EA", "Beginner"],
-    badge: "Popular",
-    featured: true,
-    order: 1,
-  },
   {
     id: "author-guide",
     title: "How to Become an Author (PDF Guide)",
@@ -82,24 +68,9 @@ export const ALL_PRODUCTS: Product[] = [
     order: 5,
   },
   {
-    id: "daily-ledger-mastery",
-    title: "Daily Ledger Mastery for Shop-Helping Teens in Hindi",
-    category: "Guides",
-    desc: "18,000 शब्दों की व्यावहारिक ईबुक + टेम्पलेट्स। दुकान में मदद करने वाले टीनएजर्स के लिए रोज़ाना बही-खाता सिस्टम। 7 दिनों में आत्मविश्वास के साथ कैशबुक, बिक्री, उधारी, स्टॉक रजिस्टर सीखें।",
-    media: dailyLedgerMastery,
-    cta: { 
-      label: "Get It Now →", 
-      href: "https://whop.com/qbo-hindi/quickbooks-for-teens-in-hindi/"
-    },
-    tags: ["eBook", "Hindi"],
-    badge: "New",
-    featured: true,
-    order: 6,
-  },
-  {
     id: "free-community",
     title: "Engineer → Enrolled Agent (Free Community)",
-    category: "Communities",
+    category: "Guides",
     desc: "Join fellow EA students, get study tips, and access free resources. No fluff, just actionable advice.",
     cta: { label: "Join Free →", href: "https://www.skool.com/eng2ea/about" },
     tags: ["Free", "Community"],
@@ -169,4 +140,4 @@ export const ALL_PRODUCTS: Product[] = [
   },
 ];
 
-export const CATEGORIES = ["All", "Courses", "Guides", "Communities", "Wellness"] as const;
+export const CATEGORIES = ["All", "Guides", "Wellness"] as const;
