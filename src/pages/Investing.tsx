@@ -178,21 +178,6 @@ const Investing = () => {
         </div>
       </section>
 
-      {/* Private Dashboard */}
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <Card className="p-8 hover-lift transition-all duration-300 rounded-xl max-w-xl mx-auto text-center">
-            <h2 className="text-2xl font-bold mb-3">Private Finance Dashboard</h2>
-            <p className="text-muted-foreground mb-6">Log in to see your money picture in one place.</p>
-            <Button asChild className="group">
-              <a href="https://zadtani.com/login" target="_blank" rel="noopener noreferrer">
-                Log in to dashboard <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
-          </Card>
-        </div>
-      </section>
-
       {/* Options Trading */}
       <section className="py-12 md:py-16 bg-muted/10">
         <div className="container mx-auto px-4 max-w-4xl">
@@ -222,9 +207,6 @@ const Investing = () => {
       {/* Portfolio */}
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-3xl font-bold text-center mb-2">My Portfolio Breakdown</h2>
-          <p className="text-center text-muted-foreground mb-8">Live list from my notes, not financial advice.</p>
-
           <div className="mb-10">
             <div className="flex items-baseline justify-between gap-4 mb-4">
               <h3 className="text-2xl font-bold">Individual Stocks & ETFs</h3>
@@ -263,30 +245,6 @@ const Investing = () => {
         </div>
       </section>
 
-      {/* Book in Progress */}
-      <section className="py-12 md:py-16 bg-muted/10">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <Card className="p-6 text-center rounded-xl max-w-lg mx-auto">
-            <BookOpen className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h2 className="text-2xl font-bold mb-3">The School of Financial Sorcery</h2>
-            <p className="text-sm text-muted-foreground mb-4">A practical guide to wealth building that blends strategy and mindset.</p>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary font-medium rounded-lg text-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </span>
-              Book in progress
-            </div>
-          </Card>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-border py-8">
-        <div className="container mx-auto px-4 max-w-4xl text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Zain Education Ventures. Not financial advice.
-        </div>
-      </footer>
     </div>
   );
 };

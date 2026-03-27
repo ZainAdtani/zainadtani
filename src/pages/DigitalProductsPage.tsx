@@ -38,14 +38,17 @@ export default function DigitalProductsPage() {
         <meta property="og:description" content="Search courses, guides, and tools—all in one place." />
       </Helmet>
       
-      <header className="py-16 md:py-20 bg-background">
+      <header className="py-12 md:py-16 bg-background">
         <div className="container mx-auto px-4 max-w-6xl text-center">
           <div className="flex justify-center mb-4">
             <Logo3D />
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-foreground">Digital Product HQ</h1>
           <p className="text-muted-foreground mt-2 text-lg">
-            Search courses, guides, and tools—all in one place.
+            Search guides and tools—all in one place.
+          </p>
+          <p className="text-muted-foreground mt-1 text-sm tracking-wide">
+            {filtered.length} {filtered.length === 1 ? 'product' : 'products'}
           </p>
 
           {/* Search */}

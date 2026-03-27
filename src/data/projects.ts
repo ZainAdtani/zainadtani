@@ -28,7 +28,8 @@ export const projects: Project[] = [
   {
     id: 'ai-songs',
     title: 'AI Songs',
-    description: 'Fun study music made with AI to help you remember tricky topics.',
+    description: 'Songs I create for learning — real concepts turned into catchy tracks to help others learn through music.',
+    thumbnail: '/images/projects/ai-songs-cover.png',
     route: '/projects/ai-songs',
     tags: ['ai', 'music', 'education', 'study']
   },
