@@ -70,7 +70,7 @@ export const ALL_PRODUCTS: Product[] = [
   {
     id: "free-community",
     title: "Engineer → Enrolled Agent (Free Community)",
-    category: "Communities",
+    category: "Guides",
     desc: "Join fellow EA students, get study tips, and access free resources. No fluff, just actionable advice.",
     cta: { label: "Join Free →", href: "https://www.skool.com/eng2ea/about" },
     tags: ["Free", "Community"],
