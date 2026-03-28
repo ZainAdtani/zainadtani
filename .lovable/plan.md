@@ -1,55 +1,57 @@
 
 
-## Security Fixes Plan
+## Global Micro-Interactions & Hover Polish Plan
 
-### Findings Summary
+### 1. Create `src/components/ScrollReveal.tsx` (NEW)
 
-1. **VITE_SECRET_PIN** — exists in `.env` and `.env.example` but is never referenced in any TypeScript/TSX code. The vault pages were already deleted. Only the env files need cleanup.
+Reusable wrapper using native Intersection Observer. Props: `delay` (ms, default 0), `className`, `children`. Animates from `opacity-0 translate-y-4` to `opacity-100 translate-y-0` once on viewport entry. Pure CSS transitions on `transform` and `opacity` — no libraries needed.
 
-2. **Leads table** — has a permissive INSERT policy (`WITH CHECK (true)`) but no SELECT policy. Need to add a deny-all SELECT policy.
+### 2. Card hover effects — `src/components/ui/card.tsx`
 
-3. **ea-study-chat** — edge function for a deleted page. Delete entirely.
+Add to the Card base classes: `transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)]`
 
-4. **nba-standings** — edge function for a deleted Sports page. Also delete.
+This replaces the static `boxShadow` inline style with the same default shadow via Tailwind class, plus a teal glow on hover. Uses `transform` only — no layout shift.
 
-5. **generate-quote** — edge function that is **never called from the frontend** (the homepage uses a local array). Delete this too since it's unused and just an abuse vector.
+### 3. Button press feedback — `src/components/ui/button.tsx`
 
-6. **Archive.tsx** — references 3 dead routes (`/enrolled-agent`, `/personal-learning-vault`, `/quickbooks`) that were deleted in Phase 1. Not a security issue but worth noting — will not touch per guardrails.
+Add to the base `cva` string: `transition-transform duration-150 active:scale-[0.97]`
 
-7. **Overly permissive RLS** — only the leads INSERT `WITH CHECK (true)` policy exists. This is intentional for public form submissions. No other tables have permissive policies. No action needed.
+This gives all buttons a quick press-down effect on click. The existing `transition-colors` is replaced with `transition-all` to cover both color and transform.
 
----
+### 4. Page transition fade — `src/components/AppLayout.tsx`
 
-### Changes
+Wrap `{children}` in a keyed div (using `useLocation().pathname`) with a CSS `animate-fade-in` class (already defined in tailwind config: `fade-in 0.3s ease-out`). This gives a subtle opacity+translateY fade on every page navigation.
 
-**Database migration (1 SQL statement):**
-- Add a deny-all SELECT policy on the `leads` table:
-  ```sql
-  CREATE POLICY "No public reads" ON public.leads FOR SELECT USING (false);
-  ```
+### 5. Sidebar hover polish — `src/components/AppSidebar.tsx`
 
-**Delete 3 edge function directories:**
-- `supabase/functions/ea-study-chat/` (deleted page)
-- `supabase/functions/nba-standings/` (deleted page)
-- `supabase/functions/generate-quote/` (never invoked from frontend)
+Update the `getNavClass` function:
+- Hover state: add `hover:border-l-2 hover:border-primary/60 hover:bg-primary/5` 
+- Active state (already has `border-l-2 border-primary`): add `bg-primary/10` to make it more prominent than hover
 
-**Edit `supabase/config.toml`:**
-- Remove `[functions.generate-quote]` and `[functions.ea-study-chat]` blocks
-- Keep only `project_id`
+### 6. Apply ScrollReveal to key pages
 
-**Edit `.env.example`:**
-- Remove the `VITE_SECRET_PIN=""` line
+**Homepage (`src/pages/Index.tsx`):** Wrap the hero section, tabbed section, and WhatIFollow section in `<ScrollReveal>`. For card grids, use staggered `delay` props (0, 100, 200ms per card).
 
-**Note:** `.env` is auto-managed and cannot be edited directly, but the `VITE_SECRET_PIN` variable is harmless since no code references it. The `.env.example` cleanup removes the suggestion to set it.
+**Digital Products (`src/pages/DigitalProductsPage.tsx`):** Wrap each product card in `<ScrollReveal delay={index * 100}>`.
+
+**Books (`src/pages/BooksHQ.tsx`):** Wrap each book card in `<ScrollReveal delay={index * 80}>`.
+
+**Projects (`src/pages/Projects.tsx`):** Wrap each project card in `<ScrollReveal delay={index * 100}>`.
 
 ---
 
-### What stays untouched
-- All page files, UI components, layouts, routes, navigation
-- The leads INSERT policy (intentionally permissive for public form submissions)
-- All data files and shared components
+### Files to CREATE (1)
+- `src/components/ScrollReveal.tsx`
 
-### Technical detail
-- The only RLS "warning" is the leads INSERT `WITH CHECK (true)` — this is the expected pattern for a public contact form and does not need changing
-- No UPDATE or DELETE policies exist on any table, so there are no other overly permissive policies to tighten
+### Files to EDIT (6)
+- `src/components/ui/card.tsx` — hover glow + scale
+- `src/components/ui/button.tsx` — active press feedback
+- `src/components/AppLayout.tsx` — page fade transition
+- `src/components/AppSidebar.tsx` — sidebar hover polish
+- `src/pages/Index.tsx` — wrap sections in ScrollReveal
+- `src/pages/DigitalProductsPage.tsx` — wrap cards in ScrollReveal
+- `src/pages/BooksHQ.tsx` — wrap cards in ScrollReveal
+- `src/pages/Projects.tsx` — wrap cards in ScrollReveal
+
+### No new packages. No layout/content/routing changes. Transform+opacity only for GPU performance.
 
