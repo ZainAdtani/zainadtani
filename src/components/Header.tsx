@@ -36,7 +36,7 @@ export const Header = () => {
         
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <img src={zaLogo} alt="ZA" className="h-7 w-7 hover:rotate-[15deg] hover:scale-110 transition-all duration-300" />
+          <img src={zaLogo} alt="ZA" className="h-10 w-10 hover:rotate-[15deg] hover:scale-110 transition-all duration-300 drop-shadow-[0_0_6px_rgba(0,212,170,0.4)]" />
         </Link>
 
         {/* Navigation */}
