@@ -1,0 +1,1 @@
+CREATE POLICY "No public reads" ON public.leads FOR SELECT USING (false);
