@@ -1,49 +1,46 @@
 
 
-## Hero Kinetic Text + Logo Integration Plan
+## 3D Interactive Logo — Hero Enhancement Plan
 
-### 1. Copy logo to project assets
-Copy `user-uploads://za_logo.png` → `src/assets/za_logo.png`
+### What exists now
+- `Logo3D.tsx`: Uses `@react-three/fiber` + `@react-three/drei` (Text component). Renders "ZA" text with subtle float/rotation. Used only on the Digital Products page header.
+- Hero section already has a small `za_logo.png` image (spinning CSS) next to "Hi, I'm Zain!" heading.
+- Three.js ecosystem already installed: `@react-three/fiber@^8.18.0`, `@react-three/drei@^9.122.0`, `three`.
 
-### 2. Create `src/components/KineticText.tsx` (NEW)
-A cycling subtitle component with vertical slide/fade animation:
-- Props: `phrases: string[]`, `interval?: number` (default 3000), `transitionDuration?: number` (default 300)
-- Uses `useState` for current index, `useEffect` with `setInterval` to cycle
-- CSS transition: outgoing phrase slides up + fades out, incoming slides in from below
-- Text styled in teal (`text-primary`) using the heading font (`font-display`)
-- Overflow hidden container with fixed height to prevent layout shift
-- Loop infinitely
+### Plan
 
-### 3. Edit `src/pages/Index.tsx` — Hero section only (lines 345-349)
-- Import `KineticText` and `zaLogo`
-- After the `<h1>Hi, I'm Zain!</h1>`, add `<KineticText phrases={[...]} />` with the 4 phrases
-- Add the miniature logo (40px) next to the heading — positioned as a small floating element beside "Hi, I'm Zain!" with:
-  - `animate-[spin_20s_linear_infinite]` for slow rotation
-  - Teal glow shadow via `filter: drop-shadow(...)`
-  - `hover:animate-[spin_6s_linear_infinite]` for faster spin on hover (easter egg)
-  - On mobile: reduce to 32px, keep rotation
+**1. Create `src/components/HeroLogo3D.tsx` (NEW)**
 
-### 4. Edit `src/components/Header.tsx` — Logo area (lines 37-42)
-Replace the `<div>ZA</div>` text logo with:
-```tsx
-<img src={zaLogo} alt="ZA" className="h-7 w-7 hover:rotate-[15deg] hover:scale-110 transition-all duration-300" />
-```
-Import `zaLogo` from `@/assets/za_logo.png`
+A new standalone component (does not modify Logo3D.tsx):
+- **Scene setup**: Small `<Canvas>` (~200x200px) with transparent background, camera at z=4
+- **Logo mesh**: A flat `<planeGeometry>` textured with `za_logo.png` using `useTexture` from drei. Double-sided, with a metallic/reflective material (MeshStandardMaterial, metalness ~0.6, roughness ~0.3)
+- **Default animation** (useFrame):
+  - Gentle Y-axis rotation: `mesh.rotation.y += 0.003` (slow coin spin)
+  - Sine-wave bobbing: `mesh.position.y = Math.sin(clock * 0.8) * 0.15`
+- **Mouse interaction**: Track normalized mouse position via `onPointerMove` on the Canvas. Use lerp to smoothly interpolate mesh rotation toward cursor (tiltX from mouseY, tiltY from mouseX, max ~15 degrees). Dampening factor ~0.05.
+- **Particles**: 30-40 small teal points using `<Points>` from drei, drifting slowly outward with random initial positions in a sphere. Reset when they drift too far.
+- **Lighting**: Ambient (0.4) + one directional light with teal tint (#0ea5e9, intensity 1.5) for rim glow effect
+- **Rim glow**: Add a second slightly larger transparent plane behind the logo with teal emissive color and low opacity for edge glow effect
+- **Mobile**: Use `useIsMobile()` hook — on mobile, disable mouse tracking, keep only rotation + bob. Use `matchMedia('(prefers-reduced-motion: reduce)')` to show static logo instead.
+- **Lazy loading**: Export as `React.lazy()` compatible, wrap in `<Suspense>` with the static logo as fallback
 
-### 5. Edit `src/components/AppSidebar.tsx` — No changes needed
-The sidebar doesn't have a separate logo area — it uses the same header.
+**2. Edit `src/pages/Index.tsx` — Hero section only (lines ~340-398)**
 
----
+- Lazy import `HeroLogo3D`
+- Place it to the right of the hero text in the existing `flex-row` layout on desktop (after the headshot column, before the text column — or as a decorative element overlapping the text area)
+- Actually, the current layout is: headshot (left) + text (right). Adding a 3rd column would crowd it. Better approach: **Position the 3D logo as a decorative element behind/beside the heading**, using `absolute` positioning within the hero text area. Size ~160x160px on desktop, hidden or 80x80 on mobile.
+- Remove the existing small spinning `<img>` of za_logo (line 352-357) and replace it with the 3D version inline, OR keep the img as mobile fallback and show 3D only on desktop.
+- Wrap in `<Suspense fallback={<img src={zaLogo} ... />}>` so it degrades gracefully
 
 ### Files to CREATE (1)
-- `src/components/KineticText.tsx`
+- `src/components/HeroLogo3D.tsx`
 
-### Files to EDIT (2)
-- `src/pages/Index.tsx` — add KineticText + miniature logo to hero
-- `src/components/Header.tsx` — replace ZA text with logo image
+### Files to EDIT (1)
+- `src/pages/Index.tsx` — hero section only (swap static logo img for lazy-loaded 3D version, keep static as mobile/fallback)
 
-### Files to COPY (1)
-- `user-uploads://za_logo.png` → `src/assets/za_logo.png`
-
-### No layout changes. No new packages. Hero content preserved. Only additive.
+### No changes to
+- `Logo3D.tsx` (untouched, still used on Digital Products page)
+- `CosmicBackground.tsx`
+- Any other page sections, layouts, or shared components
+- No new packages needed (Three.js + drei already installed)
 
