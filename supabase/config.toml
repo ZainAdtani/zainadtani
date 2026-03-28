@@ -1,7 +1,1 @@
 project_id = "apbvidphqdytjocorasi"
-
-[functions.generate-quote]
-verify_jwt = false
-
-[functions.ea-study-chat]
-verify_jwt = false
