@@ -132,6 +132,17 @@ export default function AiSongs() {
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/20">
+        {/* Breadcrumbs */}
+        <div className="container mx-auto px-4 pt-6">
+          <nav className="text-sm text-muted-foreground mb-4">
+            <a href="/" className="hover:text-primary transition-colors">Home</a>
+            <span className="mx-2">/</span>
+            <a href="/projects" className="hover:text-primary transition-colors">Projects</a>
+            <span className="mx-2">/</span>
+            <span className="text-foreground">AI Songs</span>
+          </nav>
+        </div>
+
         {/* Hero Banner */}
         <div className="relative w-full h-64 md:h-80 overflow-hidden mb-8">
           <img 

@@ -13,6 +13,7 @@ const TOP_NAV = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
   { label: "Services", path: "/services" },
+  { label: "Digital Products", path: "/digital-products" },
   { label: "Books", path: "/books" },
   { label: "Investing", path: "/investing" },
 ];
@@ -30,14 +31,14 @@ export const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-4">
-        {/* Sidebar Trigger — desktop only */}
-        <SidebarTrigger className="-ml-1 hidden md:inline-flex" />
-        
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <img src={zaLogo} alt="ZA" className="h-10 w-10 hover:rotate-[15deg] hover:scale-110 transition-all duration-300 drop-shadow-[0_0_6px_rgba(0,212,170,0.4)]" />
-        </Link>
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-2">
+        {/* Logo + Sidebar Trigger */}
+        <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center">
+            <img src={zaLogo} alt="ZA" className="h-10 w-10 hover:rotate-[15deg] hover:scale-110 transition-all duration-300 drop-shadow-[0_0_6px_rgba(0,212,170,0.4)]" />
+          </Link>
+          <SidebarTrigger className="hidden md:inline-flex" />
+        </div>
 
         {/* Navigation */}
         <nav className="flex items-center gap-3">
