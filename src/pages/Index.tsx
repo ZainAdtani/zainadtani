@@ -10,7 +10,9 @@ import { KineticText } from "@/components/KineticText";
 import zaLogo from "@/assets/za_logo.png";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
-import { useState, useEffect, useRef, lazy, Suspense } from "react";
+import { useState, useEffect, useRef, lazy, Suspense, useMemo } from "react";
+
+const HeroLogo3D = lazy(() => import("@/components/HeroLogo3D"));
 import { ScrollReveal } from "@/components/ScrollReveal";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
