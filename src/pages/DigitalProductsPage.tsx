@@ -169,12 +169,6 @@ export default function DigitalProductsPage() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-background border-t border-border py-8">
-        <div className="container mx-auto px-4 max-w-6xl text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Zain Adtani. All rights reserved.
-        </div>
-      </footer>
     </div>
   );
 }

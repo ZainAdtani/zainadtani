@@ -362,14 +362,16 @@ const Index = () => {
                     <HeroLogo3D />
                   </Suspense>
                 </div>
-                <KineticText
-                  phrases={[
-                    "I help businesses use AI",
-                    "I publish books",
-                    "I build websites with AI",
-                    "I simplify the complex",
-                  ]}
-                />
+                <div className="mb-3">
+                  <KineticText
+                    phrases={[
+                      "I help businesses use AI",
+                      "I publish books",
+                      "I build websites with AI",
+                      "I simplify the complex",
+                    ]}
+                  />
+                </div>
               </div>
 
               {/* Daily Motivation Generator */}
@@ -452,8 +454,9 @@ const Index = () => {
                 onMouseEnter={() => setIsHoveringProducts(true)}
                 onMouseLeave={() => setIsHoveringProducts(false)}
               >
-                {filteredProducts.map((product) => (
-                  <Card key={product.id} className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2 flex flex-col">
+                {filteredProducts.map((product, index) => (
+                  <ScrollReveal key={product.id} delay={index * 100}>
+                  <Card className="overflow-hidden hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-300 shadow-lg border-2 flex flex-col">
                     <div className="p-6 flex flex-col flex-grow">
                       <h3 className="text-xl font-bold mb-2 text-foreground line-clamp-2">{product.title}</h3>
                       <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{product.desc}</p>
@@ -473,6 +476,7 @@ const Index = () => {
                       </div>
                     </div>
                   </Card>
+                  </ScrollReveal>
                 ))}
               </div>
             </TabsContent>
@@ -777,23 +781,6 @@ const Index = () => {
 
       {/* (Buy Me a Coffee moved to footer line below) */}
 
-      {/* Footer */}
-      <footer className="bg-background border-t border-border py-8">
-        <div className="container mx-auto px-4 max-w-6xl text-center space-y-2">
-          <a
-            href="https://buymeacoffee.com/curiouszen"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
-            aria-label="Buy me a coffee"
-          >
-            ☕ Support my work
-          </a>
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Zain Education Ventures. All rights reserved.
-          </p>
-        </div>
-      </footer>
 
       {/* Keyframes for animations */}
       <style>

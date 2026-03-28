@@ -5,49 +5,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Helmet } from "react-helmet-async";
 
 const Investing = () => {
-  const FAVORITES = new Set(["VOO", "SCHD", "QQQM", "BTC"]);
-
-  const INDIVIDUAL = [
-    { ticker: "SCHD", name: "Schwab U.S. Dividend Equity ETF" },
-    { ticker: "NVDA", name: "NVIDIA" },
-    { ticker: "QQQM", name: "Invesco NASDAQ-100 ETF" },
-    { ticker: "VOO", name: "Vanguard S&P 500 ETF" },
-    { ticker: "SOFI", name: "SoFi Technologies" },
-    { ticker: "GOOGL", name: "Alphabet" },
-    { ticker: "AAPL", name: "Apple" },
-    { ticker: "PLTR", name: "Palantir Technologies" },
-    { ticker: "GLD", name: "SPDR Gold Shares" },
-    { ticker: "SGOV", name: "iShares 0 to 3 Month T-Bill ETF" },
-    { ticker: "AMZN", name: "Amazon.com" },
-    { ticker: "VNQ", name: "Vanguard REIT ETF" },
-    { ticker: "AVUV", name: "Avantis U.S. Small Cap Value ETF" },
-    { ticker: "BRK.B", name: "Berkshire Hathaway Class B" },
-    { ticker: "TSLA", name: "Tesla" },
-    { ticker: "MSFT", name: "Microsoft" },
-    { ticker: "BTC", name: "Bitcoin" },
-  ];
-
-  const ROTH_IRA = [
-    { ticker: "JEPI", name: "JPM Equity Premium" },
-    { ticker: "JEPQ", name: "JPM Nasdaq Premium" },
-    { ticker: "VOO", name: "Vanguard S&P 500" },
-    { ticker: "VXUS", name: "Vanguard Total Intl" },
-    { ticker: "BND", name: "Vanguard Total Bond" },
-    { ticker: "VNQ", name: "Vanguard REIT" },
-    { ticker: "FBTC", name: "Fidelity Bitcoin ETF" },
-  ];
-
-  const sortByFavorites = (items: { ticker: string; name?: string }[]) =>
-    [...items].sort((a, b) => {
-      const aFav = FAVORITES.has(a.ticker) ? 0 : 1;
-      const bFav = FAVORITES.has(b.ticker) ? 0 : 1;
-      if (aFav !== bFav) return aFav - bFav;
-      return a.ticker.localeCompare(b.ticker);
-    });
-
-  const INDIVIDUAL_SORTED = sortByFavorites(INDIVIDUAL);
-  const ROTH_SORTED = sortByFavorites(ROTH_IRA);
-
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
@@ -94,7 +51,7 @@ const Investing = () => {
                 { Icon: Layers, emoji: "🧩", title: "Spread Risk", desc: "Do not bet on one thing." },
                 { Icon: GraduationCap, emoji: "📚", title: "Keep Learning", desc: "Learn a little each week." },
               ].map((item) => (
-                <Card key={item.title} className="p-5 text-center hover-lift transition-all duration-300 rounded-xl">
+                <Card key={item.title} className="p-5 text-center hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-300 rounded-xl">
                   <item.Icon className="w-10 h-10 text-primary mx-auto mb-3" />
                   <h3 className="font-bold text-lg mb-1">{item.emoji} {item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -152,7 +109,7 @@ const Investing = () => {
               { name: "Fidelity", logo: "https://logo.clearbit.com/fidelity.com", FallbackIcon: LineChart, desc: "Main brokerage for stocks, ETFs, and retirement.", href: "https://fidelity.app.link/e/wKOQHcrcRVb", cta: "Open Account" },
               { name: "Robinhood", logo: "https://logo.clearbit.com/robinhood.com", FallbackIcon: TrendingUp, desc: "Commission free trading for stocks, ETFs, and crypto.", href: "https://join.robinhood.com/zaina113", cta: "Join" },
             ].map((b) => (
-              <Card key={b.name} className="p-6 hover-lift transition-all duration-300 rounded-xl flex flex-col">
+              <Card key={b.name} className="p-6 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-300 rounded-xl flex flex-col">
                 <div className="h-12 mb-4 flex items-center">
                   <img
                     src={b.logo}
@@ -200,47 +157,6 @@ const Investing = () => {
                 </a>
               </Button>
             </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Portfolio */}
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="mb-10">
-            <div className="flex items-baseline justify-between gap-4 mb-4">
-              <h3 className="text-2xl font-bold">Individual Stocks & ETFs</h3>
-              <span className="text-xs text-muted-foreground">{INDIVIDUAL_SORTED.length} positions</span>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-              {INDIVIDUAL_SORTED.map((p) => (
-                <Card key={p.ticker} className="p-4 hover:shadow-md transition-shadow rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-lg">{p.ticker}</span>
-                    {FAVORITES.has(p.ticker) && <span className="text-primary">★</span>}
-                  </div>
-                  {p.name && <p className="text-xs text-muted-foreground mt-1 truncate">{p.name}</p>}
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <div className="flex items-baseline justify-between gap-4 mb-4">
-              <h3 className="text-2xl font-bold">Roth IRA Holdings</h3>
-              <span className="text-xs text-muted-foreground">{ROTH_SORTED.length} positions</span>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-              {ROTH_SORTED.map((p) => (
-                <Card key={p.ticker} className="p-4 hover:shadow-md transition-shadow rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-lg">{p.ticker}</span>
-                    {FAVORITES.has(p.ticker) && <span className="text-primary">★</span>}
-                  </div>
-                  {p.name && <p className="text-xs text-muted-foreground mt-1 truncate">{p.name}</p>}
-                </Card>
-              ))}
-            </div>
           </div>
         </div>
       </section>

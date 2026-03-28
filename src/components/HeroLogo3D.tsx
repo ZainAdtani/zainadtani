@@ -173,7 +173,7 @@ export default function HeroLogo3D() {
   }
 
   return (
-    <div className={isMobile ? 'w-16 h-16' : 'w-40 h-40'}>
+    <div className={isMobile ? 'w-16 h-16' : 'w-[180px] h-[180px]'}>
       <Canvas
         camera={{ position: [0, 0, 4], fov: 50 }}
         style={{ background: 'transparent' }}

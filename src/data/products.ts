@@ -38,7 +38,7 @@ export const ALL_PRODUCTS: Product[] = [
     category: "Wellness",
     desc: "Fit three 20-minute walks into any busy schedule. Calendar and commute strategies to build daily movement without a gym.",
     media: walkingWorkday,
-    cta: { label: "Get It Now →", href: "https://whop.com/the-walking-workday/the-walking-workday-bb/" },
+    cta: { label: "Get Yours →", href: "https://whop.com/the-walking-workday/the-walking-workday-bb/" },
     tags: ["Wellness", "eBook"],
     featured: true,
     order: 3,
@@ -49,7 +49,7 @@ export const ALL_PRODUCTS: Product[] = [
     category: "Wellness",
     desc: "Natural relief for busy people. Feel calm, confident, and in control—without pills or strict diets.",
     media: quietYourGut,
-    cta: { label: "Get It Now →", href: "https://whop.com/stop-bloating-and-grumbling/stop-bloating-and-grumbling/" },
+    cta: { label: "Get Yours →", href: "https://whop.com/stop-bloating-and-grumbling/stop-bloating-and-grumbling/" },
     tags: ["Wellness", "Guide"],
     badge: "New",
     featured: true,
@@ -61,7 +61,7 @@ export const ALL_PRODUCTS: Product[] = [
     category: "Guides",
     desc: "Step-by-step roadmap to confidently move out in just 14 days. Perfect for newlyweds planning their first home together.",
     media: newlywedsMoveout,
-    cta: { label: "Get It Now →", href: "https://whop.com/the-newlyweds-14-day-move-out-blueprint/the-newlyweds-14-day-move-out/" },
+    cta: { label: "Get Yours →", href: "https://whop.com/the-newlyweds-14-day-move-out-blueprint/the-newlyweds-14-day-move-out/" },
     tags: ["eBook", "Guide"],
     badge: "New",
     featured: true,
@@ -87,7 +87,7 @@ export const ALL_PRODUCTS: Product[] = [
     media: "/images/products/clinic_clarity_kit_cover.png",
     tags: ["Medical assistant", "Scripts", "Clinic"],
     cta: {
-      label: "Get it on Whop",
+      label: "Get Yours →",
       href: "https://whop.com/ask-confirm-summarize-playbook/"
     },
     featured: true,
@@ -102,7 +102,7 @@ export const ALL_PRODUCTS: Product[] = [
     media: "/images/products/calm_solo_time_cover.png",
     tags: ["Dogs", "Training", "Behavior"],
     cta: {
-      label: "Get it on Whop",
+      label: "Get Yours →",
       href: "https://whop.com/calm-solo-time/"
     },
     featured: true,
@@ -117,7 +117,7 @@ export const ALL_PRODUCTS: Product[] = [
     media: "/images/products/texas_llc_roadmap_cover.png",
     tags: ["Business", "Texas", "LLC"],
     cta: {
-      label: "Get it on Whop",
+      label: "Get Yours →",
       href: "https://whop.com/the-texas-llc-roadmap/"
     },
     featured: true,
@@ -132,7 +132,7 @@ export const ALL_PRODUCTS: Product[] = [
     media: "/images/products/zen_detachment_30_cover.png",
     tags: ["Mindset", "Habits", "Stress"],
     cta: {
-      label: "Get it on Whop",
+      label: "Get Yours →",
       href: "https://whop.com/30-day-zen-detachment/"
     },
     featured: true,
