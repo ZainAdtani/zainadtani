@@ -1,69 +1,55 @@
 
 
-## 4-Page Update Plan
+## Security Fixes Plan
 
-### 1. ABOUT PAGE (`src/pages/About.tsx`)
+### Findings Summary
 
-**Remove:**
-- Line "I like tools that save time and keep things calm"
-- Entire "Find me" card (lines 23-29)
+1. **VITE_SECRET_PIN** — exists in `.env` and `.env.example` but is never referenced in any TypeScript/TSX code. The vault pages were already deleted. Only the env files need cleanup.
 
-**Redesign** as a flowing, single-column layout (Ali Abdaal style):
-- Remove the 2-column grid layout
-- Flow: photo (centered, softer rounded corners, teal glow) → "Hey, I am Zain." intro → two bio sentences → subtle divider → Get In Touch cards (LinkedIn, YouTube, Book a Call) in a row
-- Generous whitespace between elements, no card wrapping the bio text — let it breathe as plain text
-- Keep YouTube Channel and Connect on LinkedIn buttons below the photo
-- Keep Get In Touch section with its 3 cards at the bottom
-- Remove footer (let AppLayout handle it)
+2. **Leads table** — has a permissive INSERT policy (`WITH CHECK (true)`) but no SELECT policy. Need to add a deny-all SELECT policy.
 
-### 2. INVESTING PAGE (`src/pages/Investing.tsx`)
+3. **ea-study-chat** — edge function for a deleted page. Delete entirely.
 
-**Remove:**
-- "My Portfolio Breakdown" heading and subtitle (lines 225-226)
-- "The School of Financial Sorcery" section (lines 267-282)
-- "Private Finance Dashboard" section (lines 182-194)
+4. **nba-standings** — edge function for a deleted Sports page. Also delete.
 
-**Keep:**
-- Hero, Philosophy, Simple Tips, Banking & Brokerage, Options Trading
-- Individual Stocks & ETFs grid (just remove the parent heading)
-- Roth IRA Holdings grid
+5. **generate-quote** — edge function that is **never called from the frontend** (the homepage uses a local array). Delete this too since it's unused and just an abuse vector.
 
-**Polish:** Tighten section padding from `py-12 md:py-16` to `py-8 md:py-12`. Remove the page-level footer (let AppLayout handle it).
+6. **Archive.tsx** — references 3 dead routes (`/enrolled-agent`, `/personal-learning-vault`, `/quickbooks`) that were deleted in Phase 1. Not a security issue but worth noting — will not touch per guardrails.
 
-### 3. DIGITAL PRODUCTS PAGE (`src/pages/DigitalProductsPage.tsx`)
-
-**Remove from `src/data/products.ts`:**
-- `eng2ea-course` (Engineer to EA)
-- `daily-ledger-mastery` (Daily Ledger Hindi)
-- Also remove the unused imports: `engineerToEA` and `dailyLedgerMastery` assets
-- Remove `"Courses"` and `"Communities"` from `CATEGORIES` if no products remain in those categories (after removal: no Courses products remain, but Communities still has free-community which is excluded from catalog — so remove both)
-
-**Add dynamic product count** below the subtitle, e.g. `"{filtered.length} Digital Products"` as a muted badge/text.
-
-**Polish:** Reduce header padding slightly. Keep search/filter intact.
-
-### 4. PROJECTS PAGE — AI Songs (`src/data/projects.ts` + `src/pages/Projects.tsx`)
-
-**Update `projects.ts`:**
-- Change AI Songs description to: "Songs I create for learning — real concepts turned into catchy tracks to help others learn through music."
-- Add a `thumbnail` path: `/images/projects/ai-songs-cover.png`
-
-**Generate AI Songs thumbnail** using the AI image generation model with prompt: "A minimal dark-themed abstract illustration of sound waves transforming into musical notes with a subtle AI circuit pattern overlay, teal (#00D4AA) and navy (#0A0F1A) color scheme, 16:9 aspect ratio"
-
-**Update `Projects.tsx`:** The existing code already handles thumbnails for non-pokedex projects, so adding the thumbnail path is sufficient. The AI Songs card will automatically render with the image.
+7. **Overly permissive RLS** — only the leads INSERT `WITH CHECK (true)` policy exists. This is intentional for public form submissions. No other tables have permissive policies. No action needed.
 
 ---
 
-### Files to EDIT
-1. `src/pages/About.tsx` — full rewrite as flowing single-column layout
-2. `src/pages/Investing.tsx` — remove 3 sections, tighten spacing
-3. `src/pages/DigitalProductsPage.tsx` — add product count display
-4. `src/data/products.ts` — remove 2 products + unused imports + update categories
-5. `src/data/projects.ts` — update AI Songs description + thumbnail
-6. `src/pages/Projects.tsx` — no changes needed (already handles thumbnails)
+### Changes
 
-### Files to CREATE
-7. Generate and save AI Songs cover image to `public/images/projects/ai-songs-cover.png`
+**Database migration (1 SQL statement):**
+- Add a deny-all SELECT policy on the `leads` table:
+  ```sql
+  CREATE POLICY "No public reads" ON public.leads FOR SELECT USING (false);
+  ```
 
-### No routes added or removed. No shared components touched.
+**Delete 3 edge function directories:**
+- `supabase/functions/ea-study-chat/` (deleted page)
+- `supabase/functions/nba-standings/` (deleted page)
+- `supabase/functions/generate-quote/` (never invoked from frontend)
+
+**Edit `supabase/config.toml`:**
+- Remove `[functions.generate-quote]` and `[functions.ea-study-chat]` blocks
+- Keep only `project_id`
+
+**Edit `.env.example`:**
+- Remove the `VITE_SECRET_PIN=""` line
+
+**Note:** `.env` is auto-managed and cannot be edited directly, but the `VITE_SECRET_PIN` variable is harmless since no code references it. The `.env.example` cleanup removes the suggestion to set it.
+
+---
+
+### What stays untouched
+- All page files, UI components, layouts, routes, navigation
+- The leads INSERT policy (intentionally permissive for public form submissions)
+- All data files and shared components
+
+### Technical detail
+- The only RLS "warning" is the leads INSERT `WITH CHECK (true)` — this is the expected pattern for a public contact form and does not need changing
+- No UPDATE or DELETE policies exist on any table, so there are no other overly permissive policies to tighten
 
