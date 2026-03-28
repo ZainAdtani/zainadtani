@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { Helmet } from "react-helmet-async";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -93,9 +94,10 @@ export default function DigitalProductsPage() {
 
           {/* Product grid with catalog numbers */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.map((p) => {
+            {filtered.map((p, index) => {
               return (
-                <Card 
+                <ScrollReveal key={p.id} delay={index * 100}>
+                <Card
                   key={p.id} 
                   className="group overflow-hidden border-2 bg-card motion-safe:hover:shadow-xl motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:-translate-y-1 flex flex-col"
                 >
@@ -160,6 +162,7 @@ export default function DigitalProductsPage() {
                     </div>
                   </div>
                 </Card>
+                </ScrollReveal>
               );
             })}
           </div>
