@@ -10,7 +10,9 @@ import { KineticText } from "@/components/KineticText";
 import zaLogo from "@/assets/za_logo.png";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
-import { useState, useEffect, useRef, lazy, Suspense } from "react";
+import { useState, useEffect, useRef, lazy, Suspense, useMemo } from "react";
+
+const HeroLogo3D = lazy(() => import("@/components/HeroLogo3D"));
 import { ScrollReveal } from "@/components/ScrollReveal";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -349,12 +351,16 @@ const Index = () => {
               <div>
                 <div className="flex items-center gap-3 justify-center md:justify-start">
                   <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-extrabold text-foreground">Hi, I'm Zain!</h1>
-                  <img
-                    src={zaLogo}
-                    alt="ZA Logo"
-                    className="w-8 h-8 md:w-10 md:h-10 animate-[spin_20s_linear_infinite] hover:animate-[spin_6s_linear_infinite] cursor-pointer"
-                    style={{ filter: "drop-shadow(0 0 8px hsl(var(--primary) / 0.5))" }}
-                  />
+                  <Suspense fallback={
+                    <img
+                      src={zaLogo}
+                      alt="ZA Logo"
+                      className="w-8 h-8 md:w-10 md:h-10 animate-[spin_20s_linear_infinite]"
+                      style={{ filter: "drop-shadow(0 0 8px hsl(var(--primary) / 0.5))" }}
+                    />
+                  }>
+                    <HeroLogo3D />
+                  </Suspense>
                 </div>
                 <KineticText
                   phrases={[
