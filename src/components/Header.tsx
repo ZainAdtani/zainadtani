@@ -7,6 +7,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "@/components/ui/
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useState } from "react";
+import zaLogo from "@/assets/za_logo.png";
 
 const TOP_NAV = [
   { label: "Home", path: "/" },

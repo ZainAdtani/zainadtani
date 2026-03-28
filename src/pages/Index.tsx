@@ -6,6 +6,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Mail, GraduationCap, Book, Award, Cpu, Sparkles, Music, BookOpen, ExternalLink, Youtube, Linkedin, Heart, X, FileText, Mic, ChevronLeft, ChevronRight, FolderOpen, Lightbulb, Grid3x3, Archive, Dumbbell } from "lucide-react";
 import WhatIFollow from "@/components/WhatIFollow";
+import { KineticText } from "@/components/KineticText";
+import zaLogo from "@/assets/za_logo.png";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
