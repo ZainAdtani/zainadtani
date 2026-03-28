@@ -351,12 +351,16 @@ const Index = () => {
               <div>
                 <div className="flex items-center gap-3 justify-center md:justify-start">
                   <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-extrabold text-foreground">Hi, I'm Zain!</h1>
-                  <img
-                    src={zaLogo}
-                    alt="ZA Logo"
-                    className="w-8 h-8 md:w-10 md:h-10 animate-[spin_20s_linear_infinite] hover:animate-[spin_6s_linear_infinite] cursor-pointer"
-                    style={{ filter: "drop-shadow(0 0 8px hsl(var(--primary) / 0.5))" }}
-                  />
+                  <Suspense fallback={
+                    <img
+                      src={zaLogo}
+                      alt="ZA Logo"
+                      className="w-8 h-8 md:w-10 md:h-10 animate-[spin_20s_linear_infinite]"
+                      style={{ filter: "drop-shadow(0 0 8px hsl(var(--primary) / 0.5))" }}
+                    />
+                  }>
+                    <HeroLogo3D />
+                  </Suspense>
                 </div>
                 <KineticText
                   phrases={[
