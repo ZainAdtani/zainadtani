@@ -4,12 +4,15 @@ import { BackToTop } from "./BackToTop";
 import { ReadingProgressBar } from "./ReadingProgressBar";
 import { Header } from "./Header";
 import { ReactNode } from "react";
+import { useLocation } from "react-router-dom";
 
 interface AppLayoutProps {
   children: ReactNode;
 }
 
 export function AppLayout({ children }: AppLayoutProps) {
+  const { pathname } = useLocation();
+
   return (
     <SidebarProvider defaultOpen={false}>
       {/* Global Reading Progress Bar */}
@@ -21,7 +24,9 @@ export function AppLayout({ children }: AppLayoutProps) {
           <Header />
           {/* Main Content */}
           <main className="flex-1 overflow-auto">
-            {children}
+            <div key={pathname} className="animate-fade-in">
+              {children}
+            </div>
           </main>
         </div>
       </div>
