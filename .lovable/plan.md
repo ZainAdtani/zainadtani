@@ -1,46 +1,100 @@
 
 
-## 3D Interactive Logo — Hero Enhancement Plan
+## 7-Area Polish & Fixes Plan
 
-### What exists now
-- `Logo3D.tsx`: Uses `@react-three/fiber` + `@react-three/drei` (Text component). Renders "ZA" text with subtle float/rotation. Used only on the Digital Products page header.
-- Hero section already has a small `za_logo.png` image (spinning CSS) next to "Hi, I'm Zain!" heading.
-- Three.js ecosystem already installed: `@react-three/fiber@^8.18.0`, `@react-three/drei@^9.122.0`, `three`.
+### AREA 1: Hero Spacing & Size
 
-### Plan
+**File: `src/components/HeroLogo3D.tsx`**
+- Increase canvas size from `w-40 h-40` to `w-[180px] h-[180px]` on desktop (line 176)
 
-**1. Create `src/components/HeroLogo3D.tsx` (NEW)**
+**File: `src/pages/Index.tsx`**
+- Add `mb-3` to the KineticText wrapper (around line 365-372) to add spacing before the Daily Motivation card
+- ScrollReveal on product cards is already applied in the Digital Products tab (line 99 in DigitalProductsPage.tsx). Verify homepage tab cards also have it — they currently don't. Wrap each product card in the homepage digital-products tab (lines 455-476) with `<ScrollReveal delay={index * 100}>`
 
-A new standalone component (does not modify Logo3D.tsx):
-- **Scene setup**: Small `<Canvas>` (~200x200px) with transparent background, camera at z=4
-- **Logo mesh**: A flat `<planeGeometry>` textured with `za_logo.png` using `useTexture` from drei. Double-sided, with a metallic/reflective material (MeshStandardMaterial, metalness ~0.6, roughness ~0.3)
-- **Default animation** (useFrame):
-  - Gentle Y-axis rotation: `mesh.rotation.y += 0.003` (slow coin spin)
-  - Sine-wave bobbing: `mesh.position.y = Math.sin(clock * 0.8) * 0.15`
-- **Mouse interaction**: Track normalized mouse position via `onPointerMove` on the Canvas. Use lerp to smoothly interpolate mesh rotation toward cursor (tiltX from mouseY, tiltY from mouseX, max ~15 degrees). Dampening factor ~0.05.
-- **Particles**: 30-40 small teal points using `<Points>` from drei, drifting slowly outward with random initial positions in a sphere. Reset when they drift too far.
-- **Lighting**: Ambient (0.4) + one directional light with teal tint (#0ea5e9, intensity 1.5) for rim glow effect
-- **Rim glow**: Add a second slightly larger transparent plane behind the logo with teal emissive color and low opacity for edge glow effect
-- **Mobile**: Use `useIsMobile()` hook — on mobile, disable mouse tracking, keep only rotation + bob. Use `matchMedia('(prefers-reduced-motion: reduce)')` to show static logo instead.
-- **Lazy loading**: Export as `React.lazy()` compatible, wrap in `<Suspense>` with the static logo as fallback
+---
 
-**2. Edit `src/pages/Index.tsx` — Hero section only (lines ~340-398)**
+### AREA 2: Header Logo Position + Digital Products Nav
 
-- Lazy import `HeroLogo3D`
-- Place it to the right of the hero text in the existing `flex-row` layout on desktop (after the headshot column, before the text column — or as a decorative element overlapping the text area)
-- Actually, the current layout is: headshot (left) + text (right). Adding a 3rd column would crowd it. Better approach: **Position the 3D logo as a decorative element behind/beside the heading**, using `absolute` positioning within the hero text area. Size ~160x160px on desktop, hidden or 80x80 on mobile.
-- Remove the existing small spinning `<img>` of za_logo (line 352-357) and replace it with the 3D version inline, OR keep the img as mobile fallback and show 3D only on desktop.
-- Wrap in `<Suspense fallback={<img src={zaLogo} ... />}>` so it degrades gracefully
+**File: `src/components/Header.tsx`**
+- Move the logo closer to the left by adjusting layout: swap sidebar trigger and logo ordering so the logo sits at the far left, then sidebar trigger. Or simply remove `gap-4` excess and place logo first in the flex container.
+- Add `{ label: "Digital Products", path: "/digital-products" }` to `TOP_NAV` array after "Services" (line 20), making the order: Home, About, Services, Digital Products, Books, Investing
+- Reduce nav link text size to `text-xs` on `md` breakpoint to prevent overflow with 6 items, or keep `text-sm` if it fits
 
-### Files to CREATE (1)
-- `src/components/HeroLogo3D.tsx`
+---
 
-### Files to EDIT (1)
-- `src/pages/Index.tsx` — hero section only (swap static logo img for lazy-loaded 3D version, keep static as mobile/fallback)
+### AREA 3: Investing Page Cleanup
 
-### No changes to
-- `Logo3D.tsx` (untouched, still used on Digital Products page)
-- `CosmicBackground.tsx`
-- Any other page sections, layouts, or shared components
-- No new packages needed (Three.js + drei already installed)
+**File: `src/pages/Investing.tsx`**
+- Remove the entire Portfolio section (lines 207-246): the "Individual Stocks & ETFs" grid and "Roth IRA Holdings" grid
+- Remove all related data: `FAVORITES`, `INDIVIDUAL`, `ROTH_IRA`, `sortByFavorites`, `INDIVIDUAL_SORTED`, `ROTH_SORTED` (lines 8-49)
+- Keep: Hero, Philosophy, Simple Tips, Banking & Brokerage, Options Trading sections
+
+---
+
+### AREA 4: Digital Products CTA Consistency
+
+**File: `src/data/products.ts`**
+- Change "How to Become an Author" CTA label to `"Download Free PDF →"` (already correct on line 29)
+- Change "Walking Workday" label from `"Get It Now →"` to `"Get Yours →"` (line 41)
+- Change "Quiet Your Gut" label from `"Get It Now →"` to `"Get Yours →"` (line 52)
+- Change "Newlyweds" label from `"Get It Now →"` to `"Get Yours →"` (line 64)
+- Change "Clinic Clarity Kit" label from `"Get it on Whop"` to `"Get Yours →"` (line 91)
+- Change "Calm Solo Time" label from `"Get it on Whop"` to `"Get Yours →"` (line 106)
+- Change "Texas LLC Roadmap" label from `"Get it on Whop"` to `"Get Yours →"` (line 120)
+- Change "Zen Detachment" label from `"Get it on Whop"` to `"Get Yours →"` (line 136)
+
+Both the `/digital-products` page and homepage tab render from `ALL_PRODUCTS`, so fixing the data file fixes both.
+
+---
+
+### AREA 5: Breadcrumb Consistency
+
+**Current state**: Projects and ProjectPokedex have inline breadcrumbs. HarryPotterWorld and AiSongs do NOT have breadcrumbs. A reusable `breadcrumb.tsx` UI component exists but is unused.
+
+**Files to edit:**
+- `src/pages/projects/AiSongs.tsx` — Add breadcrumb nav: Home → Projects → AI Songs (after Helmet, before hero)
+- `src/pages/projects/HarryPotterWorld.tsx` — Add breadcrumb nav: Home → Projects → Harry Potter World (after Helmet, inside container)
+
+These are the only subpages with parent→child relationships based on the routes in App.tsx. No blog, no other nested detail pages exist.
+
+---
+
+### AREA 6: General Consistency & Polish Sweep
+
+Based on my audit:
+- **Footer consistency**: Only Index.tsx and DigitalProductsPage.tsx have footers. The AppLayout doesn't have a global footer. Most pages have no footer at all.
+- **Card styles**: The Investing page cards use `hover-lift` (old class) instead of the new micro-interaction classes. Update the 4 philosophy cards and 3 brokerage cards to use the standard hover treatment.
+- **The DigitalProductsPage footer** is missing the coffee link. Since the footer isn't global, I'll add a shared footer to `AppLayout.tsx` so every page gets it consistently.
+
+**File: `src/components/AppLayout.tsx`**
+- Add a global footer with the coffee link and copyright, matching the Index.tsx footer style
+  
+**File: `src/pages/Index.tsx`**
+- Remove the per-page footer (lines 780-796) since AppLayout will now handle it
+
+**File: `src/pages/DigitalProductsPage.tsx`**
+- Remove the per-page footer (lines 172-177)
+
+---
+
+### AREA 7: Footer — Buy Me a Coffee
+
+Handled by Area 6 above. The global footer in AppLayout will contain the subtle "☕ Support my work" text link + copyright. This makes it consistent across ALL pages automatically.
+
+---
+
+### Summary of files
+
+**Files to EDIT (8):**
+1. `src/components/HeroLogo3D.tsx` — canvas size bump
+2. `src/pages/Index.tsx` — KineticText spacing, ScrollReveal on product cards, remove per-page footer
+3. `src/components/Header.tsx` — logo position, add Digital Products to nav
+4. `src/pages/Investing.tsx` — remove portfolio holdings data
+5. `src/data/products.ts` — normalize all CTA labels
+6. `src/pages/projects/AiSongs.tsx` — add breadcrumbs
+7. `src/pages/projects/HarryPotterWorld.tsx` — add breadcrumbs
+8. `src/components/AppLayout.tsx` — add global footer
+9. `src/pages/DigitalProductsPage.tsx` — remove per-page footer
+
+**No new files. No new packages. No route changes. No page deletions.**
 
