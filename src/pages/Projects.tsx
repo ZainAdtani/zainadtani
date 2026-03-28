@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -42,8 +43,9 @@ export default function Projects() {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <Card key={project.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+          {projects.map((project, index) => (
+            <ScrollReveal key={project.id} delay={index * 100}>
+            <Card className="overflow-hidden hover:shadow-lg transition-shadow">
               {project.id === 'pokedex' ? (
                 <div className="aspect-video w-full overflow-hidden bg-muted relative">
                   <img 
@@ -90,6 +92,7 @@ export default function Projects() {
                 )}
               </CardFooter>
             </Card>
+            </ScrollReveal>
           ))}
         </div>
       </div>

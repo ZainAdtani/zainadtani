@@ -98,7 +98,7 @@ export function AppSidebar() {
   const getNavClass = ({ isActive }: { isActive: boolean }) =>
     isActive
       ? "bg-primary/10 text-primary font-medium border-l-2 border-primary"
-      : "hover:bg-muted/50";
+      : "hover:bg-primary/5 hover:border-l-2 hover:border-primary/60 transition-all duration-200";
 
   return (
     <Sidebar collapsible="icon" className="border-r">

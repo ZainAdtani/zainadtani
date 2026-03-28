@@ -9,6 +9,7 @@ import WhatIFollow from "@/components/WhatIFollow";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -331,6 +332,7 @@ const Index = () => {
       <TimeBar />
 
       {/* Hero Section */}
+      <ScrollReveal>
       <section className="pt-8 md:pt-12 pb-10 md:pb-16 bg-gradient-hero">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col md:flex-row items-center gap-12">
@@ -376,10 +378,12 @@ const Index = () => {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* (7-card grid removed — pages still accessible via sidebar) */}
 
       {/* Tabbed Sections */}
+      <ScrollReveal delay={100}>
       <section id="tabs-section" className="py-10 md:py-16 bg-muted/30">
         <div className="container mx-auto px-4 max-w-6xl">
           <Tabs value={activeTab} onValueChange={v => setActiveTab(v as TabKey)} className="w-full" aria-label="Zain site sections">
@@ -702,6 +706,7 @@ const Index = () => {
           </Tabs>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* Let's Connect — Compact */}
       <section className="py-6 md:py-8">
@@ -727,7 +732,9 @@ const Index = () => {
 
 
       {/* What I Follow — Combined Newsletters + Podcasts */}
+      <ScrollReveal delay={200}>
       <WhatIFollow podcasts={PODCASTS} />
+      </ScrollReveal>
 
       {/* Spotify Playlist Section */}
       <section className="py-6 md:py-10">

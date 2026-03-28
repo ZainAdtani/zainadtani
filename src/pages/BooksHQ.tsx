@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -239,13 +240,13 @@ export default function BooksHQ() {
 
         {/* Books Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredAndSortedBooks.map((book) => {
+            {filteredAndSortedBooks.map((book, index) => {
             const coverSrc = book.cover || GENERIC_COVER;
-            // always render a button — prefer direct link (with affiliate), else Amazon search
             const href = withAffiliate(book.link) || amazonSearchUrl(book.title, book.author);
 
             return (
-              <Card key={book.id} className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2 flex flex-col">
+              <ScrollReveal key={book.id} delay={index * 80}>
+              <Card className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2 flex flex-col">
                 {/* Cover */}
                 <div className="aspect-[2/3] w-full bg-muted relative overflow-hidden">
                   <img
@@ -358,6 +359,7 @@ export default function BooksHQ() {
                   </div>
                 </CardContent>
               </Card>
+              </ScrollReveal>
             );
           })}
         </div>
