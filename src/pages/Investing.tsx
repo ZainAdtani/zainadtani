@@ -147,7 +147,7 @@ const Investing = () => {
                 <p>This course breaks down calls, puts, spreads, and real strategies.</p>
               </div>
             </div>
-            <Card className="p-6 hover-lift transition-all duration-300 rounded-xl">
+            <Card className="p-6 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-300 rounded-xl">
               <LineChart className="w-10 h-10 text-primary mb-4" />
               <h3 className="text-xl font-bold mb-2">Complete Options Course</h3>
               <p className="text-sm text-muted-foreground mb-4">From beginner to advanced. Clear lessons and examples.</p>

@@ -1,16 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Mail, GraduationCap, Book, Award, Cpu, Sparkles, Music, BookOpen, ExternalLink, Youtube, Linkedin, Heart, X, FileText, Mic, ChevronLeft, ChevronRight, FolderOpen, Lightbulb, Grid3x3, Archive, Dumbbell } from "lucide-react";
+import { Sparkles, BookOpen, ExternalLink, Youtube, Linkedin, X } from "lucide-react";
 import WhatIFollow from "@/components/WhatIFollow";
 import { KineticText } from "@/components/KineticText";
 import zaLogo from "@/assets/za_logo.png";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
-import { useState, useEffect, useRef, lazy, Suspense, useMemo } from "react";
+import { useState, useEffect, lazy, Suspense, useMemo } from "react";
 
 const HeroLogo3D = lazy(() => import("@/components/HeroLogo3D"));
 import { ScrollReveal } from "@/components/ScrollReveal";
@@ -20,89 +20,14 @@ import { Helmet } from "react-helmet-async";
 import { TimeBar } from "@/components/TimeBar";
 import { ALL_PRODUCTS } from "@/data/products";
 import { BOOKS } from "@/data/books";
-import { NEWSLETTERS } from "@/data/newsletters";
+import { QUOTES_AND_NOTES } from "@/data/quotes";
+import { PODCASTS } from "@/data/podcasts";
+import { ROLE_MODELS } from "@/data/roleModels";
 import headshotImage from "@/assets/zain-headshot.png";
 import qbBadge from "@/assets/quickbooks-level2-badge.png";
 import awsBadge from "@/assets/aws-cloud-practitioner-badge.png";
-import millionaireFastlane from "@/assets/millionaire-fastlane-cover.jpg";
-import deanGraziosi from "@/assets/dean-graziosi.jpg";
-import tonyRobbins from "@/assets/tony-robbins.jpg";
-import jasonFladlien from "@/assets/jason-fladlien.jpg";
-import maggieSimbaBook from "@/assets/maggie-simba-book.png";
-import financialSorceryBook from "@/assets/financial-sorcery-book.png";
-import chrisHaroun from "@/assets/chris-haroun.png";
-import trentShelton from "@/assets/trent-shelton.png";
-import timFerriss from "@/assets/tim-ferriss.jpg";
 import eagleScoutBadge from "@/assets/eagle-scout-badge.png";
-import alexHormozi from "@/assets/alex-hormozi.png";
-const QUOTES_AND_NOTES = ["It is the unknown we fear when we look upon death and darkness, nothing more. - J.K. Rowling, Harry Potter and the Deathly Hallows", "Instead of digging for gold, sell shovels. Instead of driving a taxi, build Uber. Wealth is not about working harder; it's about creating systems that work harder than you do. - MJ DeMarco, The Millionaire Fastlane", "More than 50% of graduates completely forget what they learn in college within 5 years, and within 10 years it's closer to 100%. If most of our \"education\" inevitably collects dust, then what was the point in learning it? Let's do some simple math: Let's be conservative and say that 5 hours per week are spent attending lectures and studying for exams (10 for finals week). If there are 15 weeks in a semester, that's 30 weeks a year. Multiply that by 4 we get 120 weeks, resulting in 600 hours invested into learning information that for the most part, will not be useful for your future work and career. Now I'm not saying you should renounce education completely, rather look past the shiny allure of \"financial stability and higher wages\" and make an informed decision of whether or not it aligns with what you desire. Almost anything can be learned on the internet, online education is booming. Opportunities for the next wave of innovators are scaling faster and faster thanks to technology and AI. Imagine what you could do with 600 extra hours, $200,000, and 4 years to learn and explore on your own? The future is wide open for those willing to diverge and create.", 'Plan Your Day: Establish a clear plan for your daily activities. This sets the foundation for "traction," where every action intentionally moves you toward your goals, contrasting with "distraction," which pulls you away. Use tools like calendars to allocate specific time blocks for tasks.', "Did you know that the average person spends over one hour on social media per day, just consuming and not creating? Additionally, they spend another 2-3 hours watching television. That's four hours, on average, gone every day. Doing the math, 4 hours lost per day, multiplied by 7 days per week, equals 28 hours per week. That's basically equivalent to a part-time job. In fact, it's literally 3.5 eight-hour workdays lost per week. Four hours lost per day over 30 days = 120 hours = 15 WORKDAYS PER MONTH LOST.", "Motivation is not the cause of action, but the effect. If you wanna feel motivated to do something, take the smallest action towards doing it, then let the momentum carry you forward.", "Don't view exercise as an exchange for something. You don't work out to lose a few pounds or earn that hamburger and ice cream. With this mindset, you will lose motivation quickly and quit. Instead, view exercise as an investment. For every unit of energy you put in, you'll receive multiple units of energy back. The catch is that these units of energy you get back will be spread out over weeks, months and years. This is why exercising hardcore occasionally is far inferior than exercising a little bit every day.", "Statistically speaking, a normal person is physically unhealthy, emotionally anxious and depressed, socially lonely and financially in debt. Fuck being normal.", "Your mindset is the KEY to making more progress in your life, and journaling is the daily WORK that helps you master your mindset.", "Don't make assumptions about people, you have no fucking idea what they've been through. Don't make assumptions about yourself either. The last person we're objective about is ourselves.", "No one thinks about you as much as you think about yourself. Whatever you are insecure about, chances are 99% of people around you haven't even noticed it. This is because everybody else is too busy thinking about themselves. This may strike you as a little bit depressing, but it's actually liberating. It means that you are judged far less than you think.", "Develop a willingness to be disliked. It will grant you the freedom to do what needs to be done, even if it's unpopular.", "Nothing meaningful in life is easy, and nothing easy in life is meaningful. We think we'd like to have everything handed to us on a silver platter, but the truth is that we don't appreciate or enjoy things that we don't struggle for. So stop avoiding the difficult things in your life and instead find the difficult things you enjoy.", "It's never too late to change. It's never too late. I get emails all the time from people asking me, \"Hey, I'm 20 or 40 or 60 or 80, is it too late? Can I change? Is there time?\" The answer is it's never too late, there's always time. The only question is how long we're gonna sit here and make excuses and pretend there's not.", "In some ways, suffering ceases to be suffering at the moment it finds a meaning, such as the meaning of a sacrifice. — Viktor Frankl", "When you factor in every ancestor, timing, and genetic combination, your chances of being here are 1 in 400 trillion. These odds are like winning the lottery 12,996 times in a row. You may not know it, but you're a literal walking lottery winner. Start acting like it. — Me in a future thread I'm writing for my birthday", "BEFORE YOU TEAR DOWN THE FENCE, MAKE SURE YOU KNOW THE WOLVES IT WAS KEEPING AT BAY. — @SahilBloom, The 5 Types of Wealth", "When you complain, you make yourself a victim. Leave the situation, change the situation, or accept it. All else is madness. — Eckhart Tolle", "Material success is not success. I define success as someone who gives and shares what they have. Do not compete with others, compete in caring, respect, honesty, humility, and compassion in both professional and personal relationships. Success to me is someone who uplifts others. — Mawlana Hazar Imam"];
 
-// ---- Podcasts I Follow (data) ----
-type Podcast = {
-  title: string;
-  host: string;
-  listen: string;
-  website?: string;
-  image?: string | null;
-  embedHtml?: string | null;
-};
-const PODCASTS: Podcast[] = [{
-  title: "Huberman Lab",
-  host: "Andrew Huberman",
-  listen: "https://open.spotify.com/show/79CkJF3UJTHFV8Dse3Oy0P",
-  website: "https://www.hubermanlab.com/podcast",
-  image: "/images/podcasts/huberman-lab.png"
-}, {
-  title: "Ear Biscuits",
-  host: "Rhett & Link",
-  listen: "https://open.spotify.com/show/3j9nu2qpJrUxEXp5qMudM7",
-  website: "https://www.youtube.com/@earbiscuits",
-  image: "/images/podcasts/ear-biscuits.png",
-  embedHtml: `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/show/3j9nu2qpJrUxEXp5qMudM7?utm_source=generator&t=420" width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`
-}, {
-  title: "Morning Brew Daily",
-  host: "Morning Brew",
-  listen: "https://open.spotify.com/show/7nc7OQdPTekErtFSRxOBKh",
-  website: "https://www.morningbrew.com/podcasts/morning-brew-daily",
-  image: "/images/podcasts/morning-brew-daily.png"
-}, {
-  title: "The Tim Ferriss Show",
-  host: "Tim Ferriss",
-  listen: "https://open.spotify.com/show/5qSUyCrk9KR69lEiXbjwXM",
-  website: "https://tim.blog/podcast/",
-  image: "/images/podcasts/tim-ferriss-show.png",
-  embedHtml: `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/show/5qSUyCrk9KR69lEiXbjwXM?utm_source=generator" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`
-}, {
-  title: "Ultimate Human",
-  host: "Gary Brecka",
-  listen: "https://open.spotify.com/show/5Faf5ecAnYW7AzGdblqd6R",
-  website: "https://www.ultimatehumanpodcast.com/",
-  image: "/images/podcasts/ultimate-human.jpg"
-}, {
-  title: "On Purpose",
-  host: "Jay Shetty",
-  listen: "https://open.spotify.com/show/5EqqB52m2bsr4k1Ii7sStc",
-  website: "https://jayshetty.me/podcast/",
-  image: "/images/podcasts/on-purpose.png"
-}, {
-  title: "Impact Theory",
-  host: "Tom Bilyeu",
-  listen: "https://open.spotify.com/show/1nARKz2vTIOb7gC9dusE4b",
-  website: "https://impacttheory.com/podcast",
-  image: "/images/podcasts/impact-theory.png"
-}, {
-  title: "The Diary Of A CEO",
-  host: "Steven Bartlett",
-  listen: "https://open.spotify.com/show/7iQXmUT7XGuZSzAMjoNWlX",
-  website: "https://www.diaryofaceo.com/",
-  image: "/images/podcasts/diary-of-a-ceo.jpg"
-}, {
-  title: "Brian Windhorst & The Hoop Collective",
-  host: "Brian Windhorst",
-  listen: "https://open.spotify.com/show/4mOLvZqMud0JromeBgLpIh",
-  website: "https://www.espn.com/podcenter/",
-  image: "/images/podcasts/brian-windhorst.png"
-}];
 function faviconFor(url: string) {
   try {
     const u = new URL(url);
@@ -114,13 +39,11 @@ function faviconFor(url: string) {
 const TABS = ["digital-products", "books", "credentials", "role-models"] as const;
 type TabKey = (typeof TABS)[number];
 
-// Helper function for formatting catalog numbers
 function pad2(n: number) {
   return n.toString().padStart(2, "0");
 }
 function getTabFromHash(hash: string): TabKey {
   const clean = hash.replace("#", "") as TabKey;
-  // Support old "certifications" hash redirecting to "credentials"
   if (clean === "certifications" as any) return "credentials";
   return (TABS as readonly string[]).includes(clean) ? clean : "digital-products";
 }
@@ -136,7 +59,6 @@ function withAffiliate(url: string, tag = "eng2ea-20") {
   }
 }
 
-// Product catalog excluding free community
 const productCatalog = ALL_PRODUCTS.filter(p => p.id !== "free-community");
 const Index = () => {
   const [quote, setQuote] = useState("");
@@ -147,12 +69,10 @@ const Index = () => {
   const [isHoveringProducts, setIsHoveringProducts] = useState(false);
   const [productsFading, setProductsFading] = useState(false);
 
-  // All featured products sorted
   const allFeatured = React.useMemo(() => {
     return productCatalog.filter(p => p.featured).sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
   }, []);
 
-  // Auto-shuffle every 27 seconds
   useEffect(() => {
     if (isHoveringProducts || searchQuery.trim()) return;
     const timer = setInterval(() => {
@@ -165,18 +85,11 @@ const Index = () => {
     return () => clearInterval(timer);
   }, [isHoveringProducts, searchQuery]);
 
-  // Filter products based on search query with shuffle
   const filteredProducts = React.useMemo(() => {
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       return allFeatured.filter(p => p.title.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query));
     }
-    // Pick 3 based on shuffleIndex
-    const shuffled = [...allFeatured].sort(() => {
-      // Deterministic-ish shuffle based on shuffleIndex
-      return Math.sin(shuffleIndex * 9301 + allFeatured.indexOf(allFeatured[0])) - 0.5;
-    });
-    // Use a seeded approach: rotate by shuffleIndex
     const start = (shuffleIndex * 3) % allFeatured.length;
     const picked: typeof allFeatured = [];
     for (let i = 0; i < 3 && i < allFeatured.length; i++) {
@@ -185,7 +98,6 @@ const Index = () => {
     return picked;
   }, [searchQuery, shuffleIndex, allFeatured]);
 
-  // Books shuffle state (same pattern as products)
   const [bookShuffleIndex, setBookShuffleIndex] = useState(0);
   const [isHoveringBooks, setIsHoveringBooks] = useState(false);
   const [booksFading, setBooksFading] = useState(false);
@@ -200,7 +112,6 @@ const Index = () => {
     return picked;
   }, [bookShuffleIndex]);
 
-  // Auto-shuffle books every 27 seconds
   useEffect(() => {
     if (isHoveringBooks) return;
     const timer = setInterval(() => {
@@ -212,29 +123,18 @@ const Index = () => {
     }, 27000);
     return () => clearInterval(timer);
   }, [isHoveringBooks]);
+
   const generateQuote = () => {
     const randomIndex = Math.floor(Math.random() * QUOTES_AND_NOTES.length);
-    const selectedQuote = QUOTES_AND_NOTES[randomIndex];
-    setQuote(selectedQuote);
+    setQuote(QUOTES_AND_NOTES[randomIndex]);
   };
 
-  // Auto-fetch missing book covers
   useEffect(() => {
     const KEY = "bookCoversV2";
     const cache = JSON.parse(localStorage.getItem(KEY) || "{}");
-    async function findCover({
-      title,
-      author
-    }: {
-      title: string;
-      author: string;
-    }): Promise<string | null> {
-      // Try Open Library by title+author
+    async function findCover({ title, author }: { title: string; author: string }): Promise<string | null> {
       try {
-        const q = new URLSearchParams({
-          title,
-          author
-        }).toString();
+        const q = new URLSearchParams({ title, author }).toString();
         const res = await fetch(`https://openlibrary.org/search.json?${q}`);
         const data = await res.json();
         const best = data?.docs?.[0];
@@ -242,7 +142,6 @@ const Index = () => {
         if (isbn) return `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`;
         if (best?.cover_i) return `https://covers.openlibrary.org/b/id/${best.cover_i}-L.jpg`;
       } catch {}
-      // Fallback: Google Books thumbnail
       try {
         const q = encodeURIComponent(`${title} ${author}`);
         const res = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${q}&maxResults=1`);
@@ -260,10 +159,7 @@ const Index = () => {
           if (cache[key]) {
             b.cover = cache[key];
           } else {
-            const url = await findCover({
-              title: b.title,
-              author: b.author
-            });
+            const url = await findCover({ title: b.title, author: b.author });
             if (url) {
               b.cover = url;
               cache[key] = url;
@@ -276,26 +172,19 @@ const Index = () => {
     })();
   }, []);
 
-  // Handle hash changes for tab navigation (only scroll if user clicked or hash changed)
   useEffect(() => {
     const onHashChange = () => {
       const next = getTabFromHash(window.location.hash);
       setActiveTab(next);
-      // Only scroll if this is a real hash change (user action), not initial load
       if (document.readyState === "complete") {
         const el = document.getElementById("tabs-section");
-        if (el) el.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     };
     window.addEventListener("hashchange", onHashChange);
-    // Don't scroll on initial load even if hash exists
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
-  // Update hash when tab changes (only after user interaction)
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   useEffect(() => {
     if (isInitialLoad) {
@@ -307,13 +196,9 @@ const Index = () => {
       history.replaceState(null, "", newHash);
     }
     const el = document.getElementById("tabs-section");
-    if (el) el.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [activeTab]);
 
-  // Helper: favicon fallback
   function favicon32(u?: string) {
     try {
       const x = new URL(u!);
@@ -322,6 +207,7 @@ const Index = () => {
       return "";
     }
   }
+
   return <div className="min-h-screen bg-background">
       <div id="top" />
       <Helmet>
@@ -340,13 +226,11 @@ const Index = () => {
       <section className="pt-8 md:pt-12 pb-10 md:pb-16 bg-gradient-hero">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col md:flex-row items-center gap-12">
-            {/* Headshot with decorative background */}
             <div className="flex-shrink-0 relative">
               <div className="absolute inset-0 bg-primary/20 rounded-full scale-110 -z-10"></div>
               <img src={headshotImage} alt="Zain Adtani - Teacher and Site Builder" className="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover object-top" style={{ border: '3px solid #00D4AA', boxShadow: '0 0 30px rgba(0,212,170,0.2)' }} />
             </div>
 
-            {/* Hero Text */}
             <div className="flex-1 text-center md:text-left space-y-8">
               <div>
                 <div className="flex items-center gap-3 justify-center md:justify-start">
@@ -388,7 +272,7 @@ const Index = () => {
                 </div>
               </Card>
 
-              {/* Build a Simple Site Card - moved under motivation */}
+              {/* Build a Simple Site Card */}
               <div className="max-w-lg mx-auto md:mx-0">
                 <Card className="p-6 border-2 hover:shadow-lg hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
                   <h3 className="text-lg font-bold mb-2 text-foreground">Build a Simple Site</h3>
@@ -405,8 +289,6 @@ const Index = () => {
         </div>
       </section>
       </ScrollReveal>
-
-      {/* (7-card grid removed — pages still accessible via sidebar) */}
 
       {/* Tabbed Sections */}
       <ScrollReveal delay={100}>
@@ -498,7 +380,7 @@ const Index = () => {
                 onMouseEnter={() => setIsHoveringBooks(true)}
                 onMouseLeave={() => setIsHoveringBooks(false)}
               >
-                {displayedBooks.map(book => <Card key={book.title + book.author} className="overflow-hidden hover-lift transition-all duration-500 shadow-lg border-2 group">
+                {displayedBooks.map(book => <Card key={book.title + book.author} className="overflow-hidden hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-500 shadow-lg border-2 group">
                     <div className="absolute top-4 right-4 z-10 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm">
                       {book.status === "READ" ? "✓ Read" : book.status === "IN_PROGRESS" ? "Reading" : "To Read"}
                     </div>
@@ -541,11 +423,10 @@ const Index = () => {
               </div>
             </TabsContent>
 
-            {/* Credentials Tab (formerly Certifications) */}
+            {/* Credentials Tab */}
             <TabsContent value="credentials" className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* QuickBooks */}
-                <Card className="p-5 hover-lift transition-all duration-300 shadow-lg border-2">
+                <Card className="p-5 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-300 shadow-lg border-2">
                   <div className="flex items-center gap-3 mb-3">
                     <img src={qbBadge} alt="QuickBooks ProAdvisor Level 2 Badge" className="w-16 h-16 object-contain flex-shrink-0" />
                     <div>
@@ -566,8 +447,7 @@ const Index = () => {
                   </div>
                 </Card>
 
-                {/* AWS */}
-                <Card className="p-5 hover-lift transition-all duration-300 shadow-lg border-2">
+                <Card className="p-5 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-300 shadow-lg border-2">
                   <div className="flex items-center gap-3 mb-3">
                     <img src={awsBadge} alt="AWS Certified Cloud Practitioner Badge" className="w-16 h-16 object-contain flex-shrink-0" />
                     <div>
@@ -587,8 +467,7 @@ const Index = () => {
                   </div>
                 </Card>
 
-                {/* Eagle Scout */}
-                <Card className="p-5 hover-lift transition-all duration-300 shadow-lg border-2">
+                <Card className="p-5 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-300 shadow-lg border-2">
                   <div className="flex items-center gap-3 mb-3">
                     <img src={eagleScoutBadge} alt="Eagle Scout Badge" className="w-16 h-16 object-contain flex-shrink-0" />
                     <div>
@@ -616,97 +495,22 @@ const Index = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {[{
-                name: "Tony Robbins",
-                role: "Life & Business Strategist",
-                born: "Feb 29, 1960",
-                age: "65 years old",
-                imageAlt: "Tony Robbins headshot",
-                bio: "American author and motivational coach known for high-energy seminars and best-selling books. Creator of events like Unleash the Power Within and Date With Destiny.",
-                bullets: ["Author of Unlimited Power and Awaken the Giant Within", "Decades of global seminars and coaching", "Focus: peak performance, business, life strategy"],
-                image: tonyRobbins,
-                website: "https://www.tonyrobbins.com"
-              }, {
-                name: "Dean Graziosi",
-                role: "Real Estate & Knowledge Entrepreneur",
-                born: "Nov 20, 1968",
-                age: "56 years old",
-                imageAlt: "Dean Graziosi headshot",
-                bio: "NYT best-selling author and investor; co-founder of Mastermind.com with Tony Robbins, helping people package and sell what they know.",
-                bullets: ["Built and advised multiple successful companies", "Teaches practical frameworks for momentum", "Focus: small business, marketing, personal growth"],
-                image: deanGraziosi,
-                website: "https://www.deangraziosi.com"
-              }, {
-                name: "Alex Hormozi",
-                role: "Founder, Acquisition.com",
-                born: "",
-                age: "",
-                imageAlt: "Alex Hormozi headshot",
-                bio: "Teaches offers, marketing, and business systems with simple frameworks. Known for $100M Offers and building acquisition.com portfolio.",
-                bullets: ["Offers and pricing strategy", "Customer acquisition basics", "Systems and execution"],
-                image: alexHormozi,
-                website: "https://www.acquisition.com",
-                youtube: "https://www.youtube.com/c/alexhormozi"
-              }, {
-                name: "Jason Fladlien",
-                role: "Entrepreneur & Webinar Expert",
-                born: "Apr 7, 1983",
-                age: "42 years old",
-                imageAlt: "Jason Fladlien headshot",
-                bio: 'Co-founder of Rapid Crush, known as the "$100M Webinar Man." Record-setting launches and go-to teacher for high-converting webinars.',
-                bullets: ["$250M+ in sales to 150k+ customers worldwide", "Holds records for major webinar launches", "Focus: offer design, webinar conversion, scaling"],
-                image: jasonFladlien,
-                website: "https://jasonfladlien.com/about/"
-              }, {
-                name: "Chris Haroun",
-                role: "Founder & CEO, Haroun Education Ventures",
-                born: "",
-                age: "",
-                imageAlt: "Chris Haroun headshot",
-                bio: "Award-winning MBA professor and #1 bestselling business instructor on Udemy. Columbia MBA, Goldman Sachs alum, and VC.",
-                bullets: ["2M+ students taught on Udemy", "Speaker at Inc. 5000, TEDx, etc.", "Focus: finance, MBA skills, career strategy"],
-                image: chrisHaroun,
-                website: "https://www.harouneducationventures.com/"
-              }, {
-                name: "Trent Shelton",
-                role: "Former NFL Player & Motivational Speaker",
-                born: "Sep 21, 1984",
-                age: "40 years old",
-                imageAlt: "Trent Shelton headshot",
-                bio: "Former NFL wide receiver turned motivational speaker. Founder of RehabTime, reaching millions with messages on self-worth and resilience.",
-                bullets: ["Played for Seattle Seahawks, Indianapolis Colts, Washington Redskins", "Viral videos and millions of followers", "Focus: self-worth, mental strength, purpose"],
-                image: trentShelton,
-                website: "https://www.trentshelton.com/"
-              }, {
-                name: "Tim Ferriss",
-                role: "Author & Podcast Host",
-                born: "Jul 20, 1977",
-                age: "47 years old",
-                imageAlt: "Tim Ferriss headshot",
-                bio: 'Author of The 4-Hour Workweek and host of The Tim Ferriss Show. Early-stage investor in Uber, Facebook, and 50+ companies. Known for "deconstructing world-class performers."',
-                bullets: ["700M+ podcast downloads", "Multiple NYT bestsellers", "Focus: productivity, self-experimentation, investing"],
-                image: timFerriss,
-                website: "https://tim.blog/"
-              }].map(person => <Card key={person.name} className="overflow-hidden hover-lift transition-all duration-500 shadow-lg border-2 group">
+                {ROLE_MODELS.map(person => <Card key={person.name} className="overflow-hidden hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-500 shadow-lg border-2 group">
                     <div className="p-6 flex flex-col h-full">
-                      {/* Avatar */}
                       <div className="relative w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-4 border-primary/30 shadow-xl group-hover:border-primary/60 transition-all duration-500">
                         {person.image ? <img src={person.image} alt={person.imageAlt} className="w-full h-full object-cover" loading="lazy" /> : <div className="w-full h-full bg-primary/20 flex items-center justify-center">
                             <img src={faviconFor(person.website)} alt={person.name} className="w-14 h-14 rounded-full" loading="lazy" />
                           </div>}
                       </div>
 
-                      {/* Name & Role */}
                       <h4 className="text-xl font-bold text-center text-foreground">{person.name}</h4>
                       <p className="text-sm text-primary text-center mb-2">{person.role}</p>
                       {person.born && <p className="text-xs text-muted-foreground text-center mb-3">
                           {person.born} • {person.age}
                         </p>}
 
-                      {/* Bio */}
                       <p className="text-sm text-muted-foreground mb-4 text-center">{person.bio}</p>
 
-                      {/* Bullets */}
                       <ul className="text-xs text-muted-foreground space-y-1 mb-4 flex-grow">
                         {person.bullets.map((b, i) => <li key={i} className="flex items-start gap-2">
                             <span className="text-primary">•</span>
@@ -714,15 +518,14 @@ const Index = () => {
                           </li>)}
                       </ul>
 
-                      {/* CTA */}
                       <div className="mt-auto flex flex-col gap-2">
                         <Button asChild variant="outline" size="sm" className="w-full rounded-full border-primary/50 hover:bg-primary/10 transition-all duration-300">
                           <a href={person.website} target="_blank" rel="noopener noreferrer">
                             Website <ExternalLink className="w-3 h-3 ml-1" />
                           </a>
                         </Button>
-                        {(person as any).youtube && <Button asChild variant="outline" size="sm" className="w-full rounded-full border-red-500/50 text-red-500 hover:bg-red-500/10 transition-all duration-300">
-                            <a href={(person as any).youtube} target="_blank" rel="noopener noreferrer">
+                        {person.youtube && <Button asChild variant="outline" size="sm" className="w-full rounded-full border-red-500/50 text-red-500 hover:bg-red-500/10 transition-all duration-300">
+                            <a href={person.youtube} target="_blank" rel="noopener noreferrer">
                               <Youtube className="w-4 h-4 mr-1" /> YouTube Channel
                             </a>
                           </Button>}
@@ -736,7 +539,7 @@ const Index = () => {
       </section>
       </ScrollReveal>
 
-      {/* Let's Connect — Compact */}
+      {/* Let's Connect */}
       <section className="py-6 md:py-8">
         <div className="container mx-auto px-4 max-w-4xl text-center space-y-4">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground">Let's Connect</h2>
@@ -758,13 +561,12 @@ const Index = () => {
         </div>
       </section>
 
-
-      {/* What I Follow — Combined Newsletters + Podcasts */}
+      {/* What I Follow */}
       <ScrollReveal delay={200}>
       <WhatIFollow podcasts={PODCASTS} />
       </ScrollReveal>
 
-      {/* Spotify Playlist Section */}
+      {/* Spotify Playlist */}
       <section className="py-6 md:py-10">
         <div className="container mx-auto px-4 max-w-xl text-center space-y-3">
           <h2 className="text-xl font-bold text-foreground">Focus Playlist</h2>
@@ -774,24 +576,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {/* (Newsletter section removed from homepage) */}
-
-      {/* (Published Works section removed from homepage) */}
-
-      {/* (Buy Me a Coffee moved to footer line below) */}
-
-
-      {/* Keyframes for animations */}
-      <style>
-        {`
-          @keyframes float {
-            0% { transform: translateY(0) }
-            50% { transform: translateY(-4px) }
-            100% { transform: translateY(0) }
-          }
-        `}
-      </style>
     </div>;
 };
 export default Index;
