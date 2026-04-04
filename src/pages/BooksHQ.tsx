@@ -246,7 +246,7 @@ export default function BooksHQ() {
 
             return (
               <ScrollReveal key={book.id} delay={index * 80}>
-              <Card className="overflow-hidden hover-lift transition-all duration-300 shadow-lg border-2 flex flex-col">
+              <Card className="overflow-hidden hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-300 shadow-lg border-2 flex flex-col">
                 {/* Cover */}
                 <div className="aspect-[2/3] w-full bg-muted relative overflow-hidden">
                   <img
