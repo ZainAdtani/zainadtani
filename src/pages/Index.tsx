@@ -219,16 +219,6 @@ const Index = () => {
         <meta property="og:type" content="website" />
       </Helmet>
 
-      {/* Announcement Bar */}
-      <div className="bg-muted border-b border-border">
-        <div className="container mx-auto px-4 py-2 text-center text-sm text-muted-foreground">
-          📘 New: <span className="font-medium text-foreground">How to Become an Author</span> —{" "}
-          <Link to="/digital-products" className="text-primary hover:underline font-semibold">
-            Download Free PDF →
-          </Link>
-        </div>
-      </div>
-
       <TimeBar />
 
       {/* Hero Section */}
@@ -257,18 +247,16 @@ const Index = () => {
               </div>
             </div>
 
-            {/* 3D Logo — decorative, hidden on mobile */}
+            {/* Profile photo — hidden on mobile */}
             <div className="hidden md:flex flex-shrink-0 items-center justify-center">
-              <Suspense fallback={
+              <div className="relative">
+                <div className="absolute -inset-1 rounded-full bg-primary/30 blur-md" />
                 <img
-                  src={zaLogo}
-                  alt="ZA Logo"
-                  className="w-32 h-32 animate-[spin_20s_linear_infinite]"
-                  style={{ filter: "drop-shadow(0 0 8px hsl(var(--primary) / 0.5))" }}
+                  src={headshotImage}
+                  alt="Zain Adtani — AI Consultant and Author"
+                  className="relative w-64 h-64 lg:w-72 lg:h-72 rounded-full object-cover object-top ring-4 ring-primary/40 shadow-2xl"
                 />
-              }>
-                <HeroLogo3D />
-              </Suspense>
+              </div>
             </div>
           </div>
         </div>
