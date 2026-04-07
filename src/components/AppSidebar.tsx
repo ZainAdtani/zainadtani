@@ -170,7 +170,7 @@ export function AppSidebar() {
           <SidebarGroup>
             <CollapsibleTrigger asChild>
               <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
-                Fun Projects
+                Projects
                 <ChevronDown
                   className={`h-4 w-4 transition-transform ${archiveOpen ? "rotate-180" : ""}`}
                 />

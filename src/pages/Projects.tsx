@@ -28,7 +28,7 @@ export default function Projects() {
 
         {/* Header */}
         <div className="mb-10">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Projects</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Fun Projects</h1>
           <p className="text-lg text-muted-foreground max-w-2xl">
             Side projects, experiments, and fun builds. A collection of things I've created to learn, explore, and share.
           </p>
