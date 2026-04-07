@@ -212,9 +212,9 @@ const Index = () => {
       <div id="top" />
       <Helmet>
         <title>Zain Adtani | AI Consultant + Author | DFW Texas</title>
-        <meta name="description" content="Zain Adtani helps businesses implement AI and helps creators publish books. AI consulting, Lovable websites, and book publishing coaching in DFW, Texas." />
+        <meta name="description" content="Zain Adtani helps businesses implement AI and helps everyday people publish books. AI consulting, Lovable websites, and book coaching in DFW, Texas." />
         <meta property="og:title" content="Zain Adtani | AI Consultant + Author | DFW Texas" />
-        <meta property="og:description" content="Zain Adtani helps businesses implement AI and helps creators publish books. AI consulting, Lovable websites, and book publishing coaching in DFW, Texas." />
+        <meta property="og:description" content="Zain Adtani helps businesses implement AI and helps everyday people publish books. AI consulting, Lovable websites, and book coaching in DFW, Texas." />
         <meta property="og:image" content={headshotImage} />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -225,45 +225,48 @@ const Index = () => {
       <ScrollReveal>
       <section className="pt-12 md:pt-20 pb-12 md:pb-20 bg-gradient-hero">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="flex flex-col md:flex-row items-center gap-12">
-            <div className="flex-1 text-center md:text-left space-y-6">
-              <p className="text-xs uppercase tracking-widest text-primary font-semibold">AI Consultant + Author</p>
+          <div className="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-14">
+            <div className="flex-1 text-center md:text-left space-y-5">
+              <span className="inline-block rounded-full border border-primary/50 bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary tracking-wide">
+                Eagle Scout · Mechanical Engineer · AI Consultant
+              </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-foreground leading-tight">
                 I Help Businesses Use AI.{" "}
                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                   I Help Creators Publish Books.
                 </span>
               </h1>
-              <p className="text-lg text-muted-foreground max-w-xl">
-                From strategy to execution, I make AI work for real people. No fluff. Just results.
+              <p className="text-lg text-muted-foreground max-w-xl mx-auto md:mx-0">
+                From a kid who moved from India to Texas, built a career from scratch, and figured out how to use AI before it was cool. Now I help others skip the hard part.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 text-base font-semibold">
                   <Link to="/services">Work With Me</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-secondary text-secondary hover:bg-secondary/10 rounded-full px-8 text-base font-semibold">
-                  <a href="#tabs-section">See My Work</a>
+                  <a href="#tabs-section">See What I've Built</a>
                 </Button>
               </div>
+              <p className="text-xs text-muted-foreground pt-1">
+                B.S. Mechanical Engineering · UTSA Dean's List · Eagle Scout · PMP Candidate
+              </p>
             </div>
 
-            {/* Profile photo — hidden on mobile */}
-            <div className="hidden md:flex flex-shrink-0 items-center justify-center">
-              <div className="relative">
-                <div className="absolute -inset-1 rounded-full bg-primary/30 blur-md" />
-                <img
-                  src={headshotImage}
-                  alt="Zain Adtani — AI Consultant and Author"
-                  className="relative w-64 h-64 lg:w-72 lg:h-72 rounded-full object-cover object-top ring-4 ring-primary/40 shadow-2xl"
-                />
-              </div>
+            {/* Profile photo */}
+            <div className="flex-shrink-0 flex items-center justify-center">
+              <img
+                src={headshotImage}
+                alt="Zain Adtani — AI Consultant and Author"
+                className="w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full object-cover object-top"
+                style={{ boxShadow: '0 0 0 4px hsl(168 100% 42% / 0.35), 0 0 30px hsl(168 100% 42% / 0.15)' }}
+              />
             </div>
           </div>
         </div>
       </section>
       </ScrollReveal>
 
-      {/* Daily Motivation Generator — repositioned below hero */}
+      {/* Daily Motivation Generator */}
       <ScrollReveal delay={50}>
       <section className="py-8 md:py-12">
         <div className="container mx-auto px-4 max-w-lg">
@@ -279,6 +282,32 @@ const Index = () => {
               </Button>
             </div>
           </Card>
+        </div>
+      </section>
+      </ScrollReveal>
+
+      {/* How I Help Section */}
+      <ScrollReveal delay={100}>
+      <section className="py-10 md:py-16">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-10">Here's How We Can Work Together</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300">
+              <div className="text-3xl mb-3">📖</div>
+              <h3 className="text-lg font-bold text-foreground mb-2">Publish Your Book</h3>
+              <p className="text-sm text-muted-foreground">You have a story worth sharing. I help everyday people use AI to write, format, and publish on Amazon in weeks — not years.</p>
+            </Card>
+            <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300">
+              <div className="text-3xl mb-3">🤖</div>
+              <h3 className="text-lg font-bold text-foreground mb-2">AI for Your Business</h3>
+              <p className="text-sm text-muted-foreground">Stop guessing with AI. I help small businesses actually implement it — save time, and grow revenue without the overwhelm.</p>
+            </Card>
+            <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300">
+              <div className="text-3xl mb-3">💻</div>
+              <h3 className="text-lg font-bold text-foreground mb-2">Done-For-You Websites</h3>
+              <p className="text-sm text-muted-foreground">Modern AI-powered websites built with Lovable. Fast, clean, and ready to convert. No tech headaches for you.</p>
+            </Card>
+          </div>
         </div>
       </section>
       </ScrollReveal>

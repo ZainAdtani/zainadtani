@@ -107,10 +107,10 @@ All colors MUST be HSL.
     font-family: 'DM Sans', sans-serif;
   }
 
-  /* Subtle futuristic dot grid for light mode only */
+  /* Subtle futuristic dot grid — light mode only */
   :root body {
-    background-image: radial-gradient(circle, hsl(220 20% 75% / 0.4) 1px, transparent 1px);
-    background-size: 24px 24px;
+    background-image: radial-gradient(circle, hsl(220 20% 70% / 0.35) 1px, transparent 1px);
+    background-size: 28px 28px;
   }
 
   .dark body {
