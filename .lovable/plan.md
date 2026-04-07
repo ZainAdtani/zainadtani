@@ -1,28 +1,28 @@
 
 
-## Plan: Simplify Top Navigation
+## Plan: Add "About Zain" Section to Homepage
 
 ### What changes
 
-**Single file edit: `src/components/Header.tsx`**
+**Single file edit: `src/pages/Index.tsx`**
 
-The `TOP_NAV` array (lines 13-20) currently has 6 items. Remove the "About" and "Investing" entries, and rename "Digital Products" to "Products". Result:
+Insert a new `<ScrollReveal>` section between the hero (ends line 261) and the Daily Motivation Generator (starts line 263). The section will contain:
 
-```ts
-const TOP_NAV = [
-  { label: "Home", path: "/" },
-  { label: "Services", path: "/services" },
-  { label: "Products", path: "/digital-products" },
-  { label: "Books", path: "/books" },
-];
-```
+1. **Heading**: "About Zain" — `font-display font-extrabold`, centered
+2. **Bio paragraph** (3-4 sentences): "I'm Zain Adtani. Mechanical Engineer from UTSA turned AI Consultant. I help businesses implement AI and I help creators publish books. Eagle Scout. Husband. Builder."
+3. **Credentials strip**: A horizontal row of pill badges with teal border/accent showing: `UTSA Mechanical Engineering`, `Eagle Scout`, `AWS Certified`, `PMP (In Progress)`, `4 Languages`. Uses `flex-wrap` to stack on mobile.
+
+### Design details
+- Section uses `py-10 md:py-14`, `max-w-3xl` container, centered text
+- Bio text: `text-muted-foreground text-lg`, DM Sans (inherited)
+- Credentials: small rounded-full pills with `border border-primary/40 text-primary text-sm px-4 py-1.5` — teal accent, no fill
+- Wrapped in `<ScrollReveal>` for consistency with other sections
 
 ### What stays untouched
-- All page files, routes, and components (About, Investing, etc.)
-- Sidebar navigation and its "Projects" group
-- Mobile hamburger menu (it pulls from `nav.ts`, not `TOP_NAV`, so it still shows all pages)
-- All styling, theme tokens, layout
+- Hero section (lines 224-261) — not modified
+- Daily Motivation Generator and everything below — not modified
+- All other pages, sidebar, header, styling
 
-### Potential issues
-- **None.** The `TOP_NAV` array is a local constant used only for the desktop header links. It has no effect on routing or the sidebar. About and Investing pages remain fully accessible via sidebar, mobile menu, and direct URL.
+### Files
+1. `src/pages/Index.tsx` — insert ~25 lines after line 261
 
