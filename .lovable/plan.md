@@ -1,47 +1,28 @@
 
 
-## Plan: Sidebar Flat Layout, Hero Cleanup, Softer Light Mode
+## Plan: Simplify Top Navigation
 
-### CHANGE 1: Sidebar — Flat "Projects" group (no collapsible)
+### What changes
 
-**`src/components/AppSidebar.tsx`** — Replace the `Collapsible` wrapping the archive section (lines 168-196) with a plain `SidebarGroup` that has a `SidebarGroupLabel` "Projects" and a flat `SidebarMenu` listing all archive items. Remove `Collapsible`, `CollapsibleTrigger`, `CollapsibleContent` usage and the `archiveOpen` state + localStorage logic (lines 46-56). Remove `ChevronDown` import if no longer needed.
+**Single file edit: `src/components/Header.tsx`**
 
-**`src/components/Header.tsx`** — Same change in mobile sheet (lines 99-124): replace `Collapsible` with a plain section header "Projects" and flat list of links. Remove `archiveOpen` state and `Collapsible` imports.
+The `TOP_NAV` array (lines 13-20) currently has 6 items. Remove the "About" and "Investing" entries, and rename "Digital Products" to "Products". Result:
 
-**`src/data/nav.ts`** — Change the label for the `/projects` entry (line 37) from `"Projects"` to `"Fun Projects"`.
+```ts
+const TOP_NAV = [
+  { label: "Home", path: "/" },
+  { label: "Services", path: "/services" },
+  { label: "Products", path: "/digital-products" },
+  { label: "Books", path: "/books" },
+];
+```
 
-**`src/pages/Projects.tsx`** — Verify page title already says "Fun Projects" (it does from prior changes).
+### What stays untouched
+- All page files, routes, and components (About, Investing, etc.)
+- Sidebar navigation and its "Projects" group
+- Mobile hamburger menu (it pulls from `nav.ts`, not `TOP_NAV`, so it still shows all pages)
+- All styling, theme tokens, layout
 
-### CHANGE 2: Hero strip-down
-
-**`src/pages/Index.tsx`** lines 230-252 — three deletions, one rewrite:
-
-1. **Delete pill tag** (line 230-232): Remove the `<span>` with "Eagle Scout · Mechanical Engineer · AI Consultant"
-2. **Rewrite subheadline** (line 239-241): Replace with "Bridging the gap between human creativity and AI efficiency to help you publish faster and scale smarter."
-3. **Delete trust line** (line 250-252): Remove the `<p>` with "B.S. Mechanical Engineering · UTSA Dean's List · Eagle Scout · PMP Candidate"
-
-Keep headline, CTAs, and profile photo untouched.
-
-### CHANGE 3: Softer light mode tokens
-
-**`src/index.css`** — Update `:root` values (lines 11-41):
-- `--background: 210 10% 94%`
-- `--foreground: 222 47% 10%`
-- `--card: 210 10% 90%`
-- `--card-foreground: 222 47% 10%`
-- `--border: 210 10% 82%`
-- `--input: 210 10% 82%`
-- `--hero-bg: 210 10% 94%`
-- `--hero-foreground: 222 47% 10%`
-
-Keep `--primary: 168 100% 42%` unchanged. Update sidebar tokens to match the new background/border values.
-
-### Files to edit (5)
-1. `src/components/AppSidebar.tsx` — flatten archive section, remove collapsible
-2. `src/components/Header.tsx` — flatten archive section in mobile menu
-3. `src/data/nav.ts` — rename Projects label to "Fun Projects"
-4. `src/pages/Index.tsx` — remove pill tag, rewrite subheadline, remove trust line
-5. `src/index.css` — update light mode tokens
-
-No new files. No deleted pages. No route changes.
+### Potential issues
+- **None.** The `TOP_NAV` array is a local constant used only for the desktop header links. It has no effect on routing or the sidebar. About and Investing pages remain fully accessible via sidebar, mobile menu, and direct URL.
 
