@@ -11,11 +11,9 @@ import zaLogo from "@/assets/za_logo.png";
 
 const TOP_NAV = [
   { label: "Home", path: "/" },
-  { label: "About", path: "/about" },
   { label: "Services", path: "/services" },
-  { label: "Digital Products", path: "/digital-products" },
+  { label: "Products", path: "/digital-products" },
   { label: "Books", path: "/books" },
-  { label: "Investing", path: "/investing" },
 ];
 
 export const Header = () => {
