@@ -34,7 +34,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "AI Prompts", path: "/ai-prompts", icon: Zap, section: "archive", searchTags: ["prompts", "coaching", "productivity"] },
   { label: "Life Notes", path: "/life-notes", icon: StickyNote, section: "archive", searchTags: ["quotes", "wisdom", "mindset"] },
   { label: "Tools", path: "/tools", icon: Wrench, section: "archive", searchTags: ["utilities"] },
-  { label: "Projects", path: "/projects", icon: FolderKanban, section: "archive", searchTags: ["pokedex", "builds"] },
+  { label: "Fun Projects", path: "/projects", icon: FolderKanban, section: "archive", searchTags: ["pokedex", "builds"] },
 ];
 
 // Helper to get items by section

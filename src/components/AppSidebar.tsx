@@ -1,4 +1,4 @@
-import { Search, ChevronDown } from "lucide-react";
+import { Search } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { NAV_ITEMS, getNavItemsBySection } from "@/data/nav";
 import {
@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import { Sun, Moon, Monitor } from "lucide-react";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+
 import { useState, useEffect, useMemo } from "react";
 import Fuse from "fuse.js";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -43,18 +43,11 @@ export function AppSidebar() {
   const navigate = useNavigate();
   const isCollapsed = state === "collapsed";
 
-  const [archiveOpen, setArchiveOpen] = useState(() => {
-    const saved = localStorage.getItem("sidebar-funprojects-open");
-    return saved !== null ? JSON.parse(saved) : false;
-  });
 
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<SearchableItem[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  useEffect(() => {
-    localStorage.setItem("sidebar-funprojects-open", JSON.stringify(archiveOpen));
-  }, [archiveOpen]);
 
   const fuse = useMemo(
     () =>
@@ -165,35 +158,24 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* Archive — collapsible */}
-        <Collapsible open={archiveOpen} onOpenChange={setArchiveOpen}>
-          <SidebarGroup>
-            <CollapsibleTrigger asChild>
-              <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
-                Projects
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform ${archiveOpen ? "rotate-180" : ""}`}
-                />
-              </SidebarGroupLabel>
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {getNavItemsBySection("archive").map((item, idx) => (
-                    <SidebarMenuItem key={item.path + idx}>
-                      <SidebarMenuButton asChild>
-                        <NavLink to={item.path} className={getNavClass}>
-                          <item.icon className="h-4 w-4" />
-                          {!isCollapsed && <span>{item.label}</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible>
+        {/* Projects — flat list */}
+        <SidebarGroup>
+          <SidebarGroupLabel>Projects</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {getNavItemsBySection("archive").map((item, idx) => (
+                <SidebarMenuItem key={item.path + idx}>
+                  <SidebarMenuButton asChild>
+                    <NavLink to={item.path} className={getNavClass}>
+                      <item.icon className="h-4 w-4" />
+                      {!isCollapsed && <span>{item.label}</span>}
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
 
       </SidebarContent>
 

@@ -227,9 +227,6 @@ const Index = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-14">
             <div className="flex-1 text-center md:text-left space-y-5">
-              <span className="inline-block rounded-full border border-primary/50 bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary tracking-wide">
-                Eagle Scout · Mechanical Engineer · AI Consultant
-              </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-foreground leading-tight">
                 I Help Businesses Use AI.{" "}
                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -237,7 +234,7 @@ const Index = () => {
                 </span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-xl mx-auto md:mx-0">
-                From a kid who moved from India to Texas, built a career from scratch, and figured out how to use AI before it was cool. Now I help others skip the hard part.
+                Bridging the gap between human creativity and AI efficiency to help you publish faster and scale smarter.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 text-base font-semibold">
@@ -247,9 +244,6 @@ const Index = () => {
                   <a href="#tabs-section">See What I've Built</a>
                 </Button>
               </div>
-              <p className="text-xs text-muted-foreground pt-1">
-                B.S. Mechanical Engineering · UTSA Dean's List · Eagle Scout · PMP Candidate
-              </p>
             </div>
 
             {/* Profile photo */}

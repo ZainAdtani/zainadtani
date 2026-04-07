@@ -1,10 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
-import { Moon, Sun, Menu, ChevronDown } from "lucide-react";
+import { Moon, Sun, Menu } from "lucide-react";
 import { useTheme } from "next-themes";
 import { getNavItemsBySection } from "@/data/nav";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "@/components/ui/sheet";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useState } from "react";
 import zaLogo from "@/assets/za_logo.png";
@@ -22,7 +22,7 @@ export const Header = () => {
   const { theme, setTheme } = useTheme();
   const location = useLocation();
   const [sheetOpen, setSheetOpen] = useState(false);
-  const [archiveOpen, setArchiveOpen] = useState(false);
+  
 
   const isActive = (path: string) => {
     if (path === '/') return location.pathname === '/';
@@ -96,30 +96,23 @@ export const Header = () => {
                   ))}
                 </div>
 
-                {/* Archive — collapsible (mirrors sidebar archive section) */}
-                <Collapsible open={archiveOpen} onOpenChange={setArchiveOpen}>
-                  <div className="border-t border-border pt-2">
-                    <CollapsibleTrigger className="flex items-center justify-between w-full py-2 hover:bg-muted/50 rounded px-2">
-                      <span className="text-sm font-semibold">Projects</span>
-                      <ChevronDown className={`h-4 w-4 transition-transform ${archiveOpen ? "rotate-180" : ""}`} />
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
-                      <div className="space-y-1 pt-2">
-                        {getNavItemsBySection("archive").map((item, idx) => (
-                          <Link
-                            key={item.path + idx}
-                            to={item.path}
-                            className="flex items-center gap-2 text-foreground hover:underline px-2 py-1"
-                            onClick={() => setSheetOpen(false)}
-                          >
-                            <item.icon className="w-4 h-4" />
-                            <span>{item.label}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    </CollapsibleContent>
+                {/* Projects — flat list */}
+                <div className="border-t border-border pt-2">
+                  <span className="text-sm font-semibold px-2 py-2 block">Projects</span>
+                  <div className="space-y-1">
+                    {getNavItemsBySection("archive").map((item, idx) => (
+                      <Link
+                        key={item.path + idx}
+                        to={item.path}
+                        className="flex items-center gap-2 text-foreground hover:underline px-2 py-1"
+                        onClick={() => setSheetOpen(false)}
+                      >
+                        <item.icon className="w-4 h-4" />
+                        <span>{item.label}</span>
+                      </Link>
+                    ))}
                   </div>
-                </Collapsible>
+                </div>
 
               </nav>
 
