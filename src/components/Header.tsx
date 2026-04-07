@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Moon, Sun, Menu, ChevronDown } from "lucide-react";
+import { Moon, Sun, Menu } from "lucide-react";
 import { useTheme } from "next-themes";
 import { getNavItemsBySection } from "@/data/nav";
 import { Button } from "@/components/ui/button";
