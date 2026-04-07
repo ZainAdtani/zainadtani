@@ -1,61 +1,47 @@
 
 
-## Plan: Sidebar Rename, Hero Redesign, Light/Dark Mode Fix, SEO
+## Plan: Sidebar Flat Layout, Hero Cleanup, Softer Light Mode
 
-### CHANGE 1: Sidebar — Rename "Archive" to "Fun Projects"
+### CHANGE 1: Sidebar — Flat "Projects" group (no collapsible)
 
-**Files to edit:**
-- `src/components/AppSidebar.tsx` — Change the label "Archive" to "Fun Projects" (line 173). Update localStorage key from `sidebar-archive-open` to `sidebar-funprojects-open` (lines 46, 56).
-- `src/components/Header.tsx` — Change the mobile sheet collapsible label from "Archive" to "Fun Projects" (line 103).
+**`src/components/AppSidebar.tsx`** — Replace the `Collapsible` wrapping the archive section (lines 168-196) with a plain `SidebarGroup` that has a `SidebarGroupLabel` "Projects" and a flat `SidebarMenu` listing all archive items. Remove `Collapsible`, `CollapsibleTrigger`, `CollapsibleContent` usage and the `archiveOpen` state + localStorage logic (lines 46-56). Remove `ChevronDown` import if no longer needed.
 
-No changes to `src/data/nav.ts` — the items already use `section: "archive"` internally, which is fine as a code-level grouping. Only the displayed label changes.
+**`src/components/Header.tsx`** — Same change in mobile sheet (lines 99-124): replace `Collapsible` with a plain section header "Projects" and flat list of links. Remove `archiveOpen` state and `Collapsible` imports.
 
----
+**`src/data/nav.ts`** — Change the label for the `/projects` entry (line 37) from `"Projects"` to `"Fun Projects"`.
 
-### CHANGE 2: Hero Section Redesign
+**`src/pages/Projects.tsx`** — Verify page title already says "Fun Projects" (it does from prior changes).
 
-**File: `src/pages/Index.tsx`** — Rewrite the hero section (lines 224–291). Replace the current layout with:
+### CHANGE 2: Hero strip-down
 
-- **Announcement bar** at the very top of the page (above hero, below TimeBar): a slim `bg-muted` bar with one line like "📘 New: How to Become an Author — Download Free PDF →" linking to the product. Subtle, not a card.
-- **Hero content** (replaces current headshot + greeting + KineticText + motivation card + "Build a Simple Site" card):
-  - Eyebrow: `<p className="text-xs uppercase tracking-widest text-primary font-semibold">AI Consultant + Author</p>`
-  - Headline: `<h1>` "I Help Businesses Use AI. I Help Creators Publish Books." — `text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-foreground`
-  - Subheadline: "From strategy to execution, I make AI work for real people. No fluff. Just results." — `text-lg text-muted-foreground`
-  - Two CTA buttons side by side: "Work With Me" (`bg-primary text-primary-foreground`) linking to `/services`, and "See My Work" (`border border-secondary text-secondary`) linking to `#tabs-section`
-  - Keep the `HeroLogo3D` component positioned as a decorative element (right side on desktop, hidden on mobile)
-- **Remove from hero**: headshot image, "Hi, I'm Zain!", KineticText, Daily Motivation Generator card, "Build a Simple Site" card. These are removed from the hero but NOT deleted from the codebase — the motivation generator moves into its own small section below the hero (or is kept but repositioned after the tabs section).
+**`src/pages/Index.tsx`** lines 230-252 — three deletions, one rewrite:
 
-**SEO** (same file, lines 213–220): Update `<Helmet>` title to "Zain Adtani | AI Consultant + Author | DFW Texas" and meta description to the provided text.
+1. **Delete pill tag** (line 230-232): Remove the `<span>` with "Eagle Scout · Mechanical Engineer · AI Consultant"
+2. **Rewrite subheadline** (line 239-241): Replace with "Bridging the gap between human creativity and AI efficiency to help you publish faster and scale smarter."
+3. **Delete trust line** (line 250-252): Remove the `<p>` with "B.S. Mechanical Engineering · UTSA Dean's List · Eagle Scout · PMP Candidate"
 
----
+Keep headline, CTAs, and profile photo untouched.
 
-### CHANGE 3: Light/Dark Mode Fix
+### CHANGE 3: Softer light mode tokens
 
-**File: `src/index.css`** — The current CSS defines `:root, .dark` together with dark theme colors, meaning light mode uses the same dark colors. Fix by:
+**`src/index.css`** — Update `:root` values (lines 11-41):
+- `--background: 210 10% 94%`
+- `--foreground: 222 47% 10%`
+- `--card: 210 10% 90%`
+- `--card-foreground: 222 47% 10%`
+- `--border: 210 10% 82%`
+- `--input: 210 10% 82%`
+- `--hero-bg: 210 10% 94%`
+- `--hero-foreground: 222 47% 10%`
 
-1. Change `:root, .dark` to just `.dark` for the dark palette
-2. Add a new `:root` block with proper light mode HSL values:
-   - `--background: 0 0% 100%` (white)
-   - `--foreground: 222 47% 11%` (near-black)
-   - `--card: 0 0% 98%` (off-white)
-   - `--primary: 168 100% 42%` (same teal)
-   - `--muted: 210 40% 96%`
-   - `--border: 214 32% 91%`
-   - etc. — standard light counterparts for every token
-3. Convert `bg-gradient-hero` from hardcoded hex to use HSL vars: `background: linear-gradient(135deg, hsl(var(--hero-bg)) 0%, hsl(var(--card)) 50%, hsl(var(--muted)) 100%)`
-4. Convert `bg-gradient-cta` and `bg-gradient-badge` similarly
+Keep `--primary: 168 100% 42%` unchanged. Update sidebar tokens to match the new background/border values.
 
-**Hardcoded color audit** — Replace `text-white` with `text-primary-foreground` where it appears on primary/CTA buttons. The `bg-black/80` in dialog/drawer overlays is standard shadcn and acceptable (it's an overlay opacity, not a theme color). The `text-white` on branded buttons (YouTube red, LinkedIn blue, AWS orange) is intentional and stays — those are brand colors, not theme colors.
+### Files to edit (5)
+1. `src/components/AppSidebar.tsx` — flatten archive section, remove collapsible
+2. `src/components/Header.tsx` — flatten archive section in mobile menu
+3. `src/data/nav.ts` — rename Projects label to "Fun Projects"
+4. `src/pages/Index.tsx` — remove pill tag, rewrite subheadline, remove trust line
+5. `src/index.css` — update light mode tokens
 
----
-
-### Summary of files
-
-**Files to EDIT (4):**
-1. `src/components/AppSidebar.tsx` — rename "Archive" label to "Fun Projects"
-2. `src/components/Header.tsx` — rename "Archive" label to "Fun Projects" in mobile menu
-3. `src/pages/Index.tsx` — hero redesign, announcement bar, SEO meta tags
-4. `src/index.css` — add light mode `:root` tokens, convert gradient utilities to use HSL vars
-
-**No new files. No deleted files. No route changes. No package changes.**
+No new files. No deleted pages. No route changes.
 
