@@ -244,9 +244,6 @@ const Index = () => {
                   <a href="#tabs-section">See What I've Built</a>
                 </Button>
               </div>
-              <p className="text-xs text-muted-foreground pt-1">
-                B.S. Mechanical Engineering · UTSA Dean's List · Eagle Scout · PMP Candidate
-              </p>
             </div>
 
             {/* Profile photo */}

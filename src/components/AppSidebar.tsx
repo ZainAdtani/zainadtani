@@ -158,35 +158,24 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* Archive — collapsible */}
-        <Collapsible open={archiveOpen} onOpenChange={setArchiveOpen}>
-          <SidebarGroup>
-            <CollapsibleTrigger asChild>
-              <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
-                Projects
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform ${archiveOpen ? "rotate-180" : ""}`}
-                />
-              </SidebarGroupLabel>
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {getNavItemsBySection("archive").map((item, idx) => (
-                    <SidebarMenuItem key={item.path + idx}>
-                      <SidebarMenuButton asChild>
-                        <NavLink to={item.path} className={getNavClass}>
-                          <item.icon className="h-4 w-4" />
-                          {!isCollapsed && <span>{item.label}</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible>
+        {/* Projects — flat list */}
+        <SidebarGroup>
+          <SidebarGroupLabel>Projects</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {getNavItemsBySection("archive").map((item, idx) => (
+                <SidebarMenuItem key={item.path + idx}>
+                  <SidebarMenuButton asChild>
+                    <NavLink to={item.path} className={getNavClass}>
+                      <item.icon className="h-4 w-4" />
+                      {!isCollapsed && <span>{item.label}</span>}
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
 
       </SidebarContent>
 
