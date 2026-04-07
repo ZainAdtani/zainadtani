@@ -22,7 +22,7 @@ export const Header = () => {
   const { theme, setTheme } = useTheme();
   const location = useLocation();
   const [sheetOpen, setSheetOpen] = useState(false);
-  const [archiveOpen, setArchiveOpen] = useState(false);
+  
 
   const isActive = (path: string) => {
     if (path === '/') return location.pathname === '/';
