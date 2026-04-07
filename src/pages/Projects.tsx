@@ -14,8 +14,8 @@ export default function Projects() {
   return (
     <>
       <Helmet>
-        <title>Projects – Zain</title>
-        <meta name="description" content="Side projects, experiments, and fun builds." />
+        <title>Fun Projects – Zain</title>
+        <meta name="description" content="Fun projects, experiments, and creative builds." />
       </Helmet>
 
       <div className="container mx-auto px-4 py-8 max-w-7xl">
@@ -23,12 +23,12 @@ export default function Projects() {
         <nav className="text-sm text-muted-foreground mb-6">
           <Link to="/" className="hover:text-primary transition-colors">Home</Link>
           <span className="mx-2">/</span>
-          <span className="text-foreground">Projects</span>
+          <span className="text-foreground">Fun Projects</span>
         </nav>
 
         {/* Header */}
         <div className="mb-10">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Projects</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Fun Projects</h1>
           <p className="text-lg text-muted-foreground max-w-2xl">
             Side projects, experiments, and fun builds. A collection of things I've created to learn, explore, and share.
           </p>

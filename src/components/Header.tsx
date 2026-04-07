@@ -100,7 +100,7 @@ export const Header = () => {
                 <Collapsible open={archiveOpen} onOpenChange={setArchiveOpen}>
                   <div className="border-t border-border pt-2">
                     <CollapsibleTrigger className="flex items-center justify-between w-full py-2 hover:bg-muted/50 rounded px-2">
-                      <span className="text-sm font-semibold">Fun Projects</span>
+                      <span className="text-sm font-semibold">Projects</span>
                       <ChevronDown className={`h-4 w-4 transition-transform ${archiveOpen ? "rotate-180" : ""}`} />
                     </CollapsibleTrigger>
                     <CollapsibleContent>
