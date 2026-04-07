@@ -234,7 +234,7 @@ const Index = () => {
                 </span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-xl mx-auto md:mx-0">
-                From a kid who moved from India to Texas, built a career from scratch, and figured out how to use AI before it was cool. Now I help others skip the hard part.
+                Bridging the gap between human creativity and AI efficiency to help you publish faster and scale smarter.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 text-base font-semibold">
