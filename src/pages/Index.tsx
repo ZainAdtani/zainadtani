@@ -227,9 +227,6 @@ const Index = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-14">
             <div className="flex-1 text-center md:text-left space-y-5">
-              <span className="inline-block rounded-full border border-primary/50 bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary tracking-wide">
-                Eagle Scout · Mechanical Engineer · AI Consultant
-              </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-foreground leading-tight">
                 I Help Businesses Use AI.{" "}
                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
