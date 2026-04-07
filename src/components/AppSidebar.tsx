@@ -53,7 +53,7 @@ export function AppSidebar() {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   useEffect(() => {
-    localStorage.setItem("sidebar-archive-open", JSON.stringify(archiveOpen));
+    localStorage.setItem("sidebar-funprojects-open", JSON.stringify(archiveOpen));
   }, [archiveOpen]);
 
   const fuse = useMemo(
