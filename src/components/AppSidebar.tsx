@@ -44,7 +44,7 @@ export function AppSidebar() {
   const isCollapsed = state === "collapsed";
 
   const [archiveOpen, setArchiveOpen] = useState(() => {
-    const saved = localStorage.getItem("sidebar-archive-open");
+    const saved = localStorage.getItem("sidebar-funprojects-open");
     return saved !== null ? JSON.parse(saved) : false;
   });
 
