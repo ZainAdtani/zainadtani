@@ -43,10 +43,6 @@ export function AppSidebar() {
   const navigate = useNavigate();
   const isCollapsed = state === "collapsed";
 
-  const [archiveOpen, setArchiveOpen] = useState(() => {
-    const saved = localStorage.getItem("sidebar-funprojects-open");
-    return saved !== null ? JSON.parse(saved) : false;
-  });
 
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<SearchableItem[]>([]);
