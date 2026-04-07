@@ -234,14 +234,14 @@ const Index = () => {
                 </span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-xl mx-auto md:mx-0">
-                Bridging the gap between human creativity and AI efficiency to help you publish faster and scale smarter.
+                From strategy to execution. No fluff. Just results.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 text-base font-semibold">
-                  <Link to="/services">Work With Me</Link>
+                  <Link to="/services">AI Consulting</Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="border-secondary text-secondary hover:bg-secondary/10 rounded-full px-8 text-base font-semibold">
-                  <a href="#tabs-section">See What I've Built</a>
+                <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/10 rounded-full px-8 text-base font-semibold">
+                  <Link to="/services">Publish Your Book</Link>
                 </Button>
               </div>
             </div>
