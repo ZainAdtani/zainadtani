@@ -48,9 +48,6 @@ export function AppSidebar() {
   const [searchResults, setSearchResults] = useState<SearchableItem[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  useEffect(() => {
-    localStorage.setItem("sidebar-funprojects-open", JSON.stringify(archiveOpen));
-  }, [archiveOpen]);
 
   const fuse = useMemo(
     () =>
