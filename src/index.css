@@ -8,46 +8,46 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --background: 220 20% 97%;
+    --foreground: 222 47% 8%;
 
-    --card: 0 0% 98%;
-    --card-foreground: 222 47% 11%;
+    --card: 220 25% 93%;
+    --card-foreground: 222 47% 8%;
 
-    --popover: 0 0% 98%;
-    --popover-foreground: 222 47% 11%;
+    --popover: 220 25% 93%;
+    --popover-foreground: 222 47% 8%;
 
     --primary: 168 100% 42%;
-    --primary-foreground: 222 47% 11%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 217 91% 60%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 220 25% 90%;
+    --secondary-foreground: 222 47% 8%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 220 15% 88%;
+    --muted-foreground: 220 15% 35%;
 
-    --accent: 142 69% 45%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 220 25% 88%;
+    --accent-foreground: 222 47% 8%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
+    --border: 220 20% 80%;
+    --input: 220 20% 80%;
     --ring: 168 100% 42%;
 
     --radius: 0.75rem;
 
-    --hero-bg: 0 0% 98%;
-    --hero-foreground: 222 47% 11%;
+    --hero-bg: 220 20% 97%;
+    --hero-foreground: 222 47% 8%;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 222 47% 11%;
+    --sidebar-background: 220 25% 93%;
+    --sidebar-foreground: 222 47% 8%;
     --sidebar-primary: 168 100% 42%;
-    --sidebar-primary-foreground: 222 47% 11%;
-    --sidebar-accent: 210 40% 96%;
-    --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 214 32% 91%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 220 15% 88%;
+    --sidebar-accent-foreground: 222 47% 8%;
+    --sidebar-border: 220 20% 80%;
     --sidebar-ring: 168 100% 42%;
 
     /* Transitions */
@@ -105,6 +105,16 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-family: 'DM Sans', sans-serif;
+  }
+
+  /* Subtle futuristic dot grid for light mode only */
+  :root body {
+    background-image: radial-gradient(circle, hsl(220 20% 75% / 0.4) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .dark body {
+    background-image: none;
   }
 
   h1, h2, h3, h4, h5, h6 {
