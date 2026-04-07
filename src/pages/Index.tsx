@@ -260,6 +260,25 @@ const Index = () => {
       </section>
       </ScrollReveal>
 
+      {/* About Zain */}
+      <ScrollReveal delay={50}>
+        <section className="py-10 md:py-14 max-w-3xl mx-auto text-center px-4">
+          <h2 className="text-3xl font-display font-extrabold mb-6 text-foreground">About Zain</h2>
+          <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+            I'm Zain Adtani. Mechanical Engineer from UTSA turned AI Consultant.
+            I help businesses implement AI and I help creators publish books.
+            Eagle Scout. Husband. Builder.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {["UTSA Mechanical Engineering", "Eagle Scout", "AWS Certified", "PMP (In Progress)", "4 Languages"].map((cred) => (
+              <span key={cred} className="rounded-full border border-primary/40 text-primary text-sm px-4 py-1.5">
+                {cred}
+              </span>
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
+
       {/* Daily Motivation Generator */}
       <ScrollReveal delay={50}>
       <section className="py-8 md:py-12">
