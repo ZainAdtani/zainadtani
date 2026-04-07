@@ -1,4 +1,4 @@
-import { Search, ChevronDown } from "lucide-react";
+import { Search } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { NAV_ITEMS, getNavItemsBySection } from "@/data/nav";
 import {
