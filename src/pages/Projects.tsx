@@ -14,8 +14,8 @@ export default function Projects() {
   return (
     <>
       <Helmet>
-        <title>Projects – Zain</title>
-        <meta name="description" content="Side projects, experiments, and fun builds." />
+        <title>Fun Projects – Zain</title>
+        <meta name="description" content="Fun projects, experiments, and creative builds." />
       </Helmet>
 
       <div className="container mx-auto px-4 py-8 max-w-7xl">
