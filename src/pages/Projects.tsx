@@ -23,7 +23,7 @@ export default function Projects() {
         <nav className="text-sm text-muted-foreground mb-6">
           <Link to="/" className="hover:text-primary transition-colors">Home</Link>
           <span className="mx-2">/</span>
-          <span className="text-foreground">Projects</span>
+          <span className="text-foreground">Fun Projects</span>
         </nav>
 
         {/* Header */}
