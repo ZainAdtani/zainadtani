@@ -211,81 +211,86 @@ const Index = () => {
   return <div className="min-h-screen bg-background">
       <div id="top" />
       <Helmet>
-        <title>Zain Adtani | Simple Sites and Calm Systems</title>
-        <meta name="description" content="I build simple sites and calm systems for small business owners. Clear offers, honest copy, simple workflows." />
-        <meta property="og:title" content="Zain Adtani | Simple Sites and Calm Systems" />
-        <meta property="og:description" content="I build simple sites and calm systems for small business owners. Clear offers, honest copy, simple workflows." />
+        <title>Zain Adtani | AI Consultant + Author | DFW Texas</title>
+        <meta name="description" content="Zain Adtani helps businesses implement AI and helps creators publish books. AI consulting, Lovable websites, and book publishing coaching in DFW, Texas." />
+        <meta property="og:title" content="Zain Adtani | AI Consultant + Author | DFW Texas" />
+        <meta property="og:description" content="Zain Adtani helps businesses implement AI and helps creators publish books. AI consulting, Lovable websites, and book publishing coaching in DFW, Texas." />
         <meta property="og:image" content={headshotImage} />
         <meta property="og:type" content="website" />
       </Helmet>
+
+      {/* Announcement Bar */}
+      <div className="bg-muted border-b border-border">
+        <div className="container mx-auto px-4 py-2 text-center text-sm text-muted-foreground">
+          📘 New: <span className="font-medium text-foreground">How to Become an Author</span> —{" "}
+          <Link to="/digital-products" className="text-primary hover:underline font-semibold">
+            Download Free PDF →
+          </Link>
+        </div>
+      </div>
 
       <TimeBar />
 
       {/* Hero Section */}
       <ScrollReveal>
-      <section className="pt-8 md:pt-12 pb-10 md:pb-16 bg-gradient-hero">
+      <section className="pt-12 md:pt-20 pb-12 md:pb-20 bg-gradient-hero">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col md:flex-row items-center gap-12">
-            <div className="flex-shrink-0 relative">
-              <div className="absolute inset-0 bg-primary/20 rounded-full scale-110 -z-10"></div>
-              <img src={headshotImage} alt="Zain Adtani - Teacher and Site Builder" className="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover object-top" style={{ border: '3px solid #00D4AA', boxShadow: '0 0 30px rgba(0,212,170,0.2)' }} />
+            <div className="flex-1 text-center md:text-left space-y-6">
+              <p className="text-xs uppercase tracking-widest text-primary font-semibold">AI Consultant + Author</p>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-foreground leading-tight">
+                I Help Businesses Use AI.{" "}
+                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  I Help Creators Publish Books.
+                </span>
+              </h1>
+              <p className="text-lg text-muted-foreground max-w-xl">
+                From strategy to execution, I make AI work for real people. No fluff. Just results.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 text-base font-semibold">
+                  <Link to="/services">Work With Me</Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="border-secondary text-secondary hover:bg-secondary/10 rounded-full px-8 text-base font-semibold">
+                  <a href="#tabs-section">See My Work</a>
+                </Button>
+              </div>
             </div>
 
-            <div className="flex-1 text-center md:text-left space-y-8">
-              <div>
-                <div className="flex items-center gap-3 justify-center md:justify-start">
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-extrabold text-foreground">Hi, I'm Zain!</h1>
-                  <Suspense fallback={
-                    <img
-                      src={zaLogo}
-                      alt="ZA Logo"
-                      className="w-8 h-8 md:w-10 md:h-10 animate-[spin_20s_linear_infinite]"
-                      style={{ filter: "drop-shadow(0 0 8px hsl(var(--primary) / 0.5))" }}
-                    />
-                  }>
-                    <HeroLogo3D />
-                  </Suspense>
-                </div>
-                <div className="mb-3">
-                  <KineticText
-                    phrases={[
-                      "I help businesses use AI",
-                      "I publish books",
-                      "I build websites with AI",
-                      "I simplify the complex",
-                    ]}
-                  />
-                </div>
-              </div>
-
-              {/* Daily Motivation Generator */}
-              <Card className="p-6 shadow-lg border-2 border-primary/20 bg-card text-card-foreground max-w-lg mx-auto md:mx-0">
-                <div className="space-y-4">
-                  <h3 className="text-lg flex items-center justify-center gap-2 font-semibold text-foreground">
-                    <Sparkles className="w-5 h-5 text-primary" />
-                    Daily Motivation Generator
-                  </h3>
-                  <Textarea value={quote} readOnly placeholder="Click the button below to generate a quote or life note..." className="min-h-[120px] text-base resize-none bg-muted text-foreground text-center" />
-                  <Button onClick={generateQuote} className="w-full bg-gradient-cta text-white hover:scale-[1.02] transition-all duration-300 hover:shadow-lg">
-                    Generate Daily Motivation
-                  </Button>
-                </div>
-              </Card>
-
-              {/* Build a Simple Site Card */}
-              <div className="max-w-lg mx-auto md:mx-0">
-                <Card className="p-6 border-2 hover:shadow-lg hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
-                  <h3 className="text-lg font-bold mb-2 text-foreground">Build a Simple Site</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Help for tiny and local business owners who want a clean site that feels like them.
-                  </p>
-                  <Button asChild className="w-full">
-                    <Link to="/website-lab">See Website Projects</Link>
-                  </Button>
-                </Card>
-              </div>
+            {/* 3D Logo — decorative, hidden on mobile */}
+            <div className="hidden md:flex flex-shrink-0 items-center justify-center">
+              <Suspense fallback={
+                <img
+                  src={zaLogo}
+                  alt="ZA Logo"
+                  className="w-32 h-32 animate-[spin_20s_linear_infinite]"
+                  style={{ filter: "drop-shadow(0 0 8px hsl(var(--primary) / 0.5))" }}
+                />
+              }>
+                <HeroLogo3D />
+              </Suspense>
             </div>
           </div>
+        </div>
+      </section>
+      </ScrollReveal>
+
+      {/* Daily Motivation Generator — repositioned below hero */}
+      <ScrollReveal delay={50}>
+      <section className="py-8 md:py-12">
+        <div className="container mx-auto px-4 max-w-lg">
+          <Card className="p-6 shadow-lg border-2 border-primary/20 bg-card text-card-foreground">
+            <div className="space-y-4">
+              <h3 className="text-lg flex items-center justify-center gap-2 font-semibold text-foreground">
+                <Sparkles className="w-5 h-5 text-primary" />
+                Daily Motivation Generator
+              </h3>
+              <Textarea value={quote} readOnly placeholder="Click the button below to generate a quote or life note..." className="min-h-[120px] text-base resize-none bg-muted text-foreground text-center" />
+              <Button onClick={generateQuote} className="w-full bg-gradient-cta text-primary-foreground hover:scale-[1.02] transition-all duration-300 hover:shadow-lg">
+                Generate Daily Motivation
+              </Button>
+            </div>
+          </Card>
         </div>
       </section>
       </ScrollReveal>

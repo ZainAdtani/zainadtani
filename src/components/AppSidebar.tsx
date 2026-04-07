@@ -44,7 +44,7 @@ export function AppSidebar() {
   const isCollapsed = state === "collapsed";
 
   const [archiveOpen, setArchiveOpen] = useState(() => {
-    const saved = localStorage.getItem("sidebar-archive-open");
+    const saved = localStorage.getItem("sidebar-funprojects-open");
     return saved !== null ? JSON.parse(saved) : false;
   });
 
@@ -53,7 +53,7 @@ export function AppSidebar() {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   useEffect(() => {
-    localStorage.setItem("sidebar-archive-open", JSON.stringify(archiveOpen));
+    localStorage.setItem("sidebar-funprojects-open", JSON.stringify(archiveOpen));
   }, [archiveOpen]);
 
   const fuse = useMemo(
@@ -170,7 +170,7 @@ export function AppSidebar() {
           <SidebarGroup>
             <CollapsibleTrigger asChild>
               <SidebarGroupLabel className="cursor-pointer hover:bg-muted/50 rounded px-2 py-1 flex items-center justify-between">
-                Archive
+                Fun Projects
                 <ChevronDown
                   className={`h-4 w-4 transition-transform ${archiveOpen ? "rotate-180" : ""}`}
                 />

@@ -7,7 +7,53 @@ All colors MUST be HSL.
 */
 
 @layer base {
-  :root,
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 98%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 168 100% 42%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 142 69% 45%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 168 100% 42%;
+
+    --radius: 0.75rem;
+
+    --hero-bg: 0 0% 98%;
+    --hero-foreground: 222 47% 11%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 168 100% 42%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 168 100% 42%;
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   .dark {
     --background: 221 45% 7%;
     --foreground: 210 40% 96%;
@@ -37,8 +83,6 @@ All colors MUST be HSL.
     --input: 222 44% 15%;
     --ring: 168 100% 42%;
 
-    --radius: 0.75rem;
-
     --hero-bg: 221 45% 7%;
     --hero-foreground: 210 40% 96%;
 
@@ -50,9 +94,6 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 210 40% 96%;
     --sidebar-border: 214 52% 25%;
     --sidebar-ring: 168 100% 42%;
-
-    /* Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
@@ -119,13 +160,13 @@ All colors MUST be HSL.
 
 @layer utilities {
   .bg-gradient-hero {
-    background: linear-gradient(135deg, #0A0F1A 0%, #0F2340 50%, #162038 100%);
+    background: linear-gradient(135deg, hsl(var(--hero-bg)) 0%, hsl(var(--card)) 50%, hsl(var(--muted)) 100%);
   }
   .bg-gradient-cta {
-    background: linear-gradient(135deg, #00D4AA 0%, #3B82F6 100%);
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
   }
   .bg-gradient-badge {
-    background: linear-gradient(135deg, #3B82F6 0%, #4ADE80 100%);
+    background: linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--accent)) 100%);
   }
 }
 
