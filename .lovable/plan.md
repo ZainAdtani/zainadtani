@@ -1,35 +1,19 @@
 
 
-## Plan: Add "Resources I Use" Section to Homepage
+## Plan: Update Hero Headline and CTAs
 
-### What changes
+### Single file edit: `src/pages/Index.tsx` (lines 230-246)
 
-**Single file edit: `src/pages/Index.tsx`**
-
-Insert a new `<ScrollReveal>` section between the Spotify Playlist (ends line 613) and the closing `</div>` (line 614). This places it at the very bottom of homepage content, just above the global footer in `AppLayout.tsx`.
-
-### Content
-
-A `ScrollReveal` section with heading "Resources I Use" and a 3-column responsive grid of small cards:
-
-1. **Fidelity** — "Where I invest for the long term" — fidelity.com
-2. **Robinhood** — "Simple trading and crypto" — robinhood.com
-3. **Marcus by Goldman Sachs** — "High yield savings" — marcus.com
-
-Each card: `<a>` with `target="_blank"`, subtle dark styling (`bg-card/50 border border-border/50`), teal hover glow (`hover:border-primary/60`), emoji as icon (📈, 📱, 🏦), small text.
-
-### Design
-
-- Section: `py-10`, `max-w-4xl`, centered heading in muted style (not loud)
-- Cards: `rounded-xl`, small padding, emoji + name bold + description muted, `text-sm`
-- Grid: `grid-cols-1 sm:grid-cols-3 gap-4`
-- Hover: border shifts to teal, subtle scale
+**Text changes:**
+- Headline (line 231-234): Already says "I Help Businesses Use AI. I Help Creators Publish Books." — keeping as-is since it matches the request
+- Subheadline (lines 236-238): Replace with "From strategy to execution. No fluff. Just results."
+- Button 1 (line 240-242): Change label to "AI Consulting", keep link to `/services`, keep primary teal style
+- Button 2 (lines 243-245): Change label to "Publish Your Book", change from `<a href="#tabs-section">` to `<Link to="/services">`, switch to outline style with teal border (`border-primary text-primary hover:bg-primary/10`)
 
 ### What stays untouched
-- Everything above the Spotify section
-- Footer in `AppLayout.tsx`
-- All other pages, sidebar, header
+- Hero layout, background gradient, animations, headshot, ScrollReveal wrapper
+- Everything else on the page
 
-### Files
-1. `src/pages/Index.tsx` — insert ~30 lines before line 614
+### Potential issues
+- None. All changes are text/label swaps within existing JSX.
 
