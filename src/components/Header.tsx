@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 import { getNavItemsBySection } from "@/data/nav";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "@/components/ui/sheet";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useState } from "react";
 import zaLogo from "@/assets/za_logo.png";
