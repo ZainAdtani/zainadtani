@@ -1,19 +1,26 @@
 
 
-## Plan: Update Hero Headline and CTAs
+## Plan: Add Resources, Tools, Life Notes, and AI Prompts as Cards in Fun Projects
 
-### Single file edit: `src/pages/Index.tsx` (lines 230-246)
+### What changes
 
-**Text changes:**
-- Headline (line 231-234): Already says "I Help Businesses Use AI. I Help Creators Publish Books." — keeping as-is since it matches the request
-- Subheadline (lines 236-238): Replace with "From strategy to execution. No fluff. Just results."
-- Button 1 (line 240-242): Change label to "AI Consulting", keep link to `/services`, keep primary teal style
-- Button 2 (lines 243-245): Change label to "Publish Your Book", change from `<a href="#tabs-section">` to `<Link to="/services">`, switch to outline style with teal border (`border-primary text-primary hover:bg-primary/10`)
+**Single file edit: `src/data/projects.ts`**
+
+Add 4 new entries to the `projects` array:
+
+1. **Resources** — "Handy PDFs, links, and small tools." — route `/resources`
+2. **Tools** — "Curated apps and platforms I use daily." — route `/tools`
+3. **Life Notes** — "Quotes, wisdom, and mindset notes." — route `/life-notes`
+4. **AI Prompts** — "A library of ready-to-use AI prompts." — route `/ai-prompts`
+
+No thumbnails needed — the Projects page already handles cards without thumbnails (skips the image div). Each card will show title + description + an "Open" button linking to its page, just like the existing Pokedex/HP/AI Songs cards.
 
 ### What stays untouched
-- Hero layout, background gradient, animations, headshot, ScrollReveal wrapper
-- Everything else on the page
+- The Projects page component (`src/pages/Projects.tsx`) — no changes needed, it already maps over the `projects` array
+- The sidebar navigation — untouched
+- All existing project entries (Pokedex, Harry Potter, AI Songs)
+- All page components and routes
 
 ### Potential issues
-- None. All changes are text/label swaps within existing JSX.
+- None. The grid already handles any number of cards responsively.
 
