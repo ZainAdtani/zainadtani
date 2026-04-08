@@ -625,7 +625,7 @@ const Index = () => {
         <div className="container mx-auto px-4 max-w-2xl">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6 text-center md:text-left">
             <img
-              src="/src/assets/z-letter-logo.jpeg"
+              src={zLetterLogo}
               alt="The Z Letter"
               className="w-16 h-16 rounded-xl border border-border object-cover flex-shrink-0"
             />
