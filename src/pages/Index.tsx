@@ -28,6 +28,7 @@ import headshotImage from "@/assets/zain-headshot.png";
 import qbBadge from "@/assets/quickbooks-level2-badge.png";
 import awsBadge from "@/assets/aws-cloud-practitioner-badge.png";
 import eagleScoutBadge from "@/assets/eagle-scout-badge.png";
+import zLetterLogo from "@/assets/z-letter-logo.jpeg";
 
 function faviconFor(url: string) {
   try {
