@@ -14,6 +14,7 @@ import { useState, useEffect, lazy, Suspense, useMemo } from "react";
 
 const HeroLogo3D = lazy(() => import("@/components/HeroLogo3D"));
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { ZLetterFeed } from "@/components/ZLetterFeed";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
