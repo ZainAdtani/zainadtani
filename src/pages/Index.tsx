@@ -269,12 +269,10 @@ const Index = () => {
         <section className="py-10 md:py-14 max-w-3xl mx-auto text-center px-4">
           <h2 className="text-3xl font-display font-extrabold mb-6 text-foreground">About Zain</h2>
           <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-            I'm Zain Adtani. Mechanical Engineer from UTSA turned AI Consultant.
-            I help businesses implement AI and I help creators publish books.
-            Eagle Scout. Husband. Builder.
+            I'm Zain Adtani, Mechanical Engineer. I help businesses implement AI and I help creators publish books.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            {["UTSA Mechanical Engineering", "Eagle Scout", "AWS Certified", "PMP (In Progress)", "4 Languages"].map((cred) => (
+            {["UTSA Mechanical Engineering", "AWS Certified", "PMP (In Progress)", "4 Languages"].map((cred) => (
               <span key={cred} className="rounded-full border border-primary/40 text-primary text-sm px-4 py-1.5">
                 {cred}
               </span>
@@ -623,22 +621,29 @@ const Index = () => {
 
       {/* Newsletter Opt-in */}
       <section className="py-16 border-t border-border bg-card">
-        <div className="container mx-auto px-4 max-w-2xl text-center space-y-6">
-          <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground">
-            The Z Letter
-          </h2>
-          <p className="text-muted-foreground leading-relaxed">
-            I send one email every Sunday morning. It's designed to help you master AI, build smarter products, and think more clearly. Join Zain and other builders.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <a
-              href="https://thezletter.beehiiv.com/subscribe"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center h-11 rounded-full px-8 text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
-            >
-              Join for Free
-            </a>
+        <div className="container mx-auto px-4 max-w-2xl">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-6 text-center md:text-left">
+            <img
+              src="/src/assets/z-letter-logo.jpeg"
+              alt="The Z Letter"
+              className="w-16 h-16 rounded-xl border border-border object-cover flex-shrink-0"
+            />
+            <div className="space-y-4">
+              <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground">
+                The Z Letter
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                I send one email every Sunday morning. It's designed to help you master AI, build smarter products, and think more clearly. Join Zain and other builders.
+              </p>
+              <a
+                href="https://thezletter.beehiiv.com/subscribe"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center h-11 rounded-full px-8 text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/80 hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all"
+              >
+                Join for Free
+              </a>
+            </div>
           </div>
         </div>
       </section>

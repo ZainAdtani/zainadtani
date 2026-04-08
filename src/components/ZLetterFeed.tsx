@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import zLetterLogo from "@/assets/z-letter-logo.jpeg";
 
 interface FeedItem {
   title: string;
@@ -66,6 +67,11 @@ export function ZLetterFeed() {
                   rel="noopener noreferrer"
                   className="group rounded-xl border-l-4 border-l-secondary border border-border bg-card p-6 transition-all duration-300 hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)]"
                 >
+                  <img
+                    src={zLetterLogo}
+                    alt="The Z Letter"
+                    className="w-12 h-12 rounded-lg border border-border object-cover mb-3"
+                  />
                   <h3 className="font-display font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2">
                     {item.title}
                   </h3>
