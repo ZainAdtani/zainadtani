@@ -236,6 +236,9 @@ const Index = () => {
               <p className="text-lg text-muted-foreground max-w-xl mx-auto md:mx-0">
                 From strategy to execution. No fluff. Just results.
               </p>
+              <a href="#z-letter" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors">
+                Read the latest issue of The Z Letter →
+              </a>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 text-base font-semibold">
                   <Link to="/services">AI Consulting</Link>
@@ -297,6 +300,11 @@ const Index = () => {
           </Card>
         </div>
       </section>
+      </ScrollReveal>
+
+      {/* The Z Letter RSS Feed */}
+      <ScrollReveal delay={100}>
+        <ZLetterFeed />
       </ScrollReveal>
 
       {/* How I Help Section */}
@@ -608,6 +616,28 @@ const Index = () => {
           <p className="text-xs text-muted-foreground">Music I work and study to</p>
           <div className="rounded-lg overflow-hidden shadow-lg">
             <iframe style={{ borderRadius: "12px" }} src="https://open.spotify.com/embed/playlist/4ZHa92ZbMSi2Fwps39XZl5?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Opt-in */}
+      <section className="py-16 border-t border-border bg-card">
+        <div className="container mx-auto px-4 max-w-2xl text-center space-y-6">
+          <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground">
+            The Z Letter
+          </h2>
+          <p className="text-muted-foreground leading-relaxed">
+            I send one email every Sunday morning. It's designed to help you master AI, build smarter products, and think more clearly. Join Zain and other builders.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <a
+              href="https://thezletter.beehiiv.com/subscribe"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center h-11 rounded-full px-8 text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+            >
+              Join for Free
+            </a>
           </div>
         </div>
       </section>
