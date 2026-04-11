@@ -124,10 +124,6 @@ const Index = () => {
     return () => clearInterval(timer);
   }, [isHoveringBooks]);
 
-  const generateQuote = () => {
-    const randomIndex = Math.floor(Math.random() * QUOTES_AND_NOTES.length);
-    setQuote(QUOTES_AND_NOTES[randomIndex]);
-  };
 
   useEffect(() => {
     const KEY = "bookCoversV2";
