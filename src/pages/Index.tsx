@@ -20,7 +20,7 @@ import { Helmet } from "react-helmet-async";
 import { TimeBar } from "@/components/TimeBar";
 import { ALL_PRODUCTS } from "@/data/products";
 import { BOOKS } from "@/data/books";
-import { QUOTES_AND_NOTES } from "@/data/quotes";
+
 import { PODCASTS } from "@/data/podcasts";
 import { ROLE_MODELS } from "@/data/roleModels";
 import headshotImage from "@/assets/zain-headshot.png";
