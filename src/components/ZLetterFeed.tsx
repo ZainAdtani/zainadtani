@@ -9,6 +9,13 @@ interface FeedItem {
 }
 
 const RSS_URL = "https://rss.beehiiv.com/feeds/jHsdvEe1Hm.xml";
+const SUBSCRIBE_URL = "https://thezletter.beehiiv.com/subscribe";
+
+const FALLBACK_ITEMS: FeedItem[] = [
+  { title: "How I Use AI to Write a Book in 30 Days", link: SUBSCRIBE_URL, pubDate: "" },
+  { title: "The 3 AI Tools Every Small Business Needs", link: SUBSCRIBE_URL, pubDate: "" },
+  { title: "Why I Quit My 9-5 to Build with AI", link: SUBSCRIBE_URL, pubDate: "" },
+];
 
 export function ZLetterFeed() {
   const [items, setItems] = useState<FeedItem[]>([]);
@@ -20,15 +27,14 @@ export function ZLetterFeed() {
       .then((text) => {
         const xml = new DOMParser().parseFromString(text, "text/xml");
         const entries = Array.from(xml.querySelectorAll("item")).slice(0, 3);
-        setItems(
-          entries.map((el) => ({
-            title: el.querySelector("title")?.textContent ?? "",
-            link: el.querySelector("link")?.textContent ?? "#",
-            pubDate: el.querySelector("pubDate")?.textContent ?? "",
-          }))
-        );
+        const parsed = entries.map((el) => ({
+          title: el.querySelector("title")?.textContent ?? "",
+          link: el.querySelector("link")?.textContent ?? "#",
+          pubDate: el.querySelector("pubDate")?.textContent ?? "",
+        }));
+        setItems(parsed.length > 0 ? parsed : FALLBACK_ITEMS);
       })
-      .catch(() => {})
+      .catch(() => setItems(FALLBACK_ITEMS))
       .finally(() => setLoading(false));
   }, []);
 
