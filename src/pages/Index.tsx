@@ -62,7 +62,6 @@ function withAffiliate(url: string, tag = "eng2ea-20") {
 
 const productCatalog = ALL_PRODUCTS.filter(p => p.id !== "free-community");
 const Index = () => {
-  const [quote, setQuote] = useState("");
   const [activeTab, setActiveTab] = useState<TabKey>(() => getTabFromHash(window.location.hash));
   const [searchQuery, setSearchQuery] = useState("");
   const location = useLocation();
