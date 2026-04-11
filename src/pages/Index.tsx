@@ -282,25 +282,6 @@ const Index = () => {
         </section>
       </ScrollReveal>
 
-      {/* Daily Motivation Generator */}
-      <ScrollReveal delay={50}>
-      <section className="py-8 md:py-12">
-        <div className="container mx-auto px-4 max-w-lg">
-          <Card className="p-6 shadow-lg border-2 border-primary/20 bg-card text-card-foreground">
-            <div className="space-y-4">
-              <h3 className="text-lg flex items-center justify-center gap-2 font-semibold text-foreground">
-                <Sparkles className="w-5 h-5 text-primary" />
-                Daily Motivation Generator
-              </h3>
-              <Textarea value={quote} readOnly placeholder="Click the button below to generate a quote or life note..." className="min-h-[120px] text-base resize-none bg-muted text-foreground text-center" />
-              <Button onClick={generateQuote} className="w-full bg-gradient-cta text-primary-foreground hover:scale-[1.02] transition-all duration-300 hover:shadow-lg">
-                Generate Daily Motivation
-              </Button>
-            </div>
-          </Card>
-        </div>
-      </section>
-      </ScrollReveal>
 
       {/* The Z Letter RSS Feed */}
       <ScrollReveal delay={100}>
@@ -364,13 +345,6 @@ const Index = () => {
                       <Link to="/digital-products">View All Products →</Link>
                     </Button>
                   </div>
-                </div>
-                <div className="flex gap-2 w-full max-w-md relative">
-                  <Input type="search" placeholder="Search digital products..." className="flex-1 rounded-full pr-10" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
-                  {searchQuery && <button onClick={() => setSearchQuery("")} className="absolute right-24 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors" aria-label="Clear search">
-                      <X className="w-4 h-4" />
-                    </button>}
-                  <Button className="rounded-full px-6">Search</Button>
                 </div>
               </div>
 
