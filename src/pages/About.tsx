@@ -21,13 +21,45 @@ const About = () => {
 
         {/* Bio */}
         <div className="text-center space-y-4 mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground">Hey, I am Zain.</h1>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            I studied engineering at the University of Texas at San Antonio.
+          <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground">Hey, I'm Zain.</h1>
+          <p className="text-lg text-muted-foreground italic">
+            Mechanical Engineer. Eagle Scout. Author in progress. AI consultant.
           </p>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            I build simple websites for small businesses.
+        </div>
+
+        <div className="space-y-5 text-muted-foreground leading-relaxed mb-12">
+          <p>
+            I grew up in DFW, moved from India as a kid, and spent years chasing the wrong version of success. I got a Mechanical Engineering degree from UTSA (Dean's List, President's List), picked up certifications, learned four languages, and still felt like something was missing.
           </p>
+          <p>
+            Now I help small businesses implement AI without the overwhelm. I also help everyday people publish the book they've been putting off. I'm building in public, learning out loud, and figuring it out one lane at a time.
+          </p>
+          <p>
+            Outside of work: I'm married to Mahek (she's a nurse and puts up with a lot), I write a Sunday newsletter called The Z Letter, and I'm working toward my PMP certification.
+          </p>
+        </div>
+
+        {/* Stat blocks */}
+        <div className="grid grid-cols-3 gap-4 mb-12">
+          {[
+            { value: "4", label: "Languages spoken" },
+            { value: "Eagle Scout", label: "BSA" },
+            { value: "UTSA BSME", label: "Dean's List" },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center p-4 rounded-xl border border-border/50 bg-card/50">
+              <p className="text-xl md:text-2xl font-bold text-foreground">{stat.value}</p>
+              <p className="text-xs text-muted-foreground mt-1">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="flex justify-center mb-16">
+          <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-8 text-base font-semibold">
+            <a href="https://calendly.com/zkadtani" target="_blank" rel="noopener noreferrer">
+              Book a Free Call
+            </a>
+          </Button>
         </div>
 
         {/* Social buttons */}
@@ -85,52 +117,6 @@ const About = () => {
               </a>
             </Button>
           </Card>
-        </div>
-
-        {/* Divider */}
-        <div className="w-16 h-px bg-primary/30 mx-auto my-16" />
-
-        {/* What I'm Listening To */}
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-2">What I'm Listening To</h2>
-          <p className="text-muted-foreground">Music I work and study to</p>
-        </div>
-        <div className="rounded-lg overflow-hidden shadow-lg mb-16">
-          <iframe
-            style={{ borderRadius: "12px" }}
-            src="https://open.spotify.com/embed/playlist/4ZHa92ZbMSi2Fwps39XZl5?utm_source=generator&theme=0"
-            width="100%"
-            height="352"
-            frameBorder="0"
-            allowFullScreen
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-          />
-        </div>
-
-        {/* Tools I Use & Recommend */}
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-2">Tools I Use & Recommend</h2>
-          <p className="text-muted-foreground">Platforms I personally use and trust</p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {[
-            { emoji: "📈", name: "Fidelity", desc: "Where I invest for the long term", url: "https://www.fidelity.com" },
-            { emoji: "📱", name: "Robinhood", desc: "Simple trading and crypto", url: "https://www.robinhood.com" },
-            { emoji: "🏦", name: "Marcus by Goldman Sachs", desc: "High yield savings", url: "https://www.marcus.com" },
-          ].map((r) => (
-            <a
-              key={r.name}
-              href={r.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-xl border border-border/50 bg-card/50 p-4 text-sm transition-all duration-200 hover:border-primary/60 hover:scale-[1.02]"
-            >
-              <span className="text-xl mb-2 block">{r.emoji}</span>
-              <span className="font-semibold text-foreground block">{r.name}</span>
-              <span className="text-muted-foreground text-xs">{r.desc}</span>
-            </a>
-          ))}
         </div>
       </main>
     </div>

@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { BookOpen, ExternalLink, Youtube, Linkedin, X } from "lucide-react";
-import WhatIFollow from "@/components/WhatIFollow";
+
 import { KineticText } from "@/components/KineticText";
 import zaLogo from "@/assets/za_logo.png";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
