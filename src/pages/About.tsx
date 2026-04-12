@@ -137,9 +137,3 @@ const About = () => {
   );
 };
 
-export default About;
-    </div>
-  );
-};
-
-export default About;
