@@ -307,47 +307,14 @@ const Index = () => {
 
             {/* Digital Products Tab */}
             <TabsContent value="digital-products" className="space-y-6">
-              <div className="flex flex-col items-center gap-4 mb-6">
-                <div className="flex items-center justify-between w-full mb-2">
-                  <div className="flex-1" />
-                  <p className="text-sm font-semibold text-muted-foreground tracking-wider">Digital Product HQ</p>
-                  <div className="flex-1 flex justify-end">
-                    <Button asChild variant="outline" size="sm">
-                      <Link to="/digital-products">View All Products →</Link>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-400 ${productsFading ? "opacity-0" : "opacity-100"}`}
-                onMouseEnter={() => setIsHoveringProducts(true)}
-                onMouseLeave={() => setIsHoveringProducts(false)}
-              >
-                {filteredProducts.map((product, index) => (
-                  <ScrollReveal key={product.id} delay={index * 100}>
-                  <Card className="overflow-hidden hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-300 shadow-lg border-2 flex flex-col">
-                    <div className="p-6 flex flex-col flex-grow">
-                      <h3 className="text-xl font-bold mb-2 text-foreground line-clamp-2">{product.title}</h3>
-                      <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{product.desc}</p>
-                      {product.media && (
-                        <div className="relative mb-4 overflow-hidden rounded-lg bg-muted/50 flex items-center justify-center">
-                          <img src={product.media} alt={product.title} className="w-full h-40 object-cover" loading="lazy" />
-                        </div>
-                      )}
-                      <div className="mt-auto flex flex-col gap-2">
-                        {product.cta && (
-                          <Button asChild className="w-full rounded-full bg-gradient-cta text-white hover:scale-[1.02] transition-all duration-300 hover:shadow-lg">
-                            <a href={product.cta.href} target="_blank" rel="noopener noreferrer" aria-label={`Get ${product.title}`}>
-                              {product.cta.label}
-                            </a>
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  </Card>
-                  </ScrollReveal>
-                ))}
+              <div className="flex flex-col items-center justify-center py-12 text-center">
+                <h3 className="text-2xl font-bold text-foreground mb-2">New products coming soon.</h3>
+                <p className="text-muted-foreground mb-6">Join The Z Letter to be the first to know.</p>
+                <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-8 text-base font-semibold">
+                  <a href="https://the-z-letter.beehiiv.com" target="_blank" rel="noopener noreferrer">
+                    Join the Newsletter
+                  </a>
+                </Button>
               </div>
             </TabsContent>
 
