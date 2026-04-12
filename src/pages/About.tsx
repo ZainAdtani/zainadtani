@@ -86,6 +86,52 @@ const About = () => {
             </Button>
           </Card>
         </div>
+
+        {/* Divider */}
+        <div className="w-16 h-px bg-primary/30 mx-auto my-16" />
+
+        {/* What I'm Listening To */}
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-bold text-foreground mb-2">What I'm Listening To</h2>
+          <p className="text-muted-foreground">Music I work and study to</p>
+        </div>
+        <div className="rounded-lg overflow-hidden shadow-lg mb-16">
+          <iframe
+            style={{ borderRadius: "12px" }}
+            src="https://open.spotify.com/embed/playlist/4ZHa92ZbMSi2Fwps39XZl5?utm_source=generator&theme=0"
+            width="100%"
+            height="352"
+            frameBorder="0"
+            allowFullScreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+          />
+        </div>
+
+        {/* Tools I Use & Recommend */}
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-bold text-foreground mb-2">Tools I Use & Recommend</h2>
+          <p className="text-muted-foreground">Platforms I personally use and trust</p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {[
+            { emoji: "📈", name: "Fidelity", desc: "Where I invest for the long term", url: "https://www.fidelity.com" },
+            { emoji: "📱", name: "Robinhood", desc: "Simple trading and crypto", url: "https://www.robinhood.com" },
+            { emoji: "🏦", name: "Marcus by Goldman Sachs", desc: "High yield savings", url: "https://www.marcus.com" },
+          ].map((r) => (
+            <a
+              key={r.name}
+              href={r.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl border border-border/50 bg-card/50 p-4 text-sm transition-all duration-200 hover:border-primary/60 hover:scale-[1.02]"
+            >
+              <span className="text-xl mb-2 block">{r.emoji}</span>
+              <span className="font-semibold text-foreground block">{r.name}</span>
+              <span className="text-muted-foreground text-xs">{r.desc}</span>
+            </a>
+          ))}
+        </div>
       </main>
     </div>
   );

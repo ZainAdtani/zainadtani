@@ -592,16 +592,6 @@ const Index = () => {
       <WhatIFollow podcasts={PODCASTS} />
       </ScrollReveal>
 
-      {/* Spotify Playlist */}
-      <section className="py-6 md:py-10">
-        <div className="container mx-auto px-4 max-w-xl text-center space-y-3">
-          <h2 className="text-xl font-bold text-foreground">Focus Playlist</h2>
-          <p className="text-xs text-muted-foreground">Music I work and study to</p>
-          <div className="rounded-lg overflow-hidden shadow-lg">
-            <iframe style={{ borderRadius: "12px" }} src="https://open.spotify.com/embed/playlist/4ZHa92ZbMSi2Fwps39XZl5?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" />
-          </div>
-        </div>
-      </section>
 
       {/* Newsletter Opt-in */}
       <section className="py-16 border-t border-border bg-card">
@@ -654,31 +644,6 @@ const Index = () => {
         </section>
       </ScrollReveal>
 
-      {/* Resources I Use */}
-      <ScrollReveal delay={50}>
-        <section className="py-10 max-w-4xl mx-auto px-4">
-          <h2 className="text-xl font-display font-bold mb-6 text-center text-muted-foreground">Resources I Use</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {[
-              { emoji: "📈", name: "Fidelity", desc: "Where I invest for the long term", url: "https://www.fidelity.com" },
-              { emoji: "📱", name: "Robinhood", desc: "Simple trading and crypto", url: "https://www.robinhood.com" },
-              { emoji: "🏦", name: "Marcus by Goldman Sachs", desc: "High yield savings", url: "https://www.marcus.com" },
-            ].map((r) => (
-              <a
-                key={r.name}
-                href={r.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-xl border border-border/50 bg-card/50 p-4 text-sm transition-all duration-200 hover:border-primary/60 hover:scale-[1.02]"
-              >
-                <span className="text-xl mb-2 block">{r.emoji}</span>
-                <span className="font-semibold text-foreground block">{r.name}</span>
-                <span className="text-muted-foreground text-xs">{r.desc}</span>
-              </a>
-            ))}
-          </div>
-        </section>
-      </ScrollReveal>
     </div>;
 };
 export default Index;
