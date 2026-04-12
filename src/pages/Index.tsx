@@ -288,20 +288,35 @@ const Index = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-10">Here's How We Can Work Together</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300">
+            <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300 flex flex-col">
               <div className="text-3xl mb-3">📖</div>
               <h3 className="text-lg font-bold text-foreground mb-2">Publish Your Book</h3>
-              <p className="text-sm text-muted-foreground">You have a story worth sharing. I help everyday people use AI to write, format, and publish on Amazon in weeks — not years.</p>
+              <p className="text-sm text-muted-foreground mb-4">You have a story worth sharing. I help everyday people use AI to write, format, and publish on Amazon in weeks — not years.</p>
+              <div className="mt-auto">
+                <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+                  <a href="#contact">Get Started</a>
+                </Button>
+              </div>
             </Card>
-            <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300">
+            <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300 flex flex-col">
               <div className="text-3xl mb-3">🤖</div>
               <h3 className="text-lg font-bold text-foreground mb-2">AI for Your Business</h3>
-              <p className="text-sm text-muted-foreground">Stop guessing with AI. I help small businesses actually implement it — save time, and grow revenue without the overwhelm.</p>
+              <p className="text-sm text-muted-foreground mb-4">Stop guessing with AI. I help small businesses actually implement it — save time, and grow revenue without the overwhelm.</p>
+              <div className="mt-auto">
+                <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+                  <a href="#contact">Get Started</a>
+                </Button>
+              </div>
             </Card>
-            <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300">
+            <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300 flex flex-col">
               <div className="text-3xl mb-3">💻</div>
               <h3 className="text-lg font-bold text-foreground mb-2">Done-For-You Websites</h3>
-              <p className="text-sm text-muted-foreground">Modern AI-powered websites built with Lovable. Fast, clean, and ready to convert. No tech headaches for you.</p>
+              <p className="text-sm text-muted-foreground mb-4">Modern AI-powered websites built with Lovable. Fast, clean, and ready to convert. No tech headaches for you.</p>
+              <div className="mt-auto">
+                <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+                  <a href="#contact">See Examples</a>
+                </Button>
+              </div>
             </Card>
           </div>
         </div>
@@ -616,6 +631,28 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Let's Work Together / Contact */}
+      <ScrollReveal delay={50}>
+        <section id="contact" className="py-16 md:py-20">
+          <div className="container mx-auto px-4 max-w-2xl text-center space-y-6">
+            <h2 className="text-3xl md:text-4xl font-display font-extrabold text-foreground">
+              Ready to Build Something?
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Whether you need an AI strategy, a website, or help publishing your book, let's talk.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/80 hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] px-8 text-base font-semibold">
+                <a href="https://calendly.com/zkadtani" target="_blank" rel="noopener noreferrer">Book a Call</a>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="rounded-full border-[hsl(217,91%,60%)] text-[hsl(217,91%,60%)] hover:bg-[hsl(217,91%,60%)]/10 px-8 text-base font-semibold">
+                <a href="mailto:zkadtani@gmail.com">Send Me an Email</a>
+              </Button>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
 
       {/* Resources I Use */}
       <ScrollReveal delay={50}>
