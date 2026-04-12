@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { BookOpen, ExternalLink, Youtube, Linkedin, X } from "lucide-react";
-import WhatIFollow from "@/components/WhatIFollow";
+
 import { KineticText } from "@/components/KineticText";
 import zaLogo from "@/assets/za_logo.png";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -18,10 +18,10 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { TimeBar } from "@/components/TimeBar";
-import { ALL_PRODUCTS } from "@/data/products";
+
 import { BOOKS } from "@/data/books";
 
-import { PODCASTS } from "@/data/podcasts";
+
 import { ROLE_MODELS } from "@/data/roleModels";
 import headshotImage from "@/assets/zain-headshot.png";
 import qbBadge from "@/assets/quickbooks-level2-badge.png";
@@ -60,43 +60,9 @@ function withAffiliate(url: string, tag = "eng2ea-20") {
   }
 }
 
-const productCatalog = ALL_PRODUCTS.filter(p => p.id !== "free-community");
 const Index = () => {
   const [activeTab, setActiveTab] = useState<TabKey>(() => getTabFromHash(window.location.hash));
-  const [searchQuery, setSearchQuery] = useState("");
   const location = useLocation();
-  const [shuffleIndex, setShuffleIndex] = useState(0);
-  const [isHoveringProducts, setIsHoveringProducts] = useState(false);
-  const [productsFading, setProductsFading] = useState(false);
-
-  const allFeatured = React.useMemo(() => {
-    return productCatalog.filter(p => p.featured).sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
-  }, []);
-
-  useEffect(() => {
-    if (isHoveringProducts || searchQuery.trim()) return;
-    const timer = setInterval(() => {
-      setProductsFading(true);
-      setTimeout(() => {
-        setShuffleIndex(prev => prev + 1);
-        setProductsFading(false);
-      }, 400);
-    }, 27000);
-    return () => clearInterval(timer);
-  }, [isHoveringProducts, searchQuery]);
-
-  const filteredProducts = React.useMemo(() => {
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      return allFeatured.filter(p => p.title.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query));
-    }
-    const start = (shuffleIndex * 3) % allFeatured.length;
-    const picked: typeof allFeatured = [];
-    for (let i = 0; i < 3 && i < allFeatured.length; i++) {
-      picked.push(allFeatured[(start + i) % allFeatured.length]);
-    }
-    return picked;
-  }, [searchQuery, shuffleIndex, allFeatured]);
 
   const [bookShuffleIndex, setBookShuffleIndex] = useState(0);
   const [isHoveringBooks, setIsHoveringBooks] = useState(false);
@@ -262,17 +228,13 @@ const Index = () => {
       {/* About Zain */}
       <ScrollReveal delay={50}>
         <section className="py-10 md:py-14 max-w-3xl mx-auto text-center px-4">
-          <h2 className="text-3xl font-display font-extrabold mb-6 text-foreground">About Zain</h2>
-          <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-            I'm Zain Adtani, Mechanical Engineer. I help businesses implement AI and I help creators publish books.
+          <h2 className="text-3xl font-display font-extrabold mb-6 text-foreground">A little about me</h2>
+          <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
+            I'm Zain — Engineer, Eagle Scout, and aspiring author. I help small businesses use AI to move faster, and I help creators finally publish the book they've been sitting on. Based in DFW. Building in public.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {["UTSA Mechanical Engineering", "AWS Certified", "PMP (In Progress)", "4 Languages"].map((cred) => (
-              <span key={cred} className="rounded-full border border-primary/40 text-primary text-sm px-4 py-1.5">
-                {cred}
-              </span>
-            ))}
-          </div>
+          <Link to="/about" className="text-primary hover:underline font-medium">
+            Read my full story →
+          </Link>
         </section>
       </ScrollReveal>
 
@@ -345,47 +307,14 @@ const Index = () => {
 
             {/* Digital Products Tab */}
             <TabsContent value="digital-products" className="space-y-6">
-              <div className="flex flex-col items-center gap-4 mb-6">
-                <div className="flex items-center justify-between w-full mb-2">
-                  <div className="flex-1" />
-                  <p className="text-sm font-semibold text-muted-foreground tracking-wider">Digital Product HQ</p>
-                  <div className="flex-1 flex justify-end">
-                    <Button asChild variant="outline" size="sm">
-                      <Link to="/digital-products">View All Products →</Link>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-400 ${productsFading ? "opacity-0" : "opacity-100"}`}
-                onMouseEnter={() => setIsHoveringProducts(true)}
-                onMouseLeave={() => setIsHoveringProducts(false)}
-              >
-                {filteredProducts.map((product, index) => (
-                  <ScrollReveal key={product.id} delay={index * 100}>
-                  <Card className="overflow-hidden hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-300 shadow-lg border-2 flex flex-col">
-                    <div className="p-6 flex flex-col flex-grow">
-                      <h3 className="text-xl font-bold mb-2 text-foreground line-clamp-2">{product.title}</h3>
-                      <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{product.desc}</p>
-                      {product.media && (
-                        <div className="relative mb-4 overflow-hidden rounded-lg bg-muted/50 flex items-center justify-center">
-                          <img src={product.media} alt={product.title} className="w-full h-40 object-cover" loading="lazy" />
-                        </div>
-                      )}
-                      <div className="mt-auto flex flex-col gap-2">
-                        {product.cta && (
-                          <Button asChild className="w-full rounded-full bg-gradient-cta text-white hover:scale-[1.02] transition-all duration-300 hover:shadow-lg">
-                            <a href={product.cta.href} target="_blank" rel="noopener noreferrer" aria-label={`Get ${product.title}`}>
-                              {product.cta.label}
-                            </a>
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  </Card>
-                  </ScrollReveal>
-                ))}
+              <div className="flex flex-col items-center justify-center py-12 text-center">
+                <h3 className="text-2xl font-bold text-foreground mb-2">New products coming soon.</h3>
+                <p className="text-muted-foreground mb-6">Join The Z Letter to be the first to know.</p>
+                <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-8 text-base font-semibold">
+                  <a href="https://the-z-letter.beehiiv.com" target="_blank" rel="noopener noreferrer">
+                    Join the Newsletter
+                  </a>
+                </Button>
               </div>
             </TabsContent>
 
@@ -587,10 +516,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* What I Follow */}
-      <ScrollReveal delay={200}>
-      <WhatIFollow podcasts={PODCASTS} />
-      </ScrollReveal>
 
 
       {/* Newsletter Opt-in */}
