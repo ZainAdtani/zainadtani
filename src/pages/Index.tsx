@@ -18,10 +18,10 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { TimeBar } from "@/components/TimeBar";
-import { ALL_PRODUCTS } from "@/data/products";
+
 import { BOOKS } from "@/data/books";
 
-import { PODCASTS } from "@/data/podcasts";
+
 import { ROLE_MODELS } from "@/data/roleModels";
 import headshotImage from "@/assets/zain-headshot.png";
 import qbBadge from "@/assets/quickbooks-level2-badge.png";
@@ -60,43 +60,9 @@ function withAffiliate(url: string, tag = "eng2ea-20") {
   }
 }
 
-const productCatalog = ALL_PRODUCTS.filter(p => p.id !== "free-community");
 const Index = () => {
   const [activeTab, setActiveTab] = useState<TabKey>(() => getTabFromHash(window.location.hash));
-  const [searchQuery, setSearchQuery] = useState("");
   const location = useLocation();
-  const [shuffleIndex, setShuffleIndex] = useState(0);
-  const [isHoveringProducts, setIsHoveringProducts] = useState(false);
-  const [productsFading, setProductsFading] = useState(false);
-
-  const allFeatured = React.useMemo(() => {
-    return productCatalog.filter(p => p.featured).sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
-  }, []);
-
-  useEffect(() => {
-    if (isHoveringProducts || searchQuery.trim()) return;
-    const timer = setInterval(() => {
-      setProductsFading(true);
-      setTimeout(() => {
-        setShuffleIndex(prev => prev + 1);
-        setProductsFading(false);
-      }, 400);
-    }, 27000);
-    return () => clearInterval(timer);
-  }, [isHoveringProducts, searchQuery]);
-
-  const filteredProducts = React.useMemo(() => {
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      return allFeatured.filter(p => p.title.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query));
-    }
-    const start = (shuffleIndex * 3) % allFeatured.length;
-    const picked: typeof allFeatured = [];
-    for (let i = 0; i < 3 && i < allFeatured.length; i++) {
-      picked.push(allFeatured[(start + i) % allFeatured.length]);
-    }
-    return picked;
-  }, [searchQuery, shuffleIndex, allFeatured]);
 
   const [bookShuffleIndex, setBookShuffleIndex] = useState(0);
   const [isHoveringBooks, setIsHoveringBooks] = useState(false);
@@ -262,17 +228,13 @@ const Index = () => {
       {/* About Zain */}
       <ScrollReveal delay={50}>
         <section className="py-10 md:py-14 max-w-3xl mx-auto text-center px-4">
-          <h2 className="text-3xl font-display font-extrabold mb-6 text-foreground">About Zain</h2>
-          <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-            I'm Zain Adtani, Mechanical Engineer. I help businesses implement AI and I help creators publish books.
+          <h2 className="text-3xl font-display font-extrabold mb-6 text-foreground">A little about me</h2>
+          <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
+            I'm Zain — Engineer, Eagle Scout, and aspiring author. I help small businesses use AI to move faster, and I help creators finally publish the book they've been sitting on. Based in DFW. Building in public.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {["UTSA Mechanical Engineering", "AWS Certified", "PMP (In Progress)", "4 Languages"].map((cred) => (
-              <span key={cred} className="rounded-full border border-primary/40 text-primary text-sm px-4 py-1.5">
-                {cred}
-              </span>
-            ))}
-          </div>
+          <Link to="/about" className="text-primary hover:underline font-medium">
+            Read my full story →
+          </Link>
         </section>
       </ScrollReveal>
 
@@ -587,10 +549,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* What I Follow */}
-      <ScrollReveal delay={200}>
-      <WhatIFollow podcasts={PODCASTS} />
-      </ScrollReveal>
 
 
       {/* Newsletter Opt-in */}
