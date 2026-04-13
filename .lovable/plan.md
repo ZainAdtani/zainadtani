@@ -1,43 +1,47 @@
 
 
-## Plan: 6 Homepage Updates
+## Plan: Multi-Page Site Cleanup
 
-### Change 1: Hero Buttons (lines 239-244)
-Update the two CTA button labels:
-- Primary: "Work With Me on AI →" (keeps `/services` link)
-- Outline: "Help Me Publish My Book →" (keeps `/services` link)
+### PAGE 1: Homepage (src/pages/Index.tsx)
 
-### Change 2: How I Help Cards (lines 287-316)
-Update all 3 cards with new titles and body text:
-- Card 1: "Done-For-You AI Websites" — "I build fast, modern websites..."
-- Card 2: "Publish Your Book" — "You have a story worth sharing..."
-- Card 3: "Creator Monetization" — "Already have an audience?..."
+**1. Tabs section** — already only has "digital-products" and "books" tabs with `grid-cols-2`. No change needed here (credentials and role-models were already removed in a previous iteration). The user wants them added to the About page instead.
 
-### Change 3: About Section (lines 266-268)
-Replace the paragraph text with: "I am Zain. I help small businesses use AI and help everyday people publish books. Based in DFW, Texas. Let's get to work."
+**2. Reorder Z Letter feed** — Move `<ZLetterFeed />` from its current position (lines 264-267, between About blurb and How I Help) to AFTER the How I Help section (after line 308, before the Tabs section). New flow: Hero -> About blurb -> How I Help -> Z Letter -> Tabs -> Newsletter -> Contact.
 
-### Change 4: Remove Credentials Tab
-- Remove the `credentials` TabsTrigger (line 334-336)
-- Remove the entire `TabsContent value="credentials"` block (lines 448-508)
-- Update `TABS` array (line 40) to remove `"credentials"`
-- Update `TabsList` grid from `grid-cols-4` to `grid-cols-2` (line 327)
-- Remove unused imports: `qbBadge`, `awsBadge`, `eagleScoutBadge` (lines 27-29)
+**3. Replace Newsletter Opt-in** — Replace the entire "Newsletter Opt-in" section (lines 459-486, with logo, paragraph, and button) with a minimal single-line section:
+- Text: "Subscribe to The Z Letter — every Sunday morning."
+- Teal button: "Subscribe Free →" linking to `https://thezletter.beehiiv.com/subscribe`
+- Remove `zLetterLogo` import if no longer used on homepage (it's used in ZLetterFeed component, so only remove the homepage import).
 
-### Change 5: Remove Role Models Tab
-- Remove the `role-models` TabsTrigger (lines 337-339)
-- Remove the entire `TabsContent value="role-models"` block (lines 510-558)
-- Remove `ROLE_MODELS` import (line 25) and `faviconFor` function (lines 32-39) if unused elsewhere
-- Remove unused `ExternalLink`, `Youtube` icon imports if only used there (check — `Youtube` is also used in Let's Connect section, so keep it)
+### PAGE 2: Services Page (src/pages/Services.tsx)
 
-### Change 6: Add Ismaili Coloring Book Product
-Add a new entry at the **beginning** of `ALL_PRODUCTS` in `src/data/products.ts` with `order: 1` and `featured: true`:
-- Title: "Ismaili Coloring Book"
-- Desc: "A faith-inspired coloring book for kids and families..."
-- CTA label: "Get Your Copy — $6.99"
-- CTA href: `https://whop.com/checkout/plan_neElnSODpLYSb/`
-- Tags: `["Family", "Digital PDF"]`, badge: "New"
+Complete rewrite of the services array and layout:
+- Remove SAT Prep entirely
+- Change subtitle to "Real work. Real results."
+- 2-card layout: `md:grid-cols-2` instead of `md:grid-cols-3`
+- **Card 1**: "Done-For-You AI Websites" with specified subtitle, body, bullets, and "Get Started →" button linking to `https://calendly.com/zkadtani`
+- **Card 2**: "Book Writing & Publishing" with specified subtitle, body, bullets, and "Start Your Book →" button linking to `https://calendly.com/zkadtani`
+- Bottom CTA button link updated to `https://calendly.com/zkadtani` (remove `/job` suffix)
+
+### PAGE 3: About Page (src/pages/About.tsx)
+
+Add two new sections before the footer (before the "Get In Touch" divider):
+
+**Credentials & Certifications section:**
+- Three credential cards in a row matching original homepage style
+- QuickBooks Certified ProAdvisor (Level 2) with `quickbooks-level2-badge.png`
+- AWS Cloud Practitioner with `aws-cloud-practitioner-badge.png`
+- Eagle Scout (Earned 2017) with `eagle-scout-badge.png`
+- Each card shows the badge image, title, and a short description
+
+**People I Look Up To section:**
+- Import `ROLE_MODELS` from `@/data/roleModels`
+- Display role model cards with name, role, bio, image, and website link
+- `faviconFor` helper function for website favicons
+- Style consistent with About page (cards with border, rounded corners)
 
 ### Files Changed
-1. `src/pages/Index.tsx` — All UI changes (hero buttons, cards, about text, remove 2 tabs)
-2. `src/data/products.ts` — Add Ismaili Coloring Book product
+1. `src/pages/Index.tsx` — Reorder Z Letter, replace newsletter section
+2. `src/pages/Services.tsx` — Full rewrite (2 services, new copy)
+3. `src/pages/About.tsx` — Add credentials + role models sections
 
