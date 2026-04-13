@@ -1,7 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Youtube, Linkedin, Calendar } from "lucide-react";
+import { Youtube, Linkedin, Calendar, ExternalLink } from "lucide-react";
 import zainSimba from "@/assets/zain-simba.png";
+import qbBadge from "@/assets/quickbooks-level2-badge.png";
+import awsBadge from "@/assets/aws-cloud-practitioner-badge.png";
+import eagleScoutBadge from "@/assets/eagle-scout-badge.png";
+import { ROLE_MODELS } from "@/data/roleModels";
+
+function faviconFor(url?: string) {
+  try {
+    const u = new URL(url!);
+    return `https://www.google.com/s2/favicons?domain=${u.hostname}&sz=128`;
+  } catch {
+    return "";
+  }
+}
 
 const About = () => {
   return (
@@ -80,6 +93,55 @@ const About = () => {
 
         {/* Divider */}
         <div className="w-16 h-px bg-primary/30 mx-auto mb-16" />
+
+        {/* Credentials & Certifications */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold text-foreground text-center mb-8">Credentials & Certifications</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {[
+              { image: qbBadge, title: "QuickBooks Certified ProAdvisor", desc: "Level 2" },
+              { image: awsBadge, title: "AWS Cloud Practitioner", desc: "Amazon Web Services" },
+              { image: eagleScoutBadge, title: "Eagle Scout", desc: "Earned 2017" },
+            ].map((cred) => (
+              <Card key={cred.title} className="p-6 flex flex-col items-center gap-3 text-center">
+                <img src={cred.image} alt={cred.title} className="w-16 h-16 object-contain" />
+                <h3 className="font-semibold text-foreground text-sm">{cred.title}</h3>
+                <p className="text-xs text-muted-foreground">{cred.desc}</p>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* People I Look Up To */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold text-foreground text-center mb-8">People I Look Up To</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {ROLE_MODELS.map((rm) => (
+              <Card key={rm.name} className="p-5 flex gap-4">
+                <img
+                  src={rm.image}
+                  alt={rm.imageAlt}
+                  className="w-16 h-16 rounded-full object-cover flex-shrink-0"
+                />
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-bold text-foreground text-sm">{rm.name}</h3>
+                  <p className="text-xs text-muted-foreground mb-2">{rm.role}</p>
+                  <p className="text-xs text-muted-foreground line-clamp-3 mb-2">{rm.bio}</p>
+                  <a
+                    href={rm.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
+                  >
+                    <img src={faviconFor(rm.website)} alt="" className="w-3 h-3" />
+                    Website
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </section>
 
         {/* Get In Touch */}
         <div className="text-center mb-8">
