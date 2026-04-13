@@ -23,7 +23,7 @@ import { BOOKS } from "@/data/books";
 
 
 import headshotImage from "@/assets/zain-headshot.png";
-import zLetterLogo from "@/assets/z-letter-logo.jpeg";
+
 
 const TABS = ["digital-products", "books"] as const;
 type TabKey = (typeof TABS)[number];
