@@ -22,22 +22,10 @@ import { ALL_PRODUCTS } from "@/data/products";
 import { BOOKS } from "@/data/books";
 
 
-import { ROLE_MODELS } from "@/data/roleModels";
 import headshotImage from "@/assets/zain-headshot.png";
-import qbBadge from "@/assets/quickbooks-level2-badge.png";
-import awsBadge from "@/assets/aws-cloud-practitioner-badge.png";
-import eagleScoutBadge from "@/assets/eagle-scout-badge.png";
 import zLetterLogo from "@/assets/z-letter-logo.jpeg";
 
-function faviconFor(url: string) {
-  try {
-    const u = new URL(url);
-    return `https://www.google.com/s2/favicons?domain=${u.hostname}&sz=128`;
-  } catch {
-    return "https://www.google.com/s2/favicons?domain=example.com&sz=128";
-  }
-}
-const TABS = ["digital-products", "books", "credentials", "role-models"] as const;
+const TABS = ["digital-products", "books"] as const;
 type TabKey = (typeof TABS)[number];
 
 function pad2(n: number) {
@@ -264,7 +252,7 @@ const Index = () => {
         <section className="py-10 md:py-14 max-w-3xl mx-auto text-center px-4">
           <h2 className="text-3xl font-display font-extrabold mb-6 text-foreground">A little about me</h2>
           <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-            I'm Zain — Engineer, Eagle Scout, and aspiring author. I help small businesses use AI to move faster, and I help creators finally publish the book they've been sitting on. Based in DFW. Building in public.
+            I am Zain. I help small businesses use AI and help everyday people publish books. Based in DFW, Texas. Let's get to work.
           </p>
           <Link to="/about" className="text-primary hover:underline font-medium">
             Read my full story →
@@ -324,18 +312,12 @@ const Index = () => {
       <section id="tabs-section" className="py-10 md:py-16 bg-muted/30">
         <div className="container mx-auto px-4 max-w-6xl">
           <Tabs value={activeTab} onValueChange={v => setActiveTab(v as TabKey)} className="w-full" aria-label="Zain site sections">
-            <TabsList className="grid w-full grid-cols-4 mb-8 h-auto">
+            <TabsList className="grid w-full grid-cols-2 mb-8 h-auto">
               <TabsTrigger value="digital-products" className="text-xs sm:text-sm px-2 py-2.5">
                 Digital Products
               </TabsTrigger>
               <TabsTrigger value="books" className="text-xs sm:text-sm px-2 py-2.5">
                 Books
-              </TabsTrigger>
-              <TabsTrigger value="credentials" className="text-xs sm:text-sm px-2 py-2.5">
-                Credentials
-              </TabsTrigger>
-              <TabsTrigger value="role-models" className="text-xs sm:text-sm px-2 py-2.5">
-                Role Models
               </TabsTrigger>
             </TabsList>
 
