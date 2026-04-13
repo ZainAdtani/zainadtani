@@ -51,11 +51,8 @@ export function ZLetterFeed() {
   };
 
   return (
-    <section id="z-letter" className="py-10 md:py-16">
+    <div className="py-0">
       <div className="container mx-auto px-4 max-w-6xl">
-        <h2 className="text-2xl md:text-3xl font-display font-bold text-center text-foreground mb-10">
-          Latest from The Z Letter
-        </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {loading
             ? Array.from({ length: 3 }).map((_, i) => (
@@ -91,6 +88,6 @@ export function ZLetterFeed() {
               ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }
