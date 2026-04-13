@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { BookOpen, ExternalLink, Youtube, Linkedin, X } from "lucide-react";
+import { BookOpen, Youtube, Linkedin, X } from "lucide-react";
 
 import { KineticText } from "@/components/KineticText";
 import zaLogo from "@/assets/za_logo.png";
