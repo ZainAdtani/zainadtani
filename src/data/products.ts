@@ -21,6 +21,17 @@ export type Product = {
 
 export const ALL_PRODUCTS: Product[] = [
   {
+    id: "ismaili-coloring-book",
+    title: "Ismaili Coloring Book",
+    category: "Guides",
+    desc: "A faith-inspired coloring book for kids and families. Mosques, tasbih, flowers, and peaceful scenes. Digital PDF download. Print at home.",
+    cta: { label: "Get Your Copy — $6.99", href: "https://whop.com/checkout/plan_neElnSODpLYSb/" },
+    tags: ["Family", "Digital PDF"],
+    badge: "New",
+    featured: true,
+    order: 1,
+  },
+  {
     id: "author-guide",
     title: "How to Become an Author (PDF Guide)",
     category: "Guides",

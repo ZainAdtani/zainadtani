@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { BookOpen, ExternalLink, Youtube, Linkedin, X } from "lucide-react";
+import { BookOpen, Youtube, Linkedin, X } from "lucide-react";
 
 import { KineticText } from "@/components/KineticText";
 import zaLogo from "@/assets/za_logo.png";
@@ -22,22 +22,10 @@ import { ALL_PRODUCTS } from "@/data/products";
 import { BOOKS } from "@/data/books";
 
 
-import { ROLE_MODELS } from "@/data/roleModels";
 import headshotImage from "@/assets/zain-headshot.png";
-import qbBadge from "@/assets/quickbooks-level2-badge.png";
-import awsBadge from "@/assets/aws-cloud-practitioner-badge.png";
-import eagleScoutBadge from "@/assets/eagle-scout-badge.png";
 import zLetterLogo from "@/assets/z-letter-logo.jpeg";
 
-function faviconFor(url: string) {
-  try {
-    const u = new URL(url);
-    return `https://www.google.com/s2/favicons?domain=${u.hostname}&sz=128`;
-  } catch {
-    return "https://www.google.com/s2/favicons?domain=example.com&sz=128";
-  }
-}
-const TABS = ["digital-products", "books", "credentials", "role-models"] as const;
+const TABS = ["digital-products", "books"] as const;
 type TabKey = (typeof TABS)[number];
 
 function pad2(n: number) {
@@ -45,7 +33,7 @@ function pad2(n: number) {
 }
 function getTabFromHash(hash: string): TabKey {
   const clean = hash.replace("#", "") as TabKey;
-  if (clean === "certifications" as any) return "credentials";
+  return (TABS as readonly string[]).includes(clean) ? clean : "digital-products";
   return (TABS as readonly string[]).includes(clean) ? clean : "digital-products";
 }
 function withAffiliate(url: string, tag = "eng2ea-20") {
@@ -237,10 +225,10 @@ const Index = () => {
               </a>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 text-base font-semibold">
-                  <Link to="/services">AI Consulting</Link>
+                  <Link to="/services">Work With Me on AI →</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/10 rounded-full px-8 text-base font-semibold">
-                  <Link to="/services">Publish Your Book</Link>
+                  <Link to="/services">Help Me Publish My Book →</Link>
                 </Button>
               </div>
             </div>
@@ -264,7 +252,7 @@ const Index = () => {
         <section className="py-10 md:py-14 max-w-3xl mx-auto text-center px-4">
           <h2 className="text-3xl font-display font-extrabold mb-6 text-foreground">A little about me</h2>
           <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-            I'm Zain — Engineer, Eagle Scout, and aspiring author. I help small businesses use AI to move faster, and I help creators finally publish the book they've been sitting on. Based in DFW. Building in public.
+            I am Zain. I help small businesses use AI and help everyday people publish books. Based in DFW, Texas. Let's get to work.
           </p>
           <Link to="/about" className="text-primary hover:underline font-medium">
             Read my full story →
@@ -285,9 +273,19 @@ const Index = () => {
           <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-10">Here's How We Can Work Together</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300 flex flex-col">
+              <div className="text-3xl mb-3">💻</div>
+              <h3 className="text-lg font-bold text-foreground mb-2">Done-For-You AI Websites</h3>
+              <p className="text-sm text-muted-foreground mb-4">I build fast, modern websites for small businesses in days, not months. You focus on your business. I handle the tech.</p>
+              <div className="mt-auto">
+                <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+                  <a href="#contact">Get Started</a>
+                </Button>
+              </div>
+            </Card>
+            <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300 flex flex-col">
               <div className="text-3xl mb-3">📖</div>
               <h3 className="text-lg font-bold text-foreground mb-2">Publish Your Book</h3>
-              <p className="text-sm text-muted-foreground mb-4">You have a story worth sharing. I help everyday people use AI to write, format, and publish on Amazon in weeks — not years.</p>
+              <p className="text-sm text-muted-foreground mb-4">You have a story worth sharing. I help everyday people write, format, and publish on Amazon in weeks, not years.</p>
               <div className="mt-auto">
                 <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
                   <a href="#contact">Get Started</a>
@@ -295,22 +293,12 @@ const Index = () => {
               </div>
             </Card>
             <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300 flex flex-col">
-              <div className="text-3xl mb-3">🤖</div>
-              <h3 className="text-lg font-bold text-foreground mb-2">AI for Your Business</h3>
-              <p className="text-sm text-muted-foreground mb-4">Stop guessing with AI. I help small businesses actually implement it — save time, and grow revenue without the overwhelm.</p>
+              <div className="text-3xl mb-3">💰</div>
+              <h3 className="text-lg font-bold text-foreground mb-2">Creator Monetization</h3>
+              <p className="text-sm text-muted-foreground mb-4">Already have an audience? I help creators turn their knowledge into digital products. We build it together and split the revenue.</p>
               <div className="mt-auto">
                 <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
                   <a href="#contact">Get Started</a>
-                </Button>
-              </div>
-            </Card>
-            <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300 flex flex-col">
-              <div className="text-3xl mb-3">💻</div>
-              <h3 className="text-lg font-bold text-foreground mb-2">Done-For-You Websites</h3>
-              <p className="text-sm text-muted-foreground mb-4">Modern AI-powered websites built with Lovable. Fast, clean, and ready to convert. No tech headaches for you.</p>
-              <div className="mt-auto">
-                <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
-                  <a href="#contact">See Examples</a>
                 </Button>
               </div>
             </Card>
@@ -324,18 +312,12 @@ const Index = () => {
       <section id="tabs-section" className="py-10 md:py-16 bg-muted/30">
         <div className="container mx-auto px-4 max-w-6xl">
           <Tabs value={activeTab} onValueChange={v => setActiveTab(v as TabKey)} className="w-full" aria-label="Zain site sections">
-            <TabsList className="grid w-full grid-cols-4 mb-8 h-auto">
+            <TabsList className="grid w-full grid-cols-2 mb-8 h-auto">
               <TabsTrigger value="digital-products" className="text-xs sm:text-sm px-2 py-2.5">
                 Digital Products
               </TabsTrigger>
               <TabsTrigger value="books" className="text-xs sm:text-sm px-2 py-2.5">
                 Books
-              </TabsTrigger>
-              <TabsTrigger value="credentials" className="text-xs sm:text-sm px-2 py-2.5">
-                Credentials
-              </TabsTrigger>
-              <TabsTrigger value="role-models" className="text-xs sm:text-sm px-2 py-2.5">
-                Role Models
               </TabsTrigger>
             </TabsList>
 
@@ -445,117 +427,6 @@ const Index = () => {
               </div>
             </TabsContent>
 
-            {/* Credentials Tab */}
-            <TabsContent value="credentials" className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Card className="p-5 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-300 shadow-lg border-2">
-                  <div className="flex items-center gap-3 mb-3">
-                    <img src={qbBadge} alt="QuickBooks ProAdvisor Level 2 Badge" className="w-16 h-16 object-contain flex-shrink-0" />
-                    <div>
-                      <h3 className="text-lg font-bold text-foreground">QuickBooks Certified ProAdvisor</h3>
-                      <Badge className="bg-primary/10 text-primary border-primary text-xs">Level 2 Certified</Badge>
-                    </div>
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    Full QuickBooks Online setup, training, monthly reconciliations, cleanups, invoicing, payments, and reports.
-                  </p>
-                  <div className="flex gap-2">
-                    <Button asChild size="sm" className="flex-1 bg-primary hover:bg-primary/90 text-xs">
-                      <a href="https://proadvisor.intuit.com/app/accountant/search?searchId=zainadtani" target="_blank" rel="noopener noreferrer">ProAdvisor Profile →</a>
-                    </Button>
-                    <Button asChild variant="outline" size="sm" className="text-xs">
-                      <a href="https://www.credly.com/badges/31486029-a69d-462a-84d6-cf324f42fdfa/embedded" target="_blank" rel="noopener noreferrer">Badge →</a>
-                    </Button>
-                  </div>
-                </Card>
-
-                <Card className="p-5 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-300 shadow-lg border-2">
-                  <div className="flex items-center gap-3 mb-3">
-                    <img src={awsBadge} alt="AWS Certified Cloud Practitioner Badge" className="w-16 h-16 object-contain flex-shrink-0" />
-                    <div>
-                      <h3 className="text-lg font-bold text-foreground">AWS Cloud Practitioner</h3>
-                    </div>
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    Cloud concepts, core AWS services, security, compliance, pricing models, and architecture design principles.
-                  </p>
-                  <div className="flex gap-2 flex-wrap">
-                    <Button asChild size="sm" className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs">
-                      <a href="https://skillbuilder.aws/learn/ZCQGNCDS54/aws-cloud-quest-recertify-cloud-practitioner/H5AC9MAA6A" target="_blank" rel="noopener noreferrer">Recertify →</a>
-                    </Button>
-                    <Button asChild variant="outline" size="sm" className="text-xs">
-                      <a href="https://www.credly.com/badges/2d636eb8-4677-4783-b829-47394e406a5a/public_url" target="_blank" rel="noopener noreferrer">Badge →</a>
-                    </Button>
-                  </div>
-                </Card>
-
-                <Card className="p-5 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-300 shadow-lg border-2">
-                  <div className="flex items-center gap-3 mb-3">
-                    <img src={eagleScoutBadge} alt="Eagle Scout Badge" className="w-16 h-16 object-contain flex-shrink-0" />
-                    <div>
-                      <h3 className="text-lg font-bold text-foreground">Eagle Scout</h3>
-                      <p className="text-xs text-muted-foreground">Earned 2017</p>
-                    </div>
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    Leadership, service, outdoor skills, and community projects.
-                  </p>
-                  <Button asChild variant="outline" size="sm" className="text-xs">
-                    <a href="https://greatriversscouting.org/2023/11/03/eagle-scout-requirements/" target="_blank" rel="noopener noreferrer">What is Eagle Scout →</a>
-                  </Button>
-                </Card>
-              </div>
-            </TabsContent>
-
-            {/* Role Models Tab */}
-            <TabsContent value="role-models" className="space-y-6">
-              <div className="text-center mb-8">
-                <h3 className="text-3xl md:text-4xl font-bold mb-3 text-foreground bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  People I Look Up To
-                </h3>
-                <p className="text-lg text-muted-foreground">Mentors who inspire my journey</p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {ROLE_MODELS.map(person => <Card key={person.name} className="overflow-hidden hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-500 shadow-lg border-2 group">
-                    <div className="p-6 flex flex-col h-full">
-                      <div className="relative w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-4 border-primary/30 shadow-xl group-hover:border-primary/60 transition-all duration-500">
-                        {person.image ? <img src={person.image} alt={person.imageAlt} className="w-full h-full object-cover" loading="lazy" /> : <div className="w-full h-full bg-primary/20 flex items-center justify-center">
-                            <img src={faviconFor(person.website)} alt={person.name} className="w-14 h-14 rounded-full" loading="lazy" />
-                          </div>}
-                      </div>
-
-                      <h4 className="text-xl font-bold text-center text-foreground">{person.name}</h4>
-                      <p className="text-sm text-primary text-center mb-2">{person.role}</p>
-                      {person.born && <p className="text-xs text-muted-foreground text-center mb-3">
-                          {person.born} • {person.age}
-                        </p>}
-
-                      <p className="text-sm text-muted-foreground mb-4 text-center">{person.bio}</p>
-
-                      <ul className="text-xs text-muted-foreground space-y-1 mb-4 flex-grow">
-                        {person.bullets.map((b, i) => <li key={i} className="flex items-start gap-2">
-                            <span className="text-primary">•</span>
-                            {b}
-                          </li>)}
-                      </ul>
-
-                      <div className="mt-auto flex flex-col gap-2">
-                        <Button asChild variant="outline" size="sm" className="w-full rounded-full border-primary/50 hover:bg-primary/10 transition-all duration-300">
-                          <a href={person.website} target="_blank" rel="noopener noreferrer">
-                            Website <ExternalLink className="w-3 h-3 ml-1" />
-                          </a>
-                        </Button>
-                        {person.youtube && <Button asChild variant="outline" size="sm" className="w-full rounded-full border-red-500/50 text-red-500 hover:bg-red-500/10 transition-all duration-300">
-                            <a href={person.youtube} target="_blank" rel="noopener noreferrer">
-                              <Youtube className="w-4 h-4 mr-1" /> YouTube Channel
-                            </a>
-                          </Button>}
-                      </div>
-                    </div>
-                  </Card>)}
-              </div>
-            </TabsContent>
           </Tabs>
         </div>
       </section>
