@@ -33,7 +33,7 @@ function pad2(n: number) {
 }
 function getTabFromHash(hash: string): TabKey {
   const clean = hash.replace("#", "") as TabKey;
-  if (clean === "certifications" as any) return "credentials";
+  return (TABS as readonly string[]).includes(clean) ? clean : "digital-products";
   return (TABS as readonly string[]).includes(clean) ? clean : "digital-products";
 }
 function withAffiliate(url: string, tag = "eng2ea-20") {
@@ -225,10 +225,10 @@ const Index = () => {
               </a>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 text-base font-semibold">
-                  <Link to="/services">AI Consulting</Link>
+                  <Link to="/services">Work With Me on AI →</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/10 rounded-full px-8 text-base font-semibold">
-                  <Link to="/services">Publish Your Book</Link>
+                  <Link to="/services">Help Me Publish My Book →</Link>
                 </Button>
               </div>
             </div>
