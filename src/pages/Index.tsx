@@ -247,10 +247,13 @@ const Index = () => {
       </section>
       </ScrollReveal>
 
+      <div className="border-t border-border opacity-30 max-w-4xl mx-auto" />
+
       {/* About Zain */}
       <ScrollReveal delay={50}>
-        <section className="py-10 md:py-14 max-w-3xl mx-auto text-center px-4">
-          <h2 className="text-3xl font-display font-extrabold mb-6 text-foreground">A little about me</h2>
+        <section className="py-20 max-w-3xl mx-auto text-center px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">A little about me</h2>
+          <p className="text-muted-foreground text-center text-base mb-10">Engineer, Eagle Scout, and aspiring author based in DFW.</p>
           <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
             I am Zain. I help small businesses use AI and help everyday people publish books. Based in DFW, Texas. Let's get to work.
           </p>
@@ -260,16 +263,18 @@ const Index = () => {
         </section>
       </ScrollReveal>
 
+      <div className="border-t border-border opacity-30 max-w-4xl mx-auto" />
 
       {/* How I Help Section */}
       <ScrollReveal delay={100}>
-      <section className="py-10 md:py-16">
+      <section className="py-20">
         <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-10">Here's How We Can Work Together</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">Here's How We Can Work Together</h2>
+          <p className="text-muted-foreground text-center text-base mb-10">Pick your path. Let's get to work.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300 flex flex-col">
-              <div className="text-3xl mb-3">💻</div>
-              <h3 className="text-lg font-bold text-foreground mb-2">Done-For-You AI Websites</h3>
+            <Card className="p-8 border border-border border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.15)] hover:-translate-y-1 transition-all duration-300 flex flex-col">
+              <div className="text-5xl mb-3">💻</div>
+              <h3 className="text-xl font-bold text-foreground mb-2">Done-For-You AI Websites</h3>
               <p className="text-sm text-muted-foreground mb-4">I build fast, modern websites for small businesses in days, not months. You focus on your business. I handle the tech.</p>
               <div className="mt-auto">
                 <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
@@ -277,9 +282,9 @@ const Index = () => {
                 </Button>
               </div>
             </Card>
-            <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300 flex flex-col">
-              <div className="text-3xl mb-3">📖</div>
-              <h3 className="text-lg font-bold text-foreground mb-2">Publish Your Book</h3>
+            <Card className="p-8 border border-border border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.15)] hover:-translate-y-1 transition-all duration-300 flex flex-col">
+              <div className="text-5xl mb-3">📖</div>
+              <h3 className="text-xl font-bold text-foreground mb-2">Publish Your Book</h3>
               <p className="text-sm text-muted-foreground mb-4">You have a story worth sharing. I help everyday people write, format, and publish on Amazon in weeks, not years.</p>
               <div className="mt-auto">
                 <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
@@ -287,9 +292,9 @@ const Index = () => {
                 </Button>
               </div>
             </Card>
-            <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300 flex flex-col">
-              <div className="text-3xl mb-3">💰</div>
-              <h3 className="text-lg font-bold text-foreground mb-2">Creator Monetization</h3>
+            <Card className="p-8 border border-border border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.15)] hover:-translate-y-1 transition-all duration-300 flex flex-col">
+              <div className="text-5xl mb-3">💰</div>
+              <h3 className="text-xl font-bold text-foreground mb-2">Creator Monetization</h3>
               <p className="text-sm text-muted-foreground mb-4">Already have an audience? I help creators turn their knowledge into digital products. We build it together and split the revenue.</p>
               <div className="mt-auto">
                 <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
@@ -302,15 +307,34 @@ const Index = () => {
       </section>
       </ScrollReveal>
 
-      {/* The Z Letter RSS Feed */}
+      <div className="border-t border-border opacity-30 max-w-4xl mx-auto" />
+
+      {/* The Z Letter — Combined Section */}
       <ScrollReveal delay={100}>
-        <ZLetterFeed />
+      <section id="z-letter" className="py-20">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">The Z Letter</h2>
+          <p className="text-muted-foreground text-center text-base mb-6">One email every Sunday. No fluff. Just value.</p>
+          <div className="text-center mb-10">
+            <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-8 text-base font-semibold">
+              <a href="https://thezletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">
+                Subscribe Free →
+              </a>
+            </Button>
+          </div>
+          <ZLetterFeed />
+        </div>
+      </section>
       </ScrollReveal>
+
+      <div className="border-t border-border opacity-30 max-w-4xl mx-auto" />
 
       {/* Tabbed Sections */}
       <ScrollReveal delay={100}>
-      <section id="tabs-section" className="py-10 md:py-16 bg-muted/30">
+      <section id="tabs-section" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4 max-w-6xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">Digital Products</h2>
+          <p className="text-muted-foreground text-center text-base mb-10">Tools and resources I have built for you.</p>
           <Tabs value={activeTab} onValueChange={v => setActiveTab(v as TabKey)} className="w-full" aria-label="Zain site sections">
             <TabsList className="grid w-full grid-cols-2 mb-8 h-auto">
               <TabsTrigger value="digital-products" className="text-xs sm:text-sm px-2 py-2.5">
@@ -432,11 +456,13 @@ const Index = () => {
       </section>
       </ScrollReveal>
 
+      <div className="border-t border-border opacity-30 max-w-4xl mx-auto" />
+
       {/* Let's Connect */}
-      <section className="py-6 md:py-8">
+      <section className="py-20">
         <div className="container mx-auto px-4 max-w-4xl text-center space-y-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground">Let's Connect</h2>
-          <p className="text-sm text-muted-foreground">Find me on these platforms</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">Let's Connect</h2>
+          <p className="text-muted-foreground text-center text-base mb-10">Find me on these platforms</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <Button asChild size="sm" className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white transition-all duration-300 hover:shadow-lg gap-2 px-6">
               <a href="https://youtube.com/@captainduaadventures?si=xPzuebAHwHZTl52V" target="_blank" rel="noopener noreferrer">
@@ -454,25 +480,11 @@ const Index = () => {
         </div>
       </section>
 
-
-
-      {/* Newsletter Opt-in */}
-      <section className="py-10 border-t border-border">
-        <div className="container mx-auto px-4 max-w-2xl text-center space-y-4">
-          <p className="text-lg text-muted-foreground">
-            Subscribe to The Z Letter — every Sunday morning.
-          </p>
-          <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-8 text-base font-semibold">
-            <a href="https://thezletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">
-              Subscribe Free →
-            </a>
-          </Button>
-        </div>
-      </section>
+      <div className="border-t border-border opacity-30 max-w-4xl mx-auto" />
 
       {/* Let's Work Together / Contact */}
       <ScrollReveal delay={50}>
-        <section id="contact" className="py-16 md:py-20">
+        <section id="contact" className="py-20">
           <div className="container mx-auto px-4 max-w-2xl text-center space-y-6">
             <h2 className="text-3xl md:text-4xl font-display font-extrabold text-foreground">
               Ready to Build Something?
