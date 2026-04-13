@@ -23,7 +23,7 @@ import { BOOKS } from "@/data/books";
 
 
 import headshotImage from "@/assets/zain-headshot.png";
-import zLetterLogo from "@/assets/z-letter-logo.jpeg";
+
 
 const TABS = ["digital-products", "books"] as const;
 type TabKey = (typeof TABS)[number];
@@ -261,11 +261,6 @@ const Index = () => {
       </ScrollReveal>
 
 
-      {/* The Z Letter RSS Feed */}
-      <ScrollReveal delay={100}>
-        <ZLetterFeed />
-      </ScrollReveal>
-
       {/* How I Help Section */}
       <ScrollReveal delay={100}>
       <section className="py-10 md:py-16">
@@ -305,6 +300,11 @@ const Index = () => {
           </div>
         </div>
       </section>
+      </ScrollReveal>
+
+      {/* The Z Letter RSS Feed */}
+      <ScrollReveal delay={100}>
+        <ZLetterFeed />
       </ScrollReveal>
 
       {/* Tabbed Sections */}
@@ -457,31 +457,16 @@ const Index = () => {
 
 
       {/* Newsletter Opt-in */}
-      <section className="py-16 border-t border-border bg-card">
-        <div className="container mx-auto px-4 max-w-2xl">
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-6 text-center md:text-left">
-            <img
-              src={zLetterLogo}
-              alt="The Z Letter"
-              className="w-16 h-16 rounded-xl border border-border object-cover flex-shrink-0"
-            />
-            <div className="space-y-4">
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground">
-                The Z Letter
-              </h2>
-              <p className="text-muted-foreground leading-relaxed">
-                I send one email every Sunday morning. It's designed to help you master AI, build smarter products, and think more clearly. Join Zain and other builders.
-              </p>
-              <a
-                href="https://thezletter.beehiiv.com/subscribe"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center h-11 rounded-full px-8 text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/80 hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all"
-              >
-                Join for Free
-              </a>
-            </div>
-          </div>
+      <section className="py-10 border-t border-border">
+        <div className="container mx-auto px-4 max-w-2xl text-center space-y-4">
+          <p className="text-lg text-muted-foreground">
+            Subscribe to The Z Letter — every Sunday morning.
+          </p>
+          <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-8 text-base font-semibold">
+            <a href="https://thezletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">
+              Subscribe Free →
+            </a>
+          </Button>
         </div>
       </section>
 

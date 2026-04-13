@@ -3,43 +3,33 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink } from "lucide-react";
 
+const CALENDLY_URL = "https://calendly.com/zkadtani";
+
 export default function Services() {
   const services = [
     {
-      id: "launch-website",
-      title: "Launch Your Website",
-      tagline: "Go from zero to a polished, professional site — no coding required.",
+      id: "ai-websites",
+      title: "Done-For-You AI Websites",
+      subtitle: "Your business deserves a real website.",
+      body: "I build fast, modern websites for small businesses using the latest AI tools. From first call to live site in days, not months.",
       bullets: [
-        "Quick discovery call to map your vision and pages",
-        "Custom build on Lovable with a mobile-first, brand-matched design",
-        "Hands-on walkthrough so you can update it yourself with confidence",
+        "Discovery call to map your pages and goals",
+        "Custom-built, mobile-first design",
+        "Walkthrough so you can manage it yourself",
       ],
-      buttonText: "Get started",
-      buttonLink: "https://calendly.com/zkadtani/job",
-    },
-    {
-      id: "sat-prep",
-      title: "SAT Prep & Academic Mentoring",
-      tagline: "Build confidence, sharpen skills, and crush your target score.",
-      bullets: [
-        "Personalized study plan based on practice test diagnostics",
-        "One-on-one sessions covering math, reading, and test strategy",
-        "Ongoing mentoring for focus, time management, and college readiness",
-      ],
-      buttonText: "Book a session",
-      buttonLink: "https://calendly.com/zkadtani/job",
+      buttonText: "Get Started →",
     },
     {
       id: "book-publishing",
       title: "Book Writing & Publishing",
-      tagline: "Turn your idea into a published book — Kindle, paperback, and audiobook.",
+      subtitle: "Your story deserves to be published.",
+      body: "I help everyday people write, format, and publish their book on Amazon. Kindle, paperback, and PDF. You bring the idea. I help you finish it.",
       bullets: [
-        "Clarify your concept, audience, and unique angle",
-        "Structured writing plan with milestones that fit your schedule",
-        "End-to-end guidance on self-publishing for print, ebook, and audio",
+        "Clarify your concept, audience, and angle",
+        "Writing plan with milestones that fit your schedule",
+        "End-to-end guidance on self-publishing",
       ],
-      buttonText: "Start your book",
-      buttonLink: "https://calendly.com/zkadtani/job",
+      buttonText: "Start Your Book →",
     },
   ];
 
@@ -49,31 +39,32 @@ export default function Services() {
         <title>Services | Zain Adtani</title>
         <meta
           name="description"
-          content="Website builds, SAT prep, and book publishing help — simple, premium services."
+          content="AI websites and book publishing help — real work, real results."
         />
       </Helmet>
 
-      <div className="container max-w-6xl mx-auto px-4 py-12 space-y-16">
+      <div className="container max-w-5xl mx-auto px-4 py-12 space-y-16">
         {/* Hero */}
         <header className="text-center space-y-4">
           <h1 className="text-5xl md:text-6xl font-bold">Services</h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Premium help with websites, test prep, and publishing.
+            Real work. Real results.
           </p>
         </header>
 
         {/* Service Cards Grid */}
-        <section className="grid md:grid-cols-3 gap-6">
+        <section className="grid md:grid-cols-2 gap-8">
           {services.map((service) => (
             <Card
               key={service.id}
-              className="p-6 rounded-2xl border hover:shadow-lg transition-all duration-200 hover:-translate-y-1 flex flex-col h-full"
+              className="p-8 rounded-2xl border hover:shadow-lg transition-all duration-200 hover:-translate-y-1 flex flex-col h-full"
             >
               <div className="flex-1 space-y-4">
                 <div>
-                  <h2 className="text-2xl font-bold mb-2">{service.title}</h2>
-                  <p className="text-sm text-muted-foreground">{service.tagline}</p>
+                  <h2 className="text-2xl font-bold mb-1">{service.title}</h2>
+                  <p className="text-sm font-medium text-primary">{service.subtitle}</p>
                 </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">{service.body}</p>
                 <ul className="space-y-2 text-sm">
                   {service.bullets.map((bullet, idx) => (
                     <li key={idx} className="flex gap-2">
@@ -83,9 +74,9 @@ export default function Services() {
                   ))}
                 </ul>
               </div>
-              <div className="pt-4">
+              <div className="pt-6">
                 <Button asChild className="w-full gap-2" aria-label={service.buttonText}>
-                  <a href={service.buttonLink} target="_blank" rel="noopener noreferrer">
+                  <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
                     {service.buttonText}
                     <ArrowRight className="h-4 w-4" />
                   </a>
@@ -103,7 +94,7 @@ export default function Services() {
               <p className="text-muted-foreground">Book a short call and we will sort it out together.</p>
             </div>
             <Button asChild size="lg" className="gap-2 shrink-0">
-              <a href="https://calendly.com/zkadtani/job" target="_blank" rel="noopener noreferrer">
+              <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
                 Schedule a call
                 <ExternalLink className="h-4 w-4" />
               </a>
