@@ -273,9 +273,19 @@ const Index = () => {
           <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-10">Here's How We Can Work Together</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300 flex flex-col">
+              <div className="text-3xl mb-3">💻</div>
+              <h3 className="text-lg font-bold text-foreground mb-2">Done-For-You AI Websites</h3>
+              <p className="text-sm text-muted-foreground mb-4">I build fast, modern websites for small businesses in days, not months. You focus on your business. I handle the tech.</p>
+              <div className="mt-auto">
+                <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+                  <a href="#contact">Get Started</a>
+                </Button>
+              </div>
+            </Card>
+            <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300 flex flex-col">
               <div className="text-3xl mb-3">📖</div>
               <h3 className="text-lg font-bold text-foreground mb-2">Publish Your Book</h3>
-              <p className="text-sm text-muted-foreground mb-4">You have a story worth sharing. I help everyday people use AI to write, format, and publish on Amazon in weeks — not years.</p>
+              <p className="text-sm text-muted-foreground mb-4">You have a story worth sharing. I help everyday people write, format, and publish on Amazon in weeks, not years.</p>
               <div className="mt-auto">
                 <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
                   <a href="#contact">Get Started</a>
@@ -283,22 +293,12 @@ const Index = () => {
               </div>
             </Card>
             <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300 flex flex-col">
-              <div className="text-3xl mb-3">🤖</div>
-              <h3 className="text-lg font-bold text-foreground mb-2">AI for Your Business</h3>
-              <p className="text-sm text-muted-foreground mb-4">Stop guessing with AI. I help small businesses actually implement it — save time, and grow revenue without the overwhelm.</p>
+              <div className="text-3xl mb-3">💰</div>
+              <h3 className="text-lg font-bold text-foreground mb-2">Creator Monetization</h3>
+              <p className="text-sm text-muted-foreground mb-4">Already have an audience? I help creators turn their knowledge into digital products. We build it together and split the revenue.</p>
               <div className="mt-auto">
                 <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
                   <a href="#contact">Get Started</a>
-                </Button>
-              </div>
-            </Card>
-            <Card className="p-6 border border-border bg-card text-card-foreground hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)] transition-all duration-300 flex flex-col">
-              <div className="text-3xl mb-3">💻</div>
-              <h3 className="text-lg font-bold text-foreground mb-2">Done-For-You Websites</h3>
-              <p className="text-sm text-muted-foreground mb-4">Modern AI-powered websites built with Lovable. Fast, clean, and ready to convert. No tech headaches for you.</p>
-              <div className="mt-auto">
-                <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
-                  <a href="#contact">See Examples</a>
                 </Button>
               </div>
             </Card>
