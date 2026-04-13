@@ -36,7 +36,7 @@ const About = () => {
         <div className="text-center space-y-4 mb-12">
           <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground">Hey, I'm Zain.</h1>
           <p className="text-lg text-muted-foreground italic">
-            Mechanical Engineer. Eagle Scout. Author in progress. AI consultant.
+            Mechanical Engineer. Eagle Scout. Author. AI consultant.
           </p>
         </div>
 
@@ -48,7 +48,7 @@ const About = () => {
             Now I help small businesses implement AI without the overwhelm. I also help everyday people publish the book they've been putting off. I'm building in public, learning out loud, and figuring it out one lane at a time.
           </p>
           <p>
-            Outside of work: I'm married to Mahek (she's a nurse and puts up with a lot), I write a Sunday newsletter called The Z Letter, and I'm working toward my PMP certification.
+            Outside of work: I write a Sunday newsletter called The Z Letter - Check it out!
           </p>
         </div>
 
