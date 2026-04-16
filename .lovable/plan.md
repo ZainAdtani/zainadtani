@@ -1,61 +1,51 @@
 
 
-## Plan: Homepage Copy Updates, Visual Polish & Link Audit
+## Plan: Round 2 Polish — 4 Pages
 
-### 1. Copy Updates (`src/pages/Index.tsx`)
+### 1. Homepage (`src/pages/Index.tsx`)
 
-**Hero headline** (line 214-218): Change to "I help businesses use AI. I help creators publish books. Both in weeks, not years." — keep teal gradient on "I help creators publish books." and add "Both in weeks, not years." in teal too.
+**Reduce gap between service cards and Z Letter**: Change the service cards section from `py-20` to `py-16`, and reduce the Z Letter section top padding. Replace the divider between them with a tighter margin variant.
 
-**Hero subheadline** (line 220-222): "Strategy to shipped. No fluff. Real results."
+**Center Z Letter feed cards**: The `ZLetterFeed` component already renders a 3-col grid inside a centered container. The issue is likely it appears left-aligned because the parent section lacks centering. Will verify and ensure the feed grid is centered within the section.
 
-**About blurb** (line 257-259): Replace paragraph with "I am Zain. Engineer by training. Builder by obsession. I help small businesses plug AI into their work, and I help everyday people turn their story into a real book on Amazon. Based in DFW, Texas. Let's build something."
+**Remove duplicate divider**: Lines 458 and 482 both have gradient dividers sandwiching "Let's Connect". Remove the divider on line 482 (between Let's Connect and Ready to Build Something) so only one remains above Let's Connect.
 
-**Service card descriptions** (lines 278, 288, 298):
-- AI Websites: "Fast, modern websites built in days, not months. You run the business. I run the tech. Live in under two weeks. ⚡"
-- Publish Your Book: "You have a book in you. Let's get it out. I help you write, format, and publish on Amazon. Kindle, paperback, and audiobook ready. 📖"
-- Creator Monetization: "Got an audience but no product? I help creators turn knowledge into digital products using AI. You bring the audience. I bring the build. We split the win. 💰"
+**Fix YouTube/LinkedIn buttons** (lines 466-477): Replace the solid red/blue gradient buttons with ghost-style buttons — transparent background, thin border, icon keeps its native color, and a teal glow on hover:
+```
+variant="outline" className="border-border/60 bg-transparent hover:border-primary/60 hover:shadow-[0_0_12px_rgba(0,212,170,0.2)] transition-all duration-300"
+```
 
-### 2. Visual Upgrades (`src/pages/Index.tsx` + `src/index.css`)
+### 2. About Page (`src/pages/About.tsx`)
 
-**Service cards** — update hover classes:
-- `hover:-translate-y-1` → `hover:-translate-y-1.5` (6px)
-- Add `border border-border/50 hover:border-primary/60` for border color shift on hover
-- Keep existing teal glow shadow, ensure 300ms transition
+**Make "The Z Letter" a link** (line 51): Change the plain text to:
+```
+Outside of work: I write a Sunday newsletter called <a href="https://thezletter.beehiiv.com" target="_blank" className="text-primary hover:underline">The Z Letter</a> - Check it out!
+```
 
-**Hero dot grid background** — add a CSS utility class `.bg-dot-grid` with a repeating radial-gradient of teal dots at ~8% opacity. Apply to the hero section.
+**Remove "Get In Touch" section** (lines 146-188): Delete the entire block including the heading, the 3 cards (LinkedIn, YouTube, Book a Call), and the closing `</main></div>` tags (which will be re-added).
 
-**Profile photo pulse glow** — add a CSS keyframe `glow-pulse` (3s cycle) that subtly animates the box-shadow on the headshot image.
+### 3. Digital Products Page (`src/pages/DigitalProductsPage.tsx`)
 
-**CTA buttons** (hero + service card Get Started buttons) — replace solid `bg-primary` with `bg-gradient-to-r from-[#00D4AA] to-[#3B82F6]`. Add `hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)]` with 200ms transition.
+**Larger category tabs** (lines 64-73): Increase button sizing from `text-sm` to `text-base font-semibold px-6 py-2.5` so they feel like primary nav.
 
-**Section entry animations** — already using `<ScrollReveal>` with IntersectionObserver. Update the component's default translateY from 16px to 30px and duration from 500ms to 600ms.
+**Standardize card heights**: Add `h-full` to each Card and ensure the description uses `line-clamp-3` (already present). Add `min-h-[420px]` to each card for uniform height.
 
-**Section dividers** — replace all `border-t border-border opacity-30` flat lines with a gradient div: `bg-gradient-to-r from-transparent via-primary/30 to-transparent h-px max-w-4xl mx-auto`.
+### 4. Books Page (`src/pages/BooksHQ.tsx`)
 
-### 3. Link Audit Results
+**Add pagination**: 
+- Add `currentPage` state, default 1. `BOOKS_PER_PAGE = 12`.
+- Compute `paginatedBooks = filteredAndSortedBooks.slice((currentPage-1)*12, currentPage*12)`.
+- Reset `currentPage` to 1 whenever `statusFilter`, `sortBy`, or `debouncedQuery` changes.
+- Render only `paginatedBooks` in the grid.
+- Add Previous/Next buttons and page indicators below the grid using the existing `Pagination` UI components.
 
-| Button/Link | Points To | Status |
-|---|---|---|
-| "Work With Me on AI →" | `/services` | OK |
-| "Help Me Publish My Book →" | `/services` | OK |
-| "Read the latest issue of The Z Letter →" | `#z-letter` (anchor) | OK |
-| "Read my full story →" | `/about` | OK |
-| "Get Started" (all 3 service cards) | `#contact` (anchor) | OK |
-| "Subscribe Free →" | `https://thezletter.beehiiv.com/subscribe` | OK |
-| "Read →" (Z Letter cards) | Dynamic RSS feed links | OK |
-| "Get Your Copy — $6.99" | `https://whop.com/checkout/plan_neElnSODpLYSb/` | OK |
-| "Download Free PDF →" | `https://whop.com/you-bestselling-author` | OK |
-| "Get Yours →" (Walking Workday) | `https://whop.com/the-walking-workday/the-walking-workday-bb/` | OK |
-| YouTube | `https://youtube.com/@captainduaadventures?si=xPzuebAHwHZTl52V` | OK |
-| LinkedIn | `https://www.linkedin.com/in/zainadtani/` | OK |
-| "Book a Call" | `https://calendly.com/zkadtani` | OK |
-| "Send Me an Email" | `mailto:zkadtani@gmail.com` | OK |
-| Coffee support link | Not found on homepage | N/A |
-
-All links point to valid destinations. No broken or placeholder links detected.
+**Standardize book card heights**:
+- Add `h-full` to Card component.
+- On the notes/quote text (line 305), enforce `line-clamp-3` (currently unlimited). The "View notes" dialog button already exists for full text.
 
 ### Files Changed
-1. `src/pages/Index.tsx` — copy updates, button gradients, card hover classes, dot grid on hero, divider gradient, photo glow
-2. `src/index.css` — add `.bg-dot-grid` utility, `glow-pulse` keyframe
-3. `src/components/ScrollReveal.tsx` — update translateY to 30px, duration to 600ms
+1. `src/pages/Index.tsx` — spacing, remove duplicate divider, restyle social buttons
+2. `src/pages/About.tsx` — Z Letter link, remove Get In Touch section
+3. `src/pages/DigitalProductsPage.tsx` — larger filter tabs, standardized card height
+4. `src/pages/BooksHQ.tsx` — pagination (12/page), standardized card heights, line-clamp notes
 
