@@ -34,8 +34,8 @@ export function ScrollReveal({ children, delay = 0, className = "" }: ScrollReve
       className={className}
       style={{
         opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(16px)",
-        transition: `opacity 0.5s ease-out ${delay}ms, transform 0.5s ease-out ${delay}ms`,
+        transform: isVisible ? "translateY(0)" : "translateY(30px)",
+        transition: `opacity 0.6s ease-out ${delay}ms, transform 0.6s ease-out ${delay}ms`,
         willChange: "opacity, transform",
       }}
     >

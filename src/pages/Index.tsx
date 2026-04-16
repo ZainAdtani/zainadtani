@@ -207,24 +207,24 @@ const Index = () => {
 
       {/* Hero Section */}
       <ScrollReveal>
-      <section className="pt-12 md:pt-20 pb-12 md:pb-20 bg-gradient-hero">
+      <section className="pt-12 md:pt-20 pb-12 md:pb-20 bg-gradient-hero bg-dot-grid">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-14">
             <div className="flex-1 text-center md:text-left space-y-5">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-foreground leading-tight">
                 I Help Businesses Use AI.{" "}
                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  I Help Creators Publish Books.
+                  I Help Creators Publish Books. Both in weeks, not years.
                 </span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-xl mx-auto md:mx-0">
-                From strategy to execution. No fluff. Just results.
+                Strategy to shipped. No fluff. Real results.
               </p>
               <a href="#z-letter" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors">
                 Read the latest issue of The Z Letter →
               </a>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 text-base font-semibold">
+                <Button asChild size="lg" className="bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200 rounded-full px-8 text-base font-semibold">
                   <Link to="/services">Work With Me on AI →</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/10 rounded-full px-8 text-base font-semibold">
@@ -238,8 +238,7 @@ const Index = () => {
               <img
                 src={headshotImage}
                 alt="Zain Adtani — AI Consultant and Author"
-                className="w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full object-cover object-top"
-                style={{ boxShadow: '0 0 0 4px hsl(168 100% 42% / 0.35), 0 0 30px hsl(168 100% 42% / 0.15)' }}
+                className="w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full object-cover object-top animate-glow-pulse"
               />
             </div>
           </div>
@@ -247,7 +246,7 @@ const Index = () => {
       </section>
       </ScrollReveal>
 
-      <div className="border-t border-border opacity-30 max-w-4xl mx-auto" />
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       {/* About Zain */}
       <ScrollReveal delay={50}>
@@ -255,7 +254,7 @@ const Index = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">A little about me</h2>
           <p className="text-muted-foreground text-center text-base mb-10">Engineer, Eagle Scout, and aspiring author based in DFW.</p>
           <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-            I am Zain. I help small businesses use AI and help everyday people publish books. Based in DFW, Texas. Let's get to work.
+            I am Zain. Engineer by training. Builder by obsession. I help small businesses plug AI into their work, and I help everyday people turn their story into a real book on Amazon. Based in DFW, Texas. Let's build something.
           </p>
           <Link to="/about" className="text-primary hover:underline font-medium">
             Read my full story →
@@ -263,7 +262,7 @@ const Index = () => {
         </section>
       </ScrollReveal>
 
-      <div className="border-t border-border opacity-30 max-w-4xl mx-auto" />
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       {/* How I Help Section */}
       <ScrollReveal delay={100}>
@@ -272,32 +271,32 @@ const Index = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">Here's How We Can Work Together</h2>
           <p className="text-muted-foreground text-center text-base mb-10">Pick your path. Let's get to work.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="p-8 border border-border border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.15)] hover:-translate-y-1 transition-all duration-300 flex flex-col">
+            <Card className="p-8 border border-border/50 hover:border-primary/60 border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.2)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
               <div className="text-5xl mb-3">💻</div>
               <h3 className="text-xl font-bold text-foreground mb-2">Done-For-You AI Websites</h3>
-              <p className="text-sm text-muted-foreground mb-4">I build fast, modern websites for small businesses in days, not months. You focus on your business. I handle the tech.</p>
+              <p className="text-sm text-muted-foreground mb-4">Fast, modern websites built in days, not months. You run the business. I run the tech. Live in under two weeks. ⚡</p>
               <div className="mt-auto">
-                <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+                <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200">
                   <a href="#contact">Get Started</a>
                 </Button>
               </div>
             </Card>
-            <Card className="p-8 border border-border border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.15)] hover:-translate-y-1 transition-all duration-300 flex flex-col">
+            <Card className="p-8 border border-border/50 hover:border-primary/60 border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.2)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
               <div className="text-5xl mb-3">📖</div>
               <h3 className="text-xl font-bold text-foreground mb-2">Publish Your Book</h3>
-              <p className="text-sm text-muted-foreground mb-4">You have a story worth sharing. I help everyday people write, format, and publish on Amazon in weeks, not years.</p>
+              <p className="text-sm text-muted-foreground mb-4">You have a book in you. Let's get it out. I help you write, format, and publish on Amazon. Kindle, paperback, and audiobook ready. 📖</p>
               <div className="mt-auto">
-                <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+                <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200">
                   <a href="#contact">Get Started</a>
                 </Button>
               </div>
             </Card>
-            <Card className="p-8 border border-border border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.15)] hover:-translate-y-1 transition-all duration-300 flex flex-col">
+            <Card className="p-8 border border-border/50 hover:border-primary/60 border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.2)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
               <div className="text-5xl mb-3">💰</div>
               <h3 className="text-xl font-bold text-foreground mb-2">Creator Monetization</h3>
-              <p className="text-sm text-muted-foreground mb-4">Already have an audience? I help creators turn their knowledge into digital products. We build it together and split the revenue.</p>
+              <p className="text-sm text-muted-foreground mb-4">Got an audience but no product? I help creators turn knowledge into digital products using AI. You bring the audience. I bring the build. We split the win. 💰</p>
               <div className="mt-auto">
-                <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+                <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200">
                   <a href="#contact">Get Started</a>
                 </Button>
               </div>
@@ -307,7 +306,7 @@ const Index = () => {
       </section>
       </ScrollReveal>
 
-      <div className="border-t border-border opacity-30 max-w-4xl mx-auto" />
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       {/* The Z Letter — Combined Section */}
       <ScrollReveal delay={100}>
@@ -316,7 +315,7 @@ const Index = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">The Z Letter</h2>
           <p className="text-muted-foreground text-center text-base mb-6">One email every Sunday. No fluff. Just value.</p>
           <div className="text-center mb-10">
-            <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-8 text-base font-semibold">
+            <Button asChild size="lg" className="rounded-full bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200 px-8 text-base font-semibold">
               <a href="https://thezletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">
                 Subscribe Free →
               </a>
@@ -327,7 +326,7 @@ const Index = () => {
       </section>
       </ScrollReveal>
 
-      <div className="border-t border-border opacity-30 max-w-4xl mx-auto" />
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       {/* Tabbed Sections */}
       <ScrollReveal delay={100}>
@@ -456,7 +455,7 @@ const Index = () => {
       </section>
       </ScrollReveal>
 
-      <div className="border-t border-border opacity-30 max-w-4xl mx-auto" />
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       {/* Let's Connect */}
       <section className="py-20">
@@ -480,7 +479,7 @@ const Index = () => {
         </div>
       </section>
 
-      <div className="border-t border-border opacity-30 max-w-4xl mx-auto" />
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       {/* Let's Work Together / Contact */}
       <ScrollReveal delay={50}>
@@ -493,7 +492,7 @@ const Index = () => {
               Whether you need an AI strategy, a website, or help publishing your book, let's talk.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/80 hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] px-8 text-base font-semibold">
+              <Button asChild size="lg" className="rounded-full bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200 px-8 text-base font-semibold">
                 <a href="https://calendly.com/zkadtani" target="_blank" rel="noopener noreferrer">Book a Call</a>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-full border-[hsl(217,91%,60%)] text-[hsl(217,91%,60%)] hover:bg-[hsl(217,91%,60%)]/10 px-8 text-base font-semibold">
