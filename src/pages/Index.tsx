@@ -34,7 +34,6 @@ function pad2(n: number) {
 function getTabFromHash(hash: string): TabKey {
   const clean = hash.replace("#", "") as TabKey;
   return (TABS as readonly string[]).includes(clean) ? clean : "digital-products";
-  return (TABS as readonly string[]).includes(clean) ? clean : "digital-products";
 }
 function withAffiliate(url: string, tag = "eng2ea-20") {
   try {
@@ -479,6 +478,7 @@ const Index = () => {
         </div>
       </section>
 
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       {/* Let's Work Together / Contact */}
       <ScrollReveal delay={50}>
