@@ -73,7 +73,7 @@ export default function DigitalProductsPage() {
                   type="button"
                   variant={cat === c ? "default" : "outline"}
                   onClick={() => setCat(c)}
-                  className="rounded-full text-sm motion-safe:transition-all"
+                  className="rounded-full text-base font-semibold px-6 py-2.5 motion-safe:transition-all"
                   aria-pressed={cat === c}
                 >
                   {c}
@@ -99,7 +99,7 @@ export default function DigitalProductsPage() {
                 <ScrollReveal key={p.id} delay={index * 100}>
                 <Card
                   key={p.id} 
-                  className="group overflow-hidden border-2 bg-card motion-safe:hover:shadow-xl motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:-translate-y-1 flex flex-col"
+                  className="group overflow-hidden border-2 bg-card motion-safe:hover:shadow-xl motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:-translate-y-1 flex flex-col h-full min-h-[420px]"
                 >
                   {p.media && (
                     <div className="relative bg-muted/50 flex items-center justify-center">

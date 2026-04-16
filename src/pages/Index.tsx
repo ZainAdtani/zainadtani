@@ -266,7 +266,7 @@ const Index = () => {
 
       {/* How I Help Section */}
       <ScrollReveal delay={100}>
-      <section className="py-20">
+      <section className="py-16">
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">Here's How We Can Work Together</h2>
           <p className="text-muted-foreground text-center text-base mb-10">Pick your path. Let's get to work.</p>
@@ -310,7 +310,7 @@ const Index = () => {
 
       {/* The Z Letter — Combined Section */}
       <ScrollReveal delay={100}>
-      <section id="z-letter" className="py-20">
+      <section id="z-letter" className="py-14">
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">The Z Letter</h2>
           <p className="text-muted-foreground text-center text-base mb-6">One email every Sunday. No fluff. Just value.</p>
@@ -463,15 +463,15 @@ const Index = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">Let's Connect</h2>
           <p className="text-muted-foreground text-center text-base mb-10">Find me on these platforms</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-            <Button asChild size="sm" className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white transition-all duration-300 hover:shadow-lg gap-2 px-6">
+            <Button asChild variant="outline" size="sm" className="border-border/60 bg-transparent hover:border-primary/60 hover:shadow-[0_0_12px_rgba(0,212,170,0.2)] transition-all duration-300 gap-2 px-6">
               <a href="https://youtube.com/@captainduaadventures?si=xPzuebAHwHZTl52V" target="_blank" rel="noopener noreferrer">
-                <Youtube className="w-4 h-4" />
+                <Youtube className="w-4 h-4 text-red-500" />
                 YouTube
               </a>
             </Button>
-            <Button asChild size="sm" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white transition-all duration-300 hover:shadow-lg gap-2 px-6">
+            <Button asChild variant="outline" size="sm" className="border-border/60 bg-transparent hover:border-primary/60 hover:shadow-[0_0_12px_rgba(0,212,170,0.2)] transition-all duration-300 gap-2 px-6">
               <a href="https://www.linkedin.com/in/zainadtani/" target="_blank" rel="noopener noreferrer">
-                <Linkedin className="w-4 h-4" />
+                <Linkedin className="w-4 h-4 text-blue-500" />
                 LinkedIn
               </a>
             </Button>
@@ -479,7 +479,6 @@ const Index = () => {
         </div>
       </section>
 
-      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       {/* Let's Work Together / Contact */}
       <ScrollReveal delay={50}>
