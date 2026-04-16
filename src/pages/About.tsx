@@ -48,7 +48,9 @@ const About = () => {
             Now I help small businesses implement AI without the overwhelm. I also help everyday people publish the book they've been putting off. I'm building in public, learning out loud, and figuring it out one lane at a time.
           </p>
           <p>
-            Outside of work: I write a Sunday newsletter called The Z Letter - Check it out!
+            Outside of work: I write a Sunday newsletter called{" "}
+            <a href="https://thezletter.beehiiv.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">The Z Letter</a>
+            {" "}- Check it out!
           </p>
         </div>
 
@@ -143,43 +145,6 @@ const About = () => {
           </div>
         </section>
 
-        {/* Get In Touch */}
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-2">Get In Touch</h2>
-          <p className="text-muted-foreground">Have a question or want to work together?</p>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-3">
-          <Card className="p-6 flex flex-col items-center gap-3 text-center">
-            <Linkedin className="h-8 w-8 text-primary" />
-            <h3 className="font-semibold text-foreground">LinkedIn</h3>
-            <Button asChild variant="outline" size="sm">
-              <a href="https://www.linkedin.com/in/zainadtani/" target="_blank" rel="noopener noreferrer">
-                Connect
-              </a>
-            </Button>
-          </Card>
-
-          <Card className="p-6 flex flex-col items-center gap-3 text-center">
-            <Youtube className="h-8 w-8 text-primary" />
-            <h3 className="font-semibold text-foreground">YouTube</h3>
-            <Button asChild variant="outline" size="sm">
-              <a href="https://youtube.com/@captainduaadventures?si=xPzuebAHwHZTl52V" target="_blank" rel="noopener noreferrer">
-                Subscribe
-              </a>
-            </Button>
-          </Card>
-
-          <Card className="p-6 flex flex-col items-center gap-3 text-center">
-            <Calendar className="h-8 w-8 text-primary" />
-            <h3 className="font-semibold text-foreground">Book a Call</h3>
-            <Button asChild variant="outline" size="sm">
-              <a href="https://calendly.com/zkadtani/job" target="_blank" rel="noopener noreferrer">
-                Schedule
-              </a>
-            </Button>
-          </Card>
-        </div>
       </main>
     </div>
   );
