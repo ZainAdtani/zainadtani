@@ -3,7 +3,7 @@ import authorGuide from "@/assets/author-kit-cover.png";
 import authorGuidePDF from "@/assets/author-guide.pdf";
 import walkingWorkday from "@/assets/walking-workday-new.png";
 import quietYourGut from "@/assets/quiet-your-gut.png";
-import jointFamilyBoundaries from "@/assets/joint-family-boundaries.png";
+import ismailiColoringBookCover from "@/assets/ismaili-coloring-book-cover.jpg";
 import newlywedsMoveout from "@/assets/newlyweds-moveout-blueprint.png";
 
 export type Product = {
@@ -25,6 +25,7 @@ export const ALL_PRODUCTS: Product[] = [
     title: "Ismaili Coloring Book",
     category: "Guides",
     desc: "A faith-inspired coloring book for kids and families. Mosques, tasbih, flowers, and peaceful scenes. Digital PDF download. Print at home.",
+    media: ismailiColoringBookCover,
     cta: { label: "Get Your Copy — $6.99", href: "https://whop.com/checkout/plan_neElnSODpLYSb/" },
     tags: ["Family", "Digital PDF"],
     badge: "New",
