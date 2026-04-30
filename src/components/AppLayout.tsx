@@ -111,8 +111,8 @@ export function AppLayout({ children }: AppLayoutProps) {
                 </div>
               </div>
 
-              <div className="border-t border-border/60 pt-6 flex items-center justify-between gap-4">
-                <div className="flex flex-col gap-1">
+              <div className="border-t border-border/60 pt-6 relative">
+                <div className="flex flex-col items-center gap-2 text-center">
                   <a
                     href="https://buymeacoffee.com/curiouszen"
                     target="_blank"
@@ -128,7 +128,7 @@ export function AppLayout({ children }: AppLayoutProps) {
                 <Link
                   to="/z-hub"
                   aria-label="Z Hub"
-                  className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-[11px] font-bold font-sans hover:scale-110 hover:shadow-[0_0_12px_rgba(0,212,170,0.6)] transition-all duration-300 shrink-0"
+                  className="absolute right-0 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-[11px] font-bold font-sans hover:scale-110 hover:shadow-[0_0_12px_rgba(0,212,170,0.6)] transition-all duration-300"
                 >
                   Z
                 </Link>
