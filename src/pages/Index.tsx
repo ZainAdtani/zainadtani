@@ -234,7 +234,7 @@ const Index = () => {
                   </Button>
                 </span>
               </div>
-              <p className="text-xs text-muted-foreground/80 italic animate-hero-rise" style={{ animationDelay: "550ms" }}>
+              <p className="text-base font-normal text-muted-foreground/80 italic animate-hero-rise" style={{ animationDelay: "550ms" }}>
                 Helping businesses and creators across DFW and beyond.
               </p>
             </div>
@@ -280,7 +280,7 @@ const Index = () => {
             <Card className="p-8 border border-border/50 hover:border-primary/60 border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.2)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
               <div className="text-5xl mb-3">💻</div>
               <h3 className="text-xl font-bold text-foreground mb-2">Done-For-You AI Websites</h3>
-              <p className="text-sm text-muted-foreground mb-4">Fast, modern websites built in days, not months. You run the business. I run the tech. Live in under two weeks. ⚡</p>
+              <p className="text-base font-normal text-muted-foreground mb-4">Fast, modern websites built in days, not months. You run the business. I run the tech. Live in under two weeks. ⚡</p>
               <div className="mt-auto">
                 <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200">
                   <a href="#contact">Get Started</a>
@@ -290,7 +290,7 @@ const Index = () => {
             <Card className="p-8 border border-border/50 hover:border-primary/60 border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.2)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
               <div className="text-5xl mb-3">📖</div>
               <h3 className="text-xl font-bold text-foreground mb-2">Publish Your Book</h3>
-              <p className="text-sm text-muted-foreground mb-4">You have a book in you. Let's get it out. I help you write, format, and publish on Amazon. Kindle, paperback, and audiobook ready. 📖</p>
+              <p className="text-base font-normal text-muted-foreground mb-4">You have a book in you. Let's get it out. I help you write, format, and publish on Amazon. Kindle, paperback, and audiobook ready. 📖</p>
               <div className="mt-auto">
                 <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200">
                   <a href="#contact">Get Started</a>
@@ -300,7 +300,7 @@ const Index = () => {
             <Card className="p-8 border border-border/50 hover:border-primary/60 border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.2)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
               <div className="text-5xl mb-3">💰</div>
               <h3 className="text-xl font-bold text-foreground mb-2">Creator Monetization</h3>
-              <p className="text-sm text-muted-foreground mb-4">Got an audience but no product? I help creators turn knowledge into digital products using AI. You bring the audience. I bring the build. We split the win. 💰</p>
+              <p className="text-base font-normal text-muted-foreground mb-4">Got an audience but no product? I help creators turn knowledge into digital products using AI. You bring the audience. I bring the build. We split the win. 💰</p>
               <div className="mt-auto">
                 <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200">
                   <a href="#contact">Get Started</a>

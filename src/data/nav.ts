@@ -4,10 +4,9 @@ import {
   BookOpen,
   TrendingUp,
   FileText,
-  Zap,
-  StickyNote,
+  Sparkles,
   Wrench,
-  FolderKanban,
+  Star,
   HelpCircle,
   Briefcase,
   ShoppingBag,
@@ -31,10 +30,10 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Digital Products", path: "/digital-products", icon: ShoppingBag, section: "main", searchTags: ["products", "store"] },
 
   // ── Archive ──
-  { label: "AI Prompts", path: "/ai-prompts", icon: Zap, section: "archive", searchTags: ["prompts", "coaching", "productivity"] },
-  { label: "Life Notes", path: "/life-notes", icon: StickyNote, section: "archive", searchTags: ["quotes", "wisdom", "mindset"] },
+  { label: "AI Prompts", path: "/ai-prompts", icon: Sparkles, section: "archive", searchTags: ["prompts", "coaching", "productivity"] },
+  { label: "Life Notes", path: "/life-notes", icon: FileText, section: "archive", searchTags: ["quotes", "wisdom", "mindset"] },
   { label: "Tools", path: "/tools", icon: Wrench, section: "archive", searchTags: ["utilities"] },
-  { label: "Fun Projects", path: "/projects", icon: FolderKanban, section: "archive", searchTags: ["pokedex", "builds"] },
+  { label: "Fun Projects", path: "/projects", icon: Star, section: "archive", searchTags: ["pokedex", "builds"] },
 ];
 
 // Helper to get items by section

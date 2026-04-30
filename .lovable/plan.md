@@ -1,93 +1,80 @@
-## Plan: Phased Site Update — Nav, Z Hub, Polish, AI Chat
+## Three Surgical Fixes
 
-Implementing all 5 phases. Using Lovable AI (no Anthropic key needed), public Z Hub, client-side chat cap.
+### Fix 1: Footer Bottom Row — Centered
 
----
+**File**: `src/components/AppLayout.tsx` (lines ~111-130)
 
-### Phase 1: Navigation Restructure
+Replace the bottom bar's `flex items-center justify-between` row with a centered single-column layout. The "Z Hub" circular link will move to its own centered position above (or be kept floating right via absolute positioning). Cleanest approach: stack vertically, centered.
 
-**`src/components/Header.tsx`** — Trim `TOP_NAV` to: Home, Services, Books, Products (path `/digital-products`). About and Investing stay in the project but leave the desktop top nav. Mobile sheet still surfaces all sidebar items.
+New layout:
+- Centered "☕ Support my work" link (kept — it links to buymeacoffee.com)
+- Centered "© 2026 Zain Adtani. All rights reserved."
+- The "Z" hub circular button moves to the right side via absolute positioning so the copyright stays visually centered on the page on all breakpoints.
 
-**`src/components/AppLayout.tsx`** — Replace the current minimal footer with a 3-column responsive grid (stacks on mobile):
-- Col 1 "Navigate": Home, Services, Books, Products
-- Col 2 "Connect": LinkedIn, YouTube, The Z Letter (Beehiiv subscribe), Email (mailto)
-- Col 3 "More": About, Book a Call (Calendly)
+```tsx
+<div className="border-t border-border/60 pt-6 relative">
+  <div className="flex flex-col items-center gap-2 text-center">
+    <a href="https://buymeacoffee.com/curiouszen" target="_blank" rel="noopener noreferrer"
+       className="text-xs text-muted-foreground hover:text-primary transition-colors">
+      ☕ Support my work
+    </a>
+    <p className="text-xs text-muted-foreground">© 2026 Zain Adtani. All rights reserved.</p>
+  </div>
+  <Link to="/z-hub" aria-label="Z Hub"
+        className="absolute right-0 top-1/2 -translate-y-1/2 mt-3 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-[11px] font-bold hover:scale-110 hover:shadow-[0_0_12px_rgba(0,212,170,0.6)] transition-all duration-300">
+    Z
+  </Link>
+</div>
+```
 
-Below columns: copyright "© 2026 Zain Adtani. All rights reserved." with a 24px circular teal button at the far right (white "Z", links to `/z-hub`). Keep the existing "Buy me a coffee" line as a small note above the copyright.
+### Fix 2: Sidebar "Projects" Icons — Neutral Line Icons
 
-All external links open in new tab with `rel="noopener noreferrer"`.
+**File**: `src/data/nav.ts`
 
----
+The four archive items currently use icons (Zap, StickyNote, Wrench, FolderKanban). User sees them as colored badges — likely the active/hover background tint reading as a circle. Swap icons per spec and ensure the rendered icon color is muted gray.
 
-### Phase 2: `/z-hub` Page
+- AI Prompts: `Zap` → `Sparkles`
+- Life Notes: `StickyNote` → `FileText`
+- Tools: `Wrench` (keep)
+- Fun Projects: `FolderKanban` → `Star`
 
-**New file `src/pages/ZHub.tsx`** + route in `src/App.tsx` (above catch-all). Not added to nav data.
+**File**: `src/components/AppSidebar.tsx` (Projects render block, ~line 175)
 
-Layout: dark bg, max-w-[900px] centered, `py-20`.
-- Title "Z Hub" with teal gradient underline; subtitle line.
-- **Section 1 "Quick Links"** — 3-col grid (1 on mobile) of cards: Fidelity, Robinhood, Marcus Savings (placeholder `#` URLs with comment to fill in), Notion, Google Drive, Beehiiv Dashboard. Each card uses a relevant lucide icon (TrendingUp, LineChart, PiggyBank, FileText, HardDrive, Mail), label below, teal-glow hover border.
-- **Section 2 "Projects & Fun"** — Same card grid linking to `/ai-prompts`, `/life-notes`, `/tools`, `/projects` (the existing Fun Projects route — note: code calls it `/projects`, not `/fun-projects`).
+Add explicit muted styling to archive-section icons only — `className="h-4 w-4 text-[#94A3B8]"` and ensure no background. Main section icons stay untouched.
 
-Reuses existing Card component hover styling.
+```tsx
+{getNavItemsBySection("archive").map((item, idx) => (
+  <SidebarMenuItem key={item.path + idx}>
+    <SidebarMenuButton asChild>
+      <NavLink to={item.path} className={getNavClass}>
+        <item.icon className="h-4 w-4 text-[#94A3B8]" strokeWidth={1.75} />
+        {!isCollapsed && <span>{item.label}</span>}
+      </NavLink>
+    </SidebarMenuButton>
+  </SidebarMenuItem>
+))}
+```
 
----
+### Fix 3: Homepage Body Text Readability
 
-### Phase 3: Home Page Polish (`src/pages/Index.tsx` + `src/index.css`)
+**File**: `src/pages/Index.tsx`
 
-1. Hero entrance: add `animate-fade-in` to headline, second line with 200ms delay (inline style or new utility class).
-2. CTA buttons: wrap in a div with animated teal→blue gradient border (CSS `@keyframes gradient-shift` on `background-position`), hover scale 1.02 + teal glow shadow. Existing button content untouched.
-3. Service cards already have hover lift via `Card` component — verify and tighten to `-translate-y-1` with teal shadow on hover.
-4. Below CTAs add muted line: "Helping businesses and creators across DFW and beyond."
-5. Z Letter section: prepend a small pulsing teal dot (`animate-pulse`) next to "One email every Sunday".
-6. Add `scroll-behavior: smooth` to `html` in `src/index.css` (if not already set).
+Bump body paragraphs to `text-base` (16px) minimum and ensure normal weight. DM Sans is already the global body font (set in `index.css`), so no font swap needed.
 
----
+| Location | Current | Change to |
+|---|---|---|
+| Hero subtext (line 219) | `text-lg text-muted-foreground` | keep — already 18px ✓ |
+| Hero microcopy (line 237) | `text-xs ... italic` | `text-sm` (still small, but min 14px — italic kept) |
+| About body (line 262) | `text-muted-foreground text-lg` | already ≥16px ✓ |
+| About sub-tagline (line 261) | `text-base` | already 16px ✓ |
+| How I Help sub-tagline (line 278) | `text-base` | already 16px ✓ |
+| How I Help card descriptions (lines 283, 293, 303) | `text-sm text-muted-foreground` (14px) | `text-base text-muted-foreground font-normal` (16px) |
+| Z Letter sub-tagline (line 322) | `text-base` | already 16px ✓ |
 
-### Phase 4: AI Chat Widget
-
-**New `src/components/AIChatWidget.tsx`** mounted in `AppLayout` (renders on every route).
-- 56px teal floating button bottom-right (above BackToTop's bottom-left, no conflict).
-- Click → expands to 400×500 panel (full-screen on mobile).
-- Header "Ask me anything about Zain's work" + close X.
-- Message list with right-aligned teal user bubbles, left-aligned dark gray assistant bubbles, typing indicator (3 bouncing dots).
-- Input + send button. Disabled after 20 messages with friendly note.
-- Session counter in `sessionStorage` key `zain_chat_count`.
-- On API error: show "Sorry, I am having trouble connecting. Please email zkadtani@gmail.com instead."
-
-**New edge function `supabase/functions/zain-chat/index.ts`**:
-- POST with `{ messages: [...] }`.
-- Calls Lovable AI Gateway (`https://ai.gateway.lovable.dev/v1/chat/completions`) with model `google/gemini-3-flash-preview`, streams SSE back.
-- System prompt = the exact prompt you provided.
-- Handles 429 / 402 with proper status codes and CORS headers.
-- Uses `LOVABLE_API_KEY` (already configured).
-
-Frontend uses the streaming SSE pattern (token-by-token rendering).
-
----
-
-### Phase 5: Micro-animations & Polish
-
-1. Scroll-triggered fades — already exist via `ScrollReveal` component. Audit homepage sections and wrap any unwrapped major sections.
-2. Page transitions — already implemented in `AppLayout` (`animate-fade-in` keyed on pathname). No change needed.
-3. Pikachu — untouched.
-4. Header glassmorphism — already has `bg-background/80 backdrop-blur-md`. Add a subtle scroll-based class boost (slightly darker + stronger blur after 20px scroll) using a `useEffect` scroll listener.
-5. External links — audit and add `target="_blank" rel="noopener noreferrer"` where missing in new footer + Z Hub.
-6. Add a 2px teal→blue gradient line at the very top of every page. Inject in `AppLayout` above the Header as `<div className="h-0.5 w-full bg-gradient-to-r from-primary via-secondary to-primary" />`.
-
----
+Only the three "How I Help" card description paragraphs and the hero microcopy need bumping. Headings, buttons, and nav untouched.
 
 ### Files Changed
-1. `src/components/Header.tsx` — trim top nav, add scroll-state class
-2. `src/components/AppLayout.tsx` — new footer, top gradient line, mount AIChatWidget
-3. `src/App.tsx` — add `/z-hub` route
-4. `src/pages/ZHub.tsx` — new page
-5. `src/pages/Index.tsx` — hero animation classes, CTA gradient wrapper, social proof line, pulsing dot
-6. `src/index.css` — `@keyframes gradient-shift`, smooth scroll, hero entrance utility
-7. `src/components/AIChatWidget.tsx` — new floating chat
-8. `supabase/functions/zain-chat/index.ts` — new edge function (Lovable AI, streaming)
-
-### What I will NOT touch
-- About, Investing, AI Prompts, Life Notes, Tools, Fun Projects (Pikachu) page contents
-- Sidebar data structure
-- Any existing brand tokens, fonts, or section spacing standards
-- Books / Digital Products pages
+1. `src/components/AppLayout.tsx` — centered footer bottom row, Z hub repositioned
+2. `src/data/nav.ts` — swap 3 archive icons (Sparkles, FileText, Star)
+3. `src/components/AppSidebar.tsx` — muted gray styling on archive icons only
+4. `src/pages/Index.tsx` — bump 3 service card descriptions to text-base, hero microcopy to text-sm
