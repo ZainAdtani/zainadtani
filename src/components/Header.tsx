@@ -36,9 +36,6 @@ export const Header = () => {
 
   return (
     <header className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${scrolled ? 'border-border/80 bg-background/90 backdrop-blur-xl shadow-sm' : 'border-border bg-background/80 backdrop-blur-md'}`}>
-
-  return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-2">
         {/* Logo + Sidebar Trigger */}
         <div className="flex items-center gap-2">
