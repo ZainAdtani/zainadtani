@@ -6,22 +6,28 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "@/components/ui/sheet";
 
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import zaLogo from "@/assets/za_logo.png";
 
 const TOP_NAV = [
   { label: "Home", path: "/" },
-  { label: "About", path: "/about" },
   { label: "Services", path: "/services" },
-  { label: "Products", path: "/digital-products" },
   { label: "Books", path: "/books" },
+  { label: "Products", path: "/digital-products" },
 ];
 
 export const Header = () => {
   const { theme, setTheme } = useTheme();
   const location = useLocation();
   const [sheetOpen, setSheetOpen] = useState(false);
-  
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const isActive = (path: string) => {
     if (path === '/') return location.pathname === '/';
@@ -29,7 +35,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
+    <header className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${scrolled ? 'border-border/80 bg-background/90 backdrop-blur-xl shadow-sm' : 'border-border bg-background/80 backdrop-blur-md'}`}>
       <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-2">
         {/* Logo + Sidebar Trigger */}
         <div className="flex items-center gap-2">

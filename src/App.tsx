@@ -21,6 +21,7 @@ import LifeNotes from "./pages/LifeNotes";
 import Archive from "./pages/Archive";
 
 import Services from "./pages/Services";
+import ZHub from "./pages/ZHub";
 
 // Project sub-pages
 import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
@@ -52,6 +53,7 @@ const App = () => (
             <Route path="/life-notes" element={<LifeNotes />} />
             <Route path="/archive" element={<Archive />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/z-hub" element={<ZHub />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
