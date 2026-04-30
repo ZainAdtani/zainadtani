@@ -21,6 +21,7 @@ import LifeNotes from "./pages/LifeNotes";
 import Archive from "./pages/Archive";
 
 import Services from "./pages/Services";
+import ZHub from "./pages/ZHub";
 
 // Project sub-pages
 import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
