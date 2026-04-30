@@ -187,6 +187,48 @@ All colors MUST be HSL.
   animation: glow-pulse 3s ease-in-out infinite;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.cta-gradient-border {
+  position: relative;
+  display: inline-block;
+  border-radius: 9999px;
+  padding: 2px;
+  background: linear-gradient(90deg, #00D4AA, #3B82F6, #00D4AA);
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.cta-gradient-border:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 24px rgba(0, 212, 170, 0.45);
+}
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-hero-rise {
+  opacity: 0;
+  animation: hero-rise 0.7s ease-out forwards;
+}
+
+@keyframes pulse-soft {
+  0%, 100% { box-shadow: 0 4px 24px rgba(0,212,170,0.45); }
+  50% { box-shadow: 0 4px 32px rgba(0,212,170,0.7); }
+}
+.animate-pulse-soft {
+  animation: pulse-soft 2.4s ease-in-out infinite;
+}
+
+
 /* Respect prefers-reduced-motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   .hover-lift:hover,
