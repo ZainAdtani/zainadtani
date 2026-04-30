@@ -319,7 +319,10 @@ const Index = () => {
       <section id="z-letter" className="py-14">
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">The Z Letter</h2>
-          <p className="text-muted-foreground text-center text-base mb-6">One email every Sunday. No fluff. Just value.</p>
+          <p className="text-muted-foreground text-center text-base mb-6 inline-flex items-center gap-2 justify-center w-full">
+            <span className="inline-block w-2 h-2 rounded-full bg-primary animate-pulse" aria-hidden="true" />
+            One email every Sunday. No fluff. Just value.
+          </p>
           <div className="text-center mb-10">
             <Button asChild size="lg" className="rounded-full bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200 px-8 text-base font-semibold">
               <a href="https://thezletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">
