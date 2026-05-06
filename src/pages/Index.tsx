@@ -266,96 +266,82 @@ const Index = () => {
       {/* How Can I Help You? */}
       <section className="bg-[#0A0F1A] py-[100px]">
         <div className="container mx-auto px-6 max-w-6xl">
-          <div className="grid md:grid-cols-[35%_65%] gap-12">
-            <div className="md:sticky md:top-[120px] self-start">
-              <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#00D4AA]">WHAT I DO</p>
-              <h2 className="font-display font-extrabold text-[48px] leading-[1.15] text-[#F1F5F9] mt-3">
-                <span className="block">How Can I</span>
-                <span className="block">Help You?</span>
-              </h2>
-              <p className="font-sans text-[16px] text-[#94A3B8] mt-4 max-w-[260px]">
-                Pick your path.<br />Let's get to work.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 gap-5">
-              {[
-                { icon: "🤖", title: "Done-For-You AI Websites", body: "You bring the vision. I handle design, copy, build, and launch using Lovable and AI. Live in under two weeks." },
-                { icon: "📖", title: "Publish Your Book", body: "You have a story. Let's get it on Amazon. Kindle, paperback, and audiobook. From first draft to live listing — done with you." },
-                { icon: "⚙️", title: "AI Workflow Consulting", body: "Tired of doing the same tasks manually? I build custom AI systems using Claude, Notion, and automation. One session can save you 10 hours a week." },
-              ].map((c) => (
-                <div
-                  key={c.title}
-                  className="bg-[#0F2340] border border-[#1E3A5F] rounded-[14px] p-8 transition-all duration-[250ms] hover:border-[rgba(0,212,170,0.4)] hover:-translate-y-[3px]"
-                >
-                  <div className="text-3xl">{c.icon}</div>
-                  <h3 className="font-display font-bold text-[20px] text-[#F1F5F9] mt-4">{c.title}</h3>
-                  <p className="font-sans text-[15px] text-[#94A3B8] mt-3">{c.body}</p>
-                  <Link
-                    to="/services"
-                    className="inline-block mt-4 font-sans font-medium text-[14px] text-[#00D4AA] hover:underline"
-                  >
-                    Get started →
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-
-      {/* Social Proof / Results Strip */}
-      <ScrollReveal delay={80}>
-      <section className="py-14">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#00D4AA] text-center">WHAT I DO</p>
+          <h2 className="font-display font-extrabold text-[40px] md:text-[52px] leading-[1.15] text-[#F1F5F9] text-center mt-3">
+            <span className="block">How Can I</span>
+            <span className="block">Help You?</span>
+          </h2>
+          <p className="font-sans text-[16px] text-[#94A3B8] text-center mt-4">
+            Pick what fits. Let's get moving.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12">
             {[
-              { num: "10+", label: "AI Systems Built" },
-              { num: "2 Weeks", label: "Avg. Website Delivery" },
-              { num: "1 Book Live", label: "on Amazon KDP" },
-              { num: "250+", label: "Taught at Lockheed" },
-            ].map((s) => (
+              { icon: "🤖", title: "AI Websites, Built Fast", body: "Your business deserves a website that works while you sleep. I design, write, and launch it in under two weeks. You show up with the vision. I handle everything else.", cta: "Let's build yours →" },
+              { icon: "📖", title: "Your Story, On Amazon", body: "You have a book inside you. I help you get it out, formatted, and live on Amazon — Kindle, paperback, and audiobook. Done with you, not just for you.", cta: "Let's publish yours →" },
+              { icon: "⚡", title: "Work Smarter With AI", body: "Stop doing manually what a machine can do better. I audit your workflow and build you a custom AI system using Claude and automation tools. One session. Real hours back.", cta: "Let's automate yours →" },
+            ].map((c) => (
               <div
-                key={s.label}
-                className="bg-[#0F2340] border-l-[3px] border-l-[#00D4AA] rounded-md p-6 flex flex-col items-start"
+                key={c.title}
+                className="bg-[#0F2340] border border-[#1E3A5F] rounded-[14px] p-8 transition-all duration-[250ms] hover:border-[rgba(0,212,170,0.4)] hover:-translate-y-[3px] flex flex-col"
               >
-                <div className="font-display font-extrabold text-[32px] leading-none text-[#00D4AA]">
-                  {s.num}
-                </div>
-                <div className="mt-2 text-[14px] font-normal text-[#94A3B8]">
-                  {s.label}
-                </div>
+                <div className="text-3xl">{c.icon}</div>
+                <h3 className="font-display font-bold text-[20px] text-[#F1F5F9] mt-4">{c.title}</h3>
+                <p className="font-sans text-[15px] text-[#94A3B8] mt-3 flex-1">{c.body}</p>
+                <Link to="/services" className="inline-block mt-4 font-sans font-medium text-[14px] text-[#00D4AA] hover:underline">
+                  {c.cta}
+                </Link>
               </div>
             ))}
           </div>
         </div>
       </section>
-      </ScrollReveal>
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
-      {/* The Z Letter — Combined Section */}
+      {/* Newsletter — The Z Letter */}
       <ScrollReveal delay={100}>
-      <section id="z-letter" className="py-14">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">The Z Letter</h2>
-          <p className="text-muted-foreground text-center text-base mb-6 inline-flex items-center gap-2 justify-center w-full">
-            <span className="inline-block w-2 h-2 rounded-full bg-primary animate-pulse" aria-hidden="true" />
-            One email every Sunday. No fluff. Just value.
-          </p>
-          <div className="text-center mb-10">
-            <Button asChild size="lg" className="rounded-full bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200 px-8 text-base font-semibold">
-              <a href="https://thezletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">
-                Subscribe Free →
-              </a>
-            </Button>
+      <section id="z-letter" className="py-20 bg-[#0A0F1A]">
+        <div className="container mx-auto px-6 max-w-2xl">
+          <div className="text-center">
+            <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#00D4AA]">FREE WEEKLY NEWSLETTER</p>
+            <h2 className="font-display font-extrabold text-[40px] md:text-[48px] leading-[1.15] text-[#F1F5F9] mt-3">
+              <span className="block">Subscribe to</span>
+              <span className="block">The Z Letter</span>
+            </h2>
+            <p className="font-sans text-[16px] text-[#94A3B8] mt-4">
+              Every Sunday I send one practical AI tip, one tool worth your time, and one idea that makes you think. No fluff. Always free.
+            </p>
           </div>
-          <ZLetterFeed />
+          <div className="mt-8 max-w-md mx-auto flex flex-col gap-3">
+            <input
+              id="zletterEmail"
+              type="email"
+              placeholder="you@email.com"
+              className="w-full bg-[#0F2340] border border-[#1E3A5F] rounded-xl px-5 py-3.5 font-sans text-[15px] text-[#F1F5F9] placeholder-[#6B7280] focus:outline-none focus:border-[#00D4AA] transition-colors"
+            />
+            <button
+              type="button"
+              onClick={() => {
+                const el = document.getElementById('zletterEmail') as HTMLInputElement;
+                const email = el?.value?.trim();
+                if (!email || !email.includes('@')) {
+                  el?.focus();
+                  return;
+                }
+                const url = 'https://magic.beehiiv.com/v1/dd1643e2-f274-43e4-b193-62276e3e3b48?email=' + encodeURIComponent(email);
+                window.open(url, '_blank');
+              }}
+              className="w-full bg-[#00D4AA] text-[#0A0F1A] font-display font-semibold text-[15px] px-6 py-3.5 rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
+            >
+              Subscribe Free →
+            </button>
+            <p className="text-center font-sans text-[13px] text-[#6B7280] mt-2">
+              Sundays at 9AM Central. Unsubscribe anytime.
+            </p>
+          </div>
         </div>
       </section>
       </ScrollReveal>
-
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
@@ -383,26 +369,31 @@ const Index = () => {
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
-      {/* Let's Work Together / Contact */}
+      {/* Final CTA — Let's Work Together */}
       <ScrollReveal delay={50}>
-        <section id="contact" className="py-20">
-          <div className="container mx-auto px-4 max-w-2xl text-center space-y-6">
-            <h2 className="text-3xl md:text-4xl font-display font-extrabold text-foreground">
-              Ready to Build Something?
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Whether you need an AI strategy, a website, or help publishing your book, let's talk.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="rounded-full bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200 px-8 text-base font-semibold">
-                <a href="https://calendly.com/zkadtani" target="_blank" rel="noopener noreferrer">Book a Call</a>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full border-[hsl(217,91%,60%)] text-[hsl(217,91%,60%)] hover:bg-[hsl(217,91%,60%)]/10 px-8 text-base font-semibold">
-                <a href="mailto:zkadtani@gmail.com">Send Me an Email</a>
-              </Button>
-            </div>
-          </div>
-        </section>
+      <section id="contact" className="py-20 bg-[#0A0F1A]">
+        <div className="container mx-auto px-6 max-w-2xl text-center">
+          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#00D4AA]">LET'S WORK TOGETHER</p>
+          <h2 className="font-display font-extrabold text-[40px] md:text-[48px] leading-[1.15] text-[#F1F5F9] mt-3">
+            <span className="block">Ready to Build</span>
+            <span className="block">Something Real?</span>
+          </h2>
+          <p className="font-sans text-[16px] text-[#94A3B8] mt-4">
+            Whether it's a website, a book, or a smarter way to run your business — let's talk. First call is free.
+          </p>
+          <a
+            href="https://calendly.com/zkadtani"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center bg-[#00D4AA] text-[#0A0F1A] font-display font-semibold px-8 py-3.5 rounded-xl text-[15px] hover:opacity-90 transition-opacity mt-8"
+          >
+            Book a Free Call →
+          </a>
+          <p className="font-sans text-[13px] text-[#6B7280] mt-4">
+            No pitch. No pressure. Just a real conversation.
+          </p>
+        </div>
+      </section>
       </ScrollReveal>
 
     </div>;

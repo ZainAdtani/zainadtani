@@ -247,3 +247,9 @@ html {
     transition-duration: 0.01ms !important;
   }
 }
+
+@keyframes drawZ {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

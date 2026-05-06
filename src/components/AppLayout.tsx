@@ -120,6 +120,47 @@ function LayoutShell({ children }: { children: ReactNode }) {
 
               <div className="border-t border-border/60 pt-6 relative">
                 <div className="flex flex-col items-center gap-2 text-center">
+                  {/* Animated Z Logo */}
+                  <svg
+                    width="48"
+                    height="48"
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                    className="mb-2"
+                  >
+                    {/* Top horizontal bar of Z */}
+                    <line
+                      x1="10" y1="12" x2="38" y2="12"
+                      stroke="#00D4AA" strokeWidth="3" strokeLinecap="round"
+                      style={{
+                        strokeDasharray: 28,
+                        strokeDashoffset: 28,
+                        animation: "drawZ 0.5s ease-out 0s forwards",
+                      }}
+                    />
+                    {/* Diagonal of Z */}
+                    <line
+                      x1="38" y1="12" x2="10" y2="36"
+                      stroke="#00D4AA" strokeWidth="3" strokeLinecap="round"
+                      style={{
+                        strokeDasharray: 38,
+                        strokeDashoffset: 38,
+                        animation: "drawZ 0.6s ease-out 0.5s forwards",
+                      }}
+                    />
+                    {/* Bottom horizontal bar of Z */}
+                    <line
+                      x1="10" y1="36" x2="38" y2="36"
+                      stroke="#00D4AA" strokeWidth="3" strokeLinecap="round"
+                      style={{
+                        strokeDasharray: 28,
+                        strokeDashoffset: 28,
+                        animation: "drawZ 0.5s ease-out 1s forwards",
+                      }}
+                    />
+                  </svg>
                   <a
                     href="https://buymeacoffee.com/curiouszen"
                     target="_blank"
