@@ -1,72 +1,62 @@
-## Plan: Header trim, Sidebar slim + secret toggle, Hero redesign, Services rework, About removal
+## Plan: Header CTA, hide icon rail, hero redesign, unified Resources page
 
-### Task 1 — Remove hamburger from Header
-**File:** `src/components/Header.tsx`
-- Remove the entire mobile `<Sheet>...</Sheet>` block (lines ~74–137) including the `Menu` trigger button. This is the only hamburger in the header.
-- Remove the now-unused imports: `Menu` from lucide-react, `Sheet/SheetContent/SheetHeader/SheetTrigger`, `getNavItemsBySection`, and the `sheetOpen` state.
-- Keep the `SidebarTrigger` (it's a separate icon next to the logo) — the spec only forbids the hamburger. Actually re-reading: "Find the hamburger/menu toggle button that opens the sidebar." → that's `SidebarTrigger` next to the logo. Remove that one too. Keep desktop TOP_NAV (Home, Services, Books, Resources) and the desktop theme toggle untouched.
-- Net: remove both `SidebarTrigger` (line 45) and the mobile `Sheet` hamburger. No empty space — they were inline flex items, removing them collapses the gap.
+### Task 1 — Header (`src/components/Header.tsx`)
+- In `TOP_NAV`, change `Resources` path from `/prompts` to `/resources`.
+- After the mapped nav links and before the theme toggle, insert (desktop only, `hidden md:flex items-center gap-3`):
+  - `<a href="https://linkedin.com/in/zainadtani" target="_blank" rel="noopener noreferrer" className="text-[#94A3B8] hover:text-[#00D4AA] transition-colors">` with `<Linkedin className="h-5 w-5" />`
+  - Same wrapper for YouTube → `https://youtube.com/@zainadtani` with `<Youtube className="h-5 w-5" />`
+- Add lucide imports: `Linkedin, Youtube`.
+- After social icons (still before theme toggle), add Book a Call CTA `<a>`:
+  - `href="https://calendly.com/zkadtani"`, `target="_blank"`, `rel="noopener noreferrer"`
+  - `className="hidden md:inline-flex font-display bg-[#00D4AA] text-[#0A0F1A] font-semibold text-sm px-4 py-2 rounded-[8px] hover:opacity-90 transition-opacity"`
+  - Text: `Book a Call`
 
-### Task 2 — Sidebar slim down + secret toggle
-**File:** `src/data/nav.ts`
-- Reduce `NAV_ITEMS` to only:
-  - `{ label: "AI Prompts", path: "/ai-prompts", icon: Sparkles, section: "main" }`
-  - `{ label: "Life Notes", path: "/life-notes", icon: FileText, section: "main" }`
-- Removes Home/About/Services/Books/Investing/Digital Products/Tools/Fun Projects from the nav array. Routes themselves remain registered in `App.tsx`; only the sidebar visibility changes (Header TOP_NAV uses its own array, unaffected).
+### Task 2 — Hide sidebar icon rail (`src/components/AppLayout.tsx`)
+- In `LayoutShell`, read `state` from existing `useSidebar()` and wrap `<AppSidebar />` in a `<div className={state === "collapsed" ? "hidden" : ""}>`. This hides the collapsed icon rail without touching `AppSidebar.tsx`. The secret footer Grip button calls `toggleSidebar()`, which opens the sidebar to expanded (state becomes `expanded`), at which point the wrapper renders normally.
 
-**File:** `src/components/AppSidebar.tsx`
-- The "Projects" group becomes empty since both items are now in "main" — remove the empty Projects `SidebarGroup` block.
+### Task 3 — Hero redesign (`src/pages/Index.tsx`)
+- Locate the existing hero section (the 90vh split with radial gradient added previously) and replace it with the new section per spec:
+  - Outer: `<section className="relative w-full bg-[#0A0F1A] pt-20 pb-0 overflow-hidden">`
+  - Inner grid: `max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center md:py-20`
+  - Left column (`order-2 md:order-1 flex flex-col gap-6`):
+    1. Eyebrow pill exactly as specified.
+    2. `<h1 className="font-display font-extrabold text-[36px] md:text-[52px] leading-[1.1] text-[#F1F5F9]">` with four `<span className="block">` lines.
+    3. Subtext `<p className="font-sans text-[17px] text-[#94A3B8] max-w-[420px]">…</p>`.
+    4. CTA row `<div className="flex gap-3 flex-wrap mt-2">`:
+       - Primary `<a>` Calendly → bg `#00D4AA`, text `#0A0F1A`, `font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:opacity-90 transition`.
+       - Ghost `<a>` Beehiiv → `border-[1.5px] border-[#00D4AA]/40 text-[#00D4AA] font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:border-[#00D4AA] transition-colors`.
+    5. Social proof `<p className="mt-4 font-sans text-[13px] text-[#6B7280]">📍 DFW, Texas · 🎓 UTSA Mechanical Engineer · 📚 Published Author</p>`.
+  - Right column (`order-1 md:order-2 relative rounded-2xl overflow-hidden md:max-h-[520px]`):
+    - Sibling glow div: `absolute inset-0 rounded-2xl pointer-events-none` with inline `boxShadow: "0 0 60px rgba(0,212,170,0.08)"`.
+    - `<img src={headshotImage} alt="Zain Adtani" className="w-full h-full object-cover object-top max-h-[320px] md:max-h-[520px] rounded-2xl" />`.
+    - Bottom fade: `<div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A0F1A] to-transparent pointer-events-none" />`.
+- Keep `<Helmet>` and `<TimeBar />` as-is. Reuse the existing `headshotImage` import (already present).
 
-**File:** `src/components/AppLayout.tsx`
-- Add a secret toggle button inside the footer copyright row, inline at the right end (replacing/next to the existing "Z" link area is fine, but spec says "after the LLC copyright line"). Place it inline after the © line:
-  - 32px circular button, `bg-[#1E3A5F]`, hover adds `border border-[#00D4AA]`
-  - Icon: `Grip` (or three-dot) lucide icon, muted
-  - `onClick`: calls `toggleSidebar()` from `useSidebar()`
-  - No tooltip, no aria-label visible (keep `aria-label="Toggle sidebar"` for a11y)
-- Because `useSidebar()` must be called inside `SidebarProvider`, extract the inner content (currently inside `SidebarProvider`) into a small inner component `LayoutShell` so it can call the hook. Move all current children of `SidebarProvider` into `LayoutShell`. Keep `SidebarProvider defaultOpen={false}` wrapper as-is.
+### Task 4 — Unified `/resources` page
+- Create `src/pages/Resources.tsx` (replacing current Resources content). Existing Resources file is in use by no nav (Resources nav now points to `/resources` via the new file). Old Resources page at `/resources` route is currently registered — replace its content. Keep `/prompts`, `/ai-prompts`, `/life-notes` routes intact.
+- Structure:
+  - `<Helmet>` title "Resources | Zain Adtani".
+  - Hero block: `max-w-6xl mx-auto px-6 pt-20 pb-10 text-center`, h1 `font-display font-extrabold text-[40px]` "Resources", subtext.
+  - Tab bar: `useState<'prompts' | 'notes'>('prompts')`. Two pill buttons styled per spec (active = teal bg, inactive = `#0F2340` etc.).
+  - Tab 1 panel: inline the same 11-prompt array + grid + CopyBlock JSX from `src/pages/Prompts.tsx` (copy the `PROMPTS` constant and the grid + footer CTA).
+  - Tab 2 panel: import `LifeNotes` page component default and render `<LifeNotes />` directly (re-uses the exact existing content; simpler than copying).
+  - Footer row: `mt-16 text-center font-sans text-[14px] text-[#00D4AA]` with "Looking for more? → " followed by `<Link to="/ai-prompts" className="underline-offset-4 hover:underline">Full Prompt Library</Link>`.
+- Update `src/App.tsx`: the `<Route path="/resources" element={<Resources />} />` already exists pointing to the existing Resources file; the rewritten file at the same path keeps the route working. No other route changes.
 
-### Task 3 — Homepage hero redesign
-**File:** `src/pages/Index.tsx`
-- Replace the existing hero `<ScrollReveal><section>...</section></ScrollReveal>` block (the first section after `<TimeBar />`) with a new full-bleed hero:
-  - Outer `<section>`: `relative w-full min-h-[90vh] bg-[#0A0F1A] overflow-hidden` + inline style for the radial gradient `background: radial-gradient(ellipse at 15% 50%, rgba(0,212,170,0.07) 0%, transparent 60%), #0A0F1A`
-  - Inner: `grid md:grid-cols-[55%_45%] min-h-[90vh]`
-  - **Left column** (`flex flex-col justify-center px-8 md:px-16 py-16`):
-    - Eyebrow: `<p className="text-[13px] font-medium tracking-widest uppercase text-[#00D4AA] font-sans">AI CONSULTANT · AUTHOR · EDUCATOR</p>` (DM Sans is `font-sans`)
-    - Headline: `<h1 className="font-display font-extrabold text-[40px] md:text-[64px] leading-[1.1] text-[#F1F5F9] mt-4">` with four `<span className="block">` lines: "I Help Businesses", "Run on AI.", "I Help Creators", "Publish Books."
-    - Subtext: `<p className="font-sans text-[18px] text-[#94A3B8] mt-6 max-w-[480px]">Strategy to shipped. No fluff. Real results.<br/>Based in DFW, Texas.</p>`
-    - Buttons row `mt-10 flex flex-wrap gap-4`:
-      - Primary: `<Link to="/services" className="px-7 py-3.5 rounded-[10px] font-display font-semibold text-[15px] text-white" style={{background:'linear-gradient(135deg,#00D4AA,#3B82F6)'}}>Work With Me</Link>`
-      - Ghost: `<a href="https://the-z-letter.beehiiv.com" target="_blank" rel="noopener noreferrer" className="px-7 py-3.5 rounded-[10px] font-display font-semibold text-[15px] text-[#00D4AA] border-[1.5px] border-[#00D4AA]/40 hover:border-[#00D4AA] transition-colors">Read The Z Letter</a>`
-  - **Right column** (`relative md:h-[90vh] h-[40vh] order-first md:order-last`):
-    - `<img src={headshotImage} className="w-full h-full object-cover object-top" />` — no border-radius, no shadow
-    - Overlay div: desktop fades left edge `absolute inset-0 bg-gradient-to-r from-[#0A0F1A] via-transparent to-transparent md:bg-[linear-gradient(to_right,#0A0F1A_0%,transparent_40%)]`. Mobile uses bottom fade: include responsive variant `bg-[linear-gradient(to_bottom,transparent_50%,#0A0F1A_100%)] md:bg-[linear-gradient(to_right,#0A0F1A_0%,transparent_40%)]`
-- Keep the existing `<Helmet>` and `<TimeBar />` above. Everything below the hero (divider, Z Letter, etc.) stays.
+### Task 5 — Footer links (`src/components/AppLayout.tsx`)
+- Update `FOOTER_CONNECT`:
+  - LinkedIn → `https://linkedin.com/in/zainadtani`
+  - YouTube → `https://youtube.com/@zainadtani`
+  - The Z Letter → `https://the-z-letter.beehiiv.com`
+  - Email → `mailto:zkadtani@gmail.com`
+  - Add: `{ label: "Book a Call", href: "https://calendly.com/zkadtani" }`
+- `FOOTER_MORE` already has About → `/about` and Book a Call → Calendly; leave as-is.
 
-### Task 4 — "How Can I Help You?" section rework
-**File:** `src/pages/Index.tsx`
-- Replace the existing "Here's How We Can Work Together" section (the ScrollReveal block with the 3 service Cards) with:
-  - `<section className="bg-[#0A0F1A] py-[100px]">` + container `max-w-6xl mx-auto px-6`
-  - `grid md:grid-cols-[35%_65%] gap-12`
-  - **Left** (`md:sticky md:top-[120px] self-start`):
-    - Label "WHAT I DO" (12px, teal, uppercase, tracking-widest, font-sans 500)
-    - Heading `font-display font-extrabold text-[48px] leading-[1.15] text-[#F1F5F9] mt-3`: "How Can I" / "Help You?" (block spans)
-    - Subtext `font-sans text-[16px] text-[#94A3B8] mt-4 max-w-[260px]`: "Pick your path." / "Let's get to work." (with `<br/>`)
-  - **Right**: `grid grid-cols-1 gap-5`. Three cards:
-    - Each `<div className="bg-[#0F2340] border border-[#1E3A5F] rounded-[14px] p-8 transition-all duration-[250ms] hover:border-[rgba(0,212,170,0.4)] hover:-translate-y-[3px]">`
-    - Inside: emoji icon (text-3xl), `<h3 className="font-display font-bold text-[20px] text-[#F1F5F9] mt-4">{title}</h3>`, body `<p className="font-sans text-[15px] text-[#94A3B8] mt-3">{body}</p>`, link `<Link to="/services" className="inline-block mt-4 font-sans font-medium text-[14px] text-[#00D4AA] hover:underline">Get started →</Link>`
-    - Card 1: 🤖, "Done-For-You AI Websites", body per spec
-    - Card 2: 📖, "Publish Your Book", body per spec
-    - Card 3: ⚙️, "AI Workflow Consulting", body per spec
+### Files touched
+- `src/components/Header.tsx`
+- `src/components/AppLayout.tsx`
+- `src/pages/Index.tsx`
+- `src/pages/Resources.tsx` (rewrite)
+- `src/App.tsx` — no change needed; route already registered.
 
-### Task 5 — Remove "A little about me" section
-**File:** `src/pages/Index.tsx`
-- Delete the `<ScrollReveal delay={50}><section className="py-20 max-w-3xl..."><h2>A little about me</h2>...</section></ScrollReveal>` block and the divider immediately preceding/following it (keep one divider so the page doesn't have doubled lines). The `/about` route and `src/pages/About.tsx` are untouched.
-
-### Files Touched
-- `src/components/Header.tsx` — remove `SidebarTrigger` and mobile Sheet hamburger + unused imports
-- `src/data/nav.ts` — reduce NAV_ITEMS to AI Prompts + Life Notes
-- `src/components/AppSidebar.tsx` — remove now-empty Projects group
-- `src/components/AppLayout.tsx` — wrap inner content in `LayoutShell` to access `useSidebar`; add 32px circular secret toggle in footer copyright row
-- `src/pages/Index.tsx` — new hero, new "How Can I Help You?" section, remove "A little about me"
-
-No routes deleted. No other homepage sections modified. Sidebar component and toggle plumbing remain in codebase.
+No routes deleted. No sidebar content modified. `/prompts`, `/ai-prompts`, `/life-notes` remain registered.

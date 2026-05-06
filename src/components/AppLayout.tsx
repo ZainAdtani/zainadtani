@@ -16,14 +16,15 @@ const FOOTER_NAV = [
   { label: "Home", to: "/" },
   { label: "Services", to: "/services" },
   { label: "Books", to: "/books" },
-  { label: "Resources", to: "/prompts" },
+  { label: "Resources", to: "/resources" },
 ];
 
 const FOOTER_CONNECT = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/zainadtani/" },
-  { label: "YouTube", href: "https://youtube.com/@captainduaadventures?si=xPzuebAHwHZTl52V" },
-  { label: "The Z Letter", href: "https://thezletter.beehiiv.com/subscribe" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/zainadtani" },
+  { label: "YouTube", href: "https://youtube.com/@zainadtani" },
+  { label: "The Z Letter", href: "https://the-z-letter.beehiiv.com" },
   { label: "Email", href: "mailto:zkadtani@gmail.com" },
+  { label: "Book a Call", href: "https://calendly.com/zkadtani" },
 ];
 
 const FOOTER_MORE = [
@@ -41,14 +42,16 @@ export function AppLayout({ children }: AppLayoutProps) {
 
 function LayoutShell({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
-  const { toggleSidebar } = useSidebar();
+  const { toggleSidebar, state } = useSidebar();
 
   return (
     <>
       <div className="fixed top-0 left-0 right-0 h-0.5 z-[60] bg-gradient-to-r from-primary via-secondary to-primary" />
       <ReadingProgressBar />
       <div className="min-h-screen flex w-full">
-        <AppSidebar />
+        <div className={state === "collapsed" ? "hidden" : ""}>
+          <AppSidebar />
+        </div>
         <div className="flex-1 flex flex-col w-full">
           <Header />
           <main className="flex-1 overflow-auto">
