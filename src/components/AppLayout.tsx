@@ -17,7 +17,6 @@ const FOOTER_NAV = [
   { label: "Services", to: "/services" },
   { label: "Books", to: "/books" },
   { label: "Resources", to: "/prompts" },
-  { label: "Products", to: "/digital-products" },
 ];
 
 const FOOTER_CONNECT = [
