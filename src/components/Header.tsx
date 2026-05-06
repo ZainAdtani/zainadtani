@@ -16,6 +16,7 @@ export const Header = () => {
   const { theme, setTheme } = useTheme();
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
