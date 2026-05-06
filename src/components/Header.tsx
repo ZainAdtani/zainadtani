@@ -13,6 +13,7 @@ const TOP_NAV = [
   { label: "Home", path: "/" },
   { label: "Services", path: "/services" },
   { label: "Books", path: "/books" },
+  { label: "Resources", path: "/prompts" },
   { label: "Products", path: "/digital-products" },
 ];
 

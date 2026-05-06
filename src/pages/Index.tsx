@@ -342,7 +342,12 @@ const Index = () => {
       <section id="tabs-section" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">Digital Products</h2>
-          <p className="text-muted-foreground text-center text-base mb-10">Tools and resources I have built for you.</p>
+          <p className="text-muted-foreground text-center text-base mb-3">Tools and resources I have built for you.</p>
+          <p className="text-center mb-10">
+            <Link to="/prompts" className="text-sm text-primary hover:underline">
+              → Free: Grab my AI Starter Prompts
+            </Link>
+          </p>
           <Tabs value={activeTab} onValueChange={v => setActiveTab(v as TabKey)} className="w-full" aria-label="Zain site sections">
             <TabsList className="grid w-full grid-cols-2 mb-8 h-auto">
               <TabsTrigger value="digital-products" className="text-xs sm:text-sm px-2 py-2.5">

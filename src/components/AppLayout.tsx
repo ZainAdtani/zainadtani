@@ -16,6 +16,7 @@ const FOOTER_NAV = [
   { label: "Home", to: "/" },
   { label: "Services", to: "/services" },
   { label: "Books", to: "/books" },
+  { label: "Resources", to: "/prompts" },
   { label: "Products", to: "/digital-products" },
 ];
 
@@ -122,7 +123,7 @@ export function AppLayout({ children }: AppLayoutProps) {
                     ☕ Support my work
                   </a>
                   <p className="text-xs text-muted-foreground">
-                    © 2026 Zain Adtani. All rights reserved.
+                    © 2026 Zain Adtani · Adtani Education Ventures LLC · DFW, Texas
                   </p>
                 </div>
                 <Link
