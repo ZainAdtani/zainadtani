@@ -174,7 +174,7 @@ function LayoutShell({ children }: { children: ReactNode }) {
                   </p>
                   <button
                     type="button"
-                    onClick={toggleSidebar}
+                    onClick={() => {}}
                     aria-label="Toggle sidebar"
                     className="mt-3 w-8 h-8 rounded-full bg-[#1E3A5F] flex items-center justify-center border border-transparent hover:border-[#00D4AA] transition-colors"
                   >
