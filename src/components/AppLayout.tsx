@@ -49,7 +49,7 @@ function LayoutShell({ children }: { children: ReactNode }) {
       <div className="fixed top-0 left-0 right-0 h-0.5 z-[60] bg-gradient-to-r from-primary via-secondary to-primary" />
       <ReadingProgressBar />
       <div className="min-h-screen flex w-full">
-        <div className={state === "collapsed" ? "hidden" : ""}>
+        <div className="hidden">
           <AppSidebar />
         </div>
         <div className="flex-1 flex flex-col w-full">
