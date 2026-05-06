@@ -258,9 +258,9 @@ const Index = () => {
       <ScrollReveal delay={50}>
         <section className="py-20 max-w-3xl mx-auto text-center px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">A little about me</h2>
-          <p className="text-muted-foreground text-center text-base mb-10">Engineer, Eagle Scout, and aspiring author based in DFW.</p>
+          <p className="text-muted-foreground text-center text-base mb-10">Engineer. Eagle Scout. Published author. Based in DFW.</p>
           <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-            I am Zain. Engineer by training. Builder by obsession. I help small businesses plug AI into their work, and I help everyday people turn their story into a real book on Amazon. Based in DFW, Texas. Let's build something.
+            I am Zain. Mechanical Engineer by degree. Builder by obsession. I run Adtani Education Ventures LLC, where I help small businesses implement AI into their daily workflows, and I help everyday people write, format, and publish their first book on Amazon — in weeks, not years. Eagle Scout. Trilingual. Based in DFW, Texas. Let's build something.
           </p>
           <Link to="/about" className="text-primary hover:underline font-medium">
             Read my full story →
