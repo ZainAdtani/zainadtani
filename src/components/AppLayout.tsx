@@ -16,13 +16,6 @@ const FOOTER_NAV = [
   { label: "Home", to: "/" },
   { label: "Services", to: "/services" },
   { label: "Books", to: "/books" },
-  { label: "Resources", to: "/prompts" },
-];
-
-const FOOTER_NAV = [
-  { label: "Home", to: "/" },
-  { label: "Services", to: "/services" },
-  { label: "Books", to: "/books" },
   { label: "Resources", to: "/resources" },
 ];
 
