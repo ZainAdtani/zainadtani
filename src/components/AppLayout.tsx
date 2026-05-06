@@ -42,7 +42,7 @@ export function AppLayout({ children }: AppLayoutProps) {
 
 function LayoutShell({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
-  const { toggleSidebar } = useSidebar();
+  const { toggleSidebar, state } = useSidebar();
 
   return (
     <>
