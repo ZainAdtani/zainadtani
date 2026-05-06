@@ -19,11 +19,19 @@ const FOOTER_NAV = [
   { label: "Resources", to: "/prompts" },
 ];
 
+const FOOTER_NAV = [
+  { label: "Home", to: "/" },
+  { label: "Services", to: "/services" },
+  { label: "Books", to: "/books" },
+  { label: "Resources", to: "/resources" },
+];
+
 const FOOTER_CONNECT = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/zainadtani/" },
-  { label: "YouTube", href: "https://youtube.com/@captainduaadventures?si=xPzuebAHwHZTl52V" },
-  { label: "The Z Letter", href: "https://thezletter.beehiiv.com/subscribe" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/zainadtani" },
+  { label: "YouTube", href: "https://youtube.com/@zainadtani" },
+  { label: "The Z Letter", href: "https://the-z-letter.beehiiv.com" },
   { label: "Email", href: "mailto:zkadtani@gmail.com" },
+  { label: "Book a Call", href: "https://calendly.com/zkadtani" },
 ];
 
 const FOOTER_MORE = [
