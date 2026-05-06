@@ -205,58 +205,58 @@ const Index = () => {
       <TimeBar />
 
       {/* Hero Section */}
-      <section
-        className="relative w-full min-h-[90vh] overflow-hidden"
-        style={{ background: "radial-gradient(ellipse at 15% 50%, rgba(0,212,170,0.07) 0%, transparent 60%), #0A0F1A" }}
-      >
-        <div className="grid md:grid-cols-[55%_45%] min-h-[90vh]">
-          <div className="relative h-[40vh] md:h-[90vh] order-first md:order-last">
-            <img
-              src={headshotImage}
-              alt="Zain Adtani — AI Consultant and Author"
-              className="w-full h-full object-cover object-top"
-            />
-            <div
-              className="absolute inset-0 md:hidden pointer-events-none"
-              style={{ background: "linear-gradient(to bottom, transparent 50%, #0A0F1A 100%)" }}
-            />
-            <div
-              className="absolute inset-0 hidden md:block pointer-events-none"
-              style={{ background: "linear-gradient(to right, #0A0F1A 0%, transparent 40%)" }}
-            />
-          </div>
-
-          <div className="flex flex-col justify-center px-8 md:px-16 py-16 order-last md:order-first">
-            <p className="font-sans text-[13px] font-medium tracking-widest uppercase text-[#00D4AA]">
-              AI CONSULTANT · AUTHOR · EDUCATOR
-            </p>
-            <h1 className="font-display font-extrabold text-[40px] md:text-[64px] leading-[1.1] text-[#F1F5F9] mt-4">
+      <section className="relative w-full bg-[#0A0F1A] pt-20 pb-0 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center md:py-20">
+          {/* Left: text */}
+          <div className="order-2 md:order-1 flex flex-col gap-6">
+            <span className="inline-flex w-fit items-center gap-2 text-[12px] font-medium tracking-widest uppercase text-[#00D4AA] bg-[#00D4AA]/10 border border-[#00D4AA]/20 rounded-full px-4 py-1.5">
+              AI Consultant · Author · Coach
+            </span>
+            <h1 className="font-display font-extrabold text-[36px] md:text-[52px] leading-[1.1] text-[#F1F5F9]">
               <span className="block">I Help Businesses</span>
               <span className="block">Run on AI.</span>
               <span className="block">I Help Creators</span>
               <span className="block">Publish Books.</span>
             </h1>
-            <p className="font-sans text-[18px] text-[#94A3B8] mt-6 max-w-[480px]">
+            <p className="font-sans text-[17px] text-[#94A3B8] max-w-[420px]">
               Strategy to shipped. No fluff. Real results.<br />
               Based in DFW, Texas.
             </p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Link
-                to="/services"
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded-[10px] font-display font-semibold text-[15px] text-white transition-transform hover:scale-[1.02]"
-                style={{ background: "linear-gradient(135deg, #00D4AA, #3B82F6)" }}
+            <div className="flex gap-3 flex-wrap mt-2">
+              <a
+                href="https://calendly.com/zkadtani"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center bg-[#00D4AA] text-[#0A0F1A] font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:opacity-90 transition-opacity"
               >
-                Work With Me
-              </Link>
+                Book a Free Call
+              </a>
               <a
                 href="https://the-z-letter.beehiiv.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded-[10px] font-display font-semibold text-[15px] text-[#00D4AA] border-[1.5px] border-[#00D4AA]/40 hover:border-[#00D4AA] transition-colors"
+                className="inline-flex items-center justify-center border-[1.5px] border-[#00D4AA]/40 text-[#00D4AA] font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:border-[#00D4AA] transition-colors"
               >
                 Read The Z Letter
               </a>
             </div>
+            <p className="mt-4 font-sans text-[13px] text-[#6B7280]">
+              📍 DFW, Texas  ·  🎓 UTSA Mechanical Engineer  ·  📚 Published Author
+            </p>
+          </div>
+
+          {/* Right: photo */}
+          <div className="order-1 md:order-2 relative rounded-2xl overflow-hidden md:max-h-[520px]">
+            <div
+              className="absolute inset-0 rounded-2xl pointer-events-none"
+              style={{ boxShadow: "0 0 60px rgba(0,212,170,0.08)" }}
+            />
+            <img
+              src={headshotImage}
+              alt="Zain Adtani — AI Consultant and Author"
+              className="w-full h-full object-cover object-top max-h-[320px] md:max-h-[520px] rounded-2xl"
+            />
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A0F1A] to-transparent pointer-events-none" />
           </div>
         </div>
       </section>
