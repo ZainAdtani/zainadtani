@@ -314,6 +314,36 @@ const Index = () => {
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
+      {/* Social Proof / Results Strip */}
+      <ScrollReveal delay={80}>
+      <section className="py-14">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { num: "10+", label: "AI Systems Built" },
+              { num: "2 Weeks", label: "Avg. Website Delivery" },
+              { num: "1 Book Live", label: "on Amazon KDP" },
+              { num: "250+", label: "Taught at Lockheed" },
+            ].map((s) => (
+              <div
+                key={s.label}
+                className="bg-[#0F2340] border-l-[3px] border-l-[#00D4AA] rounded-md p-6 flex flex-col items-start"
+              >
+                <div className="font-display font-extrabold text-[32px] leading-none text-[#00D4AA]">
+                  {s.num}
+                </div>
+                <div className="mt-2 text-[14px] font-normal text-[#94A3B8]">
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      </ScrollReveal>
+
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
       {/* The Z Letter — Combined Section */}
       <ScrollReveal delay={100}>
       <section id="z-letter" className="py-14">
