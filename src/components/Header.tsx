@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Linkedin, Youtube } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
@@ -9,7 +9,7 @@ const TOP_NAV = [
   { label: "Home", path: "/" },
   { label: "Services", path: "/services" },
   { label: "Books", path: "/books" },
-  { label: "Resources", path: "/prompts" },
+  { label: "Resources", path: "/resources" },
 ];
 
 export const Header = () => {
