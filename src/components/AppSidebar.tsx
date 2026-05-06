@@ -158,25 +158,6 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* Projects — flat list */}
-        <SidebarGroup>
-          <SidebarGroupLabel>Projects</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {getNavItemsBySection("archive").map((item, idx) => (
-                <SidebarMenuItem key={item.path + idx}>
-                  <SidebarMenuButton asChild>
-                    <NavLink to={item.path} className={getNavClass}>
-                      <item.icon className="h-4 w-4 text-[#94A3B8]" strokeWidth={1.75} />
-                      {!isCollapsed && <span>{item.label}</span>}
-                    </NavLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
       </SidebarContent>
 
       {!isCollapsed && (

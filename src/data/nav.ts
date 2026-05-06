@@ -21,19 +21,8 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  // ── Main ──
-  { label: "Home", path: "/", icon: Home, section: "main" },
-  { label: "About", path: "/about", icon: HelpCircle, section: "main" },
-  { label: "Services", path: "/services", icon: Briefcase, section: "main" },
-  { label: "Books", path: "/books", icon: BookOpen, section: "main", searchTags: ["reading", "library"] },
-  { label: "Investing", path: "/investing", icon: TrendingUp, section: "main", searchTags: ["finance", "stocks"] },
-  { label: "Digital Products", path: "/digital-products", icon: ShoppingBag, section: "main", searchTags: ["products", "store"] },
-
-  // ── Archive ──
-  { label: "AI Prompts", path: "/ai-prompts", icon: Sparkles, section: "archive", searchTags: ["prompts", "coaching", "productivity"] },
-  { label: "Life Notes", path: "/life-notes", icon: FileText, section: "archive", searchTags: ["quotes", "wisdom", "mindset"] },
-  { label: "Tools", path: "/tools", icon: Wrench, section: "archive", searchTags: ["utilities"] },
-  { label: "Fun Projects", path: "/projects", icon: Star, section: "archive", searchTags: ["pokedex", "builds"] },
+  { label: "AI Prompts", path: "/ai-prompts", icon: Sparkles, section: "main", searchTags: ["prompts", "coaching", "productivity"] },
+  { label: "Life Notes", path: "/life-notes", icon: FileText, section: "main", searchTags: ["quotes", "wisdom", "mindset"] },
 ];
 
 // Helper to get items by section
