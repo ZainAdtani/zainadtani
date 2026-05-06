@@ -1,12 +1,12 @@
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, useSidebar } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { BackToTop } from "./BackToTop";
 import { ReadingProgressBar } from "./ReadingProgressBar";
 import { Header } from "./Header";
 import { AIChatWidget } from "./AIChatWidget";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ReactNode } from "react";
-import { useLocation } from "react-router-dom";
+import { Grip } from "lucide-react";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -32,26 +32,30 @@ const FOOTER_MORE = [
 ];
 
 export function AppLayout({ children }: AppLayoutProps) {
-  const { pathname } = useLocation();
-
   return (
     <SidebarProvider defaultOpen={false}>
-      {/* Brand accent line */}
+      <LayoutShell>{children}</LayoutShell>
+    </SidebarProvider>
+  );
+}
+
+function LayoutShell({ children }: { children: ReactNode }) {
+  const { pathname } = useLocation();
+  const { toggleSidebar } = useSidebar();
+
+  return (
+    <>
       <div className="fixed top-0 left-0 right-0 h-0.5 z-[60] bg-gradient-to-r from-primary via-secondary to-primary" />
-      {/* Global Reading Progress Bar */}
       <ReadingProgressBar />
       <div className="min-h-screen flex w-full">
         <AppSidebar />
         <div className="flex-1 flex flex-col w-full">
-          {/* Global Header */}
           <Header />
-          {/* Main Content */}
           <main className="flex-1 overflow-auto">
             <div key={pathname} className="animate-fade-in">
               {children}
             </div>
           </main>
-          {/* Global Footer */}
           <footer className="bg-background border-t border-border py-12 mt-8">
             <div className="container mx-auto px-4 max-w-6xl">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
@@ -124,6 +128,14 @@ export function AppLayout({ children }: AppLayoutProps) {
                   <p className="text-xs text-muted-foreground">
                     © 2026 Zain Adtani · Adtani Education Ventures LLC · DFW, Texas
                   </p>
+                  <button
+                    type="button"
+                    onClick={toggleSidebar}
+                    aria-label="Toggle sidebar"
+                    className="mt-3 w-8 h-8 rounded-full bg-[#1E3A5F] flex items-center justify-center border border-transparent hover:border-[#00D4AA] transition-colors"
+                  >
+                    <Grip className="w-3.5 h-3.5 text-[#94A3B8]" />
+                  </button>
                 </div>
                 <Link
                   to="/z-hub"
@@ -137,9 +149,8 @@ export function AppLayout({ children }: AppLayoutProps) {
           </footer>
         </div>
       </div>
-      {/* Global floating widgets */}
       <BackToTop />
       <AIChatWidget />
-    </SidebarProvider>
+    </>
   );
 }
