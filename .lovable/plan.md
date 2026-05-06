@@ -1,62 +1,51 @@
-## Plan: Header CTA, hide icon rail, hero redesign, unified Resources page
+## Plan: Header mobile menu, hide sidebar, expanded Resources
 
-### Task 1 — Header (`src/components/Header.tsx`)
-- In `TOP_NAV`, change `Resources` path from `/prompts` to `/resources`.
-- After the mapped nav links and before the theme toggle, insert (desktop only, `hidden md:flex items-center gap-3`):
-  - `<a href="https://linkedin.com/in/zainadtani" target="_blank" rel="noopener noreferrer" className="text-[#94A3B8] hover:text-[#00D4AA] transition-colors">` with `<Linkedin className="h-5 w-5" />`
-  - Same wrapper for YouTube → `https://youtube.com/@zainadtani` with `<Youtube className="h-5 w-5" />`
-- Add lucide imports: `Linkedin, Youtube`.
-- After social icons (still before theme toggle), add Book a Call CTA `<a>`:
-  - `href="https://calendly.com/zkadtani"`, `target="_blank"`, `rel="noopener noreferrer"`
-  - `className="hidden md:inline-flex font-display bg-[#00D4AA] text-[#0A0F1A] font-semibold text-sm px-4 py-2 rounded-[8px] hover:opacity-90 transition-opacity"`
-  - Text: `Book a Call`
+### Task 1 — `src/pages/Index.tsx`
+Reduce hero spacing: change the hero outer wrapper from `pt-20 pb-0` to `pt-8 pb-0`, and the inner grid from `md:py-20` to `md:py-12`. No copy or layout structure changes.
 
-### Task 2 — Hide sidebar icon rail (`src/components/AppLayout.tsx`)
-- In `LayoutShell`, read `state` from existing `useSidebar()` and wrap `<AppSidebar />` in a `<div className={state === "collapsed" ? "hidden" : ""}>`. This hides the collapsed icon rail without touching `AppSidebar.tsx`. The secret footer Grip button calls `toggleSidebar()`, which opens the sidebar to expanded (state becomes `expanded`), at which point the wrapper renders normally.
+### Task 2 — `src/components/Header.tsx`
+Add a mobile hamburger menu.
+- Add `useState` for `mobileOpen`.
+- Add `Menu`, `X` to lucide imports.
+- After the theme toggle (still inside the nav row), add a `md:hidden` icon button toggling `mobileOpen`, showing `Menu` or `X`.
+- Below the inner container (still inside `<header>`), conditionally render a `md:hidden` dropdown panel with:
+  - All `TOP_NAV` items as `<Link>`s (closing the menu on click).
+  - LinkedIn, YouTube external links.
+  - "Book a Free Call" Calendly CTA button (teal).
+- Style matches brand tokens (`#0A0F1A`, `#0F2340`, `#1E3A5F`, `#00D4AA`, `#94A3B8`, `#F1F5F9`).
 
-### Task 3 — Hero redesign (`src/pages/Index.tsx`)
-- Locate the existing hero section (the 90vh split with radial gradient added previously) and replace it with the new section per spec:
-  - Outer: `<section className="relative w-full bg-[#0A0F1A] pt-20 pb-0 overflow-hidden">`
-  - Inner grid: `max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center md:py-20`
-  - Left column (`order-2 md:order-1 flex flex-col gap-6`):
-    1. Eyebrow pill exactly as specified.
-    2. `<h1 className="font-display font-extrabold text-[36px] md:text-[52px] leading-[1.1] text-[#F1F5F9]">` with four `<span className="block">` lines.
-    3. Subtext `<p className="font-sans text-[17px] text-[#94A3B8] max-w-[420px]">…</p>`.
-    4. CTA row `<div className="flex gap-3 flex-wrap mt-2">`:
-       - Primary `<a>` Calendly → bg `#00D4AA`, text `#0A0F1A`, `font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:opacity-90 transition`.
-       - Ghost `<a>` Beehiiv → `border-[1.5px] border-[#00D4AA]/40 text-[#00D4AA] font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:border-[#00D4AA] transition-colors`.
-    5. Social proof `<p className="mt-4 font-sans text-[13px] text-[#6B7280]">📍 DFW, Texas · 🎓 UTSA Mechanical Engineer · 📚 Published Author</p>`.
-  - Right column (`order-1 md:order-2 relative rounded-2xl overflow-hidden md:max-h-[520px]`):
-    - Sibling glow div: `absolute inset-0 rounded-2xl pointer-events-none` with inline `boxShadow: "0 0 60px rgba(0,212,170,0.08)"`.
-    - `<img src={headshotImage} alt="Zain Adtani" className="w-full h-full object-cover object-top max-h-[320px] md:max-h-[520px] rounded-2xl" />`.
-    - Bottom fade: `<div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A0F1A] to-transparent pointer-events-none" />`.
-- Keep `<Helmet>` and `<TimeBar />` as-is. Reuse the existing `headshotImage` import (already present).
+### Task 3 — `src/components/AppLayout.tsx`
+Always hide the AppSidebar wrapper: replace `state === "collapsed" ? "hidden" : ""` with the constant `"hidden"`. Remove `useSidebar` if no longer needed (keep `state` removal). Change the secret Grip button's `onClick` to a no-op (`() => {}`) since the sidebar is fully hidden. Sidebar files remain untouched.
 
-### Task 4 — Unified `/resources` page
-- Create `src/pages/Resources.tsx` (replacing current Resources content). Existing Resources file is in use by no nav (Resources nav now points to `/resources` via the new file). Old Resources page at `/resources` route is currently registered — replace its content. Keep `/prompts`, `/ai-prompts`, `/life-notes` routes intact.
-- Structure:
-  - `<Helmet>` title "Resources | Zain Adtani".
-  - Hero block: `max-w-6xl mx-auto px-6 pt-20 pb-10 text-center`, h1 `font-display font-extrabold text-[40px]` "Resources", subtext.
-  - Tab bar: `useState<'prompts' | 'notes'>('prompts')`. Two pill buttons styled per spec (active = teal bg, inactive = `#0F2340` etc.).
-  - Tab 1 panel: inline the same 11-prompt array + grid + CopyBlock JSX from `src/pages/Prompts.tsx` (copy the `PROMPTS` constant and the grid + footer CTA).
-  - Tab 2 panel: import `LifeNotes` page component default and render `<LifeNotes />` directly (re-uses the exact existing content; simpler than copying).
-  - Footer row: `mt-16 text-center font-sans text-[14px] text-[#00D4AA]` with "Looking for more? → " followed by `<Link to="/ai-prompts" className="underline-offset-4 hover:underline">Full Prompt Library</Link>`.
-- Update `src/App.tsx`: the `<Route path="/resources" element={<Resources />} />` already exists pointing to the existing Resources file; the rewritten file at the same path keeps the route working. No other route changes.
+### Task 4 — `src/pages/Resources.tsx` (rewrite)
+Three tabs with state `"business" | "library" | "notes"`, default `"business"`.
 
-### Task 5 — Footer links (`src/components/AppLayout.tsx`)
-- Update `FOOTER_CONNECT`:
-  - LinkedIn → `https://linkedin.com/in/zainadtani`
-  - YouTube → `https://youtube.com/@zainadtani`
-  - The Z Letter → `https://the-z-letter.beehiiv.com`
-  - Email → `mailto:zkadtani@gmail.com`
-  - Add: `{ label: "Book a Call", href: "https://calendly.com/zkadtani" }`
-- `FOOTER_MORE` already has About → `/about` and Book a Call → Calendly; leave as-is.
+Tab pills row centered, brand styling per spec.
+
+**Tab 1 — For Business:** Existing 11-item `PROMPTS` array + `CopyBlock` cards grid + footer CTA "Want me to build these into your workflow?" with button → `/services`. Unchanged from current.
+
+**Tab 2 — Prompt Library:**
+- Import `AI_PROMPTS` from `@/data/ai_prompts`.
+- Inline a local `CUSTOM_INSTRUCTIONS` constant (copied from `src/pages/AIPrompts.tsx`) so we don't depend on a default-exported page.
+- Custom Instructions card at top: dark `#0F2340` bg, `#1E3A5F` border, rounded-2xl, p-6. Header with title + `CopyBlock`. Subtext line. Scrollable `<pre>` (max-h-48, overflow-y-auto, mono, `#0A0F1A` bg).
+- Search `Input` with `Search` lucide icon (controlled `q` state).
+- Category pills row: `All`, `Coaching`, `Productivity`, `Learning`, `Email`, `Delegation`, `Automation` (controlled `selectedCategory` state, `""` = all). Active = teal bg; inactive = dark with `#1E3A5F` border.
+- "X prompts found" muted count.
+- 2-col grid (1 on mobile) of prompt cards: category badge (color-mapped), title, optional italic note, monospace prompt block with max-h-32 + Expand/Collapse toggle (per-card expanded state set), `CopyBlock` button.
+- Filter logic: title + prompt + tags + category match `q`; category filter when not "All".
+
+**Tab 3 — Life Notes:** Render `<LifeNotes />` directly (already imported).
+
+Page footer block (below tabs): "More tools coming soon. Have a prompt to share? [email link in teal]".
+
+### Task 5 — `src/data/nav.ts`
+Remove the `Life Notes` entry from `NAV_ITEMS`. Keep only `AI Prompts`. `/life-notes` route and page file remain.
 
 ### Files touched
+- `src/pages/Index.tsx`
 - `src/components/Header.tsx`
 - `src/components/AppLayout.tsx`
-- `src/pages/Index.tsx`
-- `src/pages/Resources.tsx` (rewrite)
-- `src/App.tsx` — no change needed; route already registered.
+- `src/pages/Resources.tsx`
+- `src/data/nav.ts`
 
-No routes deleted. No sidebar content modified. `/prompts`, `/ai-prompts`, `/life-notes` remain registered.
+No routes deleted. No page files deleted. Sidebar files retained but hidden.
