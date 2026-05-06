@@ -205,112 +205,103 @@ const Index = () => {
       <TimeBar />
 
       {/* Hero Section */}
-      <ScrollReveal>
-      <section className="pt-12 md:pt-20 pb-12 md:pb-20 bg-gradient-hero bg-dot-grid">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-14">
-            <div className="flex-1 text-center md:text-left space-y-5">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-foreground leading-tight animate-hero-rise">
-                I Help Businesses Use AI.{" "}
-                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  I Help Creators Publish Books. Both in weeks, not years.
-                </span>
-              </h1>
-              <p className="text-lg text-muted-foreground max-w-xl mx-auto md:mx-0 animate-hero-rise" style={{ animationDelay: "200ms" }}>
-                Strategy to shipped. No fluff. Real results.
-              </p>
-              <a href="#z-letter" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors animate-hero-rise" style={{ animationDelay: "300ms" }}>
-                Read the latest issue of The Z Letter →
+      <section
+        className="relative w-full min-h-[90vh] overflow-hidden"
+        style={{ background: "radial-gradient(ellipse at 15% 50%, rgba(0,212,170,0.07) 0%, transparent 60%), #0A0F1A" }}
+      >
+        <div className="grid md:grid-cols-[55%_45%] min-h-[90vh]">
+          <div className="relative h-[40vh] md:h-[90vh] order-first md:order-last">
+            <img
+              src={headshotImage}
+              alt="Zain Adtani — AI Consultant and Author"
+              className="w-full h-full object-cover object-top"
+            />
+            <div
+              className="absolute inset-0 md:hidden pointer-events-none"
+              style={{ background: "linear-gradient(to bottom, transparent 50%, #0A0F1A 100%)" }}
+            />
+            <div
+              className="absolute inset-0 hidden md:block pointer-events-none"
+              style={{ background: "linear-gradient(to right, #0A0F1A 0%, transparent 40%)" }}
+            />
+          </div>
+
+          <div className="flex flex-col justify-center px-8 md:px-16 py-16 order-last md:order-first">
+            <p className="font-sans text-[13px] font-medium tracking-widest uppercase text-[#00D4AA]">
+              AI CONSULTANT · AUTHOR · EDUCATOR
+            </p>
+            <h1 className="font-display font-extrabold text-[40px] md:text-[64px] leading-[1.1] text-[#F1F5F9] mt-4">
+              <span className="block">I Help Businesses</span>
+              <span className="block">Run on AI.</span>
+              <span className="block">I Help Creators</span>
+              <span className="block">Publish Books.</span>
+            </h1>
+            <p className="font-sans text-[18px] text-[#94A3B8] mt-6 max-w-[480px]">
+              Strategy to shipped. No fluff. Real results.<br />
+              Based in DFW, Texas.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link
+                to="/services"
+                className="inline-flex items-center justify-center px-7 py-3.5 rounded-[10px] font-display font-semibold text-[15px] text-white transition-transform hover:scale-[1.02]"
+                style={{ background: "linear-gradient(135deg, #00D4AA, #3B82F6)" }}
+              >
+                Work With Me
+              </Link>
+              <a
+                href="https://the-z-letter.beehiiv.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-7 py-3.5 rounded-[10px] font-display font-semibold text-[15px] text-[#00D4AA] border-[1.5px] border-[#00D4AA]/40 hover:border-[#00D4AA] transition-colors"
+              >
+                Read The Z Letter
               </a>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-hero-rise" style={{ animationDelay: "400ms" }}>
-                <span className="cta-gradient-border">
-                  <Button asChild size="lg" className="bg-background text-foreground hover:bg-background/90 rounded-full px-8 text-base font-semibold border-0">
-                    <Link to="/services">Work With Me on AI →</Link>
-                  </Button>
-                </span>
-                <span className="cta-gradient-border">
-                  <Button asChild size="lg" className="bg-background text-foreground hover:bg-background/90 rounded-full px-8 text-base font-semibold border-0">
-                    <Link to="/services">Help Me Publish My Book →</Link>
-                  </Button>
-                </span>
-              </div>
-              <p className="text-base font-normal text-muted-foreground/80 italic animate-hero-rise" style={{ animationDelay: "550ms" }}>
-                Helping businesses and creators across DFW and beyond.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
+      {/* How Can I Help You? */}
+      <section className="bg-[#0A0F1A] py-[100px]">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="grid md:grid-cols-[35%_65%] gap-12">
+            <div className="md:sticky md:top-[120px] self-start">
+              <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#00D4AA]">WHAT I DO</p>
+              <h2 className="font-display font-extrabold text-[48px] leading-[1.15] text-[#F1F5F9] mt-3">
+                <span className="block">How Can I</span>
+                <span className="block">Help You?</span>
+              </h2>
+              <p className="font-sans text-[16px] text-[#94A3B8] mt-4 max-w-[260px]">
+                Pick your path.<br />Let's get to work.
               </p>
             </div>
-
-            {/* Profile photo */}
-            <div className="flex-shrink-0 flex items-center justify-center">
-              <img
-                src={headshotImage}
-                alt="Zain Adtani — AI Consultant and Author"
-                className="w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full object-cover object-top animate-glow-pulse"
-              />
+            <div className="grid grid-cols-1 gap-5">
+              {[
+                { icon: "🤖", title: "Done-For-You AI Websites", body: "You bring the vision. I handle design, copy, build, and launch using Lovable and AI. Live in under two weeks." },
+                { icon: "📖", title: "Publish Your Book", body: "You have a story. Let's get it on Amazon. Kindle, paperback, and audiobook. From first draft to live listing — done with you." },
+                { icon: "⚙️", title: "AI Workflow Consulting", body: "Tired of doing the same tasks manually? I build custom AI systems using Claude, Notion, and automation. One session can save you 10 hours a week." },
+              ].map((c) => (
+                <div
+                  key={c.title}
+                  className="bg-[#0F2340] border border-[#1E3A5F] rounded-[14px] p-8 transition-all duration-[250ms] hover:border-[rgba(0,212,170,0.4)] hover:-translate-y-[3px]"
+                >
+                  <div className="text-3xl">{c.icon}</div>
+                  <h3 className="font-display font-bold text-[20px] text-[#F1F5F9] mt-4">{c.title}</h3>
+                  <p className="font-sans text-[15px] text-[#94A3B8] mt-3">{c.body}</p>
+                  <Link
+                    to="/services"
+                    className="inline-block mt-4 font-sans font-medium text-[14px] text-[#00D4AA] hover:underline"
+                  >
+                    Get started →
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
-      </ScrollReveal>
-
-      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-
-      {/* About Zain */}
-      <ScrollReveal delay={50}>
-        <section className="py-20 max-w-3xl mx-auto text-center px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">A little about me</h2>
-          <p className="text-muted-foreground text-center text-base mb-10">Engineer. Eagle Scout. Published author. Based in DFW.</p>
-          <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-            I am Zain. Mechanical Engineer by degree. Builder by obsession. I run Adtani Education Ventures LLC, where I help small businesses implement AI into their daily workflows, and I help everyday people write, format, and publish their first book on Amazon — in weeks, not years. Eagle Scout. Trilingual. Based in DFW, Texas. Let's build something.
-          </p>
-          <Link to="/about" className="text-primary hover:underline font-medium">
-            Read my full story →
-          </Link>
-        </section>
-      </ScrollReveal>
-
-      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-
-      {/* How I Help Section */}
-      <ScrollReveal delay={100}>
-      <section className="py-16">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">Here's How We Can Work Together</h2>
-          <p className="text-muted-foreground text-center text-base mb-10">Pick your path. Let's get to work.</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="p-8 border border-border/50 hover:border-primary/60 border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.2)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
-              <div className="text-5xl mb-3">💻</div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Done-For-You AI Websites</h3>
-              <p className="text-base font-normal text-muted-foreground mb-4">Fast, modern websites built in days, not months using Lovable and AI. You bring the vision. I handle design, copy, build, and launch. Live in under two weeks.</p>
-              <div className="mt-auto">
-                <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200">
-                  <a href="#contact">Get Started</a>
-                </Button>
-              </div>
-            </Card>
-            <Card className="p-8 border border-border/50 hover:border-primary/60 border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.2)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
-              <div className="text-5xl mb-3">📖</div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Publish Your Book</h3>
-              <p className="text-base font-normal text-muted-foreground mb-4">You have a story. Let's get it on Amazon. I help you write, format, and publish on Kindle, paperback, and audiobook. From first draft to live listing, done with you.</p>
-              <div className="mt-auto">
-                <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200">
-                  <a href="#contact">Get Started</a>
-                </Button>
-              </div>
-            </Card>
-            <Card className="p-8 border border-border/50 hover:border-primary/60 border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.2)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
-              <div className="text-5xl mb-3">⚙️</div>
-              <h3 className="text-xl font-bold text-foreground mb-2">AI Workflow Consulting</h3>
-              <p className="text-base font-normal text-muted-foreground mb-4">Tired of doing the same tasks manually? I build custom AI systems for your business using Claude, Notion, and automation tools. One session can save you 10 hours a week.</p>
-              <div className="mt-auto">
-                <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200">
-                  <a href="#contact">Get Started</a>
-                </Button>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </section>
-      </ScrollReveal>
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
