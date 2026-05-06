@@ -22,7 +22,6 @@ export interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   { label: "AI Prompts", path: "/ai-prompts", icon: Sparkles, section: "main", searchTags: ["prompts", "coaching", "productivity"] },
-  { label: "Life Notes", path: "/life-notes", icon: FileText, section: "main", searchTags: ["quotes", "wisdom", "mindset"] },
 ];
 
 // Helper to get items by section
