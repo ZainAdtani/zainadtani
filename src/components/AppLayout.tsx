@@ -42,14 +42,14 @@ export function AppLayout({ children }: AppLayoutProps) {
 
 function LayoutShell({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
-  const { toggleSidebar, state } = useSidebar();
+  useSidebar();
 
   return (
     <>
       <div className="fixed top-0 left-0 right-0 h-0.5 z-[60] bg-gradient-to-r from-primary via-secondary to-primary" />
       <ReadingProgressBar />
       <div className="min-h-screen flex w-full">
-        <div className={state === "collapsed" ? "hidden" : ""}>
+        <div className="hidden">
           <AppSidebar />
         </div>
         <div className="flex-1 flex flex-col w-full">
@@ -174,7 +174,7 @@ function LayoutShell({ children }: { children: ReactNode }) {
                   </p>
                   <button
                     type="button"
-                    onClick={toggleSidebar}
+                    onClick={() => {}}
                     aria-label="Toggle sidebar"
                     className="mt-3 w-8 h-8 rounded-full bg-[#1E3A5F] flex items-center justify-center border border-transparent hover:border-[#00D4AA] transition-colors"
                   >

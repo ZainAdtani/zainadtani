@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Moon, Sun, Linkedin, Youtube } from "lucide-react";
+import { Moon, Sun, Linkedin, Youtube, Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
@@ -16,6 +16,7 @@ export const Header = () => {
   const { theme, setTheme } = useTheme();
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -99,8 +100,60 @@ export const Header = () => {
             {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
             <span className="sr-only">Toggle theme</span>
           </Button>
+
+          <button
+            type="button"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-md text-[#94A3B8] hover:text-[#00D4AA] transition-colors"
+          >
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </nav>
       </div>
+
+      {mobileOpen && (
+        <div className="md:hidden border-t border-[#1E3A5F] bg-[#0A0F1A]">
+          <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
+            {TOP_NAV.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => setMobileOpen(false)}
+                className="px-4 py-3 rounded-xl font-sans font-medium text-[15px] text-[#F1F5F9] hover:bg-[#0F2340] hover:text-[#00D4AA] transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div className="flex flex-col gap-1 mt-2 pt-2 border-t border-[#1E3A5F]">
+              <a
+                href="https://linkedin.com/in/zainadtani"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 font-sans text-[14px] text-[#94A3B8] hover:text-[#00D4AA] transition-colors"
+              >
+                LinkedIn →
+              </a>
+              <a
+                href="https://youtube.com/@zainadtani"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 font-sans text-[14px] text-[#94A3B8] hover:text-[#00D4AA] transition-colors"
+              >
+                YouTube →
+              </a>
+              <a
+                href="https://calendly.com/zkadtani"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mx-4 mt-2 bg-[#00D4AA] text-[#0A0F1A] font-display font-semibold text-[14px] px-4 py-3 rounded-[8px] text-center hover:opacity-90 transition-opacity"
+              >
+                Book a Free Call
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
