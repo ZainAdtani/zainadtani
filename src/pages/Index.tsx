@@ -258,9 +258,9 @@ const Index = () => {
       <ScrollReveal delay={50}>
         <section className="py-20 max-w-3xl mx-auto text-center px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">A little about me</h2>
-          <p className="text-muted-foreground text-center text-base mb-10">Engineer, Eagle Scout, and aspiring author based in DFW.</p>
+          <p className="text-muted-foreground text-center text-base mb-10">Engineer. Eagle Scout. Published author. Based in DFW.</p>
           <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-            I am Zain. Engineer by training. Builder by obsession. I help small businesses plug AI into their work, and I help everyday people turn their story into a real book on Amazon. Based in DFW, Texas. Let's build something.
+            I am Zain. Mechanical Engineer by degree. Builder by obsession. I run Adtani Education Ventures LLC, where I help small businesses implement AI into their daily workflows, and I help everyday people write, format, and publish their first book on Amazon — in weeks, not years. Eagle Scout. Trilingual. Based in DFW, Texas. Let's build something.
           </p>
           <Link to="/about" className="text-primary hover:underline font-medium">
             Read my full story →
@@ -280,7 +280,7 @@ const Index = () => {
             <Card className="p-8 border border-border/50 hover:border-primary/60 border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.2)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
               <div className="text-5xl mb-3">💻</div>
               <h3 className="text-xl font-bold text-foreground mb-2">Done-For-You AI Websites</h3>
-              <p className="text-base font-normal text-muted-foreground mb-4">Fast, modern websites built in days, not months. You run the business. I run the tech. Live in under two weeks. ⚡</p>
+              <p className="text-base font-normal text-muted-foreground mb-4">Fast, modern websites built in days, not months using Lovable and AI. You bring the vision. I handle design, copy, build, and launch. Live in under two weeks.</p>
               <div className="mt-auto">
                 <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200">
                   <a href="#contact">Get Started</a>
@@ -290,7 +290,7 @@ const Index = () => {
             <Card className="p-8 border border-border/50 hover:border-primary/60 border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.2)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
               <div className="text-5xl mb-3">📖</div>
               <h3 className="text-xl font-bold text-foreground mb-2">Publish Your Book</h3>
-              <p className="text-base font-normal text-muted-foreground mb-4">You have a book in you. Let's get it out. I help you write, format, and publish on Amazon. Kindle, paperback, and audiobook ready. 📖</p>
+              <p className="text-base font-normal text-muted-foreground mb-4">You have a story. Let's get it on Amazon. I help you write, format, and publish on Kindle, paperback, and audiobook. From first draft to live listing, done with you.</p>
               <div className="mt-auto">
                 <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200">
                   <a href="#contact">Get Started</a>
@@ -298,15 +298,45 @@ const Index = () => {
               </div>
             </Card>
             <Card className="p-8 border border-border/50 hover:border-primary/60 border-t-2 border-t-primary bg-card text-card-foreground hover:shadow-[0_8px_32px_rgba(0,212,170,0.2)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
-              <div className="text-5xl mb-3">💰</div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Creator Monetization</h3>
-              <p className="text-base font-normal text-muted-foreground mb-4">Got an audience but no product? I help creators turn knowledge into digital products using AI. You bring the audience. I bring the build. We split the win. 💰</p>
+              <div className="text-5xl mb-3">⚙️</div>
+              <h3 className="text-xl font-bold text-foreground mb-2">AI Workflow Consulting</h3>
+              <p className="text-base font-normal text-muted-foreground mb-4">Tired of doing the same tasks manually? I build custom AI systems for your business using Claude, Notion, and automation tools. One session can save you 10 hours a week.</p>
               <div className="mt-auto">
                 <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-[#00D4AA] to-[#3B82F6] text-white hover:scale-[1.02] hover:shadow-[0_4px_20px_rgba(0,212,170,0.3)] transition-all duration-200">
                   <a href="#contact">Get Started</a>
                 </Button>
               </div>
             </Card>
+          </div>
+        </div>
+      </section>
+      </ScrollReveal>
+
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
+      {/* Social Proof / Results Strip */}
+      <ScrollReveal delay={80}>
+      <section className="py-14">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { num: "10+", label: "AI Systems Built" },
+              { num: "2 Weeks", label: "Avg. Website Delivery" },
+              { num: "1 Book Live", label: "on Amazon KDP" },
+              { num: "250+", label: "Taught at Lockheed" },
+            ].map((s) => (
+              <div
+                key={s.label}
+                className="bg-[#0F2340] border-l-[3px] border-l-[#00D4AA] rounded-md p-6 flex flex-col items-start"
+              >
+                <div className="font-display font-extrabold text-[32px] leading-none text-[#00D4AA]">
+                  {s.num}
+                </div>
+                <div className="mt-2 text-[14px] font-normal text-[#94A3B8]">
+                  {s.label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -335,139 +365,6 @@ const Index = () => {
       </section>
       </ScrollReveal>
 
-      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-
-      {/* Tabbed Sections */}
-      <ScrollReveal delay={100}>
-      <section id="tabs-section" className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">Digital Products</h2>
-          <p className="text-muted-foreground text-center text-base mb-3">Tools and resources I have built for you.</p>
-          <p className="text-center mb-10">
-            <Link to="/prompts" className="text-sm text-primary hover:underline">
-              → Free: Grab my AI Starter Prompts
-            </Link>
-          </p>
-          <Tabs value={activeTab} onValueChange={v => setActiveTab(v as TabKey)} className="w-full" aria-label="Zain site sections">
-            <TabsList className="grid w-full grid-cols-2 mb-8 h-auto">
-              <TabsTrigger value="digital-products" className="text-xs sm:text-sm px-2 py-2.5">
-                Digital Products
-              </TabsTrigger>
-              <TabsTrigger value="books" className="text-xs sm:text-sm px-2 py-2.5">
-                Books
-              </TabsTrigger>
-            </TabsList>
-
-            {/* Digital Products Tab */}
-            <TabsContent value="digital-products" className="space-y-6">
-              <div className="flex flex-col items-center gap-4 mb-6">
-                <div className="flex items-center justify-between w-full mb-2">
-                  <div className="flex-1" />
-                  <p className="text-sm font-semibold text-muted-foreground tracking-wider">Digital Product HQ</p>
-                  <div className="flex-1 flex justify-end">
-                    <Button asChild variant="outline" size="sm">
-                      <Link to="/digital-products">View All Products →</Link>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-400 ${productsFading ? "opacity-0" : "opacity-100"}`}
-                onMouseEnter={() => setIsHoveringProducts(true)}
-                onMouseLeave={() => setIsHoveringProducts(false)}
-              >
-                {filteredProducts.map((product, index) => (
-                  <ScrollReveal key={product.id} delay={index * 100}>
-                  <Card className="overflow-hidden hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-300 shadow-lg border-2 flex flex-col">
-                    <div className="p-6 flex flex-col flex-grow">
-                      <h3 className="text-xl font-bold mb-2 text-foreground line-clamp-2">{product.title}</h3>
-                      <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{product.desc}</p>
-                      {product.media && (
-                        <div className="relative mb-4 overflow-hidden rounded-lg bg-muted/50 flex items-center justify-center">
-                          <img src={product.media} alt={product.title} className="w-full h-40 object-cover" loading="lazy" />
-                        </div>
-                      )}
-                      <div className="mt-auto flex flex-col gap-2">
-                        {product.cta && (
-                          <Button asChild className="w-full rounded-full bg-gradient-cta text-white hover:scale-[1.02] transition-all duration-300 hover:shadow-lg">
-                            <a href={product.cta.href} target="_blank" rel="noopener noreferrer" aria-label={`Get ${product.title}`}>
-                              {product.cta.label}
-                            </a>
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  </Card>
-                  </ScrollReveal>
-                ))}
-              </div>
-            </TabsContent>
-
-            {/* Books Tab */}
-            <TabsContent value="books" className="space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
-                <div>
-                  <h3 className="text-2xl font-bold text-foreground">Books I'm Reading & Recommend</h3>
-                  <p className="text-muted-foreground">A rotating selection from my reading journey</p>
-                </div>
-                <Button asChild variant="outline">
-                  <Link to="/books">View All Books →</Link>
-                </Button>
-              </div>
-
-              <div
-                className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-400 ${booksFading ? "opacity-0" : "opacity-100"}`}
-                onMouseEnter={() => setIsHoveringBooks(true)}
-                onMouseLeave={() => setIsHoveringBooks(false)}
-              >
-                {displayedBooks.map(book => <Card key={book.title + book.author} className="overflow-hidden hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-500 shadow-lg border-2 group">
-                    <div className="absolute top-4 right-4 z-10 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm">
-                      {book.status === "READ" ? "✓ Read" : book.status === "IN_PROGRESS" ? "Reading" : "To Read"}
-                    </div>
-                    <div className="p-6 flex flex-col h-full">
-                      <div className="relative mb-4 rounded-xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-shadow duration-500">
-                        <div className="aspect-[2/3] bg-accent/20">
-                          <img src={book.cover ?? "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'%3E%3Crect fill='%23e5e7eb' width='200' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%239ca3af'%3EBook Cover%3C/text%3E%3C/svg%3E"} alt={`Book cover: ${book.title} by ${book.author}`} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy" onError={e => {
-                            e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'%3E%3Crect fill='%23e5e7eb' width='200' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%239ca3af'%3EBook Cover%3C/text%3E%3C/svg%3E";
-                          }} />
-                        </div>
-                      </div>
-                      <h4 className="font-bold text-xl mb-1 text-foreground line-clamp-2">{book.title}</h4>
-                      <p className="text-sm text-muted-foreground mb-3">{book.author}</p>
-                      {book.rating && <div className="flex items-center gap-1 mb-3">
-                          {[...Array(5)].map((_, i) => <span key={i} className={i < book.rating! ? "text-yellow-500" : "text-muted-foreground/30"}>★</span>)}
-                        </div>}
-                      {book.notes && <p className="text-xs text-muted-foreground mb-4 flex-grow italic">{book.notes}</p>}
-                      <div className="flex flex-col gap-2 mt-auto">
-                        {(book.myThoughts || book.notes) && <Dialog>
-                            <DialogTrigger asChild>
-                              <Button variant="outline" size="sm" className="w-full text-xs rounded-full">View my thoughts</Button>
-                            </DialogTrigger>
-                            <DialogContent className="sm:max-w-lg">
-                              <DialogHeader>
-                                <DialogTitle>{book.title}</DialogTitle>
-                                <DialogDescription>by {book.author}</DialogDescription>
-                              </DialogHeader>
-                              <div className="space-y-4 text-sm text-foreground">
-                                {book.myThoughts && <div><p className="font-semibold mb-1">My thoughts</p><p className="whitespace-pre-wrap">{book.myThoughts}</p></div>}
-                                {book.notes && <div><p className="font-semibold mb-1">Summary / notes</p><p className="italic text-muted-foreground whitespace-pre-wrap">{book.notes.length > 600 ? book.notes.slice(0, 597) + "..." : book.notes}</p></div>}
-                              </div>
-                            </DialogContent>
-                          </Dialog>}
-                        {book.link && <Button asChild variant="outline" size="sm" className="w-full text-xs rounded-full font-semibold transition-all duration-300 hover:shadow-lg">
-                            <a href={book.link} target="_blank" rel="noopener noreferrer">View on Amazon</a>
-                          </Button>}
-                      </div>
-                    </div>
-                  </Card>)}
-              </div>
-            </TabsContent>
-
-          </Tabs>
-        </div>
-      </section>
-      </ScrollReveal>
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
