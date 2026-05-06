@@ -205,8 +205,8 @@ const Index = () => {
       <TimeBar />
 
       {/* Hero Section */}
-      <section className="relative w-full bg-[#0A0F1A] pt-20 pb-0 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center md:py-20">
+      <section className="relative w-full bg-[#0A0F1A] pt-8 pb-0 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center md:py-12">
           {/* Left: text */}
           <div className="order-2 md:order-1 flex flex-col gap-6">
             <span className="inline-flex w-fit items-center gap-2 text-[12px] font-medium tracking-widest uppercase text-[#00D4AA] bg-[#00D4AA]/10 border border-[#00D4AA]/20 rounded-full px-4 py-1.5">
