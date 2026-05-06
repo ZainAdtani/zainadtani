@@ -60,6 +60,36 @@ export const Header = () => {
             ))}
           </div>
 
+          <div className="hidden md:flex items-center gap-3">
+            <a
+              href="https://linkedin.com/in/zainadtani"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="text-[#94A3B8] hover:text-[#00D4AA] transition-colors"
+            >
+              <Linkedin className="h-5 w-5" />
+            </a>
+            <a
+              href="https://youtube.com/@zainadtani"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+              className="text-[#94A3B8] hover:text-[#00D4AA] transition-colors"
+            >
+              <Youtube className="h-5 w-5" />
+            </a>
+          </div>
+
+          <a
+            href="https://calendly.com/zkadtani"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex font-display bg-[#00D4AA] text-[#0A0F1A] font-semibold text-sm px-4 py-2 rounded-[8px] hover:opacity-90 transition-opacity"
+          >
+            Book a Call
+          </a>
+
           <Button
             variant="ghost"
             size="icon"
