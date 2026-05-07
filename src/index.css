@@ -1,3 +1,18 @@
+*,
+*::before,
+*::after {
+  transition:
+    background-color 0.25s ease,
+    border-color 0.2s ease,
+    color 0.2s ease !important;
+}
+
+/* But never animate layout or transform */
+* {
+  transition-property: background-color, border-color, color,
+    box-shadow, opacity !important;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,50 +23,151 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 210 10% 94%;
-    --foreground: 222 47% 10%;
+    /* Backgrounds */
+    --background: 40 20% 97%;
+    --foreground: 222 47% 8%;
 
-    --card: 210 10% 90%;
-    --card-foreground: 222 47% 10%;
+    /* Cards and surfaces */
+    --card: 38 25% 94%;
+    --card-foreground: 222 47% 8%;
 
-    --popover: 210 10% 90%;
-    --popover-foreground: 222 47% 10%;
+    --popover: 38 25% 94%;
+    --popover-foreground: 222 47% 8%;
 
+    /* Primary = Electric Teal */
     --primary: 168 100% 42%;
-    --primary-foreground: 0 0% 0%;
+    --primary-foreground: 222 47% 8%;
 
-    --secondary: 210 15% 88%;
-    --secondary-foreground: 222 47% 10%;
+    /* Secondary = Signal Blue */
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 10% 85%;
-    --muted-foreground: 220 12% 38%;
+    /* Muted */
+    --muted: 38 20% 90%;
+    --muted-foreground: 215 16% 45%;
 
-    --accent: 210 15% 86%;
-    --accent-foreground: 222 47% 10%;
+    /* Accent */
+    --accent: 168 100% 42%;
+    --accent-foreground: 222 47% 8%;
 
+    /* Destructive */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 10% 82%;
-    --input: 210 10% 82%;
+    /* Borders and inputs */
+    --border: 38 15% 85%;
+    --input: 38 15% 85%;
     --ring: 168 100% 42%;
 
+    /* Radius — keep same */
     --radius: 0.75rem;
 
-    --hero-bg: 210 10% 94%;
-    --hero-foreground: 222 47% 10%;
+    /* Hero */
+    --hero-bg: 40 25% 96%;
+    --hero-foreground: 222 47% 8%;
 
-    --sidebar-background: 210 10% 90%;
-    --sidebar-foreground: 222 47% 10%;
+    /* Sidebar */
+    --sidebar-background: 38 25% 94%;
+    --sidebar-foreground: 222 47% 8%;
     --sidebar-primary: 168 100% 42%;
-    --sidebar-primary-foreground: 0 0% 0%;
-    --sidebar-accent: 210 10% 85%;
-    --sidebar-accent-foreground: 222 47% 10%;
-    --sidebar-border: 210 10% 82%;
+    --sidebar-primary-foreground: 222 47% 8%;
+    --sidebar-accent: 38 20% 90%;
+    --sidebar-accent-foreground: 222 47% 8%;
+    --sidebar-border: 38 15% 85%;
     --sidebar-ring: 168 100% 42%;
 
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Light mode overrides for hardcoded dark hex classes */
+  html:not(.dark) [class*="bg-[#0A0F1A]"] {
+    background-color: hsl(40, 20%, 97%) !important;
+  }
+
+  html:not(.dark) [class*="bg-[#0F2340]"] {
+    background-color: hsl(38, 25%, 92%) !important;
+  }
+
+  html:not(.dark) [class*="bg-[#070C14]"] {
+    background-color: hsl(38, 20%, 95%) !important;
+  }
+
+  html:not(.dark) [class*="border-[#1E3A5F]"] {
+    border-color: hsl(38, 15%, 82%) !important;
+  }
+
+  html:not(.dark) [class*="text-[#94A3B8]"] {
+    color: hsl(215, 16%, 40%) !important;
+  }
+
+  html:not(.dark) [class*="text-[#F1F5F9]"],
+  html:not(.dark) [class*="text-[#F8F8F2]"] {
+    color: hsl(222, 47%, 8%) !important;
+  }
+
+  html:not(.dark) [class*="text-[#6B7280]"] {
+    color: hsl(215, 14%, 38%) !important;
+  }
+
+  /* Teal stays teal in light mode — no override needed */
+
+  /* Code/mono blocks in light mode */
+  html:not(.dark) [class*="bg-[#0A0A0F]"],
+  html:not(.dark) [class*="bg-[#070C14]"] {
+    background-color: hsl(38, 15%, 90%) !important;
+  }
+
+  html:not(.dark) pre,
+  html:not(.dark) code,
+  html:not(.dark) .font-mono {
+    background-color: hsl(38, 15%, 90%) !important;
+    color: hsl(222, 47%, 15%) !important;
+  }
+
+  /* Hero gradient override in light mode */
+  html:not(.dark) section.relative.w-full.bg-\[\#0A0F1A\] {
+    background: linear-gradient(
+      135deg,
+      hsl(40, 25%, 96%) 0%,
+      hsl(38, 20%, 93%) 100%
+    ) !important;
+  }
+
+  /* Light mode card hover shadow */
+  html:not(.dark) .hover\:border-\[\#00D4AA\]\/50:hover {
+    border-color: rgba(0, 212, 170, 0.6) !important;
+    box-shadow: 0 4px 20px rgba(0, 212, 170, 0.08) !important;
+  }
+
+  /* Footer in light mode */
+  html:not(.dark) footer {
+    background-color: hsl(38, 20%, 93%) !important;
+    border-top-color: hsl(38, 15%, 82%) !important;
+  }
+
+  /* Header in light mode — already using CSS vars,
+     just ensure backdrop is warm */
+  html:not(.dark) header {
+    background-color: rgba(248, 247, 244, 0.92) !important;
+  }
+
+  /* Newsletter section card in light mode */
+  html:not(.dark) .rounded-3xl {
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.06) !important;
+  }
+
+  /* Input fields in light mode */
+  html:not(.dark) input[type="email"],
+  html:not(.dark) input[type="text"],
+  html:not(.dark) input[type="search"] {
+    background-color: hsl(0, 0%, 100%) !important;
+    border-color: hsl(38, 15%, 78%) !important;
+    color: hsl(222, 47%, 8%) !important;
+  }
+
+  html:not(.dark) input::placeholder {
+    color: hsl(215, 14%, 55%) !important;
   }
 
   .dark {
