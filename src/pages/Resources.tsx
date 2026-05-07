@@ -137,6 +137,29 @@ export default function Resources() {
       <div className="mt-10">
         {tab === "business" && (
           <div className="container mx-auto px-4 max-w-6xl pb-10">
+            {/* Featured: Train My AI Assistant */}
+            <div className="mb-12 bg-gradient-to-br from-[#0F2340] to-[#0A0F1A] border border-[#00D4AA]/30 rounded-3xl p-8 md:p-10">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+                <div>
+                  <span className="inline-block text-[11px] font-medium tracking-widest uppercase text-[#00D4AA] bg-[#00D4AA]/10 border border-[#00D4AA]/20 rounded-full px-3 py-1 mb-3">
+                    ⭐ START HERE
+                  </span>
+                  <h3 className="font-display font-extrabold text-[26px] md:text-[32px] text-[#F1F5F9] leading-tight">
+                    "Train My AI Assistant"
+                  </h3>
+                  <p className="font-sans text-[15px] text-[#94A3B8] mt-2 max-w-xl">
+                    The one prompt that changes everything. Paste this into Claude, ChatGPT, or any AI tool and it learns who you are, what you need, and how to help you — from the very first message.
+                  </p>
+                </div>
+                <div className="shrink-0">
+                  <CopyBlock text={TRAIN_MY_AI_PROMPT} label="Copy Full Prompt" />
+                </div>
+              </div>
+              <div className="bg-[#070C14] border border-[#1E3A5F] rounded-2xl p-5 max-h-64 overflow-y-auto font-mono text-[13px] text-[#94A3B8] leading-relaxed whitespace-pre-wrap">
+                {TRAIN_MY_AI_PROMPT}
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {PROMPTS.map((p, i) => (
                 <Card key={i} className="group hover:border-primary/50 hover:shadow-[0_0_24px_rgba(0,212,170,0.18)]">
