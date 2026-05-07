@@ -1,51 +1,28 @@
-## Plan: Header mobile menu, hide sidebar, expanded Resources
+## Plan: Two targeted changes
 
-### Task 1 — `src/pages/Index.tsx`
-Reduce hero spacing: change the hero outer wrapper from `pt-20 pb-0` to `pt-8 pb-0`, and the inner grid from `md:py-20` to `md:py-12`. No copy or layout structure changes.
+### 1. `src/pages/Resources.tsx` — Add "Train My AI Assistant" featured card
 
-### Task 2 — `src/components/Header.tsx`
-Add a mobile hamburger menu.
-- Add `useState` for `mobileOpen`.
-- Add `Menu`, `X` to lucide imports.
-- After the theme toggle (still inside the nav row), add a `md:hidden` icon button toggling `mobileOpen`, showing `Menu` or `X`.
-- Below the inner container (still inside `<header>`), conditionally render a `md:hidden` dropdown panel with:
-  - All `TOP_NAV` items as `<Link>`s (closing the menu on click).
-  - LinkedIn, YouTube external links.
-  - "Book a Free Call" Calendly CTA button (teal).
-- Style matches brand tokens (`#0A0F1A`, `#0F2340`, `#1E3A5F`, `#00D4AA`, `#94A3B8`, `#F1F5F9`).
+- Add a new top-level constant `TRAIN_MY_AI_PROMPT` (multiline template string with the full assistant-training prompt) above the existing `PROMPTS` array.
+- Inside the Tab 1 ("For Business") render block, insert the featured card markup **above** the existing `grid grid-cols-1 md:grid-cols-2 gap-6` of 11 prompt cards.
+- Card: gradient `from-[#0F2340] to-[#0A0F1A]`, teal border, `rounded-3xl`, with a "⭐ START HERE" pill, headline `"Train My AI Assistant"`, subhead, a `<CopyBlock text={TRAIN_MY_AI_PROMPT} label="Copy Full Prompt" />`, and a scrollable `max-h-64` mono prompt block.
+- No changes to Tab 2 (Prompt Library), Tab 3 (Life Notes), tabs row, hero, or page footer.
 
-### Task 3 — `src/components/AppLayout.tsx`
-Always hide the AppSidebar wrapper: replace `state === "collapsed" ? "hidden" : ""` with the constant `"hidden"`. Remove `useSidebar` if no longer needed (keep `state` removal). Change the secret Grip button's `onClick` to a no-op (`() => {}`) since the sidebar is fully hidden. Sidebar files remain untouched.
+### 2. `src/pages/Services.tsx` — Full redesign
 
-### Task 4 — `src/pages/Resources.tsx` (rewrite)
-Three tabs with state `"business" | "library" | "notes"`, default `"business"`.
+Fully replace the file body, keeping `<Helmet><title>Services | Zain Adtani</title></Helmet>` (and a meta description).
 
-Tab pills row centered, brand styling per spec.
+Five sections, all on dark brand backgrounds (`#0A0F1A` / `#070C14` / `#0F2340`) with `border-[#1E3A5F]` dividers:
 
-**Tab 1 — For Business:** Existing 11-item `PROMPTS` array + `CopyBlock` cards grid + footer CTA "Want me to build these into your workflow?" with button → `/services`. Unchanged from current.
+1. **Hero** — "REAL WORK. REAL RESULTS." pill, "Let's Build Something Real." headline (teal accent), subhead, teal Calendly CTA, "No pitch. No pressure." line.
+2. **Service 01 — AI Websites** — 2-col grid: left text + 6-bullet checklist + "Get Started →" CTA; right column with 4 feature cards (Fast Delivery, Mobile First, Built with AI, You Own It).
+3. **Service 02 — Publish Your Book** — 2-col grid with reversed order on desktop (cards left, text right): 4 feature cards (Writing Support, Professional Formatting, Amazon Launch, Audiobook Ready) and 6-bullet checklist + "Start Your Book →" CTA.
+4. **Service 03 — AI Workflow Consulting** — 2-col grid: left text + 5-bullet checklist + "Book a Workflow Audit →" CTA; right 4 feature cards (Audit First, Built Around Claude, You Get the Playbook, Follow-Up Included).
+5. **"Not sure" strip** — `#0F2340` band with headline + subhead + teal "Schedule a Free Call →" CTA.
 
-**Tab 2 — Prompt Library:**
-- Import `AI_PROMPTS` from `@/data/ai_prompts`.
-- Inline a local `CUSTOM_INSTRUCTIONS` constant (copied from `src/pages/AIPrompts.tsx`) so we don't depend on a default-exported page.
-- Custom Instructions card at top: dark `#0F2340` bg, `#1E3A5F` border, rounded-2xl, p-6. Header with title + `CopyBlock`. Subtext line. Scrollable `<pre>` (max-h-48, overflow-y-auto, mono, `#0A0F1A` bg).
-- Search `Input` with `Search` lucide icon (controlled `q` state).
-- Category pills row: `All`, `Coaching`, `Productivity`, `Learning`, `Email`, `Delegation`, `Automation` (controlled `selectedCategory` state, `""` = all). Active = teal bg; inactive = dark with `#1E3A5F` border.
-- "X prompts found" muted count.
-- 2-col grid (1 on mobile) of prompt cards: category badge (color-mapped), title, optional italic note, monospace prompt block with max-h-32 + Expand/Collapse toggle (per-card expanded state set), `CopyBlock` button.
-- Filter logic: title + prompt + tags + category match `q`; category filter when not "All".
-
-**Tab 3 — Life Notes:** Render `<LifeNotes />` directly (already imported).
-
-Page footer block (below tabs): "More tools coming soon. Have a prompt to share? [email link in teal]".
-
-### Task 5 — `src/data/nav.ts`
-Remove the `Life Notes` entry from `NAV_ITEMS`. Keep only `AI Prompts`. `/life-notes` route and page file remain.
+All CTAs link to `https://calendly.com/zkadtani` (`target="_blank" rel="noopener noreferrer"`). Typography: `font-display` for headlines, `font-sans` for body. Remove the old `services` array, `Card` import, and the previous structure entirely.
 
 ### Files touched
-- `src/pages/Index.tsx`
-- `src/components/Header.tsx`
-- `src/components/AppLayout.tsx`
 - `src/pages/Resources.tsx`
-- `src/data/nav.ts`
+- `src/pages/Services.tsx`
 
-No routes deleted. No page files deleted. Sidebar files retained but hidden.
+No other files, routes, or components are modified.
