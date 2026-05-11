@@ -6,7 +6,7 @@ import { Header } from "./Header";
 import { AIChatWidget } from "./AIChatWidget";
 import { Link, useLocation } from "react-router-dom";
 import { ReactNode } from "react";
-import { Grip, Linkedin, Youtube, Mail } from "lucide-react";
+import { Linkedin, Youtube, Mail } from "lucide-react";
 
 interface AppLayoutProps {
   children: ReactNode;
