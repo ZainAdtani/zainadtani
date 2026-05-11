@@ -54,9 +54,8 @@ const App = () => (
             <Route path="/life-notes" element={<LifeNotes />} />
             <Route path="/archive" element={<Archive />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/z-hub" element={<ZHub />} />
             <Route path="/prompts" element={<Prompts />} />
-            <Route path="/fun-projects" element={<FunProjects />} />
+            <Route path="/harry-potter" element={<HarryPotter />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
