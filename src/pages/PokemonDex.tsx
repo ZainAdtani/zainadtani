@@ -59,8 +59,6 @@ const FactCard = ({ emoji, text, index }: { emoji: string; text: string; index: 
 };
 
 const PokemonDex = () => {
-  const [showTip, setShowTip] = useState(false);
-  const [showPikaTip, setShowPikaTip] = useState(false);
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#0A0F1A" }}>
       <Helmet>
