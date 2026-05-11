@@ -34,7 +34,7 @@ const FUN_PROJECTS: FunProject[] = [
     description:
       "All 151 original Pokemon. Every stat, type, height, weight, and HP. Filterable by number, weight, height, type, and attack. Built entirely in Notion. Yes, I made this.",
     image: pokemonImg,
-    href: "https://zainadtani.notion.site/Zain-s-Notion-Pok-dex-3d1da8f06b194c24a7aeb9f54aa43294",
+    href: "/pokedex",
     buttonText: "Open the Pokédex →",
     badgeText: "151 Pokémon",
     badgeBg: "#DD5013",
@@ -73,14 +73,12 @@ function FunProjectCard({ project }: { project: FunProject }) {
       <div className="p-6 flex flex-col gap-3 flex-1">
         <h3 className="font-sans font-bold text-xl text-white">{project.title}</h3>
         <p className="text-sm text-[#E9E4A6] flex-1">{project.description}</p>
-        <a
-          href={project.href}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          to={project.href}
           className="mt-2 inline-flex items-center justify-center w-full bg-[#DD5013] text-white font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity"
         >
           {project.buttonText}
-        </a>
+        </Link>
       </div>
     </div>
   );

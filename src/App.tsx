@@ -23,6 +23,7 @@ import Archive from "./pages/Archive";
 import Services from "./pages/Services";
 import Prompts from "./pages/Prompts";
 import HarryPotter from "./pages/HarryPotter";
+import PokemonDex from "./pages/PokemonDex";
 
 // Project sub-pages
 import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
@@ -56,6 +57,7 @@ const App = () => (
             <Route path="/services" element={<Services />} />
             <Route path="/prompts" element={<Prompts />} />
             <Route path="/harry-potter" element={<HarryPotter />} />
+            <Route path="/pokedex" element={<PokemonDex />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
