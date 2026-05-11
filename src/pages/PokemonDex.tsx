@@ -162,8 +162,68 @@ const PokemonDex = () => {
               Opens in Notion. Free to explore.
             </p>
           </div>
+
+          {/* Fun Facts */}
+          <div className="mt-20 md:mt-24">
+            <p
+              className="text-center text-xs tracking-widest uppercase font-bold mb-8"
+              style={{ color: "#447BBE", fontFamily: '"Plus Jakarta Sans", sans-serif' }}
+            >
+              Fun Facts You Didn't Ask For
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
+              {FUN_FACTS.map((f, i) => (
+                <FactCard key={i} emoji={f.emoji} text={f.text} index={i} />
+              ))}
+            </div>
+            <p
+              className="text-center text-sm italic mt-10"
+              style={{ color: "rgba(233,228,166,0.4)", fontFamily: '"DM Sans", sans-serif' }}
+            >
+              More facts dropping soon. Come back. You know you want to. 👀
+            </p>
+          </div>
         </div>
       </section>
+
+      {/* Bouncing Pikachu sprite above chat bubble */}
+      <div
+        className="fixed"
+        style={{ bottom: 80, right: 16, zIndex: 49 }}
+        onMouseEnter={() => setShowPikaTip(true)}
+        onMouseLeave={() => setShowPikaTip(false)}
+      >
+        {showPikaTip && (
+          <div
+            className="absolute left-1/2 -translate-x-1/2 -top-9 whitespace-nowrap rounded-full text-white text-xs font-semibold"
+            style={{
+              backgroundColor: "#DD5013",
+              padding: "6px 12px",
+              animation: "pikaFadeIn 0.15s ease-out",
+            }}
+          >
+            Pika pika! ⚡
+          </div>
+        )}
+        <img
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif"
+          alt="Pikachu"
+          className="cursor-pointer"
+          style={{
+            width: 56,
+            height: "auto",
+            imageRendering: "pixelated",
+            animation: "pikaBounce 1s ease-in-out infinite",
+            transition: "transform 0.2s ease",
+          }}
+          onMouseOver={(e) => {
+            (e.currentTarget as HTMLElement).style.transform = "scale(1.4)";
+          }}
+          onMouseOut={(e) => {
+            (e.currentTarget as HTMLElement).style.transform = "scale(1)";
+          }}
+        />
+      </div>
 
       {/* Floating Pikachu */}
       <div
