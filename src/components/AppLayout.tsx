@@ -52,136 +52,65 @@ function LayoutShell({ children }: { children: ReactNode }) {
               {children}
             </div>
           </main>
-          <footer className="bg-background border-t border-border py-12 mt-8">
+          <footer className="bg-background border-t border-border py-8 mt-8">
             <div className="container mx-auto px-4 max-w-6xl">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-                <div>
-                  <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider">Navigate</h4>
-                  <ul className="space-y-2">
-                    {FOOTER_NAV.map((l) => (
-                      <li key={l.to}>
-                        <Link to={l.to} className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                          {l.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider">Connect</h4>
-                  <ul className="space-y-2">
-                    {FOOTER_CONNECT.map((l) => (
-                      <li key={l.href}>
-                        <a
-                          href={l.href}
-                          target={l.href.startsWith("mailto:") ? undefined : "_blank"}
-                          rel={l.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                          className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                        >
-                          {l.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider">More</h4>
-                  <ul className="space-y-2">
-                    {FOOTER_MORE.map((l) =>
-                      l.internal ? (
-                        <li key={l.label}>
-                          <Link to={l.to} className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                            {l.label}
-                          </Link>
-                        </li>
-                      ) : (
-                        <li key={l.label}>
-                          <a
-                            href={l.to}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                          >
-                            {l.label}
-                          </a>
-                        </li>
-                      ),
-                    )}
-                  </ul>
-                </div>
+              {/* Z Logo */}
+              <div className="flex justify-center mb-6">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 48 48"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <line x1="10" y1="12" x2="38" y2="12" stroke="#DD5013" strokeWidth="3" strokeLinecap="round"
+                    style={{ strokeDasharray: 28, strokeDashoffset: 28, animation: "drawZ 0.5s ease-out 0s forwards" }} />
+                  <line x1="38" y1="12" x2="10" y2="36" stroke="#DD5013" strokeWidth="3" strokeLinecap="round"
+                    style={{ strokeDasharray: 38, strokeDashoffset: 38, animation: "drawZ 0.6s ease-out 0.5s forwards" }} />
+                  <line x1="10" y1="36" x2="38" y2="36" stroke="#DD5013" strokeWidth="3" strokeLinecap="round"
+                    style={{ strokeDasharray: 28, strokeDashoffset: 28, animation: "drawZ 0.5s ease-out 1s forwards" }} />
+                </svg>
               </div>
 
-              <div className="border-t border-border/60 pt-6 relative">
-                <div className="flex flex-col items-center gap-2 text-center">
-                  {/* Animated Z Logo */}
-                  <svg
-                    width="48"
-                    height="48"
-                    viewBox="0 0 48 48"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                    className="mb-2"
+              <div className="border-t border-border/60 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                {/* Left: copyright */}
+                <p className="text-xs text-muted-foreground text-center md:text-left">
+                  © 2026 Zain Adtani · Adtani Education Ventures LLC · DFW, Texas
+                </p>
+
+                {/* Center: nav links */}
+                <nav className="flex flex-wrap items-center justify-center gap-5">
+                  {FOOTER_NAV.map((l) => (
+                    <Link key={l.to} to={l.to} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                      {l.label}
+                    </Link>
+                  ))}
+                </nav>
+
+                {/* Right: socials + Z Hub */}
+                <div className="flex items-center gap-4">
+                  {FOOTER_SOCIALS.map(({ label, href, Icon }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      title={label}
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <Icon className="w-5 h-5" />
+                    </a>
+                  ))}
+                  <Link
+                    to="/z-hub"
+                    aria-label="Z Hub"
+                    className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-[11px] font-bold font-sans hover:scale-110 transition-all duration-300"
                   >
-                    {/* Top horizontal bar of Z */}
-                    <line
-                      x1="10" y1="12" x2="38" y2="12"
-                      stroke="var(--color-cta)" strokeWidth="3" strokeLinecap="round"
-                      style={{
-                        strokeDasharray: 28,
-                        strokeDashoffset: 28,
-                        animation: "drawZ 0.5s ease-out 0s forwards",
-                      }}
-                    />
-                    {/* Diagonal of Z */}
-                    <line
-                      x1="38" y1="12" x2="10" y2="36"
-                      stroke="var(--color-cta)" strokeWidth="3" strokeLinecap="round"
-                      style={{
-                        strokeDasharray: 38,
-                        strokeDashoffset: 38,
-                        animation: "drawZ 0.6s ease-out 0.5s forwards",
-                      }}
-                    />
-                    {/* Bottom horizontal bar of Z */}
-                    <line
-                      x1="10" y1="36" x2="38" y2="36"
-                      stroke="var(--color-cta)" strokeWidth="3" strokeLinecap="round"
-                      style={{
-                        strokeDasharray: 28,
-                        strokeDashoffset: 28,
-                        animation: "drawZ 0.5s ease-out 1s forwards",
-                      }}
-                    />
-                  </svg>
-                  <a
-                    href="https://buymeacoffee.com/curiouszen"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    ☕ Support my work
-                  </a>
-                  <p className="text-xs text-muted-foreground">
-                    © 2026 Zain Adtani · Adtani Education Ventures LLC · DFW, Texas
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => {}}
-                    aria-label="Toggle sidebar"
-                    className="mt-3 w-8 h-8 rounded-full flex items-center justify-center border border-transparent hover:border-[color:var(--color-cta)] transition-colors"
-                    style={{ backgroundColor: 'var(--color-primary)' }}
-                  >
-                    <Grip className="w-3.5 h-3.5" style={{ color: 'var(--color-warm)' }} />
-                  </button>
+                    Z
+                  </Link>
                 </div>
-                <Link
-                  to="/z-hub"
-                  aria-label="Z Hub"
-                  className="absolute right-0 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-[11px] font-bold font-sans hover:scale-110 hover:shadow-[0_0_12px_rgba(0,212,170,0.6)] transition-all duration-300"
-                >
-                  Z
-                </Link>
               </div>
             </div>
           </footer>
