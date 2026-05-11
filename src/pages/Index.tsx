@@ -73,14 +73,12 @@ function FunProjectCard({ project }: { project: FunProject }) {
       <div className="p-6 flex flex-col gap-3 flex-1">
         <h3 className="font-sans font-bold text-xl text-white">{project.title}</h3>
         <p className="text-sm text-[#E9E4A6] flex-1">{project.description}</p>
-        <a
-          href={project.href}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          to={project.href}
           className="mt-2 inline-flex items-center justify-center w-full bg-[#DD5013] text-white font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity"
         >
           {project.buttonText}
-        </a>
+        </Link>
       </div>
     </div>
   );
