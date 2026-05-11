@@ -115,6 +115,11 @@ export default function Resources() {
   const [q, setQ] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [expanded, setExpanded] = useState<number[]>([]);
+  const [toolCat, setToolCat] = useState<typeof TOOL_CATEGORIES[number]>("All");
+  const filteredTools = useMemo(
+    () => (toolCat === "All" ? TOOLS : TOOLS.filter((t) => t.category === toolCat)),
+    [toolCat]
+  );
 
   const filteredPrompts = useMemo(() => {
     const t = q.trim().toLowerCase();
