@@ -5,13 +5,6 @@ import {
   TrendingUp,
   LineChart,
   PiggyBank,
-  FileText,
-  HardDrive,
-  Mail,
-  Sparkles,
-  StickyNote,
-  Wrench,
-  FolderKanban,
   LucideIcon,
 } from "lucide-react";
 
@@ -26,16 +19,6 @@ const QUICK_LINKS: HubLink[] = [
   { label: "Fidelity", href: "https://www.fidelity.com", icon: TrendingUp },
   { label: "Robinhood", href: "https://robinhood.com", icon: LineChart },
   { label: "Marcus Savings", href: "https://www.marcus.com", icon: PiggyBank },
-  { label: "Notion", href: "https://notion.so", icon: FileText },
-  { label: "Google Drive", href: "https://drive.google.com", icon: HardDrive },
-  { label: "Beehiiv Dashboard", href: "https://app.beehiiv.com", icon: Mail },
-];
-
-const PROJECT_LINKS: HubLink[] = [
-  { label: "AI Prompts", href: "/ai-prompts", icon: Sparkles, internal: true },
-  { label: "Life Notes", href: "/life-notes", icon: StickyNote, internal: true },
-  { label: "Tools", href: "/tools", icon: Wrench, internal: true },
-  { label: "Fun Projects", href: "/projects", icon: FolderKanban, internal: true },
 ];
 
 function HubCard({ item }: { item: HubLink }) {
