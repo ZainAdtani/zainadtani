@@ -275,6 +275,30 @@ export default function Resources() {
         {tab === "notes" && <LifeNotes />}
       </div>
 
+      {/* Tools I Use */}
+      <section className="max-w-6xl mx-auto px-6 pt-10 pb-16">
+        <h2 className="font-display font-extrabold text-[28px] md:text-[32px] text-foreground text-center mb-8">
+          Tools I Use
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+          {[
+            { name: "Claude", desc: "The AI that runs my business." },
+            { name: "HeyGen", desc: "I clone myself on video without recording every day." },
+            { name: "Beehiiv", desc: "Where The Z Letter lives and grows." },
+            { name: "Notion", desc: "My second brain for every project." },
+            { name: "Lovable", desc: "How I build websites in days not months." },
+            { name: "Ideogram", desc: "AI image generation for brand visuals." },
+            { name: "Canva", desc: "Quick design without a designer." },
+            { name: "ElevenLabs", desc: "My voice, cloned for audio content." },
+          ].map((t) => (
+            <div key={t.name} className="bg-[#0F2340] border border-[#1E3A5F] rounded-2xl p-5 hover:border-[#447BBE]/50 transition-colors">
+              <h3 className="font-display font-bold text-[16px] text-[#FFFFFF]">{t.name}</h3>
+              <p className="font-sans text-[13px] text-[#E9E4A6] mt-2">{t.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Page footer */}
       <div className="max-w-6xl mx-auto px-6 pb-16 text-center">
         <p className="font-sans text-[14px] text-[#94A3B8]">
