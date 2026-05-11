@@ -57,6 +57,7 @@ const App = () => (
             <Route path="/services" element={<Services />} />
             <Route path="/prompts" element={<Prompts />} />
             <Route path="/harry-potter" element={<HarryPotter />} />
+            <Route path="/pokedex" element={<PokemonDex />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
