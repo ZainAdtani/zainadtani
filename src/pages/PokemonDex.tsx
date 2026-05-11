@@ -35,18 +35,72 @@ const PokemonDex = () => {
         </div>
       </section>
 
-      {/* Notion embed */}
-      <section className="py-12">
+      {/* Stat cards + CTA */}
+      <section className="py-12 md:py-16">
         <div className="container mx-auto px-6 max-w-6xl">
-          <div style={{ borderRadius: 12, overflow: "hidden" }}>
-            <iframe
-              src="https://zainadtani.notion.site/Zain-s-Notion-Pok-dex-3d1da8f06b194c24a7aeb9f54aa43294"
-              width="100%"
-              height="800px"
-              frameBorder={0}
-              title="Zain's Notion Pokédex"
-              style={{ display: "block", border: 0 }}
-            />
+          {/* Stat cards */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16 md:mb-20">
+            {[
+              { number: "151", label: "Original Pokémon" },
+              { number: "6", label: "Filter Views" },
+              { number: "Gen I", label: "Complete Catalog" },
+              { number: "Free", label: "Always Open" },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="text-center"
+                style={{
+                  backgroundColor: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(68,123,190,0.2)",
+                  borderRadius: 12,
+                  padding: 24,
+                }}
+              >
+                <div
+                  className="text-[48px] leading-none mb-2"
+                  style={{ fontFamily: '"Luckiest Guy", cursive', color: "#DD5013" }}
+                >
+                  {stat.number}
+                </div>
+                <div
+                  className="text-xs tracking-widest uppercase"
+                  style={{ color: "#E9E4A6", fontFamily: '"DM Sans", sans-serif' }}
+                >
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div className="text-center max-w-2xl mx-auto">
+            <p className="text-base md:text-lg leading-relaxed mb-8" style={{ color: "#E9E4A6" }}>
+              Built entirely in Notion. Every stat filterable by type, height, weight, HP, and attack power. This is what happens when a mechanical engineer has too much free time.
+            </p>
+            <a
+              href="https://zainadtani.notion.site/Zain-s-Notion-Pok-dex-3d1da8f06b194c24a7aeb9f54aa43294"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block font-bold text-white text-lg transition-transform duration-200 hover:scale-[1.04]"
+              style={{
+                background: "linear-gradient(135deg, #DD5013, #D97706)",
+                fontFamily: '"Plus Jakarta Sans", sans-serif',
+                padding: "18px 48px",
+                borderRadius: 8,
+                boxShadow: "0 0 24px rgba(221,80,19,0.35)",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 36px rgba(221,80,19,0.5)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 24px rgba(221,80,19,0.35)";
+              }}
+            >
+              Open the Full Pokédex →
+            </a>
+            <p className="mt-4 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
+              Opens in Notion. Free to explore.
+            </p>
           </div>
         </div>
       </section>
