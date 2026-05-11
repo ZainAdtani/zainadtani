@@ -194,7 +194,8 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 221 45% 7%;
+    /* Spidey Blue dark #0D1B2E */
+    --background: 213 56% 12%;
     --foreground: 210 40% 96%;
 
     --card: 214 62% 15%;
