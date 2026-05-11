@@ -14,7 +14,77 @@ import { useState, useEffect, lazy, Suspense, useMemo } from "react";
 const HeroLogo3D = lazy(() => import("@/components/HeroLogo3D"));
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { ZLetterFeed } from "@/components/ZLetterFeed";
-import { FUN_PROJECTS, FunProjectCard } from "@/pages/FunProjects";
+import pokemonImg from "@/assets/pokemon-pokedex.png";
+import harryPotterImg from "@/assets/harry-potter-world.png";
+
+interface FunProject {
+  title: string;
+  description: string;
+  image: string;
+  href: string;
+  buttonText: string;
+  badgeText: string;
+  badgeBg: string;
+  external?: boolean;
+}
+
+const FUN_PROJECTS: FunProject[] = [
+  {
+    title: "Zain's Notion Pokédex",
+    description:
+      "All 151 original Pokemon. Every stat, type, height, weight, and HP. Filterable by number, weight, height, type, and attack. Built entirely in Notion. Yes, I made this.",
+    image: pokemonImg,
+    href: "https://zainadtani.notion.site/Zain-s-Notion-Pok-dex-3d1da8f06b194c24a7aeb9f54aa43294",
+    buttonText: "Open the Pokédex →",
+    badgeText: "151 Pokémon",
+    badgeBg: "#DD5013",
+    external: true,
+  },
+  {
+    title: "Harry Potter World",
+    description:
+      "A Hogwarts-themed hub built in Notion. Books, audiobooks, key story moments, and lore. For the obsessed.",
+    image: harryPotterImg,
+    href: "/harry-potter",
+    buttonText: "Enter the Wizarding World →",
+    badgeText: "Hogwarts Built",
+    badgeBg: "#447BBE",
+    external: false,
+  },
+];
+
+function FunProjectCard({ project }: { project: FunProject }) {
+  return (
+    <div
+      className="rounded-xl overflow-hidden bg-[#0F2340] border border-[#1E3A5F] flex flex-col transition-all duration-200 ease-out hover:-translate-y-1"
+      onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.3)")}
+      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "")}
+    >
+      <div className="relative aspect-[16/10] overflow-hidden">
+        <img src={project.image} alt={project.title} className="w-full h-full object-cover" loading="lazy" />
+        <span
+          className="absolute top-3 left-3 rounded-full text-white text-xs font-semibold"
+          style={{ backgroundColor: project.badgeBg, padding: "8px 14px" }}
+        >
+          {project.badgeText}
+        </span>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent pointer-events-none" />
+      </div>
+      <div className="p-6 flex flex-col gap-3 flex-1">
+        <h3 className="font-sans font-bold text-xl text-white">{project.title}</h3>
+        <p className="text-sm text-[#E9E4A6] flex-1">{project.description}</p>
+        <a
+          href={project.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 inline-flex items-center justify-center w-full bg-[#DD5013] text-white font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity"
+        >
+          {project.buttonText}
+        </a>
+      </div>
+    </div>
+  );
+}
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -392,15 +462,114 @@ const Index = () => {
             ))}
           </div>
 
-          <div className="text-center mt-10">
-            <Link
-              to="/fun-projects"
-              className="inline-block border-2 border-[#447BBE] text-[#447BBE] font-semibold rounded-full bg-transparent hover:bg-[#447BBE] hover:text-white transition-colors duration-200"
-              style={{ padding: "12px 32px" }}
+        </div>
+      </section>
+      </ScrollReveal>
+
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
+      {/* My Personal Investing Stack */}
+      <ScrollReveal delay={50}>
+      <section className="py-20 bg-[#0A0F1A]">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-center mb-12">
+            <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE]">
+              WHAT I ACTUALLY DO WITH MONEY
+            </p>
+            <h2
+              className="text-[#F1F5F9] text-4xl md:text-5xl mt-3"
+              style={{ fontFamily: '"Luckiest Guy", cursive' }}
             >
-              See All Fun Projects →
-            </Link>
+              My Personal Investing Stack.
+            </h2>
+            <p className="font-sans text-[15px] mt-4 max-w-2xl mx-auto" style={{ color: "#E9E4A6" }}>
+              Not financial advice. Just what I personally hold and why. Do your own research.
+            </p>
           </div>
+
+          {(() => {
+            type Item = { ticker: string; name: string; desc: string; href?: string };
+            const columns: { header: string; items: Item[] }[] = [
+              {
+                header: "My Top Holdings",
+                items: [
+                  { ticker: "NVDA", name: "Nvidia", desc: "AI infrastructure. The picks and shovels of the AI gold rush." },
+                  { ticker: "GOOGL", name: "Google", desc: "AI, cloud, search, YouTube. Too many moats to ignore." },
+                  { ticker: "AAPL", name: "Apple", desc: "Everyone has one. Ecosystem lock-in is undefeated." },
+                ],
+              },
+              {
+                header: "My Roth IRA",
+                items: [
+                  { ticker: "VOO", name: "Vanguard S&P 500", desc: "The whole market. Set it and forget it." },
+                  { ticker: "SCHD", name: "Schwab Dividend", desc: "Dividend growth. Gets paid while I sleep." },
+                  { ticker: "QQQM", name: "Invesco Nasdaq", desc: "Tech heavy. Long on the future." },
+                ],
+              },
+              {
+                header: "Where I Hold It",
+                items: [
+                  { ticker: "Fidelity", name: "", desc: "Roth IRA home base.", href: "https://www.fidelity.com" },
+                  { ticker: "Robinhood", name: "", desc: "Individual stocks and DCA.", href: "https://robinhood.com" },
+                  { ticker: "Marcus Savings", name: "", desc: "High yield cash reserve.", href: "https://www.marcus.com" },
+                ],
+              },
+            ];
+            return (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {columns.map((col) => (
+                  <div key={col.header} className="flex flex-col gap-4">
+                    <h3 className="font-display font-bold text-xl text-[#F1F5F9]">{col.header}</h3>
+                    {col.items.map((it) => {
+                      const cardInner = (
+                        <div
+                          className="rounded-[10px] p-4 transition-colors duration-200"
+                          style={{
+                            backgroundColor: "rgba(255,255,255,0.03)",
+                            border: "1px solid rgba(68,123,190,0.15)",
+                            borderLeft: "3px solid #447BBE",
+                          }}
+                          onMouseEnter={(e) =>
+                            (e.currentTarget.style.backgroundColor = "rgba(68,123,190,0.08)")
+                          }
+                          onMouseLeave={(e) =>
+                            (e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.03)")
+                          }
+                        >
+                          <div className="font-sans font-bold text-white text-[15px]">
+                            {it.ticker}
+                            {it.name ? (
+                              <span className="text-white/70 font-medium"> · {it.name}</span>
+                            ) : null}
+                          </div>
+                          <p className="font-sans text-[13px] mt-1" style={{ color: "#E9E4A6" }}>
+                            {it.desc}
+                          </p>
+                        </div>
+                      );
+                      return it.href ? (
+                        <a
+                          key={it.ticker}
+                          href={it.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block"
+                        >
+                          {cardInner}
+                        </a>
+                      ) : (
+                        <div key={it.ticker}>{cardInner}</div>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            );
+          })()}
+
+          <p className="text-center font-sans text-[12px] text-[#6B7280] mt-10 max-w-2xl mx-auto">
+            This is not financial advice. These are my personal holdings for educational purposes only.
+          </p>
         </div>
       </section>
       </ScrollReveal>
