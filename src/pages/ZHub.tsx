@@ -5,13 +5,6 @@ import {
   TrendingUp,
   LineChart,
   PiggyBank,
-  FileText,
-  HardDrive,
-  Mail,
-  Sparkles,
-  StickyNote,
-  Wrench,
-  FolderKanban,
   LucideIcon,
 } from "lucide-react";
 
@@ -26,16 +19,6 @@ const QUICK_LINKS: HubLink[] = [
   { label: "Fidelity", href: "https://www.fidelity.com", icon: TrendingUp },
   { label: "Robinhood", href: "https://robinhood.com", icon: LineChart },
   { label: "Marcus Savings", href: "https://www.marcus.com", icon: PiggyBank },
-  { label: "Notion", href: "https://notion.so", icon: FileText },
-  { label: "Google Drive", href: "https://drive.google.com", icon: HardDrive },
-  { label: "Beehiiv Dashboard", href: "https://app.beehiiv.com", icon: Mail },
-];
-
-const PROJECT_LINKS: HubLink[] = [
-  { label: "AI Prompts", href: "/ai-prompts", icon: Sparkles, internal: true },
-  { label: "Life Notes", href: "/life-notes", icon: StickyNote, internal: true },
-  { label: "Tools", href: "/tools", icon: Wrench, internal: true },
-  { label: "Fun Projects", href: "/projects", icon: FolderKanban, internal: true },
 ];
 
 function HubCard({ item }: { item: HubLink }) {
@@ -79,16 +62,9 @@ const ZHub = () => {
             </p>
           </div>
 
-          <h2 className="text-2xl font-bold text-foreground mb-6">Quick Links</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
-            {QUICK_LINKS.map((item) => (
-              <HubCard key={item.label} item={item} />
-            ))}
-          </div>
-
-          <h2 className="text-2xl font-bold text-foreground mb-6">Projects & Fun</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-6">My Accounts</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {PROJECT_LINKS.map((item) => (
+            {QUICK_LINKS.map((item) => (
               <HubCard key={item.label} item={item} />
             ))}
           </div>
