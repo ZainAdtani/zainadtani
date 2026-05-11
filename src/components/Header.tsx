@@ -67,7 +67,7 @@ export const Header = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="text-[#94A3B8] hover:text-[#00D4AA] transition-colors"
+              className="text-[#94A3B8] hover:text-[#447BBE] transition-colors"
             >
               <Linkedin className="h-5 w-5" />
             </a>
@@ -76,7 +76,7 @@ export const Header = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="YouTube"
-              className="text-[#94A3B8] hover:text-[#00D4AA] transition-colors"
+              className="text-[#94A3B8] hover:text-[#447BBE] transition-colors"
             >
               <Youtube className="h-5 w-5" />
             </a>
@@ -86,7 +86,7 @@ export const Header = () => {
             href="https://calendly.com/zkadtani"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:inline-flex font-display bg-[#00D4AA] text-[#0A0F1A] font-semibold text-sm px-4 py-2 rounded-[8px] hover:opacity-90 transition-opacity"
+            className="hidden md:inline-flex font-display bg-[#447BBE] text-[#0A0F1A] font-semibold text-sm px-4 py-2 rounded-[8px] hover:opacity-90 transition-opacity"
           >
             Book a Call
           </a>
@@ -105,7 +105,7 @@ export const Header = () => {
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
-            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-md text-[#94A3B8] hover:text-[#00D4AA] transition-colors"
+            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-md text-[#94A3B8] hover:text-[#447BBE] transition-colors"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -120,7 +120,7 @@ export const Header = () => {
                 key={item.path}
                 to={item.path}
                 onClick={() => setMobileOpen(false)}
-                className="px-4 py-3 rounded-xl font-sans font-medium text-[15px] text-[#F1F5F9] hover:bg-[#0F2340] hover:text-[#00D4AA] transition-colors"
+                className="px-4 py-3 rounded-xl font-sans font-medium text-[15px] text-[#F1F5F9] hover:bg-[#0F2340] hover:text-[#447BBE] transition-colors"
               >
                 {item.label}
               </Link>
@@ -130,7 +130,7 @@ export const Header = () => {
                 href="https://linkedin.com/in/zainadtani"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 font-sans text-[14px] text-[#94A3B8] hover:text-[#00D4AA] transition-colors"
+                className="px-4 py-2 font-sans text-[14px] text-[#94A3B8] hover:text-[#447BBE] transition-colors"
               >
                 LinkedIn →
               </a>
@@ -138,7 +138,7 @@ export const Header = () => {
                 href="https://youtube.com/@zainadtani"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 font-sans text-[14px] text-[#94A3B8] hover:text-[#00D4AA] transition-colors"
+                className="px-4 py-2 font-sans text-[14px] text-[#94A3B8] hover:text-[#447BBE] transition-colors"
               >
                 YouTube →
               </a>
@@ -146,7 +146,7 @@ export const Header = () => {
                 href="https://calendly.com/zkadtani"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mx-4 mt-2 bg-[#00D4AA] text-[#0A0F1A] font-display font-semibold text-[14px] px-4 py-3 rounded-[8px] text-center hover:opacity-90 transition-opacity"
+                className="mx-4 mt-2 bg-[#447BBE] text-[#0A0F1A] font-display font-semibold text-[14px] px-4 py-3 rounded-[8px] text-center hover:opacity-90 transition-opacity"
               >
                 Book a Free Call
               </a>

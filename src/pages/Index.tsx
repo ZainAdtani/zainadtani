@@ -209,7 +209,7 @@ const Index = () => {
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center md:py-12">
           {/* Left: text */}
           <div className="order-2 md:order-1 flex flex-col gap-6">
-            <span className="inline-flex w-fit items-center gap-2 text-[12px] font-medium tracking-widest uppercase text-[#00D4AA] bg-[#00D4AA]/10 border border-[#00D4AA]/20 rounded-full px-4 py-1.5">
+            <span className="inline-flex w-fit items-center gap-2 text-[12px] font-medium tracking-widest uppercase text-[#447BBE] bg-[#447BBE]/10 border border-[#447BBE]/20 rounded-full px-4 py-1.5">
               AI Consultant · Author · Coach
             </span>
             <h1 className="font-display font-extrabold text-[36px] md:text-[52px] leading-[1.1] text-[#F1F5F9]">
@@ -227,7 +227,7 @@ const Index = () => {
                 href="https://calendly.com/zkadtani"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-[#00D4AA] text-[#0A0F1A] font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:opacity-90 transition-opacity"
+                className="inline-flex items-center justify-center bg-[#447BBE] text-[#0A0F1A] font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:opacity-90 transition-opacity"
               >
                 Book a Free Call
               </a>
@@ -235,7 +235,7 @@ const Index = () => {
                 href="https://the-z-letter.beehiiv.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center border-[1.5px] border-[#00D4AA]/40 text-[#00D4AA] font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:border-[#00D4AA] transition-colors"
+                className="inline-flex items-center justify-center border-[1.5px] border-[#447BBE]/40 text-[#447BBE] font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:border-[#447BBE] transition-colors"
               >
                 Read The Z Letter
               </a>
@@ -266,7 +266,7 @@ const Index = () => {
       {/* How Can I Help You? */}
       <section className="bg-[#0A0F1A] py-[100px]">
         <div className="container mx-auto px-6 max-w-6xl">
-          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#00D4AA] text-center">WHAT I DO</p>
+          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE] text-center">WHAT I DO</p>
           <h2 className="font-display font-extrabold text-[40px] md:text-[52px] leading-[1.15] text-[#F1F5F9] text-center mt-3">
             <span className="block">How Can I</span>
             <span className="block">Help You?</span>
@@ -287,7 +287,7 @@ const Index = () => {
                 <div className="text-3xl">{c.icon}</div>
                 <h3 className="font-display font-bold text-[20px] text-[#F1F5F9] mt-4">{c.title}</h3>
                 <p className="font-sans text-[15px] text-[#94A3B8] mt-3 flex-1">{c.body}</p>
-                <Link to="/services" className="inline-block mt-4 font-sans font-medium text-[14px] text-[#00D4AA] hover:underline">
+                <Link to="/services" className="inline-block mt-4 font-sans font-medium text-[14px] text-[#447BBE] hover:underline">
                   {c.cta}
                 </Link>
               </div>
@@ -303,7 +303,7 @@ const Index = () => {
       <section id="z-letter" className="py-20 bg-[#0A0F1A]">
         <div className="container mx-auto px-6 max-w-2xl">
           <div className="text-center">
-            <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#00D4AA]">FREE WEEKLY NEWSLETTER</p>
+            <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE]">FREE WEEKLY NEWSLETTER</p>
             <h2 className="font-display font-extrabold text-[40px] md:text-[48px] leading-[1.15] text-[#F1F5F9] mt-3">
               <span className="block">Subscribe to</span>
               <span className="block">The Z Letter</span>
@@ -317,7 +317,7 @@ const Index = () => {
               id="zletterEmail"
               type="email"
               placeholder="you@email.com"
-              className="w-full bg-[#0F2340] border border-[#1E3A5F] rounded-xl px-5 py-3.5 font-sans text-[15px] text-[#F1F5F9] placeholder-[#6B7280] focus:outline-none focus:border-[#00D4AA] transition-colors"
+              className="w-full bg-[#0F2340] border border-[#1E3A5F] rounded-xl px-5 py-3.5 font-sans text-[15px] text-[#F1F5F9] placeholder-[#6B7280] focus:outline-none focus:border-[#447BBE] transition-colors"
             />
             <button
               type="button"
@@ -331,7 +331,7 @@ const Index = () => {
                 const url = 'https://magic.beehiiv.com/v1/dd1643e2-f274-43e4-b193-62276e3e3b48?email=' + encodeURIComponent(email);
                 window.open(url, '_blank');
               }}
-              className="w-full bg-[#00D4AA] text-[#0A0F1A] font-display font-semibold text-[15px] px-6 py-3.5 rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
+              className="w-full bg-[#447BBE] text-[#0A0F1A] font-display font-semibold text-[15px] px-6 py-3.5 rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
             >
               Subscribe Free →
             </button>
@@ -373,7 +373,7 @@ const Index = () => {
       <ScrollReveal delay={50}>
       <section id="contact" className="py-20 bg-[#0A0F1A]">
         <div className="container mx-auto px-6 max-w-2xl text-center">
-          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#00D4AA]">LET'S WORK TOGETHER</p>
+          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE]">LET'S WORK TOGETHER</p>
           <h2 className="font-display font-extrabold text-[40px] md:text-[48px] leading-[1.15] text-[#F1F5F9] mt-3">
             <span className="block">Ready to Build</span>
             <span className="block">Something Real?</span>
@@ -385,7 +385,7 @@ const Index = () => {
             href="https://calendly.com/zkadtani"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-[#00D4AA] text-[#0A0F1A] font-display font-semibold px-8 py-3.5 rounded-xl text-[15px] hover:opacity-90 transition-opacity mt-8"
+            className="inline-flex items-center justify-center bg-[#447BBE] text-[#0A0F1A] font-display font-semibold px-8 py-3.5 rounded-xl text-[15px] hover:opacity-90 transition-opacity mt-8"
           >
             Book a Free Call →
           </a>
