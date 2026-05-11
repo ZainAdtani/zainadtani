@@ -6,8 +6,35 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CopyBlock } from "@/components/CopyBlock";
 import { AI_PROMPTS } from "@/data/ai_prompts";
-import { Search, ChevronDown, ChevronUp } from "lucide-react";
+import { Search, ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
 import LifeNotes from "./LifeNotes";
+
+type ToolCategory = "AI & Agents" | "Productivity" | "Images & Design" | "Apps" | "Courses I Recommend";
+interface Tool { name: string; url: string; desc: string; category: ToolCategory; }
+
+const TOOLS: Tool[] = [
+  { name: "Claude", url: "https://claude.ai", desc: "The AI that runs my business", category: "AI & Agents" },
+  { name: "ElevenLabs", url: "https://elevenlabs.io", desc: "Voice cloning and realistic text-to-speech", category: "AI & Agents" },
+  { name: "Gemini", url: "https://gemini.google.com", desc: "Google AI for planning and writing", category: "AI & Agents" },
+  { name: "Google AI Studio", url: "https://aistudio.google.com", desc: "Build and test prompts with Google models", category: "AI & Agents" },
+  { name: "Hedra", url: "https://www.hedra.com", desc: "AI talking character video creation", category: "AI & Agents" },
+  { name: "NotebookLM", url: "https://notebooklm.google", desc: "AI research and note-taking assistant", category: "AI & Agents" },
+  { name: "Perplexity", url: "https://www.perplexity.ai", desc: "AI search with cited results", category: "AI & Agents" },
+  { name: "Fathom", url: "https://www.fathom.ai", desc: "AI meeting recorder and summarizer", category: "Productivity" },
+  { name: "Gamma", url: "https://gamma.app", desc: "AI-powered presentations and decks", category: "Productivity" },
+  { name: "Otter.ai", url: "https://otter.ai", desc: "Meeting transcription and notes", category: "Productivity" },
+  { name: "Figma", url: "https://www.figma.com", desc: "Design and prototyping platform", category: "Productivity" },
+  { name: "Canva", url: "https://www.canva.com", desc: "Brand graphics, thumbnails, social posts", category: "Images & Design" },
+  { name: "Ideogram", url: "https://ideogram.ai", desc: "AI images with strong typography", category: "Images & Design" },
+  { name: "upscale.media", url: "https://www.upscale.media", desc: "Sharpen and enlarge images automatically", category: "Images & Design" },
+  { name: "HeyGen", url: "https://www.heygen.com", desc: "AI avatar video creator", category: "Apps" },
+  { name: "Suno", url: "https://suno.com", desc: "Create AI-generated music in minutes", category: "Apps" },
+  { name: "ElevenReader", url: "https://apps.apple.com/us/app/elevenreader-voice-reader/id6479373050", desc: "AI reader for PDFs and web pages", category: "Apps" },
+  { name: "NLP Practitioner + Master", url: "https://www.udemy.com/course/nlp-practitioner-master-practitioner-certification-course/", desc: "Full NLP certification on Udemy", category: "Courses I Recommend" },
+];
+
+const TOOL_CATEGORIES = ["All", "AI & Agents", "Productivity", "Images & Design", "Apps", "Courses I Recommend"] as const;
+
 
 interface Prompt {
   title: string;
@@ -88,6 +115,11 @@ export default function Resources() {
   const [q, setQ] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [expanded, setExpanded] = useState<number[]>([]);
+  const [toolCat, setToolCat] = useState<typeof TOOL_CATEGORIES[number]>("All");
+  const filteredTools = useMemo(
+    () => (toolCat === "All" ? TOOLS : TOOLS.filter((t) => t.category === toolCat)),
+    [toolCat]
+  );
 
   const filteredPrompts = useMemo(() => {
     const t = q.trim().toLowerCase();
@@ -114,12 +146,34 @@ export default function Resources() {
       <Helmet><title>Resources | Zain Adtani</title></Helmet>
 
       {/* Hero */}
-      <header className="max-w-6xl mx-auto px-6 pt-20 pb-10 text-center">
+      <header className="max-w-6xl mx-auto px-6 pt-20 pb-6 text-center">
         <h1 className="font-display font-extrabold text-[40px] text-foreground">Resources</h1>
         <p className="mt-3 font-sans text-[16px] text-[#94A3B8] max-w-2xl mx-auto">
           Free tools, prompts, and ideas to help you work smarter and think clearer.
         </p>
+        <div className="mt-6 flex justify-center">
+          <button
+            onClick={() => {
+              const el = document.getElementById("tools");
+              if (el) {
+                const y = el.getBoundingClientRect().top + window.scrollY - 80;
+                window.scrollTo({ top: y, behavior: "smooth" });
+              }
+            }}
+            className="animate-jump-bounce font-sans font-bold text-white rounded-full transition-transform duration-200 hover:scale-105"
+            style={{
+              background: "linear-gradient(135deg, #DD5013, #D97706)",
+              padding: "14px 28px",
+              boxShadow: "0 0 20px rgba(221, 80, 19, 0.4)",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 0 35px rgba(221, 80, 19, 0.6)")}
+            onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "0 0 20px rgba(221, 80, 19, 0.4)")}
+          >
+            ⚡ Jump to Tools I Use
+          </button>
+        </div>
       </header>
+
 
       {/* Tabs */}
       <div className="max-w-6xl mx-auto px-6 flex flex-wrap justify-center gap-3">
@@ -276,28 +330,76 @@ export default function Resources() {
       </div>
 
       {/* Tools I Use */}
-      <section className="max-w-6xl mx-auto px-6 pt-10 pb-16">
-        <h2 className="font-display font-extrabold text-[28px] md:text-[32px] text-foreground text-center mb-8">
+      <section id="tools" className="max-w-6xl mx-auto px-6 pt-16 pb-16 scroll-mt-24">
+        <h2 className="font-display font-extrabold text-[28px] md:text-[32px] text-foreground text-center mb-2">
           Tools I Use
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
-          {[
-            { name: "Claude", desc: "The AI that runs my business." },
-            { name: "HeyGen", desc: "I clone myself on video without recording every day." },
-            { name: "Beehiiv", desc: "Where The Z Letter lives and grows." },
-            { name: "Notion", desc: "My second brain for every project." },
-            { name: "Lovable", desc: "How I build websites in days not months." },
-            { name: "Ideogram", desc: "AI image generation for brand visuals." },
-            { name: "Canva", desc: "Quick design without a designer." },
-            { name: "ElevenLabs", desc: "My voice, cloned for audio content." },
-          ].map((t) => (
-            <div key={t.name} className="bg-[#0F2340] border border-[#1E3A5F] rounded-2xl p-5 hover:border-[#447BBE]/50 transition-colors">
-              <h3 className="font-display font-bold text-[16px] text-[#FFFFFF]">{t.name}</h3>
+        <p className="font-sans text-[15px] text-[#94A3B8] text-center mb-8">
+          Everything in my stack. No fluff. No sponsorships.
+        </p>
+
+        {/* Category tabs */}
+        <div className="flex flex-wrap justify-center gap-2 mb-8">
+          {TOOL_CATEGORIES.map((c) => {
+            const isActive = toolCat === c;
+            return (
+              <button
+                key={c}
+                onClick={() => setToolCat(c)}
+                className="text-[13px] px-4 py-1.5 rounded-full transition-opacity duration-150"
+                style={{
+                  border: "1px solid #447BBE",
+                  background: isActive ? "#447BBE" : "transparent",
+                  color: isActive ? "#FFFFFF" : "#447BBE",
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive) e.currentTarget.style.background = "rgba(68, 123, 190, 0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) e.currentTarget.style.background = "transparent";
+                }}
+              >
+                {c}
+              </button>
+            );
+          })}
+        </div>
+
+        <div key={toolCat} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 animate-fade-in">
+          {filteredTools.map((t) => (
+            <a
+              key={t.name}
+              href={t.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block rounded-xl p-5 transition-all duration-200"
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(68, 123, 190, 0.2)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "#447BBE";
+                e.currentTarget.style.background = "rgba(68,123,190,0.08)";
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow = "0 8px 24px rgba(68,123,190,0.15)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "rgba(68, 123, 190, 0.2)";
+                e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              <h3 className="font-sans font-bold text-[16px] text-white">{t.name}</h3>
               <p className="font-sans text-[13px] text-[#E9E4A6] mt-2">{t.desc}</p>
-            </div>
+              <span className="mt-3 inline-flex items-center gap-1 text-[12px] font-semibold text-[#DD5013] opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                Open Tool <ExternalLink className="w-3 h-3" />
+              </span>
+            </a>
           ))}
         </div>
       </section>
+
 
       {/* Page footer */}
       <div className="max-w-6xl mx-auto px-6 pb-16 text-center">

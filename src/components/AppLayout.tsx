@@ -52,43 +52,61 @@ function LayoutShell({ children }: { children: ReactNode }) {
               {children}
             </div>
           </main>
-          <footer className="bg-background border-t border-border py-8 mt-8">
-            <div className="container mx-auto px-4 max-w-6xl">
+          <footer className="py-8 mt-8">
+            {/* Gradient divider */}
+            <div
+              className="w-full h-px"
+              style={{ background: "linear-gradient(90deg, transparent, #447BBE, transparent)" }}
+            />
+            <div className="container mx-auto px-4 max-w-6xl pt-8">
               {/* Z Logo */}
               <div className="flex justify-center mb-6">
-                <svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 48 48"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
+                <Link
+                  to="/"
+                  aria-label="Home"
+                  className="inline-block transition-transform duration-200 hover:rotate-[5deg] hover:scale-110"
                 >
-                  <line x1="10" y1="12" x2="38" y2="12" stroke="#DD5013" strokeWidth="3" strokeLinecap="round"
-                    style={{ strokeDasharray: 28, strokeDashoffset: 28, animation: "drawZ 0.5s ease-out 0s forwards" }} />
-                  <line x1="38" y1="12" x2="10" y2="36" stroke="#DD5013" strokeWidth="3" strokeLinecap="round"
-                    style={{ strokeDasharray: 38, strokeDashoffset: 38, animation: "drawZ 0.6s ease-out 0.5s forwards" }} />
-                  <line x1="10" y1="36" x2="38" y2="36" stroke="#DD5013" strokeWidth="3" strokeLinecap="round"
-                    style={{ strokeDasharray: 28, strokeDashoffset: 28, animation: "drawZ 0.5s ease-out 1s forwards" }} />
-                </svg>
+                  <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <line x1="10" y1="12" x2="38" y2="12" stroke="#DD5013" strokeWidth="3" strokeLinecap="round"
+                      style={{ strokeDasharray: 28, strokeDashoffset: 28, animation: "drawZ 0.5s ease-out 0s forwards" }} />
+                    <line x1="38" y1="12" x2="10" y2="36" stroke="#DD5013" strokeWidth="3" strokeLinecap="round"
+                      style={{ strokeDasharray: 38, strokeDashoffset: 38, animation: "drawZ 0.6s ease-out 0.5s forwards" }} />
+                    <line x1="10" y1="36" x2="38" y2="36" stroke="#DD5013" strokeWidth="3" strokeLinecap="round"
+                      style={{ strokeDasharray: 28, strokeDashoffset: 28, animation: "drawZ 0.5s ease-out 1s forwards" }} />
+                  </svg>
+                </Link>
               </div>
 
-              <div className="border-t border-border/60 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                 {/* Left: copyright */}
-                <p className="text-xs text-muted-foreground text-center md:text-left">
+                <p className="text-xs text-center md:text-left" style={{ color: "rgba(255,255,255,0.5)" }}>
                   © 2026 Zain Adtani · Adtani Education Ventures LLC · DFW, Texas
                 </p>
 
                 {/* Center: nav links */}
                 <nav className="flex flex-wrap items-center justify-center gap-5">
                   {FOOTER_NAV.map((l) => (
-                    <Link key={l.to} to={l.to} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    <Link
+                      key={l.to}
+                      to={l.to}
+                      className="text-sm transition-colors duration-150"
+                      style={{ color: "rgba(255,255,255,0.6)" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "#E9E4A6")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.6)")}
+                    >
                       {l.label}
                     </Link>
                   ))}
                 </nav>
 
-                {/* Right: socials + Z Hub */}
+                {/* Right: socials */}
                 <div className="flex items-center gap-4">
                   {FOOTER_SOCIALS.map(({ label, href, Icon }) => (
                     <a
@@ -98,22 +116,19 @@ function LayoutShell({ children }: { children: ReactNode }) {
                       rel="noopener noreferrer"
                       aria-label={label}
                       title={label}
-                      className="text-muted-foreground hover:text-primary transition-colors"
+                      className="inline-block transition-all duration-150 hover:scale-110"
+                      style={{ color: "rgba(255,255,255,0.6)" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "#447BBE")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.6)")}
                     >
                       <Icon className="w-5 h-5" />
                     </a>
                   ))}
-                  <Link
-                    to="/z-hub"
-                    aria-label="Z Hub"
-                    className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-[11px] font-bold font-sans hover:scale-110 transition-all duration-300"
-                  >
-                    Z
-                  </Link>
                 </div>
               </div>
             </div>
           </footer>
+
         </div>
       </div>
       <BackToTop />
