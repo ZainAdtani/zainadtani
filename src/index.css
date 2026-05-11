@@ -25,6 +25,14 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    /* Brand color tokens */
+    --color-bg: #0A0F1A;
+    --color-primary: #447BBE;
+    --color-secondary: #D97706;
+    --color-cta: #DD5013;
+    --color-warm: #E9E4A6;
+    --color-text: #FFFFFF;
+
     /* Backgrounds */
     --background: 40 20% 97%;
     --foreground: 222 47% 8%;
