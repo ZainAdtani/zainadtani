@@ -23,6 +23,7 @@ import Archive from "./pages/Archive";
 import Services from "./pages/Services";
 import ZHub from "./pages/ZHub";
 import Prompts from "./pages/Prompts";
+import FunProjects from "./pages/FunProjects";
 
 // Project sub-pages
 import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
@@ -56,6 +57,7 @@ const App = () => (
             <Route path="/services" element={<Services />} />
             <Route path="/z-hub" element={<ZHub />} />
             <Route path="/prompts" element={<Prompts />} />
+            <Route path="/fun-projects" element={<FunProjects />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

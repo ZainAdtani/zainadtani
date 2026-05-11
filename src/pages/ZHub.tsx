@@ -1,43 +1,25 @@
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
-import {
-  TrendingUp,
-  LineChart,
-  PiggyBank,
-  LucideIcon,
-} from "lucide-react";
 
-interface HubLink {
-  label: string;
+interface Account {
+  name: string;
   href: string;
-  icon: LucideIcon;
-  internal?: boolean;
 }
 
-const QUICK_LINKS: HubLink[] = [
-  { label: "Fidelity", href: "https://www.fidelity.com", icon: TrendingUp },
-  { label: "Robinhood", href: "https://robinhood.com", icon: LineChart },
-  { label: "Marcus Savings", href: "https://www.marcus.com", icon: PiggyBank },
+const ACCOUNTS: Account[] = [
+  { name: "Fidelity", href: "https://www.fidelity.com" },
+  { name: "Robinhood", href: "https://robinhood.com" },
+  { name: "Marcus Savings", href: "https://www.marcus.com" },
 ];
 
-function HubCard({ item }: { item: HubLink }) {
-  const Icon = item.icon;
-  const inner = (
-    <Card className="group p-6 flex flex-col items-center justify-center gap-3 text-center border border-border/50 hover:border-primary/70 hover:shadow-[0_0_24px_rgba(0,212,170,0.25)] transition-all duration-300 cursor-pointer h-full">
-      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-        <Icon className="w-6 h-6 text-primary" />
-      </div>
-      <span className="text-sm font-medium text-foreground">{item.label}</span>
-    </Card>
-  );
-
-  if (item.internal) {
-    return <Link to={item.href}>{inner}</Link>;
-  }
+function AccountCard({ item }: { item: Account }) {
   return (
-    <a href={item.href} target="_blank" rel="noopener noreferrer">
-      {inner}
+    <a href={item.href} target="_blank" rel="noopener noreferrer" className="block">
+      <Card className="p-6 flex flex-col gap-2 border border-border/50 hover:border-[#447BBE]/70 transition-all duration-300 h-full">
+        <span className="text-lg font-semibold text-foreground">{item.name}</span>
+        <span className="text-xs text-muted-foreground uppercase tracking-wider">Personal Account</span>
+        <span className="mt-2 text-sm font-medium text-[#447BBE]">Open →</span>
+      </Card>
     </a>
   );
 }
@@ -64,8 +46,8 @@ const ZHub = () => {
 
           <h2 className="text-2xl font-bold text-foreground mb-6">My Accounts</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {QUICK_LINKS.map((item) => (
-              <HubCard key={item.label} item={item} />
+            {ACCOUNTS.map((item) => (
+              <AccountCard key={item.name} item={item} />
             ))}
           </div>
         </div>
