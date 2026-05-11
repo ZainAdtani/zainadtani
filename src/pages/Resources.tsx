@@ -75,12 +75,12 @@ type TabKey = "business" | "library" | "notes";
 const CATEGORIES = ["All", "Coaching", "Productivity", "Learning", "Email", "Delegation", "Automation"] as const;
 
 const categoryColor: Record<string, string> = {
-  Coaching: "bg-[#00D4AA]/15 text-[#00D4AA] border border-[#00D4AA]/30",
+  Coaching: "bg-[#447BBE]/15 text-[#447BBE] border border-[#447BBE]/30",
   Productivity: "bg-[#3B82F6]/15 text-[#3B82F6] border border-[#3B82F6]/30",
   Learning: "bg-emerald-400/15 text-emerald-300 border border-emerald-400/30",
   Email: "bg-[#3B82F6]/15 text-[#3B82F6] border border-[#3B82F6]/30",
-  Delegation: "bg-[#00D4AA]/10 text-[#00D4AA] border border-[#00D4AA]/20",
-  Automation: "bg-[#00D4AA]/15 text-[#00D4AA] border border-[#00D4AA]/30",
+  Delegation: "bg-[#447BBE]/10 text-[#447BBE] border border-[#447BBE]/20",
+  Automation: "bg-[#447BBE]/15 text-[#447BBE] border border-[#447BBE]/30",
 };
 
 export default function Resources() {
@@ -106,8 +106,8 @@ export default function Resources() {
     setExpanded((prev) => (prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]));
 
   const pillBase = "px-5 py-2.5 rounded-full text-[14px] font-sans cursor-pointer transition-colors";
-  const active = "bg-[#00D4AA] text-[#0A0F1A] font-semibold";
-  const inactive = "bg-[#0F2340] text-[#94A3B8] border border-[#1E3A5F] hover:border-[#00D4AA]/40";
+  const active = "bg-[#447BBE] text-[#0A0F1A] font-semibold";
+  const inactive = "bg-[#0F2340] text-[#94A3B8] border border-[#1E3A5F] hover:border-[#447BBE]/40";
 
   return (
     <div className="min-h-screen bg-background">
@@ -138,10 +138,10 @@ export default function Resources() {
         {tab === "business" && (
           <div className="container mx-auto px-4 max-w-6xl pb-10">
             {/* Featured: Train My AI Assistant */}
-            <div className="mb-12 bg-gradient-to-br from-[#0F2340] to-[#0A0F1A] border border-[#00D4AA]/30 rounded-3xl p-8 md:p-10">
+            <div className="mb-12 bg-gradient-to-br from-[#0F2340] to-[#0A0F1A] border border-[#447BBE]/30 rounded-3xl p-8 md:p-10">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
                 <div>
-                  <span className="inline-block text-[11px] font-medium tracking-widest uppercase text-[#00D4AA] bg-[#00D4AA]/10 border border-[#00D4AA]/20 rounded-full px-3 py-1 mb-3">
+                  <span className="inline-block text-[11px] font-medium tracking-widest uppercase text-[#447BBE] bg-[#447BBE]/10 border border-[#447BBE]/20 rounded-full px-3 py-1 mb-3">
                     ⭐ START HERE
                   </span>
                   <h3 className="font-display font-extrabold text-[26px] md:text-[32px] text-[#F1F5F9] leading-tight">
@@ -227,8 +227,8 @@ export default function Resources() {
                   onClick={() => setSelectedCategory(c)}
                   className={`text-[13px] px-3 py-1.5 rounded-full transition-colors ${
                     selectedCategory === c
-                      ? "bg-[#00D4AA] text-[#0A0F1A] font-semibold"
-                      : "bg-[#0F2340] text-[#94A3B8] border border-[#1E3A5F] hover:border-[#00D4AA]/40"
+                      ? "bg-[#447BBE] text-[#0A0F1A] font-semibold"
+                      : "bg-[#0F2340] text-[#94A3B8] border border-[#1E3A5F] hover:border-[#447BBE]/40"
                   }`}
                 >
                   {c}
@@ -258,7 +258,7 @@ export default function Resources() {
                     </pre>
                     <button
                       onClick={() => toggleExpand(p.id)}
-                      className="self-start text-[13px] text-[#00D4AA] hover:underline flex items-center gap-1"
+                      className="self-start text-[13px] text-[#447BBE] hover:underline flex items-center gap-1"
                     >
                       {isExpanded ? (<>Collapse <ChevronUp className="w-3 h-3" /></>) : (<>Expand <ChevronDown className="w-3 h-3" /></>)}
                     </button>
@@ -281,7 +281,7 @@ export default function Resources() {
           More tools coming soon. Have a prompt to share?
           <a
             href="mailto:zkadtani@gmail.com"
-            className="text-[#00D4AA] ml-1 hover:underline"
+            className="text-[#447BBE] ml-1 hover:underline"
           >
             Send it over.
           </a>
