@@ -247,11 +247,10 @@ const Index = () => {
           </div>
 
           {/* Right: photo */}
-          <div className="order-1 md:order-2 relative rounded-2xl overflow-hidden md:max-h-[520px]">
-            <div
-              className="absolute inset-0 rounded-2xl pointer-events-none"
-              style={{ boxShadow: "0 0 60px rgba(0,212,170,0.08)" }}
-            />
+          <div
+            className="order-1 md:order-2 relative rounded-2xl overflow-hidden md:max-h-[520px] border-2"
+            style={{ borderColor: "#447BBE", boxShadow: "0 0 24px rgba(68, 123, 190, 0.3)" }}
+          >
             <img
               src={headshotImage}
               alt="Zain Adtani — AI Consultant and Author"
