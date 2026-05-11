@@ -330,28 +330,76 @@ export default function Resources() {
       </div>
 
       {/* Tools I Use */}
-      <section className="max-w-6xl mx-auto px-6 pt-10 pb-16">
-        <h2 className="font-display font-extrabold text-[28px] md:text-[32px] text-foreground text-center mb-8">
+      <section id="tools" className="max-w-6xl mx-auto px-6 pt-16 pb-16 scroll-mt-24">
+        <h2 className="font-display font-extrabold text-[28px] md:text-[32px] text-foreground text-center mb-2">
           Tools I Use
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
-          {[
-            { name: "Claude", desc: "The AI that runs my business." },
-            { name: "HeyGen", desc: "I clone myself on video without recording every day." },
-            { name: "Beehiiv", desc: "Where The Z Letter lives and grows." },
-            { name: "Notion", desc: "My second brain for every project." },
-            { name: "Lovable", desc: "How I build websites in days not months." },
-            { name: "Ideogram", desc: "AI image generation for brand visuals." },
-            { name: "Canva", desc: "Quick design without a designer." },
-            { name: "ElevenLabs", desc: "My voice, cloned for audio content." },
-          ].map((t) => (
-            <div key={t.name} className="bg-[#0F2340] border border-[#1E3A5F] rounded-2xl p-5 hover:border-[#447BBE]/50 transition-colors">
-              <h3 className="font-display font-bold text-[16px] text-[#FFFFFF]">{t.name}</h3>
+        <p className="font-sans text-[15px] text-[#94A3B8] text-center mb-8">
+          Everything in my stack. No fluff. No sponsorships.
+        </p>
+
+        {/* Category tabs */}
+        <div className="flex flex-wrap justify-center gap-2 mb-8">
+          {TOOL_CATEGORIES.map((c) => {
+            const isActive = toolCat === c;
+            return (
+              <button
+                key={c}
+                onClick={() => setToolCat(c)}
+                className="text-[13px] px-4 py-1.5 rounded-full transition-opacity duration-150"
+                style={{
+                  border: "1px solid #447BBE",
+                  background: isActive ? "#447BBE" : "transparent",
+                  color: isActive ? "#FFFFFF" : "#447BBE",
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive) e.currentTarget.style.background = "rgba(68, 123, 190, 0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) e.currentTarget.style.background = "transparent";
+                }}
+              >
+                {c}
+              </button>
+            );
+          })}
+        </div>
+
+        <div key={toolCat} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 animate-fade-in">
+          {filteredTools.map((t) => (
+            <a
+              key={t.name}
+              href={t.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block rounded-xl p-5 transition-all duration-200"
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(68, 123, 190, 0.2)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "#447BBE";
+                e.currentTarget.style.background = "rgba(68,123,190,0.08)";
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow = "0 8px 24px rgba(68,123,190,0.15)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "rgba(68, 123, 190, 0.2)";
+                e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              <h3 className="font-sans font-bold text-[16px] text-white">{t.name}</h3>
               <p className="font-sans text-[13px] text-[#E9E4A6] mt-2">{t.desc}</p>
-            </div>
+              <span className="mt-3 inline-flex items-center gap-1 text-[12px] font-semibold text-[#DD5013] opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                Open Tool <ExternalLink className="w-3 h-3" />
+              </span>
+            </a>
           ))}
         </div>
       </section>
+
 
       {/* Page footer */}
       <div className="max-w-6xl mx-auto px-6 pb-16 text-center">
