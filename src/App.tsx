@@ -23,6 +23,7 @@ import Archive from "./pages/Archive";
 import Services from "./pages/Services";
 import Prompts from "./pages/Prompts";
 import HarryPotter from "./pages/HarryPotter";
+import PokemonDex from "./pages/PokemonDex";
 
 // Project sub-pages
 import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
