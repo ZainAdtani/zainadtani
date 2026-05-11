@@ -176,9 +176,10 @@ function LayoutShell({ children }: { children: ReactNode }) {
                     type="button"
                     onClick={() => {}}
                     aria-label="Toggle sidebar"
-                    className="mt-3 w-8 h-8 rounded-full bg-[#1E3A5F] flex items-center justify-center border border-transparent hover:border-[#00D4AA] transition-colors"
+                    className="mt-3 w-8 h-8 rounded-full flex items-center justify-center border border-transparent hover:border-[color:var(--color-cta)] transition-colors"
+                    style={{ backgroundColor: 'var(--color-primary)' }}
                   >
-                    <Grip className="w-3.5 h-3.5 text-[#94A3B8]" />
+                    <Grip className="w-3.5 h-3.5" style={{ color: 'var(--color-warm)' }} />
                   </button>
                 </div>
                 <Link
