@@ -23,6 +23,7 @@ import Archive from "./pages/Archive";
 import Services from "./pages/Services";
 import ZHub from "./pages/ZHub";
 import Prompts from "./pages/Prompts";
+import FunProjects from "./pages/FunProjects";
 
 // Project sub-pages
 import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
