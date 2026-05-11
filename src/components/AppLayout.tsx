@@ -19,17 +19,10 @@ const FOOTER_NAV = [
   { label: "Resources", to: "/resources" },
 ];
 
-const FOOTER_CONNECT = [
-  { label: "LinkedIn", href: "https://linkedin.com/in/zainadtani" },
-  { label: "YouTube", href: "https://youtube.com/@zainadtani" },
-  { label: "The Z Letter", href: "https://the-z-letter.beehiiv.com" },
-  { label: "Email", href: "mailto:zkadtani@gmail.com" },
-  { label: "Book a Call", href: "https://calendly.com/zkadtani" },
-];
-
-const FOOTER_MORE = [
-  { label: "About", to: "/about", internal: true },
-  { label: "Book a Call", to: "https://calendly.com/zkadtani", internal: false },
+const FOOTER_SOCIALS = [
+  { label: "LinkedIn", href: "https://linkedin.com/in/zainadtani", Icon: Linkedin },
+  { label: "YouTube", href: "https://youtube.com/@zainadtani", Icon: Youtube },
+  { label: "The Z Letter", href: "https://the-z-letter.beehiiv.com", Icon: Mail },
 ];
 
 export function AppLayout({ children }: AppLayoutProps) {
