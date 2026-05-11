@@ -26,162 +26,176 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Brand color tokens */
-    --color-bg: #0A0F1A;
+    --color-bg: #0D1B2E;
     --color-primary: #447BBE;
     --color-secondary: #D97706;
     --color-cta: #DD5013;
     --color-warm: #E9E4A6;
     --color-text: #FFFFFF;
 
-    /* Backgrounds */
-    --background: 40 20% 97%;
-    --foreground: 222 47% 8%;
+    /* Light mode — Fresh Hay system */
+    /* Page bg #E9E4A6 */
+    --background: 55 60% 78%;
+    /* Body text #1A1A2E */
+    --foreground: 240 28% 14%;
 
-    /* Cards and surfaces */
-    --card: 38 25% 94%;
-    --card-foreground: 222 47% 8%;
+    /* Cards #FFFFFF */
+    --card: 0 0% 100%;
+    /* Headings #0D1B2E */
+    --card-foreground: 213 56% 12%;
 
-    --popover: 38 25% 94%;
-    --popover-foreground: 222 47% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 56% 12%;
 
-    /* Primary = Electric Teal */
-    --primary: 168 100% 42%;
-    --primary-foreground: 222 47% 8%;
+    /* Primary buttons #DD5013 (Sunset Drive) */
+    --primary: 16 84% 47%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Secondary = Signal Blue */
-    --secondary: 217 91% 60%;
+    /* Secondary / Accent #447BBE (Spidey Blue) */
+    --secondary: 213 50% 51%;
     --secondary-foreground: 0 0% 100%;
 
     /* Muted */
-    --muted: 38 20% 90%;
-    --muted-foreground: 215 16% 45%;
+    --muted: 55 45% 85%;
+    --muted-foreground: 240 20% 30%;
 
-    /* Accent */
-    --accent: 168 100% 42%;
-    --accent-foreground: 222 47% 8%;
+    /* Accent (links) #447BBE */
+    --accent: 213 50% 51%;
+    --accent-foreground: 0 0% 100%;
 
     /* Destructive */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
     /* Borders and inputs */
-    --border: 38 15% 85%;
-    --input: 38 15% 85%;
-    --ring: 168 100% 42%;
+    --border: 213 50% 51%;
+    --input: 55 30% 75%;
+    --ring: 213 50% 51%;
 
     /* Radius — keep same */
     --radius: 0.75rem;
 
     /* Hero */
-    --hero-bg: 40 25% 96%;
-    --hero-foreground: 222 47% 8%;
+    --hero-bg: 55 60% 78%;
+    --hero-foreground: 213 56% 12%;
 
     /* Sidebar */
-    --sidebar-background: 38 25% 94%;
-    --sidebar-foreground: 222 47% 8%;
-    --sidebar-primary: 168 100% 42%;
-    --sidebar-primary-foreground: 222 47% 8%;
-    --sidebar-accent: 38 20% 90%;
-    --sidebar-accent-foreground: 222 47% 8%;
-    --sidebar-border: 38 15% 85%;
-    --sidebar-ring: 168 100% 42%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 213 56% 12%;
+    --sidebar-primary: 16 84% 47%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 55 45% 85%;
+    --sidebar-accent-foreground: 213 56% 12%;
+    --sidebar-border: 213 50% 51%;
+    --sidebar-ring: 213 50% 51%;
 
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* Light mode overrides for hardcoded dark hex classes */
-  html:not(.dark) [class*="bg-[#0A0F1A]"] {
-    background-color: hsl(40, 20%, 97%) !important;
+  html:not(.dark) [class*="bg-[#0A0F1A]"],
+  html:not(.dark) [class*="bg-[#0D1B2E]"] {
+    background-color: #E9E4A6 !important;
   }
 
   html:not(.dark) [class*="bg-[#0F2340]"] {
-    background-color: hsl(38, 25%, 92%) !important;
+    background-color: #FFFFFF !important;
   }
 
   html:not(.dark) [class*="bg-[#070C14]"] {
-    background-color: hsl(38, 20%, 95%) !important;
+    background-color: #FFFFFF !important;
   }
 
   html:not(.dark) [class*="border-[#1E3A5F]"] {
-    border-color: hsl(38, 15%, 82%) !important;
+    border-color: #447BBE !important;
   }
 
   html:not(.dark) [class*="text-[#94A3B8]"] {
-    color: hsl(215, 16%, 40%) !important;
+    color: #1A1A2E !important;
   }
 
   html:not(.dark) [class*="text-[#F1F5F9]"],
   html:not(.dark) [class*="text-[#F8F8F2]"] {
-    color: hsl(222, 47%, 8%) !important;
+    color: #0D1B2E !important;
   }
 
   html:not(.dark) [class*="text-[#6B7280]"] {
-    color: hsl(215, 14%, 38%) !important;
+    color: #1A1A2E !important;
   }
 
-  /* Teal stays teal in light mode — no override needed */
+  /* Spidey Blue accent stays — links/accents */
 
   /* Code/mono blocks in light mode */
   html:not(.dark) [class*="bg-[#0A0A0F]"],
   html:not(.dark) [class*="bg-[#070C14]"] {
-    background-color: hsl(38, 15%, 90%) !important;
+    background-color: #FFFFFF !important;
   }
 
   html:not(.dark) pre,
   html:not(.dark) code,
   html:not(.dark) .font-mono {
-    background-color: hsl(38, 15%, 90%) !important;
-    color: hsl(222, 47%, 15%) !important;
+    background-color: #FFFFFF !important;
+    color: #0D1B2E !important;
   }
 
   /* Hero gradient override in light mode */
-  html:not(.dark) section.relative.w-full.bg-\[\#0A0F1A\] {
-    background: linear-gradient(
-      135deg,
-      hsl(40, 25%, 96%) 0%,
-      hsl(38, 20%, 93%) 100%
-    ) !important;
+  html:not(.dark) section.relative.w-full.bg-\[\#0A0F1A\],
+  html:not(.dark) section.relative.w-full.bg-\[\#0D1B2E\] {
+    background: #E9E4A6 !important;
   }
 
   /* Light mode card hover shadow */
-  html:not(.dark) .hover\:border-\[\#00D4AA\]\/50:hover {
-    border-color: rgba(0, 212, 170, 0.6) !important;
-    box-shadow: 0 4px 20px rgba(0, 212, 170, 0.08) !important;
+  html:not(.dark) .hover\:border-\[\#447BBE\]\/50:hover,
+  html:not(.dark) .hover\:border-\[\#447BBE\]:hover {
+    border-color: #447BBE !important;
+    box-shadow: 0 4px 20px rgba(68, 123, 190, 0.15) !important;
   }
 
   /* Footer in light mode */
   html:not(.dark) footer {
-    background-color: hsl(38, 20%, 93%) !important;
-    border-top-color: hsl(38, 15%, 82%) !important;
+    background-color: #FFFFFF !important;
+    border-top-color: #447BBE !important;
   }
 
-  /* Header in light mode — already using CSS vars,
-     just ensure backdrop is warm */
+  /* Header / nav in light mode */
   html:not(.dark) header {
-    background-color: rgba(248, 247, 244, 0.92) !important;
+    background-color: #FFFFFF !important;
+    border-bottom: 1px solid #447BBE !important;
   }
 
   /* Newsletter section card in light mode */
   html:not(.dark) .rounded-3xl {
-    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.06) !important;
+    box-shadow: 0 2px 24px rgba(13, 27, 46, 0.08) !important;
+  }
+
+  /* Headings in light mode */
+  html:not(.dark) h1,
+  html:not(.dark) h2,
+  html:not(.dark) h3,
+  html:not(.dark) h4,
+  html:not(.dark) h5,
+  html:not(.dark) h6 {
+    color: #0D1B2E !important;
   }
 
   /* Input fields in light mode */
   html:not(.dark) input[type="email"],
   html:not(.dark) input[type="text"],
   html:not(.dark) input[type="search"] {
-    background-color: hsl(0, 0%, 100%) !important;
-    border-color: hsl(38, 15%, 78%) !important;
-    color: hsl(222, 47%, 8%) !important;
+    background-color: #FFFFFF !important;
+    border-color: #447BBE !important;
+    color: #1A1A2E !important;
   }
 
   html:not(.dark) input::placeholder {
-    color: hsl(215, 14%, 55%) !important;
+    color: #1A1A2E !important;
+    opacity: 0.55;
   }
 
   .dark {
-    --background: 221 45% 7%;
+    /* Spidey Blue dark #0D1B2E */
+    --background: 213 56% 12%;
     --foreground: 210 40% 96%;
 
     --card: 214 62% 15%;
@@ -209,7 +223,7 @@ All colors MUST be HSL.
     --input: 222 44% 15%;
     --ring: 168 100% 42%;
 
-    --hero-bg: 221 45% 7%;
+    --hero-bg: 213 56% 12%;
     --hero-foreground: 210 40% 96%;
 
     --sidebar-background: 214 62% 15%;
