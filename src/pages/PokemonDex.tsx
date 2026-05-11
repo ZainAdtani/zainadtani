@@ -187,71 +187,27 @@ const PokemonDex = () => {
       </section>
 
       {/* Bouncing Pikachu sprite above chat bubble */}
-      <div
-        className="fixed"
-        style={{ bottom: 80, right: 16, zIndex: 49 }}
-        onMouseEnter={() => setShowPikaTip(true)}
-        onMouseLeave={() => setShowPikaTip(false)}
-      >
-        {showPikaTip && (
-          <div
-            className="absolute left-1/2 -translate-x-1/2 -top-9 whitespace-nowrap rounded-full text-white text-xs font-semibold"
-            style={{
-              backgroundColor: "#DD5013",
-              padding: "6px 12px",
-              animation: "pikaFadeIn 0.15s ease-out",
-            }}
-          >
-            Pika pika! ⚡
-          </div>
-        )}
-        <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif"
-          alt="Pikachu"
-          className="cursor-pointer"
-          style={{
-            width: 56,
-            height: "auto",
-            imageRendering: "pixelated",
-            animation: "pikaBounce 1s ease-in-out infinite",
-            transition: "transform 0.2s ease",
-          }}
-          onMouseOver={(e) => {
-            (e.currentTarget as HTMLElement).style.transform = "scale(1.4)";
-          }}
-          onMouseOut={(e) => {
-            (e.currentTarget as HTMLElement).style.transform = "scale(1)";
-          }}
-        />
-      </div>
-
-      {/* Floating Pikachu */}
-      <div
-        className="fixed"
-        style={{ bottom: 100, right: 24, zIndex: 50 }}
-        onMouseEnter={() => setShowTip(true)}
-        onMouseLeave={() => setShowTip(false)}
-      >
-        {showTip && (
-          <div
-            className="absolute left-1/2 -translate-x-1/2 -top-10 whitespace-nowrap rounded-full text-white text-xs font-semibold"
-            style={{ backgroundColor: "#DD5013", padding: "6px 12px" }}
-          >
-            Gotta catch em all!
-          </div>
-        )}
-        <div
-          className="cursor-pointer transition-transform duration-200 hover:scale-[1.3]"
-          style={{
-            fontSize: 48,
-            lineHeight: 1,
-            animation: "funFloatBounce 1.5s ease-in-out infinite",
-          }}
-          aria-label="Pikachu"
-        >
-          ⚡
-        </div>
-      </div>
+      <img
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif"
+        alt="Pikachu"
+        className="fixed cursor-pointer"
+        style={{
+          bottom: 80,
+          right: 16,
+          zIndex: 49,
+          width: 56,
+          height: "auto",
+          imageRendering: "pixelated",
+          animation: "pikaBounce 1s ease-in-out infinite",
+          transition: "transform 0.2s ease",
+        }}
+        onMouseOver={(e) => {
+          (e.currentTarget as HTMLElement).style.transform = "scale(1.4)";
+        }}
+        onMouseOut={(e) => {
+          (e.currentTarget as HTMLElement).style.transform = "scale(1)";
+        }}
+      />
     </div>
   );
 };
