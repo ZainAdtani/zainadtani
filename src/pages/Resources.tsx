@@ -141,12 +141,34 @@ export default function Resources() {
       <Helmet><title>Resources | Zain Adtani</title></Helmet>
 
       {/* Hero */}
-      <header className="max-w-6xl mx-auto px-6 pt-20 pb-10 text-center">
+      <header className="max-w-6xl mx-auto px-6 pt-20 pb-6 text-center">
         <h1 className="font-display font-extrabold text-[40px] text-foreground">Resources</h1>
         <p className="mt-3 font-sans text-[16px] text-[#94A3B8] max-w-2xl mx-auto">
           Free tools, prompts, and ideas to help you work smarter and think clearer.
         </p>
+        <div className="mt-6 flex justify-center">
+          <button
+            onClick={() => {
+              const el = document.getElementById("tools");
+              if (el) {
+                const y = el.getBoundingClientRect().top + window.scrollY - 80;
+                window.scrollTo({ top: y, behavior: "smooth" });
+              }
+            }}
+            className="animate-jump-bounce font-sans font-bold text-white rounded-full transition-transform duration-200 hover:scale-105"
+            style={{
+              background: "linear-gradient(135deg, #DD5013, #D97706)",
+              padding: "14px 28px",
+              boxShadow: "0 0 20px rgba(221, 80, 19, 0.4)",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 0 35px rgba(221, 80, 19, 0.6)")}
+            onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "0 0 20px rgba(221, 80, 19, 0.4)")}
+          >
+            ⚡ Jump to Tools I Use
+          </button>
+        </div>
       </header>
+
 
       {/* Tabs */}
       <div className="max-w-6xl mx-auto px-6 flex flex-wrap justify-center gap-3">
