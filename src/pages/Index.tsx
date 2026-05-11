@@ -34,7 +34,7 @@ const FUN_PROJECTS: FunProject[] = [
     description:
       "All 151 original Pokemon. Every stat, type, height, weight, and HP. Filterable by number, weight, height, type, and attack. Built entirely in Notion. Yes, I made this.",
     image: pokemonImg,
-    href: "https://zainadtani.notion.site/Zain-s-Notion-Pok-dex-3d1da8f06b194c24a7aeb9f54aa43294",
+    href: "/pokedex",
     buttonText: "Open the Pokédex →",
     badgeText: "151 Pokémon",
     badgeBg: "#DD5013",
