@@ -266,19 +266,19 @@ const Index = () => {
       {/* How Can I Help You? */}
       <section className="bg-[#0A0F1A] py-[100px]">
         <div className="container mx-auto px-6 max-w-6xl">
-          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE] text-center">WHAT I DO</p>
+          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE] text-center">YOUR PROBLEM. MY SPECIALTY.</p>
           <h2 className="font-display font-extrabold text-[40px] md:text-[52px] leading-[1.15] text-[#F1F5F9] text-center mt-3">
-            <span className="block">How Can I</span>
-            <span className="block">Help You?</span>
+            <span className="block">Most Businesses Are Leaving</span>
+            <span className="block">Money on the Table.</span>
           </h2>
           <p className="font-sans text-[16px] text-[#94A3B8] text-center mt-4">
-            Pick what fits. Let's get moving.
+            Bad websites. Unwritten books. Wasted hours. I fix all three.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12">
             {[
-              { icon: "🤖", title: "AI Websites, Built Fast", body: "Your business deserves a website that works while you sleep. I design, write, and launch it in under two weeks. You show up with the vision. I handle everything else.", cta: "Let's build yours →" },
-              { icon: "📖", title: "Your Story, On Amazon", body: "You have a book inside you. I help you get it out, formatted, and live on Amazon — Kindle, paperback, and audiobook. Done with you, not just for you.", cta: "Let's publish yours →" },
-              { icon: "⚡", title: "Work Smarter With AI", body: "Stop doing manually what a machine can do better. I audit your workflow and build you a custom AI system using Claude and automation tools. One session. Real hours back.", cta: "Let's automate yours →" },
+              { icon: "🤖", title: "Your Website Is Costing You Clients", body: "If your site looks like 2015, people leave in 10 seconds. I build clean, fast, AI-powered websites that actually convert. Live in two weeks, not two months.", cta: "Let's build yours →" },
+              { icon: "📖", title: "Your Book Is Still in Your Head", body: "You have a story worth publishing. I help you write it, format it, and get it live on Amazon. Kindle, paperback, audiobook. Done.", cta: "Let's publish yours →" },
+              { icon: "⚡", title: "You Are Doing AI's Job By Hand", body: "You are spending hours on tasks Claude can do in minutes. I audit your workflow and build you a custom system. One session saves 5 to 10 hours a week.", cta: "Let's automate yours →" },
             ].map((c) => (
               <div
                 key={c.title}
