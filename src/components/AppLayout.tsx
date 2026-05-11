@@ -133,7 +133,7 @@ function LayoutShell({ children }: { children: ReactNode }) {
                     {/* Top horizontal bar of Z */}
                     <line
                       x1="10" y1="12" x2="38" y2="12"
-                      stroke="#00D4AA" strokeWidth="3" strokeLinecap="round"
+                      stroke="var(--color-cta)" strokeWidth="3" strokeLinecap="round"
                       style={{
                         strokeDasharray: 28,
                         strokeDashoffset: 28,
@@ -143,7 +143,7 @@ function LayoutShell({ children }: { children: ReactNode }) {
                     {/* Diagonal of Z */}
                     <line
                       x1="38" y1="12" x2="10" y2="36"
-                      stroke="#00D4AA" strokeWidth="3" strokeLinecap="round"
+                      stroke="var(--color-cta)" strokeWidth="3" strokeLinecap="round"
                       style={{
                         strokeDasharray: 38,
                         strokeDashoffset: 38,
@@ -153,7 +153,7 @@ function LayoutShell({ children }: { children: ReactNode }) {
                     {/* Bottom horizontal bar of Z */}
                     <line
                       x1="10" y1="36" x2="38" y2="36"
-                      stroke="#00D4AA" strokeWidth="3" strokeLinecap="round"
+                      stroke="var(--color-cta)" strokeWidth="3" strokeLinecap="round"
                       style={{
                         strokeDasharray: 28,
                         strokeDashoffset: 28,
@@ -176,9 +176,10 @@ function LayoutShell({ children }: { children: ReactNode }) {
                     type="button"
                     onClick={() => {}}
                     aria-label="Toggle sidebar"
-                    className="mt-3 w-8 h-8 rounded-full bg-[#1E3A5F] flex items-center justify-center border border-transparent hover:border-[#00D4AA] transition-colors"
+                    className="mt-3 w-8 h-8 rounded-full flex items-center justify-center border border-transparent hover:border-[color:var(--color-cta)] transition-colors"
+                    style={{ backgroundColor: 'var(--color-primary)' }}
                   >
-                    <Grip className="w-3.5 h-3.5 text-[#94A3B8]" />
+                    <Grip className="w-3.5 h-3.5" style={{ color: 'var(--color-warm)' }} />
                   </button>
                 </div>
                 <Link

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Plus+Jakarta+Sans:wght@400;700;800&family=DM+Sans:wght@400;500&display=swap');
+
 *,
 *::before,
 *::after {
@@ -23,6 +25,14 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    /* Brand color tokens */
+    --color-bg: #0A0F1A;
+    --color-primary: #447BBE;
+    --color-secondary: #D97706;
+    --color-cta: #DD5013;
+    --color-warm: #E9E4A6;
+    --color-text: #FFFFFF;
+
     /* Backgrounds */
     --background: 40 20% 97%;
     --foreground: 222 47% 8%;
@@ -223,7 +233,12 @@ All colors MUST be HSL.
     font-family: 'DM Sans', sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2 {
+    font-family: 'Luckiest Guy', cursive;
+    letter-spacing: 0.03em;
+  }
+
+  h3, h4, h5, h6 {
     font-family: 'Plus Jakarta Sans', sans-serif;
   }
 
