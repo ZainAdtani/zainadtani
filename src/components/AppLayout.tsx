@@ -133,7 +133,7 @@ function LayoutShell({ children }: { children: ReactNode }) {
                     {/* Top horizontal bar of Z */}
                     <line
                       x1="10" y1="12" x2="38" y2="12"
-                      stroke="#00D4AA" strokeWidth="3" strokeLinecap="round"
+                      stroke="var(--color-cta)" strokeWidth="3" strokeLinecap="round"
                       style={{
                         strokeDasharray: 28,
                         strokeDashoffset: 28,
@@ -143,7 +143,7 @@ function LayoutShell({ children }: { children: ReactNode }) {
                     {/* Diagonal of Z */}
                     <line
                       x1="38" y1="12" x2="10" y2="36"
-                      stroke="#00D4AA" strokeWidth="3" strokeLinecap="round"
+                      stroke="var(--color-cta)" strokeWidth="3" strokeLinecap="round"
                       style={{
                         strokeDasharray: 38,
                         strokeDashoffset: 38,
@@ -153,7 +153,7 @@ function LayoutShell({ children }: { children: ReactNode }) {
                     {/* Bottom horizontal bar of Z */}
                     <line
                       x1="10" y1="36" x2="38" y2="36"
-                      stroke="#00D4AA" strokeWidth="3" strokeLinecap="round"
+                      stroke="var(--color-cta)" strokeWidth="3" strokeLinecap="round"
                       style={{
                         strokeDasharray: 28,
                         strokeDashoffset: 28,
