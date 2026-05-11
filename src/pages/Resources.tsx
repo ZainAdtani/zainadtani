@@ -6,8 +6,35 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CopyBlock } from "@/components/CopyBlock";
 import { AI_PROMPTS } from "@/data/ai_prompts";
-import { Search, ChevronDown, ChevronUp } from "lucide-react";
+import { Search, ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
 import LifeNotes from "./LifeNotes";
+
+type ToolCategory = "AI & Agents" | "Productivity" | "Images & Design" | "Apps" | "Courses I Recommend";
+interface Tool { name: string; url: string; desc: string; category: ToolCategory; }
+
+const TOOLS: Tool[] = [
+  { name: "Claude", url: "https://claude.ai", desc: "The AI that runs my business", category: "AI & Agents" },
+  { name: "ElevenLabs", url: "https://elevenlabs.io", desc: "Voice cloning and realistic text-to-speech", category: "AI & Agents" },
+  { name: "Gemini", url: "https://gemini.google.com", desc: "Google AI for planning and writing", category: "AI & Agents" },
+  { name: "Google AI Studio", url: "https://aistudio.google.com", desc: "Build and test prompts with Google models", category: "AI & Agents" },
+  { name: "Hedra", url: "https://www.hedra.com", desc: "AI talking character video creation", category: "AI & Agents" },
+  { name: "NotebookLM", url: "https://notebooklm.google", desc: "AI research and note-taking assistant", category: "AI & Agents" },
+  { name: "Perplexity", url: "https://www.perplexity.ai", desc: "AI search with cited results", category: "AI & Agents" },
+  { name: "Fathom", url: "https://www.fathom.ai", desc: "AI meeting recorder and summarizer", category: "Productivity" },
+  { name: "Gamma", url: "https://gamma.app", desc: "AI-powered presentations and decks", category: "Productivity" },
+  { name: "Otter.ai", url: "https://otter.ai", desc: "Meeting transcription and notes", category: "Productivity" },
+  { name: "Figma", url: "https://www.figma.com", desc: "Design and prototyping platform", category: "Productivity" },
+  { name: "Canva", url: "https://www.canva.com", desc: "Brand graphics, thumbnails, social posts", category: "Images & Design" },
+  { name: "Ideogram", url: "https://ideogram.ai", desc: "AI images with strong typography", category: "Images & Design" },
+  { name: "upscale.media", url: "https://www.upscale.media", desc: "Sharpen and enlarge images automatically", category: "Images & Design" },
+  { name: "HeyGen", url: "https://www.heygen.com", desc: "AI avatar video creator", category: "Apps" },
+  { name: "Suno", url: "https://suno.com", desc: "Create AI-generated music in minutes", category: "Apps" },
+  { name: "ElevenReader", url: "https://apps.apple.com/us/app/elevenreader-voice-reader/id6479373050", desc: "AI reader for PDFs and web pages", category: "Apps" },
+  { name: "NLP Practitioner + Master", url: "https://www.udemy.com/course/nlp-practitioner-master-practitioner-certification-course/", desc: "Full NLP certification on Udemy", category: "Courses I Recommend" },
+];
+
+const TOOL_CATEGORIES = ["All", "AI & Agents", "Productivity", "Images & Design", "Apps", "Courses I Recommend"] as const;
+
 
 interface Prompt {
   title: string;
