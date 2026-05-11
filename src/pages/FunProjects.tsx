@@ -1,24 +1,37 @@
 import { Helmet } from "react-helmet-async";
+import pokemonImg from "@/assets/pokemon-pokedex.png";
+import harryPotterImg from "@/assets/harry-potter-world.png";
 
 interface FunProject {
   title: string;
   description: string;
   image: string;
   href: string;
+  buttonText: string;
+  badgeText: string;
+  badgeBg: string;
 }
 
 export const FUN_PROJECTS: FunProject[] = [
   {
-    title: "My Pokémon Pokédex",
-    description: "A Notion-powered Pokédex with sprites, stats, and filters.",
-    image: "https://images.unsplash.com/photo-1542779283-429940ce8336?auto=format&fit=crop&w=800&q=80",
-    href: "#",
+    title: "Zain's Notion Pokédex",
+    description:
+      "All 151 original Pokemon. Every stat, type, height, weight, and HP. Filterable by number, weight, height, type, and attack. Built entirely in Notion. Yes, I made this.",
+    image: pokemonImg,
+    href: "https://zainadtani.notion.site/Zain-s-Notion-Pok-dex-3d1da8f06b194c24a7aeb9f54aa43294",
+    buttonText: "Open the Pokédex →",
+    badgeText: "151 Pokémon",
+    badgeBg: "#DD5013",
   },
   {
     title: "Harry Potter World",
-    description: "A Hogwarts themed hub for books, audiobooks, and key story moments.",
-    image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800&q=80",
+    description:
+      "A Hogwarts-themed hub built in Notion. Books, audiobooks, key story moments, and lore. For the obsessed.",
+    image: harryPotterImg,
     href: "#",
+    buttonText: "Enter the Wizarding World →",
+    badgeText: "Hogwarts Built",
+    badgeBg: "#447BBE",
   },
 ];
 
@@ -32,16 +45,24 @@ export function FunProjectCard({ project }: { project: FunProject }) {
     >
       <div className="relative aspect-[16/10] overflow-hidden">
         <img src={project.image} alt={project.title} className="w-full h-full object-cover" loading="lazy" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+        <span
+          className="absolute top-3 left-3 rounded-full text-white text-xs font-semibold"
+          style={{ backgroundColor: project.badgeBg, padding: "8px 14px" }}
+        >
+          {project.badgeText}
+        </span>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent pointer-events-none" />
       </div>
       <div className="p-6 flex flex-col gap-3 flex-1">
         <h3 className="font-sans font-bold text-xl text-white">{project.title}</h3>
         <p className="text-sm text-[#E9E4A6] flex-1">{project.description}</p>
         <a
           href={project.href}
+          target="_blank"
+          rel="noopener noreferrer"
           className="mt-2 inline-flex items-center justify-center w-full bg-[#DD5013] text-white font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity"
         >
-          Open →
+          {project.buttonText}
         </a>
       </div>
     </div>
