@@ -285,8 +285,8 @@ const Index = () => {
                 className="bg-[#0F2340] border border-[#1E3A5F] rounded-[14px] p-8 transition-all duration-[250ms] hover:border-[rgba(0,212,170,0.4)] hover:-translate-y-[3px] flex flex-col"
               >
                 <div className="text-3xl">{c.icon}</div>
-                <h3 className="font-display font-bold text-[20px] text-[#F1F5F9] mt-4">{c.title}</h3>
-                <p className="font-sans text-[15px] text-[#94A3B8] mt-3 flex-1">{c.body}</p>
+                <h3 className="font-display font-bold text-[20px] text-[#FFFFFF] mt-4">{c.title}</h3>
+                <p className="font-sans text-[15px] text-[#E9E4A6] mt-3 flex-1">{c.body}</p>
                 <Link to="/services" className="inline-block mt-4 font-sans font-medium text-[14px] text-[#447BBE] hover:underline">
                   {c.cta}
                 </Link>
