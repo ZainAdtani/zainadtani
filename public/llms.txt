@@ -1,0 +1,23 @@
+# Zain Adtani
+
+> AI consultant, author, and systems builder based in Dallas–Fort Worth. Helps small businesses use AI to work smarter, and helps everyday people publish their first book.
+
+## Pages
+
+- [Home](/): Overview of Zain Adtani's work, services, and writing.
+- [About](/about): Background, credentials, and what Zain works on.
+- [Services](/services): AI consulting, AI websites, and book coaching offerings.
+- [Digital Product HQ](/digital-products): Courses, guides, templates, and tools.
+- [Book Portal](/books): Reading list with notes, ratings, and recommendations.
+- [Tools](/tools): Categorized list of software and AI tools used daily.
+- [Resources](/resources): Curated tools, books, articles, and links.
+- [AI Prompt Library](/ai-prompts): Searchable, tagged prompts for ChatGPT, Claude, Gemini.
+- [Life Notes](/life-notes): Short, copy-ready ideas on work, money, and growth.
+- [Investing](/investing): Plain-English long-term investing philosophy.
+- [Fun Projects](/projects): Side projects including a Notion Pokédex and Harry Potter timeline.
+
+## Optional
+
+- [Pokédex Project](/pokedex): All 151 original Pokémon, built in Notion.
+- [Harry Potter Timeline](/harry-potter): Full series timeline and fan tribute.
+- [Archive](/archive): Older pages kept for reference.
