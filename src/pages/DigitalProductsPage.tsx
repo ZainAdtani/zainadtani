@@ -33,10 +33,12 @@ export default function DigitalProductsPage() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Digital Product HQ | Zain Adtani</title>
-        <meta name="description" content="Search courses, guides, and tools—all in one place." />
-        <meta property="og:title" content="Digital Product HQ | Zain Adtani" />
-        <meta property="og:description" content="Search courses, guides, and tools—all in one place." />
+        <title>Digital Product HQ — Courses, Guides & Tools | Zain Adtani</title>
+        <meta name="description" content="Browse Zain Adtani's digital products — courses, guides, templates, and tools to help small businesses use AI and help everyday people publish their first book." />
+        <meta property="og:title" content="Digital Product HQ — Zain Adtani" />
+        <meta property="og:description" content="Courses, guides, templates, and tools to help you use AI and publish your first book." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://zainadtani.com/digital-products" />
       </Helmet>
       
       <header className="py-12 md:py-16 bg-background">
