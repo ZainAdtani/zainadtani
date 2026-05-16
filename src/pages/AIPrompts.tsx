@@ -135,7 +135,14 @@ export default function AIPrompts() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet><title>AI Prompt Library | Zain Adtani</title></Helmet>
+      <Helmet>
+        <title>AI Prompt Library — Curated ChatGPT & Claude Prompts | Zain Adtani</title>
+        <meta name="description" content="Zain Adtani's curated library of AI prompts for ChatGPT, Claude, and Gemini — searchable, tagged, and built for real work across writing, business, and learning." />
+        <meta property="og:title" content="AI Prompt Library — Zain Adtani" />
+        <meta property="og:description" content="Curated, searchable AI prompts for ChatGPT, Claude, and Gemini, built for real work." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://zainadtani.com/ai-prompts" />
+      </Helmet>
       
       <main className="container mx-auto px-4 py-8 md:py-12 max-w-6xl">
         {/* Header */}
