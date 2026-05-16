@@ -14,8 +14,12 @@ export default function Projects() {
   return (
     <>
       <Helmet>
-        <title>Fun Projects – Zain</title>
-        <meta name="description" content="Fun projects, experiments, and creative builds." />
+        <title>Fun Projects — Zain Adtani</title>
+        <meta name="description" content="A collection of fun side projects by Zain Adtani — a Notion Pokédex, a Harry Potter timeline, AI songs, and other creative experiments." />
+        <meta property="og:title" content="Fun Projects — Zain Adtani" />
+        <meta property="og:description" content="A collection of fun side projects by Zain Adtani — a Notion Pokédex, a Harry Potter timeline, AI songs, and other creative experiments." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://zainadtani.com/projects" />
       </Helmet>
 
       <div className="container mx-auto px-4 py-8 max-w-7xl">
