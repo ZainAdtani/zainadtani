@@ -58,7 +58,14 @@ export default function LifeNotes() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet><title>Life Notes | Zain Adtani</title></Helmet>
+      <Helmet>
+        <title>Life Notes — Short Ideas Worth Re-Using | Zain Adtani</title>
+        <meta name="description" content="Short, searchable life notes from Zain Adtani — bite-sized ideas, lessons, and reminders on work, money, parenting, and personal growth, easy to copy and re-use." />
+        <meta property="og:title" content="Life Notes — Zain Adtani" />
+        <meta property="og:description" content="Bite-sized, searchable life notes on work, money, parenting, and personal growth." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://zainadtani.com/life-notes" />
+      </Helmet>
       <main className="container mx-auto px-4 py-12 max-w-4xl">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-2">Life Notes ✍️</h1>
         <p className="text-muted-foreground mb-6">Short ideas worth re-using. Search + copy.</p>
