@@ -184,10 +184,20 @@ export default function BooksHQ() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Book Portal | Zain Adtani</title>
-        <meta name="description" content="Books I've read, I'm reading, and want to read." />
-        <meta property="og:title" content="Book Portal | Zain Adtani" />
-        <meta property="og:description" content="Books I've read, I'm reading, and want to read." />
+        <title>Book Portal — Reading List & Recommendations | Zain Adtani</title>
+        <meta name="description" content="Zain Adtani's full reading list — books I've read, books I'm reading, and books I want to read, with notes, ratings, and recommendations across business, tech, and personal growth." />
+        <meta property="og:title" content="Book Portal — Zain Adtani's Reading List" />
+        <meta property="og:description" content="Zain Adtani's full reading list with notes, ratings, and recommendations across business, tech, and personal growth." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://zainadtani.com/books" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Book Portal — Zain Adtani's Reading List",
+          "description": "Curated collection of books Zain Adtani has read, is reading, and recommends.",
+          "url": "https://zainadtani.com/books",
+          "author": { "@type": "Person", "name": "Zain Adtani", "url": "https://zainadtani.com" }
+        })}</script>
       </Helmet>
 
       <div className="container mx-auto px-4 py-16 max-w-7xl">
