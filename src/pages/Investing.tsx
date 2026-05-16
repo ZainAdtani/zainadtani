@@ -8,8 +8,12 @@ const Investing = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Investing | Zain Adtani</title>
-        <meta name="description" content="Simple steps to grow your money over time." />
+        <title>Investing — Simple Long-Term Money Philosophy | Zain Adtani</title>
+        <meta name="description" content="Zain Adtani's plain-English investing philosophy — simple, steady steps to grow your money over decades without the noise, hype, or stock tips." />
+        <meta property="og:title" content="Investing — Zain Adtani's Long-Term Money Philosophy" />
+        <meta property="og:description" content="Plain-English investing philosophy: simple, steady steps to grow money over decades without the noise or hype." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://zainadtani.com/investing" />
       </Helmet>
 
       {/* Hero */}
