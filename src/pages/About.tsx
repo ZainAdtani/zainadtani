@@ -20,6 +20,14 @@ function faviconFor(url?: string) {
 const About = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>About Zain Adtani — AI Consultant & Author in DFW Texas</title>
+        <meta name="description" content="Get to know Zain Adtani — an AI consultant, author, and systems builder based in Dallas-Fort Worth helping small businesses use AI and helping everyday people publish books." />
+        <meta property="og:title" content="About Zain Adtani — AI Consultant & Author" />
+        <meta property="og:description" content="AI consultant, author, and systems builder in Dallas-Fort Worth helping small businesses use AI and publish books." />
+        <meta property="og:type" content="profile" />
+        <link rel="canonical" href="https://zainadtani.com/about" />
+      </Helmet>
       <main className="container mx-auto px-4 py-16 md:py-24 max-w-2xl">
         {/* Photo */}
         <div className="flex justify-center mb-12">
