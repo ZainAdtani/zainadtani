@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://zainadtani.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://zainadtani.com/about</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://zainadtani.com/services</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://zainadtani.com/investing</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zainadtani.com/digital-products</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://zainadtani.com/tools</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zainadtani.com/books</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://zainadtani.com/projects</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zainadtani.com/projects/pokedex</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://zainadtani.com/projects/harry-potter-world</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://zainadtani.com/projects/ai-songs</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://zainadtani.com/pokedex</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://zainadtani.com/harry-potter</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://zainadtani.com/resources</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zainadtani.com/ai-prompts</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://zainadtani.com/life-notes</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://zainadtani.com/prompts</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://zainadtani.com/archive</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>

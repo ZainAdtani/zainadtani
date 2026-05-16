@@ -77,11 +77,15 @@ export default function Services() {
   return (
     <div className="min-h-screen bg-[#0A0F1A]">
       <Helmet>
-        <title>Services | Zain Adtani</title>
+        <title>Services — AI Consulting & Book Coaching | Zain Adtani</title>
         <meta
           name="description"
-          content="AI websites, book publishing, and AI workflow consulting — real work, real results."
+          content="AI websites, book publishing help, and AI workflow consulting from Zain Adtani — practical services for small businesses and first-time authors in DFW Texas."
         />
+        <meta property="og:title" content="Services — Zain Adtani | AI Consulting & Book Coaching" />
+        <meta property="og:description" content="AI websites, book publishing help, and AI workflow consulting from Zain Adtani — practical services for small businesses and first-time authors." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://zainadtani.com/services" />
       </Helmet>
 
       {/* Section 1: Hero */}

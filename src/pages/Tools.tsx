@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 import { Search, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -521,6 +522,14 @@ export default function Tools() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Tools — Software I Use Every Day | Zain Adtani</title>
+        <meta name="description" content="A categorized list of the software, AI tools, and apps Zain Adtani uses every day for building, writing, designing, automating, and running a small business." />
+        <meta property="og:title" content="Tools — Software Zain Adtani Uses Every Day" />
+        <meta property="og:description" content="Categorized software, AI tools, and apps for building, writing, designing, and automating." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://zainadtani.com/tools" />
+      </Helmet>
       {/* Hero Section */}
       <div className="border-b border-border bg-gradient-to-b from-background to-muted/20">
         <div className="container mx-auto px-4 py-8 max-w-6xl">
