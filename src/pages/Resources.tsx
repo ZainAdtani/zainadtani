@@ -143,7 +143,14 @@ export default function Resources() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet><title>Resources | Zain Adtani</title></Helmet>
+      <Helmet>
+        <title>Resources — Tools, Books & Links I Recommend | Zain Adtani</title>
+        <meta name="description" content="A curated library of tools, books, articles, and links Zain Adtani recommends for AI, building small businesses, writing, and personal growth." />
+        <meta property="og:title" content="Resources — Zain Adtani's Recommended Tools & Reading" />
+        <meta property="og:description" content="Curated tools, books, articles, and links for AI, small business, writing, and personal growth." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://zainadtani.com/resources" />
+      </Helmet>
 
       {/* Hero */}
       <header className="max-w-6xl mx-auto px-6 pt-20 pb-6 text-center">
