@@ -279,52 +279,31 @@ const Index = () => {
           {/* Left: text */}
           <div className="order-2 md:order-1 flex flex-col gap-6">
             <span className="inline-flex w-fit items-center gap-2 text-[12px] font-medium tracking-widest uppercase text-[#447BBE] bg-[#447BBE]/10 border border-[#447BBE]/20 rounded-full px-4 py-1.5">
-              AI Consultant · Author · Coach
+              AI Consultant · Author · Financial Educator
             </span>
             <h1 className="font-display font-extrabold text-[36px] md:text-[52px] leading-[1.1] text-[#F1F5F9]">
-              <span className="block">I Help Businesses</span>
-              <span className="block">Run on AI.</span>
-              <span className="block">I Help Creators</span>
-              <span className="block">Publish Books.</span>
+              <span className="block">I Help Businesses Run on AI.</span>
+              <span className="block">I Help Creators Publish Books.</span>
+              <span className="block">I Help Families Protect Their Future.</span>
             </h1>
-            <p className="font-sans text-[17px] text-[#94A3B8] max-w-[420px]">
-              Strategy to shipped. No fluff. Real results.<br />
-              Based in DFW, Texas.
-            </p>
-            <div className="flex gap-3 flex-wrap mt-2">
-              <a
-                href="https://calendly.com/zkadtani"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-[#447BBE] text-[#0A0F1A] font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:opacity-90 transition-opacity"
-              >
-                Book a Free Call
-              </a>
-              <a
-                href="https://the-z-letter.beehiiv.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center border-[1.5px] border-[#447BBE]/40 text-[#447BBE] font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:border-[#447BBE] transition-colors"
-              >
-                Read The Z Letter
-              </a>
-            </div>
-            <p className="mt-4 font-sans text-[13px] text-[#6B7280]">
-              📍 DFW, Texas  ·  🎓 UTSA Mechanical Engineer  ·  📚 Published Author
-            </p>
-          </div>
-
+...
           {/* Right: photo */}
           <div
-            className="order-1 md:order-2 relative rounded-2xl overflow-hidden md:max-h-[520px] border-2"
-            style={{ borderColor: "#447BBE", boxShadow: "0 0 24px rgba(68, 123, 190, 0.3)" }}
+            className="order-1 md:order-2 relative rounded-2xl overflow-hidden md:max-h-[520px] border"
+            style={{
+              borderColor: "#447BBE",
+              borderWidth: "1.5px",
+              boxShadow: "0 0 32px rgba(68, 123, 190, 0.35), 0 20px 60px rgba(0,0,0,0.5)",
+              background:
+                "radial-gradient(ellipse at center, #0F2340 0%, #060A14 70%, #03060C 100%)",
+            }}
           >
             <img
               src={headshotImage}
               alt="Zain Adtani — AI Consultant and Author"
-              className="w-full h-full object-cover object-top max-h-[320px] md:max-h-[520px] rounded-2xl"
+              className="relative w-full h-full object-cover object-top max-h-[320px] md:max-h-[520px] rounded-2xl"
             />
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A0F1A] to-transparent pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#03060C] via-[#03060C]/60 to-transparent pointer-events-none" />
           </div>
         </div>
       </section>
