@@ -428,19 +428,45 @@ const Index = () => {
           <h2 className="font-display font-extrabold text-[40px] md:text-[48px] leading-[1.15] text-[#E9E4A6] mt-3">
             Protecting Families. Building Wealth.
           </h2>
-          <p className="font-sans text-[16px] text-[#94A3B8] mt-5 max-w-2xl mx-auto">
+          <p className="font-sans text-[16px] text-[#E9E4A6]/70 mt-5 max-w-2xl mx-auto">
             I help families understand the 4 financial situations most people never plan for. Life insurance. Retirement planning. Critical illness protection. Wills and trusts. No pressure. Just education.
           </p>
-          <iframe
-            src="https://gamma.app/embed/75tzizrns082stq"
-            style={{ width: "100%", maxWidth: "700px", height: "450px", borderRadius: "12px", marginTop: "24px" }}
-            allow="fullscreen"
-            title="Master BOP - Zain Adtani"
-            className="mx-auto block"
-          />
-          <p className="font-sans text-[13px] text-[#6B7280] mt-4">
-            HGI Associate · NPN 20207668
-          </p>
+
+          <div
+            className="mt-10 mx-auto max-w-2xl rounded-2xl p-8 md:p-10"
+            style={{
+              background: "linear-gradient(180deg, #0F1626 0%, #0A0F1A 100%)",
+              border: "1px solid #447BBE",
+              boxShadow: "0 0 32px rgba(68,123,190,0.18), 0 20px 60px rgba(0,0,0,0.5)",
+            }}
+          >
+            <p className="font-sans text-[11px] font-semibold tracking-widest uppercase text-[#447BBE]">
+              Presentation
+            </p>
+            <h3 className="font-display font-bold text-[24px] md:text-[28px] leading-tight text-[#FFFFFF] mt-2">
+              Watch the 30-Min Financial Education Overview
+            </h3>
+            <p className="font-sans text-[15px] text-[#E9E4A6]/80 mt-4 max-w-xl mx-auto">
+              A simple walkthrough of the four financial situations most families avoid: dying too soon, living too long, getting sick and not dying, and having no will or trust.
+            </p>
+
+            <div className="mt-7 flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
+              <a
+                href="https://gamma.app/docs/Master-BOP-75tzizrns082stq"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-md font-sans font-semibold text-[15px] text-white transition-all duration-200 hover:scale-[1.02] active:scale-[0.97]"
+                style={{ background: "#DD5013", boxShadow: "0 8px 24px rgba(221,80,19,0.35)" }}
+              >
+                Watch the Overview
+              </a>
+              {/* Secondary "Download PDF" button is intentionally hidden until a PDF asset is uploaded. */}
+            </div>
+
+            <p className="font-sans text-[12px] text-[#E9E4A6]/60 mt-6">
+              HGI Associate · NPN 20207668
+            </p>
+          </div>
         </div>
       </section>
       </ScrollReveal>
