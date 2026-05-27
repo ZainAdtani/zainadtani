@@ -286,7 +286,33 @@ const Index = () => {
               <span className="block">I Help Creators Publish Books.</span>
               <span className="block">I Help Families Protect Their Future.</span>
             </h1>
-...
+            <p className="font-sans text-[17px] text-[#94A3B8] max-w-[420px]">
+              Strategy to shipped. No fluff. Real results.<br />
+              Based in DFW, Texas.
+            </p>
+            <div className="flex gap-3 flex-wrap mt-2">
+              <a
+                href="https://calendly.com/zkadtani"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center bg-[#447BBE] text-[#0A0F1A] font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:opacity-90 transition-opacity"
+              >
+                Book a Free Call
+              </a>
+              <a
+                href="https://the-z-letter.beehiiv.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center border-[1.5px] border-[#447BBE]/40 text-[#447BBE] font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:border-[#447BBE] transition-colors"
+              >
+                Read The Z Letter
+              </a>
+            </div>
+            <p className="mt-4 font-sans text-[13px] text-[#6B7280]">
+              📍 DFW, Texas  ·  🎓 UTSA Mechanical Engineer  ·  📚 Published Author
+            </p>
+          </div>
+
           {/* Right: photo */}
           <div
             className="order-1 md:order-2 relative rounded-2xl overflow-hidden md:max-h-[520px] border"
