@@ -444,10 +444,10 @@ const Index = () => {
               Presentation
             </p>
             <h3 className="font-display font-bold text-[24px] md:text-[28px] leading-tight text-[#FFFFFF] mt-2">
-              Watch the 30-Min Financial Education Overview
+              View the 30-Min Financial Education Deck
             </h3>
             <p className="font-sans text-[15px] text-[#E9E4A6]/80 mt-4 max-w-xl mx-auto">
-              A simple walkthrough of the four financial situations most families avoid: dying too soon, living too long, getting sick and not dying, and having no will or trust.
+              A simple walkthrough of the four financial situations most families avoid, dying too soon, living too long, getting sick and not dying, and having no will or trust.
             </p>
 
             <div className="mt-7 flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
@@ -458,7 +458,7 @@ const Index = () => {
                 className="inline-flex items-center justify-center px-6 py-3 rounded-md font-sans font-semibold text-[15px] text-white transition-all duration-200 hover:scale-[1.02] active:scale-[0.97]"
                 style={{ background: "#DD5013", boxShadow: "0 8px 24px rgba(221,80,19,0.35)" }}
               >
-                Watch the Overview
+                Open the Deck
               </a>
               {/* Secondary "Download PDF" button is intentionally hidden until a PDF asset is uploaded. */}
             </div>
