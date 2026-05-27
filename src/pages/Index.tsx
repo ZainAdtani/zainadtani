@@ -604,6 +604,35 @@ const Index = () => {
       </section>
       </ScrollReveal>
 
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
+      {/* Just For Fun teaser */}
+      <ScrollReveal delay={50}>
+      <section
+        className="px-6"
+        style={{ backgroundColor: "rgba(68, 123, 190, 0.04)", paddingTop: "80px", paddingBottom: "80px" }}
+      >
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-10">
+            <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE]">JUST FOR FUN</p>
+            <h2 className="font-display text-[40px] md:text-[56px] leading-[1.1] text-[#F1F5F9] mt-3">
+              Not Everything Has to Make Money.
+            </h2>
+            <p className="font-sans text-[16px] text-[#E9E4A6] mt-4">
+              Sometimes I build things because they're cool. Pokemon. Harry Potter. More coming.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {FUN_PROJECTS.map((p) => (
+              <FunProjectCard key={p.title} project={p} />
+            ))}
+          </div>
+
+        </div>
+      </section>
+      </ScrollReveal>
+
     </div>;
 };
 export default Index;
