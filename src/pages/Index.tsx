@@ -431,15 +431,13 @@ const Index = () => {
           <p className="font-sans text-[16px] text-[#94A3B8] mt-5 max-w-2xl mx-auto">
             I help families understand the 4 financial situations most people never plan for. Life insurance. Retirement planning. Critical illness protection. Wills and trusts. No pressure. Just education.
           </p>
-          <a
-            href="https://gamma.app/embed/75tzizrns082stq"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-[#DD5013] text-white font-display font-semibold px-8 py-3.5 rounded-xl text-[15px] hover:opacity-90 transition-opacity mt-8"
-            style={{ boxShadow: "0 0 24px rgba(221, 80, 19, 0.35)" }}
-          >
-            Watch the 30-Min Overview →
-          </a>
+          <iframe
+            src="https://gamma.app/embed/75tzizrns082stq"
+            style={{ width: "100%", maxWidth: "700px", height: "450px", borderRadius: "12px", marginTop: "24px" }}
+            allow="fullscreen"
+            title="Master BOP - Zain Adtani"
+            className="mx-auto block"
+          />
           <p className="font-sans text-[13px] text-[#6B7280] mt-4">
             HGI Associate · NPN 20207668
           </p>
