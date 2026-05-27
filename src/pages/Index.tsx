@@ -279,13 +279,12 @@ const Index = () => {
           {/* Left: text */}
           <div className="order-2 md:order-1 flex flex-col gap-6">
             <span className="inline-flex w-fit items-center gap-2 text-[12px] font-medium tracking-widest uppercase text-[#447BBE] bg-[#447BBE]/10 border border-[#447BBE]/20 rounded-full px-4 py-1.5">
-              AI Consultant · Author · Coach
+              AI Consultant · Author · Financial Educator
             </span>
             <h1 className="font-display font-extrabold text-[36px] md:text-[52px] leading-[1.1] text-[#F1F5F9]">
-              <span className="block">I Help Businesses</span>
-              <span className="block">Run on AI.</span>
-              <span className="block">I Help Creators</span>
-              <span className="block">Publish Books.</span>
+              <span className="block">I Help Businesses Run on AI.</span>
+              <span className="block">I Help Creators Publish Books.</span>
+              <span className="block">I Help Families Protect Their Future.</span>
             </h1>
             <p className="font-sans text-[17px] text-[#94A3B8] max-w-[420px]">
               Strategy to shipped. No fluff. Real results.<br />
@@ -316,15 +315,21 @@ const Index = () => {
 
           {/* Right: photo */}
           <div
-            className="order-1 md:order-2 relative rounded-2xl overflow-hidden md:max-h-[520px] border-2"
-            style={{ borderColor: "#447BBE", boxShadow: "0 0 24px rgba(68, 123, 190, 0.3)" }}
+            className="order-1 md:order-2 relative rounded-2xl overflow-hidden md:max-h-[520px] border"
+            style={{
+              borderColor: "#447BBE",
+              borderWidth: "1.5px",
+              boxShadow: "0 0 32px rgba(68, 123, 190, 0.35), 0 20px 60px rgba(0,0,0,0.5)",
+              background:
+                "radial-gradient(ellipse at center, #0F2340 0%, #060A14 70%, #03060C 100%)",
+            }}
           >
             <img
               src={headshotImage}
               alt="Zain Adtani — AI Consultant and Author"
-              className="w-full h-full object-cover object-top max-h-[320px] md:max-h-[520px] rounded-2xl"
+              className="relative w-full h-full object-cover object-top max-h-[320px] md:max-h-[520px] rounded-2xl"
             />
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A0F1A] to-transparent pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#03060C] via-[#03060C]/60 to-transparent pointer-events-none" />
           </div>
         </div>
       </section>
@@ -413,6 +418,35 @@ const Index = () => {
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
+      {/* Financial Education */}
+      <ScrollReveal delay={50}>
+      <section className="py-20 bg-[#0A0F1A]">
+        <div className="container mx-auto px-6 max-w-3xl text-center">
+          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#DD5013]">
+            FINANCIAL EDUCATION
+          </p>
+          <h2 className="font-display font-extrabold text-[40px] md:text-[48px] leading-[1.15] text-[#E9E4A6] mt-3">
+            Protecting Families. Building Wealth.
+          </h2>
+          <p className="font-sans text-[16px] text-[#94A3B8] mt-5 max-w-2xl mx-auto">
+            I help families understand the 4 financial situations most people never plan for. Life insurance. Retirement planning. Critical illness protection. Wills and trusts. No pressure. Just education.
+          </p>
+          <a
+            href="https://gamma.app/embed/75tzizrns082stq"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center bg-[#DD5013] text-white font-display font-semibold px-8 py-3.5 rounded-xl text-[15px] hover:opacity-90 transition-opacity mt-8"
+            style={{ boxShadow: "0 0 24px rgba(221, 80, 19, 0.35)" }}
+          >
+            Watch the 30-Min Overview →
+          </a>
+          <p className="font-sans text-[13px] text-[#6B7280] mt-4">
+            HGI Associate · NPN 20207668
+          </p>
+        </div>
+      </section>
+      </ScrollReveal>
+
       {/* Let's Connect */}
       <section className="py-20">
         <div className="container mx-auto px-4 max-w-4xl text-center space-y-4">
@@ -434,35 +468,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-
-      {/* Just For Fun teaser */}
-      <ScrollReveal delay={50}>
-      <section
-        className="px-6"
-        style={{ backgroundColor: "rgba(68, 123, 190, 0.04)", paddingTop: "80px", paddingBottom: "80px" }}
-      >
-        <div className="container mx-auto max-w-5xl">
-          <div className="text-center mb-10">
-            <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE]">JUST FOR FUN</p>
-            <h2 className="font-display text-[40px] md:text-[56px] leading-[1.1] text-[#F1F5F9] mt-3">
-              Not Everything Has to Make Money.
-            </h2>
-            <p className="font-sans text-[16px] text-[#E9E4A6] mt-4">
-              Sometimes I build things because they're cool. Pokemon. Harry Potter. More coming.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {FUN_PROJECTS.map((p) => (
-              <FunProjectCard key={p.title} project={p} />
-            ))}
-          </div>
-
-        </div>
-      </section>
-      </ScrollReveal>
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
@@ -595,6 +600,35 @@ const Index = () => {
           <p className="font-sans text-[13px] text-[#6B7280] mt-4">
             No pitch. No pressure. Just a real conversation.
           </p>
+        </div>
+      </section>
+      </ScrollReveal>
+
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
+      {/* Just For Fun teaser */}
+      <ScrollReveal delay={50}>
+      <section
+        className="px-6"
+        style={{ backgroundColor: "rgba(68, 123, 190, 0.04)", paddingTop: "80px", paddingBottom: "80px" }}
+      >
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-10">
+            <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE]">JUST FOR FUN</p>
+            <h2 className="font-display text-[40px] md:text-[56px] leading-[1.1] text-[#F1F5F9] mt-3">
+              Not Everything Has to Make Money.
+            </h2>
+            <p className="font-sans text-[16px] text-[#E9E4A6] mt-4">
+              Sometimes I build things because they're cool. Pokemon. Harry Potter. More coming.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {FUN_PROJECTS.map((p) => (
+              <FunProjectCard key={p.title} project={p} />
+            ))}
+          </div>
+
         </div>
       </section>
       </ScrollReveal>

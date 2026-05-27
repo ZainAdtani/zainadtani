@@ -86,9 +86,14 @@ function LayoutShell({ children }: { children: ReactNode }) {
 
               <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                 {/* Left: copyright */}
-                <p className="text-xs text-center md:text-left" style={{ color: "rgba(255,255,255,0.5)" }}>
-                  © 2026 Zain Adtani · Adtani Education Ventures LLC · DFW, Texas
-                </p>
+                <div className="text-center md:text-left">
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
+                    © 2026 Zain Adtani · Adtani Education Ventures LLC · DFW, Texas
+                  </p>
+                  <p className="text-[11px] mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>
+                    HGI Associate · NPN 20207668
+                  </p>
+                </div>
 
                 {/* Center: nav links */}
                 <nav className="flex flex-wrap items-center justify-center gap-5">
