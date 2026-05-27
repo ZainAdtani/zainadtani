@@ -418,6 +418,35 @@ const Index = () => {
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
+      {/* Financial Education */}
+      <ScrollReveal delay={50}>
+      <section className="py-20 bg-[#0A0F1A]">
+        <div className="container mx-auto px-6 max-w-3xl text-center">
+          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#DD5013]">
+            FINANCIAL EDUCATION
+          </p>
+          <h2 className="font-display font-extrabold text-[40px] md:text-[48px] leading-[1.15] text-[#E9E4A6] mt-3">
+            Protecting Families. Building Wealth.
+          </h2>
+          <p className="font-sans text-[16px] text-[#94A3B8] mt-5 max-w-2xl mx-auto">
+            I help families understand the 4 financial situations most people never plan for. Life insurance. Retirement planning. Critical illness protection. Wills and trusts. No pressure. Just education.
+          </p>
+          <a
+            href="https://gamma.app/embed/75tzizrns082stq"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center bg-[#DD5013] text-white font-display font-semibold px-8 py-3.5 rounded-xl text-[15px] hover:opacity-90 transition-opacity mt-8"
+            style={{ boxShadow: "0 0 24px rgba(221, 80, 19, 0.35)" }}
+          >
+            Watch the 30-Min Overview →
+          </a>
+          <p className="font-sans text-[13px] text-[#6B7280] mt-4">
+            HGI Associate · NPN 20207668
+          </p>
+        </div>
+      </section>
+      </ScrollReveal>
+
       {/* Let's Connect */}
       <section className="py-20">
         <div className="container mx-auto px-4 max-w-4xl text-center space-y-4">
