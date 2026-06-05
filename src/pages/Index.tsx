@@ -282,13 +282,12 @@ const Index = () => {
               AI Consultant · Author · Financial Educator
             </span>
             <h1 className="font-display font-extrabold text-[36px] md:text-[52px] leading-[1.1] text-[#F1F5F9]">
-              <span className="block">I Help Businesses Run on AI.</span>
-              <span className="block">I Help Creators Publish Books.</span>
-              <span className="block">I Help Families Protect Their Future.</span>
+              <span className="block">I help businesses run on AI.</span>
+              <span className="block">I help creators publish books.</span>
+              <span className="block">I help families protect their future.</span>
             </h1>
-            <p className="font-sans text-[17px] text-[#94A3B8] max-w-[420px]">
-              Strategy to shipped. No fluff. Real results.<br />
-              Based in DFW, Texas.
+            <p className="font-sans text-[17px] text-[#94A3B8] max-w-[460px]">
+              Strategy to shipped. No fluff. Real results. Building Adtani Education Ventures in public from DFW, Texas.
             </p>
             <div className="flex gap-3 flex-wrap mt-2">
               <a
@@ -308,9 +307,15 @@ const Index = () => {
                 Read The Z Letter
               </a>
             </div>
-            <p className="mt-4 font-sans text-[13px] text-[#6B7280]">
-              📍 DFW, Texas  ·  🎓 UTSA Mechanical Engineer  ·  📚 Published Author
-            </p>
+            <div className="mt-4 flex flex-wrap gap-x-3 gap-y-2 font-sans text-[13px] text-[#94A3B8]">
+              <span>📍 DFW, Texas</span>
+              <span className="text-[#6B7280]">·</span>
+              <span>🎓 UTSA Mechanical Engineer</span>
+              <span className="text-[#6B7280]">·</span>
+              <span>📚 Published Author</span>
+              <span className="text-[#6B7280]">·</span>
+              <span>🏛️ Building in Public · Day-by-Day</span>
+            </div>
           </div>
 
           {/* Right: photo */}
@@ -333,6 +338,53 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
+      {/* Build Then Protect — YouTube */}
+      <ScrollReveal delay={50}>
+      <section className="bg-[#0A0F1A] py-20">
+        <div className="container mx-auto px-6 max-w-4xl text-center">
+          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#DD5013]">NOW ON YOUTUBE</p>
+          <h2 className="font-display font-extrabold text-[40px] md:text-[52px] leading-[1.15] text-[#E9E4A6] mt-3">
+            Build Then Protect.
+          </h2>
+          <p className="font-sans text-[16px] text-[#94A3B8] mt-4 max-w-2xl mx-auto">
+            I document the real build of an AI and education business. No theory. Just what actually works, posted as I do it.
+          </p>
+          <a
+            href="https://youtube.com/@buildthenprotect?si=xqttG0cSsbVtBcNn"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 mt-7 bg-[#DD5013] text-white font-display font-semibold px-7 py-3.5 rounded-xl text-[15px] hover:opacity-90 transition-opacity"
+            style={{ boxShadow: "0 8px 24px rgba(221,80,19,0.35)" }}
+          >
+            <Youtube className="w-5 h-5" /> Watch on YouTube
+          </a>
+
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {[1, 2, 3].map((i) => (
+              <a
+                key={i}
+                href="https://youtube.com/@buildthenprotect?si=xqttG0cSsbVtBcNn"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block rounded-xl overflow-hidden bg-[#0F2340] border border-[#1E3A5F] hover:border-[#447BBE] transition-all duration-200 hover:-translate-y-[3px]"
+              >
+                <div className="aspect-video relative bg-gradient-to-br from-[#0F2340] to-[#03060C] flex items-center justify-center">
+                  <Youtube className="w-12 h-12 text-[#DD5013] opacity-80 group-hover:scale-110 transition-transform" />
+                  <span className="absolute bottom-2 right-2 text-[11px] font-sans text-[#94A3B8]">Episode {i}</span>
+                </div>
+                <div className="p-4 text-left">
+                  <p className="font-display font-bold text-[14px] text-white">Coming soon</p>
+                  <p className="font-sans text-[12px] text-[#94A3B8] mt-1">New episode dropping shortly.</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+      </ScrollReveal>
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
@@ -368,6 +420,38 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
+      {/* The Journey Timeline */}
+      <ScrollReveal delay={50}>
+      <section className="bg-[#0A0F1A] py-20">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <div className="text-center">
+            <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE]">THE BUILD</p>
+            <h2 className="font-display font-extrabold text-[40px] md:text-[52px] leading-[1.15] text-[#F1F5F9] mt-3">
+              From engineer to founder, in public.
+            </h2>
+          </div>
+
+          <ol className="relative mt-12 border-l-2 border-[#447BBE]/30 ml-2 space-y-8">
+            {[
+              { label: "Filed the LLC", body: "Filed Adtani Education Ventures LLC in Texas. $308, no lawyer." },
+              { label: "Launched The Z Letter", body: "One practical AI idea every Sunday. Always free." },
+              { label: "First paid AI consulting", body: "Taught Claude to an engineer and got paid in 30 minutes." },
+              { label: "Started Build Then Protect", body: "Documenting the whole build on YouTube." },
+              { label: "Stepped into gov contracting", body: "First site visit booked before registration was even active." },
+            ].map((m, i) => (
+              <li key={i} className="pl-6 relative">
+                <span className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[#447BBE] border-4 border-[#0A0F1A]" />
+                <p className="font-display font-bold text-[18px] text-[#E9E4A6]">{m.label}</p>
+                <p className="font-sans text-[15px] text-[#94A3B8] mt-1">{m.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+      </ScrollReveal>
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
@@ -478,7 +562,7 @@ const Index = () => {
           <p className="text-muted-foreground text-center text-base mb-10">Find me on these platforms</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <Button asChild variant="outline" size="sm" className="border-border/60 bg-transparent hover:border-primary/60 hover:shadow-[0_0_12px_rgba(0,212,170,0.2)] transition-all duration-300 gap-2 px-6">
-              <a href="https://youtube.com/@captainduaadventures?si=xPzuebAHwHZTl52V" target="_blank" rel="noopener noreferrer">
+              <a href="https://youtube.com/@buildthenprotect?si=xqttG0cSsbVtBcNn" target="_blank" rel="noopener noreferrer">
                 <Youtube className="w-4 h-4 text-red-500" />
                 YouTube
               </a>
