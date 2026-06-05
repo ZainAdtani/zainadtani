@@ -562,7 +562,7 @@ const Index = () => {
           <p className="text-muted-foreground text-center text-base mb-10">Find me on these platforms</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <Button asChild variant="outline" size="sm" className="border-border/60 bg-transparent hover:border-primary/60 hover:shadow-[0_0_12px_rgba(0,212,170,0.2)] transition-all duration-300 gap-2 px-6">
-              <a href="https://youtube.com/@captainduaadventures?si=xPzuebAHwHZTl52V" target="_blank" rel="noopener noreferrer">
+              <a href="https://youtube.com/@buildthenprotect?si=xqttG0cSsbVtBcNn" target="_blank" rel="noopener noreferrer">
                 <Youtube className="w-4 h-4 text-red-500" />
                 YouTube
               </a>
