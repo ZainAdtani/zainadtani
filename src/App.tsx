@@ -24,6 +24,7 @@ import Services from "./pages/Services";
 import Prompts from "./pages/Prompts";
 import HarryPotter from "./pages/HarryPotter";
 import PokemonDex from "./pages/PokemonDex";
+import Money from "./pages/Money";
 
 // Project sub-pages
 import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
@@ -58,6 +59,7 @@ const App = () => (
             <Route path="/prompts" element={<Prompts />} />
             <Route path="/harry-potter" element={<HarryPotter />} />
             <Route path="/pokedex" element={<PokemonDex />} />
+            <Route path="/money" element={<Money />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
