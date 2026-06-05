@@ -423,6 +423,38 @@ const Index = () => {
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
+      {/* The Journey Timeline */}
+      <ScrollReveal delay={50}>
+      <section className="bg-[#0A0F1A] py-20">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <div className="text-center">
+            <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE]">THE BUILD</p>
+            <h2 className="font-display font-extrabold text-[40px] md:text-[52px] leading-[1.15] text-[#F1F5F9] mt-3">
+              From engineer to founder, in public.
+            </h2>
+          </div>
+
+          <ol className="relative mt-12 border-l-2 border-[#447BBE]/30 ml-2 space-y-8">
+            {[
+              { label: "Filed the LLC", body: "Filed Adtani Education Ventures LLC in Texas. $308, no lawyer." },
+              { label: "Launched The Z Letter", body: "One practical AI idea every Sunday. Always free." },
+              { label: "First paid AI consulting", body: "Taught Claude to an engineer and got paid in 30 minutes." },
+              { label: "Started Build Then Protect", body: "Documenting the whole build on YouTube." },
+              { label: "Stepped into gov contracting", body: "First site visit booked before registration was even active." },
+            ].map((m, i) => (
+              <li key={i} className="pl-6 relative">
+                <span className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[#447BBE] border-4 border-[#0A0F1A]" />
+                <p className="font-display font-bold text-[18px] text-[#E9E4A6]">{m.label}</p>
+                <p className="font-sans text-[15px] text-[#94A3B8] mt-1">{m.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+      </ScrollReveal>
+
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
       {/* Newsletter — The Z Letter */}
       <ScrollReveal delay={100}>
       <section id="z-letter" className="py-20 bg-[#0A0F1A]">
