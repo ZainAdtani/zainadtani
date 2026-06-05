@@ -281,71 +281,7 @@ const Index = () => {
             "radial-gradient(ellipse at top left, #5A8FD0 0%, #447BBE 40%, #2E5A93 100%)",
         }}
       >
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center md:py-12">
-          {/* Left: text */}
-          <div className="order-2 md:order-1 flex flex-col gap-6">
-            <span className="inline-flex w-fit items-center gap-2 text-[12px] font-medium tracking-widest uppercase text-[#E9E4A6] bg-white/10 border border-white/25 rounded-full px-4 py-1.5">
-              AI Consultant · Author · Financial Educator
-            </span>
-            <h1 className="font-display font-extrabold text-[36px] md:text-[52px] leading-[1.1] text-[#E9E4A6]">
-              <span className="block">I help businesses run on AI.</span>
-              <span className="block">I help creators publish books.</span>
-              <span className="block">I help families protect their future.</span>
-            </h1>
-            <p className="font-sans text-[17px] text-white/90 max-w-[460px]">
-              Strategy to shipped. No fluff. Real results. Building Adtani Education Ventures in public from DFW, Texas.
-            </p>
-            <div className="flex gap-3 flex-wrap mt-2">
-              <a
-                href="https://calendly.com/zkadtani"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-[#0A0F1A] text-white font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:opacity-90 transition-opacity"
-              >
-                Book a Free Call
-              </a>
-              <a
-                href="https://the-z-letter.beehiiv.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center border-[1.5px] border-white text-white font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:bg-white hover:text-[#447BBE] transition-colors"
-              >
-                Read The Z Letter
-              </a>
-            </div>
-            <div className="mt-4 flex flex-wrap gap-x-3 gap-y-2 font-sans text-[13px] text-[#E9E4A6]">
-              <span>📍 DFW, Texas</span>
-              <span className="text-white/50">·</span>
-              <span>🎓 UTSA Mechanical Engineer</span>
-              <span className="text-white/50">·</span>
-              <span>📚 Published Author</span>
-              <span className="text-white/50">·</span>
-              <span>🏛️ Building in Public · Day-by-Day</span>
-            </div>
-          </div>
-
-          {/* Right: photo as circle */}
-          <div className="order-1 md:order-2 flex items-center justify-center md:py-8">
-            <div
-              className="relative rounded-full overflow-hidden"
-              style={{
-                width: "min(80vw, 280px)",
-                height: "min(80vw, 280px)",
-                maxWidth: 280,
-                maxHeight: 280,
-                border: "4px solid #447BBE",
-                boxShadow:
-                  "0 0 0 6px rgba(255,255,255,0.15), 0 0 48px rgba(68,123,190,0.55), 0 20px 60px rgba(0,0,0,0.45)",
-              }}
-            >
-              <img
-                src={headshotImage}
-                alt="Zain Adtani — AI Consultant and Author"
-                className="w-full h-full object-cover object-top"
-              />
-            </div>
-          </div>
-        </div>
+        <HeroBlock headshotImage={headshotImage} />
       </section>
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
