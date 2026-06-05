@@ -341,6 +341,53 @@ const Index = () => {
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
+      {/* Build Then Protect — YouTube */}
+      <ScrollReveal delay={50}>
+      <section className="bg-[#0A0F1A] py-20">
+        <div className="container mx-auto px-6 max-w-4xl text-center">
+          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#DD5013]">NOW ON YOUTUBE</p>
+          <h2 className="font-display font-extrabold text-[40px] md:text-[52px] leading-[1.15] text-[#E9E4A6] mt-3">
+            Build Then Protect.
+          </h2>
+          <p className="font-sans text-[16px] text-[#94A3B8] mt-4 max-w-2xl mx-auto">
+            I document the real build of an AI and education business. No theory. Just what actually works, posted as I do it.
+          </p>
+          <a
+            href="https://youtube.com/@buildthenprotect?si=xqttG0cSsbVtBcNn"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 mt-7 bg-[#DD5013] text-white font-display font-semibold px-7 py-3.5 rounded-xl text-[15px] hover:opacity-90 transition-opacity"
+            style={{ boxShadow: "0 8px 24px rgba(221,80,19,0.35)" }}
+          >
+            <Youtube className="w-5 h-5" /> Watch on YouTube
+          </a>
+
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {[1, 2, 3].map((i) => (
+              <a
+                key={i}
+                href="https://youtube.com/@buildthenprotect?si=xqttG0cSsbVtBcNn"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block rounded-xl overflow-hidden bg-[#0F2340] border border-[#1E3A5F] hover:border-[#447BBE] transition-all duration-200 hover:-translate-y-[3px]"
+              >
+                <div className="aspect-video relative bg-gradient-to-br from-[#0F2340] to-[#03060C] flex items-center justify-center">
+                  <Youtube className="w-12 h-12 text-[#DD5013] opacity-80 group-hover:scale-110 transition-transform" />
+                  <span className="absolute bottom-2 right-2 text-[11px] font-sans text-[#94A3B8]">Episode {i}</span>
+                </div>
+                <div className="p-4 text-left">
+                  <p className="font-display font-bold text-[14px] text-white">Coming soon</p>
+                  <p className="font-sans text-[12px] text-[#94A3B8] mt-1">New episode dropping shortly.</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+      </ScrollReveal>
+
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
       {/* How Can I Help You? */}
       <section className="bg-[#0A0F1A] py-[100px]">
         <div className="container mx-auto px-6 max-w-6xl">
