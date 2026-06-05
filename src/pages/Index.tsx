@@ -13,6 +13,7 @@ import { useState, useEffect, lazy, Suspense, useMemo } from "react";
 
 const HeroLogo3D = lazy(() => import("@/components/HeroLogo3D"));
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { InvestingStack } from "@/components/InvestingStack";
 import { ZLetterFeed } from "@/components/ZLetterFeed";
 import pokemonImg from "@/assets/pokemon-pokedex.png";
 import harryPotterImg from "@/assets/harry-potter-world.png";
@@ -532,37 +533,6 @@ const Index = () => {
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
-      {/* The Journey Timeline */}
-      <ScrollReveal delay={50}>
-      <section className="bg-[#0A0F1A] py-20">
-        <div className="container mx-auto px-6 max-w-3xl">
-          <div className="text-center">
-            <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE]">THE BUILD</p>
-            <h2 className="font-display font-extrabold text-[40px] md:text-[52px] leading-[1.15] text-[#F1F5F9] mt-3">
-              From engineer to founder, in public.
-            </h2>
-          </div>
-
-          <ol className="relative mt-12 border-l-2 border-[#447BBE]/30 ml-2 space-y-8">
-            {[
-              { label: "Filed the LLC", body: "Filed Adtani Education Ventures LLC in Texas. $308, no lawyer." },
-              { label: "Launched The Z Letter", body: "One practical AI idea every Sunday. Always free." },
-              { label: "First paid AI consulting", body: "Taught Claude to an engineer and got paid in 30 minutes." },
-              { label: "Started Build Then Protect", body: "Documenting the whole build on YouTube." },
-              { label: "Stepped into gov contracting", body: "First site visit booked before registration was even active." },
-            ].map((m, i) => (
-              <li key={i} className="pl-6 relative">
-                <span className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[#447BBE] border-4 border-[#0A0F1A]" />
-                <p className="font-display font-bold text-[18px] text-[#E9E4A6]">{m.label}</p>
-                <p className="font-sans text-[15px] text-[#94A3B8] mt-1">{m.body}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-      </ScrollReveal>
-
-      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       {/* Newsletter — The Z Letter */}
       <ScrollReveal delay={100}>
@@ -618,15 +588,56 @@ const Index = () => {
           <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#DD5013]">
             FINANCIAL EDUCATION
           </p>
-          <h2 className="font-display font-extrabold text-[40px] md:text-[48px] leading-[1.15] text-[#E9E4A6] mt-3">
-            Protecting Families. Building Wealth.
+          <h2 className="font-display font-extrabold text-[36px] md:text-[44px] leading-[1.15] text-[#E9E4A6] mt-3">
+            It's not about how much you earn. It's about how much you keep and grow.
           </h2>
-          <p className="font-sans text-[16px] text-[#E9E4A6]/70 mt-5 max-w-2xl mx-auto">
-            I help families understand the 4 financial situations most people never plan for. Life insurance. Retirement planning. Critical illness protection. Wills and trusts. No pressure. Just education.
+          <p className="font-sans text-[16px] text-white/80 mt-5 max-w-[640px] mx-auto">
+            Most families earn decent money and still feel behind. Not because of income. Because nobody taught them the four situations that either protect a family or break one.
           </p>
 
+          {/* 4 situation cards */}
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+            {[
+              { icon: "🛡️", title: "Dying Too Soon", desc: "Your family keeps the house. Bills don't stop. Life insurance covers the gap." },
+              { icon: "⏳", title: "Living Too Long", desc: "Outliving your savings is a real risk. Retirement planning starts now, not at 60." },
+              { icon: "🏥", title: "Getting Sick and Not Dying", desc: "Critical illness hits harder than death. Most people have zero coverage for this." },
+              { icon: "📜", title: "No Will or Trust", desc: "Without one, the court decides what happens to everything you built. That's not a plan." },
+            ].map((c) => (
+              <div
+                key={c.title}
+                className="rounded-[10px] p-4 transition-colors duration-200"
+                style={{ background: "#0E1628", border: "1px solid #1a2a45" }}
+                onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#447BBE")}
+                onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#1a2a45")}
+              >
+                <div className="text-2xl">{c.icon}</div>
+                <h3 className="font-display font-bold text-[18px] text-[#E9E4A6] mt-2">{c.title}</h3>
+                <p className="font-sans text-[14px] text-white/75 mt-1">{c.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* What If You Could box */}
           <div
-            className="mt-10 mx-auto max-w-2xl rounded-2xl p-8 md:p-10"
+            className="mt-8 rounded-[12px] p-5 text-left"
+            style={{ background: "#0c1322", border: "1px solid #447BBE" }}
+          >
+            <p className="font-sans text-[11px] font-semibold tracking-widest uppercase text-[#DD5013]">
+              The Question
+            </p>
+            <p className="font-display font-extrabold text-[16px] text-white mt-2 leading-snug">
+              What if you could learn these concepts, apply them to your own life, and protect your family before a crisis hits?
+            </p>
+            <ul className="mt-4 space-y-1.5 font-sans text-[13px] text-white/75">
+              <li>✓ No pressure. No pitch. Just education.</li>
+              <li>✓ One free 30-minute session. No obligation.</li>
+              <li>✓ Walk away knowing exactly where your gaps are.</li>
+            </ul>
+          </div>
+
+          {/* Free Resource card */}
+          <div
+            className="mt-8 mx-auto max-w-2xl rounded-2xl p-8 md:p-10"
             style={{
               background: "linear-gradient(180deg, #0F1626 0%, #0A0F1A 100%)",
               border: "1px solid #447BBE",
@@ -634,7 +645,7 @@ const Index = () => {
             }}
           >
             <p className="font-sans text-[11px] font-semibold tracking-widest uppercase text-[#447BBE]">
-              Presentation
+              Free Resource
             </p>
             <h3 className="font-display font-bold text-[24px] md:text-[28px] leading-tight text-[#FFFFFF] mt-2">
               View the 30-Min Financial Education Deck
@@ -653,12 +664,7 @@ const Index = () => {
               >
                 Open the Deck
               </a>
-              {/* Secondary "Download PDF" button is intentionally hidden until a PDF asset is uploaded. */}
             </div>
-
-            <p className="font-sans text-[12px] text-[#E9E4A6]/60 mt-6">
-              HGI Associate · NPN 20207668
-            </p>
           </div>
         </div>
       </section>
@@ -690,108 +696,7 @@ const Index = () => {
 
       {/* My Personal Investing Stack */}
       <ScrollReveal delay={50}>
-      <section className="py-20 bg-[#0A0F1A]">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="text-center mb-12">
-            <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE]">
-              WHAT I ACTUALLY DO WITH MONEY
-            </p>
-            <h2
-              className="text-[#F1F5F9] text-4xl md:text-5xl mt-3"
-              style={{ fontFamily: '"Luckiest Guy", cursive' }}
-            >
-              My Personal Investing Stack.
-            </h2>
-            <p className="font-sans text-[15px] mt-4 max-w-2xl mx-auto" style={{ color: "#E9E4A6" }}>
-              Not financial advice. Just what I personally hold and why. Do your own research.
-            </p>
-          </div>
-
-          {(() => {
-            type Item = { ticker: string; name: string; desc: string; href?: string };
-            const columns: { header: string; items: Item[] }[] = [
-              {
-                header: "My Top Holdings",
-                items: [
-                  { ticker: "NVDA", name: "Nvidia", desc: "AI infrastructure. The picks and shovels of the AI gold rush." },
-                  { ticker: "GOOGL", name: "Google", desc: "AI, cloud, search, YouTube. Too many moats to ignore." },
-                  { ticker: "AAPL", name: "Apple", desc: "Everyone has one. Ecosystem lock-in is undefeated." },
-                ],
-              },
-              {
-                header: "My Roth IRA",
-                items: [
-                  { ticker: "VOO", name: "Vanguard S&P 500", desc: "The whole market. Set it and forget it." },
-                  { ticker: "SCHD", name: "Schwab Dividend", desc: "Dividend growth. Gets paid while I sleep." },
-                  { ticker: "QQQM", name: "Invesco Nasdaq", desc: "Tech heavy. Long on the future." },
-                ],
-              },
-              {
-                header: "Where I Hold It",
-                items: [
-                  { ticker: "Fidelity", name: "", desc: "Roth IRA home base.", href: "https://www.fidelity.com" },
-                  { ticker: "Robinhood", name: "", desc: "Individual stocks and DCA.", href: "https://robinhood.com" },
-                  { ticker: "Marcus Savings", name: "", desc: "High yield cash reserve.", href: "https://www.marcus.com" },
-                ],
-              },
-            ];
-            return (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {columns.map((col) => (
-                  <div key={col.header} className="flex flex-col gap-4">
-                    <h3 className="font-display font-bold text-xl text-[#F1F5F9]">{col.header}</h3>
-                    {col.items.map((it) => {
-                      const cardInner = (
-                        <div
-                          className="rounded-[10px] p-4 transition-colors duration-200"
-                          style={{
-                            backgroundColor: "rgba(255,255,255,0.03)",
-                            border: "1px solid rgba(68,123,190,0.15)",
-                            borderLeft: "3px solid #447BBE",
-                          }}
-                          onMouseEnter={(e) =>
-                            (e.currentTarget.style.backgroundColor = "rgba(68,123,190,0.08)")
-                          }
-                          onMouseLeave={(e) =>
-                            (e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.03)")
-                          }
-                        >
-                          <div className="font-sans font-bold text-white text-[15px]">
-                            {it.ticker}
-                            {it.name ? (
-                              <span className="text-white/70 font-medium"> · {it.name}</span>
-                            ) : null}
-                          </div>
-                          <p className="font-sans text-[13px] mt-1" style={{ color: "#E9E4A6" }}>
-                            {it.desc}
-                          </p>
-                        </div>
-                      );
-                      return it.href ? (
-                        <a
-                          key={it.ticker}
-                          href={it.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block"
-                        >
-                          {cardInner}
-                        </a>
-                      ) : (
-                        <div key={it.ticker}>{cardInner}</div>
-                      );
-                    })}
-                  </div>
-                ))}
-              </div>
-            );
-          })()}
-
-          <p className="text-center font-sans text-[12px] text-[#6B7280] mt-10 max-w-2xl mx-auto">
-            This is not financial advice. These are my personal holdings for educational purposes only.
-          </p>
-        </div>
-      </section>
+      <InvestingStack />
       </ScrollReveal>
 
       {/* Final CTA — Let's Work Together */}
