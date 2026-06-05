@@ -282,13 +282,12 @@ const Index = () => {
               AI Consultant · Author · Financial Educator
             </span>
             <h1 className="font-display font-extrabold text-[36px] md:text-[52px] leading-[1.1] text-[#F1F5F9]">
-              <span className="block">I Help Businesses Run on AI.</span>
-              <span className="block">I Help Creators Publish Books.</span>
-              <span className="block">I Help Families Protect Their Future.</span>
+              <span className="block">I help businesses run on AI.</span>
+              <span className="block">I help creators publish books.</span>
+              <span className="block">I help families protect their future.</span>
             </h1>
-            <p className="font-sans text-[17px] text-[#94A3B8] max-w-[420px]">
-              Strategy to shipped. No fluff. Real results.<br />
-              Based in DFW, Texas.
+            <p className="font-sans text-[17px] text-[#94A3B8] max-w-[460px]">
+              Strategy to shipped. No fluff. Real results. Building Adtani Education Ventures in public from DFW, Texas.
             </p>
             <div className="flex gap-3 flex-wrap mt-2">
               <a
@@ -308,9 +307,15 @@ const Index = () => {
                 Read The Z Letter
               </a>
             </div>
-            <p className="mt-4 font-sans text-[13px] text-[#6B7280]">
-              📍 DFW, Texas  ·  🎓 UTSA Mechanical Engineer  ·  📚 Published Author
-            </p>
+            <div className="mt-4 flex flex-wrap gap-x-3 gap-y-2 font-sans text-[13px] text-[#94A3B8]">
+              <span>📍 DFW, Texas</span>
+              <span className="text-[#6B7280]">·</span>
+              <span>🎓 UTSA Mechanical Engineer</span>
+              <span className="text-[#6B7280]">·</span>
+              <span>📚 Published Author</span>
+              <span className="text-[#6B7280]">·</span>
+              <span>🏛️ Building in Public · Day-by-Day</span>
+            </div>
           </div>
 
           {/* Right: photo */}
