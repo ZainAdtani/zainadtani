@@ -151,6 +151,83 @@ export function InvestingStack() {
           </p>
         </div>
 
+        {/* Start investing row */}
+        <div className="pt-8 pb-4 text-center">
+          <p
+            className="font-sans text-[10px] uppercase tracking-[1.5px] mb-4"
+            style={{ color: "#6b7a99" }}
+          >
+            Want to start? Here's where I actually invest.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-3">
+            <a
+              href="https://join.robinhood.com/zaina113"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full px-[18px] py-2 font-sans text-[12px] text-white no-underline transition-all duration-200 hover:border-[#447BBE]"
+              style={{
+                background: "#0E1628",
+                border: "1px solid #1a2a45",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = "0 0 12px rgba(68,123,190,0.25)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              <span>↗</span>
+              Start on Robinhood
+            </a>
+            <a
+              href="https://fidelity.app.link/e/99W3Yr8vJ3b"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full px-[18px] py-2 font-sans text-[12px] text-white no-underline transition-all duration-200 hover:border-[#447BBE]"
+              style={{
+                background: "#0E1628",
+                border: "1px solid #1a2a45",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = "0 0 12px rgba(68,123,190,0.25)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              <span>↗</span>
+              Start on Fidelity
+            </a>
+            <a
+              href="https://investor.vanguard.com/investor-resources-education/article/open-an-account"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full px-[18px] py-2 font-sans text-[12px] text-white no-underline transition-all duration-200 hover:border-[#447BBE]"
+              style={{
+                background: "#0E1628",
+                border: "1px solid #1a2a45",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = "0 0 12px rgba(68,123,190,0.25)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              <span>↗</span>
+              Start on Vanguard
+            </a>
+          </div>
+
+          <p
+            className="font-sans text-[10px] mt-4"
+            style={{ color: "#6b7a99" }}
+          >
+            These are affiliate or referral links. I use all three. Never invest more than you can afford to lose.
+          </p>
+        </div>
+
         <p className="text-center font-sans text-[12px] text-[#6B7280] mt-10 max-w-2xl mx-auto">
           This is not financial advice. These are my personal holdings for educational purposes only.
         </p>
