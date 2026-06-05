@@ -117,6 +117,178 @@ function withAffiliate(url: string, tag = "eng2ea-20") {
 }
 
 const productCatalog = ALL_PRODUCTS.filter(p => p.id !== "free-community");
+
+const HERO_TABS = [
+  {
+    key: "ai",
+    label: "AI Consulting",
+    h3: "Your competitors are already using AI. Are you?",
+    body: "I audit your workflow, find the time leaks, and build a custom AI system. One session saves 5 to 10 hours a week.",
+    cta: "Book a free audit →",
+  },
+  {
+    key: "book",
+    label: "Publish a Book",
+    h3: "Your story deserves to be on Amazon, not in a Google Doc.",
+    body: "I help you write, format, and publish your book in 30 days. Kindle, paperback, and audiobook. Done for you.",
+    cta: "Let's publish yours →",
+  },
+  {
+    key: "family",
+    label: "Protect Your Family",
+    h3: "Most families are one emergency away from a financial disaster.",
+    body: "Life insurance, retirement, wills, critical illness. I walk families through all four. No pressure. Just education.",
+    cta: "Get a free education session →",
+  },
+] as const;
+
+const FREE_PROMPT = `You are an AI business assistant for [Business Name], a [type of business] in [city]. Your job is to help the owner answer customer questions, summarize emails, draft responses, and save time on admin tasks. Always be professional, friendly, and brief. Never make up information. If you don't know something, say so.`;
+
+function HeroBlock({ headshotImage }: { headshotImage: string }) {
+  const [tab, setTab] = useState<string>("ai");
+  const [promptOpen, setPromptOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const active = HERO_TABS.find((t) => t.key === tab) ?? HERO_TABS[0];
+
+  const copyPrompt = async () => {
+    try {
+      await navigator.clipboard.writeText(FREE_PROMPT);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {}
+  };
+
+  return (
+    <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center md:py-12">
+      {/* Left */}
+      <div className="order-2 md:order-1 flex flex-col gap-5">
+        <span className="inline-flex w-fit items-center gap-2 text-[12px] font-medium tracking-widest uppercase text-[#E9E4A6] bg-white/10 border border-white/25 rounded-full px-4 py-1.5">
+          AI Consultant · Author · Financial Educator
+        </span>
+        <h1 className="font-display font-extrabold text-[36px] md:text-[52px] leading-[1.1] text-[#E9E4A6]">
+          <span className="block">I help businesses run on AI.</span>
+          <span className="block">I help creators publish books.</span>
+          <span className="block">I help families protect their future.</span>
+        </h1>
+        <p className="font-sans font-medium text-[16px] text-white">
+          Real help. Real results. Based in DFW, Texas.
+        </p>
+
+        {/* Tab switcher */}
+        <div
+          role="tablist"
+          aria-label="Service selector"
+          className="inline-flex flex-wrap gap-2 p-1.5 bg-white/10 border border-white/20 rounded-full w-fit max-w-full"
+        >
+          {HERO_TABS.map((t) => {
+            const isActive = t.key === tab;
+            return (
+              <button
+                key={t.key}
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setTab(t.key)}
+                className={`min-h-[44px] px-4 sm:px-5 rounded-full font-sans text-[13px] sm:text-[14px] font-semibold transition-all ${
+                  isActive
+                    ? "bg-white text-[#0A0F1A]"
+                    : "bg-transparent text-white border border-white/70 hover:bg-white/10"
+                }`}
+              >
+                {t.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Tab content */}
+        <div key={active.key} className="animate-fade-in flex flex-col gap-3 pt-1" style={{ animationDuration: "100ms" }}>
+          <h3 className="font-display font-extrabold text-[20px] md:text-[22px] leading-snug text-[#E9E4A6]">
+            {active.h3}
+          </h3>
+          <p className="font-sans text-[14px] text-white/90 max-w-[480px]">{active.body}</p>
+          <a
+            href="https://calendly.com/zkadtani"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex w-fit items-center justify-center border-[1.5px] border-white text-white font-sans font-semibold px-4 py-2 rounded-[8px] text-[13px] hover:bg-white hover:text-[#447BBE] transition-colors"
+          >
+            {active.cta}
+          </a>
+        </div>
+
+        {/* Free Prompt CTA bar */}
+        <div
+          className="mt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 justify-between bg-[#0E1628] border border-[#447BBE]/70 rounded-full px-4 sm:px-5 py-3"
+          style={{ boxShadow: "0 0 22px rgba(68,123,190,0.35)" }}
+        >
+          <div className="flex items-center gap-2 text-white font-sans text-[13px] sm:text-[14px]">
+            <span aria-hidden="true">⚡</span>
+            <span>Free: Copy my most-used AI prompt for small businesses.</span>
+          </div>
+          <button
+            onClick={() => setPromptOpen(true)}
+            className="inline-flex items-center justify-center bg-[#DD5013] text-white font-sans font-semibold text-[13px] px-4 py-2 rounded-full hover:opacity-90 transition-opacity whitespace-nowrap min-h-[40px]"
+          >
+            Get the prompt →
+          </button>
+        </div>
+
+        {/* Primary CTA */}
+        <a
+          href="https://calendly.com/zkadtani"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 inline-flex items-center justify-center bg-[#0A0F1A] text-white font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:opacity-90 transition-opacity w-full sm:w-auto sm:self-start"
+        >
+          Book a Free Call
+        </a>
+      </div>
+
+      {/* Right: photo */}
+      <div className="order-1 md:order-2 flex items-center justify-center md:py-8">
+        <div
+          className="relative rounded-full overflow-hidden"
+          style={{
+            width: "min(80vw, 280px)",
+            height: "min(80vw, 280px)",
+            maxWidth: 280,
+            maxHeight: 280,
+            border: "4px solid #447BBE",
+            boxShadow:
+              "0 0 0 6px rgba(255,255,255,0.15), 0 0 48px rgba(68,123,190,0.55), 0 20px 60px rgba(0,0,0,0.45)",
+          }}
+        >
+          <img
+            src={headshotImage}
+            alt="Zain Adtani — AI Consultant and Author"
+            className="w-full h-full object-cover object-top"
+          />
+        </div>
+      </div>
+
+      {/* Prompt Modal */}
+      <Dialog open={promptOpen} onOpenChange={setPromptOpen}>
+        <DialogContent className="max-w-lg bg-[#0A0F1A] border-[#447BBE]/60 text-white">
+          <DialogHeader>
+            <DialogTitle className="font-display text-[#E9E4A6]">Free AI Prompt for Small Businesses</DialogTitle>
+            <DialogDescription className="text-white/70 font-sans">
+              Copy, paste, and replace the bracketed parts with your details.
+            </DialogDescription>
+          </DialogHeader>
+          <pre className="whitespace-pre-wrap bg-[#0E1628] border border-[#447BBE]/40 rounded-lg p-4 text-[13px] font-mono text-white/90 max-h-[300px] overflow-auto">
+{FREE_PROMPT}
+          </pre>
+          <button
+            onClick={copyPrompt}
+            className="inline-flex items-center justify-center bg-[#DD5013] text-white font-sans font-semibold text-[14px] px-4 py-2.5 rounded-md hover:opacity-90 transition-opacity"
+          >
+            {copied ? "Copied!" : "Copy prompt"}
+          </button>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
 const Index = () => {
   const [activeTab, setActiveTab] = useState<TabKey>(() => getTabFromHash(window.location.hash));
   const [searchQuery, setSearchQuery] = useState("");
@@ -281,71 +453,7 @@ const Index = () => {
             "radial-gradient(ellipse at top left, #5A8FD0 0%, #447BBE 40%, #2E5A93 100%)",
         }}
       >
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center md:py-12">
-          {/* Left: text */}
-          <div className="order-2 md:order-1 flex flex-col gap-6">
-            <span className="inline-flex w-fit items-center gap-2 text-[12px] font-medium tracking-widest uppercase text-[#E9E4A6] bg-white/10 border border-white/25 rounded-full px-4 py-1.5">
-              AI Consultant · Author · Financial Educator
-            </span>
-            <h1 className="font-display font-extrabold text-[36px] md:text-[52px] leading-[1.1] text-[#E9E4A6]">
-              <span className="block">I help businesses run on AI.</span>
-              <span className="block">I help creators publish books.</span>
-              <span className="block">I help families protect their future.</span>
-            </h1>
-            <p className="font-sans text-[17px] text-white/90 max-w-[460px]">
-              Strategy to shipped. No fluff. Real results. Building Adtani Education Ventures in public from DFW, Texas.
-            </p>
-            <div className="flex gap-3 flex-wrap mt-2">
-              <a
-                href="https://calendly.com/zkadtani"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-[#0A0F1A] text-white font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:opacity-90 transition-opacity"
-              >
-                Book a Free Call
-              </a>
-              <a
-                href="https://the-z-letter.beehiiv.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center border-[1.5px] border-white text-white font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:bg-white hover:text-[#447BBE] transition-colors"
-              >
-                Read The Z Letter
-              </a>
-            </div>
-            <div className="mt-4 flex flex-wrap gap-x-3 gap-y-2 font-sans text-[13px] text-[#E9E4A6]">
-              <span>📍 DFW, Texas</span>
-              <span className="text-white/50">·</span>
-              <span>🎓 UTSA Mechanical Engineer</span>
-              <span className="text-white/50">·</span>
-              <span>📚 Published Author</span>
-              <span className="text-white/50">·</span>
-              <span>🏛️ Building in Public · Day-by-Day</span>
-            </div>
-          </div>
-
-          {/* Right: photo as circle */}
-          <div className="order-1 md:order-2 flex items-center justify-center md:py-8">
-            <div
-              className="relative rounded-full overflow-hidden"
-              style={{
-                width: "min(80vw, 280px)",
-                height: "min(80vw, 280px)",
-                maxWidth: 280,
-                maxHeight: 280,
-                border: "4px solid #447BBE",
-                boxShadow:
-                  "0 0 0 6px rgba(255,255,255,0.15), 0 0 48px rgba(68,123,190,0.55), 0 20px 60px rgba(0,0,0,0.45)",
-              }}
-            >
-              <img
-                src={headshotImage}
-                alt="Zain Adtani — AI Consultant and Author"
-                className="w-full h-full object-cover object-top"
-              />
-            </div>
-          </div>
-        </div>
+        <HeroBlock headshotImage={headshotImage} />
       </section>
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
