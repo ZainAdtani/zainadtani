@@ -221,6 +221,27 @@ export default function Resources() {
               </div>
             </div>
 
+            {/* Label IQ */}
+            <div className="mb-8 rounded-2xl border border-[#1E3A5F] bg-[#0F2340] p-6 md:p-8 hover:border-[#DD5013]/40 transition-colors">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                  <h3 className="text-[#E9E4A6] text-[20px] md:text-[22px] font-extrabold" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    📄 Free: Label IQ Cheat Sheet
+                  </h3>
+                  <p className="mt-1 font-sans text-[15px] text-[#94A3B8]">
+                    Read any food label in 10 seconds.
+                  </p>
+                </div>
+                <Link
+                  to="/label-iq"
+                  className="shrink-0 inline-flex items-center justify-center font-sans font-semibold text-[14px] px-5 py-2.5 rounded-full border-2 transition-colors hover:scale-105 duration-200"
+                  style={{ borderColor: "#DD5013", color: "#E9E4A6" }}
+                >
+                  Get it free →
+                </Link>
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {PROMPTS.map((p, i) => (
                 <Card key={i} className="group hover:border-primary/50 hover:shadow-[0_0_24px_rgba(0,212,170,0.18)]">

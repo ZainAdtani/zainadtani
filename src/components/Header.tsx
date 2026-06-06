@@ -10,7 +10,6 @@ const TOP_NAV = [
   { label: "Services", path: "/services" },
   { label: "Books", path: "/books" },
   { label: "Resources", path: "/resources" },
-  { label: "Label IQ", path: "/label-iq" },
 ];
 
 export const Header = () => {
