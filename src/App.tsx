@@ -25,6 +25,7 @@ import Prompts from "./pages/Prompts";
 import HarryPotter from "./pages/HarryPotter";
 import PokemonDex from "./pages/PokemonDex";
 import Money from "./pages/Money";
+import LabelIQ from "./pages/LabelIQ";
 
 // Project sub-pages
 import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
@@ -60,6 +61,7 @@ const App = () => (
             <Route path="/harry-potter" element={<HarryPotter />} />
             <Route path="/pokedex" element={<PokemonDex />} />
             <Route path="/money" element={<Money />} />
+            <Route path="/label-iq" element={<LabelIQ />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
