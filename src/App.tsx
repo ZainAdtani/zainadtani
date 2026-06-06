@@ -61,7 +61,7 @@ const App = () => (
             <Route path="/harry-potter" element={<HarryPotter />} />
             <Route path="/pokedex" element={<PokemonDex />} />
             <Route path="/money" element={<Money />} />
-            <Route path="/label-iq" element={<LabelIQ />} />
+            <Route path="/resources/label-iq" element={<LabelIQ />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
