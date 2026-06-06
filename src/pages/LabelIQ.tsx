@@ -1,7 +1,8 @@
 import { Helmet } from "react-helmet-async";
+import cheatSheetPdf from "@/assets/label-iq-cheatsheet.pdf.asset.json";
 
 export default function LabelIQ() {
-  const handlePrint = () => window.print();
+
 
   return (
     <div className="min-h-screen bg-[#0A0F1A] text-[#F1F5F9]">
@@ -51,9 +52,12 @@ export default function LabelIQ() {
 
         {/* Download CTA */}
         <section className="no-print mt-10 text-center">
-          <button
-            onClick={handlePrint}
-            className="font-sans font-bold text-white rounded-full transition-transform duration-200 hover:scale-105"
+          <a
+            href={cheatSheetPdf.url}
+            download="label-iq-cheatsheet.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block font-sans font-bold text-white rounded-full transition-transform duration-200 hover:scale-105"
             style={{
               background: "linear-gradient(135deg, #DD5013, #D97706)",
               padding: "16px 32px",
@@ -61,11 +65,12 @@ export default function LabelIQ() {
             }}
           >
             ⬇ Download the Free Cheat Sheet
-          </button>
+          </a>
           <p className="mt-3 font-sans text-[13px] text-[#94A3B8]">
             One page. No email needed.
           </p>
         </section>
+
 
         {/* What's inside */}
         <section className="mt-14 max-w-xl mx-auto">
