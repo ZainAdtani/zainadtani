@@ -198,6 +198,27 @@ export default function Resources() {
       <div className="mt-10">
         {tab === "business" && (
           <div className="container mx-auto px-4 max-w-6xl pb-10">
+            {/* Label IQ */}
+            <div className="mb-8 rounded-2xl border border-[#1E3A5F] bg-[#0F2340] p-6 md:p-8 hover:border-[#DD5013]/40 transition-colors">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                  <h3 className="text-[#E9E4A6] text-[20px] md:text-[22px] font-extrabold" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    📄 Free: Label IQ Cheat Sheet
+                  </h3>
+                  <p className="mt-1 font-sans text-[15px] text-[#94A3B8]">
+                    Read any food label in 10 seconds.
+                  </p>
+                </div>
+                <Link
+                  to="/resources/label-iq"
+                  className="shrink-0 inline-flex items-center justify-center font-sans font-semibold text-[14px] px-5 py-2.5 rounded-full border-2 transition-colors hover:scale-105 duration-200"
+                  style={{ borderColor: "#DD5013", color: "#E9E4A6" }}
+                >
+                  Get it free →
+                </Link>
+              </div>
+            </div>
+
             {/* Featured: Train My AI Assistant */}
             <div className="mb-12 bg-gradient-to-br from-[#0F2340] to-[#0A0F1A] border border-[#447BBE]/30 rounded-3xl p-8 md:p-10">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
