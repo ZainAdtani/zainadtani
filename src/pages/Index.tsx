@@ -671,63 +671,38 @@ const Index = () => {
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
-      {/* My Personal Investing Stack */}
-      <ScrollReveal delay={50}>
-      <InvestingStack />
-      </ScrollReveal>
-
       {/* Final CTA — Let's Work Together */}
       <ScrollReveal delay={50}>
       <section id="contact" className="py-20 bg-[#0A0F1A]">
         <div className="container mx-auto px-6 max-w-2xl text-center">
           <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE]">LET'S WORK TOGETHER</p>
-          <h2 className="font-display font-extrabold text-[40px] md:text-[48px] leading-[1.15] text-[#F1F5F9] mt-3">
+          <h2 className="font-display font-extrabold text-[40px] md:text-[48px] leading-[1.15] text-[#447BBE] mt-3">
             <span className="block">Ready to Build</span>
             <span className="block">Something Real?</span>
           </h2>
-          <p className="font-sans text-[16px] text-[#94A3B8] mt-4">
+          <p className="font-sans text-[16px] text-white/80 mt-4">
             Whether it's a website, a book, or a smarter way to run your business — let's talk. First call is free.
           </p>
           <a
             href="https://calendly.com/zkadtani"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-[#447BBE] text-[#0A0F1A] font-display font-semibold px-8 py-3.5 rounded-xl text-[15px] hover:opacity-90 transition-opacity mt-8"
+            className="inline-flex items-center justify-center bg-[#DD5013] text-white font-display font-semibold px-8 py-3.5 rounded-xl text-[15px] hover:opacity-90 transition-opacity mt-8"
           >
             Book a Free Call →
           </a>
-          <p className="font-sans text-[13px] text-[#6B7280] mt-4">
+          <p className="font-sans text-[13px] text-[#94A3B8] mt-4">
             No pressure. Start with a clear conversation.
           </p>
-        </div>
-      </section>
-      </ScrollReveal>
-
-      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-
-      {/* Just For Fun teaser */}
-      <ScrollReveal delay={50}>
-      <section
-        className="px-6"
-        style={{ backgroundColor: "rgba(68, 123, 190, 0.04)", paddingTop: "80px", paddingBottom: "80px" }}
-      >
-        <div className="container mx-auto max-w-5xl">
-          <div className="text-center mb-10">
-            <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE]">JUST FOR FUN</p>
-            <h2 className="font-display text-[40px] md:text-[56px] leading-[1.1] text-[#F1F5F9] mt-3">
-              Not Everything Has to Make Money.
-            </h2>
-            <p className="font-sans text-[16px] text-[#E9E4A6] mt-4">
-              Sometimes I build things because they're cool. Pokemon. Harry Potter. More coming.
-            </p>
+          <div className="mt-10 pt-6 border-t border-[#1E3A5F]/60 flex flex-col sm:flex-row gap-3 justify-center items-center text-[13px]">
+            <Link to="/lab" className="font-sans text-[#94A3B8] hover:text-[#447BBE] transition-colors">
+              Explore what I build for fun →
+            </Link>
+            <span className="hidden sm:inline text-[#1E3A5F]">·</span>
+            <Link to="/resources/investing" className="font-sans text-[#94A3B8] hover:text-[#447BBE] transition-colors">
+              My Investing Stack →
+            </Link>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {FUN_PROJECTS.map((p) => (
-              <FunProjectCard key={p.title} project={p} />
-            ))}
-          </div>
-
         </div>
       </section>
       </ScrollReveal>
