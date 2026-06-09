@@ -201,7 +201,7 @@ All colors MUST be HSL.
   html.hay [class*="text-[#DD5013]"] { color: #D97706 !important; }
   html.hay [class*="border-[#DD5013]"] { border-color: #D97706 !important; }
 
-  .dark {
+  .dark, .spidey, .hay {
     /* Spidey Blue dark #0D1B2E */
     --background: 213 56% 12%;
     --foreground: 210 40% 96%;
