@@ -445,33 +445,63 @@ const Index = () => {
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
-      {/* How Can I Help You? */}
-      <section className="bg-[#0A0F1A] py-[100px]">
+      {/* Selected Work */}
+      <ScrollReveal delay={50}>
+      <section className="bg-[#0A0F1A] py-20">
         <div className="container mx-auto px-6 max-w-6xl">
-          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE] text-center">YOUR PROBLEM. MY SPECIALTY.</p>
-          <h2 className="font-display font-extrabold text-[40px] md:text-[52px] leading-[1.15] text-[#F1F5F9] text-center mt-3">
-            <span className="block">Most Businesses Are Leaving</span>
-            <span className="block">Money on the Table.</span>
+          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE] text-center">SELECTED WORK</p>
+          <h2 className="font-display font-extrabold text-[36px] md:text-[44px] leading-[1.15] text-[#447BBE] text-center mt-3">
+            Real projects. Useful outcomes.
           </h2>
-          <p className="font-sans text-[16px] text-[#94A3B8] text-center mt-4">
-            Bad websites. Unwritten books. Wasted hours. I fix all three.
-          </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12">
             {[
-              { icon: "🤖", title: "Your Website Is Costing You Clients", body: "If your site looks like 2015, people leave in 10 seconds. I build clean, fast, AI-powered websites that actually convert. Live in two weeks, not two months.", cta: "Let's build yours →" },
-              { icon: "📖", title: "Your Book Is Still in Your Head", body: "You have a story worth publishing. I help you write it, format it, and get it live on Amazon. Kindle, paperback, audiobook. Done.", cta: "Let's publish yours →" },
-              { icon: "⚡", title: "You Are Doing AI's Job By Hand", body: "You are spending hours on tasks Claude can do in minutes. I audit your workflow and build you a custom system. One session saves 5 to 10 hours a week.", cta: "Let's automate yours →" },
+              { title: "AI Training", body: "Delivered a paid hands-on Claude training session for professionals through a Lockheed connection." },
+              { title: "Karmz IV Digital Build", body: "Created a complete wellness clinic website concept and digital customer journey using AI tools." },
+              { title: "Book Publishing", body: "Built practical systems for writing, formatting, and publishing books with AI and Amazon KDP." },
             ].map((c) => (
               <div
                 key={c.title}
-                className="bg-[#0F2340] border border-[#1E3A5F] rounded-[14px] p-8 transition-all duration-[250ms] hover:border-[rgba(0,212,170,0.4)] hover:-translate-y-[3px] flex flex-col"
+                className="bg-[#0F2340] border border-[#1E3A5F] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
               >
-                <div className="text-3xl">{c.icon}</div>
-                <h3 className="font-display font-bold text-[20px] text-[#FFFFFF] mt-4">{c.title}</h3>
-                <p className="font-sans text-[15px] text-[#E9E4A6] mt-3 flex-1">{c.body}</p>
-                <Link to="/services" className="inline-block mt-4 font-sans font-medium text-[14px] text-[#447BBE] hover:underline">
+                <h3 className="font-display font-extrabold text-[20px] text-[#447BBE]">{c.title}</h3>
+                <p className="font-sans text-[15px] text-white mt-3 flex-1">{c.body}</p>
+                <span className="mt-6 font-sans text-[13px] text-[#94A3B8]">Case study coming soon</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      </ScrollReveal>
+
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
+      {/* Three Problems. One Trusted Partner. */}
+      <section className="bg-[#0A0F1A] py-20">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE] text-center">THREE PROBLEMS. ONE TRUSTED PARTNER.</p>
+          <h2 className="font-display font-extrabold text-[36px] md:text-[44px] leading-[1.15] text-[#447BBE] text-center mt-3">
+            Build faster. Publish your ideas. Protect your family.
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12">
+            {[
+              { title: "Your Business Is Losing Time", body: "Simple AI systems, websites, and workflows built around how your business operates.", cta: "Build My AI System", service: "ai-system" },
+              { title: "Your Book Is Still an Idea", body: "Turn your knowledge or story into a finished book ready for publishing.", cta: "Publish My Book", service: "book" },
+              { title: "Your Family Has Protection Gaps", body: "Understand life insurance, wills and trusts, and the risks most families overlook.", cta: "Review My Family Plan", service: "family-plan" },
+            ].map((c) => (
+              <div
+                key={c.title}
+                className="bg-[#0F2340] border border-[#1E3A5F] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
+              >
+                <h3 className="font-display font-extrabold text-[20px] text-[#447BBE]">{c.title}</h3>
+                <p className="font-sans text-[15px] text-white mt-3 flex-1">{c.body}</p>
+                <a
+                  href={`https://calendly.com/zkadtani?service=${c.service}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex items-center justify-center bg-[#DD5013] text-white font-sans font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity"
+                >
                   {c.cta}
-                </Link>
+                </a>
               </div>
             ))}
           </div>
