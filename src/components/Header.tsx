@@ -130,7 +130,14 @@ export const Header = () => {
               );
             })}
           </div>
-
+            <Link
+              to="/resources/investing"
+              onClick={() => setMobileOpen(false)}
+              className="px-4 py-2 font-sans text-[13px] text-[#94A3B8] hover:text-[#447BBE] transition-colors"
+            >
+              ↳ My Investing Stack
+            </Link>
+            
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
