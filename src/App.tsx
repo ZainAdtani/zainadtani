@@ -26,6 +26,7 @@ import HarryPotter from "./pages/HarryPotter";
 import PokemonDex from "./pages/PokemonDex";
 import Money from "./pages/Money";
 import LabelIQ from "./pages/LabelIQ";
+import Lab from "./pages/Lab";
 
 // Project sub-pages
 import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
