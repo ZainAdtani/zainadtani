@@ -11,7 +11,6 @@ createRoot(document.getElementById("root")!).render(
       themes={["spidey", "hay"]}
       defaultTheme="spidey"
       enableSystem={false}
-      value={{ spidey: "dark spidey", hay: "dark hay" }}
     >
       <App />
     </ThemeProvider>

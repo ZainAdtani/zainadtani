@@ -94,101 +94,101 @@ All colors MUST be HSL.
   }
 
   /* Light mode overrides for hardcoded dark hex classes */
-  html:not(.dark) [class*="bg-[#0A0F1A]"],
-  html:not(.dark) [class*="bg-[#0D1B2E]"] {
+  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0A0F1A]"],
+  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0D1B2E]"] {
     background-color: #E9E4A6 !important;
   }
 
-  html:not(.dark) [class*="bg-[#0F2340]"] {
+  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0F2340]"] {
     background-color: #FFFFFF !important;
   }
 
-  html:not(.dark) [class*="bg-[#070C14]"] {
+  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#070C14]"] {
     background-color: #FFFFFF !important;
   }
 
-  html:not(.dark) [class*="border-[#1E3A5F]"] {
+  html:not(.dark):not(.spidey):not(.hay) [class*="border-[#1E3A5F]"] {
     border-color: #447BBE !important;
   }
 
-  html:not(.dark) [class*="text-[#94A3B8]"] {
+  html:not(.dark):not(.spidey):not(.hay) [class*="text-[#94A3B8]"] {
     color: #1A1A2E !important;
   }
 
-  html:not(.dark) [class*="text-[#F1F5F9]"],
-  html:not(.dark) [class*="text-[#F8F8F2]"] {
+  html:not(.dark):not(.spidey):not(.hay) [class*="text-[#F1F5F9]"],
+  html:not(.dark):not(.spidey):not(.hay) [class*="text-[#F8F8F2]"] {
     color: #0D1B2E !important;
   }
 
-  html:not(.dark) [class*="text-[#6B7280]"] {
+  html:not(.dark):not(.spidey):not(.hay) [class*="text-[#6B7280]"] {
     color: #1A1A2E !important;
   }
 
   /* Spidey Blue accent stays — links/accents */
 
   /* Code/mono blocks in light mode */
-  html:not(.dark) [class*="bg-[#0A0A0F]"],
-  html:not(.dark) [class*="bg-[#070C14]"] {
+  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0A0A0F]"],
+  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#070C14]"] {
     background-color: #FFFFFF !important;
   }
 
-  html:not(.dark) pre,
-  html:not(.dark) code,
-  html:not(.dark) .font-mono {
+  html:not(.dark):not(.spidey):not(.hay) pre,
+  html:not(.dark):not(.spidey):not(.hay) code,
+  html:not(.dark):not(.spidey):not(.hay) .font-mono {
     background-color: #FFFFFF !important;
     color: #0D1B2E !important;
   }
 
   /* Hero gradient override in light mode */
-  html:not(.dark) section.relative.w-full.bg-\[\#0A0F1A\],
-  html:not(.dark) section.relative.w-full.bg-\[\#0D1B2E\] {
+  html:not(.dark):not(.spidey):not(.hay) section.relative.w-full.bg-\[\#0A0F1A\],
+  html:not(.dark):not(.spidey):not(.hay) section.relative.w-full.bg-\[\#0D1B2E\] {
     background: #E9E4A6 !important;
   }
 
   /* Light mode card hover shadow */
-  html:not(.dark) .hover\:border-\[\#447BBE\]\/50:hover,
-  html:not(.dark) .hover\:border-\[\#447BBE\]:hover {
+  html:not(.dark):not(.spidey):not(.hay) .hover\:border-\[\#447BBE\]\/50:hover,
+  html:not(.dark):not(.spidey):not(.hay) .hover\:border-\[\#447BBE\]:hover {
     border-color: #447BBE !important;
     box-shadow: 0 4px 20px rgba(68, 123, 190, 0.15) !important;
   }
 
   /* Footer in light mode */
-  html:not(.dark) footer {
+  html:not(.dark):not(.spidey):not(.hay) footer {
     background-color: #FFFFFF !important;
     border-top-color: #447BBE !important;
   }
 
   /* Header / nav in light mode */
-  html:not(.dark) header {
+  html:not(.dark):not(.spidey):not(.hay) header {
     background-color: #FFFFFF !important;
     border-bottom: 1px solid #447BBE !important;
   }
 
   /* Newsletter section card in light mode */
-  html:not(.dark) .rounded-3xl {
+  html:not(.dark):not(.spidey):not(.hay) .rounded-3xl {
     box-shadow: 0 2px 24px rgba(13, 27, 46, 0.08) !important;
   }
 
   /* Headings in light mode */
-  html:not(.dark) h1,
-  html:not(.dark) h2,
-  html:not(.dark) h3,
-  html:not(.dark) h4,
-  html:not(.dark) h5,
-  html:not(.dark) h6 {
+  html:not(.dark):not(.spidey):not(.hay) h1,
+  html:not(.dark):not(.spidey):not(.hay) h2,
+  html:not(.dark):not(.spidey):not(.hay) h3,
+  html:not(.dark):not(.spidey):not(.hay) h4,
+  html:not(.dark):not(.spidey):not(.hay) h5,
+  html:not(.dark):not(.spidey):not(.hay) h6 {
     color: #0D1B2E !important;
   }
 
   /* Input fields in light mode */
-  html:not(.dark) input[type="email"],
-  html:not(.dark) input[type="text"],
-  html:not(.dark) input[type="search"] {
+  html:not(.dark):not(.spidey):not(.hay) input[type="email"],
+  html:not(.dark):not(.spidey):not(.hay) input[type="text"],
+  html:not(.dark):not(.spidey):not(.hay) input[type="search"] {
     background-color: #FFFFFF !important;
     border-color: #447BBE !important;
     color: #1A1A2E !important;
   }
 
-  html:not(.dark) input::placeholder {
+  html:not(.dark):not(.spidey):not(.hay) input::placeholder {
     color: #1A1A2E !important;
     opacity: 0.55;
   }
@@ -201,7 +201,7 @@ All colors MUST be HSL.
   html.hay [class*="text-[#DD5013]"] { color: #D97706 !important; }
   html.hay [class*="border-[#DD5013]"] { border-color: #D97706 !important; }
 
-  .dark {
+  .dark, .spidey, .hay {
     /* Spidey Blue dark #0D1B2E */
     --background: 213 56% 12%;
     --foreground: 210 40% 96%;
