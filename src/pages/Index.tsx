@@ -362,14 +362,47 @@ const Index = () => {
 
       {/* Hero Section */}
       <section
-        className="relative w-full pt-8 pb-0 overflow-hidden"
-        style={{
-          background:
-            "radial-gradient(ellipse at top left, #5A8FD0 0%, #447BBE 40%, #2E5A93 100%)",
-        }}
+        className="relative w-full pt-8 pb-12 overflow-hidden bg-[#0A0F1A]"
       >
         <HeroBlock headshotImage={headshotImage} />
       </section>
+
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
+      {/* How I Help */}
+      <ScrollReveal delay={50}>
+      <section id="how-i-help" className="bg-[#0A0F1A] py-20">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE] text-center">HOW I HELP</p>
+          <h2 className="font-display font-extrabold text-[36px] md:text-[44px] leading-[1.15] text-[#447BBE] text-center mt-3">
+            One partner. Three ways forward.
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12">
+            {[
+              { title: "Run on AI", body: "For businesses. Simple AI systems, websites, and automations that put you ahead." },
+              { title: "Publish Your Book", body: "For creators. Go from idea to published, with AI doing the heavy lifting." },
+              { title: "Protect Your Family", body: "For families. Life insurance, wills and trusts, and a plan so one bad day doesn't undo years of work." },
+            ].map((c) => (
+              <div
+                key={c.title}
+                className="bg-[#0F2340] border border-[#1E3A5F] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
+              >
+                <h3 className="font-display font-extrabold text-[22px] text-[#447BBE]">{c.title}</h3>
+                <p className="font-sans text-[15px] text-white mt-3 flex-1">{c.body}</p>
+                <a
+                  href="https://calendly.com/zkadtani"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex items-center justify-center bg-[#DD5013] text-white font-sans font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity"
+                >
+                  Book a Call
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      </ScrollReveal>
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
