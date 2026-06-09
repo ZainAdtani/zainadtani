@@ -26,6 +26,7 @@ import HarryPotter from "./pages/HarryPotter";
 import PokemonDex from "./pages/PokemonDex";
 import Money from "./pages/Money";
 import LabelIQ from "./pages/LabelIQ";
+import Lab from "./pages/Lab";
 
 // Project sub-pages
 import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
@@ -44,6 +45,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/investing" element={<Investing />} />
+            <Route path="/resources/investing" element={<Investing />} />
+            <Route path="/lab" element={<Lab />} />
             <Route path="/digital-products" element={<DigitalProductsPage />} />
             <Route path="/tools" element={<Tools />} />
             
