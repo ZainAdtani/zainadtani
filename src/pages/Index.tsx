@@ -697,7 +697,7 @@ const Index = () => {
             Book a Free Call →
           </a>
           <p className="font-sans text-[13px] text-[#6B7280] mt-4">
-            No pitch. No pressure. Just a real conversation.
+            No pressure. Start with a clear conversation.
           </p>
         </div>
       </section>
