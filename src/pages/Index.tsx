@@ -577,7 +577,7 @@ const Index = () => {
             {[
               { icon: "🛡️", title: "Dying Too Soon", desc: "Your family keeps the house. Bills don't stop. Life insurance covers the gap." },
               { icon: "⏳", title: "Living Too Long", desc: "Outliving your savings is a real risk. Retirement planning starts now, not at 60." },
-              { icon: "🏥", title: "Getting Sick and Not Dying", desc: "Critical illness hits harder than death. Most people have zero coverage for this." },
+              { icon: "🏥", title: "Getting Sick and Not Dying", desc: "A serious illness can hurt your income and drain savings while you recover. The right protection helps cover the gap." },
               { icon: "📜", title: "No Will or Trust", desc: "Without one, the court decides what happens to everything you built. That's not a plan." },
             ].map((c) => (
               <div
