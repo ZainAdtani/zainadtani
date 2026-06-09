@@ -155,6 +155,13 @@ export const Header = () => {
                 {item.label}
               </Link>
             ))}
+            <Link
+              to="/resources/investing"
+              onClick={() => setMobileOpen(false)}
+              className="px-4 py-2 font-sans text-[13px] text-[#94A3B8] hover:text-[#447BBE] transition-colors"
+            >
+              ↳ My Investing Stack
+            </Link>
             <div className="flex flex-col gap-1 mt-2 pt-2 border-t border-[#1E3A5F]">
               <a
                 href="https://linkedin.com/in/zainadtani"
