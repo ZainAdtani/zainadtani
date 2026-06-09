@@ -110,6 +110,27 @@ export const Header = () => {
             })}
           </div>
 
+          {/* Mobile theme toggle (always visible) */}
+          <div className="md:hidden inline-flex items-center gap-1 bg-[#0E1628] border border-[#447BBE]/60 rounded-full p-1">
+            {(["spidey", "hay"] as const).map((t) => {
+              const active = (theme ?? "spidey") === t;
+              return (
+                <button
+                  key={t}
+                  type="button"
+                  onClick={() => setTheme(t)}
+                  aria-pressed={active}
+                  aria-label={`Switch to ${t} theme`}
+                  className={`px-2.5 py-1 rounded-full text-[11px] font-sans font-semibold transition-colors ${
+                    active ? "bg-[#447BBE] text-[#0A0F1A]" : "text-white/80 hover:text-white"
+                  }`}
+                >
+                  {t === "spidey" ? "Spidey" : "Hay"}
+                </button>
+              );
+            })}
+          </div>
+
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
