@@ -193,6 +193,14 @@ All colors MUST be HSL.
     opacity: 0.55;
   }
 
+  /* Hay theme: swap Spidey Blue accents to Fresh Hay, and Sunset buttons to amber */
+  html.hay [class*="text-[#447BBE]"] { color: #E9E4A6 !important; }
+  html.hay [class*="border-[#447BBE]"] { border-color: #E9E4A6 !important; }
+  html.hay [class*="bg-[#447BBE]"] { background-color: #E9E4A6 !important; }
+  html.hay [class*="bg-[#DD5013]"] { background-color: #D97706 !important; }
+  html.hay [class*="text-[#DD5013]"] { color: #D97706 !important; }
+  html.hay [class*="border-[#DD5013]"] { border-color: #D97706 !important; }
+
   .dark {
     /* Spidey Blue dark #0D1B2E */
     --background: 213 56% 12%;

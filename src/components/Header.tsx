@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Moon, Sun, Linkedin, Youtube, Menu, X } from "lucide-react";
+import { Linkedin, Youtube, Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
@@ -91,15 +91,24 @@ export const Header = () => {
             Book a Call
           </a>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            className="hidden md:inline-flex"
-          >
-            {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-            <span className="sr-only">Toggle theme</span>
-          </Button>
+          <div className="hidden md:inline-flex items-center gap-1 bg-[#0E1628] border border-[#447BBE]/60 rounded-full p-1">
+            {(["spidey", "hay"] as const).map((t) => {
+              const active = (theme ?? "spidey") === t;
+              return (
+                <button
+                  key={t}
+                  type="button"
+                  onClick={() => setTheme(t)}
+                  aria-pressed={active}
+                  className={`px-3 py-1 rounded-full text-[12px] font-sans font-semibold transition-colors ${
+                    active ? "bg-[#447BBE] text-[#0A0F1A]" : "text-white/80 hover:text-white"
+                  }`}
+                >
+                  {t === "spidey" ? "Spidey" : "Hay"}
+                </button>
+              );
+            })}
+          </div>
 
           <button
             type="button"

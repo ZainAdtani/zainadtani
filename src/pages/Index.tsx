@@ -146,19 +146,6 @@ const HERO_TABS = [
 const FREE_PROMPT = `You are an AI business assistant for [Business Name], a [type of business] in [city]. Your job is to help the owner answer customer questions, summarize emails, draft responses, and save time on admin tasks. Always be professional, friendly, and brief. Never make up information. If you don't know something, say so.`;
 
 function HeroBlock({ headshotImage }: { headshotImage: string }) {
-  const [tab, setTab] = useState<string>("ai");
-  const [promptOpen, setPromptOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const active = HERO_TABS.find((t) => t.key === tab) ?? HERO_TABS[0];
-
-  const copyPrompt = async () => {
-    try {
-      await navigator.clipboard.writeText(FREE_PROMPT);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {}
-  };
-
   return (
     <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center md:py-12">
       {/* Left */}
@@ -166,94 +153,42 @@ function HeroBlock({ headshotImage }: { headshotImage: string }) {
         <span className="inline-flex w-fit items-center gap-2 text-[12px] font-medium tracking-widest uppercase text-[#E9E4A6] bg-white/10 border border-white/25 rounded-full px-4 py-1.5">
           AI Consultant · Author · Financial Educator
         </span>
-        <h1 className="font-display font-extrabold text-[36px] md:text-[52px] leading-[1.1] text-[#E9E4A6]">
-          <span className="block">I help businesses run on AI.</span>
-          <span className="block">I help creators publish books.</span>
-          <span className="block">I help families protect their future.</span>
+        <h1 className="font-display font-extrabold text-[36px] md:text-[52px] leading-[1.1] text-[#447BBE]">
+          <span className="block">Build with AI.</span>
+          <span className="block">Publish your book.</span>
+          <span className="block">Protect your family.</span>
         </h1>
-        <p className="font-sans font-medium text-[16px] text-white">
-          Real help. Real results. Based in DFW, Texas.
+        <p className="font-sans text-[16px] md:text-[17px] text-white max-w-[520px]">
+          I'm Zain Adtani. I help businesses run on AI, help creators publish books, and help families protect what they build. One partner, three ways forward.
         </p>
 
-        {/* Tab switcher */}
-        <div
-          role="tablist"
-          aria-label="Service selector"
-          className="inline-flex flex-wrap gap-2 p-1.5 bg-white/10 border border-white/20 rounded-full w-fit max-w-full"
-        >
-          {HERO_TABS.map((t) => {
-            const isActive = t.key === tab;
-            return (
-              <button
-                key={t.key}
-                role="tab"
-                aria-selected={isActive}
-                onClick={() => setTab(t.key)}
-                className={`min-h-[44px] px-4 sm:px-5 rounded-full font-sans text-[13px] sm:text-[14px] font-semibold transition-all ${
-                  isActive
-                    ? "bg-white text-[#0A0F1A]"
-                    : "bg-transparent text-white border border-white/70 hover:bg-white/10"
-                }`}
-              >
-                {t.label}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Tab content */}
-        <div key={active.key} className="animate-fade-in flex flex-col gap-3 pt-1" style={{ animationDuration: "100ms" }}>
-          <h3 className="font-display font-extrabold text-[20px] md:text-[22px] leading-snug text-[#E9E4A6]">
-            {active.h3}
-          </h3>
-          <p className="font-sans text-[14px] text-white/90 max-w-[480px]">{active.body}</p>
+        <div className="mt-2 flex flex-wrap items-center gap-4">
           <a
             href="https://calendly.com/zkadtani"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex w-fit items-center justify-center border-[1.5px] border-white text-white font-sans font-semibold px-4 py-2 rounded-[8px] text-[13px] hover:bg-white hover:text-[#447BBE] transition-colors"
+            className="inline-flex items-center justify-center bg-[#DD5013] text-white font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:opacity-90 transition-opacity"
           >
-            {active.cta}
+            Book a Call
+          </a>
+          <a
+            href="#how-i-help"
+            className="inline-flex items-center text-white font-sans font-medium text-[15px] underline-offset-4 hover:underline"
+          >
+            See how I help →
           </a>
         </div>
-
-        {/* Free Prompt CTA bar */}
-        <div
-          className="mt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 justify-between bg-[#0E1628] border border-[#447BBE]/70 rounded-full px-4 sm:px-5 py-3"
-          style={{ boxShadow: "0 0 22px rgba(68,123,190,0.35)" }}
-        >
-          <div className="flex items-center gap-2 text-white font-sans text-[13px] sm:text-[14px]">
-            <span aria-hidden="true">⚡</span>
-            <span>Free: Copy my most-used AI prompt for small businesses.</span>
-          </div>
-          <button
-            onClick={() => setPromptOpen(true)}
-            className="inline-flex items-center justify-center bg-[#DD5013] text-white font-sans font-semibold text-[13px] px-4 py-2 rounded-full hover:opacity-90 transition-opacity whitespace-nowrap min-h-[40px]"
-          >
-            Get the prompt →
-          </button>
-        </div>
-
-        {/* Primary CTA */}
-        <a
-          href="https://calendly.com/zkadtani"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-2 inline-flex items-center justify-center bg-[#0A0F1A] text-white font-display font-semibold px-6 py-3 rounded-[10px] text-[15px] hover:opacity-90 transition-opacity w-full sm:w-auto sm:self-start"
-        >
-          Book a Free Call
-        </a>
       </div>
 
-      {/* Right: photo */}
+      {/* Right: photo — fully visible (object-contain), never crops */}
       <div className="order-1 md:order-2 flex items-center justify-center md:py-8">
         <div
-          className="relative rounded-full overflow-hidden"
+          className="relative rounded-full overflow-hidden bg-[#0A0F1A] flex items-center justify-center"
           style={{
-            width: "min(80vw, 280px)",
-            height: "min(80vw, 280px)",
-            maxWidth: 280,
-            maxHeight: 280,
+            width: "min(80vw, 320px)",
+            height: "min(80vw, 320px)",
+            maxWidth: 320,
+            maxHeight: 320,
             border: "4px solid #447BBE",
             boxShadow:
               "0 0 0 6px rgba(255,255,255,0.15), 0 0 48px rgba(68,123,190,0.55), 0 20px 60px rgba(0,0,0,0.45)",
@@ -261,32 +196,11 @@ function HeroBlock({ headshotImage }: { headshotImage: string }) {
         >
           <img
             src={headshotImage}
-            alt="Zain Adtani — AI Consultant and Author"
-            className="w-full h-full object-cover object-top"
+            alt="Zain Adtani — AI Consultant, Author, Financial Educator"
+            className="w-full h-full object-contain object-center"
           />
         </div>
       </div>
-
-      {/* Prompt Modal */}
-      <Dialog open={promptOpen} onOpenChange={setPromptOpen}>
-        <DialogContent className="max-w-lg bg-[#0A0F1A] border-[#447BBE]/60 text-white">
-          <DialogHeader>
-            <DialogTitle className="font-display text-[#E9E4A6]">Free AI Prompt for Small Businesses</DialogTitle>
-            <DialogDescription className="text-white/70 font-sans">
-              Copy, paste, and replace the bracketed parts with your details.
-            </DialogDescription>
-          </DialogHeader>
-          <pre className="whitespace-pre-wrap bg-[#0E1628] border border-[#447BBE]/40 rounded-lg p-4 text-[13px] font-mono text-white/90 max-h-[300px] overflow-auto">
-{FREE_PROMPT}
-          </pre>
-          <button
-            onClick={copyPrompt}
-            className="inline-flex items-center justify-center bg-[#DD5013] text-white font-sans font-semibold text-[14px] px-4 py-2.5 rounded-md hover:opacity-90 transition-opacity"
-          >
-            {copied ? "Copied!" : "Copy prompt"}
-          </button>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
@@ -448,14 +362,47 @@ const Index = () => {
 
       {/* Hero Section */}
       <section
-        className="relative w-full pt-8 pb-0 overflow-hidden"
-        style={{
-          background:
-            "radial-gradient(ellipse at top left, #5A8FD0 0%, #447BBE 40%, #2E5A93 100%)",
-        }}
+        className="relative w-full pt-8 pb-12 overflow-hidden bg-[#0A0F1A]"
       >
         <HeroBlock headshotImage={headshotImage} />
       </section>
+
+      <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
+      {/* How I Help */}
+      <ScrollReveal delay={50}>
+      <section id="how-i-help" className="bg-[#0A0F1A] py-20">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE] text-center">HOW I HELP</p>
+          <h2 className="font-display font-extrabold text-[36px] md:text-[44px] leading-[1.15] text-[#447BBE] text-center mt-3">
+            One partner. Three ways forward.
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12">
+            {[
+              { title: "Run on AI", body: "For businesses. Simple AI systems, websites, and automations that put you ahead." },
+              { title: "Publish Your Book", body: "For creators. Go from idea to published, with AI doing the heavy lifting." },
+              { title: "Protect Your Family", body: "For families. Life insurance, wills and trusts, and a plan so one bad day doesn't undo years of work." },
+            ].map((c) => (
+              <div
+                key={c.title}
+                className="bg-[#0F2340] border border-[#1E3A5F] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
+              >
+                <h3 className="font-display font-extrabold text-[22px] text-[#447BBE]">{c.title}</h3>
+                <p className="font-sans text-[15px] text-white mt-3 flex-1">{c.body}</p>
+                <a
+                  href="https://calendly.com/zkadtani"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex items-center justify-center bg-[#DD5013] text-white font-sans font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity"
+                >
+                  Book a Call
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      </ScrollReveal>
 
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
