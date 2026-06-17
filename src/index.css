@@ -288,28 +288,6 @@ All colors MUST be HSL.
     display: none;
   }
 
-  .ea-domains-accordion {
-    scroll-behavior: smooth;
-  }
-
-  .ea-domains-accordion [data-state="open"] svg {
-    transform: rotate(180deg);
-  }
-
-  .ea-domains-accordion svg {
-    transition: transform 200ms ease-out;
-  }
-
-  @keyframes clock-tick {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(-3deg); }
-    75% { transform: rotate(3deg); }
-  }
-
-  .animate-clock-tick {
-    animation: clock-tick 2s ease-in-out infinite;
-    transform-origin: center;
-  }
 }
 
 @layer utilities {
