@@ -12,12 +12,6 @@ const archivePages = [
     icon: BookOpen,
   },
   {
-    title: "Personal Learning Vault",
-    description: "Notes and templates I saved.",
-    path: "/personal-learning-vault",
-    icon: BookOpen,
-  },
-  {
     title: "QuickBooks",
     description: "Old bookkeeping notes kept for reference.",
     path: "/quickbooks",
