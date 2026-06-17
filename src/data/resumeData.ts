@@ -68,7 +68,7 @@ export interface ExperienceItem {
 export const experience: ExperienceItem[] = [
   {
     company: "Tax Advisors Group",
-    title: "Enrolled Agent Tax Advisor",
+    title: "Tax Advisor",
     location: "Dallas, TX",
     dates: "Dec 2024 – Present",
     initialBullets: [
@@ -139,7 +139,7 @@ export interface CertificationItem {
 }
 
 export const certifications: CertificationItem[] = [
-  { name: "Enrolled Agent (EA)", issuer: "IRS", date: "2024" },
+  
   { name: "AWS Certified Cloud Practitioner", issuer: "Amazon Web Services", date: "2023" },
   { name: "Mortgage Loan Originator (MLO)", issuer: "NMLS", date: "2023" },
   { name: "Life & Health Insurance License", issuer: "Texas", date: "2022" },
@@ -157,7 +157,7 @@ export interface ActivityItem {
 export const activities: ActivityItem[] = [
   {
     title: "Author & Course Creator",
-    description: "Published children's book; created free EA exam prep course",
+    description: "Published children's book and runs a free study community",
     icon: "book",
   },
   {

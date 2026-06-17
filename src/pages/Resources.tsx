@@ -103,9 +103,9 @@ const CATEGORIES = ["All", "Coaching", "Productivity", "Learning", "Email", "Del
 
 const categoryColor: Record<string, string> = {
   Coaching: "bg-[#447BBE]/15 text-[#447BBE] border border-[#447BBE]/30",
-  Productivity: "bg-[#3B82F6]/15 text-[#3B82F6] border border-[#3B82F6]/30",
+  Productivity: "bg-[#447BBE]/15 text-[#447BBE] border border-[#447BBE]/30",
   Learning: "bg-emerald-400/15 text-emerald-300 border border-emerald-400/30",
-  Email: "bg-[#3B82F6]/15 text-[#3B82F6] border border-[#3B82F6]/30",
+  Email: "bg-[#447BBE]/15 text-[#447BBE] border border-[#447BBE]/30",
   Delegation: "bg-[#447BBE]/10 text-[#447BBE] border border-[#447BBE]/20",
   Automation: "bg-[#447BBE]/15 text-[#447BBE] border border-[#447BBE]/30",
 };
@@ -139,7 +139,7 @@ export default function Resources() {
 
   const pillBase = "px-5 py-2.5 rounded-full text-[14px] font-sans cursor-pointer transition-colors";
   const active = "bg-[#447BBE] text-[#0A0F1A] font-semibold";
-  const inactive = "bg-[#0F2340] text-[#94A3B8] border border-[#1E3A5F] hover:border-[#447BBE]/40";
+  const inactive = "bg-[#0A0F1A] text-[#94A3B8] border border-[#1E3A5F] hover:border-[#447BBE]/40";
 
   return (
     <div className="min-h-screen bg-background">
@@ -199,7 +199,7 @@ export default function Resources() {
         {tab === "business" && (
           <div className="container mx-auto px-4 max-w-6xl pb-10">
             {/* Label IQ */}
-            <div className="mb-8 rounded-2xl border border-[#1E3A5F] bg-[#0F2340] p-6 md:p-8 hover:border-[#DD5013]/40 transition-colors">
+            <div className="mb-8 rounded-2xl border border-[#1E3A5F] bg-[#0A0F1A] p-6 md:p-8 hover:border-[#DD5013]/40 transition-colors">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div>
                   <h3 className="text-[#E9E4A6] text-[20px] md:text-[22px] font-extrabold" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
@@ -220,7 +220,7 @@ export default function Resources() {
             </div>
 
             {/* Featured: Train My AI Assistant */}
-            <div className="mb-12 bg-gradient-to-br from-[#0F2340] to-[#0A0F1A] border border-[#447BBE]/30 rounded-3xl p-8 md:p-10">
+            <div className="mb-12 bg-gradient-to-br from-[#0A0F1A] to-[#0A0F1A] border border-[#447BBE]/30 rounded-3xl p-8 md:p-10">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
                 <div>
                   <span className="inline-block text-[11px] font-medium tracking-widest uppercase text-[#447BBE] bg-[#447BBE]/10 border border-[#447BBE]/20 rounded-full px-3 py-1 mb-3">
@@ -237,7 +237,7 @@ export default function Resources() {
                   <CopyBlock text={TRAIN_MY_AI_PROMPT} label="Copy Full Prompt" />
                 </div>
               </div>
-              <div className="bg-[#070C14] border border-[#1E3A5F] rounded-2xl p-5 max-h-64 overflow-y-auto font-mono text-[13px] text-[#94A3B8] leading-relaxed whitespace-pre-wrap">
+              <div className="bg-[#0A0F1A] border border-[#1E3A5F] rounded-2xl p-5 max-h-64 overflow-y-auto font-mono text-[13px] text-[#94A3B8] leading-relaxed whitespace-pre-wrap">
                 {TRAIN_MY_AI_PROMPT}
               </div>
             </div>
@@ -245,7 +245,7 @@ export default function Resources() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {PROMPTS.map((p, i) => (
-                <Card key={i} className="group hover:border-primary/50 hover:shadow-[0_0_24px_rgba(0,212,170,0.18)]">
+                <Card key={i} className="group hover:border-primary/50 hover:shadow-[0_0_24px_rgba(68,123,190,0.18)]">
                   <CardContent className="p-6 flex flex-col gap-4">
                     <div className="flex items-center gap-3">
                       <div className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-primary-foreground font-bold text-sm shrink-0">
@@ -253,7 +253,7 @@ export default function Resources() {
                       </div>
                       <h3 className="text-lg font-semibold text-foreground">{p.title}</h3>
                     </div>
-                    <pre className="font-mono text-sm bg-[#0A0A0F] text-foreground/90 border border-primary/40 rounded-md p-4 whitespace-pre-wrap break-words overflow-x-auto">
+                    <pre className="font-mono text-sm bg-[#0A0F1A] text-foreground/90 border border-primary/40 rounded-md p-4 whitespace-pre-wrap break-words overflow-x-auto">
                       <code>{p.text}</code>
                     </pre>
                     <div>
@@ -278,7 +278,7 @@ export default function Resources() {
         {tab === "library" && (
           <div className="container mx-auto px-4 max-w-6xl pb-10">
             {/* Custom Instructions */}
-            <div className="bg-[#0F2340] border border-[#1E3A5F] rounded-2xl p-6 mb-8">
+            <div className="bg-[#0A0F1A] border border-[#1E3A5F] rounded-2xl p-6 mb-8">
               <div className="flex items-start justify-between gap-4 mb-2">
                 <h3 className="font-display font-bold text-[18px] text-white">Custom Instructions</h3>
                 <CopyBlock text={CUSTOM_INSTRUCTIONS} label="Copy" />
@@ -311,7 +311,7 @@ export default function Resources() {
                   className={`text-[13px] px-3 py-1.5 rounded-full transition-colors ${
                     selectedCategory === c
                       ? "bg-[#447BBE] text-[#0A0F1A] font-semibold"
-                      : "bg-[#0F2340] text-[#94A3B8] border border-[#1E3A5F] hover:border-[#447BBE]/40"
+                      : "bg-[#0A0F1A] text-[#94A3B8] border border-[#1E3A5F] hover:border-[#447BBE]/40"
                   }`}
                 >
                   {c}
@@ -328,7 +328,7 @@ export default function Resources() {
               {filteredPrompts.map((p) => {
                 const isExpanded = expanded.includes(p.id);
                 return (
-                  <div key={p.id} className="bg-[#0F2340] border border-[#1E3A5F] rounded-2xl p-6 flex flex-col gap-3">
+                  <div key={p.id} className="bg-[#0A0F1A] border border-[#1E3A5F] rounded-2xl p-6 flex flex-col gap-3">
                     <span className={`self-start rounded-full px-3 py-1 text-[11px] font-medium ${categoryColor[p.category] || "bg-[#1E3A5F] text-[#94A3B8]"}`}>
                       {p.category}
                     </span>

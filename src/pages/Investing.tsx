@@ -55,7 +55,7 @@ const Investing = () => {
                 { Icon: Layers, emoji: "🧩", title: "Spread Risk", desc: "Do not bet on one thing." },
                 { Icon: GraduationCap, emoji: "📚", title: "Keep Learning", desc: "Learn a little each week." },
               ].map((item) => (
-                <Card key={item.title} className="p-5 text-center hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-300 rounded-xl">
+                <Card key={item.title} className="p-5 text-center hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(68,123,190,0.15)] transition-all duration-300 rounded-xl">
                   <item.Icon className="w-10 h-10 text-primary mx-auto mb-3" />
                   <h3 className="font-bold text-lg mb-1">{item.emoji} {item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -113,7 +113,7 @@ const Investing = () => {
               { name: "Fidelity", logo: "https://logo.clearbit.com/fidelity.com", FallbackIcon: LineChart, desc: "Main brokerage for stocks, ETFs, and retirement.", href: "https://fidelity.app.link/e/wKOQHcrcRVb", cta: "Open Account" },
               { name: "Robinhood", logo: "https://logo.clearbit.com/robinhood.com", FallbackIcon: TrendingUp, desc: "Commission free trading for stocks, ETFs, and crypto.", href: "https://join.robinhood.com/zaina113", cta: "Join" },
             ].map((b) => (
-              <Card key={b.name} className="p-6 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-300 rounded-xl flex flex-col">
+              <Card key={b.name} className="p-6 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(68,123,190,0.15)] transition-all duration-300 rounded-xl flex flex-col">
                 <div className="h-12 mb-4 flex items-center">
                   <img
                     src={b.logo}
@@ -151,7 +151,7 @@ const Investing = () => {
                 <p>This course breaks down calls, puts, spreads, and real strategies.</p>
               </div>
             </div>
-            <Card className="p-6 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(0,212,170,0.15)] transition-all duration-300 rounded-xl">
+            <Card className="p-6 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(68,123,190,0.15)] transition-all duration-300 rounded-xl">
               <LineChart className="w-10 h-10 text-primary mb-4" />
               <h3 className="text-xl font-bold mb-2">Complete Options Course</h3>
               <p className="text-sm text-muted-foreground mb-4">From beginner to advanced. Clear lessons and examples.</p>

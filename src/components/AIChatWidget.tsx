@@ -120,7 +120,7 @@ export function AIChatWidget() {
         <button
           onClick={() => setOpen(true)}
           aria-label="Open chat assistant"
-          className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-[0_4px_24px_rgba(0,212,170,0.45)] hover:shadow-[0_6px_32px_rgba(0,212,170,0.6)] hover:scale-105 transition-all duration-300 flex items-center justify-center animate-pulse-soft"
+          className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-[0_4px_24px_rgba(68,123,190,0.45)] hover:shadow-[0_6px_32px_rgba(68,123,190,0.6)] hover:scale-105 transition-all duration-300 flex items-center justify-center animate-pulse-soft"
         >
           <MessageCircle className="w-6 h-6" />
         </button>

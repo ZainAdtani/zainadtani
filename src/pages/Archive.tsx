@@ -6,12 +6,6 @@ import { GraduationCap, BookOpen, Calculator, ArrowRight } from "lucide-react";
 
 const archivePages = [
   {
-    title: "Enrolled Agent",
-    description: "Old study notes kept for reference.",
-    path: "/enrolled-agent",
-    icon: GraduationCap,
-  },
-  {
     title: "Personal Learning Vault",
     description: "Notes and templates I saved.",
     path: "/personal-learning-vault",

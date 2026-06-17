@@ -107,7 +107,7 @@ const WORLD_CARDS = [
 const BOOK_CARDS = [
   { dot: "#8B4513", title: "The Philosopher's Stone", tag: "Where it all begins.", n: 1 },
   { dot: "#16A34A", title: "The Chamber of Secrets", tag: "The heir has returned.", n: 2 },
-  { dot: "#3B82F6", title: "The Prisoner of Azkaban", tag: "The best in the series.", n: 3 },
+  { dot: "#447BBE", title: "The Prisoner of Azkaban", tag: "The best in the series.", n: 3 },
   { dot: "#DC2626", title: "The Goblet of Fire", tag: "Everything changes here.", n: 4 },
   { dot: "#1F2937", title: "The Order of the Phoenix", tag: "The longest. Worth it.", n: 5 },
   { dot: "#FACC15", title: "The Half-Blood Prince", tag: "You will not see it coming.", n: 6 },
