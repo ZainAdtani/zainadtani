@@ -350,12 +350,13 @@ const Index = () => {
   return <div className="min-h-screen bg-background">
       <div id="top" />
       <Helmet>
-        <title>Zain Adtani | AI Consultant + Author | DFW Texas</title>
-        <meta name="description" content="Zain Adtani helps businesses implement AI and helps everyday people publish books. AI consulting, Lovable websites, and book coaching in DFW, Texas." />
-        <meta property="og:title" content="Zain Adtani | AI Consultant + Author | DFW Texas" />
-        <meta property="og:description" content="Zain Adtani helps businesses implement AI and helps everyday people publish books. AI consulting, Lovable websites, and book coaching in DFW, Texas." />
-        <meta property="og:image" content={headshotImage} />
+        <title>Zain Adtani | AI Consultant · Author · Financial Educator</title>
+        <meta name="description" content="AI Consultant, Author, and Financial Educator based in DFW Texas. I help small businesses run on AI, help creators publish books, and help families protect what they build." />
+        <meta property="og:title" content="Zain Adtani | AI Consultant · Author · Financial Educator" />
+        <meta property="og:description" content="AI Consultant, Author, and Financial Educator based in DFW Texas. I help small businesses run on AI, help creators publish books, and help families protect what they build." />
+        <meta property="og:url" content="https://zainadtani.com" />
         <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://zainadtani.com" />
       </Helmet>
 
       <TimeBar />
@@ -606,9 +607,9 @@ const Index = () => {
               What if you could learn these concepts, apply them to your own life, and protect your family before a crisis hits?
             </p>
             <ul className="mt-4 space-y-1.5 font-sans text-[13px] text-white/75">
-              <li>✓ One free 30-minute education session.</li>
-              <li>✓ One free 30-minute session. No obligation.</li>
-              <li>✓ Walk away knowing exactly where your gaps are.</li>
+              <li>✓ One free 30-minute session. No sales pitch.</li>
+              <li>✓ Understand your family's actual coverage gaps.</li>
+              <li>✓ Walk away knowing exactly what to do next.</li>
             </ul>
           </div>
 
