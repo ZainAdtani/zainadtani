@@ -94,18 +94,12 @@ All colors MUST be HSL.
   }
 
   /* Light mode overrides for hardcoded dark hex classes */
-  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0A0F1A]"],
-  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0A0F1A]"] {
-    background-color: #E9E4A6 !important;
-  }
-
+  /* Cards, containers, and all dark backgrounds → white in light mode */
+  /* Exception: hero sections are handled by the specific section rule below */
   html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0A0F1A]"] {
     background-color: #FFFFFF !important;
   }
 
-  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0A0F1A]"] {
-    background-color: #FFFFFF !important;
-  }
 
   html:not(.dark):not(.spidey):not(.hay) [class*="border-[#1E3A5F]"] {
     border-color: #447BBE !important;
@@ -126,11 +120,6 @@ All colors MUST be HSL.
 
   /* Spidey Blue accent stays — links/accents */
 
-  /* Code/mono blocks in light mode */
-  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0A0F1A]"],
-  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0A0F1A]"] {
-    background-color: #FFFFFF !important;
-  }
 
   html:not(.dark):not(.spidey):not(.hay) pre,
   html:not(.dark):not(.spidey):not(.hay) code,
