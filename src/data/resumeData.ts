@@ -157,7 +157,7 @@ export interface ActivityItem {
 export const activities: ActivityItem[] = [
   {
     title: "Author & Course Creator",
-    description: "Published children's book; created free EA exam prep course",
+    description: "Published children's book and runs a free study community",
     icon: "book",
   },
   {
