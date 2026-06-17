@@ -368,6 +368,58 @@ const Index = () => {
         <HeroBlock headshotImage={headshotImage} />
       </section>
 
+      {/* ZAP REST — Featured Book */}
+      <section className="bg-[#0A0F1A] py-14">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <div className="flex flex-col md:flex-row items-center gap-10 bg-[#0E1628] border border-[#447BBE] rounded-2xl p-8 md:p-10">
+            {/* Book Cover */}
+            <div className="flex-shrink-0">
+              <img
+                src="https://images-na.ssl-images-amazon.com/images/P/B0H51RJL7R.01.LZZZZZZZ.jpg"
+                alt="ZAP REST book cover by Zain Adtani"
+                className="w-36 md:w-44 rounded-xl shadow-2xl"
+                style={{ boxShadow: "0 8px 32px rgba(68,123,190,0.35)" }}
+              />
+            </div>
+            {/* Book Info */}
+            <div className="flex flex-col gap-4 flex-1 text-center md:text-left">
+              <div className="flex flex-wrap justify-center md:justify-start gap-2">
+                <span className="inline-flex items-center gap-1 bg-[#DD5013]/15 border border-[#DD5013]/40 text-[#DD5013] text-[11px] font-semibold tracking-widest uppercase rounded-full px-3 py-1">
+                  📚 Now Live on Amazon
+                </span>
+                <span className="inline-flex items-center gap-1 bg-[#447BBE]/15 border border-[#447BBE]/40 text-[#447BBE] text-[11px] font-semibold tracking-widest uppercase rounded-full px-3 py-1">
+                  Kindle + Paperback
+                </span>
+              </div>
+              <h2 className="font-display text-[26px] md:text-[32px] leading-tight text-white">
+                ZAP REST
+              </h2>
+              <p className="font-sans text-[15px] text-[#E9E4A6]/90 max-w-xl">
+                Your first step to waking up without anxiety. A practical guide to building a morning routine that fights anxiety before it starts. Written by Zain Adtani.
+              </p>
+              <div className="flex flex-wrap justify-center md:justify-start gap-3 mt-2">
+                <a
+                  href="https://www.amazon.com/dp/B0H51RJL7R"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center bg-[#DD5013] text-white font-sans font-semibold px-6 py-3 rounded-xl text-[14px] hover:opacity-90 transition-opacity"
+                >
+                  Get It on Amazon — $7.99 →
+                </a>
+                <a
+                  href="https://the-z-letter.beehiiv.com/subscribe"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center border border-[#447BBE] text-[#447BBE] font-sans font-semibold px-6 py-3 rounded-xl text-[14px] hover:bg-[#447BBE]/10 transition-colors"
+                >
+                  Join The Z Letter
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       {/* How I Help */}

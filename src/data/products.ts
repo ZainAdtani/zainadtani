@@ -21,6 +21,18 @@ export type Product = {
 
 export const ALL_PRODUCTS: Product[] = [
   {
+    id: "zap-rest",
+    title: "ZAP REST: Your First Step to Waking Up Without Anxiety",
+    category: "Guides",
+    desc: "Published on Amazon. A practical guide to building a morning routine that fights anxiety before it starts. Kindle and paperback. By Zain Adtani.",
+    media: "https://images-na.ssl-images-amazon.com/images/P/B0H51RJL7R.01.LZZZZZZZ.jpg",
+    cta: { label: "Get It on Amazon — $7.99 →", href: "https://www.amazon.com/dp/B0H51RJL7R" },
+    tags: ["Book", "Amazon", "Published"],
+    badge: "📚 Live on Amazon",
+    featured: true,
+    order: 0,
+  },
+  {
     id: "ismaili-coloring-book",
     title: "Ismaili Coloring Book",
     category: "Guides",
