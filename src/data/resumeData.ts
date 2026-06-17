@@ -68,7 +68,7 @@ export interface ExperienceItem {
 export const experience: ExperienceItem[] = [
   {
     company: "Tax Advisors Group",
-    title: "Enrolled Agent Tax Advisor",
+    title: "Tax Advisor",
     location: "Dallas, TX",
     dates: "Dec 2024 – Present",
     initialBullets: [
