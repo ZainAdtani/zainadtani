@@ -607,9 +607,9 @@ const Index = () => {
               What if you could learn these concepts, apply them to your own life, and protect your family before a crisis hits?
             </p>
             <ul className="mt-4 space-y-1.5 font-sans text-[13px] text-white/75">
-              <li>✓ One free 30-minute education session.</li>
-              <li>✓ One free 30-minute session. No obligation.</li>
-              <li>✓ Walk away knowing exactly where your gaps are.</li>
+              <li>✓ One free 30-minute session. No sales pitch.</li>
+              <li>✓ Understand your family's actual coverage gaps.</li>
+              <li>✓ Walk away knowing exactly what to do next.</li>
             </ul>
           </div>
 
