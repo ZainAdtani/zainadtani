@@ -139,7 +139,7 @@ export interface CertificationItem {
 }
 
 export const certifications: CertificationItem[] = [
-  { name: "Enrolled Agent (EA)", issuer: "IRS", date: "2024" },
+  
   { name: "AWS Certified Cloud Practitioner", issuer: "Amazon Web Services", date: "2023" },
   { name: "Mortgage Loan Originator (MLO)", issuer: "NMLS", date: "2023" },
   { name: "Life & Health Insurance License", issuer: "Texas", date: "2022" },
