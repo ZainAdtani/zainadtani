@@ -95,7 +95,7 @@ All colors MUST be HSL.
 
   /* Light mode overrides for hardcoded dark hex classes */
   html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0A0F1A]"],
-  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0D1B2E]"] {
+  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0A0F1A]"] {
     background-color: #E9E4A6 !important;
   }
 
