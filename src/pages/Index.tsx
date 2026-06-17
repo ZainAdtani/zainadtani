@@ -350,12 +350,13 @@ const Index = () => {
   return <div className="min-h-screen bg-background">
       <div id="top" />
       <Helmet>
-        <title>Zain Adtani | AI Consultant + Author | DFW Texas</title>
-        <meta name="description" content="Zain Adtani helps businesses implement AI and helps everyday people publish books. AI consulting, Lovable websites, and book coaching in DFW, Texas." />
-        <meta property="og:title" content="Zain Adtani | AI Consultant + Author | DFW Texas" />
-        <meta property="og:description" content="Zain Adtani helps businesses implement AI and helps everyday people publish books. AI consulting, Lovable websites, and book coaching in DFW, Texas." />
-        <meta property="og:image" content={headshotImage} />
+        <title>Zain Adtani | AI Consultant · Author · Financial Educator</title>
+        <meta name="description" content="AI Consultant, Author, and Financial Educator based in DFW Texas. I help small businesses run on AI, help creators publish books, and help families protect what they build." />
+        <meta property="og:title" content="Zain Adtani | AI Consultant · Author · Financial Educator" />
+        <meta property="og:description" content="AI Consultant, Author, and Financial Educator based in DFW Texas. I help small businesses run on AI, help creators publish books, and help families protect what they build." />
+        <meta property="og:url" content="https://zainadtani.com" />
         <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://zainadtani.com" />
       </Helmet>
 
       <TimeBar />
