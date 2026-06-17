@@ -54,7 +54,7 @@ const ctaClass =
 
 function FeatureCard({ icon, title, body }: { icon: string; title: string; body: string }) {
   return (
-    <div className="bg-[#0F2340] border border-[#1E3A5F] rounded-2xl p-6 flex gap-4 items-start hover:border-[#447BBE]/40 transition-colors">
+    <div className="bg-[#0A0F1A] border border-[#1E3A5F] rounded-2xl p-6 flex gap-4 items-start hover:border-[#447BBE]/40 transition-colors">
       <span className="text-2xl shrink-0">{icon}</span>
       <div>
         <h4 className="font-display font-bold text-[16px] text-[#F1F5F9] mb-1">{title}</h4>
@@ -143,7 +143,7 @@ export default function Services() {
       </section>
 
       {/* Section 3: Service 02 — Publish Your Book */}
-      <section className="bg-[#070C14] py-24 border-t border-[#1E3A5F]">
+      <section className="bg-[#0A0F1A] py-24 border-t border-[#1E3A5F]">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <div className="grid grid-cols-1 gap-4 order-2 md:order-1">
             {bookCards.map((c) => <FeatureCard key={c.title} {...c} />)}
@@ -197,7 +197,7 @@ export default function Services() {
       </section>
 
       {/* Section 5: Not sure strip */}
-      <section className="bg-[#0F2340] py-16 border-t border-[#1E3A5F]">
+      <section className="bg-[#0A0F1A] py-16 border-t border-[#1E3A5F]">
         <div className="max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
           <div>
             <h3 className="font-display font-bold text-[28px] text-[#F1F5F9] mb-2">

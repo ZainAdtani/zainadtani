@@ -68,7 +68,7 @@ export function ZLetterFeed() {
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group rounded-xl border-l-4 border-l-secondary border border-border bg-card p-6 transition-all duration-300 hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,212,170,0.12)]"
+                  className="group rounded-xl border-l-4 border-l-secondary border border-border bg-card p-6 transition-all duration-300 hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(68,123,190,0.12)]"
                 >
                   <img
                     src={zLetterLogo}

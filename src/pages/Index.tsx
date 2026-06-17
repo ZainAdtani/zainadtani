@@ -57,7 +57,7 @@ const FUN_PROJECTS: FunProject[] = [
 function FunProjectCard({ project }: { project: FunProject }) {
   return (
     <div
-      className="rounded-xl overflow-hidden bg-[#0F2340] border border-[#1E3A5F] flex flex-col transition-all duration-200 ease-out hover:-translate-y-1"
+      className="rounded-xl overflow-hidden bg-[#0A0F1A] border border-[#1E3A5F] flex flex-col transition-all duration-200 ease-out hover:-translate-y-1"
       onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.3)")}
       onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "")}
     >
@@ -385,7 +385,7 @@ const Index = () => {
             ].map((c) => (
               <div
                 key={c.title}
-                className="bg-[#0F2340] border border-[#1E3A5F] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
+                className="bg-[#0A0F1A] border border-[#1E3A5F] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
               >
                 <h3 className="font-display font-extrabold text-[22px] text-[#447BBE]">{c.title}</h3>
                 <p className="font-sans text-[15px] text-white mt-3 flex-1">{c.body}</p>
@@ -461,7 +461,7 @@ const Index = () => {
             ].map((c) => (
               <div
                 key={c.title}
-                className="bg-[#0F2340] border border-[#1E3A5F] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
+                className="bg-[#0A0F1A] border border-[#1E3A5F] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
               >
                 <h3 className="font-display font-extrabold text-[20px] text-[#447BBE]">{c.title}</h3>
                 <p className="font-sans text-[15px] text-white mt-3 flex-1">{c.body}</p>
@@ -490,7 +490,7 @@ const Index = () => {
             ].map((c) => (
               <div
                 key={c.title}
-                className="bg-[#0F2340] border border-[#1E3A5F] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
+                className="bg-[#0A0F1A] border border-[#1E3A5F] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
               >
                 <h3 className="font-display font-extrabold text-[20px] text-[#447BBE]">{c.title}</h3>
                 <p className="font-sans text-[15px] text-white mt-3 flex-1">{c.body}</p>
@@ -530,7 +530,7 @@ const Index = () => {
               id="zletterEmail"
               type="email"
               placeholder="you@email.com"
-              className="w-full bg-[#0F2340] border border-[#1E3A5F] rounded-xl px-5 py-3.5 font-sans text-[15px] text-[#F1F5F9] placeholder-[#6B7280] focus:outline-none focus:border-[#447BBE] transition-colors"
+              className="w-full bg-[#0A0F1A] border border-[#1E3A5F] rounded-xl px-5 py-3.5 font-sans text-[15px] text-[#F1F5F9] placeholder-[#6B7280] focus:outline-none focus:border-[#447BBE] transition-colors"
             />
             <button
               type="button"
@@ -653,13 +653,13 @@ const Index = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">Let's Connect</h2>
           <p className="text-muted-foreground text-center text-base mb-10">Find me on these platforms</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-            <Button asChild variant="outline" size="sm" className="border-border/60 bg-transparent hover:border-primary/60 hover:shadow-[0_0_12px_rgba(0,212,170,0.2)] transition-all duration-300 gap-2 px-6">
+            <Button asChild variant="outline" size="sm" className="border-border/60 bg-transparent hover:border-primary/60 hover:shadow-[0_0_12px_rgba(68,123,190,0.2)] transition-all duration-300 gap-2 px-6">
               <a href="https://youtube.com/@buildthenprotect?si=xqttG0cSsbVtBcNn" target="_blank" rel="noopener noreferrer">
                 <Youtube className="w-4 h-4 text-red-500" />
                 YouTube
               </a>
             </Button>
-            <Button asChild variant="outline" size="sm" className="border-border/60 bg-transparent hover:border-primary/60 hover:shadow-[0_0_12px_rgba(0,212,170,0.2)] transition-all duration-300 gap-2 px-6">
+            <Button asChild variant="outline" size="sm" className="border-border/60 bg-transparent hover:border-primary/60 hover:shadow-[0_0_12px_rgba(68,123,190,0.2)] transition-all duration-300 gap-2 px-6">
               <a href="https://www.linkedin.com/in/zainadtani/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="w-4 h-4 text-blue-500" />
                 LinkedIn

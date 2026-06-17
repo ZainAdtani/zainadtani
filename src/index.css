@@ -99,11 +99,11 @@ All colors MUST be HSL.
     background-color: #E9E4A6 !important;
   }
 
-  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0F2340]"] {
+  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0A0F1A]"] {
     background-color: #FFFFFF !important;
   }
 
-  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#070C14]"] {
+  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0A0F1A]"] {
     background-color: #FFFFFF !important;
   }
 
@@ -127,8 +127,8 @@ All colors MUST be HSL.
   /* Spidey Blue accent stays — links/accents */
 
   /* Code/mono blocks in light mode */
-  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0A0A0F]"],
-  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#070C14]"] {
+  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0A0F1A]"],
+  html:not(.dark):not(.spidey):not(.hay) [class*="bg-[#0A0F1A]"] {
     background-color: #FFFFFF !important;
   }
 
@@ -355,14 +355,14 @@ html {
   display: inline-block;
   border-radius: 9999px;
   padding: 2px;
-  background: linear-gradient(90deg, #00D4AA, #3B82F6, #00D4AA);
+  background: linear-gradient(90deg, #447BBE, #447BBE, #447BBE);
   background-size: 200% 200%;
   animation: gradient-shift 4s ease-in-out infinite;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .cta-gradient-border:hover {
   transform: scale(1.02);
-  box-shadow: 0 0 24px rgba(0, 212, 170, 0.45);
+  box-shadow: 0 0 24px rgba(68,123,190, 0.45);
 }
 
 @keyframes hero-rise {
@@ -375,8 +375,8 @@ html {
 }
 
 @keyframes pulse-soft {
-  0%, 100% { box-shadow: 0 4px 24px rgba(0,212,170,0.45); }
-  50% { box-shadow: 0 4px 32px rgba(0,212,170,0.7); }
+  0%, 100% { box-shadow: 0 4px 24px rgba(68,123,190,0.45); }
+  50% { box-shadow: 0 4px 32px rgba(68,123,190,0.7); }
 }
 .animate-pulse-soft {
   animation: pulse-soft 2.4s ease-in-out infinite;

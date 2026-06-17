@@ -34,7 +34,7 @@ export const Header = () => {
     <header className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${scrolled ? 'border-border/80 bg-background/90 backdrop-blur-xl shadow-sm' : 'border-border bg-background/80 backdrop-blur-md'}`}>
       <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-2">
         <Link to="/" className="flex items-center">
-          <img src={zaLogo} alt="ZA" className="h-10 w-10 hover:rotate-[15deg] hover:scale-110 transition-all duration-300 drop-shadow-[0_0_6px_rgba(0,212,170,0.4)]" />
+          <img src={zaLogo} alt="ZA" className="h-10 w-10 hover:rotate-[15deg] hover:scale-110 transition-all duration-300 drop-shadow-[0_0_6px_rgba(68,123,190,0.4)]" />
         </Link>
 
         <nav className="flex items-center gap-3">
@@ -150,7 +150,7 @@ export const Header = () => {
                 key={item.path}
                 to={item.path}
                 onClick={() => setMobileOpen(false)}
-                className="px-4 py-3 rounded-xl font-sans font-medium text-[15px] text-[#F1F5F9] hover:bg-[#0F2340] hover:text-[#447BBE] transition-colors"
+                className="px-4 py-3 rounded-xl font-sans font-medium text-[15px] text-[#F1F5F9] hover:bg-[#0A0F1A] hover:text-[#447BBE] transition-colors"
               >
                 {item.label}
               </Link>

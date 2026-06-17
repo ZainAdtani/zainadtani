@@ -102,7 +102,7 @@ export default function WhatIFollow({ podcasts }: WhatIFollowProps) {
             <CarouselContent className="-ml-3">
               {NEWSLETTERS.map((nl) => (
                 <CarouselItem key={nl.href} className="pl-3 basis-full sm:basis-1/2 lg:basis-1/3">
-                  <Card className="p-4 h-full flex flex-col border-l-4 border-l-primary/60 bg-card/80 backdrop-blur-sm hover:scale-[1.02] hover:shadow-[0_8px_32px_rgba(0,212,170,0.1)] transition-all duration-300">
+                  <Card className="p-4 h-full flex flex-col border-l-4 border-l-primary/60 bg-card/80 backdrop-blur-sm hover:scale-[1.02] hover:shadow-[0_8px_32px_rgba(68,123,190,0.1)] transition-all duration-300">
                     <h3 className="text-sm font-bold text-foreground">{nl.title}</h3>
                     {nl.byline && (
                       <p className="text-xs text-muted-foreground mt-0.5">{nl.byline}</p>
@@ -162,7 +162,7 @@ export default function WhatIFollow({ podcasts }: WhatIFollowProps) {
                     className="block h-full"
                     aria-label={`Listen to ${podcast.title}`}
                   >
-                    <Card className="p-4 h-full flex items-center gap-3 bg-card/80 backdrop-blur-sm border hover:border-primary hover:scale-[1.02] hover:shadow-[0_8px_32px_rgba(0,212,170,0.1)] transition-all duration-300 cursor-pointer">
+                    <Card className="p-4 h-full flex items-center gap-3 bg-card/80 backdrop-blur-sm border hover:border-primary hover:scale-[1.02] hover:shadow-[0_8px_32px_rgba(68,123,190,0.1)] transition-all duration-300 cursor-pointer">
                       <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 border border-border">
                         {podcast.image ? (
                           <img
