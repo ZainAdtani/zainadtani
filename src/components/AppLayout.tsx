@@ -93,7 +93,7 @@ function LayoutShell({ children }: { children: ReactNode }) {
                     © 2026 Zain Adtani · Adtani Education Ventures LLC · DFW, Texas
                   </p>
                   <p className="text-[11px] mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>
-                    HGI Associate · NPN 20207668
+                    Licensed Financial Educator · NPN 20207668
                   </p>
                 </div>
 
