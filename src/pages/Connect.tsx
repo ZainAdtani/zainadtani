@@ -83,7 +83,7 @@ const Connect = () => {
           Build something of your own. On your terms.
         </h2>
         <p className="mt-6 font-sans text-[17px] text-white/80 max-w-2xl" style={{ lineHeight: 1.75 }}>
-          I'm a licensed financial services agent with HGI. I help people from all backgrounds start a part-time business helping families protect themselves financially. No sales background needed. Mentor-led. Legit.
+          I'm a licensed financial services agent and educator. I help people from all backgrounds start a part-time business helping families protect themselves financially. No sales background needed. Mentor-led. Legit.
         </p>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
