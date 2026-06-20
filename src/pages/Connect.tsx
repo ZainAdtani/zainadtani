@@ -290,7 +290,7 @@ const Connect = () => {
       <footer className="border-t border-white/10">
         <div className="container mx-auto px-4 py-8 text-center">
           <p className="font-sans text-[13px] text-white/60">
-            Zain Adtani · HGI Licensed Agent · TX Life #2787686 · Adtani Education Ventures LLC
+            Zain Adtani · Licensed Financial Professional · TX Life #2787686 · Adtani Education Ventures LLC
           </p>
         </div>
       </footer>
