@@ -16,21 +16,7 @@ const scrollTo = (id: string) => {
 
 const Connect = () => {
   const [oppState, oppHandleSubmit] = useForm("mlgkqyoq");
-
-  const [prot, setProt] = useState<ProtForm>({ name: "", phone: "", email: "", concern: "" });
-  const [protSent, setProtSent] = useState(false);
-  const [protError, setProtError] = useState("");
-
-  const submitProt = (e: FormEvent) => {
-    e.preventDefault();
-    if (!prot.name || !prot.phone || !prot.email || !prot.concern) {
-      setProtError("Please fill in all fields.");
-      return;
-    }
-    setProtError("");
-    setProtSent(true);
-    setProt({ name: "", phone: "", email: "", concern: "" });
-  };
+  const [protState, protHandleSubmit] = useForm("mnjyeeyj");
 
   return (
     <div className="min-h-screen bg-[#0A0F1A] text-white">
