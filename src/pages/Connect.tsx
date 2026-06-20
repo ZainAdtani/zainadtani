@@ -1,5 +1,6 @@
 import { useState, FormEvent } from "react";
 import { Helmet } from "react-helmet-async";
+import { useForm, ValidationError } from "@formspree/react";
 
 const WHATSAPP_URL = "https://wa.me/18176298220";
 const CALENDLY_URL = "https://calendly.com/zkadtani";
@@ -18,24 +19,11 @@ const scrollTo = (id: string) => {
 };
 
 const Connect = () => {
-  const [opp, setOpp] = useState<OppForm>({ name: "", phone: "", email: "", describe: "" });
-  const [oppSent, setOppSent] = useState(false);
-  const [oppError, setOppError] = useState("");
+  const [oppState, oppHandleSubmit] = useForm("mlgkqyoq");
 
   const [prot, setProt] = useState<ProtForm>({ name: "", phone: "", email: "", concern: "" });
   const [protSent, setProtSent] = useState(false);
   const [protError, setProtError] = useState("");
-
-  const submitOpp = (e: FormEvent) => {
-    e.preventDefault();
-    if (!opp.name || !opp.phone || !opp.email || !opp.describe) {
-      setOppError("Please fill in all fields.");
-      return;
-    }
-    setOppError("");
-    setOppSent(true);
-    setOpp({ name: "", phone: "", email: "", describe: "" });
-  };
 
   const submitProt = (e: FormEvent) => {
     e.preventDefault();
@@ -131,7 +119,7 @@ const Connect = () => {
 
         {/* FORM */}
         <div className="mt-12 bg-[#0E1628] border border-[#1E3A5F] rounded-[16px] p-6 md:p-8">
-          {oppSent ? (
+          {oppState.succeeded ? (
             <div className="py-8 text-center">
               <div className="font-display-sans font-extrabold text-[22px] text-[#E9E4A6] mb-2">Got it.</div>
               <p className="font-sans text-[16px] text-white/85">
@@ -139,37 +127,41 @@ const Connect = () => {
               </p>
             </div>
           ) : (
-            <form onSubmit={submitOpp} className="grid gap-4">
+            <form onSubmit={oppHandleSubmit} className="grid gap-4">
               <div>
-                <label className={labelClass}>Full Name</label>
-                <input className={inputClass} value={opp.name} onChange={(e) => setOpp({ ...opp, name: e.target.value })} placeholder="Your name" />
+                <label className={labelClass} htmlFor="fullName">Full Name</label>
+                <input id="fullName" name="fullName" className={inputClass} placeholder="Your name" required />
+                <ValidationError prefix="Name" field="fullName" errors={oppState.errors} className="text-[14px] text-[#DD5013] font-sans mt-1" />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className={labelClass}>Phone Number</label>
-                  <input className={inputClass} value={opp.phone} onChange={(e) => setOpp({ ...opp, phone: e.target.value })} placeholder="(555) 555-5555" />
+                  <label className={labelClass} htmlFor="phone">Phone Number</label>
+                  <input id="phone" name="phone" className={inputClass} placeholder="(555) 555-5555" required />
+                  <ValidationError prefix="Phone" field="phone" errors={oppState.errors} className="text-[14px] text-[#DD5013] font-sans mt-1" />
                 </div>
                 <div>
-                  <label className={labelClass}>Email Address</label>
-                  <input type="email" className={inputClass} value={opp.email} onChange={(e) => setOpp({ ...opp, email: e.target.value })} placeholder="you@email.com" />
+                  <label className={labelClass} htmlFor="email">Email Address</label>
+                  <input id="email" name="email" type="email" className={inputClass} placeholder="you@email.com" required />
+                  <ValidationError prefix="Email" field="email" errors={oppState.errors} className="text-[14px] text-[#DD5013] font-sans mt-1" />
                 </div>
               </div>
               <div>
-                <label className={labelClass}>What best describes you?</label>
-                <select className={inputClass} value={opp.describe} onChange={(e) => setOpp({ ...opp, describe: e.target.value })}>
-                  <option value="">Choose one...</option>
+                <label className={labelClass} htmlFor="interest">What best describes you?</label>
+                <select id="interest" name="interest" className={inputClass} required defaultValue="">
+                  <option value="" disabled>Choose one...</option>
                   <option>I want more income</option>
                   <option>I'm curious about financial services</option>
                   <option>I want to learn more first</option>
                   <option>I know someone who might be interested</option>
                 </select>
+                <ValidationError prefix="Interest" field="interest" errors={oppState.errors} className="text-[14px] text-[#DD5013] font-sans mt-1" />
               </div>
-              {oppError && <div className="text-[14px] text-[#DD5013] font-sans">{oppError}</div>}
               <button
                 type="submit"
-                className="mt-2 bg-[#DD5013] text-white font-display-sans font-extrabold text-[15px] tracking-wide px-6 py-4 rounded-[10px] hover:opacity-90 active:scale-[0.98] transition-all"
+                disabled={oppState.submitting}
+                className="mt-2 bg-[#DD5013] text-white font-display-sans font-extrabold text-[15px] tracking-wide px-6 py-4 rounded-[10px] hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-60"
               >
-                I'm Interested — Reach Out to Me
+                {oppState.submitting ? "Sending..." : "I'm Interested — Reach Out to Me"}
               </button>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
                 <a
