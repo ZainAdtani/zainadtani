@@ -1,7 +1,7 @@
 import { useState, FormEvent } from "react";
 import { Helmet } from "react-helmet-async";
 
-const WHATSAPP_URL = "https://wa.me/19725551234";
+const WHATSAPP_URL = "https://wa.me/18176298220";
 const CALENDLY_URL = "https://calendly.com/zkadtani";
 
 type OppForm = { name: string; phone: string; email: string; describe: string };
