@@ -404,7 +404,7 @@ const Index = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center bg-[#DD5013] text-white font-sans font-semibold px-6 py-3 rounded-xl text-[14px] hover:opacity-90 transition-opacity"
                 >
-                  Get It on Amazon — $7.99 →
+                  Get It on Amazon — $9.99 →
                 </a>
                 <a
                   href="https://the-z-letter.beehiiv.com/subscribe"
