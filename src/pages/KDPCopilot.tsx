@@ -50,16 +50,21 @@ Return ONLY valid JSON (no markdown, no backticks, no explanation) in this exact
 }`;
 
     try {
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
+      const endpoint = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/claude-proxy`;
+      const response = await fetch(endpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
         body: JSON.stringify({
-          model: "claude-sonnet-4-6",
-          max_tokens: 1000,
+          model: "claude-sonnet-4-5",
+          max_tokens: 2000,
           messages: [{ role: "user", content: prompt }],
         }),
       });
       const data = await response.json();
+      if (!response.ok) throw new Error(data?.error?.message || data?.error || "Request failed");
       const text = data.content?.find((b: any) => b.type === "text")?.text || "";
       const clean = text.replace(/```json|```/g, "").trim();
       const parsed = JSON.parse(clean);
