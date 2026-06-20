@@ -6,7 +6,7 @@ import { Header } from "./Header";
 import { AIChatWidget } from "./AIChatWidget";
 import { Link, useLocation } from "react-router-dom";
 import { ReactNode } from "react";
-import { Linkedin, Youtube, Mail, Instagram } from "lucide-react";
+import { Linkedin, Youtube, Mail, Instagram, CalendarDays } from "lucide-react";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -24,6 +24,7 @@ const FOOTER_SOCIALS = [
   { label: "YouTube", href: "https://youtube.com/@zainadtani", Icon: Youtube },
   { label: "The Z Letter", href: "https://the-z-letter.beehiiv.com", Icon: Mail },
   { label: "@adtanieducationventures", href: "https://www.instagram.com/adtanieducationventures", Icon: Instagram },
+  { label: "Book a Call (Calendly)", href: "https://calendly.com/zkadtani", Icon: CalendarDays },
 ];
 
 export function AppLayout({ children }: AppLayoutProps) {
@@ -92,7 +93,7 @@ function LayoutShell({ children }: { children: ReactNode }) {
                     © 2026 Zain Adtani · Adtani Education Ventures LLC · DFW, Texas
                   </p>
                   <p className="text-[11px] mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>
-                    HGI Associate · NPN 20207668
+                    Licensed Financial Educator · NPN 20207668
                   </p>
                 </div>
 
