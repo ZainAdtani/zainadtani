@@ -105,11 +105,14 @@ const Connect = () => {
 
       {/* OPPORTUNITY */}
       <section id="opportunity" className="container mx-auto px-4 py-20 max-w-4xl scroll-mt-24">
-        <div className="text-[12px] tracking-[0.22em] font-semibold text-[#447BBE] mb-4">THE OPPORTUNITY</div>
-        <h2 className="font-display text-[40px] md:text-[56px] leading-[1] text-white">
+        <div className="text-[12px] tracking-[0.22em] font-semibold text-[#447BBE] mb-4">INCOME OPPORTUNITY</div>
+        <h2
+          className="font-display text-[40px] md:text-[56px] leading-[1] text-white"
+          style={{ letterSpacing: "-0.5px", textShadow: "0 2px 16px rgba(0,0,0,0.35)" }}
+        >
           Build something of your own. On your terms.
         </h2>
-        <p className="mt-6 font-sans text-[16px] md:text-[17px] text-white/80 leading-relaxed max-w-2xl">
+        <p className="mt-6 font-sans text-[17px] text-white/80 max-w-2xl" style={{ lineHeight: 1.75 }}>
           I'm a licensed financial services agent with HGI. I help people from all backgrounds start a part-time business helping families protect themselves financially. No sales background needed. Mentor-led. Legit.
         </p>
 
