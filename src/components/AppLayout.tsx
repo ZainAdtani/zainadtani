@@ -23,6 +23,7 @@ const FOOTER_SOCIALS = [
   { label: "LinkedIn", href: "https://linkedin.com/in/zainadtani", Icon: Linkedin },
   { label: "YouTube", href: "https://youtube.com/@zainadtani", Icon: Youtube },
   { label: "The Z Letter", href: "https://the-z-letter.beehiiv.com", Icon: Mail },
+  { label: "@adtanieducationventures", href: "https://www.instagram.com/adtanieducationventures", Icon: Instagram },
 ];
 
 export function AppLayout({ children }: AppLayoutProps) {
