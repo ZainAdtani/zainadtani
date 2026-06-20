@@ -8,9 +8,9 @@ type OppForm = { name: string; phone: string; email: string; describe: string };
 type ProtForm = { name: string; phone: string; email: string; concern: string };
 
 const inputClass =
-  "w-full bg-[#0E1628] border border-[#1E3A5F] focus:border-[#447BBE] focus:outline-none rounded-[10px] px-4 py-3 text-[15px] text-white placeholder:text-white/40 font-sans transition-colors";
+  "w-full bg-[#0E1628] border border-[#1E3A5F] focus:border-[#447BBE] focus:outline-none rounded-[10px] px-4 py-3.5 text-[15px] text-white placeholder:text-white/40 font-sans transition-colors";
 
-const labelClass = "block text-[13px] font-semibold text-white/80 mb-1.5 font-sans";
+const labelClass = "block text-[13px] font-semibold text-white/90 mb-1.5 font-sans";
 
 const scrollTo = (id: string) => {
   const el = document.getElementById(id);
