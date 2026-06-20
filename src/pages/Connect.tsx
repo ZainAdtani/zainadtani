@@ -123,7 +123,7 @@ const Connect = () => {
             { t: "Mentor-led", d: "You are not doing this alone" },
           ].map((b) => (
             <div key={b.t} className="bg-[#0E1628] border border-[#447BBE]/40 rounded-[12px] p-5">
-              <div className="font-display-sans font-extrabold text-[17px] text-[#E9E4A6] mb-1">{b.t}</div>
+              <div className="font-display-sans font-extrabold text-[18px] text-[#E9E4A6] mb-1">{b.t}</div>
               <div className="font-sans text-[14px] text-white/70 leading-snug">{b.d}</div>
             </div>
           ))}
