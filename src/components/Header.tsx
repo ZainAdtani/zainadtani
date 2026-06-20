@@ -8,6 +8,7 @@ import zaLogo from "@/assets/za_logo.png";
 const TOP_NAV = [
   { label: "Home", path: "/" },
   { label: "Services", path: "/services" },
+  { label: "Connect", path: "/connect" },
   { label: "Books", path: "/books" },
   { label: "Resources", path: "/resources" },
 ];
