@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useForm, ValidationError } from "@formspree/react";
 
-const WHATSAPP_URL = "https://wa.me/18176298220";
+const WHATSAPP_URL = "https://wa.me/14698447354";
 const CALENDLY_URL = "https://calendly.com/zkadtani";
 
 const inputClass =
