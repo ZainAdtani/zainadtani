@@ -1,5 +1,3 @@
-// TODO: Replace placeholder Whop URLs below with real product links from https://whop.com/zain-book-vault/
-// Search for "TODO_REPLACE_WITH_WHOP_URL" to find all placeholders
 
 export type BookStatus = "READ" | "IN_PROGRESS" | "TBR";
 
