@@ -28,6 +28,7 @@ import Money from "./pages/Money";
 import LabelIQ from "./pages/LabelIQ";
 import Lab from "./pages/Lab";
 import Connect from "./pages/Connect";
+import KDPCopilot from "./pages/KDPCopilot";
 
 // Project sub-pages
 import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
