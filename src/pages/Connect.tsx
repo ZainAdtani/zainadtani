@@ -60,10 +60,13 @@ const Connect = () => {
 
       {/* HERO */}
       <section className="container mx-auto px-4 pt-20 pb-16 max-w-5xl">
-        <h1 className="font-display text-[56px] md:text-[88px] leading-[0.95] text-white text-center">
+        <h1
+          className="font-display text-[56px] md:text-[88px] leading-[0.95] text-white text-center"
+          style={{ textShadow: "0 2px 20px rgba(255,255,255,0.08)" }}
+        >
           Let's Talk.
         </h1>
-        <p className="mt-6 font-sans text-[17px] md:text-[19px] text-white/80 text-center max-w-2xl mx-auto">
+        <p className="mt-6 font-sans text-[17px] md:text-[19px] text-white/80 text-center max-w-2xl mx-auto" style={{ lineHeight: 1.75 }}>
           Whether you're looking for a second income or want to protect what your family has built — you're in the right place. Pick what fits you.
         </p>
 
