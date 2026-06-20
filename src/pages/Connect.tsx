@@ -58,7 +58,7 @@ const Connect = () => {
           <button
             type="button"
             onClick={() => scrollTo("protection")}
-            className="text-left bg-[#0E1628] border-2 border-[#DD5013] rounded-[16px] p-7 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(221,80,19,0.25)] transition-all duration-300"
+            className="text-left bg-[#0E1628] border-2 border-[#DD5013] rounded-[16px] p-7 pb-12 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(221,80,19,0.25)] transition-all duration-300"
           >
             <div className="text-[12px] tracking-[0.18em] font-semibold text-[#DD5013] mb-3">OPTION 2</div>
             <h3 className="font-display-sans font-extrabold text-[24px] text-white mb-2">
