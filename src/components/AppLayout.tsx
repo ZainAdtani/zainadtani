@@ -24,6 +24,7 @@ const FOOTER_SOCIALS = [
   { label: "YouTube", href: "https://youtube.com/@zainadtani", Icon: Youtube },
   { label: "The Z Letter", href: "https://the-z-letter.beehiiv.com", Icon: Mail },
   { label: "@adtanieducationventures", href: "https://www.instagram.com/adtanieducationventures", Icon: Instagram },
+  { label: "Book a Call (Calendly)", href: "https://calendly.com/zkadtani", Icon: CalendarDays },
 ];
 
 export function AppLayout({ children }: AppLayoutProps) {
