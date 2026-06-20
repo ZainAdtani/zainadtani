@@ -24,7 +24,7 @@ const Connect = () => {
         <title>Connect with Zain Adtani | Income Opportunity & Family Protection</title>
         <meta
           name="description"
-          content="Talk to Zain about an HGI second income opportunity or about protecting your family with life insurance, wills, and trusts."
+          content="Talk to Zain about a second income opportunity in financial education or about protecting your family with life insurance, wills, and trusts."
         />
       </Helmet>
 
