@@ -8,9 +8,9 @@ type OppForm = { name: string; phone: string; email: string; describe: string };
 type ProtForm = { name: string; phone: string; email: string; concern: string };
 
 const inputClass =
-  "w-full bg-[#0E1628] border border-[#1E3A5F] focus:border-[#447BBE] focus:outline-none rounded-[10px] px-4 py-3 text-[15px] text-white placeholder:text-white/40 font-sans transition-colors";
+  "w-full bg-[#0E1628] border border-[#1E3A5F] focus:border-[#447BBE] focus:outline-none rounded-[10px] px-4 py-3.5 text-[15px] text-white placeholder:text-white/40 font-sans transition-colors";
 
-const labelClass = "block text-[13px] font-semibold text-white/80 mb-1.5 font-sans";
+const labelClass = "block text-[13px] font-semibold text-white/90 mb-1.5 font-sans";
 
 const scrollTo = (id: string) => {
   const el = document.getElementById(id);
@@ -60,10 +60,13 @@ const Connect = () => {
 
       {/* HERO */}
       <section className="container mx-auto px-4 pt-20 pb-16 max-w-5xl">
-        <h1 className="font-display text-[56px] md:text-[88px] leading-[0.95] text-white text-center">
+        <h1
+          className="font-display text-[56px] md:text-[88px] leading-[0.95] text-white text-center"
+          style={{ textShadow: "0 2px 20px rgba(255,255,255,0.08)" }}
+        >
           Let's Talk.
         </h1>
-        <p className="mt-6 font-sans text-[17px] md:text-[19px] text-white/80 text-center max-w-2xl mx-auto">
+        <p className="mt-6 font-sans text-[17px] md:text-[19px] text-white/80 text-center max-w-2xl mx-auto" style={{ lineHeight: 1.75 }}>
           Whether you're looking for a second income or want to protect what your family has built — you're in the right place. Pick what fits you.
         </p>
 
@@ -102,11 +105,14 @@ const Connect = () => {
 
       {/* OPPORTUNITY */}
       <section id="opportunity" className="container mx-auto px-4 py-20 max-w-4xl scroll-mt-24">
-        <div className="text-[12px] tracking-[0.22em] font-semibold text-[#447BBE] mb-4">THE OPPORTUNITY</div>
-        <h2 className="font-display text-[40px] md:text-[56px] leading-[1] text-white">
+        <div className="text-[12px] tracking-[0.22em] font-semibold text-[#447BBE] mb-4">INCOME OPPORTUNITY</div>
+        <h2
+          className="font-display text-[40px] md:text-[56px] leading-[1] text-white"
+          style={{ letterSpacing: "-0.5px", textShadow: "0 2px 16px rgba(0,0,0,0.35)" }}
+        >
           Build something of your own. On your terms.
         </h2>
-        <p className="mt-6 font-sans text-[16px] md:text-[17px] text-white/80 leading-relaxed max-w-2xl">
+        <p className="mt-6 font-sans text-[17px] text-white/80 max-w-2xl" style={{ lineHeight: 1.75 }}>
           I'm a licensed financial services agent with HGI. I help people from all backgrounds start a part-time business helping families protect themselves financially. No sales background needed. Mentor-led. Legit.
         </p>
 
@@ -117,7 +123,7 @@ const Connect = () => {
             { t: "Mentor-led", d: "You are not doing this alone" },
           ].map((b) => (
             <div key={b.t} className="bg-[#0E1628] border border-[#447BBE]/40 rounded-[12px] p-5">
-              <div className="font-display-sans font-extrabold text-[17px] text-[#E9E4A6] mb-1">{b.t}</div>
+              <div className="font-display-sans font-extrabold text-[18px] text-[#E9E4A6] mb-1">{b.t}</div>
               <div className="font-sans text-[14px] text-white/70 leading-snug">{b.d}</div>
             </div>
           ))}
@@ -193,10 +199,13 @@ const Connect = () => {
       {/* PROTECTION */}
       <section id="protection" className="container mx-auto px-4 py-20 max-w-4xl scroll-mt-24">
         <div className="text-[12px] tracking-[0.22em] font-semibold text-[#DD5013] mb-4">FAMILY PROTECTION</div>
-        <h2 className="font-display text-[40px] md:text-[56px] leading-[1] text-white">
+        <h2
+          className="font-display text-[40px] md:text-[56px] leading-[1] text-white"
+          style={{ letterSpacing: "-0.5px", textShadow: "0 2px 16px rgba(0,0,0,0.35)" }}
+        >
           Is your family covered if life gets hard?
         </h2>
-        <p className="mt-6 font-sans text-[16px] md:text-[17px] text-white/80 leading-relaxed max-w-2xl">
+        <p className="mt-6 font-sans text-[17px] text-white/80 max-w-2xl" style={{ lineHeight: 1.75 }}>
           Most families are one unexpected moment from financial chaos. A simple plan — term life insurance, a will, and a trust — can change everything. I walk you through it, no jargon, no pressure.
         </p>
 
@@ -207,7 +216,7 @@ const Connect = () => {
             { t: "Critical Illness Coverage", d: "Protection while you're still alive" },
           ].map((b) => (
             <div key={b.t} className="bg-[#0E1628] border border-[#DD5013]/40 rounded-[12px] p-5">
-              <div className="font-display-sans font-extrabold text-[17px] text-[#E9E4A6] mb-1">{b.t}</div>
+              <div className="font-display-sans font-extrabold text-[18px] text-[#E9E4A6] mb-1">{b.t}</div>
               <div className="font-sans text-[14px] text-white/70 leading-snug">{b.d}</div>
             </div>
           ))}
@@ -281,7 +290,7 @@ const Connect = () => {
       <footer className="border-t border-white/10">
         <div className="container mx-auto px-4 py-8 text-center">
           <p className="font-sans text-[13px] text-white/60">
-            Zain Adtani · HGI Licensed Agent · TX Life #2787686 · Adtani Education Ventures LLC
+            Zain Adtani · Licensed Financial Professional · TX Life #2787686 · Adtani Education Ventures LLC
           </p>
         </div>
       </footer>
