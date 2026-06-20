@@ -1,12 +1,8 @@
-import { useState, FormEvent } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm, ValidationError } from "@formspree/react";
 
 const WHATSAPP_URL = "https://wa.me/18176298220";
 const CALENDLY_URL = "https://calendly.com/zkadtani";
-
-type OppForm = { name: string; phone: string; email: string; describe: string };
-type ProtForm = { name: string; phone: string; email: string; concern: string };
 
 const inputClass =
   "w-full bg-[#0E1628] border border-[#1E3A5F] focus:border-[#447BBE] focus:outline-none rounded-[10px] px-4 py-3.5 text-[15px] text-white placeholder:text-white/40 font-sans transition-colors";
