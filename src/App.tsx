@@ -42,37 +42,43 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <AppLayout>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/investing" element={<Investing />} />
-            <Route path="/resources/investing" element={<Investing />} />
-            <Route path="/lab" element={<Lab />} />
-            <Route path="/digital-products" element={<DigitalProductsPage />} />
-            <Route path="/tools" element={<Tools />} />
-            
-            <Route path="/books" element={<BooksHQ />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/pokedex" element={<ProjectPokedex />} />
-            <Route path="/projects/harry-potter-world" element={<HarryPotterWorld />} />
-            <Route path="/projects/ai-songs" element={<AiSongs />} />
-            <Route path="/resources" element={<Resources />} />
-            <Route path="/ai-prompts" element={<AIPrompts />} />
-            <Route path="/life-notes" element={<LifeNotes />} />
-            <Route path="/archive" element={<Archive />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/connect" element={<Connect />} />
-            <Route path="/prompts" element={<Prompts />} />
-            <Route path="/harry-potter" element={<HarryPotter />} />
-            <Route path="/pokedex" element={<PokemonDex />} />
-            <Route path="/money" element={<Money />} />
-            <Route path="/resources/label-iq" element={<LabelIQ />} />
-            
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </AppLayout>
+        <Routes>
+          <Route path="/kdp-copilot" element={<KDPCopilot />} />
+          <Route
+            path="*"
+            element={
+              <AppLayout>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/investing" element={<Investing />} />
+                  <Route path="/resources/investing" element={<Investing />} />
+                  <Route path="/lab" element={<Lab />} />
+                  <Route path="/digital-products" element={<DigitalProductsPage />} />
+                  <Route path="/tools" element={<Tools />} />
+                  <Route path="/books" element={<BooksHQ />} />
+                  <Route path="/projects" element={<Projects />} />
+                  <Route path="/projects/pokedex" element={<ProjectPokedex />} />
+                  <Route path="/projects/harry-potter-world" element={<HarryPotterWorld />} />
+                  <Route path="/projects/ai-songs" element={<AiSongs />} />
+                  <Route path="/resources" element={<Resources />} />
+                  <Route path="/ai-prompts" element={<AIPrompts />} />
+                  <Route path="/life-notes" element={<LifeNotes />} />
+                  <Route path="/archive" element={<Archive />} />
+                  <Route path="/services" element={<Services />} />
+                  <Route path="/connect" element={<Connect />} />
+                  <Route path="/prompts" element={<Prompts />} />
+                  <Route path="/harry-potter" element={<HarryPotter />} />
+                  <Route path="/pokedex" element={<PokemonDex />} />
+                  <Route path="/money" element={<Money />} />
+                  <Route path="/resources/label-iq" element={<LabelIQ />} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </AppLayout>
+            }
+          />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
