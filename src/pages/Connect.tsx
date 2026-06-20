@@ -199,10 +199,13 @@ const Connect = () => {
       {/* PROTECTION */}
       <section id="protection" className="container mx-auto px-4 py-20 max-w-4xl scroll-mt-24">
         <div className="text-[12px] tracking-[0.22em] font-semibold text-[#DD5013] mb-4">FAMILY PROTECTION</div>
-        <h2 className="font-display text-[40px] md:text-[56px] leading-[1] text-white">
+        <h2
+          className="font-display text-[40px] md:text-[56px] leading-[1] text-white"
+          style={{ letterSpacing: "-0.5px", textShadow: "0 2px 16px rgba(0,0,0,0.35)" }}
+        >
           Is your family covered if life gets hard?
         </h2>
-        <p className="mt-6 font-sans text-[16px] md:text-[17px] text-white/80 leading-relaxed max-w-2xl">
+        <p className="mt-6 font-sans text-[17px] text-white/80 max-w-2xl" style={{ lineHeight: 1.75 }}>
           Most families are one unexpected moment from financial chaos. A simple plan — term life insurance, a will, and a trust — can change everything. I walk you through it, no jargon, no pressure.
         </p>
 
@@ -213,7 +216,7 @@ const Connect = () => {
             { t: "Critical Illness Coverage", d: "Protection while you're still alive" },
           ].map((b) => (
             <div key={b.t} className="bg-[#0E1628] border border-[#DD5013]/40 rounded-[12px] p-5">
-              <div className="font-display-sans font-extrabold text-[17px] text-[#E9E4A6] mb-1">{b.t}</div>
+              <div className="font-display-sans font-extrabold text-[18px] text-[#E9E4A6] mb-1">{b.t}</div>
               <div className="font-sans text-[14px] text-white/70 leading-snug">{b.d}</div>
             </div>
           ))}
