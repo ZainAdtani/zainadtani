@@ -197,7 +197,7 @@ const Connect = () => {
         </div>
 
         <div className="mt-12 bg-[#0E1628] border border-[#1E3A5F] rounded-[16px] p-6 md:p-8">
-          {protSent ? (
+          {protState.succeeded ? (
             <div className="py-8 text-center">
               <div className="font-display-sans font-extrabold text-[22px] text-[#E9E4A6] mb-2">Perfect.</div>
               <p className="font-sans text-[16px] text-white/85">
@@ -205,37 +205,41 @@ const Connect = () => {
               </p>
             </div>
           ) : (
-            <form onSubmit={submitProt} className="grid gap-4">
+            <form onSubmit={protHandleSubmit} className="grid gap-4">
               <div>
-                <label className={labelClass}>Full Name</label>
-                <input className={inputClass} value={prot.name} onChange={(e) => setProt({ ...prot, name: e.target.value })} placeholder="Your name" />
+                <label className={labelClass} htmlFor="prot-fullName">Full Name</label>
+                <input id="prot-fullName" name="fullName" className={inputClass} placeholder="Your name" required />
+                <ValidationError prefix="Name" field="fullName" errors={protState.errors} className="text-[14px] text-[#DD5013] font-sans mt-1" />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className={labelClass}>Phone Number</label>
-                  <input className={inputClass} value={prot.phone} onChange={(e) => setProt({ ...prot, phone: e.target.value })} placeholder="(555) 555-5555" />
+                  <label className={labelClass} htmlFor="prot-phone">Phone Number</label>
+                  <input id="prot-phone" name="phone" className={inputClass} placeholder="(555) 555-5555" required />
+                  <ValidationError prefix="Phone" field="phone" errors={protState.errors} className="text-[14px] text-[#DD5013] font-sans mt-1" />
                 </div>
                 <div>
-                  <label className={labelClass}>Email Address</label>
-                  <input type="email" className={inputClass} value={prot.email} onChange={(e) => setProt({ ...prot, email: e.target.value })} placeholder="you@email.com" />
+                  <label className={labelClass} htmlFor="prot-email">Email Address</label>
+                  <input id="prot-email" name="email" type="email" className={inputClass} placeholder="you@email.com" required />
+                  <ValidationError prefix="Email" field="email" errors={protState.errors} className="text-[14px] text-[#DD5013] font-sans mt-1" />
                 </div>
               </div>
               <div>
-                <label className={labelClass}>What are you most concerned about?</label>
-                <select className={inputClass} value={prot.concern} onChange={(e) => setProt({ ...prot, concern: e.target.value })}>
-                  <option value="">Choose one...</option>
+                <label className={labelClass} htmlFor="prot-concern">What are you most concerned about?</label>
+                <select id="prot-concern" name="concern" className={inputClass} required defaultValue="">
+                  <option value="" disabled>Choose one...</option>
                   <option>I don't have life insurance yet</option>
                   <option>I need a will or trust</option>
                   <option>I want to review my current coverage</option>
                   <option>I'm not sure where to start</option>
                 </select>
+                <ValidationError prefix="Concern" field="concern" errors={protState.errors} className="text-[14px] text-[#DD5013] font-sans mt-1" />
               </div>
-              {protError && <div className="text-[14px] text-[#DD5013] font-sans">{protError}</div>}
               <button
                 type="submit"
-                className="mt-2 bg-[#DD5013] text-white font-display-sans font-extrabold text-[15px] tracking-wide px-6 py-4 rounded-[10px] hover:opacity-90 active:scale-[0.98] transition-all"
+                disabled={protState.submitting}
+                className="mt-2 bg-[#DD5013] text-white font-display-sans font-extrabold text-[15px] tracking-wide px-6 py-4 rounded-[10px] hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-60"
               >
-                Get My Free Needs Review
+                {protState.submitting ? "Sending..." : "Get My Free Needs Review"}
               </button>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
                 <a
