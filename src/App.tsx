@@ -27,6 +27,7 @@ import PokemonDex from "./pages/PokemonDex";
 import Money from "./pages/Money";
 import LabelIQ from "./pages/LabelIQ";
 import Lab from "./pages/Lab";
+import Connect from "./pages/Connect";
 
 // Project sub-pages
 import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
@@ -60,6 +61,7 @@ const App = () => (
             <Route path="/life-notes" element={<LifeNotes />} />
             <Route path="/archive" element={<Archive />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/connect" element={<Connect />} />
             <Route path="/prompts" element={<Prompts />} />
             <Route path="/harry-potter" element={<HarryPotter />} />
             <Route path="/pokedex" element={<PokemonDex />} />
