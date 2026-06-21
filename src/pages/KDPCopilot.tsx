@@ -151,12 +151,24 @@ ${result.pricingTip || ""}
             <div className="text-[12px] text-white/50">AI-powered Amazon launch kit generator</div>
           </div>
         </div>
-        <a
-          href="https://zainadtani.com"
-          className="text-[12px] text-white/50 hover:text-white transition-colors whitespace-nowrap"
-        >
-          ← Back to zainadtani.com
-        </a>
+        <div className="flex items-center gap-3">
+          <a
+            href="https://zainadtani.com"
+            className="text-[12px] text-white/50 hover:text-white transition-colors whitespace-nowrap hidden sm:inline"
+          >
+            🌐 Visit Zain's Main Site
+          </a>
+          <a
+            href="https://zainadtani.com/connect"
+            className="text-[12px] font-bold bg-[#DD5013] hover:bg-[#DD5013]/90 text-white px-3 py-2 rounded-lg whitespace-nowrap transition-colors"
+          >
+            💼 Want Extra Income?
+          </a>
+        </div>
+      </div>
+
+      <div className="max-w-2xl mx-auto px-4 pt-8 text-center text-[15px] text-white/60 leading-relaxed">
+        Drop your book idea below and get a full Amazon launch kit in seconds. Titles, keywords, description, categories, and back cover. All done for you. 🚀
       </div>
 
       <div className="max-w-2xl mx-auto px-4 pt-8">
