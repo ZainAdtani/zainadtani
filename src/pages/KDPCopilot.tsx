@@ -151,12 +151,24 @@ ${result.pricingTip || ""}
             <div className="text-[12px] text-white/50">AI-powered Amazon launch kit generator</div>
           </div>
         </div>
-        <a
-          href="https://zainadtani.com"
-          className="text-[12px] text-white/50 hover:text-white transition-colors whitespace-nowrap"
-        >
-          ← Back to zainadtani.com
-        </a>
+        <div className="flex items-center gap-3">
+          <a
+            href="https://zainadtani.com"
+            className="text-[12px] text-white/50 hover:text-white transition-colors whitespace-nowrap hidden sm:inline"
+          >
+            🌐 Visit Zain's Main Site
+          </a>
+          <a
+            href="https://zainadtani.com/connect"
+            className="text-[12px] font-bold bg-[#DD5013] hover:bg-[#DD5013]/90 text-white px-3 py-2 rounded-lg whitespace-nowrap transition-colors"
+          >
+            💼 Want Extra Income?
+          </a>
+        </div>
+      </div>
+
+      <div className="max-w-2xl mx-auto px-4 pt-8 text-center text-[15px] text-white/60 leading-relaxed">
+        Drop your book idea below and get a full Amazon launch kit in seconds. Titles, keywords, description, categories, and back cover. All done for you. 🚀
       </div>
 
       <div className="max-w-2xl mx-auto px-4 pt-8">
@@ -216,8 +228,24 @@ ${result.pricingTip || ""}
         </div>
 
         {error && (
-          <div className="bg-[#DD5013]/10 border border-[#DD5013] rounded-xl px-4 py-3 mb-6 text-[13px] text-[#DD5013] break-words">
-            {error}
+          <div className="bg-[#0E1628] border border-[#DD5013] rounded-2xl px-6 py-6 mb-6 text-center">
+            <div className="text-[16px] text-white/90 mb-4 leading-relaxed">
+              🛠️ The tool is taking a quick break. Text Zain directly and he'll get you sorted.
+            </div>
+            <a
+              href="sms:+18176068684"
+              className="inline-block w-full sm:w-auto px-6 py-3 rounded-xl font-extrabold text-[15px] text-white bg-[#DD5013] hover:bg-[#DD5013]/90 transition-colors"
+            >
+              📱 Text Zain
+            </a>
+            <div className="mt-3">
+              <a
+                href="https://calendly.com/zkadtani"
+                className="text-[13px] text-white/60 hover:text-white transition-colors"
+              >
+                Or book a call →
+              </a>
+            </div>
           </div>
         )}
 
@@ -303,7 +331,11 @@ ${result.pricingTip || ""}
         )}
       </div>
 
-      <div className="text-center mt-16 text-[11px] text-white/20">
+      <div className="text-center mt-16 text-[12px] text-white/40">
+        Want to build something like this for your business? →{" "}
+        <a href="https://zainadtani.com/connect" className="underline hover:text-white/70">zainadtani.com/connect</a>
+      </div>
+      <div className="text-center mt-3 text-[11px] text-white/20">
         KDP Niche Finder · Zain Adtani · Adtani Education Ventures LLC
       </div>
     </div>
