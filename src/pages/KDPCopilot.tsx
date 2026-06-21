@@ -228,8 +228,24 @@ ${result.pricingTip || ""}
         </div>
 
         {error && (
-          <div className="bg-[#DD5013]/10 border border-[#DD5013] rounded-xl px-4 py-3 mb-6 text-[13px] text-[#DD5013] break-words">
-            {error}
+          <div className="bg-[#0E1628] border border-[#DD5013] rounded-2xl px-6 py-6 mb-6 text-center">
+            <div className="text-[16px] text-white/90 mb-4 leading-relaxed">
+              🛠️ The tool is taking a quick break. Text Zain directly and he'll get you sorted.
+            </div>
+            <a
+              href="sms:+18176068684"
+              className="inline-block w-full sm:w-auto px-6 py-3 rounded-xl font-extrabold text-[15px] text-white bg-[#DD5013] hover:bg-[#DD5013]/90 transition-colors"
+            >
+              📱 Text Zain
+            </a>
+            <div className="mt-3">
+              <a
+                href="https://calendly.com/zkadtani"
+                className="text-[13px] text-white/60 hover:text-white transition-colors"
+              >
+                Or book a call →
+              </a>
+            </div>
           </div>
         )}
 
