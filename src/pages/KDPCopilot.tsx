@@ -331,7 +331,11 @@ ${result.pricingTip || ""}
         )}
       </div>
 
-      <div className="text-center mt-16 text-[11px] text-white/20">
+      <div className="text-center mt-16 text-[12px] text-white/40">
+        Want to build something like this for your business? →{" "}
+        <a href="https://zainadtani.com/connect" className="underline hover:text-white/70">zainadtani.com/connect</a>
+      </div>
+      <div className="text-center mt-3 text-[11px] text-white/20">
         KDP Niche Finder · Zain Adtani · Adtani Education Ventures LLC
       </div>
     </div>
