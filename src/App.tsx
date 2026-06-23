@@ -29,6 +29,7 @@ import LabelIQ from "./pages/LabelIQ";
 import Lab from "./pages/Lab";
 import Connect from "./pages/Connect";
 import KDPCopilot from "./pages/KDPCopilot";
+import FamilyProtectionGap from "./pages/FamilyProtectionGap";
 
 // Project sub-pages
 import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
@@ -72,6 +73,7 @@ const App = () => (
                   <Route path="/pokedex" element={<PokemonDex />} />
                   <Route path="/money" element={<Money />} />
                   <Route path="/resources/label-iq" element={<LabelIQ />} />
+                  <Route path="/family-protection-gap" element={<FamilyProtectionGap />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
