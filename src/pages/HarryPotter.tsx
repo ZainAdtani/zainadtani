@@ -1023,6 +1023,28 @@ const HarryPotter = () => {
           ✨
         </div>
       </div>
+
+      {/* Floating audio toggle */}
+      <button
+        onClick={toggleAudio}
+        aria-label={audioPlaying ? "Turn ambient sound off" : "Turn ambient sound on"}
+        className="fixed font-bold text-white transition-transform duration-200 hover:scale-105"
+        style={{
+          bottom: 100,
+          right: 88,
+          zIndex: 50,
+          background: "linear-gradient(135deg, #DD5013, #D97706)",
+          fontFamily: '"Plus Jakarta Sans", sans-serif',
+          fontSize: 12,
+          padding: "10px 16px",
+          borderRadius: 999,
+          border: "none",
+          boxShadow: "0 0 20px rgba(221,80,19,0.4)",
+          letterSpacing: "0.05em",
+        }}
+      >
+        {audioPlaying ? "🔊 Sound On" : "🔇 Sound Off"}
+      </button>
     </div>
   );
 };
