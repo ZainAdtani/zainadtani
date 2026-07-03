@@ -54,10 +54,10 @@ export default function RothIRAGame() {
   const progress = useMemo(() => ((qIndex + (answered ? 1 : 0)) / QUESTIONS.length) * 100, [qIndex, answered]);
 
   const scoreMsg = (s: number) => {
-    if (s === 7) return "Perfect. You just leveled up. 🎯";
-    if (s >= 5) return "Nice work. You've got the core idea. 💪";
-    if (s >= 3) return "Solid start. Skim the cards and you'll nail it next time. 📘";
-    return "That's okay. First pass is always the hardest. Try again anytime. 🌱";
+    if (s === 7) return "Perfect score. You understand how these pieces fit together.";
+    if (s >= 5) return "Strong result. The core ideas are clearly landing.";
+    if (s >= 3) return "Good foundation. A quick pass through the cards will fill the gaps.";
+    return "The first pass is the hardest. Review the cards and come back whenever you're ready.";
   };
 
   const answer = (choice: string) => {
@@ -160,33 +160,71 @@ export default function RothIRAGame() {
 
         {/* STEP 1 */}
         {step === 1 && (
-          <div className="mt-16 text-center animate-fade-in">
-            <h1 className="text-5xl md:text-7xl mb-6" style={{ fontFamily: "'Luckiest Guy', cursive", color: HAY, letterSpacing: "1px" }}>
+          <div className="mt-16 animate-fade-in">
+            <h1 className="text-5xl md:text-7xl mb-6 text-center" style={{ fontFamily: "'Luckiest Guy', cursive", color: HAY, letterSpacing: "1px" }}>
               The Roth IRA Game
             </h1>
-            <p className="text-lg md:text-xl mb-8" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, color: "#FFFFFF" }}>
-              Learn how one retirement account can grow tax free forever. Takes 3 minutes.
+            <p className="text-lg md:text-xl mb-10 text-center" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, color: "#FFFFFF" }}>
+              A short, honest walkthrough of one of the most powerful retirement accounts available. About 3 minutes.
             </p>
-            <p className="max-w-2xl mx-auto text-base md:text-[17px] leading-relaxed mb-10" style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.85)" }}>
-              A Roth IRA is a retirement account with a superpower. You put in money you already paid tax on. It grows completely tax free. And when you retire, you never pay tax on it again. Not on the growth. Not on the dividends. Nothing.
-            </p>
-            <button
-              onClick={() => setStep(2)}
-              className="rounded-full font-bold transition-transform duration-200 hover:scale-105"
-              style={{
-                background: `linear-gradient(135deg, ${CTA}, ${ORANGE_ACCENT})`,
-                color: "#FFFFFF",
-                padding: "16px 36px",
-                fontSize: "17px",
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                boxShadow: `0 0 24px rgba(221,80,19,0.4)`,
-              }}
-            >
-              Start the Game →
-            </button>
-            <p className="mt-12 text-xs" style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'DM Sans', sans-serif" }}>
-              This is for education only. Not financial advice. Always do your own research.
-            </p>
+
+            <div className="max-w-2xl mx-auto space-y-5 mb-10" style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.88)", fontSize: "17px", lineHeight: 1.7 }}>
+              <div>
+                <h2 className="mb-2" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, color: HAY, fontSize: "18px" }}>
+                  What is a Roth IRA
+                </h2>
+                <p>
+                  A Roth IRA is a retirement account you fund with money you've already paid tax on. That's the key difference from a traditional IRA or a 401k, where you contribute pre-tax dollars and get taxed later when you withdraw.
+                </p>
+              </div>
+
+              <div>
+                <h2 className="mb-2" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, color: HAY, fontSize: "18px" }}>
+                  Growth is fully tax free
+                </h2>
+                <p>
+                  Once your money is inside the account, it grows completely tax free. No tax on dividends. No tax on capital gains. Year after year, the account compounds without the IRS taking a cut along the way.
+                </p>
+              </div>
+
+              <div>
+                <h2 className="mb-2" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, color: HAY, fontSize: "18px" }}>
+                  Withdrawals in retirement are tax free
+                </h2>
+                <p>
+                  Once you're 59 and a half, and the account has been open at least 5 years, every dollar you take out in retirement is 100% tax free. That includes all of the growth, not just what you originally put in.
+                </p>
+              </div>
+
+              <div>
+                <h2 className="mb-2" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, color: HAY, fontSize: "18px" }}>
+                  The 2026 rules
+                </h2>
+                <p>
+                  In 2026, you can contribute up to $7,000 a year, or $8,000 if you're 50 or older. There are also income limits on who can contribute directly, so higher earners may need to look at a backdoor Roth strategy.
+                </p>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <button
+                onClick={() => setStep(2)}
+                className="rounded-full font-bold transition-transform duration-200 hover:scale-105"
+                style={{
+                  background: `linear-gradient(135deg, ${CTA}, ${ORANGE_ACCENT})`,
+                  color: "#FFFFFF",
+                  padding: "16px 36px",
+                  fontSize: "17px",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  boxShadow: `0 0 24px rgba(221,80,19,0.4)`,
+                }}
+              >
+                Start the Game →
+              </button>
+              <p className="mt-12 text-xs" style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'DM Sans', sans-serif" }}>
+                For education only. Not financial advice. Always do your own research.
+              </p>
+            </div>
           </div>
         )}
 
