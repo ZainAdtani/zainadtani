@@ -1,6 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
 import { Linkedin, Youtube, Menu, X } from "lucide-react";
-import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import zaLogo from "@/assets/za_logo.png";
@@ -14,7 +13,6 @@ const TOP_NAV = [
 ];
 
 export const Header = () => {
-  const { theme, setTheme } = useTheme();
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
