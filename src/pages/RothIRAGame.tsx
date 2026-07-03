@@ -232,10 +232,10 @@ export default function RothIRAGame() {
         {step === 2 && (
           <div className="mt-10 animate-fade-in">
             <h2 className="text-3xl md:text-5xl text-center mb-3" style={{ fontFamily: "'Luckiest Guy', cursive", color: HAY }}>
-              Meet the 7 ETFs
+              A Sample 7-ETF Portfolio
             </h2>
-            <p className="text-center mb-8" style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.7)" }}>
-              Tap each card to flip it. Open all 7 to unlock the quiz.
+            <p className="text-center mb-8 max-w-2xl mx-auto" style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.75)", fontSize: "15px", lineHeight: 1.6 }}>
+              Tap each ticker to reveal what it does and the role it plays in a portfolio. Open all seven to unlock the quiz.
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -288,7 +288,7 @@ export default function RothIRAGame() {
                   boxShadow: allOpened ? `0 0 24px rgba(221,80,19,0.4)` : "none",
                 }}
               >
-                {allOpened ? "Got it, quiz me →" : `Open all cards (${opened.size}/7)`}
+                {allOpened ? "Start the quiz →" : `Open all cards (${opened.size}/7)`}
               </button>
             </div>
           </div>
@@ -298,6 +298,12 @@ export default function RothIRAGame() {
         {step === 3 && (
           <div className="mt-10 animate-fade-in">
             <div className="mb-6">
+              <h2 className="text-2xl md:text-3xl mb-1" style={{ fontFamily: "'Luckiest Guy', cursive", color: HAY }}>
+                Check Your Understanding
+              </h2>
+              <p className="mb-4" style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.7)", fontSize: "14px" }}>
+                Seven quick questions on what each ETF does.
+              </p>
               <div className="flex justify-between text-xs mb-2" style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.6)" }}>
                 <span>Question {qIndex + 1} of {QUESTIONS.length}</span>
                 <span>Score: {score}</span>
