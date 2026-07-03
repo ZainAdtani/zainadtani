@@ -104,7 +104,7 @@ export const Header = () => {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden border-t border-[#1E3A5F] bg-[#0F1D2E]">
+        <div className="md:hidden border-t border-[#2C4A73] bg-[#0F1D2E]">
           <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
             {TOP_NAV.map((item) => (
               <Link
@@ -123,7 +123,7 @@ export const Header = () => {
             >
               ↳ My Investing Stack
             </Link>
-            <div className="flex flex-col gap-1 mt-2 pt-2 border-t border-[#1E3A5F]">
+            <div className="flex flex-col gap-1 mt-2 pt-2 border-t border-[#2C4A73]">
               <a
                 href="https://linkedin.com/in/zainadtani"
                 target="_blank"

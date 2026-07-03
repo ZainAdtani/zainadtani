@@ -57,7 +57,7 @@ const FUN_PROJECTS: FunProject[] = [
 function FunProjectCard({ project }: { project: FunProject }) {
   return (
     <div
-      className="rounded-xl overflow-hidden bg-[#0F1D2E] border border-[#1E3A5F] flex flex-col transition-all duration-200 ease-out hover:-translate-y-1"
+      className="rounded-xl overflow-hidden bg-[#0F1D2E] border border-[#2C4A73] flex flex-col transition-all duration-200 ease-out hover:-translate-y-1"
       onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.3)")}
       onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "")}
     >
@@ -438,7 +438,7 @@ const Index = () => {
             ].map((c) => (
               <div
                 key={c.title}
-                className="bg-[#0F1D2E] border border-[#1E3A5F] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
+                className="bg-[#0F1D2E] border border-[#2C4A73] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
               >
                 <h3 className="font-display font-extrabold text-[22px] text-[#447BBE]">{c.title}</h3>
                 <p className="font-sans text-[15px] text-white mt-3 flex-1">{c.body}</p>
@@ -514,7 +514,7 @@ const Index = () => {
             ].map((c) => (
               <div
                 key={c.title}
-                className="bg-[#0F1D2E] border border-[#1E3A5F] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
+                className="bg-[#0F1D2E] border border-[#2C4A73] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
               >
                 <h3 className="font-display font-extrabold text-[20px] text-[#447BBE]">{c.title}</h3>
                 <p className="font-sans text-[15px] text-white mt-3 flex-1">{c.body}</p>
@@ -543,7 +543,7 @@ const Index = () => {
             ].map((c) => (
               <div
                 key={c.title}
-                className="bg-[#0F1D2E] border border-[#1E3A5F] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
+                className="bg-[#0F1D2E] border border-[#2C4A73] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
               >
                 <h3 className="font-display font-extrabold text-[20px] text-[#447BBE]">{c.title}</h3>
                 <p className="font-sans text-[15px] text-white mt-3 flex-1">{c.body}</p>
@@ -583,7 +583,7 @@ const Index = () => {
               id="zletterEmail"
               type="email"
               placeholder="you@email.com"
-              className="w-full bg-[#0F1D2E] border border-[#1E3A5F] rounded-xl px-5 py-3.5 font-sans text-[15px] text-[#F1F5F9] placeholder-[#6B7280] focus:outline-none focus:border-[#447BBE] transition-colors"
+              className="w-full bg-[#0F1D2E] border border-[#2C4A73] rounded-xl px-5 py-3.5 font-sans text-[15px] text-[#F1F5F9] placeholder-[#6B7280] focus:outline-none focus:border-[#447BBE] transition-colors"
             />
             <button
               type="button"
@@ -747,11 +747,11 @@ const Index = () => {
           <p className="font-sans text-[13px] text-[#94A3B8] mt-4">
             No pressure. Start with a clear conversation.
           </p>
-          <div className="mt-10 pt-6 border-t border-[#1E3A5F]/60 flex flex-col sm:flex-row gap-3 justify-center items-center text-[13px]">
+          <div className="mt-10 pt-6 border-t border-[#2C4A73]/60 flex flex-col sm:flex-row gap-3 justify-center items-center text-[13px]">
             <Link to="/lab" className="font-sans text-[#94A3B8] hover:text-[#447BBE] transition-colors">
               Explore what I build for fun →
             </Link>
-            <span className="hidden sm:inline text-[#1E3A5F]">·</span>
+            <span className="hidden sm:inline text-[#2C4A73]">·</span>
             <Link to="/resources/investing" className="font-sans text-[#94A3B8] hover:text-[#447BBE] transition-colors">
               My Investing Stack →
             </Link>

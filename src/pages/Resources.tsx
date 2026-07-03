@@ -171,7 +171,7 @@ function SiteCard({ entry }: { entry: SiteEntry }) {
     </>
   );
   const className =
-    "group flex flex-col rounded-2xl bg-[#0F1D2E] border border-[#1E3A5F] p-5 transition-all duration-200 hover:border-[#DD5013] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(221,80,19,0.12)]";
+    "group flex flex-col rounded-2xl bg-[#0F1D2E] border border-[#2C4A73] p-5 transition-all duration-200 hover:border-[#DD5013] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(221,80,19,0.12)]";
   return isExternal ? (
     <a href={entry.route} target="_blank" rel="noopener noreferrer" className={className}>{inner}</a>
   ) : (
@@ -302,7 +302,7 @@ export default function Resources() {
               <CopyBlock text={TRAIN_MY_AI_PROMPT} label="Copy Full Prompt" />
             </div>
           </div>
-          <div className="bg-[#0F1D2E] border border-[#1E3A5F] rounded-2xl p-5 max-h-64 overflow-y-auto font-mono text-[13px] text-[#94A3B8] leading-relaxed whitespace-pre-wrap">
+          <div className="bg-[#0F1D2E] border border-[#2C4A73] rounded-2xl p-5 max-h-64 overflow-y-auto font-mono text-[13px] text-[#94A3B8] leading-relaxed whitespace-pre-wrap">
             {TRAIN_MY_AI_PROMPT}
           </div>
         </div>
@@ -316,7 +316,7 @@ export default function Resources() {
         </div>
 
         {/* Custom Instructions */}
-        <div className="bg-[#0F1D2E] border border-[#1E3A5F] rounded-2xl p-6 mb-8">
+        <div className="bg-[#0F1D2E] border border-[#2C4A73] rounded-2xl p-6 mb-8">
           <div className="flex items-start justify-between gap-4 mb-2">
             <h3 className="font-display font-bold text-[18px] text-white">Custom Instructions</h3>
             <CopyBlock text={CUSTOM_INSTRUCTIONS} label="Copy" />
@@ -338,7 +338,7 @@ export default function Resources() {
               className={`text-[13px] px-3 py-1.5 rounded-full transition-colors ${
                 selectedCategory === c
                   ? "bg-[#447BBE] text-[#0A0F1A] font-semibold"
-                  : "bg-[#0F1D2E] text-[#94A3B8] border border-[#1E3A5F] hover:border-[#447BBE]/40"
+                  : "bg-[#0F1D2E] text-[#94A3B8] border border-[#2C4A73] hover:border-[#447BBE]/40"
               }`}
             >
               {c}
@@ -354,8 +354,8 @@ export default function Resources() {
           {filteredPrompts.map((p) => {
             const isExpanded = expanded.includes(p.id);
             return (
-              <div key={p.id} className="bg-[#0F1D2E] border border-[#1E3A5F] rounded-2xl p-6 flex flex-col gap-3">
-                <span className={`self-start rounded-full px-3 py-1 text-[11px] font-medium ${categoryColor[p.category] || "bg-[#1E3A5F] text-[#94A3B8]"}`}>
+              <div key={p.id} className="bg-[#0F1D2E] border border-[#2C4A73] rounded-2xl p-6 flex flex-col gap-3">
+                <span className={`self-start rounded-full px-3 py-1 text-[11px] font-medium ${categoryColor[p.category] || "bg-[#2C4A73] text-[#94A3B8]"}`}>
                   {p.category}
                 </span>
                 <h3 className="font-display font-bold text-[17px] text-[#F1F5F9]">{p.title}</h3>
