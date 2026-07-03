@@ -9,7 +9,6 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
-import ProjectPokedex from "./pages/ProjectPokedex";
 import Tools from "./pages/Tools";
 import Resources from "./pages/Resources";
 import AIPrompts from "./pages/AIPrompts";
@@ -33,7 +32,6 @@ import FamilyProtectionGap from "./pages/FamilyProtectionGap";
 import RothIRAGame from "./pages/RothIRAGame";
 
 // Project sub-pages
-import HarryPotterWorld from "./pages/projects/HarryPotterWorld";
 import AiSongs from "./pages/projects/AiSongs";
 
 const queryClient = new QueryClient();
@@ -60,8 +58,6 @@ const App = () => (
                   <Route path="/tools" element={<Tools />} />
                   <Route path="/books" element={<BooksHQ />} />
                   <Route path="/projects" element={<Projects />} />
-                  <Route path="/projects/pokedex" element={<ProjectPokedex />} />
-                  <Route path="/projects/harry-potter-world" element={<HarryPotterWorld />} />
                   <Route path="/projects/ai-songs" element={<AiSongs />} />
                   <Route path="/resources" element={<Resources />} />
                   <Route path="/ai-prompts" element={<AIPrompts />} />

@@ -14,7 +14,7 @@ export const projects: Project[] = [
     title: 'My Pokémon Pokédex',
     description: 'A Notion-powered Pokédex with sprites, stats, and filters.',
     thumbnail: '/pokedex-cover.jpg',
-    route: '/projects/pokedex',
+    route: '/pokedex',
     tags: ['notion', 'pokemon', 'database']
   },
   {
@@ -22,7 +22,7 @@ export const projects: Project[] = [
     title: 'Harry Potter World',
     description: 'A Hogwarts themed hub for books, audiobooks, and key story moments.',
     thumbnail: '/images/projects/harry-potter-world-cover.png',
-    route: '/projects/harry-potter-world',
+    route: '/harry-potter',
     tags: ['books', 'timeline', 'hogwarts']
   },
   {
