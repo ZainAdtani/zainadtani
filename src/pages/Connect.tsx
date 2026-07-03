@@ -5,7 +5,7 @@ const WHATSAPP_URL = "https://wa.me/14698447354";
 const CALENDLY_URL = "https://calendly.com/zkadtani";
 
 const inputClass =
-  "w-full bg-[#0E1628] border border-[#1E3A5F] focus:border-[#447BBE] focus:outline-none rounded-[10px] px-4 py-3.5 text-[15px] text-white placeholder:text-white/40 font-sans transition-colors";
+  "w-full bg-[#0E1628] border border-[#2C4A73] focus:border-[#447BBE] focus:outline-none rounded-[10px] px-4 py-3.5 text-[15px] text-white placeholder:text-white/40 font-sans transition-colors";
 
 const labelClass = "block text-[13px] font-semibold text-white/90 mb-1.5 font-sans";
 
@@ -19,7 +19,7 @@ const Connect = () => {
   const [protState, protHandleSubmit] = useForm("mnjyeeyj");
 
   return (
-    <div className="min-h-screen bg-[#0A0F1A] text-white">
+    <div className="min-h-screen bg-[#0F1D2E] text-white">
       <Helmet>
         <title>Connect with Zain Adtani | Income Opportunity & Family Protection</title>
         <meta
@@ -100,7 +100,7 @@ const Connect = () => {
         </div>
 
         {/* FORM */}
-        <div className="mt-12 bg-[#0E1628] border border-[#1E3A5F] rounded-[16px] p-6 md:p-8">
+        <div className="mt-12 bg-[#0E1628] border border-[#2C4A73] rounded-[16px] p-6 md:p-8">
           {oppState.succeeded ? (
             <div className="py-8 text-center">
               <div className="font-display-sans font-extrabold text-[22px] text-[#E9E4A6] mb-2">Got it.</div>
@@ -196,7 +196,7 @@ const Connect = () => {
           ))}
         </div>
 
-        <div className="mt-12 bg-[#0E1628] border border-[#1E3A5F] rounded-[16px] p-6 md:p-8">
+        <div className="mt-12 bg-[#0E1628] border border-[#2C4A73] rounded-[16px] p-6 md:p-8">
           {protState.succeeded ? (
             <div className="py-8 text-center">
               <div className="font-display-sans font-extrabold text-[22px] text-[#E9E4A6] mb-2">Perfect.</div>

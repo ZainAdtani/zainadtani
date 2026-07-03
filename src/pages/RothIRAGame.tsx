@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import jsPDF from "jspdf";
 
-const BG = "#0A0F1A";
+const BG = "#0F1D2E";
 const BLUE = "#447BBE";
 const ORANGE_ACCENT = "#D97706";
 const CTA = "#DD5013";

@@ -1,6 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
 import { Linkedin, Youtube, Menu, X } from "lucide-react";
-import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import zaLogo from "@/assets/za_logo.png";
@@ -14,7 +13,6 @@ const TOP_NAV = [
 ];
 
 export const Header = () => {
-  const { theme, setTheme } = useTheme();
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -92,45 +90,7 @@ export const Header = () => {
             Book a Call
           </a>
 
-          <div className="hidden md:inline-flex items-center gap-1 bg-[#0E1628] border border-[#447BBE]/60 rounded-full p-1">
-            {(["spidey", "hay"] as const).map((t) => {
-              const active = (theme ?? "spidey") === t;
-              return (
-                <button
-                  key={t}
-                  type="button"
-                  onClick={() => setTheme(t)}
-                  aria-pressed={active}
-                  className={`px-3 py-1 rounded-full text-[12px] font-sans font-semibold transition-colors ${
-                    active ? "bg-[#447BBE] text-[#0A0F1A]" : "text-white/80 hover:text-white"
-                  }`}
-                >
-                  {t === "spidey" ? "Spidey" : "Hay"}
-                </button>
-              );
-            })}
-          </div>
 
-          {/* Mobile theme toggle (always visible) */}
-          <div className="md:hidden inline-flex items-center gap-1 bg-[#0E1628] border border-[#447BBE]/60 rounded-full p-1">
-            {(["spidey", "hay"] as const).map((t) => {
-              const active = (theme ?? "spidey") === t;
-              return (
-                <button
-                  key={t}
-                  type="button"
-                  onClick={() => setTheme(t)}
-                  aria-pressed={active}
-                  aria-label={`Switch to ${t} theme`}
-                  className={`px-2.5 py-1 rounded-full text-[11px] font-sans font-semibold transition-colors ${
-                    active ? "bg-[#447BBE] text-[#0A0F1A]" : "text-white/80 hover:text-white"
-                  }`}
-                >
-                  {t === "spidey" ? "Spidey" : "Hay"}
-                </button>
-              );
-            })}
-          </div>
             
           <button
             type="button"
@@ -144,14 +104,14 @@ export const Header = () => {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden border-t border-[#1E3A5F] bg-[#0A0F1A]">
+        <div className="md:hidden border-t border-[#2C4A73] bg-[#0F1D2E]">
           <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
             {TOP_NAV.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
                 onClick={() => setMobileOpen(false)}
-                className="px-4 py-3 rounded-xl font-sans font-medium text-[15px] text-[#F1F5F9] hover:bg-[#0A0F1A] hover:text-[#447BBE] transition-colors"
+                className="px-4 py-3 rounded-xl font-sans font-medium text-[15px] text-[#F1F5F9] hover:bg-[#0F1D2E] hover:text-[#447BBE] transition-colors"
               >
                 {item.label}
               </Link>
@@ -163,7 +123,7 @@ export const Header = () => {
             >
               ↳ My Investing Stack
             </Link>
-            <div className="flex flex-col gap-1 mt-2 pt-2 border-t border-[#1E3A5F]">
+            <div className="flex flex-col gap-1 mt-2 pt-2 border-t border-[#2C4A73]">
               <a
                 href="https://linkedin.com/in/zainadtani"
                 target="_blank"

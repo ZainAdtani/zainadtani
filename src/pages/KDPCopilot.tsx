@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 
-const inputClass = "w-full bg-[#0A0F1A] border border-[#1E3A5F] focus:border-[#447BBE] focus:outline-none rounded-[10px] px-4 py-3 text-[16px] text-white placeholder:text-white/50 transition-colors font-sans";
+const inputClass = "w-full bg-[#0F1D2E] border border-[#2C4A73] focus:border-[#447BBE] focus:outline-none rounded-[10px] px-4 py-3 text-[16px] text-white placeholder:text-white/50 transition-colors font-sans";
 const labelClass = "block text-[13px] font-bold text-[#E9E4A6] mb-1.5 tracking-widest";
 
 export default function KDPCopilot() {
@@ -125,7 +125,7 @@ ${result.pricingTip || ""}
   const CopyBtn = ({ text, id }: { text: string; id: string }) => (
     <button
       onClick={() => copyText(text, id)}
-      className="text-[11px] px-3 py-1 rounded-md border border-[#1E3A5F] transition-all"
+      className="text-[11px] px-3 py-1 rounded-md border border-[#2C4A73] transition-all"
       style={{
         background: copied === id ? "#447BBE" : "transparent",
         color: copied === id ? "#fff" : "rgba(255,255,255,0.5)",
@@ -136,14 +136,14 @@ ${result.pricingTip || ""}
   );
 
   return (
-    <div className="min-h-screen bg-[#0A0F1A] text-white pb-20">
+    <div className="min-h-screen bg-[#0F1D2E] text-white pb-20">
       <Helmet>
         <title>KDP Niche Finder | Zain Adtani</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
       {/* Header */}
-      <div className="border-b border-[#1E3A5F] px-6 py-4 flex items-center justify-between gap-3">
+      <div className="border-b border-[#2C4A73] px-6 py-4 flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 bg-[#DD5013] rounded-lg flex items-center justify-center text-lg">📚</div>
           <div>
@@ -174,7 +174,7 @@ ${result.pricingTip || ""}
       <div className="max-w-2xl mx-auto px-4 pt-8">
 
         {/* Input Card */}
-        <div className="bg-[#0E1628] border border-[#1E3A5F] rounded-2xl p-6 mb-8">
+        <div className="bg-[#0E1628] border border-[#2C4A73] rounded-2xl p-6 mb-8">
           <div className="mb-4">
             <label className={labelClass}>BOOK TOPIC OR IDEA *</label>
             <textarea
@@ -257,7 +257,7 @@ ${result.pricingTip || ""}
             <div className="bg-[#0E1628] border border-[#447BBE] rounded-2xl p-5">
               <div className="text-[13px] font-bold tracking-[0.2em] text-[#447BBE] mb-4">5 TITLE + SUBTITLE OPTIONS</div>
               {result.titles?.map((t: any, i: number) => (
-                <div key={i} className="bg-[#0A0F1A] rounded-lg px-4 py-3 mb-2 flex justify-between items-start gap-3">
+                <div key={i} className="bg-[#0F1D2E] rounded-lg px-4 py-3 mb-2 flex justify-between items-start gap-3">
                   <div>
                     <div className="font-bold text-[16px]">{t.title}</div>
                     <div className="text-[15px] text-white/60 mt-0.5">{t.subtitle}</div>
@@ -279,7 +279,7 @@ ${result.pricingTip || ""}
               <div className="text-[13px] font-bold tracking-[0.2em] text-[#447BBE] mb-3">7 KDP KEYWORDS</div>
               <div className="flex flex-wrap gap-2 mb-3">
                 {result.keywords?.map((k: string, i: number) => (
-                  <span key={i} className="bg-[#0A0F1A] border border-[#1E3A5F] text-[#E9E4A6] text-[14px] px-3 py-1 rounded-lg">{k}</span>
+                  <span key={i} className="bg-[#0F1D2E] border border-[#2C4A73] text-[#E9E4A6] text-[14px] px-3 py-1 rounded-lg">{k}</span>
                 ))}
               </div>
               <CopyBtn text={result.keywords?.join(", ")} id="keywords" />
@@ -289,7 +289,7 @@ ${result.pricingTip || ""}
             <div className="bg-[#0E1628] border border-[#DD5013] rounded-2xl p-5">
               <div className="text-[13px] font-bold tracking-[0.2em] text-[#DD5013] mb-3">7 AMAZON CATEGORIES</div>
               {result.categories?.map((c: any, i: number) => (
-                <div key={i} className="bg-[#0A0F1A] rounded-lg px-4 py-3 mb-2">
+                <div key={i} className="bg-[#0F1D2E] rounded-lg px-4 py-3 mb-2">
                   <div className="font-semibold text-[15px]">{c.path}</div>
                   <div className="text-[14px] text-white/55 mt-0.5">{c.reason}</div>
                 </div>
