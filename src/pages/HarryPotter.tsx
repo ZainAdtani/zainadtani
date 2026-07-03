@@ -122,6 +122,33 @@ const STATS = [
   { num: 195, suffix: "", label: "Countries" },
 ];
 
+const CHAPTER_SONGS = [
+  {
+    chapter: 1,
+    title: "The Boy Who Lived",
+    summary: "Voldemort attacks the Potters, baby Harry survives, and Dumbledore leaves him with the Dursleys.",
+    embedUrl: "https://suno.com/embed/7775f7ce-b30d-4ebd-94e8-ad71211e7b69",
+  },
+  {
+    chapter: 2,
+    title: "The Vanishing Glass",
+    summary: "Harry grows up with the Dursleys, gets bullied by Dudley, and strange magic at the zoo makes the glass vanish.",
+    embedUrl: "https://suno.com/embed/3a09e3d2-52ee-4403-ae1d-9b17b049501c",
+  },
+  {
+    chapter: 3,
+    title: "The Letters from No One",
+    summary: "Mysterious letters from Hogwarts keep arriving no matter where Uncle Vernon moves the family.",
+    embedUrl: "https://suno.com/embed/32cbfd76-3b08-4044-8739-0d3927b5c821",
+  },
+  {
+    chapter: 4,
+    title: "The Keeper of the Keys",
+    summary: "Hagrid bursts into the hut on the rock, rescues Harry from the Dursleys, and delivers his Hogwarts letter.",
+    embedUrl: "https://suno.com/embed/29aaca2e-344a-4bbf-ab0c-7b91e98b36b9",
+  },
+];
+
 // ---------- Hooks ----------
 function useInView<T extends Element>(threshold = 0.15) {
   const ref = useRef<T>(null);
@@ -392,6 +419,31 @@ const BookCard = ({ dot, title, tag, n }: { dot: string; title: string; tag: str
 // ---------- Page ----------
 const HarryPotter = () => {
   const [showTip, setShowTip] = useState(false);
+  const [audioPlaying, setAudioPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const el = new Audio("/audio/harry-potter-audible-intro.mp3");
+    el.loop = true;
+    el.volume = 0.3;
+    audioRef.current = el;
+    return () => {
+      el.pause();
+      audioRef.current = null;
+    };
+  }, []);
+
+  const toggleAudio = () => {
+    const el = audioRef.current;
+    if (!el) return;
+    if (audioPlaying) {
+      el.pause();
+      setAudioPlaying(false);
+    } else {
+      el.play().catch(() => {});
+      setAudioPlaying(true);
+    }
+  };
 
   useEffect(() => {
     const prev = document.documentElement.style.scrollBehavior;
