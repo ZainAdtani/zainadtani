@@ -198,6 +198,27 @@ export default function Resources() {
       <div className="mt-10">
         {tab === "business" && (
           <div className="container mx-auto px-4 max-w-6xl pb-10">
+            {/* Roth IRA Game */}
+            <div className="mb-8 rounded-2xl border border-[#1E3A5F] bg-[#0A0F1A] p-6 md:p-8 hover:border-[#DD5013]/40 transition-colors">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                  <h3 className="text-[#E9E4A6] text-[20px] md:text-[22px] font-extrabold" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    🎮 New: The Roth IRA Game
+                  </h3>
+                  <p className="mt-1 font-sans text-[15px] text-[#94A3B8]">
+                    Learn how a Roth IRA works and meet 7 ETFs. Takes 3 minutes. Free cheat sheet at the end.
+                  </p>
+                </div>
+                <Link
+                  to="/roth-ira-game"
+                  className="shrink-0 inline-flex items-center justify-center font-sans font-semibold text-[14px] px-5 py-2.5 rounded-full border-2 transition-colors hover:scale-105 duration-200"
+                  style={{ borderColor: "#DD5013", color: "#E9E4A6" }}
+                >
+                  Play the game →
+                </Link>
+              </div>
+            </div>
+
             {/* Label IQ */}
             <div className="mb-8 rounded-2xl border border-[#1E3A5F] bg-[#0A0F1A] p-6 md:p-8 hover:border-[#DD5013]/40 transition-colors">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
