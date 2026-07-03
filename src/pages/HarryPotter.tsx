@@ -771,6 +771,92 @@ const HarryPotter = () => {
           </div>
         </section>
 
+        {/* SECTION 4.5: CHAPTER SONGS */}
+        <section id="chapter-songs" className="py-20">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <FadeUp>
+              <p
+                className="text-center text-xs uppercase font-semibold"
+                style={{
+                  color: "#447BBE",
+                  letterSpacing: "0.2em",
+                  fontFamily: '"Plus Jakarta Sans", sans-serif',
+                }}
+              >
+                Book 1: The Philosopher's Stone
+              </p>
+              <h2
+                className="text-center mt-3 text-[#F1F5F9]"
+                style={{ fontFamily: '"Luckiest Guy", cursive', fontSize: "clamp(32px, 5vw, 48px)" }}
+              >
+                Chapter Songs
+              </h2>
+              <p
+                className="text-center mt-4 max-w-2xl mx-auto"
+                style={{ color: "#E9E4A6", fontFamily: '"DM Sans", sans-serif', fontSize: 15, lineHeight: 1.7 }}
+              >
+                A custom song for each chapter. Play it while you read.
+              </p>
+            </FadeUp>
+
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+              {CHAPTER_SONGS.map((song, i) => (
+                <FadeUp key={song.chapter} delay={i * 0.05}>
+                  <div
+                    style={{
+                      backgroundColor: "rgba(255,255,255,0.03)",
+                      border: "1px solid rgba(68,123,190,0.15)",
+                      borderRadius: 16,
+                      padding: 24,
+                    }}
+                  >
+                    <div
+                      style={{
+                        color: "#DD5013",
+                        fontFamily: '"Plus Jakarta Sans", sans-serif',
+                        fontWeight: 700,
+                        fontSize: 12,
+                        letterSpacing: "0.15em",
+                        textTransform: "uppercase",
+                        marginBottom: 6,
+                      }}
+                    >
+                      Chapter {song.chapter}
+                    </div>
+                    <h3
+                      className="text-[#F1F5F9] mb-2"
+                      style={{ fontFamily: '"Plus Jakarta Sans", sans-serif', fontWeight: 800, fontSize: 20 }}
+                    >
+                      {song.title}
+                    </h3>
+                    <p
+                      className="mb-4"
+                      style={{ color: "#E9E4A6", fontFamily: '"DM Sans", sans-serif', fontSize: 14, lineHeight: 1.7 }}
+                    >
+                      {song.summary}
+                    </p>
+                    <div
+                      style={{
+                        borderRadius: 12,
+                        overflow: "hidden",
+                        border: "1px solid rgba(68,123,190,0.2)",
+                      }}
+                    >
+                      <iframe
+                        src={song.embedUrl}
+                        title={`Chapter ${song.chapter}: ${song.title}`}
+                        style={{ width: "100%", height: 160, border: 0, display: "block" }}
+                        loading="lazy"
+                        allow="autoplay"
+                      />
+                    </div>
+                  </div>
+                </FadeUp>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* SECTION 5: BOOKS */}
         <section
           id="books"
