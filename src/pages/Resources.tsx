@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input";
 import { CopyBlock } from "@/components/CopyBlock";
 import { AI_PROMPTS } from "@/data/ai_prompts";
 import { Search, ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
-import LifeNotes from "./LifeNotes";
 
 type ToolCategory = "AI & Agents" | "Productivity" | "Images & Design" | "Apps" | "Courses I Recommend";
 interface Tool { name: string; url: string; desc: string; category: ToolCategory; }
@@ -35,6 +34,55 @@ const TOOLS: Tool[] = [
 
 const TOOL_CATEGORIES = ["All", "AI & Agents", "Productivity", "Images & Design", "Apps", "Courses I Recommend"] as const;
 
+type SiteGroup = "Learn & Play" | "Money & Business" | "Guides & Library" | "About & Contact";
+interface SiteEntry {
+  title: string;
+  desc: string;
+  route: string;
+  group: SiteGroup;
+}
+
+// Titles and descriptions pulled directly from each page's Helmet meta tags
+// (or, where no meta description exists, the page's own visible subhead).
+const SITE_MAP: SiteEntry[] = [
+  // Learn & Play
+  { group: "Learn & Play", route: "/roth-ira-game", title: "The Roth IRA Game", desc: "Learn how a Roth IRA works and meet 7 ETFs. Free cheat sheet at the end." },
+  { group: "Learn & Play", route: "/harry-potter", title: "Harry Potter World", desc: "Seven books, one journey, plus chapter songs you can play." },
+  { group: "Learn & Play", route: "/pokedex", title: "Pokédex", desc: "All 151 original Pokémon, built in Notion." },
+  { group: "Learn & Play", route: "/projects/ai-songs", title: "AI Songs", desc: "Fun study music made with AI to help you remember tricky topics." },
+
+  // Money & Business
+  { group: "Money & Business", route: "/investing", title: "Investing — Simple Long-Term Money Philosophy", desc: "Zain Adtani's plain-English investing philosophy — simple, steady steps to grow your money over decades without the noise, hype, or stock tips." },
+  { group: "Money & Business", route: "/money", title: "The Money Page", desc: "For people who actually want to understand how money works. No ads. No pitch. Just the stuff nobody teaches you." },
+  { group: "Money & Business", route: "/family-protection-gap", title: "The Family Protection Gap", desc: "A plain-language guide to help families understand the gap between job benefits, savings, retirement accounts, and real protection. Free PDF." },
+  { group: "Money & Business", route: "/digital-products", title: "Digital Product HQ", desc: "Browse courses, guides, templates, and tools to help small businesses use AI and everyday people publish their first book." },
+  { group: "Money & Business", route: "/services", title: "Services — AI Consulting & Book Coaching", desc: "AI websites, book publishing help, and AI workflow consulting — practical services for small businesses and first-time authors in DFW Texas." },
+
+  // Guides & Library
+  { group: "Guides & Library", route: "/resources/label-iq", title: "Label IQ Cheat Sheet", desc: "Food brands hide junk behind fancy words. Learn the one rule, the serving size trick, and the 4 villains. Free cheat sheet." },
+  { group: "Guides & Library", route: "/books", title: "Book Portal — Reading List & Recommendations", desc: "Full reading list — books I've read, am reading, and want to read, with notes, ratings, and picks across business, tech, and personal growth." },
+  { group: "Guides & Library", route: "/ai-prompts", title: "AI Prompt Library", desc: "Curated library of AI prompts for ChatGPT, Claude, and Gemini — searchable, tagged, and built for real work across writing, business, and learning." },
+  { group: "Guides & Library", route: "/prompts", title: "AI Starter Prompts", desc: "10 free AI starter prompts you can steal and use today. No signup required." },
+  { group: "Guides & Library", route: "/tools", title: "Tools — Software I Use Every Day", desc: "A categorized list of the software, AI tools, and apps I use every day for building, writing, designing, automating, and running a small business." },
+  { group: "Guides & Library", route: "/life-notes", title: "Life Notes", desc: "Short, searchable life notes — bite-sized ideas, lessons, and reminders on work, money, parenting, and personal growth, easy to copy and re-use." },
+  { group: "Guides & Library", route: "/archive", title: "Archive", desc: "Old pages kept for reference." },
+
+  // About & Contact
+  { group: "About & Contact", route: "/", title: "Home", desc: "AI Consultant, Author, and Financial Educator based in DFW Texas. I help small businesses run on AI, help creators publish books, and help families protect what they build." },
+  { group: "About & Contact", route: "/about", title: "About Zain Adtani", desc: "Get to know Zain — an AI consultant, author, and systems builder in DFW helping small businesses use AI and helping everyday people publish books." },
+  { group: "About & Contact", route: "/connect", title: "Connect", desc: "Talk to Zain about a second income opportunity in financial education or about protecting your family with life insurance, wills, and trusts." },
+  { group: "About & Contact", route: "/projects", title: "Fun Projects", desc: "A collection of fun side projects — a Notion Pokédex, a Harry Potter timeline, AI songs, and other creative experiments." },
+  { group: "About & Contact", route: "/lab", title: "The Lab", desc: "Pokémon, Harry Potter, and other side projects built for fun in Notion." },
+];
+
+const GROUP_ORDER: SiteGroup[] = ["Learn & Play", "Money & Business", "Guides & Library", "About & Contact"];
+
+const groupTagColor: Record<SiteGroup, string> = {
+  "Learn & Play": "bg-[#DD5013]/15 text-[#E9E4A6] border border-[#DD5013]/30",
+  "Money & Business": "bg-emerald-400/10 text-emerald-300 border border-emerald-400/30",
+  "Guides & Library": "bg-[#447BBE]/15 text-[#447BBE] border border-[#447BBE]/30",
+  "About & Contact": "bg-white/5 text-[#94A3B8] border border-white/10",
+};
 
 interface Prompt {
   title: string;
@@ -97,8 +145,6 @@ If a question is unclear, make a quick best guess and answer the most helpful ve
 
 Avoid long intros. Avoid long wrap up lines. Get to the point, explain it, give an example, give a next step, then stop.`;
 
-type TabKey = "business" | "library" | "notes";
-
 const CATEGORIES = ["All", "Coaching", "Productivity", "Learning", "Email", "Delegation", "Automation"] as const;
 
 const categoryColor: Record<string, string> = {
@@ -110,19 +156,57 @@ const categoryColor: Record<string, string> = {
   Automation: "bg-[#447BBE]/15 text-[#447BBE] border border-[#447BBE]/30",
 };
 
+function SiteCard({ entry }: { entry: SiteEntry }) {
+  const isExternal = entry.route.startsWith("http");
+  const inner = (
+    <>
+      <span className={`self-start rounded-full px-2.5 py-0.5 text-[10px] font-medium tracking-wide ${groupTagColor[entry.group]}`}>
+        {entry.group}
+      </span>
+      <h3 className="mt-3 font-display font-bold text-[17px] text-[#F1F5F9] leading-snug">{entry.title}</h3>
+      <p className="mt-2 font-sans text-[13.5px] text-[#94A3B8] leading-relaxed">{entry.desc}</p>
+      <span className="mt-4 inline-flex items-center gap-1 text-[12px] font-semibold text-[#DD5013] opacity-0 group-hover:opacity-100 transition-opacity">
+        Open {isExternal ? <ExternalLink className="w-3 h-3" /> : "→"}
+      </span>
+    </>
+  );
+  const className =
+    "group flex flex-col rounded-2xl bg-[#0A0F1A] border border-[#1E3A5F] p-5 transition-all duration-200 hover:border-[#DD5013] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(221,80,19,0.12)]";
+  return isExternal ? (
+    <a href={entry.route} target="_blank" rel="noopener noreferrer" className={className}>{inner}</a>
+  ) : (
+    <Link to={entry.route} className={className}>{inner}</Link>
+  );
+}
+
 export default function Resources() {
-  const [tab, setTab] = useState<TabKey>("business");
   const [q, setQ] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [expanded, setExpanded] = useState<number[]>([]);
   const [toolCat, setToolCat] = useState<typeof TOOL_CATEGORIES[number]>("All");
+
   const filteredTools = useMemo(
     () => (toolCat === "All" ? TOOLS : TOOLS.filter((t) => t.category === toolCat)),
     [toolCat]
   );
 
+  const t = q.trim().toLowerCase();
+
+  const filteredSite = useMemo(() => {
+    if (!t) return SITE_MAP;
+    return SITE_MAP.filter((s) =>
+      [s.title, s.desc, s.group].join(" ").toLowerCase().includes(t)
+    );
+  }, [t]);
+
+  const groupedSite = useMemo(() => {
+    return GROUP_ORDER.map((g) => ({
+      group: g,
+      items: filteredSite.filter((s) => s.group === g),
+    })).filter((g) => g.items.length > 0);
+  }, [filteredSite]);
+
   const filteredPrompts = useMemo(() => {
-    const t = q.trim().toLowerCase();
     return AI_PROMPTS.filter((p) => {
       if (selectedCategory !== "All" && p.category !== selectedCategory) return false;
       if (!t) return true;
@@ -132,14 +216,10 @@ export default function Resources() {
         .toLowerCase()
         .includes(t);
     });
-  }, [q, selectedCategory]);
+  }, [t, selectedCategory]);
 
   const toggleExpand = (id: number) =>
     setExpanded((prev) => (prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]));
-
-  const pillBase = "px-5 py-2.5 rounded-full text-[14px] font-sans cursor-pointer transition-colors";
-  const active = "bg-[#447BBE] text-[#0A0F1A] font-semibold";
-  const inactive = "bg-[#0A0F1A] text-[#94A3B8] border border-[#1E3A5F] hover:border-[#447BBE]/40";
 
   return (
     <div className="min-h-screen bg-background">
@@ -158,229 +238,184 @@ export default function Resources() {
         <p className="mt-3 font-sans text-[16px] text-[#94A3B8] max-w-2xl mx-auto">
           Free tools, prompts, and ideas to help you work smarter and think clearer.
         </p>
-        <div className="mt-6 flex justify-center">
-          <button
-            onClick={() => {
-              const el = document.getElementById("tools");
-              if (el) {
-                const y = el.getBoundingClientRect().top + window.scrollY - 80;
-                window.scrollTo({ top: y, behavior: "smooth" });
-              }
-            }}
-            className="animate-jump-bounce font-sans font-bold text-white rounded-full transition-transform duration-200 hover:scale-105"
-            style={{
-              background: "linear-gradient(135deg, #DD5013, #D97706)",
-              padding: "14px 28px",
-              boxShadow: "0 0 20px rgba(221, 80, 19, 0.4)",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 0 35px rgba(221, 80, 19, 0.6)")}
-            onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "0 0 20px rgba(221, 80, 19, 0.4)")}
-          >
-            ⚡ Jump to Tools I Use
-          </button>
-        </div>
       </header>
 
-
-      {/* Tabs */}
-      <div className="max-w-6xl mx-auto px-6 flex flex-wrap justify-center gap-3">
-        <button onClick={() => setTab("business")} className={`${pillBase} ${tab === "business" ? active : inactive}`}>
-          For Business
-        </button>
-        <button onClick={() => setTab("library")} className={`${pillBase} ${tab === "library" ? active : inactive}`}>
-          Prompt Library
-        </button>
-        <button onClick={() => setTab("notes")} className={`${pillBase} ${tab === "notes" ? active : inactive}`}>
-          Life Notes
-        </button>
+      {/* Global search (site map + prompt library) */}
+      <div className="max-w-3xl mx-auto px-6">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Input
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="Search pages and prompts…"
+            className="h-12 pl-10"
+          />
+        </div>
+        {t && (
+          <p className="mt-2 text-center font-sans text-[13px] text-[#94A3B8]">
+            {filteredSite.length} page{filteredSite.length !== 1 ? "s" : ""} · {filteredPrompts.length} prompt{filteredPrompts.length !== 1 ? "s" : ""}
+          </p>
+        )}
       </div>
 
-      <div className="mt-10">
-        {tab === "business" && (
-          <div className="container mx-auto px-4 max-w-6xl pb-10">
-            {/* Roth IRA Game */}
-            <div className="mb-8 rounded-2xl border border-[#1E3A5F] bg-[#0A0F1A] p-6 md:p-8 hover:border-[#DD5013]/40 transition-colors">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <div>
-                  <h3 className="text-[#E9E4A6] text-[20px] md:text-[22px] font-extrabold" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                    🎮 New: The Roth IRA Game
-                  </h3>
-                  <p className="mt-1 font-sans text-[15px] text-[#94A3B8]">
-                    Learn how a Roth IRA works and meet 7 ETFs. Takes 3 minutes. Free cheat sheet at the end.
-                  </p>
-                </div>
-                <Link
-                  to="/roth-ira-game"
-                  className="shrink-0 inline-flex items-center justify-center font-sans font-semibold text-[14px] px-5 py-2.5 rounded-full border-2 transition-colors hover:scale-105 duration-200"
-                  style={{ borderColor: "#DD5013", color: "#E9E4A6" }}
-                >
-                  Play the game →
-                </Link>
-              </div>
-            </div>
+      {/* Explore the Site */}
+      <section className="max-w-6xl mx-auto px-6 pt-14 pb-4">
+        <div className="text-center mb-8">
+          <h2 className="font-display font-extrabold text-[28px] md:text-[32px] text-foreground">Explore the Site</h2>
+          <p className="mt-2 font-sans text-[15px] text-[#94A3B8]">Every real page, in one place.</p>
+        </div>
 
-            {/* Label IQ */}
-            <div className="mb-8 rounded-2xl border border-[#1E3A5F] bg-[#0A0F1A] p-6 md:p-8 hover:border-[#DD5013]/40 transition-colors">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <div>
-                  <h3 className="text-[#E9E4A6] text-[20px] md:text-[22px] font-extrabold" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                    📄 Free: Label IQ Cheat Sheet
-                  </h3>
-                  <p className="mt-1 font-sans text-[15px] text-[#94A3B8]">
-                    Read any food label in 10 seconds.
-                  </p>
-                </div>
-                <Link
-                  to="/resources/label-iq"
-                  className="shrink-0 inline-flex items-center justify-center font-sans font-semibold text-[14px] px-5 py-2.5 rounded-full border-2 transition-colors hover:scale-105 duration-200"
-                  style={{ borderColor: "#DD5013", color: "#E9E4A6" }}
-                >
-                  Get it free →
-                </Link>
-              </div>
-            </div>
-
-            {/* Featured: Train My AI Assistant */}
-            <div className="mb-12 bg-gradient-to-br from-[#0A0F1A] to-[#0A0F1A] border border-[#447BBE]/30 rounded-3xl p-8 md:p-10">
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
-                <div>
-                  <span className="inline-block text-[11px] font-medium tracking-widest uppercase text-[#447BBE] bg-[#447BBE]/10 border border-[#447BBE]/20 rounded-full px-3 py-1 mb-3">
-                    ⭐ START HERE
-                  </span>
-                  <h3 className="font-display font-extrabold text-[26px] md:text-[32px] text-[#F1F5F9] leading-tight">
-                    "Train My AI Assistant"
-                  </h3>
-                  <p className="font-sans text-[15px] text-[#94A3B8] mt-2 max-w-xl">
-                    The one prompt that changes everything. Paste this into Claude, ChatGPT, or any AI tool and it learns who you are, what you need, and how to help you — from the very first message.
-                  </p>
-                </div>
-                <div className="shrink-0">
-                  <CopyBlock text={TRAIN_MY_AI_PROMPT} label="Copy Full Prompt" />
+        {groupedSite.length === 0 ? (
+          <p className="text-center font-sans text-[14px] text-[#94A3B8]">No pages match “{q}”.</p>
+        ) : (
+          <div className="space-y-10">
+            {groupedSite.map(({ group, items }) => (
+              <div key={group}>
+                <h3 className="font-display font-bold text-[18px] text-[#E9E4A6] mb-4">{group}</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+                  {items.map((entry) => (
+                    <SiteCard key={entry.route} entry={entry} />
+                  ))}
                 </div>
               </div>
-              <div className="bg-[#0A0F1A] border border-[#1E3A5F] rounded-2xl p-5 max-h-64 overflow-y-auto font-mono text-[13px] text-[#94A3B8] leading-relaxed whitespace-pre-wrap">
-                {TRAIN_MY_AI_PROMPT}
-              </div>
-            </div>
-
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {PROMPTS.map((p, i) => (
-                <Card key={i} className="group hover:border-primary/50 hover:shadow-[0_0_24px_rgba(68,123,190,0.18)]">
-                  <CardContent className="p-6 flex flex-col gap-4">
-                    <div className="flex items-center gap-3">
-                      <div className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-primary-foreground font-bold text-sm shrink-0">
-                        {i + 1}
-                      </div>
-                      <h3 className="text-lg font-semibold text-foreground">{p.title}</h3>
-                    </div>
-                    <pre className="font-mono text-sm bg-[#0A0F1A] text-foreground/90 border border-primary/40 rounded-md p-4 whitespace-pre-wrap break-words overflow-x-auto">
-                      <code>{p.text}</code>
-                    </pre>
-                    <div>
-                      <CopyBlock text={p.text} label="Copy" />
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            <section className="mt-16 text-center max-w-2xl mx-auto">
-              <p className="text-base text-muted-foreground mb-4">
-                Want me to build these into your workflow?
-              </p>
-              <Button asChild size="lg">
-                <Link to="/services">→ Work With Me on AI</Link>
-              </Button>
-            </section>
+            ))}
           </div>
         )}
+      </section>
 
-        {tab === "library" && (
-          <div className="container mx-auto px-4 max-w-6xl pb-10">
-            {/* Custom Instructions */}
-            <div className="bg-[#0A0F1A] border border-[#1E3A5F] rounded-2xl p-6 mb-8">
-              <div className="flex items-start justify-between gap-4 mb-2">
-                <h3 className="font-display font-bold text-[18px] text-white">Custom Instructions</h3>
-                <CopyBlock text={CUSTOM_INSTRUCTIONS} label="Copy" />
-              </div>
-              <p className="font-sans text-[13px] text-[#94A3B8] mb-4">
-                Copy into your AI settings for a clearer, friendlier helper.
+      {/* Train My AI Assistant */}
+      <section className="container mx-auto px-4 max-w-6xl pt-16">
+        <div className="bg-gradient-to-br from-[#0A0F1A] to-[#0A0F1A] border border-[#447BBE]/30 rounded-3xl p-8 md:p-10">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+            <div>
+              <span className="inline-block text-[11px] font-medium tracking-widest uppercase text-[#447BBE] bg-[#447BBE]/10 border border-[#447BBE]/20 rounded-full px-3 py-1 mb-3">
+                ⭐ START HERE
+              </span>
+              <h3 className="font-display font-extrabold text-[26px] md:text-[32px] text-[#F1F5F9] leading-tight">
+                "Train My AI Assistant"
+              </h3>
+              <p className="font-sans text-[15px] text-[#94A3B8] mt-2 max-w-xl">
+                The one prompt that changes everything. Paste this into Claude, ChatGPT, or any AI tool and it learns who you are, what you need, and how to help you — from the very first message.
               </p>
-              <pre className="max-h-48 overflow-y-auto font-mono text-[13px] text-[#94A3B8] bg-[#0A0F1A] rounded-xl p-4 whitespace-pre-wrap">
-                {CUSTOM_INSTRUCTIONS}
-              </pre>
             </div>
-
-            {/* Search */}
-            <div className="relative mb-4">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
-                placeholder="Search prompts..."
-                className="h-11 pl-10"
-              />
+            <div className="shrink-0">
+              <CopyBlock text={TRAIN_MY_AI_PROMPT} label="Copy Full Prompt" />
             </div>
+          </div>
+          <div className="bg-[#0A0F1A] border border-[#1E3A5F] rounded-2xl p-5 max-h-64 overflow-y-auto font-mono text-[13px] text-[#94A3B8] leading-relaxed whitespace-pre-wrap">
+            {TRAIN_MY_AI_PROMPT}
+          </div>
+        </div>
+      </section>
 
-            {/* Category pills */}
-            <div className="flex flex-wrap gap-2 mb-4">
-              {CATEGORIES.map((c) => (
+      {/* Prompt Library */}
+      <section className="container mx-auto px-4 max-w-6xl pt-16">
+        <div className="text-center mb-8">
+          <h2 className="font-display font-extrabold text-[28px] md:text-[32px] text-foreground">Prompt Library</h2>
+          <p className="mt-2 font-sans text-[15px] text-[#94A3B8]">Ready-to-use prompts, organized by category.</p>
+        </div>
+
+        {/* Custom Instructions */}
+        <div className="bg-[#0A0F1A] border border-[#1E3A5F] rounded-2xl p-6 mb-8">
+          <div className="flex items-start justify-between gap-4 mb-2">
+            <h3 className="font-display font-bold text-[18px] text-white">Custom Instructions</h3>
+            <CopyBlock text={CUSTOM_INSTRUCTIONS} label="Copy" />
+          </div>
+          <p className="font-sans text-[13px] text-[#94A3B8] mb-4">
+            Copy into your AI settings for a clearer, friendlier helper.
+          </p>
+          <pre className="max-h-48 overflow-y-auto font-mono text-[13px] text-[#94A3B8] bg-[#0A0F1A] rounded-xl p-4 whitespace-pre-wrap">
+            {CUSTOM_INSTRUCTIONS}
+          </pre>
+        </div>
+
+        {/* Category pills */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          {CATEGORIES.map((c) => (
+            <button
+              key={c}
+              onClick={() => setSelectedCategory(c)}
+              className={`text-[13px] px-3 py-1.5 rounded-full transition-colors ${
+                selectedCategory === c
+                  ? "bg-[#447BBE] text-[#0A0F1A] font-semibold"
+                  : "bg-[#0A0F1A] text-[#94A3B8] border border-[#1E3A5F] hover:border-[#447BBE]/40"
+              }`}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+
+        <p className="text-sm text-muted-foreground mb-6">
+          {filteredPrompts.length} prompt{filteredPrompts.length !== 1 ? "s" : ""} found
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {filteredPrompts.map((p) => {
+            const isExpanded = expanded.includes(p.id);
+            return (
+              <div key={p.id} className="bg-[#0A0F1A] border border-[#1E3A5F] rounded-2xl p-6 flex flex-col gap-3">
+                <span className={`self-start rounded-full px-3 py-1 text-[11px] font-medium ${categoryColor[p.category] || "bg-[#1E3A5F] text-[#94A3B8]"}`}>
+                  {p.category}
+                </span>
+                <h3 className="font-display font-bold text-[17px] text-[#F1F5F9]">{p.title}</h3>
+                {p.note && (
+                  <p className="italic font-sans text-[13px] text-[#6B7280]">{p.note}</p>
+                )}
+                <pre className={`font-mono text-[13px] text-[#94A3B8] bg-[#0A0F1A] rounded-xl p-4 whitespace-pre-wrap overflow-hidden ${isExpanded ? "" : "max-h-32"}`}>
+                  {p.prompt}
+                </pre>
                 <button
-                  key={c}
-                  onClick={() => setSelectedCategory(c)}
-                  className={`text-[13px] px-3 py-1.5 rounded-full transition-colors ${
-                    selectedCategory === c
-                      ? "bg-[#447BBE] text-[#0A0F1A] font-semibold"
-                      : "bg-[#0A0F1A] text-[#94A3B8] border border-[#1E3A5F] hover:border-[#447BBE]/40"
-                  }`}
+                  onClick={() => toggleExpand(p.id)}
+                  className="self-start text-[13px] text-[#447BBE] hover:underline flex items-center gap-1"
                 >
-                  {c}
+                  {isExpanded ? (<>Collapse <ChevronUp className="w-3 h-3" /></>) : (<>Expand <ChevronDown className="w-3 h-3" /></>)}
                 </button>
-              ))}
-            </div>
+                <div>
+                  <CopyBlock text={p.prompt} label="Copy" />
+                </div>
+              </div>
+            );
+          })}
+        </div>
 
-            <p className="text-sm text-muted-foreground mb-6">
-              {filteredPrompts.length} prompt{filteredPrompts.length !== 1 ? "s" : ""} found
-            </p>
-
-            {/* Cards grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {filteredPrompts.map((p) => {
-                const isExpanded = expanded.includes(p.id);
-                return (
-                  <div key={p.id} className="bg-[#0A0F1A] border border-[#1E3A5F] rounded-2xl p-6 flex flex-col gap-3">
-                    <span className={`self-start rounded-full px-3 py-1 text-[11px] font-medium ${categoryColor[p.category] || "bg-[#1E3A5F] text-[#94A3B8]"}`}>
-                      {p.category}
-                    </span>
-                    <h3 className="font-display font-bold text-[17px] text-[#F1F5F9]">{p.title}</h3>
-                    {p.note && (
-                      <p className="italic font-sans text-[13px] text-[#6B7280]">{p.note}</p>
-                    )}
-                    <pre className={`font-mono text-[13px] text-[#94A3B8] bg-[#0A0F1A] rounded-xl p-4 whitespace-pre-wrap overflow-hidden ${isExpanded ? "" : "max-h-32"}`}>
-                      {p.prompt}
-                    </pre>
-                    <button
-                      onClick={() => toggleExpand(p.id)}
-                      className="self-start text-[13px] text-[#447BBE] hover:underline flex items-center gap-1"
-                    >
-                      {isExpanded ? (<>Collapse <ChevronUp className="w-3 h-3" /></>) : (<>Expand <ChevronDown className="w-3 h-3" /></>)}
-                    </button>
-                    <div>
-                      <CopyBlock text={p.prompt} label="Copy" />
+        {/* Bonus prompts */}
+        <div className="mt-16">
+          <h3 className="font-display font-bold text-[20px] text-[#E9E4A6] mb-6 text-center">Bonus Business Prompts</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {PROMPTS.map((p, i) => (
+              <Card key={i} className="group hover:border-primary/50 hover:shadow-[0_0_24px_rgba(68,123,190,0.18)]">
+                <CardContent className="p-6 flex flex-col gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-primary-foreground font-bold text-sm shrink-0">
+                      {i + 1}
                     </div>
+                    <h3 className="text-lg font-semibold text-foreground">{p.title}</h3>
                   </div>
-                );
-              })}
-            </div>
+                  <pre className="font-mono text-sm bg-[#0A0F1A] text-foreground/90 border border-primary/40 rounded-md p-4 whitespace-pre-wrap break-words overflow-x-auto">
+                    <code>{p.text}</code>
+                  </pre>
+                  <div>
+                    <CopyBlock text={p.text} label="Copy" />
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
-        )}
+        </div>
 
-        {tab === "notes" && <LifeNotes />}
-      </div>
+        <section className="mt-16 text-center max-w-2xl mx-auto">
+          <p className="text-base text-muted-foreground mb-4">
+            Want me to build these into your workflow?
+          </p>
+          <Button asChild size="lg">
+            <Link to="/services">→ Work With Me on AI</Link>
+          </Button>
+        </section>
+      </section>
 
       {/* Tools I Use */}
-      <section id="tools" className="max-w-6xl mx-auto px-6 pt-16 pb-16 scroll-mt-24">
+      <section id="tools" className="max-w-6xl mx-auto px-6 pt-20 pb-16 scroll-mt-24">
         <h2 className="font-display font-extrabold text-[28px] md:text-[32px] text-foreground text-center mb-2">
           Tools I Use
         </h2>
@@ -388,7 +423,6 @@ export default function Resources() {
           Everything in my stack. No fluff. No sponsorships.
         </p>
 
-        {/* Category tabs */}
         <div className="flex flex-wrap justify-center gap-2 mb-8">
           {TOOL_CATEGORIES.map((c) => {
             const isActive = toolCat === c;
@@ -450,15 +484,10 @@ export default function Resources() {
         </div>
       </section>
 
-
-      {/* Page footer */}
       <div className="max-w-6xl mx-auto px-6 pb-16 text-center">
         <p className="font-sans text-[14px] text-[#94A3B8]">
           More tools coming soon. Have a prompt to share?
-          <a
-            href="mailto:zkadtani@gmail.com"
-            className="text-[#447BBE] ml-1 hover:underline"
-          >
+          <a href="mailto:zkadtani@gmail.com" className="text-[#447BBE] ml-1 hover:underline">
             Send it over.
           </a>
         </p>
