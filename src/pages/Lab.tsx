@@ -28,7 +28,7 @@ const PROJECTS = [
 
 const Lab = () => {
   return (
-    <div className="min-h-screen bg-[#0A0F1A]">
+    <div className="min-h-screen bg-[#0F1D2E]">
       <Helmet>
         <title>The Lab — Just For Fun | Zain Adtani</title>
         <meta
@@ -53,7 +53,7 @@ const Lab = () => {
             {PROJECTS.map((p) => (
               <div
                 key={p.title}
-                className="rounded-xl overflow-hidden bg-[#0A0F1A] border border-[#1E3A5F] flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
+                className="rounded-xl overflow-hidden bg-[#0F1D2E] border border-[#1E3A5F] flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
               >
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <img src={p.image} alt={p.title} className="w-full h-full object-cover" loading="lazy" />

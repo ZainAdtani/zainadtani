@@ -5,7 +5,7 @@ export default function LabelIQ() {
 
 
   return (
-    <div className="min-h-screen bg-[#0A0F1A] text-[#F1F5F9]">
+    <div className="min-h-screen bg-[#0F1D2E] text-[#F1F5F9]">
       <Helmet>
         <title>Label IQ: Read Any Food Label in 10 Seconds</title>
         <meta

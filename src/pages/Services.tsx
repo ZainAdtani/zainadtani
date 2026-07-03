@@ -54,7 +54,7 @@ const ctaClass =
 
 function FeatureCard({ icon, title, body }: { icon: string; title: string; body: string }) {
   return (
-    <div className="bg-[#0A0F1A] border border-[#1E3A5F] rounded-2xl p-6 flex gap-4 items-start hover:border-[#447BBE]/40 transition-colors">
+    <div className="bg-[#0F1D2E] border border-[#1E3A5F] rounded-2xl p-6 flex gap-4 items-start hover:border-[#447BBE]/40 transition-colors">
       <span className="text-2xl shrink-0">{icon}</span>
       <div>
         <h4 className="font-display font-bold text-[16px] text-[#F1F5F9] mb-1">{title}</h4>
@@ -75,7 +75,7 @@ function Bullet({ children }: { children: React.ReactNode }) {
 
 export default function Services() {
   return (
-    <div className="min-h-screen bg-[#0A0F1A]">
+    <div className="min-h-screen bg-[#0F1D2E]">
       <Helmet>
         <title>Services — AI Consulting & Book Coaching | Zain Adtani</title>
         <meta
@@ -89,7 +89,7 @@ export default function Services() {
       </Helmet>
 
       {/* Section 1: Hero */}
-      <section className="bg-[#0A0F1A] pt-16 pb-20 text-center">
+      <section className="bg-[#0F1D2E] pt-16 pb-20 text-center">
         <div className="max-w-4xl mx-auto px-6">
           <span className="inline-block text-[11px] font-medium tracking-widest uppercase text-[#447BBE] bg-[#447BBE]/10 border border-[#447BBE]/20 rounded-full px-4 py-1.5 mb-6">
             REAL WORK. REAL RESULTS.
@@ -116,7 +116,7 @@ export default function Services() {
       </section>
 
       {/* Section 2: Service 01 — AI Websites */}
-      <section className="bg-[#0A0F1A] py-24 border-t border-[#1E3A5F]">
+      <section className="bg-[#0F1D2E] py-24 border-t border-[#1E3A5F]">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <div className="flex flex-col gap-6">
             <span className="text-[11px] font-medium tracking-widest uppercase text-[#447BBE] font-sans">
@@ -143,7 +143,7 @@ export default function Services() {
       </section>
 
       {/* Section 3: Service 02 — Publish Your Book */}
-      <section className="bg-[#0A0F1A] py-24 border-t border-[#1E3A5F]">
+      <section className="bg-[#0F1D2E] py-24 border-t border-[#1E3A5F]">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <div className="grid grid-cols-1 gap-4 order-2 md:order-1">
             {bookCards.map((c) => <FeatureCard key={c.title} {...c} />)}
@@ -170,7 +170,7 @@ export default function Services() {
       </section>
 
       {/* Section 4: Service 03 — AI Workflow Consulting */}
-      <section className="bg-[#0A0F1A] py-24 border-t border-[#1E3A5F]">
+      <section className="bg-[#0F1D2E] py-24 border-t border-[#1E3A5F]">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <div className="flex flex-col gap-6">
             <span className="text-[11px] font-medium tracking-widest uppercase text-[#447BBE] font-sans">
@@ -197,7 +197,7 @@ export default function Services() {
       </section>
 
       {/* Section 5: Not sure strip */}
-      <section className="bg-[#0A0F1A] py-16 border-t border-[#1E3A5F]">
+      <section className="bg-[#0F1D2E] py-16 border-t border-[#1E3A5F]">
         <div className="max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
           <div>
             <h3 className="font-display font-bold text-[28px] text-[#F1F5F9] mb-2">
