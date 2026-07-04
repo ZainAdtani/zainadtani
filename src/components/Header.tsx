@@ -159,7 +159,23 @@ export const Header = () => {
                 rel="noopener noreferrer"
                 className="px-4 py-2 font-sans text-[14px] text-[#94A3B8] hover:text-[#447BBE] transition-colors"
               >
-                LinkedIn →
+                LinkedIn — Zain Adtani →
+              </a>
+              <a
+                href="https://www.linkedin.com/company/adtani-education-ventures"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 font-sans text-[14px] text-[#94A3B8] hover:text-[#447BBE] transition-colors"
+              >
+                LinkedIn Page — Adtani Education Ventures →
+              </a>
+              <a
+                href="https://instagram.com/zainadtani"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 font-sans text-[14px] text-[#94A3B8] hover:text-[#447BBE] transition-colors"
+              >
+                Instagram →
               </a>
               <a
                 href="https://youtube.com/@zainadtani"
@@ -168,6 +184,14 @@ export const Header = () => {
                 className="px-4 py-2 font-sans text-[14px] text-[#94A3B8] hover:text-[#447BBE] transition-colors"
               >
                 YouTube →
+              </a>
+              <a
+                href="https://the-z-letter.beehiiv.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 font-sans text-[14px] text-[#94A3B8] hover:text-[#447BBE] transition-colors"
+              >
+                The Z Letter (Newsletter) →
               </a>
               <a
                 href="https://calendly.com/zkadtani"
