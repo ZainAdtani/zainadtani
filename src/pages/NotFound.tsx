@@ -29,12 +29,13 @@ const NotFound = () => {
         </p>
 
         <h1 className="text-3xl md:text-5xl mb-4">
-          This page wandered off.
+          404: Nothing To See Here (Yet)
         </h1>
 
         <p className="text-lg md:text-xl mb-10 max-w-md mx-auto" style={{ color: "rgba(255,255,255,0.7)" }}>
-          The link is broken or the page moved. Let's get you somewhere useful.
+          This page either moved, got deleted, or never existed. Kind of like a New Year's resolution. Let's get you somewhere real.
         </p>
+
 
         <div className="flex flex-wrap gap-3 justify-center">
           <Button asChild size="lg">
