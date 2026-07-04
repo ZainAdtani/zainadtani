@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Linkedin, Youtube, Menu, X } from "lucide-react";
+import { Linkedin, Youtube, Instagram, Building2, Mail, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import zaLogo from "@/assets/za_logo.png";
