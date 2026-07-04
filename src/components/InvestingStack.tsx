@@ -60,7 +60,7 @@ export function InvestingStack() {
   const current = TABS.find((t) => t.key === active)!;
 
   return (
-    <section id="investing" className="py-20 bg-[#0F1D2E]">
+    <section id="investing" className="py-20 bg-[#0A0F1A]">
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="text-center mb-10">
           <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE]">

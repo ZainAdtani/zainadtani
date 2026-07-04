@@ -9,7 +9,7 @@ export default function Money() {
   const [copied, setCopied] = useState(false);
 
   const cardStyle = {
-    background: "linear-gradient(180deg, #0F1626 0%, #0F1D2E 100%)",
+    background: "linear-gradient(180deg, #0F1626 0%, #0A0F1A 100%)",
     border: "1px solid #1a2a45",
     boxShadow: "0 0 24px rgba(68,123,190,0.12), 0 12px 40px rgba(0,0,0,0.4)",
   } as const;
@@ -20,7 +20,7 @@ export default function Money() {
   } as const;
 
   return (
-    <div className="min-h-screen bg-[#0F1D2E] py-20 px-6">
+    <div className="min-h-screen bg-[#0A0F1A] py-20 px-6">
       <Helmet>
         <title>The Money Page · Zain Adtani</title>
         <meta name="robots" content="noindex,nofollow" />

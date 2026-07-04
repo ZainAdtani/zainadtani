@@ -335,7 +335,7 @@ const TimelineEvent = ({
           backgroundColor: "#DD5013",
           [side === "left" ? "right" : "left"]: "-49px",
           animation: "hpPulse 2s infinite",
-          boxShadow: "0 0 0 3px #0F1D2E",
+          boxShadow: "0 0 0 3px #0A0F1A",
         }}
       />
       <div
@@ -458,7 +458,7 @@ const HarryPotter = () => {
   };
 
   return (
-    <div className="min-h-screen relative" style={{ backgroundColor: "#0F1D2E" }}>
+    <div className="min-h-screen relative" style={{ backgroundColor: "#0A0F1A" }}>
       <Helmet>
         <title>Harry Potter World — Zain Adtani</title>
         <meta name="description" content="Seven books. One journey. Every moment that mattered." />
@@ -472,9 +472,9 @@ const HarryPotter = () => {
           100% { opacity: 0; transform: translateY(-120px); }
         }
         @keyframes hpPulse {
-          0% { box-shadow: 0 0 0 0 rgba(221,80,19,0.5), 0 0 0 3px #0F1D2E; }
-          70% { box-shadow: 0 0 0 8px rgba(221,80,19,0), 0 0 0 3px #0F1D2E; }
-          100% { box-shadow: 0 0 0 0 rgba(221,80,19,0), 0 0 0 3px #0F1D2E; }
+          0% { box-shadow: 0 0 0 0 rgba(221,80,19,0.5), 0 0 0 3px #0A0F1A; }
+          70% { box-shadow: 0 0 0 8px rgba(221,80,19,0), 0 0 0 3px #0A0F1A; }
+          100% { box-shadow: 0 0 0 0 rgba(221,80,19,0), 0 0 0 3px #0A0F1A; }
         }
         @keyframes hpChevron {
           0%,100% { transform: translateY(0); }
@@ -732,7 +732,7 @@ const HarryPotter = () => {
                         <div className="flex justify-center relative" style={{ zIndex: 2 }}>
                           <div
                             style={{
-                              backgroundColor: "#0F1D2E",
+                              backgroundColor: "#0A0F1A",
                               border: "1px solid #447BBE",
                               borderRadius: 999,
                               padding: "8px 24px",

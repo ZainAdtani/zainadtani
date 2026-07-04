@@ -104,14 +104,14 @@ export const Header = () => {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden border-t border-[#2C4A73] bg-[#0F1D2E]">
+        <div className="md:hidden border-t border-[#2C4A73] bg-[#0A0F1A]">
           <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
             {TOP_NAV.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
                 onClick={() => setMobileOpen(false)}
-                className="px-4 py-3 rounded-xl font-sans font-medium text-[15px] text-[#F1F5F9] hover:bg-[#0F1D2E] hover:text-[#447BBE] transition-colors"
+                className="px-4 py-3 rounded-xl font-sans font-medium text-[15px] text-[#F1F5F9] hover:bg-[#0A0F1A] hover:text-[#447BBE] transition-colors"
               >
                 {item.label}
               </Link>

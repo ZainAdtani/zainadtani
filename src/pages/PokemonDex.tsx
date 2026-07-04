@@ -60,7 +60,7 @@ const FactCard = ({ emoji, text, index }: { emoji: string; text: string; index: 
 
 const PokemonDex = () => {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#0F1D2E" }}>
+    <div className="min-h-screen" style={{ backgroundColor: "#0A0F1A" }}>
       <Helmet>
         <title>Zain's Notion Pokédex — Zain Adtani</title>
         <meta name="description" content="All 151 original Pokémon. Built in Notion." />
@@ -82,7 +82,7 @@ const PokemonDex = () => {
       {/* Hero */}
       <section className="relative w-full h-[360px] md:h-[480px] overflow-hidden mt-4">
         <img src={pokemonImg} alt="Pokemon" className="w-full h-full object-cover" />
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0F1D2E] via-[#0F1D2E]/80 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0A0F1A] via-[#0A0F1A]/80 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 p-8 md:p-12 text-center">
           <h1 className="text-[#F1F5F9] text-4xl md:text-6xl" style={{ fontFamily: '"Luckiest Guy", cursive' }}>
             Zain's Notion Pokédex

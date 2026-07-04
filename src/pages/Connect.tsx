@@ -19,7 +19,7 @@ const Connect = () => {
   const [protState, protHandleSubmit] = useForm("mnjyeeyj");
 
   return (
-    <div className="min-h-screen bg-[#0F1D2E] text-white">
+    <div className="min-h-screen bg-[#0A0F1A] text-white">
       <Helmet>
         <title>Connect with Zain Adtani | Income Opportunity & Family Protection</title>
         <meta

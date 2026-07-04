@@ -57,7 +57,7 @@ const FUN_PROJECTS: FunProject[] = [
 function FunProjectCard({ project }: { project: FunProject }) {
   return (
     <div
-      className="rounded-xl overflow-hidden bg-[#0F1D2E] border border-[#2C4A73] flex flex-col transition-all duration-200 ease-out hover:-translate-y-1"
+      className="rounded-xl overflow-hidden bg-[#0A0F1A] border border-[#2C4A73] flex flex-col transition-all duration-200 ease-out hover:-translate-y-1"
       onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.3)")}
       onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "")}
     >
@@ -183,7 +183,7 @@ function HeroBlock({ headshotImage }: { headshotImage: string }) {
       {/* Right: photo — fully visible (object-contain), never crops */}
       <div className="order-1 md:order-2 flex items-center justify-center md:py-8">
         <div
-          className="relative rounded-full overflow-hidden bg-[#0F1D2E] flex items-center justify-center"
+          className="relative rounded-full overflow-hidden bg-[#0A0F1A] flex items-center justify-center"
           style={{
             width: "min(80vw, 320px)",
             height: "min(80vw, 320px)",
@@ -363,13 +363,13 @@ const Index = () => {
 
       {/* Hero Section */}
       <section
-        className="relative w-full pt-8 pb-12 overflow-hidden bg-[#0F1D2E]"
+        className="relative w-full pt-8 pb-12 overflow-hidden bg-[#0A0F1A]"
       >
         <HeroBlock headshotImage={headshotImage} />
       </section>
 
       {/* ZAP REST — Featured Book */}
-      <section className="bg-[#0F1D2E] py-14">
+      <section className="bg-[#0A0F1A] py-14">
         <div className="container mx-auto px-6 max-w-4xl">
           <div className="flex flex-col md:flex-row items-center gap-10 bg-[#0E1628] border border-[#447BBE] rounded-2xl p-8 md:p-10">
             {/* Book Cover */}
@@ -424,7 +424,7 @@ const Index = () => {
 
       {/* How I Help */}
       <ScrollReveal delay={50}>
-      <section id="how-i-help" className="bg-[#0F1D2E] py-20">
+      <section id="how-i-help" className="bg-[#0A0F1A] py-20">
         <div className="container mx-auto px-6 max-w-6xl">
           <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE] text-center">HOW I HELP</p>
           <h2 className="font-display font-extrabold text-[36px] md:text-[44px] leading-[1.15] text-[#447BBE] text-center mt-3">
@@ -438,7 +438,7 @@ const Index = () => {
             ].map((c) => (
               <div
                 key={c.title}
-                className="bg-[#0F1D2E] border border-[#2C4A73] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
+                className="bg-[#0A0F1A] border border-[#2C4A73] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
               >
                 <h3 className="font-display font-extrabold text-[22px] text-[#447BBE]">{c.title}</h3>
                 <p className="font-sans text-[15px] text-white mt-3 flex-1">{c.body}</p>
@@ -461,7 +461,7 @@ const Index = () => {
 
       {/* Follow The Build — Social Pills */}
       <ScrollReveal delay={50}>
-      <section className="bg-[#0F1D2E] py-20">
+      <section className="bg-[#0A0F1A] py-20">
         <div className="container mx-auto px-6 max-w-4xl text-center">
           <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE]">FOLLOW THE BUILD</p>
           <h2 className="font-display font-extrabold text-[40px] md:text-[52px] leading-[1.15] text-[#E9E4A6] mt-3">
@@ -500,7 +500,7 @@ const Index = () => {
 
       {/* Selected Work */}
       <ScrollReveal delay={50}>
-      <section className="bg-[#0F1D2E] py-20">
+      <section className="bg-[#0A0F1A] py-20">
         <div className="container mx-auto px-6 max-w-6xl">
           <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE] text-center">SELECTED WORK</p>
           <h2 className="font-display font-extrabold text-[36px] md:text-[44px] leading-[1.15] text-[#447BBE] text-center mt-3">
@@ -514,7 +514,7 @@ const Index = () => {
             ].map((c) => (
               <div
                 key={c.title}
-                className="bg-[#0F1D2E] border border-[#2C4A73] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
+                className="bg-[#0A0F1A] border border-[#2C4A73] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
               >
                 <h3 className="font-display font-extrabold text-[20px] text-[#447BBE]">{c.title}</h3>
                 <p className="font-sans text-[15px] text-white mt-3 flex-1">{c.body}</p>
@@ -529,7 +529,7 @@ const Index = () => {
       <div className="h-px max-w-4xl mx-auto bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       {/* Three Problems. One Trusted Partner. */}
-      <section className="bg-[#0F1D2E] py-20">
+      <section className="bg-[#0A0F1A] py-20">
         <div className="container mx-auto px-6 max-w-6xl">
           <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE] text-center">THREE PROBLEMS. ONE TRUSTED PARTNER.</p>
           <h2 className="font-display font-extrabold text-[36px] md:text-[44px] leading-[1.15] text-[#447BBE] text-center mt-3">
@@ -543,7 +543,7 @@ const Index = () => {
             ].map((c) => (
               <div
                 key={c.title}
-                className="bg-[#0F1D2E] border border-[#2C4A73] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
+                className="bg-[#0A0F1A] border border-[#2C4A73] rounded-[14px] p-8 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
               >
                 <h3 className="font-display font-extrabold text-[20px] text-[#447BBE]">{c.title}</h3>
                 <p className="font-sans text-[15px] text-white mt-3 flex-1">{c.body}</p>
@@ -566,7 +566,7 @@ const Index = () => {
 
       {/* Newsletter — The Z Letter */}
       <ScrollReveal delay={100}>
-      <section id="z-letter" className="py-20 bg-[#0F1D2E]">
+      <section id="z-letter" className="py-20 bg-[#0A0F1A]">
         <div className="container mx-auto px-6 max-w-2xl">
           <div className="text-center">
             <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE]">FREE WEEKLY NEWSLETTER</p>
@@ -583,7 +583,7 @@ const Index = () => {
               id="zletterEmail"
               type="email"
               placeholder="you@email.com"
-              className="w-full bg-[#0F1D2E] border border-[#2C4A73] rounded-xl px-5 py-3.5 font-sans text-[15px] text-[#F1F5F9] placeholder-[#6B7280] focus:outline-none focus:border-[#447BBE] transition-colors"
+              className="w-full bg-[#0A0F1A] border border-[#2C4A73] rounded-xl px-5 py-3.5 font-sans text-[15px] text-[#F1F5F9] placeholder-[#6B7280] focus:outline-none focus:border-[#447BBE] transition-colors"
             />
             <button
               type="button"
@@ -613,7 +613,7 @@ const Index = () => {
 
       {/* Financial Education */}
       <ScrollReveal delay={50}>
-      <section className="py-20 bg-[#0F1D2E]">
+      <section className="py-20 bg-[#0A0F1A]">
         <div className="container mx-auto px-6 max-w-3xl text-center">
           <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#DD5013]">
             FINANCIAL EDUCATION
@@ -669,7 +669,7 @@ const Index = () => {
           <div
             className="mt-8 mx-auto max-w-2xl rounded-2xl p-8 md:p-10"
             style={{
-              background: "linear-gradient(180deg, #0F1626 0%, #0F1D2E 100%)",
+              background: "linear-gradient(180deg, #0F1626 0%, #0A0F1A 100%)",
               border: "1px solid #447BBE",
               boxShadow: "0 0 32px rgba(68,123,190,0.18), 0 20px 60px rgba(0,0,0,0.5)",
             }}
@@ -726,7 +726,7 @@ const Index = () => {
 
       {/* Final CTA — Let's Work Together */}
       <ScrollReveal delay={50}>
-      <section id="contact" className="py-20 bg-[#0F1D2E]">
+      <section id="contact" className="py-20 bg-[#0A0F1A]">
         <div className="container mx-auto px-6 max-w-2xl text-center">
           <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE]">LET'S WORK TOGETHER</p>
           <h2 className="font-display font-extrabold text-[40px] md:text-[48px] leading-[1.15] text-[#447BBE] mt-3">
