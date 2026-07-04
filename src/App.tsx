@@ -17,13 +17,13 @@ import Investing from "./pages/Investing";
 
 import DigitalProductsPage from "./pages/DigitalProductsPage";
 import LifeNotes from "./pages/LifeNotes";
-import Archive from "./pages/Archive";
+
 
 import Services from "./pages/Services";
 import Prompts from "./pages/Prompts";
 import HarryPotter from "./pages/HarryPotter";
 import PokemonDex from "./pages/PokemonDex";
-import Money from "./pages/Money";
+
 import LabelIQ from "./pages/LabelIQ";
 import Lab from "./pages/Lab";
 import Connect from "./pages/Connect";
@@ -62,13 +62,13 @@ const App = () => (
                   <Route path="/resources" element={<Resources />} />
                   <Route path="/ai-prompts" element={<AIPrompts />} />
                   <Route path="/life-notes" element={<LifeNotes />} />
-                  <Route path="/archive" element={<Archive />} />
+                  
                   <Route path="/services" element={<Services />} />
                   <Route path="/connect" element={<Connect />} />
                   <Route path="/prompts" element={<Prompts />} />
                   <Route path="/harry-potter" element={<HarryPotter />} />
                   <Route path="/pokedex" element={<PokemonDex />} />
-                  <Route path="/money" element={<Money />} />
+                  
                   <Route path="/resources/label-iq" element={<LabelIQ />} />
                   <Route path="/family-protection-gap" element={<FamilyProtectionGap />} />
                   <Route path="/roth-ira-game" element={<RothIRAGame />} />

@@ -53,7 +53,7 @@ const SITE_MAP: SiteEntry[] = [
 
   // Money & Business
   { group: "Money & Business", route: "/investing", title: "Investing — Simple Long-Term Money Philosophy", desc: "Zain Adtani's plain-English investing philosophy — simple, steady steps to grow your money over decades without the noise, hype, or stock tips." },
-  { group: "Money & Business", route: "/money", title: "The Money Page", desc: "For people who actually want to understand how money works. No ads. No pitch. Just the stuff nobody teaches you." },
+  
   { group: "Money & Business", route: "/family-protection-gap", title: "The Family Protection Gap", desc: "A plain-language guide to help families understand the gap between job benefits, savings, retirement accounts, and real protection. Free PDF." },
   { group: "Money & Business", route: "/digital-products", title: "Digital Product HQ", desc: "Browse courses, guides, templates, and tools to help small businesses use AI and everyday people publish their first book." },
   { group: "Money & Business", route: "/services", title: "Services — AI Consulting & Book Coaching", desc: "AI websites, book publishing help, and AI workflow consulting — practical services for small businesses and first-time authors in DFW Texas." },
@@ -65,7 +65,7 @@ const SITE_MAP: SiteEntry[] = [
   { group: "Guides & Library", route: "/prompts", title: "AI Starter Prompts", desc: "10 free AI starter prompts you can steal and use today. No signup required." },
   { group: "Guides & Library", route: "/tools", title: "Tools — Software I Use Every Day", desc: "A categorized list of the software, AI tools, and apps I use every day for building, writing, designing, automating, and running a small business." },
   { group: "Guides & Library", route: "/life-notes", title: "Life Notes", desc: "Short, searchable life notes — bite-sized ideas, lessons, and reminders on work, money, parenting, and personal growth, easy to copy and re-use." },
-  { group: "Guides & Library", route: "/archive", title: "Archive", desc: "Old pages kept for reference." },
+  
 
   // About & Contact
   { group: "About & Contact", route: "/", title: "Home", desc: "AI Consultant, Author, and Financial Educator based in DFW Texas. I help small businesses run on AI, help creators publish books, and help families protect what they build." },

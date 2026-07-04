@@ -11,6 +11,10 @@ interface Prompt {
 
 const PROMPTS: Prompt[] = [
   {
+    title: "Run Your Business with AI",
+    text: "You are an AI business assistant for [Business Name], a [type of business] in [city]. Your job is to help the owner answer customer questions, summarize emails, draft responses, and save time on admin tasks. Always be professional, friendly, and brief. Never make up information. If you don't know something, say so.",
+  },
+  {
     title: "Remove Bottlenecks",
     text: "I run a [type of business]. What are 3 things I could delegate or automate with AI right now that would give me back the most time? Be specific, not generic.",
   },
