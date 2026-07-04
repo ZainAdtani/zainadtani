@@ -65,10 +65,29 @@ export const Header = () => {
               href="https://linkedin.com/in/zainadtani"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="LinkedIn"
+              aria-label="LinkedIn — Zain Adtani"
               className="text-[#94A3B8] hover:text-[#447BBE] transition-colors"
             >
               <Linkedin className="h-5 w-5" />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/adtani-education-ventures"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn Page — Adtani Education Ventures"
+              title="Adtani Education Ventures"
+              className="text-[#94A3B8] hover:text-[#447BBE] transition-colors"
+            >
+              <Building2 className="h-5 w-5" />
+            </a>
+            <a
+              href="https://instagram.com/zainadtani"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="text-[#94A3B8] hover:text-[#447BBE] transition-colors"
+            >
+              <Instagram className="h-5 w-5" />
             </a>
             <a
               href="https://youtube.com/@zainadtani"
@@ -78,6 +97,16 @@ export const Header = () => {
               className="text-[#94A3B8] hover:text-[#447BBE] transition-colors"
             >
               <Youtube className="h-5 w-5" />
+            </a>
+            <a
+              href="https://the-z-letter.beehiiv.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="The Z Letter newsletter"
+              title="The Z Letter"
+              className="text-[#94A3B8] hover:text-[#447BBE] transition-colors"
+            >
+              <Mail className="h-5 w-5" />
             </a>
           </div>
 
