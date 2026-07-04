@@ -89,7 +89,7 @@ export default function Prompts() {
                   </div>
                   <h3 className="text-lg font-semibold text-foreground">{p.title}</h3>
                 </div>
-                <pre className="font-mono text-sm bg-[#0F1D2E] text-foreground/90 border border-primary/40 rounded-md p-4 whitespace-pre-wrap break-words overflow-x-auto">
+                <pre className="font-mono text-sm bg-[#0A0F1A] text-foreground/90 border border-primary/40 rounded-md p-4 whitespace-pre-wrap break-words overflow-x-auto">
                   <code>{p.text}</code>
                 </pre>
                 <div>

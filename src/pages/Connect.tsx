@@ -19,7 +19,7 @@ const Connect = () => {
   const [protState, protHandleSubmit] = useForm("mnjyeeyj");
 
   return (
-    <div className="min-h-screen bg-[#0F1D2E] text-white">
+    <div className="min-h-screen bg-[#0A0F1A] text-white">
       <Helmet>
         <title>Connect with Zain Adtani | Income Opportunity & Family Protection</title>
         <meta
@@ -263,6 +263,65 @@ const Connect = () => {
           )}
         </div>
       </section>
+
+      <div className="max-w-4xl mx-auto border-t border-white/10" />
+
+      {/* WHERE TO FIND ME + FOCUS */}
+      <section className="container mx-auto px-4 py-20 max-w-5xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Left: Websites & Social */}
+          <div className="bg-[#0E1628] border border-[#2C4A73] rounded-[16px] p-7">
+            <h2 className="font-display text-[28px] md:text-[32px] leading-none text-white mb-6">
+              Websites &amp; Social
+            </h2>
+            <ul className="space-y-3.5 font-sans text-[15px]">
+              {[
+                { label: "Website", value: "zainadtani.com", href: "https://zainadtani.com" },
+                { label: "Instagram", value: "@zainadtani", href: "https://instagram.com/zainadtani" },
+                { label: "LinkedIn", value: "Zain Adtani", href: "https://linkedin.com/in/zainadtani" },
+                { label: "LinkedIn Page", value: "Adtani Education Ventures", href: "https://www.linkedin.com/company/adtani-education-ventures" },
+                { label: "YouTube", value: "Build Then Protect", href: "https://youtube.com/@zainadtani" },
+                { label: "Newsletter", value: "The Z Letter (Beehiiv)", href: "https://the-z-letter.beehiiv.com" },
+              ].map((row) => (
+                <li key={row.label} className="flex flex-col sm:flex-row sm:items-baseline sm:gap-3">
+                  <span className="font-display-sans font-extrabold text-[13px] uppercase tracking-wider text-[#E9E4A6] min-w-[130px]">
+                    {row.label}
+                  </span>
+                  <a
+                    href={row.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/90 hover:text-[#447BBE] underline-offset-4 hover:underline transition-colors"
+                  >
+                    {row.value}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Right: Focus */}
+          <div className="bg-[#0E1628] border border-[#DD5013]/50 rounded-[16px] p-7">
+            <h2 className="font-display text-[28px] md:text-[32px] leading-none text-white mb-6">
+              Focus
+            </h2>
+            <ul className="space-y-3.5 font-sans text-[15px] text-white/90">
+              {[
+                "AI Consulting for small businesses",
+                "Websites, automations & AI workflows",
+                "Author / Publishing",
+                "Financial Education & Family Protection",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#DD5013] shrink-0" />
+                  <span className="font-display-sans font-extrabold text-[15px] leading-snug">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
 
       {/* PAGE FOOTER STRIP */}
       <footer className="border-t border-white/10">

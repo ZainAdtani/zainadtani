@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Linkedin, Youtube, Menu, X } from "lucide-react";
+import { Linkedin, Youtube, Instagram, Building2, Mail, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import zaLogo from "@/assets/za_logo.png";
@@ -65,10 +65,29 @@ export const Header = () => {
               href="https://linkedin.com/in/zainadtani"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="LinkedIn"
+              aria-label="LinkedIn — Zain Adtani"
               className="text-[#94A3B8] hover:text-[#447BBE] transition-colors"
             >
               <Linkedin className="h-5 w-5" />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/adtani-education-ventures"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn Page — Adtani Education Ventures"
+              title="Adtani Education Ventures"
+              className="text-[#94A3B8] hover:text-[#447BBE] transition-colors"
+            >
+              <Building2 className="h-5 w-5" />
+            </a>
+            <a
+              href="https://instagram.com/zainadtani"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="text-[#94A3B8] hover:text-[#447BBE] transition-colors"
+            >
+              <Instagram className="h-5 w-5" />
             </a>
             <a
               href="https://youtube.com/@zainadtani"
@@ -78,6 +97,16 @@ export const Header = () => {
               className="text-[#94A3B8] hover:text-[#447BBE] transition-colors"
             >
               <Youtube className="h-5 w-5" />
+            </a>
+            <a
+              href="https://the-z-letter.beehiiv.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="The Z Letter newsletter"
+              title="The Z Letter"
+              className="text-[#94A3B8] hover:text-[#447BBE] transition-colors"
+            >
+              <Mail className="h-5 w-5" />
             </a>
           </div>
 
@@ -104,14 +133,14 @@ export const Header = () => {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden border-t border-[#2C4A73] bg-[#0F1D2E]">
+        <div className="md:hidden border-t border-[#2C4A73] bg-[#0A0F1A]">
           <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
             {TOP_NAV.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
                 onClick={() => setMobileOpen(false)}
-                className="px-4 py-3 rounded-xl font-sans font-medium text-[15px] text-[#F1F5F9] hover:bg-[#0F1D2E] hover:text-[#447BBE] transition-colors"
+                className="px-4 py-3 rounded-xl font-sans font-medium text-[15px] text-[#F1F5F9] hover:bg-[#0A0F1A] hover:text-[#447BBE] transition-colors"
               >
                 {item.label}
               </Link>
@@ -130,7 +159,23 @@ export const Header = () => {
                 rel="noopener noreferrer"
                 className="px-4 py-2 font-sans text-[14px] text-[#94A3B8] hover:text-[#447BBE] transition-colors"
               >
-                LinkedIn →
+                LinkedIn — Zain Adtani →
+              </a>
+              <a
+                href="https://www.linkedin.com/company/adtani-education-ventures"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 font-sans text-[14px] text-[#94A3B8] hover:text-[#447BBE] transition-colors"
+              >
+                LinkedIn Page — Adtani Education Ventures →
+              </a>
+              <a
+                href="https://instagram.com/zainadtani"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 font-sans text-[14px] text-[#94A3B8] hover:text-[#447BBE] transition-colors"
+              >
+                Instagram →
               </a>
               <a
                 href="https://youtube.com/@zainadtani"
@@ -139,6 +184,14 @@ export const Header = () => {
                 className="px-4 py-2 font-sans text-[14px] text-[#94A3B8] hover:text-[#447BBE] transition-colors"
               >
                 YouTube →
+              </a>
+              <a
+                href="https://the-z-letter.beehiiv.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 font-sans text-[14px] text-[#94A3B8] hover:text-[#447BBE] transition-colors"
+              >
+                The Z Letter (Newsletter) →
               </a>
               <a
                 href="https://calendly.com/zkadtani"
