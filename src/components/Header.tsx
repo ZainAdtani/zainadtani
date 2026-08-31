@@ -43,7 +43,7 @@ export const Header = () => {
               className={`px-3 py-2 rounded-lg font-sans font-medium text-[15px] transition-colors ${
                 isActive(item.path)
                   ? "text-[#2F5C90] bg-[#447BBE]/10"
-                  : "text-[#0A0F1A] hover:text-[#2F5C90] hover:bg-[#447BBE]/07"
+                  : "text-[#0A0F1A] hover:text-[#2F5C90] hover:bg-[#447BBE]/5"
               }`}
             >
               {item.label}
@@ -84,7 +84,7 @@ export const Header = () => {
                 className={`flex items-center min-h-[48px] px-4 rounded-xl font-sans font-medium text-[16px] transition-colors ${
                   isActive(item.path)
                     ? "text-[#2F5C90] bg-[#447BBE]/10"
-                    : "text-[#0A0F1A] hover:bg-[#447BBE]/08"
+                    : "text-[#0A0F1A] hover:bg-[#447BBE]/5"
                 }`}
               >
                 {item.label}
