@@ -32,7 +32,7 @@ const Connect = () => {
       <section className="container mx-auto px-4 pt-20 pb-16 max-w-5xl">
         <h1
           className="font-display text-[56px] md:text-[88px] leading-[0.95] text-[#0A0F1A] text-center"
-          style={{ textShadow: "0 2px 20px rgba(255,255,255,0.08)" }}
+          style={{ }}
         >
           Let's Talk.
         </h1>
@@ -78,7 +78,7 @@ const Connect = () => {
         <div className="text-[12px] tracking-[0.22em] font-semibold text-[#2F5C90] mb-4">INCOME OPPORTUNITY</div>
         <h2
           className="font-display text-[40px] md:text-[56px] leading-[1] text-[#0A0F1A]"
-          style={{ letterSpacing: "-0.5px", textShadow: "0 2px 16px rgba(0,0,0,0.35)" }}
+          style={{ letterSpacing: "-0.5px", }}
         >
           Build something of your own. On your terms.
         </h2>
@@ -175,7 +175,7 @@ const Connect = () => {
         <div className="text-[12px] tracking-[0.22em] font-semibold text-[#DD5013] mb-4">FAMILY PROTECTION</div>
         <h2
           className="font-display text-[40px] md:text-[56px] leading-[1] text-[#0A0F1A]"
-          style={{ letterSpacing: "-0.5px", textShadow: "0 2px 16px rgba(0,0,0,0.35)" }}
+          style={{ letterSpacing: "-0.5px", }}
         >
           Is your family covered if life gets hard?
         </h2>

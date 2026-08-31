@@ -214,7 +214,7 @@ const Index = () => {
       <section className="bg-gradient-hero">
         <div className="container mx-auto px-5 sm:px-6 max-w-6xl py-12 md:py-20">
           <div className="grid md:grid-cols-[1.15fr_1fr] gap-10 md:gap-14 items-center">
-            <div className="flex flex-col gap-5 order-2 md:order-1">
+            <div className="flex flex-col gap-5">
               <span className="inline-flex w-fit items-center rounded-full bg-white border border-[#447BBE]/25 px-4 py-1.5 font-sans text-[12px] font-semibold tracking-[0.12em] uppercase text-[#2F5C90]">
                 AI Consultant · Author · Financial Educator
               </span>
@@ -249,7 +249,7 @@ const Index = () => {
             </div>
 
             {/* Portrait — 4:5 card, fully visible, never cropped */}
-            <div className="order-1 md:order-2 flex justify-center md:justify-end">
+            <div className="flex justify-center md:justify-end">
               <div className="w-full max-w-[300px] sm:max-w-[340px] rounded-2xl border border-[#447BBE]/20 bg-white p-3 shadow-[0_8px_28px_rgba(10,15,26,0.08)]">
                 <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#F3F6FA] flex items-center justify-center">
                   <img
