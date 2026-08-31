@@ -251,7 +251,7 @@ const Index = () => {
             {/* Portrait — 4:5 card, fully visible, never cropped */}
             <div className="order-1 md:order-2 flex justify-center md:justify-end">
               <div className="w-full max-w-[300px] sm:max-w-[340px] rounded-2xl border border-[#447BBE]/20 bg-white p-3 shadow-[0_8px_28px_rgba(10,15,26,0.08)]">
-                <div className="w-full aspect-[4/5] rounded-xl overflow-hidden surface-warm flex items-center justify-center">
+                <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#F3F6FA] flex items-center justify-center">
                   <img
                     src={headshotImage}
                     alt="Zain Adtani, AI Consultant, Author, and Financial Educator"
