@@ -2,6 +2,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { BackToTop } from "./BackToTop";
 import { ReadingProgressBar } from "./ReadingProgressBar";
+import { ScrollToHash } from "./ScrollToHash";
 import { Header } from "./Header";
 import { AIChatWidget } from "./AIChatWidget";
 import { Link } from "react-router-dom";
@@ -40,6 +41,7 @@ export function AppLayout({ children }: AppLayoutProps) {
 function LayoutShell({ children }: { children: ReactNode }) {
   return (
     <>
+      <ScrollToHash />
       <ReadingProgressBar />
       {/* Single document scroll — no nested scroll container, so reveal effects
           and full-page rendering always see real viewport intersections. */}
