@@ -152,10 +152,10 @@ export default function AiSongs() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#0A0F1A] drop-shadow-lg">
               AI Songs
             </h1>
-            <p className="text-lg text-white/90 max-w-2xl mx-auto drop-shadow-md">
+            <p className="text-lg text-[#0A0F1A]/75 max-w-2xl mx-auto drop-shadow-md">
               Fun study music made with AI to help you remember tricky topics.
             </p>
           </div>

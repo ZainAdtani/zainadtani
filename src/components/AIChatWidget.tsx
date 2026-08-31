@@ -120,24 +120,24 @@ export function AIChatWidget() {
         <button
           onClick={() => setOpen(true)}
           aria-label="Open chat assistant"
-          className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-[0_4px_24px_rgba(68,123,190,0.45)] hover:shadow-[0_6px_32px_rgba(68,123,190,0.6)] hover:scale-105 transition-all duration-300 flex items-center justify-center animate-pulse-soft"
+          className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#DD5013] text-white shadow-[0_6px_20px_rgba(10,15,26,0.18)] hover:bg-[#C4460F] transition-colors flex items-center justify-center"
         >
           <MessageCircle className="w-6 h-6" />
         </button>
       )}
 
       {open && (
-        <div className="fixed inset-0 sm:inset-auto sm:bottom-6 sm:right-6 z-50 sm:w-[400px] sm:h-[540px] flex flex-col bg-[#0F1419] sm:rounded-2xl border border-border shadow-2xl overflow-hidden">
+        <div className="fixed inset-0 sm:inset-auto sm:bottom-6 sm:right-6 z-50 sm:w-[400px] sm:h-[540px] flex flex-col bg-white sm:rounded-2xl border border-[#447BBE]/20 shadow-[0_12px_40px_rgba(10,15,26,0.16)] overflow-hidden">
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 border-b border-border/50 bg-background/40">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-[#447BBE]/15 bg-[#447BBE]/5">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-sm font-semibold text-foreground">Ask me anything about Zain's work</span>
+              <div className="w-2 h-2 rounded-full bg-[#447BBE]" />
+              <span className="text-sm font-semibold text-[#0A0F1A]">Ask me anything about Zain's work</span>
             </div>
             <button
               onClick={() => setOpen(false)}
               aria-label="Close chat"
-              className="p-1 rounded hover:bg-muted/30 text-muted-foreground hover:text-foreground transition-colors"
+              className="p-1 rounded hover:bg-[#447BBE]/10 text-[#0A0F1A]/60 hover:text-[#0A0F1A] transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -150,8 +150,8 @@ export function AIChatWidget() {
                 <div
                   className={`max-w-[80%] px-3 py-2 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${
                     m.role === "user"
-                      ? "bg-primary text-primary-foreground rounded-br-sm"
-                      : "bg-[#1A1F2E] text-foreground rounded-bl-sm"
+                      ? "bg-[#447BBE] text-white rounded-br-sm"
+                      : "bg-[#F3F6FA] text-[#0A0F1A] rounded-bl-sm"
                   }`}
                 >
                   {m.content}
@@ -160,23 +160,23 @@ export function AIChatWidget() {
             ))}
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-[#1A1F2E] px-3 py-2 rounded-2xl rounded-bl-sm flex gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce" style={{ animationDelay: "120ms" }} />
-                  <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce" style={{ animationDelay: "240ms" }} />
+                <div className="bg-[#F3F6FA] px-3 py-2 rounded-2xl rounded-bl-sm flex gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#447BBE]/60 animate-bounce" style={{ animationDelay: "0ms" }} />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#447BBE]/60 animate-bounce" style={{ animationDelay: "120ms" }} />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#447BBE]/60 animate-bounce" style={{ animationDelay: "240ms" }} />
                 </div>
               </div>
             )}
             {error && <p className="text-xs text-destructive text-center">{error}</p>}
             {reachedLimit && (
-              <p className="text-xs text-muted-foreground text-center">
+              <p className="text-xs text-[#0A0F1A]/60 text-center">
                 You've reached the message limit for this session. Email zkadtani@gmail.com to keep the conversation going.
               </p>
             )}
           </div>
 
           {/* Input */}
-          <div className="border-t border-border/50 p-3 bg-background/40">
+          <div className="border-t border-[#447BBE]/15 p-3 bg-white">
             <div className="flex items-center gap-2">
               <input
                 value={input}
@@ -189,13 +189,13 @@ export function AIChatWidget() {
                 }}
                 disabled={loading || reachedLimit}
                 placeholder="Ask about services, books, or AI..."
-                className="flex-1 bg-[#1A1F2E] text-foreground placeholder:text-muted-foreground text-sm rounded-full px-4 py-2 border border-border/50 focus:outline-none focus:border-primary/60 disabled:opacity-50"
+                className="flex-1 bg-white text-[#0A0F1A] placeholder:text-[#0A0F1A]/45 text-sm rounded-full px-4 py-2.5 border border-[#447BBE]/30 focus:outline-none focus:border-[#447BBE] disabled:opacity-50"
               />
               <Button
                 size="icon"
                 onClick={send}
                 disabled={loading || reachedLimit || !input.trim()}
-                className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shrink-0"
+                className="rounded-full bg-[#DD5013] text-white hover:bg-[#C4460F] shrink-0"
                 aria-label="Send message"
               >
                 <Send className="w-4 h-4" />

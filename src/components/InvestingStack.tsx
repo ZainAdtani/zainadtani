@@ -60,14 +60,14 @@ export function InvestingStack() {
   const current = TABS.find((t) => t.key === active)!;
 
   return (
-    <section id="investing" className="py-20 bg-[#0A0F1A]">
+    <section id="investing" className="py-20 bg-white">
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="text-center mb-10">
-          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE]">
+          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#2F5C90]">
             WHAT I ACTUALLY DO WITH MONEY
           </p>
           <h2
-            className="text-[#F1F5F9] text-4xl md:text-5xl mt-3"
+            className="text-[#0A0F1A] text-4xl md:text-5xl mt-3"
             style={{ fontFamily: '"Luckiest Guy", cursive' }}
           >
             My Personal Investing Stack.
@@ -99,7 +99,7 @@ export function InvestingStack() {
           })}
         </div>
 
-        <p className="text-center font-sans text-[13px] text-white/60 mb-6">
+        <p className="text-center font-sans text-[13px] text-[#0A0F1A]/60 mb-6">
           {current.subtitle}
         </p>
 
@@ -110,7 +110,7 @@ export function InvestingStack() {
               key={h.ticker}
               className="rounded-[8px] p-[14px] transition-all duration-200"
               style={{
-                background: "#0E1628",
+                background: "#FFFFFF",
                 border: "1px solid rgba(68,123,190,0.4)",
                 borderLeft: "3px solid #447BBE",
               }}
@@ -127,26 +127,26 @@ export function InvestingStack() {
             >
               <div className="font-sans font-bold text-[15px]">
                 <span style={{ color: "#E9E4A6" }}>{h.ticker}</span>
-                <span className="text-white font-medium"> · {h.name}</span>
+                <span className="text-[#0A0F1A] font-medium"> · {h.name}</span>
               </div>
               <p className="font-sans text-[13px] text-[#94a3b8] mt-1">{h.thesis}</p>
             </div>
           ))}
         </div>
 
-        <p className="text-center font-sans text-[12px] text-white/50 mt-6">
+        <p className="text-center font-sans text-[12px] text-[#0A0F1A]/55 mt-6">
           {current.footer}
         </p>
 
         {/* Philosophy box */}
         <div
           className="mt-10 rounded-[12px] p-4 max-w-3xl mx-auto"
-          style={{ background: "#0E1628", borderLeft: "4px solid #447BBE", border: "1px solid #1a2a45", borderLeftWidth: "4px", borderLeftColor: "#447BBE" }}
+          style={{ background: "#FFFFFF", borderLeft: "4px solid #447BBE", border: "1px solid rgba(68,123,190,0.20)", borderLeftWidth: "4px", borderLeftColor: "#447BBE" }}
         >
           <p className="font-sans text-[11px] font-semibold tracking-widest uppercase text-[#DD5013]">
             Z's Philosophy
           </p>
-          <p className="font-sans text-[14px] text-white mt-2 leading-relaxed">
+          <p className="font-sans text-[14px] text-[#0A0F1A] mt-2 leading-relaxed">
             The strategy: boring ETFs for the base, individual stocks for the thesis. DCA weekly regardless of what the market does. Time beats timing every time.
           </p>
         </div>
@@ -165,10 +165,10 @@ export function InvestingStack() {
               href="https://join.robinhood.com/zaina113"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full px-[18px] py-2 font-sans text-[12px] text-white no-underline transition-all duration-200 hover:border-[#447BBE]"
+              className="inline-flex items-center gap-2 rounded-full px-[18px] py-2 font-sans text-[12px] text-[#0A0F1A] no-underline transition-all duration-200 hover:border-[#447BBE]"
               style={{
-                background: "#0E1628",
-                border: "1px solid #1a2a45",
+                background: "#FFFFFF",
+                border: "1px solid rgba(68,123,190,0.20)",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.boxShadow = "0 0 12px rgba(68,123,190,0.25)";
@@ -184,10 +184,10 @@ export function InvestingStack() {
               href="https://fidelity.app.link/e/99W3Yr8vJ3b"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full px-[18px] py-2 font-sans text-[12px] text-white no-underline transition-all duration-200 hover:border-[#447BBE]"
+              className="inline-flex items-center gap-2 rounded-full px-[18px] py-2 font-sans text-[12px] text-[#0A0F1A] no-underline transition-all duration-200 hover:border-[#447BBE]"
               style={{
-                background: "#0E1628",
-                border: "1px solid #1a2a45",
+                background: "#FFFFFF",
+                border: "1px solid rgba(68,123,190,0.20)",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.boxShadow = "0 0 12px rgba(68,123,190,0.25)";
@@ -203,10 +203,10 @@ export function InvestingStack() {
               href="https://investor.vanguard.com/investor-resources-education/article/open-an-account"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full px-[18px] py-2 font-sans text-[12px] text-white no-underline transition-all duration-200 hover:border-[#447BBE]"
+              className="inline-flex items-center gap-2 rounded-full px-[18px] py-2 font-sans text-[12px] text-[#0A0F1A] no-underline transition-all duration-200 hover:border-[#447BBE]"
               style={{
-                background: "#0E1628",
-                border: "1px solid #1a2a45",
+                background: "#FFFFFF",
+                border: "1px solid rgba(68,123,190,0.20)",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.boxShadow = "0 0 12px rgba(68,123,190,0.25)";
@@ -228,7 +228,7 @@ export function InvestingStack() {
           </p>
         </div>
 
-        <p className="text-center font-sans text-[12px] text-[#6B7280] mt-10 max-w-2xl mx-auto">
+        <p className="text-center font-sans text-[12px] text-[#0A0F1A]/55 mt-10 max-w-2xl mx-auto">
           This is not financial advice. These are my personal holdings for educational purposes only.
         </p>
       </div>

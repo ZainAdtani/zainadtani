@@ -114,7 +114,7 @@ export default function LifeNotes() {
       </main>
 
       <Dialog open={!!activeNote} onOpenChange={(open) => !open && setActiveNote(null)}>
-        <DialogContent className="max-w-2xl w-[92vw] rounded-2xl bg-white dark:bg-[#0b0f16] shadow-2xl border border-white/10">
+        <DialogContent className="max-w-2xl w-[92vw] rounded-2xl bg-white dark:bg-[#0b0f16] shadow-[0_10px_30px_rgba(10,15,26,0.10)] border border-white/10">
           <button
             onClick={() => setActiveNote(null)}
             className="absolute right-4 top-4 h-8 w-8 grid place-items-center rounded-full hover:bg-white/60 hover:dark:bg-white/10 transition-colors"

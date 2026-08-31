@@ -78,10 +78,10 @@ const SITE_MAP: SiteEntry[] = [
 const GROUP_ORDER: SiteGroup[] = ["Learn & Play", "Money & Business", "Guides & Library", "About & Contact"];
 
 const groupTagColor: Record<SiteGroup, string> = {
-  "Learn & Play": "bg-[#DD5013]/15 text-[#E9E4A6] border border-[#DD5013]/30",
+  "Learn & Play": "bg-[#DD5013]/15 text-[#A85B05] border border-[#DD5013]/30",
   "Money & Business": "bg-emerald-400/10 text-emerald-300 border border-emerald-400/30",
-  "Guides & Library": "bg-[#447BBE]/15 text-[#447BBE] border border-[#447BBE]/30",
-  "About & Contact": "bg-white/5 text-[#94A3B8] border border-white/10",
+  "Guides & Library": "bg-[#447BBE]/15 text-[#2F5C90] border border-[#447BBE]/30",
+  "About & Contact": "bg-white/5 text-[#0A0F1A]/65 border border-white/10",
 };
 
 interface Prompt {
@@ -148,12 +148,12 @@ Avoid long intros. Avoid long wrap up lines. Get to the point, explain it, give 
 const CATEGORIES = ["All", "Coaching", "Productivity", "Learning", "Email", "Delegation", "Automation"] as const;
 
 const categoryColor: Record<string, string> = {
-  Coaching: "bg-[#447BBE]/15 text-[#447BBE] border border-[#447BBE]/30",
-  Productivity: "bg-[#447BBE]/15 text-[#447BBE] border border-[#447BBE]/30",
+  Coaching: "bg-[#447BBE]/15 text-[#2F5C90] border border-[#447BBE]/30",
+  Productivity: "bg-[#447BBE]/15 text-[#2F5C90] border border-[#447BBE]/30",
   Learning: "bg-emerald-400/15 text-emerald-300 border border-emerald-400/30",
-  Email: "bg-[#447BBE]/15 text-[#447BBE] border border-[#447BBE]/30",
-  Delegation: "bg-[#447BBE]/10 text-[#447BBE] border border-[#447BBE]/20",
-  Automation: "bg-[#447BBE]/15 text-[#447BBE] border border-[#447BBE]/30",
+  Email: "bg-[#447BBE]/15 text-[#2F5C90] border border-[#447BBE]/30",
+  Delegation: "bg-[#447BBE]/10 text-[#2F5C90] border border-[#447BBE]/20",
+  Automation: "bg-[#447BBE]/15 text-[#2F5C90] border border-[#447BBE]/30",
 };
 
 function SiteCard({ entry }: { entry: SiteEntry }) {
@@ -163,15 +163,15 @@ function SiteCard({ entry }: { entry: SiteEntry }) {
       <span className={`self-start rounded-full px-2.5 py-0.5 text-[10px] font-medium tracking-wide ${groupTagColor[entry.group]}`}>
         {entry.group}
       </span>
-      <h3 className="mt-3 font-display font-bold text-[17px] text-[#F1F5F9] leading-snug">{entry.title}</h3>
-      <p className="mt-2 font-sans text-[13.5px] text-[#94A3B8] leading-relaxed">{entry.desc}</p>
+      <h3 className="mt-3 font-display font-bold text-[17px] text-[#0A0F1A] leading-snug">{entry.title}</h3>
+      <p className="mt-2 font-sans text-[13.5px] text-[#0A0F1A]/65 leading-relaxed">{entry.desc}</p>
       <span className="mt-4 inline-flex items-center gap-1 text-[12px] font-semibold text-[#DD5013] opacity-0 group-hover:opacity-100 transition-opacity">
         Open {isExternal ? <ExternalLink className="w-3 h-3" /> : "→"}
       </span>
     </>
   );
   const className =
-    "group flex flex-col rounded-2xl bg-[#0A0F1A] border border-[#2C4A73] p-5 transition-all duration-200 hover:border-[#DD5013] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(221,80,19,0.12)]";
+    "group flex flex-col rounded-2xl bg-white border border-[#447BBE]/20 p-5 transition-all duration-200 hover:border-[#DD5013] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(221,80,19,0.12)]";
   return isExternal ? (
     <a href={entry.route} target="_blank" rel="noopener noreferrer" className={className}>{inner}</a>
   ) : (
@@ -235,7 +235,7 @@ export default function Resources() {
       {/* Hero */}
       <header className="max-w-6xl mx-auto px-6 pt-20 pb-6 text-center">
         <h1 className="font-display font-extrabold text-[40px] text-foreground">Resources</h1>
-        <p className="mt-3 font-sans text-[16px] text-[#94A3B8] max-w-2xl mx-auto">
+        <p className="mt-3 font-sans text-[16px] text-[#0A0F1A]/65 max-w-2xl mx-auto">
           Free tools, prompts, and ideas to help you work smarter and think clearer.
         </p>
       </header>
@@ -252,7 +252,7 @@ export default function Resources() {
           />
         </div>
         {t && (
-          <p className="mt-2 text-center font-sans text-[13px] text-[#94A3B8]">
+          <p className="mt-2 text-center font-sans text-[13px] text-[#0A0F1A]/65">
             {filteredSite.length} page{filteredSite.length !== 1 ? "s" : ""} · {filteredPrompts.length} prompt{filteredPrompts.length !== 1 ? "s" : ""}
           </p>
         )}
@@ -262,16 +262,16 @@ export default function Resources() {
       <section className="max-w-6xl mx-auto px-6 pt-14 pb-4">
         <div className="text-center mb-8">
           <h2 className="font-display font-extrabold text-[28px] md:text-[32px] text-foreground">Explore the Site</h2>
-          <p className="mt-2 font-sans text-[15px] text-[#94A3B8]">Every real page, in one place.</p>
+          <p className="mt-2 font-sans text-[15px] text-[#0A0F1A]/65">Every real page, in one place.</p>
         </div>
 
         {groupedSite.length === 0 ? (
-          <p className="text-center font-sans text-[14px] text-[#94A3B8]">No pages match “{q}”.</p>
+          <p className="text-center font-sans text-[14px] text-[#0A0F1A]/65">No pages match “{q}”.</p>
         ) : (
           <div className="space-y-10">
             {groupedSite.map(({ group, items }) => (
               <div key={group}>
-                <h3 className="font-display font-bold text-[18px] text-[#E9E4A6] mb-4">{group}</h3>
+                <h3 className="font-display font-bold text-[18px] text-[#A85B05] mb-4">{group}</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                   {items.map((entry) => (
                     <SiteCard key={entry.route} entry={entry} />
@@ -285,16 +285,16 @@ export default function Resources() {
 
       {/* Train My AI Assistant */}
       <section className="container mx-auto px-4 max-w-6xl pt-16">
-        <div className="bg-gradient-to-br from-[#0A0F1A] to-[#0A0F1A] border border-[#447BBE]/30 rounded-3xl p-8 md:p-10">
+        <div className="bg-gradient-to-br from-white to-white border border-[#447BBE]/30 rounded-3xl p-8 md:p-10">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
             <div>
-              <span className="inline-block text-[11px] font-medium tracking-widest uppercase text-[#447BBE] bg-[#447BBE]/10 border border-[#447BBE]/20 rounded-full px-3 py-1 mb-3">
+              <span className="inline-block text-[11px] font-medium tracking-widest uppercase text-[#2F5C90] bg-[#447BBE]/10 border border-[#447BBE]/20 rounded-full px-3 py-1 mb-3">
                 ⭐ START HERE
               </span>
-              <h3 className="font-display font-extrabold text-[26px] md:text-[32px] text-[#F1F5F9] leading-tight">
+              <h3 className="font-display font-extrabold text-[26px] md:text-[32px] text-[#0A0F1A] leading-tight">
                 "Train My AI Assistant"
               </h3>
-              <p className="font-sans text-[15px] text-[#94A3B8] mt-2 max-w-xl">
+              <p className="font-sans text-[15px] text-[#0A0F1A]/65 mt-2 max-w-xl">
                 The one prompt that changes everything. Paste this into Claude, ChatGPT, or any AI tool and it learns who you are, what you need, and how to help you — from the very first message.
               </p>
             </div>
@@ -302,7 +302,7 @@ export default function Resources() {
               <CopyBlock text={TRAIN_MY_AI_PROMPT} label="Copy Full Prompt" />
             </div>
           </div>
-          <div className="bg-[#0A0F1A] border border-[#2C4A73] rounded-2xl p-5 max-h-64 overflow-y-auto font-mono text-[13px] text-[#94A3B8] leading-relaxed whitespace-pre-wrap">
+          <div className="bg-white border border-[#447BBE]/20 rounded-2xl p-5 max-h-64 overflow-y-auto font-mono text-[13px] text-[#0A0F1A]/65 leading-relaxed whitespace-pre-wrap">
             {TRAIN_MY_AI_PROMPT}
           </div>
         </div>
@@ -312,19 +312,19 @@ export default function Resources() {
       <section className="container mx-auto px-4 max-w-6xl pt-16">
         <div className="text-center mb-8">
           <h2 className="font-display font-extrabold text-[28px] md:text-[32px] text-foreground">Prompt Library</h2>
-          <p className="mt-2 font-sans text-[15px] text-[#94A3B8]">Ready-to-use prompts, organized by category.</p>
+          <p className="mt-2 font-sans text-[15px] text-[#0A0F1A]/65">Ready-to-use prompts, organized by category.</p>
         </div>
 
         {/* Custom Instructions */}
-        <div className="bg-[#0A0F1A] border border-[#2C4A73] rounded-2xl p-6 mb-8">
+        <div className="bg-white border border-[#447BBE]/20 rounded-2xl p-6 mb-8">
           <div className="flex items-start justify-between gap-4 mb-2">
-            <h3 className="font-display font-bold text-[18px] text-white">Custom Instructions</h3>
+            <h3 className="font-display font-bold text-[18px] text-[#0A0F1A]">Custom Instructions</h3>
             <CopyBlock text={CUSTOM_INSTRUCTIONS} label="Copy" />
           </div>
-          <p className="font-sans text-[13px] text-[#94A3B8] mb-4">
+          <p className="font-sans text-[13px] text-[#0A0F1A]/65 mb-4">
             Copy into your AI settings for a clearer, friendlier helper.
           </p>
-          <pre className="max-h-48 overflow-y-auto font-mono text-[13px] text-[#94A3B8] bg-[#0A0F1A] rounded-xl p-4 whitespace-pre-wrap">
+          <pre className="max-h-48 overflow-y-auto font-mono text-[13px] text-[#0A0F1A]/65 bg-white rounded-xl p-4 whitespace-pre-wrap">
             {CUSTOM_INSTRUCTIONS}
           </pre>
         </div>
@@ -337,8 +337,8 @@ export default function Resources() {
               onClick={() => setSelectedCategory(c)}
               className={`text-[13px] px-3 py-1.5 rounded-full transition-colors ${
                 selectedCategory === c
-                  ? "bg-[#447BBE] text-[#0A0F1A] font-semibold"
-                  : "bg-[#0A0F1A] text-[#94A3B8] border border-[#2C4A73] hover:border-[#447BBE]/40"
+                  ? "bg-[#DD5013] text-white font-semibold"
+                  : "bg-white text-[#0A0F1A]/65 border border-[#447BBE]/20 hover:border-[#447BBE]/40"
               }`}
             >
               {c}
@@ -354,20 +354,20 @@ export default function Resources() {
           {filteredPrompts.map((p) => {
             const isExpanded = expanded.includes(p.id);
             return (
-              <div key={p.id} className="bg-[#0A0F1A] border border-[#2C4A73] rounded-2xl p-6 flex flex-col gap-3">
-                <span className={`self-start rounded-full px-3 py-1 text-[11px] font-medium ${categoryColor[p.category] || "bg-[#2C4A73] text-[#94A3B8]"}`}>
+              <div key={p.id} className="bg-white border border-[#447BBE]/20 rounded-2xl p-6 flex flex-col gap-3">
+                <span className={`self-start rounded-full px-3 py-1 text-[11px] font-medium ${categoryColor[p.category] || "bg-[#2C4A73] text-[#0A0F1A]/65"}`}>
                   {p.category}
                 </span>
-                <h3 className="font-display font-bold text-[17px] text-[#F1F5F9]">{p.title}</h3>
+                <h3 className="font-display font-bold text-[17px] text-[#0A0F1A]">{p.title}</h3>
                 {p.note && (
-                  <p className="italic font-sans text-[13px] text-[#6B7280]">{p.note}</p>
+                  <p className="italic font-sans text-[13px] text-[#0A0F1A]/55">{p.note}</p>
                 )}
-                <pre className={`font-mono text-[13px] text-[#94A3B8] bg-[#0A0F1A] rounded-xl p-4 whitespace-pre-wrap overflow-hidden ${isExpanded ? "" : "max-h-32"}`}>
+                <pre className={`font-mono text-[13px] text-[#0A0F1A]/65 bg-white rounded-xl p-4 whitespace-pre-wrap overflow-hidden ${isExpanded ? "" : "max-h-32"}`}>
                   {p.prompt}
                 </pre>
                 <button
                   onClick={() => toggleExpand(p.id)}
-                  className="self-start text-[13px] text-[#447BBE] hover:underline flex items-center gap-1"
+                  className="self-start text-[13px] text-[#2F5C90] hover:underline flex items-center gap-1"
                 >
                   {isExpanded ? (<>Collapse <ChevronUp className="w-3 h-3" /></>) : (<>Expand <ChevronDown className="w-3 h-3" /></>)}
                 </button>
@@ -381,10 +381,10 @@ export default function Resources() {
 
         {/* Bonus prompts */}
         <div className="mt-16">
-          <h3 className="font-display font-bold text-[20px] text-[#E9E4A6] mb-6 text-center">Bonus Business Prompts</h3>
+          <h3 className="font-display font-bold text-[20px] text-[#A85B05] mb-6 text-center">Bonus Business Prompts</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {PROMPTS.map((p, i) => (
-              <Card key={i} className="group hover:border-primary/50 hover:shadow-[0_0_24px_rgba(68,123,190,0.18)]">
+              <Card key={i} className="group hover:border-primary/50 hover:shadow-[0_10px_28px_rgba(10,15,26,0.10)]">
                 <CardContent className="p-6 flex flex-col gap-4">
                   <div className="flex items-center gap-3">
                     <div className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-primary-foreground font-bold text-sm shrink-0">
@@ -392,7 +392,7 @@ export default function Resources() {
                     </div>
                     <h3 className="text-lg font-semibold text-foreground">{p.title}</h3>
                   </div>
-                  <pre className="font-mono text-sm bg-[#0A0F1A] text-foreground/90 border border-primary/40 rounded-md p-4 whitespace-pre-wrap break-words overflow-x-auto">
+                  <pre className="font-mono text-sm bg-white text-foreground/90 border border-primary/40 rounded-md p-4 whitespace-pre-wrap break-words overflow-x-auto">
                     <code>{p.text}</code>
                   </pre>
                   <div>
@@ -419,7 +419,7 @@ export default function Resources() {
         <h2 className="font-display font-extrabold text-[28px] md:text-[32px] text-foreground text-center mb-2">
           Tools I Use
         </h2>
-        <p className="font-sans text-[15px] text-[#94A3B8] text-center mb-8">
+        <p className="font-sans text-[15px] text-[#0A0F1A]/65 text-center mb-8">
           Everything in my stack. No fluff. No sponsorships.
         </p>
 
@@ -474,8 +474,8 @@ export default function Resources() {
                 e.currentTarget.style.boxShadow = "none";
               }}
             >
-              <h3 className="font-sans font-bold text-[16px] text-white">{t.name}</h3>
-              <p className="font-sans text-[13px] text-[#E9E4A6] mt-2">{t.desc}</p>
+              <h3 className="font-sans font-bold text-[16px] text-[#0A0F1A]">{t.name}</h3>
+              <p className="font-sans text-[13px] text-[#A85B05] mt-2">{t.desc}</p>
               <span className="mt-3 inline-flex items-center gap-1 text-[12px] font-semibold text-[#DD5013] opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                 Open Tool <ExternalLink className="w-3 h-3" />
               </span>
@@ -485,9 +485,9 @@ export default function Resources() {
       </section>
 
       <div className="max-w-6xl mx-auto px-6 pb-16 text-center">
-        <p className="font-sans text-[14px] text-[#94A3B8]">
+        <p className="font-sans text-[14px] text-[#0A0F1A]/65">
           More tools coming soon. Have a prompt to share?
-          <a href="mailto:zkadtani@gmail.com" className="text-[#447BBE] ml-1 hover:underline">
+          <a href="mailto:zkadtani@gmail.com" className="text-[#2F5C90] ml-1 hover:underline">
             Send it over.
           </a>
         </p>

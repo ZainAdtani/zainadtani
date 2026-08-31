@@ -85,7 +85,7 @@ export default function Prompts() {
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {PROMPTS.map((p, i) => (
-            <Card key={i} className="group hover:border-primary/50 hover:shadow-[0_0_24px_rgba(68,123,190,0.18)]">
+            <Card key={i} className="group hover:border-primary/50 hover:shadow-[0_10px_28px_rgba(10,15,26,0.10)]">
               <CardContent className="p-6 flex flex-col gap-4">
                 <div className="flex items-center gap-3">
                   <div className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-primary-foreground font-bold text-sm shrink-0">
@@ -93,7 +93,7 @@ export default function Prompts() {
                   </div>
                   <h3 className="text-lg font-semibold text-foreground">{p.title}</h3>
                 </div>
-                <pre className="font-mono text-sm bg-[#0A0F1A] text-foreground/90 border border-primary/40 rounded-md p-4 whitespace-pre-wrap break-words overflow-x-auto">
+                <pre className="font-mono text-sm bg-white text-foreground/90 border border-primary/40 rounded-md p-4 whitespace-pre-wrap break-words overflow-x-auto">
                   <code>{p.text}</code>
                 </pre>
                 <div>
