@@ -116,7 +116,7 @@ export default function Services() {
       </section>
 
       {/* Section 2: Service 01 — AI Websites */}
-      <section className="bg-[#0A0F1A] py-24 border-t border-[#2C4A73]">
+      <section id="ai-consulting" className="bg-[#0A0F1A] py-24 border-t border-[#2C4A73] scroll-mt-20">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <div className="flex flex-col gap-6">
             <span className="text-[11px] font-medium tracking-widest uppercase text-[#447BBE] font-sans">
@@ -143,7 +143,7 @@ export default function Services() {
       </section>
 
       {/* Section 3: Service 02 — Publish Your Book */}
-      <section className="bg-[#0A0F1A] py-24 border-t border-[#2C4A73]">
+      <section id="book-publishing" className="bg-[#0A0F1A] py-24 border-t border-[#2C4A73] scroll-mt-20">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <div className="grid grid-cols-1 gap-4 order-2 md:order-1">
             {bookCards.map((c) => <FeatureCard key={c.title} {...c} />)}
