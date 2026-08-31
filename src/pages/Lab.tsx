@@ -28,7 +28,7 @@ const PROJECTS = [
 
 const Lab = () => {
   return (
-    <div className="min-h-screen bg-[#0A0F1A]">
+    <div className="min-h-screen bg-white">
       <Helmet>
         <title>The Lab — Just For Fun | Zain Adtani</title>
         <meta
@@ -39,13 +39,13 @@ const Lab = () => {
 
       <section className="py-20">
         <div className="container mx-auto px-6 max-w-5xl">
-          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#447BBE] text-center">
+          <p className="font-sans text-[12px] font-medium tracking-widest uppercase text-[#2F5C90] text-center">
             THE LAB · JUST FOR FUN
           </p>
-          <h1 className="font-display font-extrabold text-[40px] md:text-[56px] leading-[1.1] text-[#447BBE] text-center mt-3">
+          <h1 className="font-display font-extrabold text-[40px] md:text-[56px] leading-[1.1] text-[#2F5C90] text-center mt-3">
             Not everything has to make money.
           </h1>
-          <p className="font-sans text-[16px] text-white/80 text-center mt-4 max-w-2xl mx-auto">
+          <p className="font-sans text-[16px] text-[#0A0F1A]/70 text-center mt-4 max-w-2xl mx-auto">
             Sometimes I build things because they're cool. Pokémon. Harry Potter. More coming.
           </p>
 
@@ -53,20 +53,20 @@ const Lab = () => {
             {PROJECTS.map((p) => (
               <div
                 key={p.title}
-                className="rounded-xl overflow-hidden bg-[#0A0F1A] border border-[#2C4A73] flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
+                className="rounded-xl overflow-hidden bg-white border border-[#447BBE]/20 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
               >
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <img src={p.image} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
                   <span
-                    className="absolute top-3 left-3 rounded-full text-white text-xs font-semibold px-3 py-1.5"
+                    className="absolute top-3 left-3 rounded-full text-[#0A0F1A] text-xs font-semibold px-3 py-1.5"
                     style={{ backgroundColor: p.badgeBg }}
                   >
                     {p.badge}
                   </span>
                 </div>
                 <div className="p-6 flex flex-col gap-3 flex-1">
-                  <h3 className="font-sans font-bold text-xl text-white">{p.title}</h3>
-                  <p className="text-sm text-[#E9E4A6] flex-1">{p.description}</p>
+                  <h3 className="font-sans font-bold text-xl text-[#0A0F1A]">{p.title}</h3>
+                  <p className="text-sm text-[#A85B05] flex-1">{p.description}</p>
                   <Link
                     to={p.href}
                     className="mt-2 inline-flex items-center justify-center w-full bg-[#DD5013] text-white font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity"

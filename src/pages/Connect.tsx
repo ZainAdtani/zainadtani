@@ -5,9 +5,9 @@ const WHATSAPP_URL = "https://wa.me/14698447354";
 const CALENDLY_URL = "https://calendly.com/zkadtani";
 
 const inputClass =
-  "w-full bg-[#0E1628] border border-[#2C4A73] focus:border-[#447BBE] focus:outline-none rounded-[10px] px-4 py-3.5 text-[15px] text-white placeholder:text-white/40 font-sans transition-colors";
+  "w-full bg-white border border-[#447BBE]/20 focus:border-[#447BBE] focus:outline-none rounded-[10px] px-4 py-3.5 text-[15px] text-[#0A0F1A] placeholder:text-white/40 font-sans transition-colors";
 
-const labelClass = "block text-[13px] font-semibold text-white/90 mb-1.5 font-sans";
+const labelClass = "block text-[13px] font-semibold text-[#0A0F1A]/75 mb-1.5 font-sans";
 
 const scrollTo = (id: string) => {
   const el = document.getElementById(id);
@@ -19,7 +19,7 @@ const Connect = () => {
   const [protState, protHandleSubmit] = useForm("mnjyeeyj");
 
   return (
-    <div className="min-h-screen bg-[#0A0F1A] text-white">
+    <div className="min-h-screen bg-white text-[#0A0F1A]">
       <Helmet>
         <title>Connect with Zain Adtani | Income Opportunity & Family Protection</title>
         <meta
@@ -31,12 +31,12 @@ const Connect = () => {
       {/* HERO */}
       <section className="container mx-auto px-4 pt-20 pb-16 max-w-5xl">
         <h1
-          className="font-display text-[56px] md:text-[88px] leading-[0.95] text-white text-center"
+          className="font-display text-[56px] md:text-[88px] leading-[0.95] text-[#0A0F1A] text-center"
           style={{ textShadow: "0 2px 20px rgba(255,255,255,0.08)" }}
         >
           Let's Talk.
         </h1>
-        <p className="mt-6 font-sans text-[17px] md:text-[19px] text-white/80 text-center max-w-2xl mx-auto" style={{ lineHeight: 1.75 }}>
+        <p className="mt-6 font-sans text-[17px] md:text-[19px] text-[#0A0F1A]/70 text-center max-w-2xl mx-auto" style={{ lineHeight: 1.75 }}>
           Whether you're looking for a second income or want to protect what your family has built — you're in the right place. Pick what fits you.
         </p>
 
@@ -44,13 +44,13 @@ const Connect = () => {
           <button
             type="button"
             onClick={() => scrollTo("opportunity")}
-            className="text-left bg-[#0E1628] border-2 border-[#447BBE] rounded-[16px] p-7 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(68,123,190,0.25)] transition-all duration-300"
+            className="text-left bg-white border-2 border-[#447BBE] rounded-[16px] p-7 hover:-translate-y-1 hover:shadow-[0_10px_28px_rgba(10,15,26,0.10)] transition-all duration-300"
           >
-            <div className="text-[12px] tracking-[0.18em] font-semibold text-[#447BBE] mb-3">OPTION 1</div>
-            <h3 className="font-display-sans font-extrabold text-[24px] text-white mb-2">
+            <div className="text-[12px] tracking-[0.18em] font-semibold text-[#2F5C90] mb-3">OPTION 1</div>
+            <h3 className="font-display-sans font-extrabold text-[24px] text-[#0A0F1A] mb-2">
               I Want a Second Income
             </h3>
-            <p className="font-sans text-[15px] text-white/70 leading-relaxed">
+            <p className="font-sans text-[15px] text-[#0A0F1A]/65 leading-relaxed">
               Learn how to build a licensed financial services business part-time. No experience required.
             </p>
           </button>
@@ -58,13 +58,13 @@ const Connect = () => {
           <button
             type="button"
             onClick={() => scrollTo("protection")}
-            className="text-left bg-[#0E1628] border-2 border-[#DD5013] rounded-[16px] p-7 pb-12 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(221,80,19,0.25)] transition-all duration-300"
+            className="text-left bg-white border-2 border-[#DD5013] rounded-[16px] p-7 pb-12 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(221,80,19,0.25)] transition-all duration-300"
           >
             <div className="text-[12px] tracking-[0.18em] font-semibold text-[#DD5013] mb-3">OPTION 2</div>
-            <h3 className="font-display-sans font-extrabold text-[24px] text-white mb-2">
+            <h3 className="font-display-sans font-extrabold text-[24px] text-[#0A0F1A] mb-2">
               I Want to Protect My Family
             </h3>
-            <p className="font-sans text-[15px] text-white/70 leading-relaxed">
+            <p className="font-sans text-[15px] text-[#0A0F1A]/65 leading-relaxed">
               Life insurance, wills, and trusts. Simple education, no pressure.
             </p>
           </button>
@@ -75,14 +75,14 @@ const Connect = () => {
 
       {/* OPPORTUNITY */}
       <section id="opportunity" className="container mx-auto px-4 py-20 max-w-4xl scroll-mt-24">
-        <div className="text-[12px] tracking-[0.22em] font-semibold text-[#447BBE] mb-4">INCOME OPPORTUNITY</div>
+        <div className="text-[12px] tracking-[0.22em] font-semibold text-[#2F5C90] mb-4">INCOME OPPORTUNITY</div>
         <h2
-          className="font-display text-[40px] md:text-[56px] leading-[1] text-white"
+          className="font-display text-[40px] md:text-[56px] leading-[1] text-[#0A0F1A]"
           style={{ letterSpacing: "-0.5px", textShadow: "0 2px 16px rgba(0,0,0,0.35)" }}
         >
           Build something of your own. On your terms.
         </h2>
-        <p className="mt-6 font-sans text-[17px] text-white/80 max-w-2xl" style={{ lineHeight: 1.75 }}>
+        <p className="mt-6 font-sans text-[17px] text-[#0A0F1A]/70 max-w-2xl" style={{ lineHeight: 1.75 }}>
           I'm a licensed financial services agent and educator. I help people from all backgrounds start a part-time business helping families protect themselves financially. No sales background needed. Mentor-led. Legit.
         </p>
 
@@ -92,19 +92,19 @@ const Connect = () => {
             { t: "Licensed & legit", d: "State-licensed financial services" },
             { t: "Mentor-led", d: "You are not doing this alone" },
           ].map((b) => (
-            <div key={b.t} className="bg-[#0E1628] border border-[#447BBE]/40 rounded-[12px] p-5">
-              <div className="font-display-sans font-extrabold text-[18px] text-[#E9E4A6] mb-1">{b.t}</div>
-              <div className="font-sans text-[14px] text-white/70 leading-snug">{b.d}</div>
+            <div key={b.t} className="bg-white border border-[#447BBE]/40 rounded-[12px] p-5">
+              <div className="font-display-sans font-extrabold text-[18px] text-[#A85B05] mb-1">{b.t}</div>
+              <div className="font-sans text-[14px] text-[#0A0F1A]/65 leading-snug">{b.d}</div>
             </div>
           ))}
         </div>
 
         {/* FORM */}
-        <div className="mt-12 bg-[#0E1628] border border-[#2C4A73] rounded-[16px] p-6 md:p-8">
+        <div className="mt-12 bg-white border border-[#447BBE]/20 rounded-[16px] p-6 md:p-8">
           {oppState.succeeded ? (
             <div className="py-8 text-center">
-              <div className="font-display-sans font-extrabold text-[22px] text-[#E9E4A6] mb-2">Got it.</div>
-              <p className="font-sans text-[16px] text-white/85">
+              <div className="font-display-sans font-extrabold text-[22px] text-[#A85B05] mb-2">Got it.</div>
+              <p className="font-sans text-[16px] text-[#0A0F1A]/75">
                 I'll reach out personally within 24 hours. — Zain
               </p>
             </div>
@@ -150,7 +150,7 @@ const Connect = () => {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-center font-sans font-semibold text-[14px] text-white border border-[#447BBE] px-5 py-3 rounded-[10px] hover:bg-[#447BBE]/10 transition-colors"
+                  className="text-center font-sans font-semibold text-[14px] text-[#0A0F1A] border border-[#447BBE] px-5 py-3 rounded-[10px] hover:bg-[#447BBE]/10 transition-colors"
                 >
                   💬 Text Me on WhatsApp
                 </a>
@@ -158,7 +158,7 @@ const Connect = () => {
                   href={CALENDLY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-center font-sans font-semibold text-[14px] text-white border border-[#447BBE] px-5 py-3 rounded-[10px] hover:bg-[#447BBE]/10 transition-colors"
+                  className="text-center font-sans font-semibold text-[14px] text-[#0A0F1A] border border-[#447BBE] px-5 py-3 rounded-[10px] hover:bg-[#447BBE]/10 transition-colors"
                 >
                   📅 Book a Call Instead
                 </a>
@@ -174,12 +174,12 @@ const Connect = () => {
       <section id="protection" className="container mx-auto px-4 py-20 max-w-4xl scroll-mt-24">
         <div className="text-[12px] tracking-[0.22em] font-semibold text-[#DD5013] mb-4">FAMILY PROTECTION</div>
         <h2
-          className="font-display text-[40px] md:text-[56px] leading-[1] text-white"
+          className="font-display text-[40px] md:text-[56px] leading-[1] text-[#0A0F1A]"
           style={{ letterSpacing: "-0.5px", textShadow: "0 2px 16px rgba(0,0,0,0.35)" }}
         >
           Is your family covered if life gets hard?
         </h2>
-        <p className="mt-6 font-sans text-[17px] text-white/80 max-w-2xl" style={{ lineHeight: 1.75 }}>
+        <p className="mt-6 font-sans text-[17px] text-[#0A0F1A]/70 max-w-2xl" style={{ lineHeight: 1.75 }}>
           Most families are one unexpected moment from financial chaos. A simple plan — term life insurance, a will, and a trust — can change everything. I walk you through it, no jargon, no pressure.
         </p>
 
@@ -189,18 +189,18 @@ const Connect = () => {
             { t: "Wills & Trusts", d: "Make sure your wishes are honored" },
             { t: "Critical Illness Coverage", d: "Protection while you're still alive" },
           ].map((b) => (
-            <div key={b.t} className="bg-[#0E1628] border border-[#DD5013]/40 rounded-[12px] p-5">
-              <div className="font-display-sans font-extrabold text-[18px] text-[#E9E4A6] mb-1">{b.t}</div>
-              <div className="font-sans text-[14px] text-white/70 leading-snug">{b.d}</div>
+            <div key={b.t} className="bg-white border border-[#DD5013]/40 rounded-[12px] p-5">
+              <div className="font-display-sans font-extrabold text-[18px] text-[#A85B05] mb-1">{b.t}</div>
+              <div className="font-sans text-[14px] text-[#0A0F1A]/65 leading-snug">{b.d}</div>
             </div>
           ))}
         </div>
 
-        <div className="mt-12 bg-[#0E1628] border border-[#2C4A73] rounded-[16px] p-6 md:p-8">
+        <div className="mt-12 bg-white border border-[#447BBE]/20 rounded-[16px] p-6 md:p-8">
           {protState.succeeded ? (
             <div className="py-8 text-center">
-              <div className="font-display-sans font-extrabold text-[22px] text-[#E9E4A6] mb-2">Perfect.</div>
-              <p className="font-sans text-[16px] text-white/85">
+              <div className="font-display-sans font-extrabold text-[22px] text-[#A85B05] mb-2">Perfect.</div>
+              <p className="font-sans text-[16px] text-[#0A0F1A]/75">
                 I'll be in touch within 24 hours to walk you through your options. — Zain
               </p>
             </div>
@@ -246,7 +246,7 @@ const Connect = () => {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-center font-sans font-semibold text-[14px] text-white border border-[#DD5013] px-5 py-3 rounded-[10px] hover:bg-[#DD5013]/10 transition-colors"
+                  className="text-center font-sans font-semibold text-[14px] text-[#0A0F1A] border border-[#DD5013] px-5 py-3 rounded-[10px] hover:bg-[#DD5013]/10 transition-colors"
                 >
                   💬 Text Me on WhatsApp
                 </a>
@@ -254,7 +254,7 @@ const Connect = () => {
                   href={CALENDLY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-center font-sans font-semibold text-[14px] text-white border border-[#DD5013] px-5 py-3 rounded-[10px] hover:bg-[#DD5013]/10 transition-colors"
+                  className="text-center font-sans font-semibold text-[14px] text-[#0A0F1A] border border-[#DD5013] px-5 py-3 rounded-[10px] hover:bg-[#DD5013]/10 transition-colors"
                 >
                   📅 Book a Call Instead
                 </a>
@@ -270,8 +270,8 @@ const Connect = () => {
       <section className="container mx-auto px-4 py-20 max-w-5xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Left: Websites & Social */}
-          <div className="bg-[#0E1628] border border-[#2C4A73] rounded-[16px] p-7">
-            <h2 className="font-display text-[28px] md:text-[32px] leading-none text-white mb-6">
+          <div className="bg-white border border-[#447BBE]/20 rounded-[16px] p-7">
+            <h2 className="font-display text-[28px] md:text-[32px] leading-none text-[#0A0F1A] mb-6">
               Websites &amp; Social
             </h2>
             <ul className="space-y-3.5 font-sans text-[15px]">
@@ -284,14 +284,14 @@ const Connect = () => {
                 { label: "Newsletter", value: "The Z Letter (Beehiiv)", href: "https://the-z-letter.beehiiv.com" },
               ].map((row) => (
                 <li key={row.label} className="flex flex-col sm:flex-row sm:items-baseline sm:gap-3">
-                  <span className="font-display-sans font-extrabold text-[13px] uppercase tracking-wider text-[#E9E4A6] min-w-[130px]">
+                  <span className="font-display-sans font-extrabold text-[13px] uppercase tracking-wider text-[#A85B05] min-w-[130px]">
                     {row.label}
                   </span>
                   <a
                     href={row.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/90 hover:text-[#447BBE] underline-offset-4 hover:underline transition-colors"
+                    className="text-[#0A0F1A]/75 hover:text-[#2F5C90] underline-offset-4 hover:underline transition-colors"
                   >
                     {row.value}
                   </a>
@@ -301,11 +301,11 @@ const Connect = () => {
           </div>
 
           {/* Right: Focus */}
-          <div className="bg-[#0E1628] border border-[#DD5013]/50 rounded-[16px] p-7">
-            <h2 className="font-display text-[28px] md:text-[32px] leading-none text-white mb-6">
+          <div className="bg-white border border-[#DD5013]/50 rounded-[16px] p-7">
+            <h2 className="font-display text-[28px] md:text-[32px] leading-none text-[#0A0F1A] mb-6">
               Focus
             </h2>
-            <ul className="space-y-3.5 font-sans text-[15px] text-white/90">
+            <ul className="space-y-3.5 font-sans text-[15px] text-[#0A0F1A]/75">
               {[
                 "AI Consulting for small businesses",
                 "Websites, automations & AI workflows",
@@ -326,7 +326,7 @@ const Connect = () => {
       {/* PAGE FOOTER STRIP */}
       <footer className="border-t border-white/10">
         <div className="container mx-auto px-4 py-8 text-center">
-          <p className="font-sans text-[13px] text-white/60">
+          <p className="font-sans text-[13px] text-[#0A0F1A]/60">
             Zain Adtani · Licensed Financial Professional · TX Life #2787686 · Adtani Education Ventures LLC
           </p>
         </div>

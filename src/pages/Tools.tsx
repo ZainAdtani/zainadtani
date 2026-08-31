@@ -364,7 +364,7 @@ function ToolCard({ tool }: { tool: Tool }) {
       rel="noopener noreferrer"
       className="group block flex-shrink-0 w-[320px] snap-start"
     >
-      <div className="h-[280px] backdrop-blur-md bg-card/90 border border-border rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 p-8 flex flex-col gap-6">
+      <div className="h-[280px] backdrop-blur-md bg-card/90 border border-border rounded-2xl shadow-lg hover:shadow-[0_10px_30px_rgba(10,15,26,0.10)] transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 p-8 flex flex-col gap-6">
         <div className="flex items-start gap-4">
           {getIcon(tool) && (
             <img
@@ -574,7 +574,7 @@ export default function Tools() {
                     rel="noopener noreferrer"
                     className="group block h-full"
                   >
-                    <div className="h-full backdrop-blur-md bg-card/90 border border-border rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 p-6 flex flex-col gap-4">
+                    <div className="h-full backdrop-blur-md bg-card/90 border border-border rounded-xl shadow-lg hover:shadow-[0_10px_30px_rgba(10,15,26,0.10)] transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 p-6 flex flex-col gap-4">
                       <div className="flex items-start gap-3">
                          {(() => {
                           const icon = tool.iconUrl || (() => {

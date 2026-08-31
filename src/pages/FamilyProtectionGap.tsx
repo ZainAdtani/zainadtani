@@ -39,7 +39,7 @@ export default function FamilyProtectionGap() {
             <Button
               asChild
               size="lg"
-              className="bg-[#DD5013] hover:bg-[#DD5013]/90 text-white"
+              className="bg-[#DD5013] hover:bg-[#DD5013]/90 text-[#0A0F1A]"
             >
               <a href={PDF_URL} download="The-Family-Protection-Gap.pdf">
                 <Download className="w-5 h-5 mr-2" />
@@ -74,21 +74,21 @@ export default function FamilyProtectionGap() {
 
         <div className="grid md:grid-cols-3 gap-4">
           <Card className="p-6 space-y-3">
-            <Briefcase className="w-6 h-6 text-[#447BBE]" />
+            <Briefcase className="w-6 h-6 text-[#2F5C90]" />
             <h3 className="text-lg">Job Benefits</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Employer life insurance may only cover 1x to 2x salary.
             </p>
           </Card>
           <Card className="p-6 space-y-3">
-            <PiggyBank className="w-6 h-6 text-[#447BBE]" />
+            <PiggyBank className="w-6 h-6 text-[#2F5C90]" />
             <h3 className="text-lg">Savings</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Emergency funds can disappear quickly during a crisis.
             </p>
           </Card>
           <Card className="p-6 space-y-3">
-            <Shield className="w-6 h-6 text-[#447BBE]" />
+            <Shield className="w-6 h-6 text-[#2F5C90]" />
             <h3 className="text-lg">Retirement Accounts</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               A 401(k) is important, but it was not built to replace a protection plan.
@@ -121,7 +121,7 @@ export default function FamilyProtectionGap() {
           <Button
             asChild
             size="lg"
-            className="bg-[#DD5013] hover:bg-[#DD5013]/90 text-white"
+            className="bg-[#DD5013] hover:bg-[#DD5013]/90 text-[#0A0F1A]"
           >
             <a href={PDF_URL} download="The-Family-Protection-Gap.pdf">
               <Download className="w-5 h-5 mr-2" />
@@ -159,7 +159,7 @@ export default function FamilyProtectionGap() {
           If you want help understanding your current protection setup, you can book a simple
           education-first conversation. No pressure. No hype. Just clarity.
         </p>
-        <Button asChild size="lg" className="bg-[#447BBE] hover:bg-[#447BBE]/90 text-white">
+        <Button asChild size="lg" className="bg-[#447BBE] hover:bg-[#447BBE]/90 text-[#0A0F1A]">
           <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
             <Calendar className="w-5 h-5 mr-2" />
             Book a Family Protection Review
@@ -174,13 +174,13 @@ export default function FamilyProtectionGap() {
           them.
         </p>
         <div className="flex flex-wrap gap-x-6 gap-y-2 justify-center text-sm text-muted-foreground">
-          <a href="https://zainadtani.com" className="hover:text-[#447BBE]">
+          <a href="https://zainadtani.com" className="hover:text-[#2F5C90]">
             zainadtani.com
           </a>
-          <a href={AMAZON_URL} target="_blank" rel="noopener noreferrer" className="hover:text-[#447BBE]">
+          <a href={AMAZON_URL} target="_blank" rel="noopener noreferrer" className="hover:text-[#2F5C90]">
             Amazon book
           </a>
-          <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="hover:text-[#447BBE]">
+          <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="hover:text-[#2F5C90]">
             Book a call
           </a>
         </div>
