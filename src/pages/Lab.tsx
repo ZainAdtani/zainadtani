@@ -24,6 +24,16 @@ const PROJECTS = [
     badge: "Hogwarts Built",
     badgeBg: "#447BBE",
   },
+  {
+    title: "AI Songs",
+    description:
+      "Fun study music made with AI to help you remember tricky topics. Press play and learn.",
+    image: "/images/ai-songs-banner.jpg",
+    href: "/projects/ai-songs",
+    cta: "Listen Now →",
+    badge: "AI Made",
+    badgeBg: "#8B5CF6",
+  },
 ];
 
 const Lab = () => {

@@ -47,9 +47,7 @@ interface SiteEntry {
 const SITE_MAP: SiteEntry[] = [
   // Learn & Play
   { group: "Learn & Play", route: "/roth-ira-game", title: "The Roth IRA Game", desc: "Learn how a Roth IRA works and meet 7 ETFs. Free cheat sheet at the end." },
-  { group: "Learn & Play", route: "/harry-potter", title: "Harry Potter World", desc: "Seven books, one journey, plus chapter songs you can play." },
-  { group: "Learn & Play", route: "/pokedex", title: "Pokédex", desc: "All 151 original Pokémon, built in Notion." },
-  { group: "Learn & Play", route: "/projects/ai-songs", title: "AI Songs", desc: "Fun study music made with AI to help you remember tricky topics." },
+  { group: "Learn & Play", route: "/lab", title: "The Lab — Just For Fun", desc: "Not everything has to make money. Pokémon, Harry Potter, AI songs, and more fun experiments." },
 
   // Money & Business
   { group: "Money & Business", route: "/investing", title: "Investing — Simple Long-Term Money Philosophy", desc: "Zain Adtani's plain-English investing philosophy — simple, steady steps to grow your money over decades without the noise, hype, or stock tips." },

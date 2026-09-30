@@ -360,9 +360,9 @@ const Index = () => {
       <section id="z-letter" className="section-y bg-white scroll-mt-20">
         <div className="container mx-auto px-5 sm:px-6 max-w-3xl">
           <SectionHead
-            eyebrow="Free weekly newsletter"
-            title="Subscribe to The Z Letter"
-            sub="Every Sunday I send one practical AI tip, one tool worth your time, and one idea that makes you think. No fluff. Always free."
+            eyebrow="Free daily newsletter"
+            title="Get The Daily Z"
+            sub="One useful money idea and one fun thing in your inbox every morning. Two minutes. No fluff. Free forever."
           />
           <form
             className="mt-8 max-w-md mx-auto flex flex-col gap-3"
@@ -388,10 +388,10 @@ const Index = () => {
               className="w-full rounded-xl border border-[#447BBE]/30 bg-white px-5 py-3.5 font-sans text-[16px] text-[#0A0F1A] placeholder:text-[#0A0F1A]/40 focus:outline-none focus:border-[#447BBE]"
             />
             <button type="submit" className="btn-cta w-full">
-              Subscribe Free
+              Send Me The Daily Z
             </button>
             <p className="text-center font-sans text-[13px] text-[#0A0F1A]/60">
-              Sundays at 9AM Central. Unsubscribe anytime.
+              Every morning. Unsubscribe anytime.
             </p>
           </form>
         </div>
