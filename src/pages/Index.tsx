@@ -26,7 +26,32 @@ import harryPotterImg from "@/assets/harry-potter-world.png";
 const CALENDLY_URL = "https://calendly.com/zkadtani";
 const BEEHIIV_URL = "https://the-z-letter.beehiiv.com/subscribe";
 const BEEHIIV_MAGIC = "https://magic.beehiiv.com/v1/dd1643e2-f274-43e4-b193-62276e3e3b48";
-const AMAZON_ZAP_REST = "https://www.amazon.com/dp/B0H51RJL7R";
+const AMAZON_BOOKS = [
+  {
+    title: "The Family Protection Gap",
+    blurb:
+      "The plain-English guide to the gap between your job benefits, savings, and what your family actually needs.",
+    price: "$18.99",
+    format: "Paperback",
+    asin: "B0H6FJCRJ7",
+  },
+  {
+    title: "ZAP REST: The 5-Minute Daily Journal",
+    blurb:
+      "Your first step to waking up without anxiety. A 5-minute morning routine that fights anxiety before it starts.",
+    price: "$9.99",
+    format: "Kindle + Paperback",
+    asin: "B0H51RJL7R",
+  },
+  {
+    title: "Small Actions. Massive Life",
+    blurb:
+      "One small action a day for a whole year. A 366-day journal for building a massive life.",
+    price: "$24.99",
+    format: "Hardcover",
+    asin: "B0H7YYB72H",
+  },
+];
 const YOUTUBE_URL = "https://youtube.com/@zainadtani";
 
 const VISITOR_PATHS = [
@@ -297,60 +322,49 @@ const Index = () => {
 
       <Divider />
 
-      {/* 3 — FEATURED BOOK */}
+      {/* 3 — BOOKS */}
       <section className="section-y bg-white">
-        <div className="container mx-auto px-5 sm:px-6 max-w-5xl">
-          <ScrollReveal>
-            <div className="rounded-2xl surface-warm border border-[#D97706]/25 p-6 md:p-10">
-              <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                <div className="w-[170px] md:w-[200px] shrink-0">
-                  <div className="w-full aspect-[2/3] rounded-xl bg-white p-2 shadow-[0_6px_20px_rgba(10,15,26,0.10)]">
-                    <img
-                      src="https://images-na.ssl-images-amazon.com/images/P/B0H51RJL7R.01.LZZZZZZZ.jpg"
-                      alt="ZAP REST book cover by Zain Adtani"
-                      className="w-full h-full object-contain"
-                      loading="lazy"
-                    />
+        <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
+          <SectionHead
+            eyebrow="Author"
+            title="My books"
+            sub="Three books, all live on Amazon. Pick the one that fits where you are."
+          />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
+            {AMAZON_BOOKS.map((book) => (
+              <ScrollReveal key={book.asin}>
+                <div className="rounded-2xl surface-warm border border-[#D97706]/25 p-6 flex flex-col items-center text-center h-full">
+                  <div className="w-[130px] shrink-0">
+                    <div className="w-full aspect-[2/3] rounded-xl bg-white p-2 shadow-[0_6px_20px_rgba(10,15,26,0.10)]">
+                      <img
+                        src={`https://images-na.ssl-images-amazon.com/images/P/${book.asin}.01.LZZZZZZZ.jpg`}
+                        alt={`${book.title} book cover by Zain Adtani`}
+                        className="w-full h-full object-contain"
+                        loading="lazy"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="flex-1 text-center md:text-left">
-                  <div className="flex flex-wrap justify-center md:justify-start gap-2">
-                    <span className="inline-flex items-center rounded-full bg-white border border-[#D97706]/40 px-3 py-1 font-sans text-[11px] font-semibold tracking-[0.12em] uppercase text-[#A85B05]">
-                      Now live on Amazon
-                    </span>
-                    <span className="inline-flex items-center rounded-full bg-white border border-[#447BBE]/30 px-3 py-1 font-sans text-[11px] font-semibold tracking-[0.12em] uppercase text-[#2F5C90]">
-                      Kindle + Paperback
-                    </span>
-                  </div>
-                  <h2 className="font-display text-[30px] md:text-[38px] leading-tight text-[#0A0F1A] mt-4">
-                    ZAP REST
-                  </h2>
-                  <p className="font-sans text-[16px] leading-relaxed text-[#0A0F1A]/75 mt-3 max-w-xl">
-                    Your first step to waking up without anxiety. A practical guide to building a
-                    morning routine that fights anxiety before it starts. Written by Zain Adtani.
+                  <span className="inline-flex items-center rounded-full bg-white border border-[#447BBE]/30 px-3 py-1 font-sans text-[11px] font-semibold tracking-[0.12em] uppercase text-[#2F5C90] mt-4">
+                    {book.format}
+                  </span>
+                  <h3 className="font-display text-[22px] leading-tight text-[#0A0F1A] mt-3">
+                    {book.title}
+                  </h3>
+                  <p className="font-sans text-[14px] leading-relaxed text-[#0A0F1A]/75 mt-2 flex-1">
+                    {book.blurb}
                   </p>
-                  <div className="flex flex-wrap justify-center md:justify-start gap-3 mt-6">
-                    <a
-                      href={AMAZON_ZAP_REST}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-cta"
-                    >
-                      Get It on Amazon — $9.99
-                    </a>
-                    <a
-                      href={BEEHIIV_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-secondary-outline"
-                    >
-                      Join The Z Letter
-                    </a>
-                  </div>
+                  <a
+                    href={`https://www.amazon.com/dp/${book.asin}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-cta w-full mt-5"
+                  >
+                    Get It on Amazon — {book.price}
+                  </a>
                 </div>
-              </div>
-            </div>
-          </ScrollReveal>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
