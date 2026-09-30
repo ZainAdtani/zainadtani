@@ -273,18 +273,40 @@ const Index = () => {
               </a>
             </div>
 
-            {/* Portrait — 4:5 card, fully visible, never cropped */}
+            {/* Portrait — Ali-style: circle photo on a warm blob, doodle accents */}
             <div className="flex justify-center md:justify-end">
-              <div className="w-full max-w-[300px] sm:max-w-[340px] rounded-2xl border border-[#447BBE]/20 bg-white p-3 shadow-[0_8px_28px_rgba(10,15,26,0.08)]">
-                <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#F3F6FA] flex items-center justify-center">
-                  <img
-                    src={headshotImage}
-                    alt="Zain Adtani, AI Consultant, Author, and Financial Educator"
-                    className="w-full h-full object-contain object-center"
-                    width={340}
-                    height={425}
-                  />
-                </div>
+              <div className="relative w-[270px] sm:w-[310px] aspect-square">
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 scale-110 bg-[#F6C99B]"
+                  style={{ borderRadius: "58% 42% 55% 45% / 52% 55% 45% 48%" }}
+                />
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  className="absolute -top-3 -right-2 w-10 h-10 text-[#447BBE]"
+                  fill="currentColor"
+                >
+                  <path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z" />
+                </svg>
+                <svg
+                  viewBox="0 0 60 20"
+                  aria-hidden="true"
+                  className="absolute -bottom-4 -left-5 w-16 h-6 text-[#D97706]"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3.5"
+                  strokeLinecap="round"
+                >
+                  <path d="M2 12c8-8 14 8 22 0s14 8 22 0 10-4 12-2" />
+                </svg>
+                <img
+                  src={headshotImage}
+                  alt="Zain Adtani, AI Consultant, Author, and Financial Educator"
+                  className="absolute inset-0 w-full h-full rounded-full object-cover object-[50%_15%] shadow-[0_12px_32px_rgba(10,15,26,0.20)]"
+                  width={310}
+                  height={310}
+                />
               </div>
             </div>
           </div>
