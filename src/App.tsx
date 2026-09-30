@@ -30,6 +30,7 @@ import Connect from "./pages/Connect";
 import KDPCopilot from "./pages/KDPCopilot";
 import FamilyProtectionGap from "./pages/FamilyProtectionGap";
 import RothIRAGame from "./pages/RothIRAGame";
+import LifeInsuranceCalculator from "./pages/LifeInsuranceCalculator";
 
 // Project sub-pages
 import AiSongs from "./pages/projects/AiSongs";
@@ -72,6 +73,7 @@ const App = () => (
                   <Route path="/resources/label-iq" element={<LabelIQ />} />
                   <Route path="/family-protection-gap" element={<FamilyProtectionGap />} />
                   <Route path="/roth-ira-game" element={<RothIRAGame />} />
+                  <Route path="/resources/life-insurance-calculator" element={<LifeInsuranceCalculator />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
