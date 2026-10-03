@@ -53,6 +53,9 @@
 
     --hero-bg: 0 0% 100%;
     --hero-foreground: 222 44% 7%;
+    --hero-cream: 45 82% 94%;
+    --hero-sun: 47 96% 69%;
+    --hero-sky: 202 68% 71%;
 
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 222 44% 7%;
@@ -107,6 +110,15 @@
 }
 
 @layer components {
+  .hero-warm { background-color: hsl(var(--hero-cream)); }
+  .hero-sun-blob {
+    background-color: hsl(var(--hero-sun));
+    border-radius: 52% 48% 58% 42% / 46% 55% 45% 54%;
+    transform: rotate(-12deg);
+  }
+  .hero-greeting { font-family: Georgia, 'Times New Roman', serif !important; font-weight: 700 !important; letter-spacing: 0; }
+  .hero-underline { color: hsl(var(--hero-sky)); }
+
   .hover-lift {
     @apply transition-transform duration-200 ease-out hover:-translate-y-0.5;
   }
