@@ -19,8 +19,10 @@ import {
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { ZLetterFeed } from "@/components/ZLetterFeed";
 import { TimeBar } from "@/components/TimeBar";
+import { Button } from "@/components/ui/button";
 import { BOOKS } from "@/data/books";
-import headshotImage from "@/assets/zain-headshot.png";
+import headshotImage from "@/assets/zain-headshot.jpg.asset.json";
+import wavingHand from "@/assets/waving-hand.png";
 import pokemonImg from "@/assets/pokemon-pokedex.png";
 import harryPotterImg from "@/assets/harry-potter-world.png";
 
@@ -237,81 +239,68 @@ const Index = () => {
       <TimeBar />
 
       {/* 1 — HERO */}
-      <section className="bg-gradient-hero">
-        <div className="container mx-auto px-5 sm:px-6 max-w-6xl py-12 md:py-20">
-          <div className="grid md:grid-cols-[1.15fr_1fr] gap-10 md:gap-14 items-center">
-            <div className="flex flex-col gap-5">
-              <span className="inline-flex w-fit items-center rounded-full bg-white border border-[#447BBE]/25 px-4 py-1.5 font-sans text-[12px] font-semibold tracking-[0.12em] uppercase text-[#2F5C90]">
-                AI Consultant · Author · Financial Educator
-              </span>
-              <h1 className="font-display text-[34px] sm:text-[44px] md:text-[54px] leading-[1.08] text-[#0A0F1A]">
-                <span className="block">Build with AI.</span>
-                <span className="block">Publish your book.</span>
-                <span className="block">Protect your family.</span>
-              </h1>
-              <p className="font-sans text-[16px] md:text-[18px] leading-relaxed text-[#0A0F1A]/75 max-w-[540px]">
-                I'm Zain Adtani. I help businesses run on AI, help creators publish books, and help
-                families protect what they build. One partner, three ways forward.
-              </p>
-              <div className="flex flex-wrap items-center gap-3 mt-1">
-                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn-cta">
-                  Book a Call
-                </a>
-                <a
-                  href={BEEHIIV_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary-outline"
-                >
-                  Join The Z Letter
-                </a>
-              </div>
-              <a
-                href="#how-i-help"
-                className="font-sans text-[15px] text-[#2F5C90] underline-offset-4 hover:underline w-fit"
-              >
-                See how I help ↓
-              </a>
-            </div>
-
-            {/* Portrait — Ali-style: circle photo on a warm blob, doodle accents */}
-            <div className="flex justify-center md:justify-end">
-              <div className="relative w-[270px] sm:w-[310px] aspect-square">
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 scale-110 bg-[#F6C99B]"
-                  style={{ borderRadius: "58% 42% 55% 45% / 52% 55% 45% 48%" }}
-                />
-                <svg
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                  className="absolute -top-3 -right-2 w-10 h-10 text-[#447BBE]"
-                  fill="currentColor"
-                >
-                  <path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z" />
-                </svg>
-                <svg
-                  viewBox="0 0 60 20"
-                  aria-hidden="true"
-                  className="absolute -bottom-4 -left-5 w-16 h-6 text-[#D97706]"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3.5"
-                  strokeLinecap="round"
-                >
-                  <path d="M2 12c8-8 14 8 22 0s14 8 22 0 10-4 12-2" />
-                </svg>
-                <img
-                  src={headshotImage}
-                  alt="Zain Adtani, AI Consultant, Author, and Financial Educator"
-                  className="absolute inset-0 w-full h-full rounded-full object-cover object-[50%_15%] shadow-[0_12px_32px_rgba(10,15,26,0.20)]"
-                  width={310}
-                  height={310}
-                />
-              </div>
-            </div>
+      <section className="hero-warm px-5 py-10 sm:py-12 md:py-14 text-center">
+        <div className="mx-auto max-w-3xl flex flex-col items-center">
+          <div className="relative isolate w-48 h-48 sm:w-56 sm:h-56 shrink-0 mb-7">
+            <div aria-hidden="true" className="hero-sun-blob absolute -inset-3 -z-10" />
+            <img
+              src={headshotImage.url}
+              alt="Zain Adtani"
+              className="w-full h-full rounded-full object-cover object-center border-4 border-background"
+              width={224}
+              height={224}
+              fetchPriority="high"
+              onError={(event) => {
+                const image = event.currentTarget;
+                const fallback = `https://zainadtani.com${headshotImage.url}`;
+                if (image.src !== fallback) image.src = fallback;
+              }}
+            />
           </div>
+          <h1 className="hero-greeting text-[48px] sm:text-[60px] md:text-[72px] leading-[1.15] text-foreground">
+            Hey friends <span className="sr-only">👋</span><img src={wavingHand} alt="" aria-hidden="true" className="inline-block align-[-0.08em] w-[0.8em] h-[0.8em]" />
+          </h1>
+          <svg aria-hidden="true" viewBox="0 0 310 30" className="hero-underline w-56 sm:w-72 h-7 mt-1" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round">
+            <path d="M5 10 Q88 1 155 9 T305 7" />
+            <path d="M13 21 Q95 15 156 20 T298 17" />
+          </svg>
+          <p className="max-w-2xl mt-5 font-sans text-[17px] sm:text-[20px] leading-relaxed text-foreground">
+            I'm Z — AI consultant, author of <a href="#books" className="font-bold underline underline-offset-4 decoration-primary hover:text-primary">3 books</a>, and financial educator helping families protect what they build.
+          </p>
         </div>
+      </section>
+
+      <div className="border-y border-border bg-background px-5 py-4 text-center font-sans text-[13px] sm:text-[15px] font-medium text-foreground">
+        3 books on Amazon · Licensed TX Life &amp; Health · Eagle Scout
+      </div>
+
+      <section aria-label="Join The Daily Z" className="bg-background px-5 py-6 sm:py-7 text-center">
+        <form
+          className="mx-auto max-w-lg"
+          onSubmit={(e) => {
+            e.preventDefault();
+            const input = (e.currentTarget.elements.namedItem("email") as HTMLInputElement);
+            const email = input?.value?.trim();
+            if (!email || !email.includes("@")) {
+              input?.focus();
+              return;
+            }
+            window.open(`${BEEHIIV_MAGIC}?email=${encodeURIComponent(email)}`, "_blank");
+          }}
+        >
+          <div className="flex flex-col sm:flex-row gap-2">
+            <label htmlFor="heroZletterEmail" className="sr-only">Email address for The Daily Z</label>
+            <input
+              id="heroZletterEmail"
+              name="email"
+              type="email"
+              placeholder="Your email address"
+              className="min-w-0 flex-1 rounded-lg border border-input bg-background px-4 py-3 font-sans text-[16px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary"
+            />
+            <Button type="submit" variant="secondary" className="h-auto min-h-12 px-7 rounded-lg font-sans font-semibold text-[15px]">Join free</Button>
+          </div>
+          <p className="mt-2 font-sans text-[13px] text-muted-foreground">Two minutes. No fluff. Free forever.</p>
+        </form>
       </section>
 
       {/* 2 — VISITOR PATHS */}
@@ -346,7 +335,7 @@ const Index = () => {
       <Divider />
 
       {/* 3 — BOOKS */}
-      <section className="section-y bg-white">
+      <section id="books" className="section-y bg-white scroll-mt-20">
         <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
           <SectionHead
             eyebrow="Author"
