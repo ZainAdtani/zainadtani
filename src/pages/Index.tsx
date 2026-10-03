@@ -22,6 +22,7 @@ import { TimeBar } from "@/components/TimeBar";
 import { Button } from "@/components/ui/button";
 import { BOOKS } from "@/data/books";
 import headshotImage from "@/assets/zain-headshot.jpg.asset.json";
+import wavingHand from "@/assets/waving-hand.png";
 import pokemonImg from "@/assets/pokemon-pokedex.png";
 import harryPotterImg from "@/assets/harry-potter-world.png";
 
@@ -257,7 +258,7 @@ const Index = () => {
             />
           </div>
           <h1 className="hero-greeting text-[48px] sm:text-[60px] md:text-[72px] leading-[1.15] text-foreground">
-            Hey friends <span role="img" aria-label="waving hand">👋</span>
+            Hey friends <span className="sr-only">👋</span><img src={wavingHand} alt="" aria-hidden="true" className="inline-block align-[-0.08em] w-[0.8em] h-[0.8em]" />
           </h1>
           <svg aria-hidden="true" viewBox="0 0 310 30" className="hero-underline w-56 sm:w-72 h-7 mt-1" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round">
             <path d="M5 10 Q88 1 155 9 T305 7" />
