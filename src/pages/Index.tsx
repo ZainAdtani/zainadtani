@@ -249,6 +249,11 @@ const Index = () => {
               width={224}
               height={224}
               fetchPriority="high"
+              onError={(event) => {
+                const image = event.currentTarget;
+                const fallback = `https://zainadtani.com${headshotImage.url}`;
+                if (image.src !== fallback) image.src = fallback;
+              }}
             />
           </div>
           <h1 className="hero-greeting text-[48px] sm:text-[60px] md:text-[72px] leading-[1.15] text-foreground">
