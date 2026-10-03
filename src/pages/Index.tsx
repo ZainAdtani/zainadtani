@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { ZLetterFeed } from "@/components/ZLetterFeed";
 import { TimeBar } from "@/components/TimeBar";
 import { BOOKS } from "@/data/books";
 import headshotImage from "@/assets/zain-headshot.png";
@@ -430,6 +431,13 @@ const Index = () => {
               Every morning. Unsubscribe anytime.
             </p>
           </form>
+
+          <p className="mt-16 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-[#0A0F1A]/60">
+            Fresh from the inbox
+          </p>
+          <div className="mt-6">
+            <ZLetterFeed />
+          </div>
         </div>
       </section>
 
