@@ -431,13 +431,13 @@ const Index = () => {
               Every morning. Unsubscribe anytime.
             </p>
           </form>
+        </div>
 
-          <p className="mt-16 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-[#0A0F1A]/60">
-            Fresh from the inbox
-          </p>
-          <div className="mt-6">
-            <ZLetterFeed />
-          </div>
+        <p className="mt-16 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-[#0A0F1A]/60">
+          Fresh from the inbox
+        </p>
+        <div className="mt-6">
+          <ZLetterFeed />
         </div>
       </section>
 
