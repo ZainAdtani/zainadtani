@@ -433,10 +433,10 @@ const Index = () => {
           </form>
         </div>
 
-        <p className="mt-16 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-[#0A0F1A]/60">
-          Fresh from the inbox
-        </p>
-        <div className="mt-6">
+        <div className="mt-10">
+          <p className="text-center font-sans text-[14px] font-semibold tracking-wide text-[#0A0F1A]/70 mb-4">
+            Fresh from the inbox
+          </p>
           <ZLetterFeed />
         </div>
       </section>
