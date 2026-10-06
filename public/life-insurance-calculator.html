@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life Insurance Needs Calculator</title>
+  <style>
+    :root {
+      --navy-950: #0a0f1a;
+      --navy-900: #0f172a;
+      --navy-800: #1b2a4a;
+      --navy-700: #24355a;
+      --blue-600: #2563eb;
+      --blue-500: #447bbe;
+      --blue-400: #60a5fa;
+      --blue-100: #e0e7ff;
+      --blue-50: #f0f4f8;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-400: #94a3b8;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-900: #0f172a;
+      --emerald-600: #059669;
+      --amber-600: #d97706;
+      --radius: 12px;
+      --shadow-sm: 0 1px 2px 0 rgba(10, 15, 26, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(10, 15, 26, 0.08), 0 2px 4px -2px rgba(10, 15, 26, 0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(10, 15, 26, 0.1), 0 4px 6px -4px rgba(10, 15, 26, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--slate-100);
+      color: var(--slate-900);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--navy-950) 0%, var(--navy-800) 100%);
+      color: #ffffff;
+      padding: 2.25rem 1.5rem;
+      border-bottom: 3px solid var(--blue-500);
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(68, 123, 190, 0.25);
+      border: 1px solid rgba(96, 165, 250, 0.4);
+      color: var(--blue-400);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--slate-400);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    main {
+      max-width: 1080px;
+      width: 100%;
+      margin: 2rem auto;
+      padding: 0 1.25rem;
+      flex: 1;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.75rem;
+      align-items: start;
+    }
+
+    @media (max-width: 820px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+
+    .card-header {
+      background: var(--slate-50);
+      border-bottom: 1px solid var(--slate-200);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--navy-800);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.35rem;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--slate-700);
+      margin-bottom: 0.4rem;
+    }
+
+    .label-hint {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--slate-400);
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 1rem;
+      color: var(--slate-400);
+      font-weight: 600;
+      font-size: 0.95rem;
+      pointer-events: none;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      padding-left: 2rem;
+      border: 1px solid var(--slate-200);
+      border-radius: 8px;
+      font-size: 1rem;
+      color: var(--slate-900);
+      background: var(--slate-50);
+      transition: all 0.15s ease-in-out;
+    }
+
+    input.no-prefix {
+      padding-left: 1rem;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus {
+      outline: none;
+      border-color: var(--blue-500);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(68, 123, 190, 0.18);
+    }
+
+    .range-slider {
+      width: 100%;
+      height: 6px;
+      margin-top: 0.6rem;
+      accent-color: var(--blue-500);
+      cursor: pointer;
+    }
+
+    .preset-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .preset-btn {
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      color: var(--navy-800);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .preset-btn:hover {
+      background: var(--blue-100);
+      color: var(--blue-600);
+      border-color: var(--blue-400);
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 0.85rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.15s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--navy-800);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--navy-950);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--slate-200);
+      color: var(--slate-600);
+    }
+
+    .btn-outline:hover {
+      background: var(--slate-100);
+      color: var(--slate-900);
+    }
+
+    /* Result Card Styles */
+    .result-card {
+      background: linear-gradient(180deg, #ffffff 0%, var(--slate-50) 100%);
+      border: 1px solid var(--slate-200);
+      border-top: 4px solid var(--blue-500);
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, var(--navy-950) 0%, var(--navy-800) 100%);
+      border-radius: 10px;
+      padding: 1.5rem;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .highlight-box::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(68, 123, 190, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .highlight-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--blue-400);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .highlight-amount {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+    }
+
+    .highlight-formula {
+      font-size: 0.8rem;
+      color: var(--slate-400);
+      margin-top: 0.35rem;
+    }
+
+    .math-breakdown {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0;
+      font-size: 0.9rem;
+      border-bottom: 1px dashed var(--slate-200);
+    }
+
+    .breakdown-row:last-child {
+      border-bottom: none;
+      padding-top: 0.75rem;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--navy-800);
+    }
+
+    .breakdown-label {
+      color: var(--slate-600);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .breakdown-value {
+      font-weight: 700;
+      color: var(--slate-900);
+    }
+
+    .text-debt {
+      color: #dc2626;
+    }
+
+    .text-base {
+      color: var(--blue-600);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .stat-pill {
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      border-radius: 8px;
+      padding: 0.75rem;
+      text-align: center;
+    }
+
+    .stat-pill-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--slate-400);
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-pill-val {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy-800);
+    }
+
+    .info-callout {
+      background: var(--blue-50);
+      border-left: 3px solid var(--blue-500);
+      padding: 0.85rem 1rem;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.8rem;
+      color: var(--slate-700);
+      line-height: 1.45;
+    }
+
+    .info-callout strong {
+      color: var(--navy-800);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.75rem;
+      color: var(--slate-400);
+      border-top: 1px solid var(--slate-200);
+      background: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge">Rule of Thumb Method</div>
+    <h1>Life Insurance Needs Calculator</h1>
+    <p class="subtitle">10x Income Protection Baseline minus Outstanding Debts.</p>
+  </header>
+
+  <main>
+    <div class="grid-container">
+
+      <!-- Input Column -->
+      <section class="card" aria-label="Input Parameters">
+        <div class="card-header">
+          <span class="card-title">Family Profile</span>
+          <span class="label-hint">Adjust values below</span>
+        </div>
+        <div class="card-body">
+
+          <!-- Age Input -->
+          <div class="form-group">
+            <label for="ageInput">
+              <span>Client Age</span>
+              <span id="ageDisplay" class="label-hint">35 years old</span>
+            </label>
+            <div class="input-wrapper">
+              <input type="number" id="ageInput" class="no-prefix" min="18" max="85" value="35">
+            </div>
+            <input type="range" id="ageSlider" class="range-slider" min="18" max="75" value="35">
+          </div>
+
+          <!-- Annual Income Input -->
+          <div class="form-group">
+            <label for="incomeInput">
+              <span>Annual Income (Gross)</span>
+              <span class="label-hint">Pre-tax earnings</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-icon">$</span>
+              <input type="text" id="incomeInput" value="100,000">
+            </div>
+            <div class="preset-row">
+              <button type="button" class="preset-btn" onclick="setIncome(60000)">$60K</button>
+              <button type="button" class="preset-btn" onclick="setIncome(85000)">$85K</button>
+              <button type="button" class="preset-btn" onclick="setIncome(100000)">$100K</button>
+              <button type="button" class="preset-btn" onclick="setIncome(150000)">$150K</button>
+              <button type="button" class="preset-btn" onclick="setIncome(200000)">$200K</button>
+            </div>
+          </div>
+
+          <!-- Dependents Input -->
+          <div class="form-group">
+            <label for="dependentsInput">
+              <span>Number of Dependents</span>
+              <span id="dependentsDisplay" class="label-hint">2 children or family members</span>
+            </label>
+            <div class="input-wrapper">
+              <input type="number" id="dependentsInput" class="no-prefix" min="0" max="10" value="2">
+            </div>
+            <input type="range" id="dependentsSlider" class="range-slider" min="0" max="8" value="2">
+          </div>
+
+          <!-- Total Debts Input -->
+          <div class="form-group">
+            <label for="debtsInput">
+              <span>Total Debts to Offset</span>
+              <span class="label-hint">Mortgage, loans, credit cards</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-icon">$</span>
+              <input type="text" id="debtsInput" value="150,000">
+            </div>
+            <div class="preset-row">
+              <button type="button" class="preset-btn" onclick="setDebts(0)">$0 Debt</button>
+              <button type="button" class="preset-btn" onclick="setDebts(50000)">$50K</button>
+              <button type="button" class="preset-btn" onclick="setDebts(150000)">$150K</button>
+              <button type="button" class="preset-btn" onclick="setDebts(300000)">$300K</button>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="button" class="btn btn-outline" onclick="resetCalculator()">Reset Defaults</button>
+            <button type="button" class="btn btn-primary" onclick="recalculate()">Calculate Protection</button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Results Column -->
+      <section class="card result-card" aria-label="Coverage Recommendation">
+        <div class="card-header">
+          <span class="card-title">Recommended Coverage</span>
+          <span class="badge" style="margin-bottom: 0;">10x Minus Debts</span>
+        </div>
+        <div class="card-body">
+
+          <!-- Highlight Box -->
+          <div class="highlight-box">
+            <div class="highlight-label">Target Protection Total</div>
+            <div class="highlight-amount" id="recommendedTotal">$850,000</div>
+            <div class="highlight-formula" id="formulaSummary">(10 × $100,000) − $150,000</div>
+          </div>
+
+          <!-- Step-by-Step Breakdown -->
+          <div class="math-breakdown">
+            <div class="breakdown-row">
+              <span class="breakdown-label">10x Base Income Replacement</span>
+              <span class="breakdown-value text-base" id="baseCoverageVal">$1,000,000</span>
+            </div>
+            <div class="breakdown-row">
+              <span class="breakdown-label">Less Total Debts Subtracted</span>
+              <span class="breakdown-value text-debt" id="debtSubtractedVal">− $150,000</span>
+            </div>
+            <div class="breakdown-row">
+              <span class="breakdown-label">Net Coverage Recommended</span>
+              <span class="breakdown-value" id="netCoverageVal">$850,000</span>
+            </div>
+          </div>
+
+          <!-- Context Pills -->
+          <div class="stats-grid">
+            <div class="stat-pill">
+              <div class="stat-pill-label">Per Dependent Value</div>
+              <div class="stat-pill-val" id="perDependentVal">$425,000</div>
+            </div>
+            <div class="stat-pill">
+              <div class="stat-pill-label">Years of Replacement</div>
+              <div class="stat-pill-val" id="yearsReplacementVal">8.5 Years</div>
+            </div>
+          </div>
+
+          <!-- Educational Callout -->
+          <div class="info-callout">
+            <strong>Understanding the 10x Minus Debts Formula:</strong>
+            The 10x rule provides a baseline fund to replace household income for ten years. Subtracting debts calculates the remaining net balance required when debt obligations are settled separately.
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    Private Working Draft · Adtani Education Ventures · Confidential Internal Tool
+  </footer>
+
+  <script>
+    // Helper to format currency numbers
+    function formatCurrency(num) {
+      return "$" + Math.round(num).toLocaleString("en-US");
+    }
+
+    // Helper to parse clean number from formatted currency string
+    function parseCleanNumber(val) {
+      if (typeof val === "number") return isNaN(val) ? 0 : val;
+      const clean = String(val).replace(/[^0-9.-]+/g, "");
+      const num = parseFloat(clean);
+      return isNaN(num) ? 0 : num;
+    }
+
+    // Input elements
+    const ageInput = document.getElementById("ageInput");
+    const ageSlider = document.getElementById("ageSlider");
+    const ageDisplay = document.getElementById("ageDisplay");
+
+    const incomeInput = document.getElementById("incomeInput");
+    const debtsInput = document.getElementById("debtsInput");
+
+    const dependentsInput = document.getElementById("dependentsInput");
+    const dependentsSlider = document.getElementById("dependentsSlider");
+    const dependentsDisplay = document.getElementById("dependentsDisplay");
+
+    // Output elements
+    const recommendedTotal = document.getElementById("recommendedTotal");
+    const formulaSummary = document.getElementById("formulaSummary");
+    const baseCoverageVal = document.getElementById("baseCoverageVal");
+    const debtSubtractedVal = document.getElementById("debtSubtractedVal");
+    const netCoverageVal = document.getElementById("netCoverageVal");
+    const perDependentVal = document.getElementById("perDependentVal");
+    const yearsReplacementVal = document.getElementById("yearsReplacementVal");
+
+    function recalculate() {
+      const age = parseCleanNumber(ageInput.value);
+      const income = parseCleanNumber(incomeInput.value);
+      const dependents = parseCleanNumber(dependentsInput.value);
+      const debts = parseCleanNumber(debtsInput.value);
+
+      // 10x rule base
+      const baseCoverage = income * 10;
+      // Net coverage = 10x rule minus debts
+      const netCoverage = Math.max(0, baseCoverage - debts);
+
+      // Update Highlight
+      recommendedTotal.textContent = formatCurrency(netCoverage);
+      formulaSummary.textContent = `(10 × ${formatCurrency(income)}) − ${formatCurrency(debts)}`;
+
+      // Update Breakdown
+      baseCoverageVal.textContent = formatCurrency(baseCoverage);
+      debtSubtractedVal.textContent = debts > 0 ? "− " + formatCurrency(debts) : "$0";
+      netCoverageVal.textContent = formatCurrency(netCoverage);
+
+      // Context Stats
+      if (dependents > 0) {
+        const perDep = netCoverage / dependents;
+        perDependentVal.textContent = formatCurrency(perDep);
+      } else {
+        perDependentVal.textContent = "Self Only";
+      }
+
+      if (income > 0) {
+        const years = (netCoverage / income).toFixed(1);
+        yearsReplacementVal.textContent = `${years} Years`;
+      } else {
+        yearsReplacementVal.textContent = "0.0 Years";
+      }
+
+      // Sync labels
+      ageDisplay.textContent = `${age} years old`;
+      dependentsDisplay.textContent = dependents === 1 ? "1 dependent" : `${dependents} dependents`;
+    }
+
+    // Input handlers
+    ageSlider.addEventListener("input", (e) => {
+      ageInput.value = e.target.value;
+      recalculate();
+    });
+
+    ageInput.addEventListener("input", (e) => {
+      ageSlider.value = e.target.value;
+      recalculate();
+    });
+
+    dependentsSlider.addEventListener("input", (e) => {
+      dependentsInput.value = e.target.value;
+      recalculate();
+    });
+
+    dependentsInput.addEventListener("input", (e) => {
+      dependentsSlider.value = e.target.value;
+      recalculate();
+    });
+
+    // Format currency inputs on blur
+    [incomeInput, debtsInput].forEach((input) => {
+      input.addEventListener("input", () => {
+        recalculate();
+      });
+
+      input.addEventListener("blur", () => {
+        const val = parseCleanNumber(input.value);
+        input.value = Math.round(val).toLocaleString("en-US");
+        recalculate();
+      });
+
+      input.addEventListener("focus", () => {
+        input.value = parseCleanNumber(input.value);
+      });
+    });
+
+    function setIncome(amt) {
+      incomeInput.value = amt.toLocaleString("en-US");
+      recalculate();
+    }
+
+    function setDebts(amt) {
+      debtsInput.value = amt.toLocaleString("en-US");
+      recalculate();
+    }
+
+    function resetCalculator() {
+      ageInput.value = 35;
+      ageSlider.value = 35;
+      incomeInput.value = "100,000";
+      dependentsInput.value = 2;
+      dependentsSlider.value = 2;
+      debtsInput.value = "150,000";
+      recalculate();
+    }
+
+    // Initial run
+    recalculate();
+  </script>
+</body>
+</html>
