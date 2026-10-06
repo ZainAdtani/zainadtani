@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Term vs. Whole Life Quiz | Zain Adtani</title>
+  <meta property="og:title" content="Term vs. Whole Life Quiz | Zain Adtani">
+  <meta property="og:description" content="Five questions, sixty seconds. Find the life insurance strategy that fits your real life.">
+  <meta property="og:image" content="https://zainadtani.com/og-image.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    :root {
+      --navy-950: #0a0f1a;
+      --navy-900: #0f172a;
+      --navy-800: #1b2a4a;
+      --navy-700: #24355a;
+      --blue-600: #2563eb;
+      --blue-500: #447bbe;
+      --blue-400: #60a5fa;
+      --blue-100: #e0e7ff;
+      --blue-50: #f0f4f8;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-400: #94a3b8;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-900: #0f172a;
+      --emerald-600: #059669;
+      --radius: 12px;
+      --shadow-md: 0 4px 6px -1px rgba(10, 15, 26, 0.08), 0 2px 4px -2px rgba(10, 15, 26, 0.05);
+      --shadow-lg: 0 10px 25px -5px rgba(10, 15, 26, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--slate-100);
+      color: var(--slate-900);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--navy-950) 0%, var(--navy-800) 100%);
+      color: #ffffff;
+      padding: 2.25rem 1.5rem;
+      border-bottom: 3px solid var(--blue-500);
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(68, 123, 190, 0.25);
+      border: 1px solid rgba(96, 165, 250, 0.4);
+      color: var(--blue-400);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--slate-400);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    main {
+      max-width: 720px;
+      width: 100%;
+      margin: 2rem auto;
+      padding: 0 1.25rem;
+      flex: 1;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .progress-bar-container {
+      background: var(--slate-200);
+      height: 6px;
+      width: 100%;
+    }
+
+    .progress-bar {
+      background: var(--blue-500);
+      height: 100%;
+      width: 20%;
+      transition: width 0.3s ease;
+    }
+
+    .quiz-card-header {
+      background: var(--slate-50);
+      border-bottom: 1px solid var(--slate-200);
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .step-indicator {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--blue-600);
+    }
+
+    .quiz-body {
+      padding: 2rem 1.75rem;
+    }
+
+    .question-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy-800);
+      margin-bottom: 0.5rem;
+    }
+
+    .question-hint {
+      font-size: 0.85rem;
+      color: var(--slate-600);
+      margin-bottom: 1.5rem;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      background: var(--slate-50);
+      border: 2px solid var(--slate-200);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--slate-700);
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s ease-in-out;
+    }
+
+    .option-btn:hover {
+      border-color: var(--blue-400);
+      background: var(--blue-50);
+      color: var(--navy-800);
+    }
+
+    .option-btn.selected {
+      border-color: var(--navy-800);
+      background: var(--navy-800);
+      color: #ffffff;
+      box-shadow: var(--shadow-md);
+    }
+
+    .option-bullet {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--slate-400);
+      margin-right: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .option-btn.selected .option-bullet {
+      border-color: #ffffff;
+      background: #ffffff;
+    }
+
+    .option-btn.selected .option-bullet::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--navy-800);
+    }
+
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--slate-200);
+      padding-top: 1.25rem;
+    }
+
+    .btn-nav {
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s;
+    }
+
+    .btn-prev {
+      background: var(--slate-100);
+      color: var(--slate-600);
+    }
+
+    .btn-prev:hover {
+      background: var(--slate-200);
+    }
+
+    .btn-next {
+      background: var(--navy-800);
+      color: #ffffff;
+    }
+
+    .btn-next:hover {
+      background: var(--navy-950);
+    }
+
+    .btn-next:disabled {
+      background: var(--slate-300);
+      cursor: not-allowed;
+    }
+
+    /* Results Screen */
+    .result-section {
+      display: none;
+      padding: 2.25rem 1.75rem;
+      text-align: center;
+    }
+
+    .result-badge {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .badge-term {
+      background: rgba(37, 99, 235, 0.12);
+      color: var(--blue-600);
+      border: 1px solid rgba(37, 99, 235, 0.3);
+    }
+
+    .badge-whole {
+      background: rgba(27, 42, 74, 0.12);
+      color: var(--navy-800);
+      border: 1px solid rgba(27, 42, 74, 0.3);
+    }
+
+    .badge-blend {
+      background: rgba(68, 123, 190, 0.15);
+      color: var(--blue-500);
+      border: 1px solid rgba(68, 123, 190, 0.3);
+    }
+
+    .result-hero {
+      background: linear-gradient(135deg, var(--navy-950) 0%, var(--navy-800) 100%);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      margin-bottom: 1.75rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-headline {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .result-tagline {
+      font-size: 0.95rem;
+      color: var(--blue-100);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .reasons-container {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: left;
+      margin-bottom: 1.75rem;
+    }
+
+    .reasons-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: var(--navy-800);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--slate-200);
+      padding-bottom: 0.5rem;
+    }
+
+    .reason-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.95rem;
+      color: var(--slate-700);
+      line-height: 1.45;
+    }
+
+    .reason-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .reason-check {
+      color: var(--blue-600);
+      font-weight: 800;
+      font-size: 1.1rem;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .btn-restart {
+      background: var(--navy-800);
+      color: #ffffff;
+      border: none;
+      padding: 0.85rem 1.75rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-restart:hover {
+      background: var(--navy-950);
+    }
+
+
+    .cta-banner {
+      background: var(--blue-50);
+      border: 1px solid rgba(68, 123, 190, 0.3);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .cta-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy-800);
+      margin-bottom: 0.75rem;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--navy-800);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.75rem;
+      color: var(--slate-400);
+      border-top: 1px solid var(--slate-200);
+      background: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge">Plain English Financial Guide</div>
+    <h1>Term vs. Whole Life Quiz</h1>
+    <p class="subtitle">Answer five quick questions to find the protection strategy that fits your real life.</p>
+  </header>
+
+  <main>
+    <div class="card">
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <!-- Quiz Questions Stepper -->
+      <div id="quizSection">
+        <div class="quiz-card-header">
+          <span class="step-indicator" id="stepIndicator">Question 1 of 5</span>
+          <span style="font-size: 0.8rem; color: var(--slate-400);">No jargon · Simple score</span>
+        </div>
+
+        <div class="quiz-body">
+          <h2 class="question-title" id="questionTitle">Loading question...</h2>
+          <p class="question-hint" id="questionHint">Loading description...</p>
+
+          <div class="options-grid" id="optionsContainer">
+            <!-- Options dynamically rendered -->
+          </div>
+
+          <div class="nav-row">
+            <button type="button" class="btn-nav btn-prev" id="prevBtn" onclick="prevQuestion()" disabled>Back</button>
+            <button type="button" class="btn-nav btn-next" id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results View -->
+      <div id="resultSection" class="result-section">
+        <div id="resultBadge" class="result-badge">Best Match</div>
+        
+        <div class="result-hero">
+          <h2 class="result-headline" id="resultHeadline">Your Recommended Route</h2>
+          <p class="result-tagline" id="resultTagline">A clear breakdown of why this matches your timeline and goals.</p>
+        </div>
+
+        <div class="reasons-container">
+          <div class="reasons-title">Why This Makes Sense For You</div>
+          <div id="reasonsList">
+            <!-- Reasons populated here -->
+          </div>
+        </div>
+
+        <div class="cta-banner">
+          <p class="cta-text">Want a licensed agent to walk you through this? Talk to Zain.</p>
+          <a href="https://calendly.com/zkadtani" target="_blank" rel="noopener" class="cta-btn">Schedule a Quick Call</a>
+        </div>
+
+        <button type="button" class="btn-restart" onclick="restartQuiz()">Retake Quiz</button>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    Adtani Education Ventures · Financial Education Reference · No Personal Info Collected
+  </footer>
+
+  <script>
+    const questions = [
+      {
+        id: 1,
+        title: "How long do you need coverage?",
+        hint: "Pick the timeline that aligns with your family obligations or debts.",
+        options: [
+          { text: "10 to 20 years", val: "10-20", score: { term: 3, whole: 0, blend: 1 } },
+          { text: "30 years", val: "30", score: { term: 2, whole: 1, blend: 2 } },
+          { text: "Forever", val: "forever", score: { term: 0, whole: 3, blend: 2 } }
+        ]
+      },
+      {
+        id: 2,
+        title: "What is your main financial goal?",
+        hint: "What matters most to your household if something happens to you?",
+        options: [
+          { text: "Income protection", val: "income", score: { term: 3, whole: 0, blend: 1 } },
+          { text: "Legacy for family or charity", val: "legacy", score: { term: 0, whole: 3, blend: 2 } },
+          { text: "Cash growth and accumulation", val: "cash", score: { term: 0, whole: 3, blend: 1 } }
+        ]
+      },
+      {
+        id: 3,
+        title: "How does your monthly budget look?",
+        hint: "Be realistic about the monthly premium you want to commit to long term.",
+        options: [
+          { text: "Lowest possible", val: "lowest", score: { term: 3, whole: 0, blend: 0 } },
+          { text: "Moderate", val: "moderate", score: { term: 1, whole: 1, blend: 3 } },
+          { text: "Flexible", val: "flexible", score: { term: 0, whole: 3, blend: 2 } }
+        ]
+      },
+      {
+        id: 4,
+        title: "How is your current health?",
+        hint: "Underwriting rates depend directly on your current wellness profile.",
+        options: [
+          { text: "Great", val: "great", score: { term: 2, whole: 2, blend: 2 } },
+          { text: "Okay", val: "okay", score: { term: 1, whole: 2, blend: 2 } },
+          { text: "Health issues present", val: "issues", score: { term: 0, whole: 3, blend: 2 } }
+        ]
+      },
+      {
+        id: 5,
+        title: "Do you want money back if you outlive the policy?",
+        hint: "Some policies build cash value or refund premiums, while pure term pays out only upon death.",
+        options: [
+          { text: "Yes", val: "yes", score: { term: 0, whole: 3, blend: 2 } },
+          { text: "No", val: "no", score: { term: 3, whole: 0, blend: 0 } }
+        ]
+      }
+    ];
+
+    let currentStep = 0;
+    const userAnswers = {};
+
+    const progressBar = document.getElementById("progressBar");
+    const stepIndicator = document.getElementById("stepIndicator");
+    const questionTitle = document.getElementById("questionTitle");
+    const questionHint = document.getElementById("questionHint");
+    const optionsContainer = document.getElementById("optionsContainer");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function renderQuestion() {
+      const q = questions[currentStep];
+      stepIndicator.textContent = `Question ${currentStep + 1} of ${questions.length}`;
+      progressBar.style.width = `${((currentStep + 1) / questions.length) * 100}%`;
+      questionTitle.textContent = q.title;
+      questionHint.textContent = q.hint;
+
+      optionsContainer.innerHTML = "";
+      const currentSelection = userAnswers[q.id];
+
+      q.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "option-btn";
+        if (currentSelection === opt.val) {
+          btn.classList.add("selected");
+        }
+
+        btn.innerHTML = `
+          <div class="option-bullet"></div>
+          <span>${opt.text}</span>
+        `;
+
+        btn.addEventListener("click", () => {
+          userAnswers[q.id] = opt.val;
+          document.querySelectorAll(".option-btn").forEach(b => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          nextBtn.disabled = false;
+        });
+
+        optionsContainer.appendChild(btn);
+      });
+
+      prevBtn.disabled = currentStep === 0;
+      nextBtn.disabled = !userAnswers[q.id];
+      nextBtn.textContent = currentStep === questions.length - 1 ? "See Recommendation" : "Next";
+    }
+
+    function nextQuestion() {
+      if (currentStep < questions.length - 1) {
+        currentStep++;
+        renderQuestion();
+      } else {
+        calculateOutcome();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentStep > 0) {
+        currentStep--;
+        renderQuestion();
+      }
+    }
+
+    function calculateOutcome() {
+      let termScore = 0;
+      let wholeScore = 0;
+      let blendScore = 0;
+
+      questions.forEach(q => {
+        const chosenVal = userAnswers[q.id];
+        const option = q.options.find(o => o.val === chosenVal);
+        if (option) {
+          termScore += option.score.term;
+          wholeScore += option.score.whole;
+          blendScore += option.score.blend;
+        }
+      });
+
+      let recommendation = "";
+      // Check margin
+      if (termScore >= wholeScore + 3) {
+        recommendation = "term";
+      } else if (wholeScore >= termScore + 3) {
+        recommendation = "whole";
+      } else {
+        recommendation = "blend";
+      }
+
+      displayResult(recommendation, termScore, wholeScore, blendScore);
+    }
+
+    function displayResult(type) {
+      document.getElementById("quizSection").style.display = "none";
+      document.getElementById("resultSection").style.display = "block";
+
+      const badge = document.getElementById("resultBadge");
+      const headline = document.getElementById("resultHeadline");
+      const tagline = document.getElementById("resultTagline");
+      const reasonsList = document.getElementById("reasonsList");
+      reasonsList.innerHTML = "";
+
+      let reasons = [];
+
+      if (type === "term") {
+        badge.className = "result-badge badge-term";
+        badge.textContent = "Recommended Strategy: Term Life";
+        headline.textContent = "Term Life Insurance";
+        tagline.textContent = "Maximum dollar protection for your critical income earning years at the lowest monthly cost.";
+        reasons = [
+          "You get maximum coverage for every dollar, keeping your monthly premiums low while protecting your household.",
+          "It covers your major temporary milestones such as your mortgage, children growing up, and student debts.",
+          "You do not pay extra fees for complex cash accumulation features that you do not need right now."
+        ];
+      } else if (type === "whole") {
+        badge.className = "result-badge badge-whole";
+        badge.textContent = "Recommended Strategy: Whole Life";
+        headline.textContent = "Whole Life (Permanent Protection)";
+        tagline.textContent = "Guaranteed lifelong protection that never expires, with guaranteed cash value you can tap into.";
+        reasons = [
+          "Your coverage never expires as long as premiums are paid, guaranteeing a permanent financial legacy.",
+          "Your policy builds dependable cash savings over time that you can borrow against or access down the road.",
+          "Your monthly premium is locked in permanently, so getting older will never increase your payment."
+        ];
+      } else {
+        badge.className = "result-badge badge-blend";
+        badge.textContent = "Recommended Strategy: Blended Approach";
+        headline.textContent = "Blended Strategy (Term + Permanent)";
+        tagline.textContent = "The best of both worlds: big affordable income replacement now, plus a permanent foundation for life.";
+        reasons = [
+          "A large affordable Term policy protects your high income years while your children and debts are at their peak.",
+          "A smaller permanent Whole Life policy runs alongside it to guarantee funeral expenses and lifelong legacy.",
+          "This customized mix keeps your total monthly bill realistic without leaving your retirement years uncovered."
+        ];
+      }
+
+      reasons.forEach(text => {
+        const div = document.createElement("div");
+        div.className = "reason-item";
+        div.innerHTML = `
+          <span class="reason-check">✓</span>
+          <span>${text}</span>
+        `;
+        reasonsList.appendChild(div);
+      });
+    }
+
+    function restartQuiz() {
+      currentStep = 0;
+      for (const key in userAnswers) {
+        delete userAnswers[key];
+      }
+      document.getElementById("resultSection").style.display = "none";
+      document.getElementById("quizSection").style.display = "block";
+      renderQuestion();
+    }
+
+    // Initialize
+    renderQuestion();
+  </script>
+</body>
+</html>
