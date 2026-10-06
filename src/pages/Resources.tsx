@@ -53,6 +53,8 @@ const SITE_MAP: SiteEntry[] = [
   { group: "Money & Business", route: "/investing", title: "Investing — Simple Long-Term Money Philosophy", desc: "Zain Adtani's plain-English investing philosophy — simple, steady steps to grow your money over decades without the noise, hype, or stock tips." },
   
   { group: "Money & Business", route: "/resources/life-insurance-calculator", title: "Life Insurance Calculator", desc: "Answer 7 quick questions and get a plain-English estimate of how much life insurance your family might need. Free, no email required." },
+  { group: "Money & Business", route: "/resources/final-expense-estimator", title: "Final Expense Estimator", desc: "Burial costs, debts, and a little something to leave behind. Add it up in about 30 seconds. Free, no email required." },
+  { group: "Money & Business", route: "/resources/term-vs-whole-life-quiz", title: "Term vs. Whole Life Quiz", desc: "Five questions, sixty seconds. Find the life insurance strategy that fits your real life. Free, no email required." },
   { group: "Money & Business", route: "/family-protection-gap", title: "The Family Protection Gap", desc: "A plain-language guide to help families understand the gap between job benefits, savings, retirement accounts, and real protection. Free PDF." },
   { group: "Money & Business", route: "/digital-products", title: "Digital Product HQ", desc: "Browse courses, guides, templates, and tools to help small businesses use AI and everyday people publish their first book." },
   { group: "Money & Business", route: "/services", title: "Services — AI Consulting & Book Coaching", desc: "AI websites, book publishing help, and AI workflow consulting — practical services for small businesses and first-time authors in DFW Texas." },
