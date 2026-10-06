@@ -21,7 +21,7 @@ import { ZLetterFeed } from "@/components/ZLetterFeed";
 import { TimeBar } from "@/components/TimeBar";
 import { Button } from "@/components/ui/button";
 import { BOOKS } from "@/data/books";
-import headshotImage from "@/assets/zain-headshot-orange.jpg";
+import headshotImage from "@/assets/zain-hero-portrait.png.asset.json";
 import wavingHand from "@/assets/waving-hand.png";
 import pokemonImg from "@/assets/pokemon-pokedex.png";
 import harryPotterImg from "@/assets/harry-potter-world.png";
@@ -244,15 +244,15 @@ const Index = () => {
           <div className="relative isolate w-48 h-48 sm:w-56 sm:h-56 shrink-0 mb-7">
             <div aria-hidden="true" className="hero-sun-blob absolute -inset-3 -z-10" />
             <img
-              src={headshotImage}
+              src={headshotImage.url}
               alt="Zain Adtani"
-              className="w-full h-full rounded-full object-cover object-center border-4 border-background"
+              className="w-full h-full rounded-full object-cover object-[center_18%] border-4 border-background"
               width={224}
               height={224}
               fetchPriority="high"
               onError={(event) => {
                 const image = event.currentTarget;
-                const fallback = `https://zainadtani.com${headshotImage}`;
+                const fallback = `https://zainadtani.com${headshotImage.url}`;
                 if (image.src !== fallback) image.src = fallback;
               }}
             />
