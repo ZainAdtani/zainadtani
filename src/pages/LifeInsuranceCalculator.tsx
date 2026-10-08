@@ -200,7 +200,7 @@ export default function LifeInsuranceCalculator() {
                   aria-label="Years of income to replace"
                 />
                 <span className="font-sans font-bold text-[18px] text-[#0A0F1A] whitespace-nowrap w-20 text-right">
-                  {years} {years === 1 ? "year" : "years"}
+                  {`${years} ${years === 1 ? "year" : "years"}`}
                 </span>
               </div>
             </div>

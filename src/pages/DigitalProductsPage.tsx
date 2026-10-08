@@ -1,46 +1,85 @@
-import { useMemo, useState } from "react";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Helmet } from "react-helmet-async";
 import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Search } from "lucide-react";
-import { ALL_PRODUCTS, CATEGORIES } from "@/data/products";
+import { FREE_PRODUCTS, PAID_PRODUCTS, STORE_URL, type StoreProduct } from "@/data/products";
 import Logo3D from "@/components/Logo3D";
 
-function pad2(n: number) { return n.toString().padStart(2, '0'); }
+function ProductCard({ product, index }: { product: StoreProduct; index: number }) {
+  const isFree = product.price === 0;
+  return (
+    <ScrollReveal delay={index * 100}>
+      <Card className="group overflow-hidden border-2 bg-card motion-safe:hover:shadow-xl motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:-translate-y-1 flex flex-col h-full">
+        <div className="p-5 flex flex-col flex-grow">
+          <div className="flex items-end justify-end gap-2 mb-3">
+            <Badge variant={isFree ? "default" : "secondary"} className="shrink-0 text-xs">
+              {isFree ? "FREE" : `$${product.price}`}
+            </Badge>
+          </div>
+
+          <h3 className="font-bold text-lg leading-snug line-clamp-2 text-foreground mb-2">
+            {product.name}
+          </h3>
+
+          <p className="text-sm text-muted-foreground line-clamp-3 mb-4">{product.blurb}</p>
+
+          <div className="mt-auto">
+            <Button asChild className="w-full">
+              <a
+                href={product.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${isFree ? "Get it free" : "Get yours"}: ${product.name}`}
+              >
+                {isFree ? "Get it free →" : "Get yours →"}
+              </a>
+            </Button>
+          </div>
+        </div>
+      </Card>
+    </ScrollReveal>
+  );
+}
+
+function ProductSection({
+  title,
+  subtitle,
+  products,
+}: {
+  title: string;
+  subtitle: string;
+  products: StoreProduct[];
+}) {
+  return (
+    <section className="mt-14 first:mt-4">
+      <div className="text-center mb-8">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">{title}</h2>
+        <p className="text-muted-foreground mt-2">{subtitle}</p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {products.map((p, i) => (
+          <ProductCard key={p.id} product={p} index={i} />
+        ))}
+      </div>
+    </section>
+  );
+}
 
 export default function DigitalProductsPage() {
-  const [q, setQ] = useState("");
-  const [cat, setCat] = useState<typeof CATEGORIES[number]>("All");
-
-  // Exclude free community from product catalog
-  const catalog = useMemo(() => ALL_PRODUCTS.filter(p => p.id !== 'free-community'), []);
-
-  const filtered = useMemo(() => {
-    const query = q.trim().toLowerCase();
-    
-    return catalog
-      .filter(p => 
-        (cat === "All" || p.category === cat) &&
-        (!query || p.title.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query))
-      )
-      .sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
-      .map((p, idx) => ({ ...p, catalogIndex: idx + 1 }));
-  }, [catalog, q, cat]);
+  const total = FREE_PRODUCTS.length + PAID_PRODUCTS.length;
 
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Digital Product HQ — Courses, Guides & Tools | Zain Adtani</title>
-        <meta name="description" content="Browse Zain Adtani's digital products — courses, guides, templates, and tools to help small businesses use AI and help everyday people publish their first book." />
+        <title>Digital Product HQ — Free Guides & Tools | Zain Adtani</title>
+        <meta name="description" content="Free guides and simple tools from Zain Adtani — AI prompt packs, budget worksheets, and family protection planners, all sold through Gumroad." />
         <meta property="og:title" content="Digital Product HQ — Zain Adtani" />
-        <meta property="og:description" content="Courses, guides, templates, and tools to help you use AI and publish your first book." />
+        <meta property="og:description" content="Free guides and simple tools for your money, your family, and your business." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://zainadtani.com/digital-products" />
       </Helmet>
-      
+
       <header className="py-12 md:py-16 bg-background">
         <div className="container mx-auto px-4 max-w-6xl text-center">
           <div className="flex justify-center mb-4">
@@ -48,129 +87,35 @@ export default function DigitalProductsPage() {
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-foreground">Digital Product HQ</h1>
           <p className="text-muted-foreground mt-2 text-lg">
-            Search guides and tools—all in one place.
+            Free guides and simple tools — all in one place.
           </p>
           <p className="text-muted-foreground mt-1 text-sm tracking-wide">
-            {filtered.length} {filtered.length === 1 ? 'product' : 'products'}
+            {total} {total === 1 ? "product" : "products"}, sold through my Gumroad store
           </p>
-
-          {/* Search */}
-          <div className="mt-6 max-w-2xl mx-auto">
-            <div className="flex items-center gap-2 bg-secondary/40 border rounded-full px-4 py-2 motion-safe:transition-all">
-              <Search className="w-5 h-5 text-muted-foreground" aria-hidden="true" />
-              <Input
-                aria-label="Search digital products"
-                placeholder="Search by title or description…"
-                className="flex-1 bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
-              />
-            </div>
-            
-            {/* Category chips */}
-            <div className="flex flex-wrap justify-center gap-2 mt-4">
-              {CATEGORIES.map((c) => (
-                <Button
-                  key={c}
-                  type="button"
-                  variant={cat === c ? "default" : "outline"}
-                  onClick={() => setCat(c)}
-                  className="rounded-full text-base font-semibold px-6 py-2.5 motion-safe:transition-all"
-                  aria-pressed={cat === c}
-                >
-                  {c}
-                </Button>
-              ))}
-            </div>
+          <div className="mt-6">
+            <Button asChild size="lg">
+              <a href={STORE_URL} target="_blank" rel="noopener noreferrer">
+                Visit the full store on Gumroad →
+              </a>
+            </Button>
           </div>
         </div>
       </header>
 
       <main className="pb-24">
-        <div className="container mx-auto px-4 max-w-6xl pt-8">
-          {filtered.length === 0 && (
-            <p className="text-muted-foreground text-center py-12">
-              No results. Try a different search or category.
-            </p>
-          )}
-
-          {/* Product grid with catalog numbers */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.map((p, index) => {
-              return (
-                <ScrollReveal key={p.id} delay={index * 100}>
-                <Card
-                  key={p.id} 
-                  className="group overflow-hidden border-2 bg-card motion-safe:hover:shadow-xl motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:-translate-y-1 flex flex-col h-full min-h-[420px]"
-                >
-                  {p.media && (
-                    <div className="relative bg-muted/50 flex items-center justify-center">
-                      <img
-                        src={p.media}
-                        alt={`${p.title} preview`}
-                        className={`w-full h-44 ${
-                          p.id === 'walking-workday' 
-                            ? 'object-cover object-top' 
-                            : p.id === 'quiet-your-gut'
-                            ? 'object-contain p-4'
-                            : 'object-cover'
-                        }`}
-                        loading="lazy"
-                      />
-                    </div>
-                  )}
-
-                  <div className="p-5 flex flex-col flex-grow">
-                    <div className="flex items-end justify-end gap-2 mb-3">
-                      <Badge variant="secondary" className="shrink-0 text-xs">
-                        {p.category}
-                      </Badge>
-                    </div>
-                    
-                    <h3 className="font-bold text-lg leading-snug line-clamp-2 text-foreground mb-2">
-                      {p.title}
-                    </h3>
-
-                    <p className="text-sm text-muted-foreground line-clamp-3 mb-4">{p.desc}</p>
-
-                    {p.tags && p.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {p.tags.map((t) => (
-                          <Badge key={t} variant="outline" className="rounded-full text-xs">
-                            {t}
-                          </Badge>
-                        ))}
-                      </div>
-                    )}
-
-                    <div className="mt-auto">
-                      {p.cta?.disabled ? (
-                        <Button disabled className="w-full bg-muted text-muted-foreground">
-                          {p.cta.label}
-                        </Button>
-                      ) : (
-                        <Button asChild className="w-full">
-                          <a
-                            href={p.cta?.href ?? "#"}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            download={p.cta?.download}
-                            aria-label={p.cta?.label ?? "Open"}
-                          >
-                            {p.cta?.label ?? "Open"}
-                          </a>
-                        </Button>
-                      )}
-                    </div>
-                  </div>
-                </Card>
-                </ScrollReveal>
-              );
-            })}
-          </div>
+        <div className="container mx-auto px-4 max-w-6xl">
+          <ProductSection
+            title="Free guides"
+            subtitle="Start here. No cost, no catch — just useful."
+            products={FREE_PRODUCTS}
+          />
+          <ProductSection
+            title="Tools that go deeper"
+            subtitle="When you're ready for the full system."
+            products={PAID_PRODUCTS}
+          />
         </div>
       </main>
-
     </div>
   );
 }

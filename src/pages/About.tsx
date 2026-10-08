@@ -57,7 +57,7 @@ const About = () => {
             Now I help small businesses implement AI without the overwhelm. I also help everyday people publish the book they've been putting off. I'm building in public, learning out loud, and figuring it out one lane at a time.
           </p>
           <p>
-            Outside of work: I write a Sunday newsletter called{" "}
+            Outside of work: I write a daily newsletter called{" "}
             <a href="https://thezletter.beehiiv.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">The Z Letter</a>
             {" "}- Check it out!
           </p>

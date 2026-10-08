@@ -151,7 +151,7 @@ export default function FinalExpenseEstimator() {
                   aria-label="Your age"
                 />
                 <span className="font-sans font-bold text-[18px] text-[#0A0F1A] whitespace-nowrap w-24 text-right">
-                  {age} years old
+                  {`${age} years old`}
                 </span>
               </div>
             </div>

@@ -244,7 +244,7 @@ Another book from a Silicon Valley expert. Matt Mochary coaches CEOs leading som
 
 Talent, intelligence, and skill are all useful tools for creating a business. But Angela Duckworth says that the most important thing for any leader is grit, which she defines as the ability to keep persevering, push through challenges, and not give up. We should try to raise our children with grit so they can grow up to be resilient and resourceful and achieve what they want to from life. But adults can also develop grit, and this can make them great leaders. The book sparked an ongoing debate among psychologists about what the most important factor is for success - so check out the book and see what you think. 
 
-**54)** [**22 Immutable Laws Of Marketing](https://geni.us/Ru4zaO) by Ale Ries and Jack Trout (S2 E7)**
+**54)** [**22 Immutable Laws Of Marketing](https://geni.us/Ru4zaO) by Al Ries and Jack Trout (S2 E7)**
 
 I’ve encouraged everyone on my team to read this book since it was recommended to my by Julian Hearn, the founder of *Huel* when he came on the podcast. It’s an essential read mainly because it addresses the misconceptions we have about marketing. We often think it’s super simple - just let people know your product exists and is good and they should buy it. But it’s actually really complicated - and these guys should know. Ries and Trout spent 25 years studying all kinds of businesses with all kinds of success rates to find out what really works. The book lays out all their findings so that you can avoid some common mistakes and increase your sales.         
 

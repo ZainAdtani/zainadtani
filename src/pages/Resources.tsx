@@ -57,6 +57,7 @@ const SITE_MAP: SiteEntry[] = [
   { group: "Money & Business", route: "/resources/term-vs-whole-life-quiz", title: "Term vs. Whole Life Quiz", desc: "Five questions, sixty seconds. Find the life insurance strategy that fits your real life. Free, no email required." },
   { group: "Money & Business", route: "/family-protection-gap", title: "The Family Protection Gap", desc: "A plain-language guide to help families understand the gap between job benefits, savings, retirement accounts, and real protection. Free PDF." },
   { group: "Money & Business", route: "/digital-products", title: "Digital Product HQ", desc: "Browse courses, guides, templates, and tools to help small businesses use AI and everyday people publish their first book." },
+  { group: "Money & Business", route: "/digital-products", title: "Free Tools & Products", desc: "Free guides and simple tools for your money, your family, and your business." },
   { group: "Money & Business", route: "/services", title: "Services — AI Consulting & Book Coaching", desc: "AI websites, book publishing help, and AI workflow consulting — practical services for small businesses and first-time authors in DFW Texas." },
 
   // Guides & Library
@@ -275,7 +276,7 @@ export default function Resources() {
                 <h3 className="font-display font-bold text-[18px] text-[#A85B05] mb-4">{group}</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                   {items.map((entry) => (
-                    <SiteCard key={entry.route} entry={entry} />
+                    <SiteCard key={`${entry.route}-${entry.title}`} entry={entry} />
                   ))}
                 </div>
               </div>

@@ -1,167 +1,91 @@
-import { ShoppingBag, Users, BookOpen, Heart, Sparkles, type LucideIcon } from "lucide-react";
-import authorGuide from "@/assets/author-kit-cover.png";
-import authorGuidePDF from "@/assets/author-guide.pdf";
-import walkingWorkday from "@/assets/walking-workday-new.png";
-import quietYourGut from "@/assets/quiet-your-gut.png";
-import ismailiColoringBookCover from "@/assets/ismaili-coloring-book-cover.jpg";
-import newlywedsMoveout from "@/assets/newlyweds-moveout-blueprint.png";
+// Gumroad store catalog for the Digital Product HQ page.
+// Every product below is live and sold through Zain's Gumroad store.
+// To add a product, append an entry to FREE_PRODUCTS or PAID_PRODUCTS —
+// the page renders the two sections straight from these arrays.
 
-export type Product = {
+export interface StoreProduct {
   id: string;
-  title: string;
-  desc: string;
-  category: "Guides" | "Wellness";
-  media?: string;
-  cta?: { label: string; href: string; download?: boolean; disabled?: boolean };
-  tags?: string[];
-  badge?: string;
-  featured?: boolean;
-  order?: number; // Explicit display order
-};
+  name: string;
+  blurb: string;
+  /** 0 renders as a FREE chip; anything above 0 renders as $X. */
+  price: number;
+  url: string;
+}
 
-export const ALL_PRODUCTS: Product[] = [
+export const STORE_URL = "https://zainadtani.gumroad.com/";
+
+export const FREE_PRODUCTS: StoreProduct[] = [
   {
-    id: "zap-rest",
-    title: "ZAP REST: Your First Step to Waking Up Without Anxiety",
-    category: "Guides",
-    desc: "Published on Amazon. A practical guide to building a morning routine that fights anxiety before it starts. Kindle and paperback. By Zain Adtani.",
-    media: "https://images-na.ssl-images-amazon.com/images/P/B0H51RJL7R.01.LZZZZZZZ.jpg",
-    cta: { label: "Get It on Amazon — $9.99 →", href: "https://www.amazon.com/dp/B0H51RJL7R" },
-    tags: ["Book", "Amazon", "Published"],
-    badge: "📚 Live on Amazon",
-    featured: true,
-    order: 0,
+    id: "10-ai-prompts",
+    name: "10 AI Prompts Every Small Business Owner Should Steal",
+    blurb: "Copy-paste prompts that save hours every week.",
+    price: 0,
+    url: "https://zainadtani.gumroad.com/l/10-ai-prompts-small-business",
   },
   {
-    id: "ismaili-coloring-book",
-    title: "Ismaili Coloring Book",
-    category: "Guides",
-    desc: "A faith-inspired coloring book for kids and families. Mosques, tasbih, flowers, and peaceful scenes. Digital PDF download. Print at home.",
-    media: ismailiColoringBookCover,
-    cta: { label: "Get Your Copy — $6.99", href: "https://whop.com/checkout/plan_neElnSODpLYSb/" },
-    tags: ["Family", "Digital PDF"],
-    badge: "New",
-    featured: true,
-    order: 1,
+    id: "ai-daily-checklist",
+    name: "The 5-Minute AI Daily Checklist",
+    blurb: "7 quick AI tasks to start your day in minutes.",
+    price: 0,
+    url: "https://zainadtani.gumroad.com/l/ai-daily-checklist",
   },
   {
-    id: "author-guide",
-    title: "How to Become an Author (PDF Guide)",
-    category: "Guides",
-    desc: "Proven framework to publish in ~6 months. Includes Kindle, print, and audiobook.",
-    media: authorGuide,
-    cta: { label: "Download Free PDF →", href: "https://whop.com/you-bestselling-author", disabled: false },
-    tags: ["Free", "PDF"],
-    badge: "Preview",
-    featured: true,
-    order: 2,
+    id: "monthly-budget-quick-start",
+    name: "Monthly Budget Quick-Start",
+    blurb: "A 20-minute budget worksheet plus 5 money rules.",
+    price: 0,
+    url: "https://zainadtani.gumroad.com/l/monthly-budget-quick-start",
   },
   {
-    id: "walking-workday",
-    title: "The Walking Workday",
-    category: "Wellness",
-    desc: "Fit three 20-minute walks into any busy schedule. Calendar and commute strategies to build daily movement without a gym.",
-    media: walkingWorkday,
-    cta: { label: "Get Yours →", href: "https://whop.com/the-walking-workday/the-walking-workday-bb/" },
-    tags: ["Wellness", "eBook"],
-    featured: true,
-    order: 3,
+    id: "family-protection-checklist",
+    name: "Family Protection Checklist",
+    blurb: "Wills, beneficiaries, wishes, contacts. One page.",
+    price: 0,
+    url: "https://zainadtani.gumroad.com/l/family-protection-checklist",
   },
   {
-    id: "quiet-your-gut",
-    title: "Quiet Your Gut",
-    category: "Wellness",
-    desc: "Natural relief for busy people. Feel calm, confident, and in control—without pills or strict diets.",
-    media: quietYourGut,
-    cta: { label: "Get Yours →", href: "https://whop.com/stop-bloating-and-grumbling/stop-bloating-and-grumbling/" },
-    tags: ["Wellness", "Guide"],
-    badge: "New",
-    featured: true,
-    order: 4,
+    id: "emergency-fund-starter-sheet",
+    name: "Emergency Fund Starter Sheet",
+    blurb: "Your first $500, then one month of bills.",
+    price: 0,
+    url: "https://zainadtani.gumroad.com/l/emergency-fund-starter-sheet",
   },
   {
-    id: "newlyweds-moveout",
-    title: "The Newlyweds' 14-Day Move-Out Blueprint",
-    category: "Guides",
-    desc: "Step-by-step roadmap to confidently move out in just 14 days. Perfect for newlyweds planning their first home together.",
-    media: newlywedsMoveout,
-    cta: { label: "Get Yours →", href: "https://whop.com/the-newlyweds-14-day-move-out-blueprint/the-newlyweds-14-day-move-out/" },
-    tags: ["eBook", "Guide"],
-    badge: "New",
-    featured: true,
-    order: 5,
-  },
-  {
-    id: "free-community",
-    title: "Builder's Free Community",
-    category: "Guides",
-    desc: "Join fellow students, get tips, and access free resources. No fluff, just actionable advice.",
-    cta: { label: "Join Free →", href: "https://www.skool.com/eng2ea/about" },
-    tags: ["Free", "Community"],
-    badge: "#1 Starter",
-    featured: true,
-    order: 7,
-  },
-  {
-    id: "clinicClarityKit",
-    title: "Clinic Clarity Kit for MAs",
-    badge: "New",
-    category: "Guides",
-    desc: "Three simple Ask, Confirm, Summarize phone scripts for medical assistants to cut callbacks and confusion.",
-    media: "/images/products/clinic_clarity_kit_cover.png",
-    tags: ["Medical assistant", "Scripts", "Clinic"],
-    cta: {
-      label: "Get Yours →",
-      href: "https://whop.com/ask-confirm-summarize-playbook/"
-    },
-    featured: true,
-    order: 8,
-  },
-  {
-    id: "calmSoloTime",
-    title: "Calm Solo Time",
-    badge: "New",
-    category: "Wellness",
-    desc: "Thirty day clicker and brown noise plan to reduce dog whining and build relaxed alone time.",
-    media: "/images/products/calm_solo_time_cover.png",
-    tags: ["Dogs", "Training", "Behavior"],
-    cta: {
-      label: "Get Yours →",
-      href: "https://whop.com/calm-solo-time/"
-    },
-    featured: true,
-    order: 9,
-  },
-  {
-    id: "texasLlcRoadmap",
-    title: "The Texas LLC Roadmap",
-    badge: "New",
-    category: "Guides",
-    desc: "Simple launch kit with mind map and templates so a Texas LLC setup feels clear and step by step.",
-    media: "/images/products/texas_llc_roadmap_cover.png",
-    tags: ["Business", "Texas", "LLC"],
-    cta: {
-      label: "Get Yours →",
-      href: "https://whop.com/the-texas-llc-roadmap/"
-    },
-    featured: true,
-    order: 10,
-  },
-  {
-    id: "zenDetachment30",
-    title: "Thirty Day Zen Detachment",
-    badge: "New",
-    category: "Wellness",
-    desc: "A thirty day process plan to shift from outcome obsession to calm daily action in one life area.",
-    media: "/images/products/zen_detachment_30_cover.png",
-    tags: ["Mindset", "Habits", "Stress"],
-    cta: {
-      label: "Get Yours →",
-      href: "https://whop.com/30-day-zen-detachment/"
-    },
-    featured: true,
-    order: 11,
+    id: "ai-prompts-insurance-agents",
+    name: "10 AI Prompts for Insurance Agents",
+    blurb: "Follow-ups, objections, reminders, referrals.",
+    price: 0,
+    url: "https://zainadtani.gumroad.com/l/ai-prompts-insurance-agents",
   },
 ];
 
-export const CATEGORIES = ["All", "Guides", "Wellness"] as const;
+export const PAID_PRODUCTS: StoreProduct[] = [
+  {
+    id: "debt-payoff-tracker-pack",
+    name: "Debt Payoff Tracker Pack",
+    blurb: "List it, order it, kill it one debt at a time.",
+    price: 7,
+    url: "https://zainadtani.gumroad.com/l/debt-payoff-tracker-pack",
+  },
+  {
+    id: "monthly-budget-planner",
+    name: "86-Page Monthly Budget Planner",
+    blurb: "12 months of worksheets, trackers, and bill checklists.",
+    price: 9,
+    url: "https://zainadtani.gumroad.com/l/monthly-budget-planner",
+  },
+  {
+    id: "final-expense-wishes-organizer",
+    name: "Final Expense Wishes Organizer",
+    blurb: "Every wish, contact, and account in one place.",
+    price: 17,
+    url: "https://zainadtani.gumroad.com/l/final-expense-wishes-organizer",
+  },
+  {
+    id: "life-insurance-instagram-templates",
+    name: "30 Life Insurance Instagram Templates",
+    blurb: "Ready-to-edit posts for agents.",
+    price: 27,
+    url: "https://zainadtani.gumroad.com/l/life-insurance-instagram-templates",
+  },
+];

@@ -279,13 +279,6 @@ const TOOLS: Tool[] = [
     category: "Marketplaces",
   },
   {
-    id: "mastermind-marketplace",
-    name: "Mastermind.com",
-    url: "https://www.mastermind.com/",
-    description: "Connect with experts and join mastermind groups",
-    category: "Marketplaces",
-  },
-  {
     id: "udemy-marketplace",
     name: "Udemy",
     url: "https://www.udemy.com/",

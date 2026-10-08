@@ -277,7 +277,7 @@ const Connect = () => {
             <ul className="space-y-3.5 font-sans text-[15px]">
               {[
                 { label: "Website", value: "zainadtani.com", href: "https://zainadtani.com" },
-                { label: "Instagram", value: "@zainadtani", href: "https://instagram.com/zainadtani" },
+                { label: "Instagram", value: "@adtanieducationventures", href: "https://instagram.com/adtanieducationventures" },
                 { label: "LinkedIn", value: "Zain Adtani", href: "https://linkedin.com/in/zainadtani" },
                 { label: "LinkedIn Page", value: "Adtani Education Ventures", href: "https://www.linkedin.com/company/adtani-education-ventures" },
                 { label: "YouTube", value: "Build Then Protect", href: "https://youtube.com/@zainadtani" },

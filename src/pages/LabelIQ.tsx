@@ -110,7 +110,7 @@ export default function LabelIQ() {
               rel="noopener noreferrer"
               className="text-[#2F5C90] hover:text-[#A85B05] transition-colors underline underline-offset-2"
             >
-              Learn more
+              Book a Call
             </a>
           </p>
         </section>
