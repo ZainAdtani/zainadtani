@@ -11,6 +11,14 @@ function ProductCard({ product, index }: { product: StoreProduct; index: number 
   return (
     <ScrollReveal delay={index * 100}>
       <Card className="group overflow-hidden border-2 bg-card motion-safe:hover:shadow-xl motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:-translate-y-1 flex flex-col h-full">
+        {product.image && (
+          <img
+            src={product.image}
+            alt={`${product.name} cover`}
+            loading="lazy"
+            className="w-full aspect-video object-cover"
+          />
+        )}
         <div className="p-5 flex flex-col flex-grow">
           <div className="flex items-end justify-end gap-2 mb-3">
             <Badge variant={isFree ? "default" : "secondary"} className="shrink-0 text-xs">

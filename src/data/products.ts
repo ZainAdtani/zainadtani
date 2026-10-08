@@ -10,6 +10,8 @@ export interface StoreProduct {
   /** 0 renders as a FREE chip; anything above 0 renders as $X. */
   price: number;
   url: string;
+  /** Cover image under /product-covers/. Omit to render a text-only card. */
+  image?: string;
 }
 
 export const STORE_URL = "https://zainadtani.gumroad.com/";
@@ -21,6 +23,7 @@ export const FREE_PRODUCTS: StoreProduct[] = [
     blurb: "Copy-paste prompts that save hours every week.",
     price: 0,
     url: "https://zainadtani.gumroad.com/l/10-ai-prompts-small-business",
+    image: "/product-covers/10-ai-prompts-small-business.png",
   },
   {
     id: "ai-daily-checklist",
@@ -28,6 +31,7 @@ export const FREE_PRODUCTS: StoreProduct[] = [
     blurb: "7 quick AI tasks to start your day in minutes.",
     price: 0,
     url: "https://zainadtani.gumroad.com/l/ai-daily-checklist",
+    image: "/product-covers/ai-daily-checklist.png",
   },
   {
     id: "monthly-budget-quick-start",
@@ -35,6 +39,7 @@ export const FREE_PRODUCTS: StoreProduct[] = [
     blurb: "A 20-minute budget worksheet plus 5 money rules.",
     price: 0,
     url: "https://zainadtani.gumroad.com/l/monthly-budget-quick-start",
+    image: "/product-covers/monthly-budget-quick-start.png",
   },
   {
     id: "family-protection-checklist",
@@ -42,6 +47,7 @@ export const FREE_PRODUCTS: StoreProduct[] = [
     blurb: "Wills, beneficiaries, wishes, contacts. One page.",
     price: 0,
     url: "https://zainadtani.gumroad.com/l/family-protection-checklist",
+    image: "/product-covers/family-protection-checklist.png",
   },
   {
     id: "emergency-fund-starter-sheet",
@@ -49,6 +55,7 @@ export const FREE_PRODUCTS: StoreProduct[] = [
     blurb: "Your first $500, then one month of bills.",
     price: 0,
     url: "https://zainadtani.gumroad.com/l/emergency-fund-starter-sheet",
+    image: "/product-covers/emergency-fund-starter-sheet.png",
   },
   {
     id: "ai-prompts-insurance-agents",
@@ -56,6 +63,7 @@ export const FREE_PRODUCTS: StoreProduct[] = [
     blurb: "Follow-ups, objections, reminders, referrals.",
     price: 0,
     url: "https://zainadtani.gumroad.com/l/ai-prompts-insurance-agents",
+    image: "/product-covers/ai-prompts-insurance-agents.png",
   },
 ];
 
@@ -66,6 +74,7 @@ export const PAID_PRODUCTS: StoreProduct[] = [
     blurb: "List it, order it, kill it one debt at a time.",
     price: 7,
     url: "https://zainadtani.gumroad.com/l/debt-payoff-tracker-pack",
+    image: "/product-covers/debt-payoff-tracker-pack.png",
   },
   {
     id: "monthly-budget-planner",
@@ -73,6 +82,7 @@ export const PAID_PRODUCTS: StoreProduct[] = [
     blurb: "12 months of worksheets, trackers, and bill checklists.",
     price: 9,
     url: "https://zainadtani.gumroad.com/l/monthly-budget-planner",
+    image: "/product-covers/monthly-budget-planner.png",
   },
   {
     id: "final-expense-wishes-organizer",
@@ -80,6 +90,7 @@ export const PAID_PRODUCTS: StoreProduct[] = [
     blurb: "Every wish, contact, and account in one place.",
     price: 17,
     url: "https://zainadtani.gumroad.com/l/final-expense-wishes-organizer",
+    image: "/product-covers/final-expense-wishes-organizer.png",
   },
   {
     id: "life-insurance-instagram-templates",
@@ -87,5 +98,6 @@ export const PAID_PRODUCTS: StoreProduct[] = [
     blurb: "Ready-to-edit posts for agents.",
     price: 27,
     url: "https://zainadtani.gumroad.com/l/life-insurance-instagram-templates",
+    image: "/product-covers/life-insurance-instagram-templates.png",
   },
 ];
