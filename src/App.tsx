@@ -33,6 +33,7 @@ import RothIRAGame from "./pages/RothIRAGame";
 import LifeInsuranceCalculator from "./pages/LifeInsuranceCalculator";
 import FinalExpenseEstimator from "./pages/FinalExpenseEstimator";
 import TermVsWholeLifeQuiz from "./pages/TermVsWholeLifeQuiz";
+import MissedCallCalculator from "./pages/MissedCallCalculator";
 
 // Project sub-pages
 import AiSongs from "./pages/projects/AiSongs";
