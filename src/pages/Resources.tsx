@@ -34,8 +34,7 @@ const TOOLS: Tool[] = [
 
 const TOOL_CATEGORIES = ["All", "AI & Agents", "Productivity", "Images & Design", "Apps", "Courses I Recommend"] as const;
 
-const MISSED_CALL_CALCULATOR_URL =
-  "https://muse.ai/s/missed-call-cost-calculator-xkxu5xtxoxvfssxa4";
+const MISSED_CALL_CALCULATOR_URL = "/missed-call-calculator";
 
 type SiteGroup = "Learn & Play" | "Money & Business" | "Guides & Library" | "About & Contact";
 interface SiteEntry {
@@ -243,14 +242,9 @@ export default function Resources() {
         <p className="mt-3 font-sans text-[16px] text-[#0A0F1A]/65 max-w-2xl mx-auto">
           Free tools, prompts, and ideas to help you work smarter and think clearer.
         </p>
-        <a
-          href={MISSED_CALL_CALCULATOR_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-cta mt-6"
-        >
+        <Link to={MISSED_CALL_CALCULATOR_URL} className="btn-cta mt-6">
           Free Missed Call Calculator
-        </a>
+        </Link>
       </header>
 
       {/* Global search (site map + prompt library) */}
