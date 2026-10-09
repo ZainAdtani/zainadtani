@@ -29,6 +29,8 @@ import harryPotterImg from "@/assets/harry-potter-world.png";
 const CALENDLY_URL = "https://calendly.com/zkadtani";
 const BEEHIIV_URL = "https://the-z-letter.beehiiv.com/subscribe";
 const BEEHIIV_MAGIC = "https://magic.beehiiv.com/v1/dd1643e2-f274-43e4-b193-62276e3e3b48";
+const MISSED_CALL_CALCULATOR_URL =
+  "https://muse.ai/s/missed-call-cost-calculator-xkxu5xtxoxvfssxa4";
 const AMAZON_BOOKS = [
   {
     title: "The Family Protection Gap",
@@ -267,6 +269,14 @@ const Index = () => {
           <p className="max-w-2xl mt-5 font-sans text-[17px] sm:text-[20px] leading-relaxed text-foreground">
             I'm Z — AI consultant, author of <a href="#books" className="font-bold underline underline-offset-4 decoration-primary hover:text-primary">3 books</a>, and financial educator helping families protect what they build.
           </p>
+          <a
+            href={MISSED_CALL_CALCULATOR_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-cta mt-7"
+          >
+            Free Missed Call Calculator
+          </a>
         </div>
       </section>
 
