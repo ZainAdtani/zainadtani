@@ -85,6 +85,22 @@ export const PAID_PRODUCTS: StoreProduct[] = [
     image: "/product-covers/monthly-budget-planner.png",
   },
   {
+    id: "ai-prompts-vol-2",
+    name: "AI Prompts Vol. 2: 25 Prompts for Marketing and Sales",
+    blurb: "13 prompts to get seen, 12 to get sales.",
+    price: 9,
+    url: "https://zainadtani.gumroad.com/l/ai-prompts-vol-2",
+    image: "/product-covers/ai-prompts-vol-2.png",
+  },
+  {
+    id: "small-business-content-calendar-kit",
+    name: "Small Business Content Calendar Kit",
+    blurb: "30 days of post ideas, caption starters, and a weekly planner.",
+    price: 12,
+    url: "https://zainadtani.gumroad.com/l/small-business-content-calendar-kit",
+    image: "/product-covers/small-business-content-calendar-kit.png",
+  },
+  {
     id: "final-expense-wishes-organizer",
     name: "Final Expense Wishes Organizer",
     blurb: "Every wish, contact, and account in one place.",
@@ -99,5 +115,13 @@ export const PAID_PRODUCTS: StoreProduct[] = [
     price: 27,
     url: "https://zainadtani.gumroad.com/l/life-insurance-instagram-templates",
     image: "/product-covers/life-insurance-instagram-templates.png",
+  },
+  {
+    id: "background-music-pack-vol-1",
+    name: "Background Music Pack for Local Business Videos — Vol. 1",
+    blurb: "7 license-ready instrumental tracks for your videos and ads.",
+    price: 29,
+    url: "https://zainadtani.gumroad.com/l/background-music-pack-vol-1",
+    image: "/product-covers/background-music-pack-vol-1.png",
   },
 ];
