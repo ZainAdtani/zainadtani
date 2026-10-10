@@ -65,6 +65,22 @@ export const FREE_PRODUCTS: StoreProduct[] = [
     url: "https://zainadtani.gumroad.com/l/ai-prompts-insurance-agents",
     image: "/product-covers/ai-prompts-insurance-agents.png",
   },
+  {
+    id: "weekly-ai-reset",
+    name: "The Weekly AI Reset: One Page Checklist",
+    blurb: "Fifteen calm minutes a week that keep AI doing real work for you.",
+    price: 0,
+    url: "https://zainadtani.gumroad.com/l/weekly-ai-reset",
+    image: "/product-covers/weekly-ai-reset.png",
+  },
+  {
+    id: "four-channels-listening-card",
+    name: "The Four Channels Listening Card",
+    blurb: "Hear the whole person, not just the words. One page.",
+    price: 0,
+    url: "https://zainadtani.gumroad.com/l/four-channels-listening-card",
+    image: "/product-covers/four-channels-listening-card.png",
+  },
 ];
 
 export const PAID_PRODUCTS: StoreProduct[] = [
@@ -123,5 +139,37 @@ export const PAID_PRODUCTS: StoreProduct[] = [
     price: 29,
     url: "https://zainadtani.gumroad.com/l/background-music-pack-vol-1",
     image: "/product-covers/background-music-pack-vol-1.png",
+  },
+  {
+    id: "simple-ai-playbook",
+    name: "The Simple AI Playbook",
+    blurb: "The few AI updates that matter, and three boring uses that save real time.",
+    price: 9,
+    url: "https://zainadtani.gumroad.com/l/simple-ai-playbook",
+    image: "/product-covers/simple-ai-playbook.png",
+  },
+  {
+    id: "ai-reset-pro-kit",
+    name: "AI Reset Pro Kit",
+    blurb: "The playbook, the prompt pack with templates, and a weekly tracker sheet.",
+    price: 19,
+    url: "https://zainadtani.gumroad.com/l/ai-reset-pro-kit",
+    image: "/product-covers/ai-reset-pro-kit.png",
+  },
+  {
+    id: "listen-on-four-channels",
+    name: "Listen on Four Channels",
+    blurb: "Words, voice, body, and the feeling underneath. Conversations that land.",
+    price: 9,
+    url: "https://zainadtani.gumroad.com/l/listen-on-four-channels",
+    image: "/product-covers/listen-on-four-channels.png",
+  },
+  {
+    id: "four-channels-pro-kit",
+    name: "Four Channels Pro Kit",
+    blurb: "The guide, client and money talk scripts, objection maps, and practice cards.",
+    price: 19,
+    url: "https://zainadtani.gumroad.com/l/four-channels-pro-kit",
+    image: "/product-covers/four-channels-pro-kit.png",
   },
 ];
