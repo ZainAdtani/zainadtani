@@ -81,6 +81,14 @@ export const FREE_PRODUCTS: StoreProduct[] = [
     url: "https://zainadtani.gumroad.com/l/four-channels-listening-card",
     image: "/product-covers/four-channels-listening-card.png",
   },
+  {
+    id: "learn-anything-faster",
+    name: "Learn Anything Faster with AI",
+    blurb: "Thirteen small moves that turn AI into a patient tutor. One page.",
+    price: 0,
+    url: "https://zainadtani.gumroad.com/l/learn-anything-faster",
+    image: "/product-covers/learn-anything-faster.png",
+  },
 ];
 
 export const PAID_PRODUCTS: StoreProduct[] = [
@@ -171,5 +179,21 @@ export const PAID_PRODUCTS: StoreProduct[] = [
     price: 19,
     url: "https://zainadtani.gumroad.com/l/four-channels-pro-kit",
     image: "/product-covers/four-channels-pro-kit.png",
+  },
+  {
+    id: "learn-faster-playbook",
+    name: "The Learn Faster Playbook",
+    blurb: "Learn through a real project, then quiz yourself until it sticks.",
+    price: 9,
+    url: "https://zainadtani.gumroad.com/l/learn-faster-playbook",
+    image: "/product-covers/learn-faster-playbook.png",
+  },
+  {
+    id: "learn-faster-pro-kit",
+    name: "Learn Faster Pro Kit",
+    blurb: "The playbook plus quiz templates, voice scripts, and a 7 day sprint planner.",
+    price: 19,
+    url: "https://zainadtani.gumroad.com/l/learn-faster-pro-kit",
+    image: "/product-covers/learn-faster-pro-kit.png",
   },
 ];
