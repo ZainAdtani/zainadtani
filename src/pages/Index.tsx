@@ -333,6 +333,12 @@ const Index = () => {
               ))}
             </div>
           </ScrollReveal>
+          <div className="mt-7 flex flex-col items-start justify-between gap-4 rounded-lg border border-border bg-accent/25 p-6 sm:flex-row sm:items-center">
+            <p className="max-w-xl font-sans text-base leading-7 text-foreground">Own a local business? Get a free report card on how you show up on Google and AI search.</p>
+            <Button asChild variant="outline" className="h-auto min-h-12 shrink-0 whitespace-normal px-5 py-3 font-semibold text-primary">
+              <Link to="/ai-checkup">Free AI Checkup <ArrowRight aria-hidden="true" /></Link>
+            </Button>
+          </div>
         </div>
       </section>
 
