@@ -1,5 +1,13 @@
-import { describe, expect, test } from "bun:test";
+import { describe, it as test } from "node:test";
+import assert from "node:assert/strict";
 import { CHECKUP_DELIVERY_BUSINESS_DAYS, PARTNER_PLAN, SAMPLE_REPORTS } from "./ai-checkup";
+
+function expect(actual: unknown) {
+  return {
+    toBe: (expected: unknown) => assert.strictEqual(actual, expected),
+    toEqual: (expected: unknown) => assert.deepStrictEqual(actual, expected),
+  };
+}
 
 describe("AI checkup business rules", () => {
   test("partner plan costs $250 per month", () => expect(PARTNER_PLAN.monthlyPrice).toBe(250));
