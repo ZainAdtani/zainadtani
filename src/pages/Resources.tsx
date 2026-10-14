@@ -50,6 +50,7 @@ const SITE_MAP: SiteEntry[] = [
   // Learn & Play
   { group: "Learn & Play", route: "/roth-ira-game", title: "The Roth IRA Game", desc: "Learn how a Roth IRA works and meet 7 ETFs. Free cheat sheet at the end." },
   { group: "Learn & Play", route: "/lab", title: "The Lab — Just For Fun", desc: "Not everything has to make money. Pokémon, Harry Potter, AI songs, and more fun experiments." },
+  { group: "Learn & Play", route: "/resources/ai-news-songs", title: "AI News Songs", desc: "The day's headlines, turned into a song. A fresh track lands here every morning, newest first." },
 
   // Money & Business
   { group: "Money & Business", route: "/investing", title: "Investing — Simple Long-Term Money Philosophy", desc: "Zain Adtani's plain-English investing philosophy — simple, steady steps to grow your money over decades without the noise, hype, or stock tips." },

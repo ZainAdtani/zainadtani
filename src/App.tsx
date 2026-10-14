@@ -35,6 +35,7 @@ import FinalExpenseEstimator from "./pages/FinalExpenseEstimator";
 import TermVsWholeLifeQuiz from "./pages/TermVsWholeLifeQuiz";
 import MissedCallCalculator from "./pages/MissedCallCalculator";
 import AICheckup from "./pages/AICheckup";
+import AINewsSongs from "./pages/AINewsSongs";
 
 // Project sub-pages
 import AiSongs from "./pages/projects/AiSongs";
@@ -82,6 +83,7 @@ const App = () => (
                   <Route path="/resources/term-vs-whole-life-quiz" element={<TermVsWholeLifeQuiz />} />
                   <Route path="/missed-call-calculator" element={<MissedCallCalculator />} />
                   <Route path="/ai-checkup" element={<AICheckup />} />
+                  <Route path="/resources/ai-news-songs" element={<AINewsSongs />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
