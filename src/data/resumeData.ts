@@ -19,20 +19,17 @@ export interface ContactInfo {
 
 export const contactInfo: ContactInfo = {
   name: "Zain Adtani",
-  location: "Dallas, TX",
+  location: "Euless, TX",
   email: "zkadtani@gmail.com",
-  phone: "(469) 657-8285",
+  phone: "817-629-8220",
   linkedinUrl: "https://linkedin.com/in/zainadtani",
   siteUrl: "/",
-  lastUpdated: "January 2025", // TODO: Update this when you update your resume
+  lastUpdated: "October 2026",
 };
 
 // ============= SUMMARY =============
 // Edit your professional summary here
-export const summary = `Results-oriented professional with a foundation in software engineering, 
-tax advisory, and operations leadership. Known for building systems that simplify complex processes, 
-improving efficiency, and delivering measurable results. Passionate about continuous learning, 
-mentoring others, and leveraging technology to solve real-world problems.`;
+export const summary = `Licensed insurance agent, mortgage loan originator, data analyst, and AI consultant with a career built on regulated client work: reviewing applications and supporting documentation, analyzing financial records, applying federal and state rules accurately, and guiding clients through multi-step processes from intake to decision. Power BI developer whose dashboards identified $5M+ in efficiency improvements. Founder of an AI consulting firm helping local businesses with visibility, websites, and automation. Self-published author and educator who has tutored 100+ students. Fluent in English, Hindi, Urdu, and Gujarati.`;
 
 // ============= KEY COMPETENCIES / SKILLS =============
 // Edit skills and their tooltip descriptions here
@@ -42,14 +39,14 @@ export interface Skill {
 }
 
 export const skills: Skill[] = [
-  { name: "Software Development", tooltip: "Python, SQL, JavaScript, automation scripts" },
-  { name: "Project Management", tooltip: "Agile methodologies, cross-functional team leadership" },
-  { name: "Power BI", tooltip: "Dashboards, DAX basics, executive reporting" },
-  { name: "Data Analysis", tooltip: "Excel, SQL queries, business intelligence" },
-  { name: "Tax Advisory", tooltip: "IRS representation, compliance, individual & business returns" },
-  { name: "Process Improvement", tooltip: "Workflow optimization, SOP development, efficiency gains" },
-  { name: "Team Leadership", tooltip: "Mentoring, training programs, performance management" },
-  { name: "Client Relations", tooltip: "Stakeholder communication, relationship building" },
+  { name: "Insurance & Financial Services", tooltip: "Life and health insurance, final expense coverage, applications and compliance" },
+  { name: "Mortgage Lending", tooltip: "FHA and jumbo loan origination, credit and financial analysis, documentation review" },
+  { name: "AI Consulting", tooltip: "AI visibility, one-page websites, booking links, and simple automation for local businesses" },
+  { name: "Power BI", tooltip: "Dashboards, DAX, data modeling, executive reporting" },
+  { name: "Data Analysis", tooltip: "SQL, Python, Excel, business intelligence" },
+  { name: "Process Improvement", tooltip: "Reporting automation, workflow optimization, efficiency gains" },
+  { name: "Team Leadership", tooltip: "Training and mentoring agents and junior analysts" },
+  { name: "Client Relations", tooltip: "Guiding clients through multi-step processes in plain language" },
 ];
 
 // ============= PROFESSIONAL EXPERIENCE =============
@@ -67,47 +64,73 @@ export interface ExperienceItem {
 
 export const experience: ExperienceItem[] = [
   {
-    company: "Tax Advisors Group",
-    title: "Tax Advisor",
-    location: "Dallas, TX",
-    dates: "Dec 2024 – Present",
+    company: "Hegemon Group International (HGI)",
+    title: "Licensed Life & Health Insurance Agent (Rank: MD)",
+    location: "Texas",
+    dates: "Jun 2021 – Present",
     initialBullets: [
-      "Represent clients before the IRS for audits, collections, and appeals",
-      "Prepare and review individual and business tax returns ensuring compliance",
+      "Help families select life insurance and final expense coverage matched to their needs and budgets, explaining policy terms, costs, and application requirements in plain language",
+      "Conduct client meetings to assess needs, complete applications, and assemble the documentation required for underwriting review",
     ],
     expandedBullets: [
-      "Advise clients on tax planning strategies to minimize liabilities",
-      "Collaborate with team to streamline client onboarding processes",
+      "Prepare and submit accurate, complete application and compliance paperwork under Texas and Georgia insurance regulations",
+      "Follow cases through approval, respond to carrier requests, and keep clients informed at each stage",
+      "Build and mentor a small team of agents, training them on products, application procedures, and compliance standards",
     ],
   },
   {
-    company: "American Airlines – Cargo Division",
-    title: "IT Sr. Analyst / Software Engineer",
+    company: "Certys Financial Inc",
+    title: "Mortgage Loan Originator",
     location: "Dallas, TX",
-    dates: "Jul 2022 – Nov 2024",
+    dates: "Sep 2024 – Present",
     initialBullets: [
-      "Led development of internal tools reducing manual workload by 30%",
-      "Built Power BI dashboards for executive leadership decision-making",
+      "Guide clients through FHA and jumbo mortgage applications from initial consultation to decision, ensuring compliance with lending regulations at every stage",
+      "Analyze client financial statements and credit histories to recommend tailored loan solutions and determine documentation needs",
     ],
     expandedBullets: [
-      "Managed cross-functional projects with global stakeholders",
-      "Implemented automation scripts saving 15+ hours weekly",
-      "Mentored junior analysts on SQL and data visualization best practices",
+      "Verify the completeness and accuracy of application documentation before files move forward for decision",
+      "Collaborate with underwriters and processors to expedite approvals, resolve conditions, and keep clients informed throughout the process",
     ],
   },
   {
-    company: "Ericsson",
-    title: "Operations Manager",
+    company: "Adtani Education Ventures LLC",
+    title: "Founder and AI Consultant",
+    location: "Euless, TX",
+    dates: "Present",
+    initialBullets: [
+      "Help local businesses improve their AI visibility and online presence, including one-page websites, booking links, and simple automation of routine business tasks",
+      "Consult with business owners to assess their needs and recommend practical technology solutions",
+    ],
+    expandedBullets: [
+      "Deliver monthly content, website updates, and check-ins for client businesses",
+      "Research tools and build repeatable service packages that small businesses can adopt without technical staff",
+    ],
+  },
+  {
+    company: "Colaberry School of Data Analytics",
+    title: "Power BI Developer",
     location: "Plano, TX",
-    dates: "Jun 2018 – Jun 2022",
+    dates: "Aug 2023 – Sep 2024",
     initialBullets: [
-      "Oversaw operations team of 20+ across multiple project sites",
-      "Developed training programs improving team performance by 25%",
+      "Designed 10+ operational dashboards identifying $5M+ in efficiency improvements for business stakeholders",
+      "Automated reporting workflows, reducing data retrieval times by 15%",
     ],
     expandedBullets: [
-      "Streamlined reporting processes cutting delivery time by 40%",
-      "Led client presentations and quarterly business reviews",
-      "Implemented quality control measures reducing errors by 35%",
+      "Built dashboards visualizing sales trends, customer data, and operational metrics to support business reporting needs",
+      "Mentored junior analysts, increasing data processing productivity by 20%",
+    ],
+  },
+  {
+    company: "Luke Barousse",
+    title: "YouTube Content Developer",
+    location: "Remote",
+    dates: "Jun 2022 – Aug 2023",
+    initialBullets: [
+      "Developed a capstone analyzing the data science job market using web-scraped data",
+      "Co-created the \"ChatGPT for Data Analytics\" course, teaching AI integration and real-world data analysis",
+    ],
+    expandedBullets: [
+      "Broke down tools such as SQL and Python into lessons accessible to entry-level learners",
     ],
   },
 ];
@@ -124,9 +147,9 @@ export interface EducationItem {
 export const education: EducationItem[] = [
   {
     institution: "University of Texas at San Antonio",
-    degree: "Bachelor of Science in Engineering",
-    date: "May 2018",
-    honors: ["Dean's List", "President's List"],
+    degree: "Bachelor of Science in Mechanical Engineering",
+    date: "May 2022",
+    honors: ["Dean's List", "President's List", "Alpha Kappa Psi", "ASME"],
   },
 ];
 
@@ -139,11 +162,10 @@ export interface CertificationItem {
 }
 
 export const certifications: CertificationItem[] = [
-  
+  { name: "Life & Health Insurance License", issuer: "Texas (also licensed in Georgia)", date: "2022" },
+  { name: "Mortgage Loan Originator (MLO)", issuer: "NMLS ID 2579708", date: "2023" },
   { name: "AWS Certified Cloud Practitioner", issuer: "Amazon Web Services", date: "2023" },
-  { name: "Mortgage Loan Originator (MLO)", issuer: "NMLS", date: "2023" },
-  { name: "Life & Health Insurance License", issuer: "Texas", date: "2022" },
-  { name: "QuickBooks Online ProAdvisor", issuer: "Intuit", date: "2024" },
+  { name: "QuickBooks Online ProAdvisor Level 2", issuer: "Intuit" },
 ];
 
 // ============= EXTRACURRICULAR ACTIVITIES =============
@@ -157,22 +179,22 @@ export interface ActivityItem {
 export const activities: ActivityItem[] = [
   {
     title: "Author & Course Creator",
-    description: "Published children's book and runs a free study community",
+    description: "Self-published children's book author and co-creator of the ChatGPT for Data Analytics course",
     icon: "book",
   },
   {
-    title: "Open Source Contributor",
-    description: "Contributing to developer tools and educational resources",
-    icon: "code",
+    title: "Tutor & Educator",
+    description: "Tutored 100+ students in math and science",
+    icon: "users",
   },
   {
     title: "Community Volunteer",
     description: "Youth mentorship and financial literacy workshops",
-    icon: "users",
+    icon: "heart",
   },
   {
     title: "Sports & Fitness",
-    description: "Basketball, hiking, and marathon training",
+    description: "Basketball and football",
     icon: "basketball",
   },
 ];
