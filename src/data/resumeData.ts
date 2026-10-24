@@ -201,4 +201,4 @@ export const activities: ActivityItem[] = [
 
 // ============= PDF DOWNLOAD =============
 // TODO: Replace this path with your actual resume PDF
-export const resumePdfPath = "/resume/ZainAdtani_Resume_2025.pdf";
+export const resumePdfPath = "https://drive.google.com/uc?export=download&id=1ph2Lme47kH_f8OSfAp9xK99VS2oDSQls";
