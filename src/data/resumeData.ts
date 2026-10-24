@@ -96,7 +96,7 @@ export const experience: ExperienceItem[] = [
     company: "Adtani Education Ventures LLC",
     title: "Founder and AI Consultant",
     location: "Euless, TX",
-    dates: "Present",
+    dates: "May 2026 – Present",
     initialBullets: [
       "Help local businesses improve their AI visibility and online presence, including one-page websites, booking links, and simple automation of routine business tasks",
       "Consult with business owners to assess their needs and recommend practical technology solutions",
