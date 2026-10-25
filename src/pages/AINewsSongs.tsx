@@ -12,7 +12,7 @@ const CANONICAL = "https://zainadtani.com/resources/ai-news-songs";
  * badge works as a live indicator: a fresh song lands every morning and plays
  * through Suno.
  */
-const ARRIVAL_BADGE = "New song every morning";
+const ARRIVAL_BADGE = "Made to be used, not just heard.";
 
 /**
  * The player is live. Songs play through Suno embed players, so each entry
