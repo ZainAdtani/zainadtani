@@ -8,17 +8,17 @@ const DESCRIPTION =
 const CANONICAL = "https://zainadtani.com/resources/ai-news-songs";
 
 /**
- * Small pill badge shown in the player area. The audio files land in
- * /songs/ on Oct 23, so the badge stands in for the player until then.
+ * Small pill badge shown in the player area. The player is live now, so the
+ * badge works as a live indicator: a fresh song lands every morning and plays
+ * through Suno.
  */
-const ARRIVAL_BADGE = "Arrives Oct 23";
+const ARRIVAL_BADGE = "New song every morning";
 
 /**
- * Flip this to true the day the mp3 files are dropped into public/songs.
- * The audio elements below already point at the final file paths, so the
- * real players take over with no other edits.
+ * The player is live. Songs play through Suno embed players, so each entry
+ * below carries its own sunoUrl.
  */
-const PLAYER_LIVE = false;
+const PLAYER_LIVE = true;
 
 type Song = {
   id: string;
@@ -28,46 +28,30 @@ type Song = {
   runtime: string;
   headlines: string;
   src: string;
+  sunoUrl?: string;
 };
 
 /** Newest first. Drop new songs at the top of this list. */
 const SONGS: Song[] = [
   {
-    id: "2026-10-14-disco",
-    date: "October 14, 2026",
+    id: "2026-10-21-doowop",
+    date: "October 21, 2026",
     title: "The News, Sung",
-    style: "Funky Disco Pop",
-    runtime: "1:41",
-    headlines:
-      "Apple's new smart home screen, a spy caught at OpenAI, and the tiny gadgets racing to replace your phone.",
-    src: "/songs/2026-10-14-disco.mp3",
+    style: "Doo-Wop Pop",
+    runtime: "1:26",
+    headlines: "The day's top headlines, turned into a song.",
+    src: "",
+    sunoUrl: "https://suno.com/song/60bc0709-6922-4ad6-bd2e-eda98f779ae2",
   },
   {
-    id: "2026-10-14-motown",
-    date: "October 14, 2026",
-    title: "The News, Sung (Soul Version)",
-    style: "Motown Soul",
-    runtime: "1:32",
-    headlines: "The same big stories, sung the soul way.",
-    src: "/songs/2026-10-14-motown.mp3",
-  },
-  {
-    id: "2026-10-12-pilot-a",
-    date: "October 12, 2026",
-    title: "The News, Sung (Pilot A)",
-    style: "First Run",
-    runtime: "1:08",
-    headlines: "The very first test run of the daily news song.",
-    src: "/songs/2026-10-12-pilot-a.mp3",
-  },
-  {
-    id: "2026-10-12-pilot-b",
-    date: "October 12, 2026",
-    title: "The News, Sung (Pilot B)",
-    style: "First Run",
-    runtime: "1:38",
-    headlines: "The second test run, a little longer and looser.",
-    src: "/songs/2026-10-12-pilot-b.mp3",
+    id: "2026-10-20-brass",
+    date: "October 20, 2026",
+    title: "The News, Sung",
+    style: "Brass Pop",
+    runtime: "1:26",
+    headlines: "The day's top headlines, turned into a song.",
+    src: "",
+    sunoUrl: "https://suno.com/song/81fc0cae-4397-43ba-bbe2-5cf8792b036a",
   },
 ];
 
@@ -81,6 +65,10 @@ function ArrivalPill() {
 }
 
 function SongCard({ song }: { song: Song }) {
+  const embedUrl = song.sunoUrl
+    ? song.sunoUrl.replace("suno.com/song/", "suno.com/embed/")
+    : "";
+
   return (
     <article className="surface-card p-6 sm:p-7">
       <div className="flex flex-wrap items-center gap-2">
@@ -104,23 +92,38 @@ function SongCard({ song }: { song: Song }) {
       </p>
 
       <div className="mt-5 rounded-xl border border-dashed border-[#447BBE]/35 bg-[#447BBE]/[0.05] p-4">
-        <audio
-          controls
-          preload="none"
-          className={PLAYER_LIVE ? "w-full" : "hidden"}
-        >
-          <source src={song.src} type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
-
-        {!PLAYER_LIVE && (
-          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <span className="inline-flex items-center gap-2 font-sans text-[13px] leading-6 text-[#0A0F1A]/65">
-              <Music2 className="h-4 w-4 shrink-0 text-[#2F5C90]" aria-hidden="true" />
-              The player switches on the morning the tracks land.
-            </span>
-            <ArrivalPill />
+        {song.sunoUrl ? (
+          <div>
+            <iframe
+              title={`${song.title} on Suno`}
+              src={embedUrl}
+              width="100%"
+              height="240"
+              frameBorder="0"
+              allow="autoplay; encrypted-media; fullscreen"
+              loading="lazy"
+              className="block w-full rounded-lg border-0"
+            />
+            <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+              <a
+                href={song.sunoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 font-sans text-[13px] font-semibold text-[#2F5C90] underline underline-offset-4 transition-colors hover:text-[#DD5013]"
+              >
+                <Music2 className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                Open in Suno
+              </a>
+              <ArrivalPill />
+            </div>
           </div>
+        ) : (
+          PLAYER_LIVE && (
+            <audio controls preload="none" className="w-full">
+              <source src={song.src} type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+          )
         )}
       </div>
     </article>
