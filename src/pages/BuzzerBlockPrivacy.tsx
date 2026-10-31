@@ -34,7 +34,7 @@ const BuzzerBlockPrivacy = () => {
         <link rel="canonical" href="https://zainadtani.com/buzzerblock-privacy" />
       </Helmet>
 
-      <main className="container mx-auto px-4 py-16 md:py-24 max-w-3xl">
+      <div className="container mx-auto px-4 py-16 md:py-24 max-w-3xl">
         <p className="font-sans text-[12px] font-semibold tracking-[0.18em] uppercase text-[#2F5C90]">
           Privacy Policy
         </p>
