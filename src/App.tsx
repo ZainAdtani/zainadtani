@@ -36,6 +36,8 @@ import TermVsWholeLifeQuiz from "./pages/TermVsWholeLifeQuiz";
 import MissedCallCalculator from "./pages/MissedCallCalculator";
 import AICheckup from "./pages/AICheckup";
 import AINewsSongs from "./pages/AINewsSongs";
+import BuzzerBlockPrivacy from "./pages/BuzzerBlockPrivacy";
+
 
 // Project sub-pages
 import AiSongs from "./pages/projects/AiSongs";
@@ -84,6 +86,8 @@ const App = () => (
                   <Route path="/missed-call-calculator" element={<MissedCallCalculator />} />
                   <Route path="/ai-checkup" element={<AICheckup />} />
                   <Route path="/resources/ai-news-songs" element={<AINewsSongs />} />
+                  <Route path="/buzzerblock-privacy" element={<BuzzerBlockPrivacy />} />
+
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
