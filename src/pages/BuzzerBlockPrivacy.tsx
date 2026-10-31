@@ -11,9 +11,10 @@ type SectionProps = {
 function Section({ heading, children }: SectionProps) {
   return (
     <section className="mt-10">
-      <h2 className="font-display-sans font-extrabold text-[22px] text-[#0A0F1A]">
+      <h2 className="text-[26px] leading-tight tracking-[0.01em] text-[#0A0F1A]">
         {heading}
       </h2>
+
       <div className="mt-2.5 font-sans text-[16px] text-[#0A0F1A]/75 leading-[1.8]">
         {children}
       </div>
@@ -38,9 +39,10 @@ const BuzzerBlockPrivacy = () => {
           Privacy Policy
         </p>
 
-        <h1 className="mt-3 font-display text-[44px] md:text-[64px] leading-[1.0] text-[#0A0F1A]">
+        <h1 className="mt-3 text-[40px] md:text-[58px] leading-[1.05] tracking-[0.01em] text-[#0A0F1A]">
           BuzzerBlock Privacy Policy
         </h1>
+
 
         <p className="mt-4 font-sans text-[17px] md:text-[19px] font-semibold text-[#0A0F1A]">
           BuzzerBlock (Spoiler-Safe NBA Alerts)
