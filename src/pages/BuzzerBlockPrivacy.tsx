@@ -93,7 +93,7 @@ const BuzzerBlockPrivacy = () => {
             </a>
           </span>
         </Section>
-      </main>
+      </div>
     </div>
   );
 };
