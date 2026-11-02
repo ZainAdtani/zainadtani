@@ -1,26 +1,8 @@
 import { Helmet } from "react-helmet-async";
 
-const CONTACT_ADDRESS = "1909 Central Drive, Suite 201, Bedford, TX 76021";
 const CONTACT_EMAIL = "zkadtani@gmail.com";
 
-type SectionProps = {
-  heading: string;
-  children: React.ReactNode;
-};
-
-function Section({ heading, children }: SectionProps) {
-  return (
-    <section className="mt-10">
-      <h2 className="text-[26px] leading-tight tracking-[0.01em] text-[#0A0F1A]">
-        {heading}
-      </h2>
-
-      <div className="mt-2.5 font-sans text-[16px] text-[#0A0F1A]/75 leading-[1.8]">
-        {children}
-      </div>
-    </section>
-  );
-}
+const paragraphClass = "mt-5 font-sans text-[16px] text-[#0A0F1A]/85 leading-[1.8]";
 
 const BuzzerBlockPrivacy = () => {
   return (
@@ -29,7 +11,7 @@ const BuzzerBlockPrivacy = () => {
         <title>BuzzerBlock Privacy Policy | Adtani Education Ventures</title>
         <meta
           name="description"
-          content="Privacy policy for BuzzerBlock, the spoiler-safe NBA alerts Chrome extension and iPhone app from Adtani Education Ventures LLC."
+          content="BuzzerBlock does not collect, store, or share personal information."
         />
         <link rel="canonical" href="https://zainadtani.com/buzzerblock-privacy" />
       </Helmet>
@@ -43,56 +25,42 @@ const BuzzerBlockPrivacy = () => {
           BuzzerBlock Privacy Policy
         </h1>
 
-
-        <p className="mt-4 font-sans text-[17px] md:text-[19px] font-semibold text-[#0A0F1A]">
-          BuzzerBlock (Spoiler-Safe NBA Alerts)
-        </p>
-
-        <p className="mt-2 font-sans text-[14px] text-[#0A0F1A]/60">
-          Effective date: October 31, 2026
-        </p>
-
         <div className="mt-8 h-px w-full bg-[#0A0F1A]/10" />
 
-        <p className="mt-8 font-sans text-[16px] text-[#0A0F1A]/85 leading-[1.8]">
-          BuzzerBlock is a Chrome extension and iPhone app made by Adtani
-          Education Ventures LLC.
+        <p className={paragraphClass}>
+          BuzzerBlock does not collect, store, or share personal information.
+          The extension has no accounts, no ads, and no tracking.
         </p>
 
-        <Section heading="What data we use">
-          BuzzerBlock uses public NBA scoreboard data from ESPN only. The Chrome
-          extension requests a single host permission:
-          <span className="block mt-1.5 font-mono text-[14px] text-[#0A0F1A] break-all">
-            https://site.api.espn.com/*
-          </span>
-        </Section>
+        <p className={paragraphClass}>
+          Your settings, like favorite teams and alert choices, and the cached
+          scores are stored only on your own device in Chrome storage and are
+          never sent to us.
+        </p>
 
-        <Section heading="Notifications">
-          BuzzerBlock notifications never show scores.
-        </Section>
+        <p className={paragraphClass}>
+          To show live scores, the extension reads ESPN's public score feed.
+          Scores can run a minute or so behind live TV.
+        </p>
 
-        <Section heading="Your settings">
-          Your settings are stored locally on your device.
-        </Section>
+        <p className={paragraphClass}>
+          BuzzerBlock is not affiliated with the NBA or ESPN.
+        </p>
 
-        <Section heading="What we do not do">
-          No accounts. We do not collect personal data. We do not sell or share
-          any data. No analytics.
-        </Section>
+        <p className={paragraphClass}>
+          Questions:{" "}
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="text-[#447BBE] underline underline-offset-2 hover:text-[#2F5C90]"
+          >
+            {CONTACT_EMAIL}
+          </a>
+          .
+        </p>
 
-        <Section heading="Contact">
-          Adtani Education Ventures LLC
-          <span className="block">{CONTACT_ADDRESS}</span>
-          <span className="block mt-1.5">
-            Email:{" "}
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="text-[#447BBE] underline underline-offset-2 hover:text-[#2F5C90]"
-            >
-              {CONTACT_EMAIL}
-            </a>
-          </span>
-        </Section>
+        <p className="mt-8 font-sans text-[14px] text-[#0A0F1A]/60">
+          Updated November 2, 2026.
+        </p>
       </div>
     </div>
   );
