@@ -1,0 +1,166 @@
+export const CALENDLY_URL = "https://calendly.com/zkadtani";
+export const AI_CHECKUP_PATH = "/ai-checkup";
+export const MISSED_CALL_CALCULATOR_PATH = "/missed-call-calculator";
+export const WEEKS_PER_MONTH = 4.3333;
+export const DISABILITY_BONUS_MONTHS = 6;
+export const MAX_RUNWAY_MONTHS = 120;
+export const FULL_PROTECTION_MONTHS = 24;
+export const LEAK_ALERT_MONTHLY = 1000;
+export const SICK_RUNWAY_ALERT_MONTHS = 3;
+export const MAX_FINDINGS = 3;
+
+export type StressInputs = {
+  callsPerWeek: number;
+  missedCallPercent: number;
+  avgJobValue: number;
+  closeRatePercent: number;
+  monthlyHouseholdExpenses: number;
+  monthlyBusinessFixedCosts: number;
+  emergencySavings: number;
+  lifeCoverage: number;
+  hasDisabilityCoverage: boolean;
+  businessRunsWithoutOwner: boolean;
+};
+
+export type Grade = "A" | "B" | "C" | "D" | "F";
+
+export const DEFAULT_INPUTS: StressInputs = {
+  callsPerWeek: 40,
+  missedCallPercent: 25,
+  avgJobValue: 350,
+  closeRatePercent: 40,
+  monthlyHouseholdExpenses: 5000,
+  monthlyBusinessFixedCosts: 6000,
+  emergencySavings: 15000,
+  lifeCoverage: 0,
+  hasDisabilityCoverage: false,
+  businessRunsWithoutOwner: false,
+};
+
+export const INPUT_LIMITS = {
+  callsPerWeek: { min: 0, max: 500 },
+  missedCallPercent: { min: 0, max: 100 },
+  avgJobValue: { min: 0, max: 50000 },
+  closeRatePercent: { min: 0, max: 100 },
+  monthlyHouseholdExpenses: { min: 0, max: 1000000 },
+  monthlyBusinessFixedCosts: { min: 0, max: 1000000 },
+  emergencySavings: { min: 0, max: 100000000 },
+  lifeCoverage: { min: 0, max: 100000000 },
+} as const;
+
+export const DISCLAIMER = "Educational estimate only. Not financial, tax, or legal advice, and not a quote or offer of insurance. Real numbers depend on your situation. Zain Adtani is a licensed life and health insurance agent in Texas.";
+
+function clampNumber(value: unknown, min: number, max: number): number {
+  const n = typeof value === "number" ? value : Number(value);
+  if (!Number.isFinite(n)) return Number.isNaN(n) ? min : n > 0 ? max : min;
+  return Math.min(max, Math.max(min, n));
+}
+
+function roundTo(value: number, places: number): number {
+  const f = 10 ** places;
+  return Math.round(value * f) / f;
+}
+
+export function clampInputs(i: StressInputs): StressInputs {
+  const src = (i ?? {}) as Partial<StressInputs>;
+  const c = (key: keyof typeof INPUT_LIMITS) => clampNumber(src[key], INPUT_LIMITS[key].min, INPUT_LIMITS[key].max);
+  return {
+    callsPerWeek: c("callsPerWeek"),
+    missedCallPercent: c("missedCallPercent"),
+    avgJobValue: c("avgJobValue"),
+    closeRatePercent: c("closeRatePercent"),
+    monthlyHouseholdExpenses: c("monthlyHouseholdExpenses"),
+    monthlyBusinessFixedCosts: c("monthlyBusinessFixedCosts"),
+    emergencySavings: c("emergencySavings"),
+    lifeCoverage: c("lifeCoverage"),
+    hasDisabilityCoverage: Boolean(src.hasDisabilityCoverage),
+    businessRunsWithoutOwner: Boolean(src.businessRunsWithoutOwner),
+  };
+}
+
+/** Dollars lost per month to missed calls, rounded to the nearest dollar. */
+export function monthlyLeak(i: StressInputs): number {
+  const x = clampInputs(i);
+  return Math.round(
+    x.callsPerWeek * WEEKS_PER_MONTH * (x.missedCallPercent / 100) * (x.closeRatePercent / 100) * x.avgJobValue,
+  );
+}
+
+export function yearlyLeak(i: StressInputs): number {
+  return monthlyLeak(i) * 12;
+}
+
+/** Months the household and business keep going if the owner is alive but cannot work. One decimal, capped at 120. */
+export function sickRunwayMonths(i: StressInputs): number {
+  const x = clampInputs(i);
+  const burn = x.monthlyHouseholdExpenses + (x.businessRunsWithoutOwner ? 0 : x.monthlyBusinessFixedCosts);
+  if (burn <= 0) return MAX_RUNWAY_MONTHS;
+  const months = x.emergencySavings / burn + (x.hasDisabilityCoverage ? DISABILITY_BONUS_MONTHS : 0);
+  return roundTo(Math.min(MAX_RUNWAY_MONTHS, months), 1);
+}
+
+/** Months the family keeps going if the owner dies. One decimal, capped at 120. */
+export function familyRunwayMonths(i: StressInputs): number {
+  const x = clampInputs(i);
+  if (x.monthlyHouseholdExpenses <= 0) return MAX_RUNWAY_MONTHS;
+  const months = (x.emergencySavings + x.lifeCoverage) / x.monthlyHouseholdExpenses;
+  return roundTo(Math.min(MAX_RUNWAY_MONTHS, months), 1);
+}
+
+/** 0..100, where 100 means no calls are missed. */
+export function leakScore(i: StressInputs): number {
+  const x = clampInputs(i);
+  return Math.round(100 - x.missedCallPercent);
+}
+
+/** 0..100, from the weaker of the two runways. 24+ months scores 100. */
+export function protectionScore(i: StressInputs): number {
+  const months = Math.min(sickRunwayMonths(i), familyRunwayMonths(i));
+  return Math.round((Math.min(months, FULL_PROTECTION_MONTHS) / FULL_PROTECTION_MONTHS) * 100);
+}
+
+export function overallScore(i: StressInputs): number {
+  return Math.round((leakScore(i) + protectionScore(i)) / 2);
+}
+
+export function grade(score: number): Grade {
+  if (score >= 90) return "A";
+  if (score >= 80) return "B";
+  if (score >= 70) return "C";
+  if (score >= 60) return "D";
+  return "F";
+}
+
+function dollars(n: number): string {
+  return "$" + Math.round(n).toLocaleString("en-US");
+}
+
+function months(n: number): string {
+  return n === 1 ? "1 month" : `${n} months`;
+}
+
+export const ALL_CLEAR_FINDING = "Your numbers look strong. Run this test again once a year or when life changes.";
+
+/** Up to 3 plain findings, most urgent first. */
+export function findings(i: StressInputs): string[] {
+  const x = clampInputs(i);
+  const out: string[] = [];
+  const sick = sickRunwayMonths(x);
+  const leak = monthlyLeak(x);
+
+  if (sick < SICK_RUNWAY_ALERT_MONTHS) {
+    out.push(`If you got hurt and could not work, your savings would cover about ${months(sick)} of bills. That is not much time.`);
+  }
+  if (leak > LEAK_ALERT_MONTHLY) {
+    out.push(`Missed calls may cost you about ${dollars(leak)} a month. That is ${dollars(leak * 12)} a year walking out the door.`);
+  }
+  if (x.lifeCoverage <= 0 && x.monthlyHouseholdExpenses > 0) {
+    out.push(`If you passed away, your family would have about ${months(familyRunwayMonths(x))} of savings and no life coverage set aside.`);
+  }
+  if (!x.businessRunsWithoutOwner) {
+    out.push("Your business stops earning when you stop working. Your family feels that right away.");
+  }
+
+  if (out.length === 0) return [ALL_CLEAR_FINDING];
+  return out.slice(0, MAX_FINDINGS);
+}
