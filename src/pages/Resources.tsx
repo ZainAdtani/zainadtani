@@ -35,6 +35,7 @@ const TOOLS: Tool[] = [
 const TOOL_CATEGORIES = ["All", "AI & Agents", "Productivity", "Images & Design", "Apps", "Courses I Recommend"] as const;
 
 const MISSED_CALL_CALCULATOR_URL = "/missed-call-calculator";
+const OWNER_STRESS_TEST_URL = "/owner-stress-test";
 
 type SiteGroup = "Learn & Play" | "Money & Business" | "Guides & Library" | "About & Contact";
 interface SiteEntry {
@@ -61,6 +62,7 @@ const SITE_MAP: SiteEntry[] = [
   { group: "Money & Business", route: "/family-protection-gap", title: "The Family Protection Gap", desc: "A plain-language guide to help families understand the gap between job benefits, savings, retirement accounts, and real protection. Free PDF." },
   { group: "Money & Business", route: "/digital-products", title: "Digital Product HQ", desc: "Browse courses, guides, templates, and tools to help small businesses use AI and everyday people publish their first book." },
   { group: "Money & Business", route: "/digital-products", title: "Free Tools & Products", desc: "Free guides and simple tools for your money, your family, and your business." },
+  { group: "Money & Business", route: "/owner-stress-test", title: "Owner Stress Test", desc: "If you stopped working tomorrow, what breaks first? See your missed call leak and your safety net in one grade. Free, no email required." },
   { group: "Money & Business", route: "/services", title: "Services — AI Consulting & Book Coaching", desc: "AI websites, book publishing help, and AI workflow consulting — practical services for small businesses and first-time authors in DFW Texas." },
 
   // Guides & Library
@@ -243,9 +245,14 @@ export default function Resources() {
         <p className="mt-3 font-sans text-[16px] text-[#0A0F1A]/65 max-w-2xl mx-auto">
           Free tools, prompts, and ideas to help you work smarter and think clearer.
         </p>
-        <Link to={MISSED_CALL_CALCULATOR_URL} className="btn-cta mt-6">
-          Free Missed Call Calculator
-        </Link>
+        <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+          <Link to={MISSED_CALL_CALCULATOR_URL} className="btn-cta">
+            Free Missed Call Calculator
+          </Link>
+          <Link to={OWNER_STRESS_TEST_URL} className="btn-secondary-outline">
+            Take the Owner Stress Test
+          </Link>
+        </div>
       </header>
 
       {/* Global search (site map + prompt library) */}

@@ -30,6 +30,7 @@ const CALENDLY_URL = "https://calendly.com/zkadtani";
 const BEEHIIV_URL = "https://the-z-letter.beehiiv.com/subscribe";
 const BEEHIIV_MAGIC = "https://magic.beehiiv.com/v1/dd1643e2-f274-43e4-b193-62276e3e3b48";
 const MISSED_CALL_CALCULATOR_URL = "/missed-call-calculator";
+const OWNER_STRESS_TEST_URL = "/owner-stress-test";
 const AMAZON_BOOKS = [
   {
     title: "The Family Protection Gap",
@@ -268,9 +269,14 @@ const Index = () => {
           <p className="max-w-2xl mt-5 font-sans text-[17px] sm:text-[20px] leading-relaxed text-foreground">
             I'm Z — AI consultant, author of <a href="#books" className="font-bold underline underline-offset-4 decoration-primary hover:text-primary">3 books</a>, and financial educator helping families protect what they build.
           </p>
-          <Link to={MISSED_CALL_CALCULATOR_URL} className="btn-cta mt-7">
-            Free Missed Call Calculator
-          </Link>
+          <div className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+            <Link to={MISSED_CALL_CALCULATOR_URL} className="btn-cta">
+              Free Missed Call Calculator
+            </Link>
+            <Link to={OWNER_STRESS_TEST_URL} className="btn-secondary-outline">
+              Take the Owner Stress Test
+            </Link>
+          </div>
         </div>
       </section>
 

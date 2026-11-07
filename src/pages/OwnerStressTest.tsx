@@ -1,0 +1,338 @@
+import { Helmet } from "react-helmet-async";
+import { useMemo, useState, type ReactNode } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, ArrowUpRight, PhoneOff, ShieldCheck } from "lucide-react";
+import {
+  AI_CHECKUP_PATH,
+  CALENDLY_URL,
+  DEFAULT_INPUTS,
+  DISCLAIMER,
+  clampInputs,
+  familyRunwayMonths,
+  findings,
+  grade,
+  leakScore,
+  monthlyLeak,
+  overallScore,
+  protectionScore,
+  sickRunwayMonths,
+  yearlyLeak,
+  type StressInputs,
+} from "@/data/owner-stress-test";
+
+const TITLE = "Owner Stress Test | Zain Adtani";
+const DESCRIPTION =
+  "If you stopped working tomorrow, what breaks first? A free 2 minute test for local business owners. See your missed call leak and your safety net in one grade.";
+const CANONICAL = "https://zainadtani.com/owner-stress-test";
+
+const LUCKIEST = { fontFamily: "'Luckiest Guy', cursive", letterSpacing: "0.02em" };
+
+function money(n: number): string {
+  return "$" + Math.round(n).toLocaleString("en-US");
+}
+
+function months(n: number): string {
+  if (n >= 120) return "120+";
+  return n.toLocaleString("en-US", { maximumFractionDigits: 1 });
+}
+
+const GRADE_COLOR: Record<string, string> = {
+  A: "#447BBE",
+  B: "#447BBE",
+  C: "#D97706",
+  D: "#DD5013",
+  F: "#DD5013",
+};
+
+type NumberKey = {
+  [K in keyof StressInputs]: StressInputs[K] extends number ? K : never;
+}[keyof StressInputs];
+type BoolKey = {
+  [K in keyof StressInputs]: StressInputs[K] extends boolean ? K : never;
+}[keyof StressInputs];
+
+type SliderSpec = {
+  key: NumberKey;
+  label: string;
+  helper: string;
+  min: number;
+  max: number;
+  step: number;
+  kind: "money" | "percent" | "count";
+};
+
+const PHONE_SLIDERS: SliderSpec[] = [
+  { key: "callsPerWeek", label: "Calls each week", helper: "All the calls that come in. Count the ones you miss too.", min: 0, max: 500, step: 5, kind: "count" },
+  { key: "missedCallPercent", label: "Calls you miss", helper: "Rings out, hits voicemail, or comes after hours. Be honest.", min: 0, max: 100, step: 1, kind: "percent" },
+  { key: "avgJobValue", label: "What one job is worth", helper: "Your average job or sale, in dollars.", min: 0, max: 10000, step: 25, kind: "money" },
+  { key: "closeRatePercent", label: "Calls that turn into jobs", helper: "Out of the calls you answer, how many book?", min: 0, max: 100, step: 1, kind: "percent" },
+];
+
+const SAFETY_SLIDERS: SliderSpec[] = [
+  { key: "monthlyHouseholdExpenses", label: "Home bills each month", helper: "Rent or mortgage, food, car, kids. What your family spends.", min: 0, max: 20000, step: 250, kind: "money" },
+  { key: "monthlyBusinessFixedCosts", label: "Business bills each month", helper: "Rent, payroll, loans, trucks. Bills that come no matter what.", min: 0, max: 50000, step: 500, kind: "money" },
+  { key: "emergencySavings", label: "Savings you can reach fast", helper: "Cash in the bank you could use this month.", min: 0, max: 250000, step: 1000, kind: "money" },
+  { key: "lifeCoverage", label: "Life insurance payout", helper: "The total your family would get. Pick $0 if you have none.", min: 0, max: 2000000, step: 25000, kind: "money" },
+];
+
+const TOGGLES: { key: BoolKey; label: string; helper: string }[] = [
+  { key: "hasDisabilityCoverage", label: "Do you have disability coverage?", helper: "It pays you if you get hurt or sick and cannot work." },
+  { key: "businessRunsWithoutOwner", label: "Does the business still earn if you are out?", helper: "Could your team keep jobs coming in for a month without you?" },
+];
+
+function formatValue(kind: SliderSpec["kind"], n: number): string {
+  if (kind === "money") return money(n);
+  if (kind === "percent") return `${n}%`;
+  return n.toLocaleString("en-US");
+}
+
+function SliderRow({ spec, value, onChange }: { spec: SliderSpec; value: number; onChange: (n: number) => void }) {
+  const id = `ost-${spec.key}`;
+  return (
+    <div>
+      <div className="flex items-baseline justify-between gap-4">
+        <label htmlFor={id} className="font-sans font-bold text-[16px] text-[#0A0F1A]">
+          {spec.label}
+        </label>
+        <span className="font-sans font-bold text-[18px] text-[#DD5013] whitespace-nowrap tabular-nums">
+          {formatValue(spec.kind, value)}
+        </span>
+      </div>
+      <span className="block font-sans text-[13px] text-[#0A0F1A]/60 mt-0.5">{spec.helper}</span>
+      <input
+        id={id}
+        type="range"
+        min={spec.min}
+        max={spec.max}
+        step={spec.step}
+        value={Math.min(value, spec.max)}
+        onChange={(e) => onChange(Number(e.target.value))}
+        className="mt-3 w-full accent-[#447BBE]"
+      />
+    </div>
+  );
+}
+
+function YesNo({ label, helper, value, onChange }: { label: string; helper: string; value: boolean; onChange: (v: boolean) => void }) {
+  const base = "flex-1 rounded-full border-2 px-4 py-2 font-sans font-bold text-[15px] transition-colors";
+  const on = "border-[#447BBE] bg-[#447BBE] text-white";
+  const off = "border-[#0A0F1A]/15 bg-white text-[#0A0F1A] hover:border-[#447BBE]";
+  return (
+    <div role="group" aria-label={label}>
+      <p className="font-sans font-bold text-[16px] text-[#0A0F1A]">{label}</p>
+      <p className="font-sans text-[13px] text-[#0A0F1A]/60 mt-0.5">{helper}</p>
+      <div className="mt-3 flex gap-3">
+        <button type="button" aria-pressed={value} onClick={() => onChange(true)} className={`${base} ${value ? on : off}`}>
+          Yes
+        </button>
+        <button type="button" aria-pressed={!value} onClick={() => onChange(false)} className={`${base} ${!value ? on : off}`}>
+          No
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function GroupCard({ title, sub, children }: { title: string; sub: string; children: ReactNode }) {
+  return (
+    <div className="min-w-0 rounded-3xl border-2 border-[#0A0F1A]/10 bg-[#E9E4A6]/30 p-5 sm:p-6 md:p-8">
+      <h2 className="text-[26px] md:text-[32px] text-[#0A0F1A]" style={LUCKIEST}>
+        {title}
+      </h2>
+      <p className="font-sans text-[15px] text-[#0A0F1A]/70 mt-1">{sub}</p>
+      <div className="mt-6 space-y-8">{children}</div>
+    </div>
+  );
+}
+
+export default function OwnerStressTest() {
+  const [inputs, setInputs] = useState<StressInputs>(DEFAULT_INPUTS);
+
+  const setField = <K extends keyof StressInputs>(key: K, value: StressInputs[K]) =>
+    setInputs((prev) => ({ ...prev, [key]: value }));
+
+  const result = useMemo(() => {
+    const safe = clampInputs(inputs);
+    const score = overallScore(safe);
+    return {
+      monthly: monthlyLeak(safe),
+      yearly: yearlyLeak(safe),
+      leak: leakScore(safe),
+      protection: protectionScore(safe),
+      sick: sickRunwayMonths(safe),
+      family: familyRunwayMonths(safe),
+      score,
+      letter: grade(score),
+      notes: findings(safe).slice(0, 3),
+    };
+  }, [inputs]);
+
+  return (
+    <div className="min-h-screen overflow-x-hidden bg-white text-[#0A0F1A]">
+      <Helmet>
+        <title>{TITLE}</title>
+        <meta name="description" content={DESCRIPTION} />
+        <link rel="canonical" href={CANONICAL} />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={CANONICAL} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={TITLE} />
+        <meta name="twitter:description" content={DESCRIPTION} />
+      </Helmet>
+
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-14 md:py-20">
+        {/* Hero */}
+        <section className="text-center">
+          <p className="font-mono text-[12px] font-bold uppercase tracking-[0.3em] text-[#447BBE]">
+            The Owner Stress Test
+          </p>
+          <h1 className="mt-4 text-[#0A0F1A] text-[36px] sm:text-[48px] md:text-[64px] leading-[1.05]" style={LUCKIEST}>
+            If you stopped working tomorrow,
+            <br className="hidden sm:block" /> what breaks first?
+          </h1>
+          <p className="mt-4 font-sans text-[18px] md:text-[22px] text-[#0A0F1A]/75 max-w-2xl mx-auto">
+            Two minutes. Ten questions. One grade. See the money your phone leaks and how long you could last if you got hurt.
+          </p>
+          <p className="mt-2 font-sans text-[14px] text-[#0A0F1A]/55">No email needed. It all runs in your browser.</p>
+        </section>
+
+        <section className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1fr)_380px]">
+          {/* Inputs */}
+          <div className="min-w-0 space-y-8">
+            <GroupCard title="Your phone" sub="Every missed call is a job that went to someone else.">
+              {PHONE_SLIDERS.map((spec) => (
+                <SliderRow key={spec.key} spec={spec} value={inputs[spec.key]} onChange={(n) => setField(spec.key, n)} />
+              ))}
+            </GroupCard>
+
+            <GroupCard title="Your safety net" sub="What keeps the lights on if you cannot show up.">
+              {SAFETY_SLIDERS.map((spec) => (
+                <SliderRow key={spec.key} spec={spec} value={inputs[spec.key]} onChange={(n) => setField(spec.key, n)} />
+              ))}
+              {TOGGLES.map((t) => (
+                <YesNo key={t.key} label={t.label} helper={t.helper} value={inputs[t.key]} onChange={(v) => setField(t.key, v)} />
+              ))}
+            </GroupCard>
+          </div>
+
+          {/* Results */}
+          <div className="min-w-0 lg:sticky lg:top-24 h-fit space-y-5" aria-live="polite">
+            <div className="rounded-3xl bg-[#0A0F1A] text-white p-6 md:p-8">
+              <p className="font-sans text-[13px] font-bold uppercase tracking-[0.2em] text-[#E9E4A6]">Your Owner Stress Grade</p>
+              <div className="mt-3 flex items-center gap-5">
+                <span
+                  aria-label={`Grade ${result.letter}`}
+                  className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full border-4 text-[60px] leading-none"
+                  style={{ ...LUCKIEST, borderColor: GRADE_COLOR[result.letter], color: GRADE_COLOR[result.letter] }}
+                >
+                  {result.letter}
+                </span>
+                <p className="font-sans text-[15px] text-white/75">
+                  <span className="block text-[28px] font-bold text-white tabular-nums">{result.score}/100</span>
+                  Your phone and your safety net, scored together.
+                </p>
+              </div>
+
+              <div className="mt-7 border-t border-white/15 pt-6">
+                <div className="flex items-baseline justify-between gap-3">
+                  <p className="font-sans text-[13px] font-bold uppercase tracking-[0.2em] text-[#E9E4A6]">Leak Score</p>
+                  <p className="font-sans font-bold text-[18px] tabular-nums">{result.leak}/100</p>
+                </div>
+                <p className="mt-3 font-sans text-[14px] text-white/70">Lost to missed calls each month</p>
+                <p className="mt-1 text-[44px] md:text-[52px] leading-none text-[#DD5013] break-words" style={LUCKIEST}>
+                  {money(result.monthly)}
+                </p>
+                <p className="mt-2 font-sans text-[15px] text-white/80">
+                  That is <span className="font-bold text-white">{money(result.yearly)}</span> a year.
+                </p>
+              </div>
+
+              <div className="mt-7 border-t border-white/15 pt-6">
+                <div className="flex items-baseline justify-between gap-3">
+                  <p className="font-sans text-[13px] font-bold uppercase tracking-[0.2em] text-[#E9E4A6]">Stopped Tomorrow Score</p>
+                  <p className="font-sans font-bold text-[18px] tabular-nums">{result.protection}/100</p>
+                </div>
+                <div className="mt-4 grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-[36px] leading-none text-white" style={LUCKIEST}>{months(result.sick)}</p>
+                    <p className="mt-1 font-sans text-[13px] text-white/70">months you last if you get hurt or sick</p>
+                  </div>
+                  <div>
+                    <p className="text-[36px] leading-none text-white" style={LUCKIEST}>{months(result.family)}</p>
+                    <p className="mt-1 font-sans text-[13px] text-white/70">months your family lasts if you die</p>
+                  </div>
+                </div>
+              </div>
+
+              {result.notes.length > 0 && (
+                <div className="mt-7 border-t border-white/15 pt-6">
+                  <p className="font-sans text-[13px] font-bold uppercase tracking-[0.2em] text-[#E9E4A6]">What breaks first</p>
+                  <ol className="mt-3 list-decimal space-y-2 pl-5 font-sans text-[15px] leading-6 text-white/85 marker:font-bold marker:text-[#D97706]">
+                    {result.notes.map((note) => (
+                      <li key={note} className="pl-1">{note}</li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+            </div>
+
+            <p className="font-sans text-[12px] leading-5 text-[#0A0F1A]/60">{DISCLAIMER}</p>
+          </div>
+        </section>
+
+        {/* CTAs */}
+        <section className="mt-16">
+          <h2 className="text-center text-[#0A0F1A] text-[30px] md:text-[44px]" style={LUCKIEST}>
+            Fix the weak spot
+          </h2>
+          <p className="mt-2 text-center font-sans text-[16px] text-[#0A0F1A]/70">Pick one. Both are free to start.</p>
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            <Link
+              to={AI_CHECKUP_PATH}
+              className="group flex min-w-0 flex-col rounded-3xl border-2 border-[#0A0F1A]/10 bg-white p-6 md:p-8 transition-all hover:border-[#447BBE] hover:-translate-y-1"
+            >
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#E9E4A6]">
+                <PhoneOff className="h-5 w-5 text-[#0A0F1A]" aria-hidden="true" />
+              </span>
+              <p className="mt-4 text-[26px] text-[#0A0F1A]" style={LUCKIEST}>Plug the leak</p>
+              <p className="mt-2 flex-1 font-sans text-[15px] leading-relaxed text-[#0A0F1A]/75">
+                Get a free AI checkup. See how customers find you and what to fix first so fewer calls slip away.
+              </p>
+              <span className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#DD5013] px-6 py-3 font-sans font-bold text-[16px] text-white transition-colors group-hover:bg-[#c24410]">
+                Get my free AI checkup
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </span>
+            </Link>
+
+            <a
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex min-w-0 flex-col rounded-3xl border-2 border-[#0A0F1A]/10 bg-white p-6 md:p-8 transition-all hover:border-[#447BBE] hover:-translate-y-1"
+            >
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#E9E4A6]">
+                <ShieldCheck className="h-5 w-5 text-[#0A0F1A]" aria-hidden="true" />
+              </span>
+              <p className="mt-4 text-[26px] text-[#0A0F1A]" style={LUCKIEST}>Protect the owner</p>
+              <p className="mt-2 flex-1 font-sans text-[15px] leading-relaxed text-[#0A0F1A]/75">
+                Book a free 15 minute protection review with Zain. Talk through your safety net. Learn your options. No pressure.
+              </p>
+              <span className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#447BBE] px-6 py-3 font-sans font-bold text-[16px] text-white transition-colors group-hover:bg-[#0A0F1A]">
+                Book my free review
+                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </span>
+            </a>
+          </div>
+        </section>
+
+        <section className="mt-14 max-w-3xl mx-auto text-center">
+          <p className="font-sans text-[13px] text-[#0A0F1A]/55">
+            Made by Zain Adtani. Runs in your browser. No data captured.
+          </p>
+        </section>
+      </main>
+    </div>
+  );
+}
