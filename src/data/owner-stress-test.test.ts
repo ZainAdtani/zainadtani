@@ -16,6 +16,15 @@ import {
   protectionScore,
   sickRunwayMonths,
   yearlyLeak,
+  REPORT_DEFAULT_NAME,
+  REPORT_LEAD_TYPE,
+  buildReportLead,
+  isValidEmail,
+  reportSummary,
+  SHARE_MAX_LENGTH,
+  SHARE_URL,
+  shareText,
+  methodSteps,
 } from "./owner-stress-test.ts";
 
 function expect(actual: unknown) {
@@ -137,13 +146,13 @@ describe("Owner stress test: findings", () => {
     assert.match(f[0], /could not work/);
     assert.match(f[0], /1\.4 months/);
     assert.match(f[1], /\$6,067 a month/);
-    assert.match(f[2], /no life coverage/);
+    assert.match(f[2], /savings alone would cover about 3 months/);
   });
   test("business stopping without the owner shows when there is room", () => {
     const f = findings(withInputs({ missedCallPercent: 0, hasDisabilityCoverage: true }));
     // sick = 7.4 (no alert), leak = 0, no life coverage, business stops
     expect(f.length).toBe(2);
-    assert.match(f[0], /no life coverage/);
+    assert.match(f[0], /savings alone/);
     assert.match(f[1], /stops earning when you stop working/);
   });
   test("a leak of $1,000 or less is not flagged", () => {
@@ -161,6 +170,7 @@ describe("Owner stress test: findings", () => {
     const text = samples.flatMap(findings).join(" ");
     assert.doesNotMatch(text, /[–—]| - /);
     assert.doesNotMatch(text, /\b(term|whole life|universal|annuity|policy|premium|guarantee)/i);
+    assert.doesNotMatch(text, /\b(die|dies|dead|not much time)\b/i);
   });
   test("one month reads as singular", () =>
     assert.match(findings(withInputs({ emergencySavings: 11000 }))[0], /about 1 month of bills/));
@@ -171,4 +181,78 @@ describe("Owner stress test: disclaimer", () => {
     assert.match(DISCLAIMER, /^Educational estimate only\./);
     assert.match(DISCLAIMER, /licensed life and health insurance agent in Texas/);
   });
+});
+
+describe("email report capture", () => {
+  test("accepts a normal email", () => assert.equal(isValidEmail("owner@shop.com"), true));
+  test("rejects empty, spaces, and missing domain", () => {
+    assert.equal(isValidEmail(""), false);
+    assert.equal(isValidEmail("   "), false);
+    assert.equal(isValidEmail("owner@shop"), false);
+    assert.equal(isValidEmail("owner shop@x.com"), false);
+  });
+  test("returns null for a bad email so nothing is saved", () =>
+    assert.equal(buildReportLead("nope", "Bob's Plumbing", DEFAULT_INPUTS), null));
+  test("tags the row as owner-stress-test and lowercases the email", () => {
+    const lead = buildReportLead("  Owner@Shop.COM ", "", DEFAULT_INPUTS);
+    assert.ok(lead);
+    assert.equal(lead.lead_type, REPORT_LEAD_TYPE);
+    assert.equal(lead.lead_type, "owner-stress-test");
+    assert.equal(lead.email, "owner@shop.com");
+  });
+  test("uses the business name when given, default name when blank", () => {
+    assert.equal(buildReportLead("a@b.co", "  Bob's Plumbing ", DEFAULT_INPUTS)?.name, "Bob's Plumbing");
+    assert.equal(buildReportLead("a@b.co", "  Bob's Plumbing ", DEFAULT_INPUTS)?.business_name, "Bob's Plumbing");
+    assert.equal(buildReportLead("a@b.co", "", DEFAULT_INPUTS)?.name, REPORT_DEFAULT_NAME);
+    assert.equal(buildReportLead("a@b.co", "", DEFAULT_INPUTS)?.business_name, null);
+  });
+  test("summary carries the grade, leak, and runways for follow up", () => {
+    const msg = reportSummary(DEFAULT_INPUTS);
+    assert.ok(msg.startsWith("Grade F (41/100)."), msg);
+    assert.ok(msg.includes("$6,067/mo"), msg);
+    assert.ok(msg.includes("Sick runway 1.4 mo"), msg);
+    assert.ok(msg.includes("Family runway 3 mo"), msg);
+  });
+});
+
+describe("share text", () => {
+  const text = shareText(DEFAULT_INPUTS);
+  test("includes the grade, the monthly leak, and the link", () => {
+    assert.ok(text.includes("got an F"), text);
+    assert.ok(text.includes("$6,067 a month"), text);
+    assert.ok(text.endsWith(SHARE_URL), text);
+  });
+  test("fits in a text or tweet", () => assert.ok(text.length <= SHARE_MAX_LENGTH, String(text.length)));
+  test("never shares savings, coverage, or family numbers", () => {
+    const rich = { ...DEFAULT_INPUTS, emergencySavings: 87000, lifeCoverage: 750000 };
+    const t = shareText(rich);
+    assert.ok(!t.includes("87,000") && !t.includes("750,000") && !/famil|insur|die/i.test(t), t);
+  });
+  test("handles zero leak without a $0 line", () => {
+    const t = shareText({ ...DEFAULT_INPUTS, missedCallPercent: 0 });
+    assert.ok(!t.includes("$0"), t);
+  });
+  test("uses the right article for each grade", () => {
+    assert.ok(shareText({ ...DEFAULT_INPUTS, missedCallPercent: 0, emergencySavings: 1000000 }).includes("got an A"));
+    assert.ok(shareText({ ...DEFAULT_INPUTS, missedCallPercent: 60, emergencySavings: 1000000 }).includes("got a C"));
+  });
+  test("uses no dashes as punctuation", () => assert.ok(!/ [-\u2013\u2014] /.test(text), text));
+});
+
+describe("how we got these numbers", () => {
+  const steps = methodSteps();
+  const all = steps.map(s => s.title + " " + s.body).join(" ");
+  test("explains all five parts", () => assert.equal(steps.length, 5));
+  test("example leak matches the real math for the defaults", () => assert.ok(all.includes("about $6,067 a month"), all));
+  test("states the real weeks per month, disability months, and full score months", () => {
+    assert.ok(all.includes("4.33 weeks"));
+    assert.ok(all.includes("add 6 months"));
+    assert.ok(all.includes("24 months or more scores 100"));
+  });
+  test("grade cutoffs match grade()", () => {
+    assert.equal(grade(90), "A"); assert.equal(grade(80), "B"); assert.equal(grade(70), "C"); assert.equal(grade(60), "D"); assert.equal(grade(59), "F");
+    assert.ok(all.includes("90 and up is an A") && all.includes("below 60 is an F"));
+  });
+  test("says plainly it is an estimate, not a plan", () => assert.ok(all.includes("It is not a plan.")));
+  test("uses no dashes as punctuation", () => assert.ok(!/ [-\u2013\u2014] /.test(all)));
 });
