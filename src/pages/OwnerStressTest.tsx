@@ -10,6 +10,7 @@ import {
   buildReportLead,
   isValidEmail,
   shareText,
+  methodSteps,
   clampInputs,
   familyRunwayMonths,
   findings,
@@ -482,6 +483,27 @@ export default function OwnerStressTest() {
 
             <ReportCapture inputs={inputs} />
           </div>
+        </section>
+
+        {/* How we got these numbers */}
+        <section className="mt-16 max-w-3xl mx-auto" aria-labelledby="ost-method">
+          <h2 id="ost-method" className="text-center text-[#0A0F1A] text-[28px] md:text-[40px]" style={LUCKIEST}>
+            How we got these numbers
+          </h2>
+          <p className="mt-2 text-center font-sans text-[16px] text-[#0A0F1A]/70">Simple math. No tricks. Here is every step.</p>
+          <ol className="mt-8 space-y-4">
+            {methodSteps().map((step, n) => (
+              <li key={step.title} className="flex gap-4 rounded-2xl border-2 border-[#0A0F1A]/10 bg-white p-5">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#E9E4A6] font-sans font-bold text-[15px] text-[#0A0F1A]">
+                  {n + 1}
+                </span>
+                <div className="min-w-0">
+                  <h3 className="font-sans font-bold text-[17px] text-[#0A0F1A]">{step.title}</h3>
+                  <p className="mt-1 font-sans text-[15px] leading-relaxed text-[#0A0F1A]/75">{step.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </section>
 
         {/* CTAs */}

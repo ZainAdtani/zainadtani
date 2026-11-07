@@ -236,3 +236,36 @@ export function shareText(i: StressInputs, url: string = SHARE_URL): string {
   const article = letter === "A" || letter === "F" ? "an" : "a";
   return `I just took the Owner Stress Test and got ${article} ${letter}. ${leakLine} Takes 2 minutes, no email needed. Run yours: ${url}`;
 }
+
+// ---------------------------------------------------------------------------
+// "How we got these numbers": plain words, built from the same constants the
+// math uses, so the explanation can never drift from the real formula.
+// ---------------------------------------------------------------------------
+
+export type MethodStep = { title: string; body: string };
+
+export function methodSteps(): MethodStep[] {
+  const ex = clampInputs(DEFAULT_INPUTS);
+  return [
+    {
+      title: "Missed call leak",
+      body: `Calls each week, times ${WEEKS_PER_MONTH.toFixed(2)} weeks in a month, times the share you miss, times the share that turn into jobs, times what one job is worth. Example: ${ex.callsPerWeek} calls, ${ex.missedCallPercent}% missed, ${ex.closeRatePercent}% booked, ${dollars(ex.avgJobValue)} a job comes to about ${dollars(monthlyLeak(ex))} a month.`,
+    },
+    {
+      title: "If you get hurt or sick",
+      body: `Your savings divided by your monthly bills. If the business stops earning without you, business bills count too. If you have disability coverage, we add ${DISABILITY_BONUS_MONTHS} months as a simple stand in. Real coverage depends on your plan.`,
+    },
+    {
+      title: "If you pass away",
+      body: "Your savings plus any life insurance payout, divided by your home bills. This shows how many months your family could keep paying the bills.",
+    },
+    {
+      title: "Your scores and grade",
+      body: `Leak Score is 100 minus the share of calls you miss. Stopped Tomorrow Score uses the shorter of your two runways. ${FULL_PROTECTION_MONTHS} months or more scores 100. Your grade is the average of both: 90 and up is an A, 80 is a B, 70 is a C, 60 is a D, and below 60 is an F.`,
+    },
+    {
+      title: "What this leaves out",
+      body: "Taxes, debts, a spouse's income, other income, and how long any payout takes to arrive. Every number here is a rough estimate to start a conversation. It is not a plan.",
+    },
+  ];
+}

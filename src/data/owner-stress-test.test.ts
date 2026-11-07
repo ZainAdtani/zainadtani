@@ -24,6 +24,7 @@ import {
   SHARE_MAX_LENGTH,
   SHARE_URL,
   shareText,
+  methodSteps,
 } from "./owner-stress-test.ts";
 
 function expect(actual: unknown) {
@@ -235,4 +236,22 @@ describe("share text", () => {
     assert.ok(shareText({ ...DEFAULT_INPUTS, missedCallPercent: 60, emergencySavings: 1000000 }).includes("got a C"));
   });
   test("uses no dashes as punctuation", () => assert.ok(!/ [-\u2013\u2014] /.test(text), text));
+});
+
+describe("how we got these numbers", () => {
+  const steps = methodSteps();
+  const all = steps.map(s => s.title + " " + s.body).join(" ");
+  test("explains all five parts", () => assert.equal(steps.length, 5));
+  test("example leak matches the real math for the defaults", () => assert.ok(all.includes("about $6,067 a month"), all));
+  test("states the real weeks per month, disability months, and full score months", () => {
+    assert.ok(all.includes("4.33 weeks"));
+    assert.ok(all.includes("add 6 months"));
+    assert.ok(all.includes("24 months or more scores 100"));
+  });
+  test("grade cutoffs match grade()", () => {
+    assert.equal(grade(90), "A"); assert.equal(grade(80), "B"); assert.equal(grade(70), "C"); assert.equal(grade(60), "D"); assert.equal(grade(59), "F");
+    assert.ok(all.includes("90 and up is an A") && all.includes("below 60 is an F"));
+  });
+  test("says plainly it is an estimate, not a plan", () => assert.ok(all.includes("It is not a plan.")));
+  test("uses no dashes as punctuation", () => assert.ok(!/ [-\u2013\u2014] /.test(all)));
 });
