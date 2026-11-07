@@ -218,6 +218,44 @@ export function buildReportLead(email: string, businessName: string, i: StressIn
 }
 
 // ---------------------------------------------------------------------------
+// Spam guards for the report form.
+// Honeypot: a hidden field real people never see or fill. Bots that fill every
+// input trip it, and we quietly skip the save.
+// Rate limit: a per-browser cooldown so one tab cannot spam the table. The
+// database has its own server side limit too (see the leads rate limit migration).
+// ---------------------------------------------------------------------------
+
+export const REPORT_HONEYPOT_FIELD = "company_website";
+export const REPORT_COOLDOWN_MS = 60_000;
+export const REPORT_WINDOW_MS = 60 * 60_000;
+export const REPORT_MAX_PER_WINDOW = 3;
+
+/** True when the hidden honeypot field has any text in it. */
+export function isHoneypotTripped(value: string | null | undefined): boolean {
+  return (value ?? "").trim().length > 0;
+}
+
+export type RateLimitResult = { allowed: boolean; retryAfterMs: number; history: number[] };
+
+/**
+ * Checks past submit times (ms) against a short cooldown and a per hour cap.
+ * Returns the trimmed history, with `now` added only when the submit is allowed.
+ */
+export function checkReportRateLimit(history: readonly number[], now: number): RateLimitResult {
+  const recent = history
+    .filter((t) => Number.isFinite(t) && t <= now && now - t < REPORT_WINDOW_MS)
+    .sort((a, b) => a - b);
+  const last = recent[recent.length - 1];
+  if (last !== undefined && now - last < REPORT_COOLDOWN_MS) {
+    return { allowed: false, retryAfterMs: REPORT_COOLDOWN_MS - (now - last), history: recent };
+  }
+  if (recent.length >= REPORT_MAX_PER_WINDOW) {
+    return { allowed: false, retryAfterMs: REPORT_WINDOW_MS - (now - recent[0]), history: recent };
+  }
+  return { allowed: true, retryAfterMs: 0, history: [...recent, now] };
+}
+
+// ---------------------------------------------------------------------------
 // Share: "Copy my score"
 // Only the grade and the phone leak go in the text. Never savings, coverage,
 // or family numbers, since the owner is sending this to a friend.

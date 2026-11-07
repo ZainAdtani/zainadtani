@@ -25,6 +25,11 @@ import {
   SHARE_URL,
   shareText,
   methodSteps,
+  REPORT_COOLDOWN_MS,
+  REPORT_MAX_PER_WINDOW,
+  REPORT_WINDOW_MS,
+  checkReportRateLimit,
+  isHoneypotTripped,
 } from "./owner-stress-test.ts";
 
 function expect(actual: unknown) {
@@ -255,4 +260,38 @@ describe("how we got these numbers", () => {
   });
   test("says plainly it is an estimate, not a plan", () => assert.ok(all.includes("It is not a plan.")));
   test("uses no dashes as punctuation", () => assert.ok(!/ [-\u2013\u2014] /.test(all)));
+});
+
+describe("report form spam guards", () => {
+  test("honeypot is clear when empty or whitespace", () => {
+    assert.equal(isHoneypotTripped(""), false);
+    assert.equal(isHoneypotTripped("   "), false);
+    assert.equal(isHoneypotTripped(undefined), false);
+  });
+  test("honeypot trips on any text", () => assert.equal(isHoneypotTripped("http://spam.biz"), true));
+
+  const now = 10_000_000;
+  test("first submit is allowed and recorded", () => {
+    const r = checkReportRateLimit([], now);
+    assert.equal(r.allowed, true);
+    assert.deepEqual(r.history, [now]);
+  });
+  test("a second submit inside the cooldown is blocked", () => {
+    const r = checkReportRateLimit([now - 5_000], now);
+    assert.equal(r.allowed, false);
+    assert.equal(r.retryAfterMs, REPORT_COOLDOWN_MS - 5_000);
+  });
+  test("after the cooldown it is allowed again", () =>
+    assert.equal(checkReportRateLimit([now - REPORT_COOLDOWN_MS], now).allowed, true));
+  test("caps submits per hour", () => {
+    const hist = Array.from({ length: REPORT_MAX_PER_WINDOW }, (_, k) => now - (k + 2) * REPORT_COOLDOWN_MS);
+    const r = checkReportRateLimit(hist, now);
+    assert.equal(r.allowed, false);
+    assert.ok(r.retryAfterMs > 0);
+  });
+  test("old and junk timestamps are dropped", () => {
+    const r = checkReportRateLimit([now - REPORT_WINDOW_MS - 1, Number.NaN, now + 99_999], now);
+    assert.equal(r.allowed, true);
+    assert.deepEqual(r.history, [now]);
+  });
 });

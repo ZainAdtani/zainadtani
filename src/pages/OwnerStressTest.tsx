@@ -8,7 +8,10 @@ import {
   DEFAULT_INPUTS,
   DISCLAIMER,
   buildReportLead,
+  checkReportRateLimit,
+  isHoneypotTripped,
   isValidEmail,
+  REPORT_HONEYPOT_FIELD,
   shareText,
   methodSteps,
   clampInputs,
@@ -169,12 +172,33 @@ function StickyGradeBar({ letter, score, monthly, visible, onJump }: { letter: s
   );
 }
 
+const SUBMIT_HISTORY_KEY = "ost-report-submits";
+
+function readSubmitHistory(): number[] {
+  try {
+    const raw = window.localStorage.getItem(SUBMIT_HISTORY_KEY);
+    const parsed: unknown = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed.filter((n): n is number => typeof n === "number") : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeSubmitHistory(history: number[]) {
+  try {
+    window.localStorage.setItem(SUBMIT_HISTORY_KEY, JSON.stringify(history));
+  } catch {
+    // Private mode or blocked storage: the database limit still applies.
+  }
+}
+
 /** Optional: saves the email and scores to the private leads list. Nothing is sent automatically. */
 function ReportCapture({ inputs }: { inputs: StressInputs }) {
   const [email, setEmail] = useState("");
   const [business, setBusiness] = useState("");
-  const [status, setStatus] = useState<"idle" | "saving" | "done" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "saving" | "done" | "error" | "limited">("idle");
   const [touched, setTouched] = useState(false);
+  const [trap, setTrap] = useState("");
   const bad = touched && !isValidEmail(email);
 
   const submit = async (e: React.FormEvent) => {
@@ -182,6 +206,17 @@ function ReportCapture({ inputs }: { inputs: StressInputs }) {
     setTouched(true);
     const lead = buildReportLead(email, business, inputs);
     if (!lead) return;
+    // Bot filled the hidden field: act like it worked, save nothing.
+    if (isHoneypotTripped(trap)) {
+      setStatus("done");
+      return;
+    }
+    const limit = checkReportRateLimit(readSubmitHistory(), Date.now());
+    if (!limit.allowed) {
+      setStatus("limited");
+      return;
+    }
+    writeSubmitHistory(limit.history);
     setStatus("saving");
     try {
       // Loaded on submit so the calculator never depends on the database being reachable.
@@ -205,7 +240,7 @@ function ReportCapture({ inputs }: { inputs: StressInputs }) {
   }
 
   return (
-    <form onSubmit={submit} noValidate className="rounded-3xl border-2 border-[#0A0F1A]/10 bg-white p-5 md:p-6">
+    <form onSubmit={submit} noValidate className="relative rounded-3xl border-2 border-[#0A0F1A]/10 bg-white p-5 md:p-6">
       <p className="flex items-center gap-2 font-sans font-bold text-[17px] text-[#0A0F1A]">
         <Mail className="h-5 w-5 text-[#DD5013]" aria-hidden="true" /> Email me my full report
       </p>
@@ -226,6 +261,19 @@ function ReportCapture({ inputs }: { inputs: StressInputs }) {
         className={`mt-4 w-full rounded-xl border-2 px-4 py-3 font-sans text-[16px] text-[#0A0F1A] outline-none focus:border-[#447BBE] ${bad ? "border-[#DD5013]" : "border-[#0A0F1A]/15"}`}
       />
       {bad && <p id="ost-email-err" className="mt-1 font-sans text-[13px] text-[#DD5013]">Please enter a real email.</p>}
+      {/* Honeypot: hidden from people and screen readers. Bots that fill it get skipped. */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
+        <label htmlFor="ost-hp">Company website</label>
+        <input
+          id="ost-hp"
+          name={REPORT_HONEYPOT_FIELD}
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={trap}
+          onChange={(e) => setTrap(e.target.value)}
+        />
+      </div>
       <label htmlFor="ost-business" className="sr-only">Business name</label>
       <input
         id="ost-business"
@@ -244,6 +292,9 @@ function ReportCapture({ inputs }: { inputs: StressInputs }) {
       >
         {status === "saving" ? "Saving..." : "Send me my report"}
       </button>
+      {status === "limited" && (
+        <p className="mt-2 font-sans text-[13px] text-[#DD5013]" role="alert">You just sent one. Give it a minute, then try again.</p>
+      )}
       {status === "error" && (
         <p className="mt-2 font-sans text-[13px] text-[#DD5013]" role="alert">That did not go through. Try again in a minute.</p>
       )}

@@ -1,6 +1,6 @@
 import { describe, it as test } from "node:test";
 import assert from "node:assert/strict";
-import { CHECKUP_DELIVERY_BUSINESS_DAYS, PARTNER_PLAN, SAMPLE_REPORTS } from "./ai-checkup";
+import { CHECKUP_DELIVERY_BUSINESS_DAYS, PARTNER_PLAN, SAMPLE_REPORTS } from "./ai-checkup.ts";
 
 function expect(actual: unknown) {
   return {

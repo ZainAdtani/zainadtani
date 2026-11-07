@@ -1,0 +1,9 @@
+# Security headers for hosts that read a _headers file (Cloudflare Pages / Netlify style).
+# frame-ancestors only works as a real HTTP header, not in a <meta> tag.
+# Lovable's editor is allowed to frame the site so the in-editor preview keeps working.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; media-src 'self' blob: https:; connect-src 'self' https://apbvidphqdytjocorasi.supabase.co wss://apbvidphqdytjocorasi.supabase.co https://formspree.io https://rss.beehiiv.com https://openlibrary.org https://covers.openlibrary.org https://www.googleapis.com; frame-src 'self' https://open.spotify.com https://suno.com https://www.youtube.com https://www.youtube-nocookie.com https://calendly.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; frame-ancestors 'self' https://lovable.dev https://*.lovable.dev; upgrade-insecure-requests
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()

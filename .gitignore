@@ -13,7 +13,10 @@ dist-ssr
 *.local
 
 # Environment variables
-.env
+# .env IS committed on purpose. Lovable builds the live site from the repo, and
+# it holds only the public Supabase URL and publishable (anon) key, which ship in
+# every browser bundle anyway. Leads are protected by RLS, not by hiding this key.
+# Never put a service role key or any real secret in .env. Use .env.local for those.
 .env.*
 !.env.example
 
