@@ -21,6 +21,9 @@ import {
   buildReportLead,
   isValidEmail,
   reportSummary,
+  SHARE_MAX_LENGTH,
+  SHARE_URL,
+  shareText,
 } from "./owner-stress-test.ts";
 
 function expect(actual: unknown) {
@@ -208,4 +211,28 @@ describe("email report capture", () => {
     assert.ok(msg.includes("Sick runway 1.4 mo"), msg);
     assert.ok(msg.includes("Family runway 3 mo"), msg);
   });
+});
+
+describe("share text", () => {
+  const text = shareText(DEFAULT_INPUTS);
+  test("includes the grade, the monthly leak, and the link", () => {
+    assert.ok(text.includes("got an F"), text);
+    assert.ok(text.includes("$6,067 a month"), text);
+    assert.ok(text.endsWith(SHARE_URL), text);
+  });
+  test("fits in a text or tweet", () => assert.ok(text.length <= SHARE_MAX_LENGTH, String(text.length)));
+  test("never shares savings, coverage, or family numbers", () => {
+    const rich = { ...DEFAULT_INPUTS, emergencySavings: 87000, lifeCoverage: 750000 };
+    const t = shareText(rich);
+    assert.ok(!t.includes("87,000") && !t.includes("750,000") && !/famil|insur|die/i.test(t), t);
+  });
+  test("handles zero leak without a $0 line", () => {
+    const t = shareText({ ...DEFAULT_INPUTS, missedCallPercent: 0 });
+    assert.ok(!t.includes("$0"), t);
+  });
+  test("uses the right article for each grade", () => {
+    assert.ok(shareText({ ...DEFAULT_INPUTS, missedCallPercent: 0, emergencySavings: 1000000 }).includes("got an A"));
+    assert.ok(shareText({ ...DEFAULT_INPUTS, missedCallPercent: 60, emergencySavings: 1000000 }).includes("got a C"));
+  });
+  test("uses no dashes as punctuation", () => assert.ok(!/ [-\u2013\u2014] /.test(text), text));
 });

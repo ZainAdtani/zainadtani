@@ -216,3 +216,23 @@ export function buildReportLead(email: string, businessName: string, i: StressIn
     message: reportSummary(i),
   };
 }
+
+// ---------------------------------------------------------------------------
+// Share: "Copy my score"
+// Only the grade and the phone leak go in the text. Never savings, coverage,
+// or family numbers, since the owner is sending this to a friend.
+// ---------------------------------------------------------------------------
+
+export const SHARE_URL = "https://zainadtani.com/owner-stress-test";
+export const SHARE_MAX_LENGTH = 280;
+
+export function shareText(i: StressInputs, url: string = SHARE_URL): string {
+  const x = clampInputs(i);
+  const letter = grade(overallScore(x));
+  const leak = monthlyLeak(x);
+  const leakLine = leak > 0
+    ? `My phone may be leaking about ${dollars(leak)} a month in missed calls.`
+    : "My phone is not leaking jobs. Nice.";
+  const article = letter === "A" || letter === "F" ? "an" : "a";
+  return `I just took the Owner Stress Test and got ${article} ${letter}. ${leakLine} Takes 2 minutes, no email needed. Run yours: ${url}`;
+}

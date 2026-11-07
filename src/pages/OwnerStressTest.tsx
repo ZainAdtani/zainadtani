@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Check, Mail, PhoneOff, ShieldCheck } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, Copy, Mail, PhoneOff, ShieldCheck } from "lucide-react";
 import {
   AI_CHECKUP_PATH,
   CALENDLY_URL,
@@ -9,6 +9,7 @@ import {
   DISCLAIMER,
   buildReportLead,
   isValidEmail,
+  shareText,
   clampInputs,
   familyRunwayMonths,
   findings,
@@ -252,6 +253,61 @@ function ReportCapture({ inputs }: { inputs: StressInputs }) {
   );
 }
 
+async function copyToClipboard(text: string): Promise<boolean> {
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  } catch {
+    // fall through to the old way
+  }
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand("copy");
+    document.body.removeChild(ta);
+    return ok;
+  } catch {
+    return false;
+  }
+}
+
+/** Copies a short, safe score message the owner can text to a friend who owns a business. */
+function CopyScore({ inputs }: { inputs: StressInputs }) {
+  const text = useMemo(() => shareText(clampInputs(inputs)), [inputs]);
+  const [state, setState] = useState<"idle" | "copied" | "failed">("idle");
+  useEffect(() => {
+    if (state === "idle") return;
+    const t = window.setTimeout(() => setState("idle"), 2500);
+    return () => window.clearTimeout(t);
+  }, [state]);
+
+  return (
+    <div className="mt-7 border-t border-white/15 pt-6">
+      <p className="font-sans text-[13px] font-bold uppercase tracking-[0.2em] text-[#E9E4A6]">Know an owner who needs this?</p>
+      <p className="mt-3 rounded-xl bg-white/5 p-3 font-sans text-[14px] leading-6 text-white/80">{text}</p>
+      <button
+        type="button"
+        onClick={async () => setState((await copyToClipboard(text)) ? "copied" : "failed")}
+        className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-[#E9E4A6] px-5 py-2.5 font-sans font-bold text-[15px] text-[#E9E4A6] transition-colors hover:bg-[#E9E4A6] hover:text-[#0A0F1A]"
+      >
+        {state === "copied" ? <Check className="h-4 w-4" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
+        {state === "copied" ? "Copied. Paste it in a text." : "Copy my score"}
+      </button>
+      <p className="sr-only" role="status">{state === "copied" ? "Score copied to clipboard" : state === "failed" ? "Copy did not work. Select the text above and copy it." : ""}</p>
+      {state === "failed" && (
+        <p className="mt-2 font-sans text-[13px] text-[#E9E4A6]">Copy did not work here. Press and hold the text above to copy it.</p>
+      )}
+    </div>
+  );
+}
+
 function GroupCard({ title, sub, children }: { title: string; sub: string; children: ReactNode }) {
   return (
     <div className="min-w-0 rounded-3xl border-2 border-[#0A0F1A]/10 bg-[#E9E4A6]/30 p-5 sm:p-6 md:p-8">
@@ -418,6 +474,8 @@ export default function OwnerStressTest() {
                   </ol>
                 </div>
               )}
+
+              <CopyScore inputs={inputs} />
             </div>
 
             <p className="font-sans text-[12px] leading-5 text-[#0A0F1A]/60">{DISCLAIMER}</p>
