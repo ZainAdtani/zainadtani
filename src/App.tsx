@@ -35,6 +35,7 @@ import FinalExpenseEstimator from "./pages/FinalExpenseEstimator";
 import TermVsWholeLifeQuiz from "./pages/TermVsWholeLifeQuiz";
 import MissedCallCalculator from "./pages/MissedCallCalculator";
 import AICheckup from "./pages/AICheckup";
+import OwnerStressTest from "./pages/OwnerStressTest";
 import AINewsSongs from "./pages/AINewsSongs";
 import BuzzerBlockPrivacy from "./pages/BuzzerBlockPrivacy";
 
@@ -84,6 +85,7 @@ const App = () => (
                   <Route path="/resources/final-expense-estimator" element={<FinalExpenseEstimator />} />
                   <Route path="/resources/term-vs-whole-life-quiz" element={<TermVsWholeLifeQuiz />} />
                   <Route path="/missed-call-calculator" element={<MissedCallCalculator />} />
+                  <Route path="/owner-stress-test" element={<OwnerStressTest />} />
                   <Route path="/ai-checkup" element={<AICheckup />} />
                   <Route path="/resources/ai-news-songs" element={<AINewsSongs />} />
                   <Route path="/buzzerblock-privacy" element={<BuzzerBlockPrivacy />} />
