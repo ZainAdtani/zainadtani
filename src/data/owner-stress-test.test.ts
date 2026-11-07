@@ -146,13 +146,13 @@ describe("Owner stress test: findings", () => {
     assert.match(f[0], /could not work/);
     assert.match(f[0], /1\.4 months/);
     assert.match(f[1], /\$6,067 a month/);
-    assert.match(f[2], /no life coverage/);
+    assert.match(f[2], /savings alone would cover about 3 months/);
   });
   test("business stopping without the owner shows when there is room", () => {
     const f = findings(withInputs({ missedCallPercent: 0, hasDisabilityCoverage: true }));
     // sick = 7.4 (no alert), leak = 0, no life coverage, business stops
     expect(f.length).toBe(2);
-    assert.match(f[0], /no life coverage/);
+    assert.match(f[0], /savings alone/);
     assert.match(f[1], /stops earning when you stop working/);
   });
   test("a leak of $1,000 or less is not flagged", () => {
@@ -170,6 +170,7 @@ describe("Owner stress test: findings", () => {
     const text = samples.flatMap(findings).join(" ");
     assert.doesNotMatch(text, /[–—]| - /);
     assert.doesNotMatch(text, /\b(term|whole life|universal|annuity|policy|premium|guarantee)/i);
+    assert.doesNotMatch(text, /\b(die|dies|dead|not much time)\b/i);
   });
   test("one month reads as singular", () =>
     assert.match(findings(withInputs({ emergencySavings: 11000 }))[0], /about 1 month of bills/));

@@ -26,7 +26,7 @@ import {
 
 const TITLE = "Owner Stress Test | Zain Adtani";
 const DESCRIPTION =
-  "If you stopped working tomorrow, what breaks first? A free 2 minute test for local business owners. See your missed call leak and your safety net in one grade.";
+  "If you stopped working tomorrow, what breaks first? A free 2 minute test for local business owners. See your missed call leak and your safety net in one grade. Educational only.";
 const CANONICAL = "https://zainadtani.com/owner-stress-test";
 
 const LUCKIEST = { fontFamily: "'Luckiest Guy', cursive", letterSpacing: "0.02em" };
@@ -80,7 +80,7 @@ const SAFETY_SLIDERS: SliderSpec[] = [
 ];
 
 const TOGGLES: { key: BoolKey; label: string; helper: string }[] = [
-  { key: "hasDisabilityCoverage", label: "Do you have disability coverage?", helper: "It pays you if you get hurt or sick and cannot work." },
+  { key: "hasDisabilityCoverage", label: "Do you have disability coverage?", helper: "It may replace part of your income if you are hurt or sick and cannot work." },
   { key: "businessRunsWithoutOwner", label: "Does the business still earn if you are out?", helper: "Could your team keep jobs coming in for a month without you?" },
 ];
 
@@ -392,7 +392,7 @@ export default function OwnerStressTest() {
             <br className="hidden sm:block" /> what breaks first?
           </h1>
           <p className="mt-4 font-sans text-[18px] md:text-[22px] text-[#0A0F1A]/75 max-w-2xl mx-auto">
-            Two minutes. Ten questions. One grade. See the money your phone leaks and how long you could last if you got hurt.
+            Two minutes. Ten questions. One grade. See the money your phone leaks and how long your savings could carry you if you could not work.
           </p>
           <p className="mt-2 font-sans text-[14px] text-[#0A0F1A]/55">No email needed. It all runs in your browser.</p>
         </section>
@@ -456,11 +456,11 @@ export default function OwnerStressTest() {
                 <div className="mt-4 grid grid-cols-2 gap-4">
                   <div>
                     <p className="text-[36px] leading-none text-white" style={LUCKIEST}>{months(result.sick)}</p>
-                    <p className="mt-1 font-sans text-[13px] text-white/70">months you last if you get hurt or sick</p>
+                    <p className="mt-1 font-sans text-[13px] text-white/70">months your savings cover if you cannot work</p>
                   </div>
                   <div>
                     <p className="text-[36px] leading-none text-white" style={LUCKIEST}>{months(result.family)}</p>
-                    <p className="mt-1 font-sans text-[13px] text-white/70">months your family lasts if you die</p>
+                    <p className="mt-1 font-sans text-[13px] text-white/70">months your family's bills are covered if you pass away</p>
                   </div>
                 </div>
               </div>
@@ -539,12 +539,12 @@ export default function OwnerStressTest() {
               <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#E9E4A6]">
                 <ShieldCheck className="h-5 w-5 text-[#0A0F1A]" aria-hidden="true" />
               </span>
-              <p className="mt-4 text-[26px] text-[#0A0F1A]" style={LUCKIEST}>Protect the owner</p>
+              <p className="mt-4 text-[26px] text-[#0A0F1A]" style={LUCKIEST}>Understand your safety net</p>
               <p className="mt-2 flex-1 font-sans text-[15px] leading-relaxed text-[#0A0F1A]/75">
-                Book a free 15 minute protection review with Zain. Talk through your safety net. Learn your options. No pressure.
+                Book a free 15 minute educational call with Zain, a licensed life and health agent. Look at your numbers together and ask questions. No pressure, no obligation.
               </p>
               <span className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#447BBE] px-6 py-3 font-sans font-bold text-[16px] text-white transition-colors group-hover:bg-[#0A0F1A]">
-                Book my free review
+                Book a free call
                 <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </span>
             </a>

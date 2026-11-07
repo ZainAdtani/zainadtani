@@ -48,7 +48,7 @@ export const INPUT_LIMITS = {
   lifeCoverage: { min: 0, max: 100000000 },
 } as const;
 
-export const DISCLAIMER = "Educational estimate only. Not financial, tax, or legal advice, and not a quote or offer of insurance. Real numbers depend on your situation. Zain Adtani is a licensed life and health insurance agent in Texas.";
+export const DISCLAIMER = "Educational estimate only. Not financial, tax, or legal advice, and not a quote or offer of insurance. Real numbers depend on your situation. Booking a call does not obligate you to buy anything. Zain Adtani is a licensed life and health insurance agent in Texas.";
 
 function clampNumber(value: unknown, min: number, max: number): number {
   const n = typeof value === "number" ? value : Number(value);
@@ -149,16 +149,16 @@ export function findings(i: StressInputs): string[] {
   const leak = monthlyLeak(x);
 
   if (sick < SICK_RUNWAY_ALERT_MONTHS) {
-    out.push(`If you got hurt and could not work, your savings would cover about ${months(sick)} of bills. That is not much time.`);
+    out.push(`If you got hurt and could not work, your savings would cover about ${months(sick)} of bills. That is worth a closer look.`);
   }
   if (leak > LEAK_ALERT_MONTHLY) {
     out.push(`Missed calls may cost you about ${dollars(leak)} a month. That is ${dollars(leak * 12)} a year walking out the door.`);
   }
   if (x.lifeCoverage <= 0 && x.monthlyHouseholdExpenses > 0) {
-    out.push(`If you passed away, your family would have about ${months(familyRunwayMonths(x))} of savings and no life coverage set aside.`);
+    out.push(`If you passed away, savings alone would cover about ${months(familyRunwayMonths(x))} of your family's bills.`);
   }
   if (!x.businessRunsWithoutOwner) {
-    out.push("Your business stops earning when you stop working. Your family feels that right away.");
+    out.push("Your business stops earning when you stop working. It helps to plan how bills get paid while you are out.");
   }
 
   if (out.length === 0) return [ALL_CLEAR_FINDING];
@@ -253,7 +253,7 @@ export function methodSteps(): MethodStep[] {
     },
     {
       title: "If you get hurt or sick",
-      body: `Your savings divided by your monthly bills. If the business stops earning without you, business bills count too. If you have disability coverage, we add ${DISABILITY_BONUS_MONTHS} months as a simple stand in. Real coverage depends on your plan.`,
+      body: `Your savings divided by your monthly bills. If the business stops earning without you, business bills count too. If you have disability coverage, we add ${DISABILITY_BONUS_MONTHS} months as a simple stand in. It is not a promise of what any plan pays. Real coverage depends on your plan.`,
     },
     {
       title: "If you pass away",

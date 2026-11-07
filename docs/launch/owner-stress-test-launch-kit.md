@@ -168,7 +168,7 @@ Then share what the score means in plain words:
 
 > "Your score is just a rough look at how long things keep running if you stop. It is not advice. It is a starting point for a real talk."
 >
-> "Some owners like to sit down and map out what would happen in each case. I do a free 15 minute protection review for that. It is just a conversation. You leave with a clearer picture, and you decide what, if anything, to do."
+> "Some owners like to sit down and map out what would happen in each case. I do a free 15 minute educational call for that. It is just a conversation. You leave with a clearer picture, and you decide what, if anything, to do."
 
 Things you never say on this call: product names, prices or premiums, "you need this," "this is guaranteed," or anything that sounds like a deadline.
 
@@ -176,13 +176,13 @@ Things you never say on this call: product names, prices or premiums, "you need 
 
 > "So, to recap. Step one is your free AI checkup. Want to lock that in?"
 >
-> "And if you want the protection review later, here is my calendar: calendly.com/zkadtani. No rush."
+> "And if you want that educational call later, here is my calendar: calendly.com/zkadtani. No rush."
 >
 > "Thanks again, [Name]. I will text you a short recap today."
 
 After the call, send the recap text within one hour:
 
-> "Great talking, [Name]. Your AI checkup: zainadtani.com/ai-checkup. If you ever want the free protection review: calendly.com/zkadtani. Here if you have questions. Z"
+> "Great talking, [Name]. Your AI checkup: zainadtani.com/ai-checkup. If you ever want the free educational call about your safety net: calendly.com/zkadtani. Here if you have questions. Z"
 
 ---
 
