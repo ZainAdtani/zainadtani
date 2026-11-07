@@ -16,6 +16,11 @@ import {
   protectionScore,
   sickRunwayMonths,
   yearlyLeak,
+  REPORT_DEFAULT_NAME,
+  REPORT_LEAD_TYPE,
+  buildReportLead,
+  isValidEmail,
+  reportSummary,
 } from "./owner-stress-test.ts";
 
 function expect(actual: unknown) {
@@ -170,5 +175,37 @@ describe("Owner stress test: disclaimer", () => {
   test("disclaimer says educational and names the license", () => {
     assert.match(DISCLAIMER, /^Educational estimate only\./);
     assert.match(DISCLAIMER, /licensed life and health insurance agent in Texas/);
+  });
+});
+
+describe("email report capture", () => {
+  test("accepts a normal email", () => assert.equal(isValidEmail("owner@shop.com"), true));
+  test("rejects empty, spaces, and missing domain", () => {
+    assert.equal(isValidEmail(""), false);
+    assert.equal(isValidEmail("   "), false);
+    assert.equal(isValidEmail("owner@shop"), false);
+    assert.equal(isValidEmail("owner shop@x.com"), false);
+  });
+  test("returns null for a bad email so nothing is saved", () =>
+    assert.equal(buildReportLead("nope", "Bob's Plumbing", DEFAULT_INPUTS), null));
+  test("tags the row as owner-stress-test and lowercases the email", () => {
+    const lead = buildReportLead("  Owner@Shop.COM ", "", DEFAULT_INPUTS);
+    assert.ok(lead);
+    assert.equal(lead.lead_type, REPORT_LEAD_TYPE);
+    assert.equal(lead.lead_type, "owner-stress-test");
+    assert.equal(lead.email, "owner@shop.com");
+  });
+  test("uses the business name when given, default name when blank", () => {
+    assert.equal(buildReportLead("a@b.co", "  Bob's Plumbing ", DEFAULT_INPUTS)?.name, "Bob's Plumbing");
+    assert.equal(buildReportLead("a@b.co", "  Bob's Plumbing ", DEFAULT_INPUTS)?.business_name, "Bob's Plumbing");
+    assert.equal(buildReportLead("a@b.co", "", DEFAULT_INPUTS)?.name, REPORT_DEFAULT_NAME);
+    assert.equal(buildReportLead("a@b.co", "", DEFAULT_INPUTS)?.business_name, null);
+  });
+  test("summary carries the grade, leak, and runways for follow up", () => {
+    const msg = reportSummary(DEFAULT_INPUTS);
+    assert.ok(msg.startsWith("Grade F (41/100)."), msg);
+    assert.ok(msg.includes("$6,067/mo"), msg);
+    assert.ok(msg.includes("Sick runway 1.4 mo"), msg);
+    assert.ok(msg.includes("Family runway 3 mo"), msg);
   });
 });

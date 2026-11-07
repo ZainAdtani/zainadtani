@@ -164,3 +164,55 @@ export function findings(i: StressInputs): string[] {
   if (out.length === 0) return [ALL_CLEAR_FINDING];
   return out.slice(0, MAX_FINDINGS);
 }
+
+// ---------------------------------------------------------------------------
+// Email capture: "Email me my full report"
+// Saved to the existing private `leads` table (public insert, no public reads).
+// No emails are sent automatically. Zain exports the list and follows up by hand.
+// ---------------------------------------------------------------------------
+
+export const REPORT_LEAD_TYPE = "owner-stress-test";
+export const REPORT_DEFAULT_NAME = "Owner Stress Test visitor";
+export const REPORT_MAX_FIELD = 200;
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+export function isValidEmail(email: string): boolean {
+  const e = (email ?? "").trim();
+  return e.length > 0 && e.length <= REPORT_MAX_FIELD && EMAIL_PATTERN.test(e);
+}
+
+export type ReportLead = {
+  name: string;
+  email: string;
+  lead_type: string;
+  business_name: string | null;
+  message: string;
+};
+
+/** One plain line Zain can read in the export to know what to follow up on. */
+export function reportSummary(i: StressInputs): string {
+  const x = clampInputs(i);
+  const score = overallScore(x);
+  return [
+    `Grade ${grade(score)} (${score}/100).`,
+    `Leak ${dollars(monthlyLeak(x))}/mo, ${dollars(yearlyLeak(x))}/yr.`,
+    `Sick runway ${sickRunwayMonths(x)} mo. Family runway ${familyRunwayMonths(x)} mo.`,
+    `Inputs: ${x.callsPerWeek} calls/wk, ${x.missedCallPercent}% missed, ${dollars(x.avgJobValue)} job, ${x.closeRatePercent}% close,`,
+    `${dollars(x.monthlyHouseholdExpenses)} home, ${dollars(x.monthlyBusinessFixedCosts)} business, ${dollars(x.emergencySavings)} savings,`,
+    `${dollars(x.lifeCoverage)} life, disability ${x.hasDisabilityCoverage ? "yes" : "no"}, runs without owner ${x.businessRunsWithoutOwner ? "yes" : "no"}.`,
+  ].join(" ");
+}
+
+/** Builds the row to save. Returns null when the email is not valid. */
+export function buildReportLead(email: string, businessName: string, i: StressInputs): ReportLead | null {
+  if (!isValidEmail(email)) return null;
+  const business = (businessName ?? "").trim().slice(0, REPORT_MAX_FIELD);
+  return {
+    name: business || REPORT_DEFAULT_NAME,
+    email: email.trim().toLowerCase(),
+    lead_type: REPORT_LEAD_TYPE,
+    business_name: business || null,
+    message: reportSummary(i),
+  };
+}

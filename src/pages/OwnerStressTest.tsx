@@ -1,12 +1,14 @@
 import { Helmet } from "react-helmet-async";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, PhoneOff, ShieldCheck } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, Mail, PhoneOff, ShieldCheck } from "lucide-react";
 import {
   AI_CHECKUP_PATH,
   CALENDLY_URL,
   DEFAULT_INPUTS,
   DISCLAIMER,
+  buildReportLead,
+  isValidEmail,
   clampInputs,
   familyRunwayMonths,
   findings,
@@ -162,6 +164,91 @@ function StickyGradeBar({ letter, score, monthly, visible, onJump }: { letter: s
         </span>
       </button>
     </div>
+  );
+}
+
+/** Optional: saves the email and scores to the private leads list. Nothing is sent automatically. */
+function ReportCapture({ inputs }: { inputs: StressInputs }) {
+  const [email, setEmail] = useState("");
+  const [business, setBusiness] = useState("");
+  const [status, setStatus] = useState<"idle" | "saving" | "done" | "error">("idle");
+  const [touched, setTouched] = useState(false);
+  const bad = touched && !isValidEmail(email);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setTouched(true);
+    const lead = buildReportLead(email, business, inputs);
+    if (!lead) return;
+    setStatus("saving");
+    try {
+      // Loaded on submit so the calculator never depends on the database being reachable.
+      const { supabase } = await import("@/integrations/supabase/client");
+      const { error } = await supabase.from("leads").insert(lead);
+      setStatus(error ? "error" : "done");
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  if (status === "done") {
+    return (
+      <div className="rounded-3xl border-2 border-[#447BBE]/30 bg-[#447BBE]/5 p-5 md:p-6" role="status">
+        <p className="flex items-center gap-2 font-sans font-bold text-[16px] text-[#0A0F1A]">
+          <Check className="h-5 w-5 text-[#447BBE]" aria-hidden="true" /> Got it. Your report is on the way.
+        </p>
+        <p className="mt-1 font-sans text-[14px] text-[#0A0F1A]/70">Zain will email it to you by hand. No spam, no list selling.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={submit} noValidate className="rounded-3xl border-2 border-[#0A0F1A]/10 bg-white p-5 md:p-6">
+      <p className="flex items-center gap-2 font-sans font-bold text-[17px] text-[#0A0F1A]">
+        <Mail className="h-5 w-5 text-[#DD5013]" aria-hidden="true" /> Email me my full report
+      </p>
+      <p className="mt-1 font-sans text-[14px] text-[#0A0F1A]/70">Optional. Get your numbers plus what to fix first, written for your business.</p>
+      <label htmlFor="ost-email" className="sr-only">Email</label>
+      <input
+        id="ost-email"
+        type="email"
+        inputMode="email"
+        autoComplete="email"
+        required
+        placeholder="you@yourbusiness.com"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        onBlur={() => setTouched(true)}
+        aria-invalid={bad}
+        aria-describedby={bad ? "ost-email-err" : undefined}
+        className={`mt-4 w-full rounded-xl border-2 px-4 py-3 font-sans text-[16px] text-[#0A0F1A] outline-none focus:border-[#447BBE] ${bad ? "border-[#DD5013]" : "border-[#0A0F1A]/15"}`}
+      />
+      {bad && <p id="ost-email-err" className="mt-1 font-sans text-[13px] text-[#DD5013]">Please enter a real email.</p>}
+      <label htmlFor="ost-business" className="sr-only">Business name</label>
+      <input
+        id="ost-business"
+        type="text"
+        autoComplete="organization"
+        maxLength={200}
+        placeholder="Business name (optional)"
+        value={business}
+        onChange={(e) => setBusiness(e.target.value)}
+        className="mt-3 w-full rounded-xl border-2 border-[#0A0F1A]/15 px-4 py-3 font-sans text-[16px] text-[#0A0F1A] outline-none focus:border-[#447BBE]"
+      />
+      <button
+        type="submit"
+        disabled={status === "saving"}
+        className="mt-4 w-full rounded-full bg-[#0A0F1A] px-6 py-3 font-sans font-bold text-[16px] text-white transition-colors hover:bg-[#447BBE] disabled:opacity-60"
+      >
+        {status === "saving" ? "Saving..." : "Send me my report"}
+      </button>
+      {status === "error" && (
+        <p className="mt-2 font-sans text-[13px] text-[#DD5013]" role="alert">That did not go through. Try again in a minute.</p>
+      )}
+      <p className="mt-3 font-sans text-[12px] leading-5 text-[#0A0F1A]/55">
+        We save your email and these scores so Zain can send your report. That is it. No auto emails, no list selling.
+      </p>
+    </form>
   );
 }
 
@@ -334,6 +421,8 @@ export default function OwnerStressTest() {
             </div>
 
             <p className="font-sans text-[12px] leading-5 text-[#0A0F1A]/60">{DISCLAIMER}</p>
+
+            <ReportCapture inputs={inputs} />
           </div>
         </section>
 
@@ -384,7 +473,7 @@ export default function OwnerStressTest() {
 
         <section className="mt-14 max-w-3xl mx-auto text-center">
           <p className="font-sans text-[13px] text-[#0A0F1A]/55">
-            Made by Zain Adtani. Runs in your browser. No data captured.
+            Made by Zain Adtani. Runs in your browser. Nothing is saved unless you ask for your report.
           </p>
         </section>
       </main>
