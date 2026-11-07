@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, PhoneOff, ShieldCheck } from "lucide-react";
 import {
@@ -133,6 +133,38 @@ function YesNo({ label, helper, value, onChange }: { label: string; helper: stri
   );
 }
 
+/** Phone only: shows the live grade and leak while the results panel is off screen. */
+function StickyGradeBar({ letter, score, monthly, visible, onJump }: { letter: string; score: number; monthly: number; visible: boolean; onJump: () => void }) {
+  return (
+    <div
+      aria-hidden={!visible}
+      className={`lg:hidden fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0A0F1A] text-white shadow-[0_-6px_20px_rgba(10,15,26,0.25)] transition-transform duration-200 ${visible ? "translate-y-0" : "translate-y-full"}`}
+    >
+      <button
+        type="button"
+        onClick={onJump}
+        tabIndex={visible ? 0 : -1}
+        className="flex w-full items-center gap-3 py-3 pl-4 pr-24 text-left"
+      >
+        <span
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-[3px] text-[26px] leading-none"
+          style={{ ...LUCKIEST, borderColor: GRADE_COLOR[letter], color: GRADE_COLOR[letter] }}
+        >
+          {letter}
+        </span>
+        <span className="min-w-0 font-sans leading-tight">
+          <span className="block text-[13px] text-white/70">
+            Grade {letter}, <span className="tabular-nums">{score}/100</span>
+          </span>
+          <span className="block text-[16px] font-bold">
+            Leaking <span className="text-[#DD5013] tabular-nums">{money(monthly)}</span> a month
+          </span>
+        </span>
+      </button>
+    </div>
+  );
+}
+
 function GroupCard({ title, sub, children }: { title: string; sub: string; children: ReactNode }) {
   return (
     <div className="min-w-0 rounded-3xl border-2 border-[#0A0F1A]/10 bg-[#E9E4A6]/30 p-5 sm:p-6 md:p-8">
@@ -167,6 +199,29 @@ export default function OwnerStressTest() {
     };
   }, [inputs]);
 
+  // Sticky bar shows while the visitor is on the inputs and the results panel is off screen.
+  const inputsRef = useRef<HTMLDivElement>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
+  const [inputsInView, setInputsInView] = useState(false);
+  const [resultsInView, setResultsInView] = useState(false);
+  useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") return;
+    const watch = (el: HTMLElement | null, set: (v: boolean) => void, margin: string) => {
+      if (!el) return null;
+      const io = new IntersectionObserver(([entry]) => set(entry.isIntersecting), { rootMargin: margin });
+      io.observe(el);
+      return io;
+    };
+    const a = watch(inputsRef.current, setInputsInView, "0px 0px -20% 0px");
+    const b = watch(resultsRef.current, setResultsInView, "0px 0px -30% 0px");
+    return () => {
+      a?.disconnect();
+      b?.disconnect();
+    };
+  }, []);
+  const showBar = inputsInView && !resultsInView;
+  const jumpToResults = () => resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-white text-[#0A0F1A]">
       <Helmet>
@@ -200,7 +255,7 @@ export default function OwnerStressTest() {
 
         <section className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1fr)_380px]">
           {/* Inputs */}
-          <div className="min-w-0 space-y-8">
+          <div ref={inputsRef} className="min-w-0 space-y-8">
             <GroupCard title="Your phone" sub="Every missed call is a job that went to someone else.">
               {PHONE_SLIDERS.map((spec) => (
                 <SliderRow key={spec.key} spec={spec} value={inputs[spec.key]} onChange={(n) => setField(spec.key, n)} />
@@ -218,7 +273,7 @@ export default function OwnerStressTest() {
           </div>
 
           {/* Results */}
-          <div className="min-w-0 lg:sticky lg:top-24 h-fit space-y-5" aria-live="polite">
+          <div ref={resultsRef} className="min-w-0 scroll-mt-24 lg:sticky lg:top-24 h-fit space-y-5" aria-live="polite">
             <div className="rounded-3xl bg-[#0A0F1A] text-white p-6 md:p-8">
               <p className="font-sans text-[13px] font-bold uppercase tracking-[0.2em] text-[#E9E4A6]">Your Owner Stress Grade</p>
               <div className="mt-3 flex items-center gap-5">
@@ -333,6 +388,8 @@ export default function OwnerStressTest() {
           </p>
         </section>
       </main>
+
+      <StickyGradeBar letter={result.letter} score={result.score} monthly={result.monthly} visible={showBar} onJump={jumpToResults} />
     </div>
   );
 }
