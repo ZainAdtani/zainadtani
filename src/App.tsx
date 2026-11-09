@@ -38,7 +38,7 @@ import AICheckup from "./pages/AICheckup";
 import OwnerStressTest from "./pages/OwnerStressTest";
 import AINewsSongs from "./pages/AINewsSongs";
 import BuzzerBlockPrivacy from "./pages/BuzzerBlockPrivacy";
-import LifeNotes from "./pages/LifeNotes";
+import DailyLifeNotes from "./pages/DailyLifeNotes";
 
 
 // Project sub-pages
@@ -90,7 +90,7 @@ const App = () => (
                   <Route path="/ai-checkup" element={<AICheckup />} />
                   <Route path="/resources/ai-news-songs" element={<AINewsSongs />} />
                   <Route path="/buzzerblock-privacy" element={<BuzzerBlockPrivacy />} />
-                  <Route path="/lifenotes" element={<LifeNotes />} />
+                  <Route path="/lifenotes" element={<DailyLifeNotes />} />
 
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
