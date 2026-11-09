@@ -23,9 +23,12 @@ const FOOTER_NAV = [
 ];
 
 const FOOTER_SOCIALS = [
-  { label: "LinkedIn", href: "https://linkedin.com/in/zainadtani", Icon: Linkedin },
-  { label: "YouTube", href: "https://youtube.com/@zainadtani", Icon: Youtube },
-  { label: "The Z Letter", href: "https://the-z-letter.beehiiv.com", Icon: Mail },
+  { label: "LinkedIn: Zain Adtani", href: "https://www.linkedin.com/in/zainadtani", Icon: Linkedin },
+  { label: "LinkedIn: Adtani Education Ventures", href: "https://www.linkedin.com/company/adtani-education-ventures", Icon: Linkedin },
+  { label: "YouTube: Build Then Protect", href: "https://www.youtube.com/@BuildThenProtect", Icon: Youtube },
+  { label: "YouTube: History You Missed Daily", href: "https://www.youtube.com/@HistoryYouMissedDaily", Icon: Youtube },
+  { label: "YouTube: The AI You Missed", href: "https://www.youtube.com/@theaiyoumissed", Icon: Youtube },
+  { label: "The Daily Z newsletter", href: "https://the-z-letter.beehiiv.com", Icon: Mail },
   { label: "@adtanieducationventures", href: "https://www.instagram.com/adtanieducationventures", Icon: Instagram },
   { label: "Book a Call (Calendly)", href: "https://calendly.com/zkadtani", Icon: CalendarDays },
 ];
@@ -98,7 +101,7 @@ function LayoutShell({ children }: { children: ReactNode }) {
                 <p className="font-sans text-[12px] font-semibold tracking-[0.14em] uppercase text-white/50">
                   Find me
                 </p>
-                <div className="flex items-center gap-4">
+                <div className="flex flex-wrap items-center gap-4">
                   {FOOTER_SOCIALS.map(({ label, href, Icon }) => (
                     <a
                       key={label}

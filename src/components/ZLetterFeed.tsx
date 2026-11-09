@@ -9,7 +9,7 @@ interface FeedItem {
 }
 
 const RSS_URL = "https://rss.beehiiv.com/feeds/jHsdvEe1Hm.xml";
-const SUBSCRIBE_URL = "https://thezletter.beehiiv.com/subscribe";
+const SUBSCRIBE_URL = "https://the-z-letter.beehiiv.com/subscribe";
 
 const FALLBACK_ITEMS: FeedItem[] = [
   { title: "How I Use AI to Write a Book in 30 Days", link: SUBSCRIBE_URL, pubDate: "" },

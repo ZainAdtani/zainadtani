@@ -58,7 +58,7 @@ const About = () => {
           </p>
           <p>
             Outside of work: I write a daily newsletter called{" "}
-            <a href="https://thezletter.beehiiv.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">The Z Letter</a>
+            <a href="https://the-z-letter.beehiiv.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">The Z Letter</a>
             {" "}- Check it out!
           </p>
         </div>
@@ -89,13 +89,13 @@ const About = () => {
         {/* Social buttons */}
         <div className="flex justify-center gap-4 mb-16">
           <Button asChild size="lg" className="bg-red-600 hover:bg-red-700 shadow-[0_8px_0_0_rgb(153,27,27)] hover:shadow-[0_4px_0_0_rgb(153,27,27)] active:shadow-[0_0px_0_0_rgb(153,27,27)] hover:translate-y-1 active:translate-y-2 transition-all">
-            <a href="https://youtube.com/@captainduaadventures?si=xPzuebAHwHZTl52V" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+            <a href="https://www.youtube.com/@BuildThenProtect" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
               <Youtube className="h-5 w-5" />
               YouTube
             </a>
           </Button>
           <Button asChild size="lg" className="bg-blue-500 hover:bg-blue-600 text-[#0A0F1A] shadow-[0_8px_0_0_rgb(37,99,235)] hover:shadow-[0_4px_0_0_rgb(37,99,235)] active:shadow-[0_0px_0_0_rgb(37,99,235)] hover:translate-y-1 active:translate-y-2 transition-all">
-            <a href="https://linkedin.com/in/zainadtani" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/zainadtani" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
               <Linkedin className="h-5 w-5" />
               LinkedIn
             </a>
