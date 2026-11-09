@@ -18,6 +18,7 @@ import {
 
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { ZLetterFeed } from "@/components/ZLetterFeed";
+import { TodaysNoteStrip } from "@/components/TodaysNote";
 import { TimeBar } from "@/components/TimeBar";
 import { Button } from "@/components/ui/button";
 import { BOOKS } from "@/data/books";
@@ -57,7 +58,7 @@ const AMAZON_BOOKS = [
     asin: "B0H7YYB72H",
   },
 ];
-const YOUTUBE_URL = "https://youtube.com/@zainadtani";
+const YOUTUBE_URL = "https://www.youtube.com/@BuildThenProtect";
 
 const VISITOR_PATHS = [
   {
@@ -154,15 +155,17 @@ const FUN_PROJECTS = [
 ];
 
 const SOCIALS = [
-  { label: "YouTube", href: YOUTUBE_URL, Icon: Youtube },
-  { label: "LinkedIn — Zain Adtani", href: "https://linkedin.com/in/zainadtani", Icon: Linkedin },
+  { label: "YouTube: Build Then Protect", href: YOUTUBE_URL, Icon: Youtube },
+  { label: "YouTube: History You Missed Daily", href: "https://www.youtube.com/@HistoryYouMissedDaily", Icon: Youtube },
+  { label: "YouTube: The AI You Missed", href: "https://www.youtube.com/@theaiyoumissed", Icon: Youtube },
+  { label: "LinkedIn — Zain Adtani", href: "https://www.linkedin.com/in/zainadtani", Icon: Linkedin },
   {
     label: "LinkedIn — Adtani Education Ventures",
-    href: "https://linkedin.com/company/adtani-education-ventures",
+    href: "https://www.linkedin.com/company/adtani-education-ventures",
     Icon: Linkedin,
   },
-  { label: "Instagram", href: "https://instagram.com/adtanieducationventures", Icon: Instagram },
-  { label: "The Z Letter", href: "https://the-z-letter.beehiiv.com", Icon: Mail },
+  { label: "Instagram", href: "https://www.instagram.com/adtanieducationventures", Icon: Instagram },
+  { label: "The Daily Z newsletter", href: "https://the-z-letter.beehiiv.com", Icon: Mail },
 ];
 
 const FINANCIAL_SITUATIONS = [
@@ -279,6 +282,8 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      <TodaysNoteStrip />
 
       <div className="border-y border-border bg-background px-5 py-4 text-center font-sans text-[13px] sm:text-[15px] font-medium text-foreground">
         3 books on Amazon · Licensed TX Life &amp; Health · Eagle Scout

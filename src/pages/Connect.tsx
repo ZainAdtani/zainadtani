@@ -277,10 +277,12 @@ const Connect = () => {
             <ul className="space-y-3.5 font-sans text-[15px]">
               {[
                 { label: "Website", value: "zainadtani.com", href: "https://zainadtani.com" },
-                { label: "Instagram", value: "@adtanieducationventures", href: "https://instagram.com/adtanieducationventures" },
-                { label: "LinkedIn", value: "Zain Adtani", href: "https://linkedin.com/in/zainadtani" },
+                { label: "Instagram", value: "@adtanieducationventures", href: "https://www.instagram.com/adtanieducationventures" },
+                { label: "LinkedIn", value: "Zain Adtani", href: "https://www.linkedin.com/in/zainadtani" },
                 { label: "LinkedIn Page", value: "Adtani Education Ventures", href: "https://www.linkedin.com/company/adtani-education-ventures" },
-                { label: "YouTube", value: "Build Then Protect", href: "https://youtube.com/@zainadtani" },
+                { label: "YouTube", value: "Build Then Protect", href: "https://www.youtube.com/@BuildThenProtect" },
+                { label: "YouTube", value: "History You Missed Daily", href: "https://www.youtube.com/@HistoryYouMissedDaily" },
+                { label: "YouTube", value: "The AI You Missed", href: "https://www.youtube.com/@theaiyoumissed" },
                 { label: "Newsletter", value: "The Z Letter (Beehiiv)", href: "https://the-z-letter.beehiiv.com" },
               ].map((row) => (
                 <li key={row.label} className="flex flex-col sm:flex-row sm:items-baseline sm:gap-3">

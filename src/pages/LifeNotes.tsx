@@ -1,139 +1,46 @@
-import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { LIFE_NOTES, LifeNote } from "@/data/life_notes";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { CopyBlock } from "@/components/CopyBlock";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { X } from "lucide-react";
-
-const LONG_THRESHOLD = 240;
-
-function isLong(body: string) {
-  return body.trim().length > LONG_THRESHOLD;
-}
-
-function preview(body: string) {
-  if (!isLong(body)) return body.trim();
-  const slice = body.trim().slice(0, 200);
-  const cut = slice.lastIndexOf(" ");
-  return (cut > 160 ? slice.slice(0, cut) : slice) + "…";
-}
+import { LIFE_NOTES, todaysNoteIndex } from "@/data/lifeNotes";
+import { NoteShareButton } from "@/components/TodaysNote";
 
 export default function LifeNotes() {
-  const [q, setQ] = useState("");
-  const [activeNote, setActiveNote] = useState<LifeNote | null>(null);
-  
-  const list = useMemo(() => {
-    const t = q.trim().toLowerCase();
-    if (!t) return LIFE_NOTES;
-    return LIFE_NOTES.filter(n =>
-      [n.title, n.body, n.tags.join(" "), n.section].filter(Boolean).join(" ").toLowerCase().includes(t)
-    );
-  }, [q]);
-
-  const sectionOrder = [
-    "Education & Career",
-    "Productivity",
-    "Mindset",
-    "Health",
-    "Standards",
-    "Compassion & Perspective",
-    "Confidence",
-    "Courage",
-    "Growth & Change"
-  ];
-
-  const grouped = useMemo(() => {
-    const map = new Map<string, typeof list>();
-    list.forEach(n => {
-      if (!map.has(n.section)) map.set(n.section, []);
-      map.get(n.section)!.push(n);
-    });
-    return sectionOrder
-      .filter(s => map.has(s))
-      .map(s => ({ section: s, notes: map.get(s)! }));
-  }, [list]);
-
+  const todayIdx = todaysNoteIndex();
+  const order = [todayIdx, ...LIFE_NOTES.map((_, i) => i).filter((i) => i !== todayIdx)];
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       <Helmet>
-        <title>Life Notes — Short Ideas Worth Re-Using | Zain Adtani</title>
-        <meta name="description" content="Short, searchable life notes from Zain Adtani — bite-sized ideas, lessons, and reminders on work, money, parenting, and personal growth, easy to copy and re-use." />
-        <meta property="og:title" content="Life Notes — Zain Adtani" />
-        <meta property="og:description" content="Bite-sized, searchable life notes on work, money, parenting, and personal growth." />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://zainadtani.com/life-notes" />
+        <title>Life Notes | Zain Adtani</title>
+        <meta name="description" content="Fifteen short Life Notes from Zain Adtani. One new note is featured each day." />
+        <link rel="canonical" href="https://zainadtani.com/lifenotes" />
       </Helmet>
-      <main className="container mx-auto px-4 py-12 max-w-4xl">
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-2">Life Notes ✍️</h1>
-        <p className="text-muted-foreground mb-6">Short ideas worth re-using. Search + copy.</p>
-
-        <div className="max-w-xl mb-6">
-          <Input value={q} onChange={(e)=>setQ(e.target.value)} placeholder="Search notes…" className="h-11" />
-        </div>
-
-        <div className="space-y-8">
-          {grouped.map(({ section, notes }) => (
-            <div key={section}>
-              <h2 className="text-2xl font-bold mb-4">{section}</h2>
-              <div className="grid gap-4">
-                {notes.map((n, idx) => {
-                  const bodyPreview = preview(n.body);
-                  const long = isLong(n.body);
-                  return (
-                    <Card key={`${section}-${idx}`} className="p-5 rounded-2xl border">
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center gap-2 mb-2">
-                            {n.tags.map(t => <Badge key={t} variant="outline">{t}</Badge>)}
-                          </div>
-                          <h3 className="text-lg font-semibold mb-3">{n.title}</h3>
-                          <div className="rounded-xl bg-rose-50 text-rose-900 dark:bg-rose-100/10 dark:text-rose-100 border border-rose-100 dark:border-rose-200/10 p-3 leading-relaxed whitespace-pre-line">
-                            {bodyPreview}
-                          </div>
-                          {long && (
-                            <button
-                              onClick={() => setActiveNote(n)}
-                              className="mt-2 text-sm text-rose-700 hover:underline dark:text-rose-300"
-                            >
-                              Continue reading
-                            </button>
-                          )}
-                        </div>
-                        <CopyBlock text={n.body} />
-                      </div>
-                    </Card>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
-        </div>
-      </main>
-
-      <Dialog open={!!activeNote} onOpenChange={(open) => !open && setActiveNote(null)}>
-        <DialogContent className="max-w-2xl w-[92vw] rounded-2xl bg-white dark:bg-[#0b0f16] shadow-[0_10px_30px_rgba(10,15,26,0.10)] border border-white/10">
-          <button
-            onClick={() => setActiveNote(null)}
-            className="absolute right-4 top-4 h-8 w-8 grid place-items-center rounded-full hover:bg-white/60 hover:dark:bg-white/10 transition-colors"
-            aria-label="Close"
-          >
-            <X className="h-4 w-4" />
-          </button>
-          {activeNote && (
-            <div className="pt-6">
-              <DialogHeader>
-                <DialogTitle className="text-2xl font-bold mb-4">{activeNote.title}</DialogTitle>
-              </DialogHeader>
-              <div className="rounded-xl bg-rose-50 text-rose-900 dark:bg-rose-100/10 dark:text-rose-100 border border-rose-100 dark:border-rose-200/10 p-4 leading-relaxed whitespace-pre-line">
-                {activeNote.body}
-              </div>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
+      <section className="hero-warm px-5 py-12 text-center">
+        <h1 className="text-[44px] sm:text-[56px] text-foreground">Life Notes</h1>
+        <p className="mx-auto mt-3 max-w-xl font-sans text-[17px] text-foreground/80">
+          Short lines I live by. A new one is featured every day.
+        </p>
+      </section>
+      <section className="px-5 py-10">
+        <ul className="mx-auto grid max-w-3xl gap-4">
+          {order.map((i) => {
+            const isToday = i === todayIdx;
+            return (
+              <li
+                key={i}
+                className={`rounded-xl border bg-white p-5 shadow-sm ${isToday ? "border-[#DD5013]/50 ring-2 ring-[#DD5013]/20" : "border-border"}`}
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.14em] text-[#0A0F1A]/55">
+                      {isToday ? <span className="text-[#DD5013]">Today's note</span> : `Note ${i + 1}`}
+                    </p>
+                    <p className="mt-1.5 font-sans text-[17px] leading-snug text-[#0A0F1A]">{LIFE_NOTES[i]}</p>
+                  </div>
+                  <NoteShareButton text={LIFE_NOTES[i]} className="shrink-0" />
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
     </div>
   );
 }
