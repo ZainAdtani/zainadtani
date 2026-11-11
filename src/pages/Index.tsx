@@ -46,7 +46,7 @@ const AMAZON_BOOKS = [
     blurb:
       "Your first step to waking up without anxiety. A 5-minute morning routine that fights anxiety before it starts.",
     price: "$9.99",
-    format: "Kindle + Paperback",
+    format: "Paperback",
     asin: "B0H51RJL7R",
   },
   {
