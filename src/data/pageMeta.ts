@@ -6,9 +6,9 @@ export type PageMeta = { title: string; description: string };
 /** Social and fallback descriptions. Page-level Helmet tags still win when they set the same field. */
 export const PAGE_META: Record<string, PageMeta> = {
   "/": {
-    title: "Zain Adtani | AI Consultant · Author · Financial Educator",
+    title: "Zain Adtani | AI Consultant · Author · Licensed Financial Professional",
     description:
-      "AI Consultant, Author, and Financial Educator based in DFW Texas. I help small businesses run on AI, help creators publish books, and help families protect what they build.",
+      "AI Consultant, Author, and Licensed Financial Professional based in DFW Texas. I help small businesses run on AI, help creators publish books, and help families protect what they build.",
   },
   "/about": {
     title: "About Zain Adtani — AI Consultant & Author in DFW Texas",

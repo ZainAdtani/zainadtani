@@ -276,15 +276,15 @@ const Index = () => {
     <div className="bg-white">
       <div id="top" />
       <Helmet>
-        <title>Zain Adtani | AI Consultant · Author · Financial Educator</title>
+        <title>Zain Adtani | AI Consultant · Author · Licensed Financial Professional</title>
         <meta
           name="description"
-          content="AI Consultant, Author, and Financial Educator based in DFW Texas. I help small businesses run on AI, help creators publish books, and help families protect what they build."
+          content="AI Consultant, Author, and Licensed Financial Professional based in DFW Texas. I help small businesses run on AI, help creators publish books, and help families protect what they build."
         />
-        <meta property="og:title" content="Zain Adtani | AI Consultant · Author · Financial Educator" />
+        <meta property="og:title" content="Zain Adtani | AI Consultant · Author · Licensed Financial Professional" />
         <meta
           property="og:description"
-          content="AI Consultant, Author, and Financial Educator based in DFW Texas. I help small businesses run on AI, help creators publish books, and help families protect what they build."
+          content="AI Consultant, Author, and Licensed Financial Professional based in DFW Texas. I help small businesses run on AI, help creators publish books, and help families protect what they build."
         />
         <meta property="og:url" content="https://zainadtani.com" />
         <meta property="og:type" content="website" />
@@ -321,7 +321,7 @@ const Index = () => {
             <path d="M13 21 Q95 15 156 20 T298 17" />
           </svg>
           <p className="max-w-2xl mt-5 font-sans text-[17px] sm:text-[20px] leading-relaxed text-foreground">
-            I'm Z — AI consultant, author of <a href="#books" className="font-bold underline underline-offset-4 decoration-primary hover:text-primary">3 books</a>, and financial educator helping families protect what they build.
+            I'm Z — AI consultant, author of <a href="#books" className="font-bold underline underline-offset-4 decoration-primary hover:text-primary">3 books</a>, and licensed financial professional helping families protect what they build.
           </p>
         </div>
       </section>

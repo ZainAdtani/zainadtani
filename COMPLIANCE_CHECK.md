@@ -51,7 +51,7 @@ Last updated: 2026-11-07.
 | # | File:line | Exact text | Why it may need review |
 |---|-----------|-----------|------------------------|
 | C1 | `src/pages/Resources.tsx:65` | "If you stopped working tomorrow, what breaks first? See your missed call leak and your safety net in one grade. Free, no email required." | Site map listing for the tool. |
-| C2 | Site footer (all pages, existing) | "Licensed Financial Educator · NPN 20207668" | Not part of this change, but it shows on this page. Ask if "Financial Educator" is approved wording next to an insurance tool. |
+| C2 | Site footer (all pages, existing) | "Licensed Financial Professional · NPN 20207668" | Not part of this change, but it shows on this page. Wording updated site-wide per Zain: "Financial Educator" is not his title. |
 
 ## D. Launch kit: `docs/launch/owner-stress-test-launch-kit.md`
 

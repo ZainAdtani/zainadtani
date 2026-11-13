@@ -362,7 +362,7 @@ export default function LifeInsuranceCalculator() {
             insurance agent about your situation.
           </p>
           <p className="mt-2 font-sans text-[13px] text-[#0A0F1A]/55">
-            Made by Zain Adtani, Financial Educator.
+            Made by Zain Adtani, Licensed Financial Professional.
           </p>
         </section>
       </main>

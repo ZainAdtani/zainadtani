@@ -184,7 +184,7 @@ function LayoutShell({ children }: { children: ReactNode }) {
                 © 2026 Zain Adtani · Adtani Education Ventures LLC · DFW, Texas
               </p>
               <p className="font-sans text-[12px] text-white/60">
-                Licensed Financial Educator · NPN 20207668
+                Licensed Financial Professional · NPN 20207668
               </p>
             </div>
           </div>

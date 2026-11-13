@@ -75,7 +75,7 @@ const SITE_MAP: SiteEntry[] = [
   
 
   // About & Contact
-  { group: "About & Contact", route: "/", title: "Home", desc: "AI Consultant, Author, and Financial Educator based in DFW Texas. I help small businesses run on AI, help creators publish books, and help families protect what they build." },
+  { group: "About & Contact", route: "/", title: "Home", desc: "AI Consultant, Author, and Licensed Financial Professional based in DFW Texas. I help small businesses run on AI, help creators publish books, and help families protect what they build." },
   { group: "About & Contact", route: "/about", title: "About Zain Adtani", desc: "Get to know Zain — an AI consultant, author, and systems builder in DFW helping small businesses use AI and helping everyday people publish books." },
   { group: "About & Contact", route: "/connect", title: "Connect", desc: "Talk to Zain about a second income opportunity in financial education or about protecting your family with life insurance, wills, and trusts." },
   { group: "About & Contact", route: "/projects", title: "Fun Projects", desc: "A collection of fun side projects — a Notion Pokédex, a Harry Potter timeline, AI songs, and other creative experiments." },
