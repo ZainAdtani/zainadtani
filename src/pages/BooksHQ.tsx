@@ -26,6 +26,7 @@ import {
 import { ExternalLink, Search, Star } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { BOOKS, type BookStatus } from "@/data/books";
+import { AMAZON_BOOKS } from "@/data/myBooks";
 import { findCover } from "@/lib/covers";
 
 const BOOKS_PER_PAGE = 12;
@@ -201,6 +202,30 @@ export default function BooksHQ() {
       </Helmet>
 
       <div className="container mx-auto px-4 py-16 max-w-7xl">
+        <section aria-labelledby="books-i-wrote" className="mb-14">
+          <h2 id="books-i-wrote" className="font-display text-[28px] md:text-[34px] text-center text-foreground mb-6">Books I wrote</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {AMAZON_BOOKS.map((book) => (
+              <div key={book.asin} className="surface-card p-5 flex gap-4">
+                <img
+                  src={`https://images-na.ssl-images-amazon.com/images/P/${book.asin}.01.LZZZZZZZ.jpg`}
+                  alt={`${book.title} book cover by Zain Adtani`}
+                  className="w-20 aspect-[2/3] object-contain shrink-0"
+                  loading="lazy"
+                />
+                <div className="flex flex-col min-w-0">
+                  <span className="font-sans text-[11px] font-semibold tracking-[0.12em] uppercase text-[#2F5C90]">{book.format}</span>
+                  <h3 className="font-display text-[17px] leading-tight text-foreground mt-1">{book.title}</h3>
+                  <p className="font-sans text-[13px] leading-relaxed text-foreground/75 mt-1 flex-1">{book.blurb}</p>
+                  <a href={`https://www.amazon.com/dp/${book.asin}`} target="_blank" rel="noopener noreferrer" className="btn-cta mt-3 text-[14px]">
+                    Get It on Amazon — {book.price}
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-foreground">Book Portal</h1>
           <p className="text-xl text-muted-foreground">Books I've read, I'm reading, and want to read</p>

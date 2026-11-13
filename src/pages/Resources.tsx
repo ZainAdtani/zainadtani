@@ -82,6 +82,8 @@ const SITE_MAP: SiteEntry[] = [
   { group: "About & Contact", route: "/lab", title: "The Lab", desc: "Pokémon, Harry Potter, and other side projects built for fun in Notion." },
 ];
 
+const slugGroup = (g: string) => g.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-");
+
 const GROUP_ORDER: SiteGroup[] = ["Learn & Play", "Money & Business", "Guides & Library", "About & Contact"];
 
 const groupTagColor: Record<SiteGroup, string> = {
@@ -273,6 +275,19 @@ export default function Resources() {
         )}
       </div>
 
+      {/* Jump links */}
+      <nav aria-label="Jump to a section" className="max-w-4xl mx-auto px-6 pt-8">
+        <ul className="flex flex-wrap justify-center gap-2">
+          {[...GROUP_ORDER.map((g) => ({ label: g, id: slugGroup(g) })), { label: "Prompt Library", id: "prompt-library" }, { label: "Free Tools", id: "tools" }].map((j) => (
+            <li key={j.id}>
+              <a href={`#${j.id}`} className="inline-flex items-center rounded-full border border-[#447BBE]/30 bg-white px-4 py-2 font-sans text-[14px] font-medium text-[#2F5C90] hover:bg-[#447BBE]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE]">
+                {j.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
       {/* Explore the Site */}
       <section className="max-w-6xl mx-auto px-6 pt-14 pb-4">
         <div className="text-center mb-8">
@@ -285,7 +300,7 @@ export default function Resources() {
         ) : (
           <div className="space-y-10">
             {groupedSite.map(({ group, items }) => (
-              <div key={group}>
+              <div key={group} id={slugGroup(group)} className="scroll-mt-24">
                 <h3 className="font-display font-bold text-[18px] text-[#A85B05] mb-4">{group}</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                   {items.map((entry) => (
@@ -324,7 +339,7 @@ export default function Resources() {
       </section>
 
       {/* Prompt Library */}
-      <section className="container mx-auto px-4 max-w-6xl pt-16">
+      <section id="prompt-library" className="scroll-mt-24 container mx-auto px-4 max-w-6xl pt-16">
         <div className="text-center mb-8">
           <h2 className="font-display font-extrabold text-[28px] md:text-[32px] text-foreground">Prompt Library</h2>
           <p className="mt-2 font-sans text-[15px] text-[#0A0F1A]/65">Ready-to-use prompts, organized by category.</p>

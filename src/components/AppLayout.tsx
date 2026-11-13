@@ -13,13 +13,53 @@ interface AppLayoutProps {
   children: ReactNode;
 }
 
-const FOOTER_NAV = [
-  { label: "Home", to: "/" },
-  { label: "Services", to: "/services" },
-  { label: "Connect", to: "/connect" },
-  { label: "Books", to: "/books" },
-  { label: "Resources", to: "/resources" },
-  { label: "About", to: "/about" },
+const CALENDLY = "https://calendly.com/zkadtani";
+
+const FOOTER_COLUMNS: { heading: string; links: { label: string; to: string }[] }[] = [
+  {
+    heading: "Start",
+    links: [
+      { label: "Home", to: "/" },
+      { label: "How I can help", to: "/#how-i-help" },
+      { label: "The Daily Z", to: "/#z-letter" },
+      { label: "Book a Call", to: CALENDLY },
+      { label: "About", to: "/about" },
+    ],
+  },
+  {
+    heading: "Work with me",
+    links: [
+      { label: "Services", to: "/services" },
+      { label: "Free AI Checkup", to: "/ai-checkup" },
+      { label: "Connect", to: "/connect" },
+      { label: "The Family Protection Gap", to: "/family-protection-gap" },
+    ],
+  },
+  {
+    heading: "Read and learn",
+    links: [
+      { label: "My books", to: "/#books" },
+      { label: "Reading library", to: "/books" },
+      { label: "Resources", to: "/resources" },
+      { label: "Tools", to: "/tools" },
+      { label: "Investing", to: "/investing" },
+      { label: "Life Notes", to: "/life-notes" },
+      { label: "Life Notes (daily)", to: "/lifenotes" },
+      { label: "AI Prompt Library", to: "/ai-prompts" },
+      { label: "10 starter prompts", to: "/prompts" },
+      { label: "Digital Product HQ", to: "/digital-products" },
+    ],
+  },
+  {
+    heading: "Play",
+    links: [
+      { label: "Fun projects", to: "/projects" },
+      { label: "The Lab", to: "/lab" },
+      { label: "Pokédex", to: "/pokedex" },
+      { label: "Harry Potter World", to: "/harry-potter" },
+      { label: "Roth IRA Game", to: "/roth-ira-game" },
+    ],
+  },
 ];
 
 const FOOTER_SOCIALS = [
@@ -59,7 +99,7 @@ function LayoutShell({ children }: { children: ReactNode }) {
 
         <footer className="bg-[#0A0F1A] text-white">
           <div className="container mx-auto px-4 sm:px-6 py-10 max-w-6xl">
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10">
               {/* Brand */}
               <div className="flex flex-col gap-3 max-w-sm">
                 <Link to="/" aria-label="Home" className="inline-flex items-center gap-2 w-fit">
@@ -83,16 +123,26 @@ function LayoutShell({ children }: { children: ReactNode }) {
                 </a>
               </div>
 
-              {/* Nav */}
-              <nav className="grid grid-cols-2 gap-x-8 gap-y-2" aria-label="Footer">
-                {FOOTER_NAV.map((l) => (
-                  <Link
-                    key={l.to}
-                    to={l.to}
-                    className="font-sans text-[14px] text-white/75 hover:text-[#E9E4A6] transition-colors"
-                  >
-                    {l.label}
-                  </Link>
+              {/* Sitemap columns */}
+              <nav className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-6 flex-1" aria-label="Footer">
+                {FOOTER_COLUMNS.map((col) => (
+                  <div key={col.heading}>
+                    <p className="font-sans text-[12px] font-semibold tracking-[0.14em] uppercase text-white/50 mb-3">{col.heading}</p>
+                    <ul className="flex flex-col gap-2">
+                      {col.links.map((l) => {
+                        const cls = "font-sans text-[14px] text-white/75 hover:text-[#E9E4A6] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E9E4A6] rounded";
+                        return (
+                          <li key={l.label}>
+                            {l.to.startsWith("http") ? (
+                              <a href={l.to} target="_blank" rel="noopener noreferrer" className={cls}>{l.label}</a>
+                            ) : (
+                              <Link to={l.to} className={cls}>{l.label}</Link>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
                 ))}
               </nav>
 

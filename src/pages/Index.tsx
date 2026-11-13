@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import {
@@ -22,42 +22,17 @@ import { TodaysNoteStrip } from "@/components/TodaysNote";
 import { TimeBar } from "@/components/TimeBar";
 import { Button } from "@/components/ui/button";
 import { BOOKS } from "@/data/books";
+import { AMAZON_BOOKS } from "@/data/myBooks";
 import headshotImage from "@/assets/zain-hero-portrait.png.asset.json";
 import wavingHand from "@/assets/waving-hand.png";
 import pokemonImg from "@/assets/pokemon-pokedex.png";
-import harryPotterImg from "@/assets/harry-potter-world.png";
 
 const CALENDLY_URL = "https://calendly.com/zkadtani";
 const BEEHIIV_URL = "https://the-z-letter.beehiiv.com/subscribe";
 const BEEHIIV_MAGIC = "https://magic.beehiiv.com/v1/dd1643e2-f274-43e4-b193-62276e3e3b48";
 const MISSED_CALL_CALCULATOR_URL = "/missed-call-calculator";
 const OWNER_STRESS_TEST_URL = "/owner-stress-test";
-const AMAZON_BOOKS = [
-  {
-    title: "The Family Protection Gap",
-    blurb:
-      "The plain-English guide to the gap between your job benefits, savings, and what your family actually needs.",
-    price: "$18.99",
-    format: "Paperback",
-    asin: "B0H6FJCRJ7",
-  },
-  {
-    title: "ZAP REST: The 5-Minute Daily Journal",
-    blurb:
-      "Your first step to waking up without anxiety. A 5-minute morning routine that fights anxiety before it starts.",
-    price: "$9.99",
-    format: "Paperback",
-    asin: "B0H51RJL7R",
-  },
-  {
-    title: "Small Actions. Massive Life",
-    blurb:
-      "One small action a day for a whole year. A 366-day journal for building a massive life.",
-    price: "$24.99",
-    format: "Hardcover",
-    asin: "B0H7YYB72H",
-  },
-];
+
 const YOUTUBE_URL = "https://www.youtube.com/@BuildThenProtect";
 
 const VISITOR_PATHS = [
@@ -148,7 +123,7 @@ const FUN_PROJECTS = [
     title: "Harry Potter World",
     description:
       "A Hogwarts-themed hub built in Notion. Books, audiobooks, key story moments, and lore.",
-    image: harryPotterImg,
+    image: "/images/projects/harry-potter-world-cover.png",
     href: "/harry-potter",
     badge: "Hogwarts Built",
   },
@@ -213,7 +188,43 @@ function SectionHead({
   );
 }
 
+function subscribeToDailyZ(email: string): "ok" | "fallback" {
+  const win = window.open(`${BEEHIIV_MAGIC}?email=${encodeURIComponent(email)}`, "_blank");
+  if (!win) {
+    // Pop-up blocked: send the visitor to the signup page in this tab instead.
+    window.location.href = BEEHIIV_URL;
+    return "fallback";
+  }
+  return "ok";
+}
+
+type SubState = { kind: "idle" | "ok" | "error"; msg?: string };
+
+function SubStatus({ state }: { state: SubState }) {
+  if (state.kind === "idle") return null;
+  return (
+    <p role="status" aria-live="polite" className={`mt-2 font-sans text-[14px] font-medium ${state.kind === "error" ? "text-destructive" : "text-foreground"}`}>
+      {state.msg}
+    </p>
+  );
+}
+
 const Index = () => {
+  const [heroSub, setHeroSub] = useState<SubState>({ kind: "idle" });
+  const [mainSub, setMainSub] = useState<SubState>({ kind: "idle" });
+  const handleSub = (e: React.FormEvent<HTMLFormElement>, set: (s: SubState) => void) => {
+    e.preventDefault();
+    const input = e.currentTarget.elements.namedItem("email") as HTMLInputElement;
+    const email = input?.value?.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      set({ kind: "error", msg: "Please enter a valid email address." });
+      input?.focus();
+      return;
+    }
+    subscribeToDailyZ(email);
+    set({ kind: "ok", msg: "Almost done. Finish your signup for The Daily Z in the new tab." });
+    input.value = "";
+  };
   // Handle in-page anchors arriving from other routes.
   useEffect(() => {
     if (window.location.hash) {
@@ -272,14 +283,6 @@ const Index = () => {
           <p className="max-w-2xl mt-5 font-sans text-[17px] sm:text-[20px] leading-relaxed text-foreground">
             I'm Z — AI consultant, author of <a href="#books" className="font-bold underline underline-offset-4 decoration-primary hover:text-primary">3 books</a>, and financial educator helping families protect what they build.
           </p>
-          <div className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-            <Link to={MISSED_CALL_CALCULATOR_URL} className="btn-cta">
-              Free Missed Call Calculator
-            </Link>
-            <Link to={OWNER_STRESS_TEST_URL} className="btn-secondary-outline">
-              Take the Owner Stress Test
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -289,19 +292,27 @@ const Index = () => {
         3 books on Amazon · Licensed TX Life &amp; Health · Eagle Scout
       </div>
 
+      {/* Hero actions */}
+      <section aria-label="Get started" className="bg-background px-5 pt-6 text-center">
+        <div className="mx-auto max-w-3xl flex flex-col items-center gap-3">
+          <a href="#how-i-help" className="btn-cta w-full sm:w-auto">
+            See how I can help
+          </a>
+          <div className="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
+            <Link to={MISSED_CALL_CALCULATOR_URL} className="btn-secondary-outline">
+              Free Missed Call Calculator
+            </Link>
+            <Link to={OWNER_STRESS_TEST_URL} className="btn-secondary-outline">
+              Take the Owner Stress Test
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section aria-label="Join The Daily Z" className="bg-background px-5 py-6 sm:py-7 text-center">
         <form
           className="mx-auto max-w-lg"
-          onSubmit={(e) => {
-            e.preventDefault();
-            const input = (e.currentTarget.elements.namedItem("email") as HTMLInputElement);
-            const email = input?.value?.trim();
-            if (!email || !email.includes("@")) {
-              input?.focus();
-              return;
-            }
-            window.open(`${BEEHIIV_MAGIC}?email=${encodeURIComponent(email)}`, "_blank");
-          }}
+          onSubmit={(e) => handleSub(e, setHeroSub)}
         >
           <div className="flex flex-col sm:flex-row gap-2">
             <label htmlFor="heroZletterEmail" className="sr-only">Email address for The Daily Z</label>
@@ -315,8 +326,11 @@ const Index = () => {
             <Button type="submit" variant="secondary" className="h-auto min-h-12 px-7 rounded-lg font-sans font-semibold text-[15px]">Join free</Button>
           </div>
           <p className="mt-2 font-sans text-[13px] text-muted-foreground">Two minutes. No fluff. Free forever.</p>
+          <SubStatus state={heroSub} />
         </form>
       </section>
+
+      {/* SLOT: #start star map goes here (Prompt 2). Insert between the early email bar and "How can I help you?". */}
 
       {/* 2 — VISITOR PATHS */}
       <section id="how-i-help" className="section-y bg-white scroll-mt-20">
@@ -352,6 +366,8 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* SLOT: future #apps section goes here (Prompt 2). Insert after the Free AI Checkup banner and before My books. */}
 
       <Divider />
 
@@ -413,16 +429,7 @@ const Index = () => {
           />
           <form
             className="mt-8 max-w-md mx-auto flex flex-col gap-3"
-            onSubmit={(e) => {
-              e.preventDefault();
-              const input = (e.currentTarget.elements.namedItem("email") as HTMLInputElement);
-              const email = input?.value?.trim();
-              if (!email || !email.includes("@")) {
-                input?.focus();
-                return;
-              }
-              window.open(`${BEEHIIV_MAGIC}?email=${encodeURIComponent(email)}`, "_blank");
-            }}
+            onSubmit={(e) => handleSub(e, setMainSub)}
           >
             <label htmlFor="zletterEmail" className="sr-only">
               Email address
@@ -440,6 +447,7 @@ const Index = () => {
             <p className="text-center font-sans text-[13px] text-[#0A0F1A]/60">
               Every morning. Unsubscribe anytime.
             </p>
+            <div className="text-center"><SubStatus state={mainSub} /></div>
           </form>
         </div>
 

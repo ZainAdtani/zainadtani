@@ -91,6 +91,12 @@ const App = () => (
                   <Route path="/resources/ai-news-songs" element={<AINewsSongs />} />
                   <Route path="/buzzerblock-privacy" element={<BuzzerBlockPrivacy />} />
                   <Route path="/lifenotes" element={<DailyLifeNotes />} />
+                  <Route path="/newsletter" element={<Navigate to="/#z-letter" replace />} />
+                  <Route path="/the-z-letter" element={<Navigate to="/#z-letter" replace />} />
+                  <Route path="/thezletter" element={<Navigate to="/#z-letter" replace />} />
+                  <Route path="/start" element={<Navigate to="/#how-i-help" replace />} />
+                  <Route path="/start-here" element={<Navigate to="/#how-i-help" replace />} />
+                  <Route path="/apps" element={<Navigate to="/" replace />} />
 
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
