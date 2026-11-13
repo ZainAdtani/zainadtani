@@ -20,7 +20,7 @@ const FOOTER_COLUMNS: { heading: string; links: { label: string; to: string }[] 
     heading: "Start",
     links: [
       { label: "Home", to: "/" },
-      { label: "How I can help", to: "/#how-i-help" },
+      { label: "How I can help", to: "/#start" },
       { label: "The Daily Z", to: "/#z-letter" },
       { label: "Book a Call", to: CALENDLY },
       { label: "About", to: "/about" },
@@ -53,6 +53,7 @@ const FOOTER_COLUMNS: { heading: string; links: { label: string; to: string }[] 
   {
     heading: "Play",
     links: [
+      { label: "iPhone apps", to: "/#apps" },
       { label: "Fun projects", to: "/projects" },
       { label: "The Lab", to: "/lab" },
       { label: "Pokédex", to: "/pokedex" },

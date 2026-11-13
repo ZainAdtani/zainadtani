@@ -20,6 +20,8 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { ZLetterFeed } from "@/components/ZLetterFeed";
 import { TodaysNoteStrip } from "@/components/TodaysNote";
 import { TimeBar } from "@/components/TimeBar";
+import { StarMap } from "@/components/home/StarMap";
+import { AppsSection } from "@/components/home/AppsSection";
 import { Button } from "@/components/ui/button";
 import { BOOKS } from "@/data/books";
 import { AMAZON_BOOKS } from "@/data/myBooks";
@@ -295,7 +297,7 @@ const Index = () => {
       {/* Hero actions */}
       <section aria-label="Get started" className="bg-background px-5 pt-6 text-center">
         <div className="mx-auto max-w-3xl flex flex-col items-center gap-3">
-          <a href="#how-i-help" className="btn-cta w-full sm:w-auto">
+          <a href="#start" className="btn-cta w-full sm:w-auto">
             See how I can help
           </a>
           <div className="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
@@ -330,7 +332,7 @@ const Index = () => {
         </form>
       </section>
 
-      {/* SLOT: #start star map goes here (Prompt 2). Insert between the early email bar and "How can I help you?". */}
+      <StarMap />
 
       {/* 2 — VISITOR PATHS */}
       <section id="how-i-help" className="section-y bg-white scroll-mt-20">
@@ -367,7 +369,9 @@ const Index = () => {
         </div>
       </section>
 
-      {/* SLOT: future #apps section goes here (Prompt 2). Insert after the Free AI Checkup banner and before My books. */}
+      <Divider />
+
+      <AppsSection />
 
       <Divider />
 

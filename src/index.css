@@ -282,3 +282,15 @@
     transform: none;
   }
 }
+
+/* Homepage star map + apps (motion only when allowed) */
+.app-soon-tile { background: linear-gradient(110deg, #E9E4A6 0%, #F3EFC6 45%, #E9E4A6 60%); background-size: 220% 100%; }
+@media (prefers-reduced-motion: no-preference) {
+  .starmap:not(.starmap-still) .starmap-star { animation: starPop .45s ease-out both, starGlow 6s ease-in-out infinite; animation-delay: calc(var(--i) * .25s), calc(2.4s + var(--i) * 1s); }
+  .starmap:not(.starmap-still) .starmap-line { stroke-dasharray: 1; stroke-dashoffset: 1; animation: lineDraw 1.2s ease-out 1.1s forwards; }
+  .app-soon-tile { animation: softShimmer 3.5s ease-in-out infinite; }
+}
+@keyframes starPop { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: scale(1); } }
+@keyframes lineDraw { to { stroke-dashoffset: 0; } }
+@keyframes starGlow { 0%, 12%, 100% { filter: none; } 5% { filter: drop-shadow(0 0 8px var(--c)); } }
+@keyframes softShimmer { 0% { background-position: 100% 0; } 100% { background-position: -120% 0; } }

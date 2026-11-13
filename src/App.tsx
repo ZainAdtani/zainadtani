@@ -94,9 +94,9 @@ const App = () => (
                   <Route path="/newsletter" element={<Navigate to="/#z-letter" replace />} />
                   <Route path="/the-z-letter" element={<Navigate to="/#z-letter" replace />} />
                   <Route path="/thezletter" element={<Navigate to="/#z-letter" replace />} />
-                  <Route path="/start" element={<Navigate to="/#how-i-help" replace />} />
-                  <Route path="/start-here" element={<Navigate to="/#how-i-help" replace />} />
-                  <Route path="/apps" element={<Navigate to="/" replace />} />
+                  <Route path="/start" element={<Navigate to="/#start" replace />} />
+                  <Route path="/start-here" element={<Navigate to="/#start" replace />} />
+                  <Route path="/apps" element={<Navigate to="/#apps" replace />} />
 
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
