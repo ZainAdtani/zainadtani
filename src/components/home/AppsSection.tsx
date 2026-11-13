@@ -12,7 +12,7 @@ const SOON = ["Zigest", "StoryPond", "NovaLearn"];
 
 export function AppsSection() {
   return (
-    <section id="apps" aria-labelledby="apps-heading" className="section-y bg-white scroll-mt-20">
+    <section id="apps" aria-labelledby="apps-heading" className="section-y bg-white scroll-mt-20 max-sm:pb-32">
       <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
         <div className="text-center max-w-2xl mx-auto">
           <p className="eyebrow">On the App Store</p>

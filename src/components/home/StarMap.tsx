@@ -53,7 +53,7 @@ export function StarMap() {
   const pathD = "M" + STARS.map((s) => `${s.x} ${s.y}`).join(" L");
 
   return (
-    <section id="start" aria-labelledby="start-heading" className="hero-warm section-y scroll-mt-20">
+    <section id="start" aria-labelledby="start-heading" className="hero-warm section-y scroll-mt-20 max-sm:pb-32">
       <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
         <div className="text-center max-w-2xl mx-auto">
           <p className="eyebrow">A simple map</p>
