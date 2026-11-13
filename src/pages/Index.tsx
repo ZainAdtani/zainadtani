@@ -577,14 +577,29 @@ const Index = () => {
               Hi, I'm Z.
             </h2>
             <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-[#0A0F1A]/75 mt-4">
-              Zain Adtani, and most people just call me Z. I'm the founder of Adtani Education
-              Ventures LLC, based in Dallas–Fort Worth, Texas. I studied Mechanical Engineering at
-              UTSA and graduated in 2022, and I'm an Eagle Scout. Today I work as an AI Consultant
-              and author, and I'm a Licensed Texas Life and Health professional.
+              Hey friends. I'm Zain, but most people call me Z.
             </p>
             <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-[#0A0F1A]/75 mt-3">
-              My mission is simple: teach useful ideas, help people, and build a better future for
-              my family.
+              I'm an AI consultant, a licensed financial professional, and an author, based in
+              Dallas-Fort Worth.
+            </p>
+            <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-[#0A0F1A]/75 mt-3">
+              I teach families how money actually works. Then I help them protect it. I'm licensed
+              in Texas for life and health insurance.
+            </p>
+            <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-[#0A0F1A]/75 mt-3">
+              I also help small businesses use practical AI without the overwhelm, and I help
+              people publish the book they keep putting off.
+            </p>
+            <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-[#0A0F1A]/75 mt-3">
+              I've written three books on Amazon.
+            </p>
+            <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-[#0A0F1A]/75 mt-3">
+              Education first. No pitch. No pressure.
+            </p>
+            <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-[#0A0F1A]/75 mt-3">
+              Every morning I send The Z Letter: one useful money idea, one fun thing, and one line
+              to remember.
             </p>
             <Link
               to="/about"

@@ -51,18 +51,31 @@ const About = () => {
         </div>
 
         <div className="space-y-5 text-muted-foreground leading-relaxed mb-12">
+          <p>Hey friends. I'm Zain Adtani. Most people call me Z.</p>
           <p>
-            I grew up in DFW, moved from India as a kid, and spent years chasing the wrong version of success. I got a Mechanical Engineering degree from UTSA (Dean's List, President's List), picked up certifications, learned four languages, and still felt like something was missing.
+            I'm an AI consultant, a licensed financial professional, and an author, based in
+            Dallas-Fort Worth.
+          </p>
+          <p>I teach families how money actually works. Then I help them protect it.</p>
+          <p>
+            Most families are not broke. They are unprepared. So I explain life insurance, wills,
+            and trusts in plain words. Education first. No pitch. No pressure.
           </p>
           <p>
-            Now I help small businesses implement AI without the overwhelm. I also help everyday people publish the book they've been putting off. I'm building in public, learning out loud, and figuring it out one lane at a time.
+            I do this for family first. My goal is to retire my mom with peace of mind, and to
+            help every family I teach feel prepared instead of worried.
           </p>
           <p>
-            Outside of work: I write{" "}
+            I also help small businesses use practical AI without the overwhelm, and I help people
+            publish the book they keep putting off.
+          </p>
+          <p>
+            Every morning I send{" "}
             <a href={NEWSLETTER_HOST} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{NEWSLETTER_NAME}</a>
-            , every morning
-            {" "}- Check it out!
+            : one useful money idea, one fun thing, and one line to remember.
           </p>
+          <p>I run all of this through Adtani Education Ventures LLC.</p>
+          <p>Glad you're here.</p>
         </div>
 
         {/* Stat blocks */}
