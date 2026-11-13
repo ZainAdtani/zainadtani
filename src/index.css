@@ -301,3 +301,28 @@
 @keyframes lineDraw { to { stroke-dashoffset: 0; } }
 @keyframes starGlow { 0%, 12%, 100% { filter: none; } 5% { filter: drop-shadow(0 0 8px var(--c)); } }
 @keyframes softShimmer { 0% { background-position: 100% 0; } 100% { background-position: -120% 0; } }
+
+/* ===== Motion system (part 1) ===== */
+.site-reveal { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .js-reveal-ready .site-reveal:not(.is-visible) { opacity: 0; transform: translateY(22px); }
+  .js-reveal-ready .site-reveal { transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
+
+  .surface-card, .card-lift { transition: transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s ease, border-color .25s ease; }
+  .surface-card:hover, .card-lift:hover,
+  .surface-card:active, .card-lift:active {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 34px -14px rgba(10,15,26,.22), 0 0 0 1px rgba(68,123,190,.18), 0 10px 30px -12px rgba(221,80,19,.22);
+  }
+  .tilt-card { will-change: transform; }
+
+  .btn-cta, .btn-secondary-outline, .btn-shine { position: relative; overflow: hidden; isolation: isolate; }
+  .btn-cta::after, .btn-secondary-outline::after, .btn-shine::after {
+    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.45) 50%, transparent 70%);
+    transform: translateX(-120%);
+  }
+  .btn-cta:hover::after, .btn-secondary-outline:hover::after, .btn-shine:hover::after {
+    transform: translateX(120%); transition: transform .7s ease;
+  }
+}

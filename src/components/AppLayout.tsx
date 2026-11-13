@@ -1,3 +1,4 @@
+import { SiteMotion } from "@/components/SiteMotion";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { BackToTop } from "./BackToTop";
@@ -104,6 +105,7 @@ function LayoutShell({ children }: { children: ReactNode }) {
         <Header />
 
         <main className="flex-1 w-full">{children}</main>
+        <SiteMotion />
 
         <PageNext />
 

@@ -1,3 +1,4 @@
+import { CountUp } from "@/components/CountUp";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -321,7 +322,7 @@ const Index = () => {
             <path d="M13 21 Q95 15 156 20 T298 17" />
           </svg>
           <p className="max-w-2xl mt-5 font-sans text-[17px] sm:text-[20px] leading-relaxed text-foreground">
-            I'm Z — AI consultant, author of <a href="#books" className="font-bold underline underline-offset-4 decoration-primary hover:text-primary">3 books</a>, and licensed financial professional helping families protect what they build.
+            I'm Z — AI consultant, author of <a href="#books" className="font-bold underline underline-offset-4 decoration-primary hover:text-primary"><CountUp value={3} /> books</a>, and licensed financial professional helping families protect what they build.
           </p>
         </div>
       </section>
@@ -329,7 +330,7 @@ const Index = () => {
       <TodaysNoteStrip />
 
       <div className="border-y border-border bg-background px-5 py-4 text-center font-sans text-[13px] sm:text-[15px] font-medium text-foreground">
-        3 books on Amazon · Licensed TX Life &amp; Health · Eagle Scout
+        <CountUp value={3} /> books on Amazon · Licensed TX Life &amp; Health · Eagle Scout
       </div>
 
       {/* Hero actions */}
@@ -383,7 +384,7 @@ const Index = () => {
           <ScrollReveal>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
               {VISITOR_PATHS.map(({ icon: Icon, title, body, cta, to }) => (
-                <div key={title} className="surface-card p-7 flex flex-col">
+                <div key={title} className="surface-card tilt-card p-7 flex flex-col" onMouseMove={tiltMove} onMouseLeave={tiltLeave}>
                   <span className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-[#447BBE]/10 text-[#447BBE]">
                     <Icon className="w-5 h-5" aria-hidden="true" />
                   </span>
@@ -434,7 +435,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
             {AMAZON_BOOKS.map((book) => (
               <ScrollReveal key={book.asin}>
-                <div className="rounded-2xl surface-warm border border-[#D97706]/25 p-6 flex flex-col items-center text-center h-full">
+                <div className="card-lift rounded-2xl surface-warm border border-[#D97706]/25 p-6 flex flex-col items-center text-center h-full">
                   <div className="w-[130px] shrink-0">
                     <div className="w-full aspect-[2/3] rounded-xl bg-white p-2 shadow-[0_6px_20px_rgba(10,15,26,0.10)]">
                       <img
@@ -774,5 +775,21 @@ const Index = () => {
     </div>
   );
 };
+
+const canTilt = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function tiltMove(e: React.MouseEvent<HTMLDivElement>) {
+  if (!canTilt()) return;
+  const el = e.currentTarget;
+  const r = el.getBoundingClientRect();
+  const x = (e.clientX - r.left) / r.width - 0.5;
+  const y = (e.clientY - r.top) / r.height - 0.5;
+  el.style.transform = `perspective(900px) rotateX(${(-y * 4).toFixed(2)}deg) rotateY(${(x * 4).toFixed(2)}deg) translateY(-4px)`;
+}
+function tiltLeave(e: React.MouseEvent<HTMLDivElement>) {
+  e.currentTarget.style.transform = "";
+}
 
 export default Index;
