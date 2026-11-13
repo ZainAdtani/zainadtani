@@ -1,17 +1,20 @@
 import { Helmet } from "react-helmet-async";
 import { useForm, ValidationError } from "@formspree/react";
+import { NEWSLETTER_HOST, newsletterWithCadence } from "@/data/newsletter";
 
 const WHATSAPP_URL = "https://wa.me/14698447354";
 const CALENDLY_URL = "https://calendly.com/zkadtani";
 
 const inputClass =
-  "w-full bg-white border border-[#447BBE]/20 focus:border-[#447BBE] focus:outline-none rounded-[10px] px-4 py-3.5 text-[15px] text-[#0A0F1A] placeholder:text-white/40 font-sans transition-colors";
+  "w-full bg-white border border-[#447BBE]/20 focus:border-[#447BBE] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE] rounded-[10px] px-4 py-3.5 text-[15px] text-[#0A0F1A] placeholder:text-[#5C6570] font-sans transition-colors";
 
 const labelClass = "block text-[13px] font-semibold text-[#0A0F1A]/75 mb-1.5 font-sans";
 
 const scrollTo = (id: string) => {
   const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (!el) return;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
 };
 
 const Connect = () => {
@@ -110,20 +113,21 @@ const Connect = () => {
             </div>
           ) : (
             <form onSubmit={oppHandleSubmit} className="grid gap-4">
+              <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
               <div>
                 <label className={labelClass} htmlFor="fullName">Full Name</label>
-                <input id="fullName" name="fullName" className={inputClass} placeholder="Your name" required />
+                <input id="fullName" name="fullName" className={inputClass} placeholder="Your name" required maxLength={120} autoComplete="name" />
                 <ValidationError prefix="Name" field="fullName" errors={oppState.errors} className="text-[14px] text-[#DD5013] font-sans mt-1" />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className={labelClass} htmlFor="phone">Phone Number</label>
-                  <input id="phone" name="phone" className={inputClass} placeholder="(555) 555-5555" required />
+                  <input id="phone" name="phone" type="tel" className={inputClass} placeholder="(555) 555-5555" required maxLength={40} autoComplete="tel" />
                   <ValidationError prefix="Phone" field="phone" errors={oppState.errors} className="text-[14px] text-[#DD5013] font-sans mt-1" />
                 </div>
                 <div>
                   <label className={labelClass} htmlFor="email">Email Address</label>
-                  <input id="email" name="email" type="email" className={inputClass} placeholder="you@email.com" required />
+                  <input id="email" name="email" type="email" className={inputClass} placeholder="you@email.com" required maxLength={200} autoComplete="email" />
                   <ValidationError prefix="Email" field="email" errors={oppState.errors} className="text-[14px] text-[#DD5013] font-sans mt-1" />
                 </div>
               </div>
@@ -206,20 +210,21 @@ const Connect = () => {
             </div>
           ) : (
             <form onSubmit={protHandleSubmit} className="grid gap-4">
+              <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
               <div>
                 <label className={labelClass} htmlFor="prot-fullName">Full Name</label>
-                <input id="prot-fullName" name="fullName" className={inputClass} placeholder="Your name" required />
+                <input id="prot-fullName" name="fullName" className={inputClass} placeholder="Your name" required maxLength={120} autoComplete="name" />
                 <ValidationError prefix="Name" field="fullName" errors={protState.errors} className="text-[14px] text-[#DD5013] font-sans mt-1" />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className={labelClass} htmlFor="prot-phone">Phone Number</label>
-                  <input id="prot-phone" name="phone" className={inputClass} placeholder="(555) 555-5555" required />
+                  <input id="prot-phone" name="phone" type="tel" className={inputClass} placeholder="(555) 555-5555" required maxLength={40} autoComplete="tel" />
                   <ValidationError prefix="Phone" field="phone" errors={protState.errors} className="text-[14px] text-[#DD5013] font-sans mt-1" />
                 </div>
                 <div>
                   <label className={labelClass} htmlFor="prot-email">Email Address</label>
-                  <input id="prot-email" name="email" type="email" className={inputClass} placeholder="you@email.com" required />
+                  <input id="prot-email" name="email" type="email" className={inputClass} placeholder="you@email.com" required maxLength={200} autoComplete="email" />
                   <ValidationError prefix="Email" field="email" errors={protState.errors} className="text-[14px] text-[#DD5013] font-sans mt-1" />
                 </div>
               </div>
@@ -283,7 +288,7 @@ const Connect = () => {
                 { label: "YouTube", value: "Build Then Protect", href: "https://www.youtube.com/@BuildThenProtect" },
                 { label: "YouTube", value: "History You Missed Daily", href: "https://www.youtube.com/@HistoryYouMissedDaily" },
                 { label: "YouTube", value: "The AI You Missed", href: "https://www.youtube.com/@theaiyoumissed" },
-                { label: "Newsletter", value: "The Z Letter (Beehiiv)", href: "https://the-z-letter.beehiiv.com" },
+                { label: "Newsletter", value: newsletterWithCadence(), href: NEWSLETTER_HOST },
               ].map((row) => (
                 <li key={row.label} className="flex flex-col sm:flex-row sm:items-baseline sm:gap-3">
                   <span className="font-display-sans font-extrabold text-[13px] uppercase tracking-wider text-[#A85B05] min-w-[130px]">

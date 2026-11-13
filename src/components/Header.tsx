@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import zaLogo from "@/assets/za_logo.png";
+import { NEWSLETTER_NAME } from "@/data/newsletter";
 
 type NavItem = { label: string; path: string; children?: { label: string; path: string }[] };
 
@@ -12,6 +13,7 @@ const TOP_NAV: NavItem[] = [
     children: [
       { label: "Services home", path: "/services" },
       { label: "Free AI Checkup", path: "/ai-checkup" },
+      { label: "Local AI Visibility Partner", path: "/ai-checkup#partner" },
       { label: "Connect", path: "/connect" },
     ],
   },
@@ -44,7 +46,7 @@ const TOP_NAV: NavItem[] = [
     ],
   },
   { label: "About", path: "/about" },
-  { label: "The Daily Z", path: "/#z-letter" },
+  { label: NEWSLETTER_NAME, path: "/#z-letter" },
 ];
 
 const CALENDLY_URL = "https://calendly.com/zkadtani";
@@ -134,7 +136,7 @@ export const Header = () => {
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:inline-flex items-center justify-center bg-[#DD5013] text-white font-sans font-semibold text-[14px] px-5 py-2.5 rounded-xl hover:bg-[#C4460F] transition-colors"
+            className={`hidden md:inline-flex items-center justify-center bg-[#DD5013] text-white font-sans font-semibold text-[14px] px-5 py-2.5 rounded-xl hover:bg-[#C4460F] transition-colors ${focusRing}`}
           >
             Book a Call
           </a>
@@ -144,7 +146,7 @@ export const Header = () => {
             onClick={() => setMobileOpen((v) => !v)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
-            className="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg text-[#0A0F1A] hover:bg-[#447BBE]/10 transition-colors"
+            className={`md:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg text-[#0A0F1A] hover:bg-[#447BBE]/10 transition-colors ${focusRing}`}
           >
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -200,7 +202,7 @@ export const Header = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileOpen(false)}
-              className="mt-2 flex items-center justify-center min-h-[48px] px-4 rounded-xl bg-[#DD5013] text-white font-sans font-semibold text-[16px]"
+              className={`mt-2 flex items-center justify-center min-h-[48px] px-4 rounded-xl bg-[#DD5013] text-white font-sans font-semibold text-[16px] ${focusRing}`}
             >
               Book a Call
             </a>

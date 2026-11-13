@@ -1,4 +1,6 @@
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
+import { PARTNER_PLAN } from "@/data/ai-checkup";
 
 const CALENDLY_URL = "https://calendly.com/zkadtani";
 
@@ -57,7 +59,7 @@ function FeatureCard({ icon, title, body }: { icon: string; title: string; body:
     <div className="bg-white border border-[#447BBE]/20 rounded-2xl p-6 flex gap-4 items-start hover:border-[#447BBE]/40 transition-colors">
       <span className="text-2xl shrink-0">{icon}</span>
       <div>
-        <h4 className="font-display font-bold text-[16px] text-[#0A0F1A] mb-1">{title}</h4>
+        <h3 className="font-display font-bold text-[16px] text-[#0A0F1A] mb-1">{title}</h3>
         <p className="font-sans text-[14px] text-[#0A0F1A]/65 leading-relaxed">{body}</p>
       </div>
     </div>
@@ -192,6 +194,23 @@ export default function Services() {
           </div>
           <div className="grid grid-cols-1 gap-4">
             {workflowCards.map((c) => <FeatureCard key={c.title} {...c} />)}
+          </div>
+        </div>
+      </section>
+
+      <section id="local-visibility" className="bg-white py-16 border-t border-[#447BBE]/20 scroll-mt-20">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <p className="font-sans text-[12px] font-semibold tracking-[0.14em] uppercase text-[#2F5C90]">Local businesses</p>
+          <h2 className="font-display font-extrabold text-[32px] md:text-[40px] leading-[1.1] text-[#0A0F1A] mt-3">
+            See how you show up online
+          </h2>
+          <p className="font-sans text-[16px] text-[#0A0F1A]/75 mt-4 leading-relaxed">
+            The free AI checkup is a report card on your website, Google reviews, social pages, and AI search.
+            If you want that work handled each month, the Local AI Visibility Partner is ${PARTNER_PLAN.monthlyPrice}/month.
+          </p>
+          <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+            <Link to="/ai-checkup" className={ctaClass}>Free AI Checkup</Link>
+            <Link to="/ai-checkup#partner" className="btn-secondary-outline">See the ${PARTNER_PLAN.monthlyPrice}/month plan</Link>
           </div>
         </div>
       </section>

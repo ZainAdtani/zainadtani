@@ -32,7 +32,7 @@ const NotFound = () => {
           404: Nothing To See Here (Yet)
         </h1>
 
-        <p className="text-lg md:text-xl mb-10 max-w-md mx-auto" style={{ color: "rgba(255,255,255,0.7)" }}>
+        <p className="text-lg md:text-xl mb-10 max-w-md mx-auto text-[#0A0F1A]/80">
           This page either moved, got deleted, or never existed. Kind of like a New Year's resolution. Let's get you somewhere real.
         </p>
 
@@ -58,7 +58,7 @@ const NotFound = () => {
           </Button>
         </div>
 
-        <p className="mt-12 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+        <p className="mt-12 text-xs text-[#0A0F1A]/70">
           Path: <code className="font-mono">{location.pathname}</code>
         </p>
       </div>

@@ -5,6 +5,9 @@ import { ReadingProgressBar } from "./ReadingProgressBar";
 import { ScrollToHash } from "./ScrollToHash";
 import { Header } from "./Header";
 import { AIChatWidget } from "./AIChatWidget";
+import { PageNext } from "./PageNext";
+import { SiteDefaults } from "./SiteDefaults";
+import { NEWSLETTER_HOST, NEWSLETTER_NAME, newsletterWithCadence } from "@/data/newsletter";
 import { Link } from "react-router-dom";
 import { ReactNode } from "react";
 import { Linkedin, Youtube, Mail, Instagram, CalendarDays } from "lucide-react";
@@ -21,7 +24,7 @@ const FOOTER_COLUMNS: { heading: string; links: { label: string; to: string }[] 
     links: [
       { label: "Home", to: "/" },
       { label: "How I can help", to: "/#start" },
-      { label: "The Daily Z", to: "/#z-letter" },
+      { label: NEWSLETTER_NAME, to: "/#z-letter" },
       { label: "Book a Call", to: CALENDLY },
       { label: "About", to: "/about" },
     ],
@@ -31,6 +34,9 @@ const FOOTER_COLUMNS: { heading: string; links: { label: string; to: string }[] 
     links: [
       { label: "Services", to: "/services" },
       { label: "Free AI Checkup", to: "/ai-checkup" },
+      { label: "Local AI Visibility Partner", to: "/ai-checkup#partner" },
+      { label: "Missed Call Calculator", to: "/missed-call-calculator" },
+      { label: "Owner Stress Test", to: "/owner-stress-test" },
       { label: "Connect", to: "/connect" },
       { label: "The Family Protection Gap", to: "/family-protection-gap" },
     ],
@@ -69,7 +75,7 @@ const FOOTER_SOCIALS = [
   { label: "YouTube: Build Then Protect", href: "https://www.youtube.com/@BuildThenProtect", Icon: Youtube },
   { label: "YouTube: History You Missed Daily", href: "https://www.youtube.com/@HistoryYouMissedDaily", Icon: Youtube },
   { label: "YouTube: The AI You Missed", href: "https://www.youtube.com/@theaiyoumissed", Icon: Youtube },
-  { label: "The Daily Z newsletter", href: "https://the-z-letter.beehiiv.com", Icon: Mail },
+  { label: newsletterWithCadence(), href: NEWSLETTER_HOST, Icon: Mail },
   { label: "@adtanieducationventures", href: "https://www.instagram.com/adtanieducationventures", Icon: Instagram },
   { label: "Book a Call (Calendly)", href: "https://calendly.com/zkadtani", Icon: CalendarDays },
 ];
@@ -85,6 +91,7 @@ export function AppLayout({ children }: AppLayoutProps) {
 function LayoutShell({ children }: { children: ReactNode }) {
   return (
     <>
+      <SiteDefaults />
       <ScrollToHash />
       <ReadingProgressBar />
       {/* Single document scroll — no nested scroll container, so reveal effects
@@ -97,6 +104,8 @@ function LayoutShell({ children }: { children: ReactNode }) {
         <Header />
 
         <main className="flex-1 w-full">{children}</main>
+
+        <PageNext />
 
         <footer className="bg-[#0A0F1A] text-white">
           <div className="container mx-auto px-4 sm:px-6 py-10 max-w-6xl">
@@ -115,12 +124,12 @@ function LayoutShell({ children }: { children: ReactNode }) {
                   Adtani Education Ventures LLC · DFW, Texas
                 </p>
                 <a
-                  href="https://the-z-letter.beehiiv.com/subscribe"
+                  href={`${NEWSLETTER_HOST}/subscribe`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-fit inline-flex items-center justify-center rounded-lg border border-white/25 px-4 py-2 font-sans font-semibold text-[13px] text-white hover:border-[#E9E4A6] hover:text-[#E9E4A6] transition-colors"
                 >
-                  Join The Z Letter
+                  Join {NEWSLETTER_NAME}
                 </a>
               </div>
 

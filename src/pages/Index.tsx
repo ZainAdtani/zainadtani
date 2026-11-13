@@ -14,6 +14,7 @@ import {
   Library,
   FolderGit2,
   User,
+  Smartphone,
 } from "lucide-react";
 
 import { ScrollReveal } from "@/components/ScrollReveal";
@@ -25,13 +26,20 @@ import { AppsSection } from "@/components/home/AppsSection";
 import { Button } from "@/components/ui/button";
 import { BOOKS } from "@/data/books";
 import { AMAZON_BOOKS } from "@/data/myBooks";
+import { PARTNER_PLAN } from "@/data/ai-checkup";
+import { BooksJsonLd } from "@/components/BooksJsonLd";
+import {
+  NEWSLETTER_HOST,
+  NEWSLETTER_NAME,
+  NEWSLETTER_SUBSCRIBE_URL,
+  newsletterWithCadence,
+  openNewsletterSignup,
+} from "@/data/newsletter";
 import headshotImage from "@/assets/zain-hero-portrait.png.asset.json";
 import wavingHand from "@/assets/waving-hand.png";
 import pokemonImg from "@/assets/pokemon-pokedex.png";
 
 const CALENDLY_URL = "https://calendly.com/zkadtani";
-const BEEHIIV_URL = "https://the-z-letter.beehiiv.com/subscribe";
-const BEEHIIV_MAGIC = "https://magic.beehiiv.com/v1/dd1643e2-f274-43e4-b193-62276e3e3b48";
 const MISSED_CALL_CALCULATOR_URL = "/missed-call-calculator";
 const OWNER_STRESS_TEST_URL = "/owner-stress-test";
 
@@ -110,6 +118,22 @@ const DISCOVERY = [
     icon: User,
     internal: true,
   },
+  {
+    label: "Local businesses",
+    title: "Free AI Checkup",
+    body: "A report card for your website, Google reviews, social pages, and AI search.",
+    to: "/ai-checkup",
+    icon: Bot,
+    internal: true,
+  },
+  {
+    label: "On the App Store",
+    title: "iPhone apps",
+    body: "BuzzerBlock, PathFolk, and NOMsters are on the App Store. Three more are on the way.",
+    to: "/#apps",
+    icon: Smartphone,
+    internal: true,
+  },
 ];
 
 const FUN_PROJECTS = [
@@ -131,18 +155,34 @@ const FUN_PROJECTS = [
   },
 ];
 
-const SOCIALS = [
-  { label: "YouTube: Build Then Protect", href: YOUTUBE_URL, Icon: Youtube },
-  { label: "YouTube: History You Missed Daily", href: "https://www.youtube.com/@HistoryYouMissedDaily", Icon: Youtube },
-  { label: "YouTube: The AI You Missed", href: "https://www.youtube.com/@theaiyoumissed", Icon: Youtube },
-  { label: "LinkedIn — Zain Adtani", href: "https://www.linkedin.com/in/zainadtani", Icon: Linkedin },
+const SOCIAL_GROUPS = [
   {
-    label: "LinkedIn — Adtani Education Ventures",
-    href: "https://www.linkedin.com/company/adtani-education-ventures",
-    Icon: Linkedin,
+    platform: "YouTube",
+    Icon: Youtube,
+    links: [
+      { label: "Build Then Protect", href: YOUTUBE_URL },
+      { label: "History You Missed Daily", href: "https://www.youtube.com/@HistoryYouMissedDaily" },
+      { label: "The AI You Missed", href: "https://www.youtube.com/@theaiyoumissed" },
+    ],
   },
-  { label: "Instagram", href: "https://www.instagram.com/adtanieducationventures", Icon: Instagram },
-  { label: "The Daily Z newsletter", href: "https://the-z-letter.beehiiv.com", Icon: Mail },
+  {
+    platform: "LinkedIn",
+    Icon: Linkedin,
+    links: [
+      { label: "Zain Adtani", href: "https://www.linkedin.com/in/zainadtani" },
+      { label: "Adtani Education Ventures", href: "https://www.linkedin.com/company/adtani-education-ventures" },
+    ],
+  },
+  {
+    platform: "Instagram",
+    Icon: Instagram,
+    links: [{ label: "@adtanieducationventures", href: "https://www.instagram.com/adtanieducationventures" }],
+  },
+  {
+    platform: "Newsletter",
+    Icon: Mail,
+    links: [{ label: newsletterWithCadence(), href: NEWSLETTER_HOST }],
+  },
 ];
 
 const FINANCIAL_SITUATIONS = [
@@ -191,13 +231,7 @@ function SectionHead({
 }
 
 function subscribeToDailyZ(email: string): "ok" | "fallback" {
-  const win = window.open(`${BEEHIIV_MAGIC}?email=${encodeURIComponent(email)}`, "_blank");
-  if (!win) {
-    // Pop-up blocked: send the visitor to the signup page in this tab instead.
-    window.location.href = BEEHIIV_URL;
-    return "fallback";
-  }
-  return "ok";
+  return openNewsletterSignup(email);
 }
 
 type SubState = { kind: "idle" | "ok" | "error"; msg?: string };
@@ -224,14 +258,17 @@ const Index = () => {
       return;
     }
     subscribeToDailyZ(email);
-    set({ kind: "ok", msg: "Almost done. Finish your signup for The Daily Z in the new tab." });
+    set({ kind: "ok", msg: `Almost done. Finish your signup for ${NEWSLETTER_NAME} in the new tab.` });
     input.value = "";
   };
   // Handle in-page anchors arriving from other routes.
   useEffect(() => {
     if (window.location.hash) {
       const el = document.querySelector(window.location.hash);
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (el) {
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      }
     }
   }, []);
 
@@ -253,6 +290,7 @@ const Index = () => {
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://zainadtani.com" />
       </Helmet>
+      <BooksJsonLd />
 
       <TimeBar />
 
@@ -311,13 +349,13 @@ const Index = () => {
         </div>
       </section>
 
-      <section aria-label="Join The Daily Z" className="bg-background px-5 py-6 sm:py-7 text-center">
+      <section aria-label={`Join ${NEWSLETTER_NAME}`} className="bg-background px-5 py-6 sm:py-7 text-center">
         <form
           className="mx-auto max-w-lg"
           onSubmit={(e) => handleSub(e, setHeroSub)}
         >
           <div className="flex flex-col sm:flex-row gap-2">
-            <label htmlFor="heroZletterEmail" className="sr-only">Email address for The Daily Z</label>
+            <label htmlFor="heroZletterEmail" className="sr-only">Email address for {NEWSLETTER_NAME}</label>
             <input
               id="heroZletterEmail"
               name="email"
@@ -361,10 +399,20 @@ const Index = () => {
             </div>
           </ScrollReveal>
           <div className="mt-7 flex flex-col items-start justify-between gap-4 rounded-lg border border-border bg-accent/25 p-6 sm:flex-row sm:items-center">
-            <p className="max-w-xl font-sans text-base leading-7 text-foreground">Own a local business? Get a free report card on how you show up on Google and AI search.</p>
-            <Button asChild variant="outline" className="h-auto min-h-12 shrink-0 whitespace-normal px-5 py-3 font-semibold text-primary">
-              <Link to="/ai-checkup">Free AI Checkup <ArrowRight aria-hidden="true" /></Link>
-            </Button>
+            <div className="max-w-xl">
+              <p className="font-sans text-base leading-7 text-foreground">Own a local business? Get a free report card on how you show up on Google and AI search.</p>
+              <p className="mt-1 font-sans text-[14px] leading-6 text-foreground/75">
+                If you want the gaps handled each month, the Local AI Visibility Partner is ${PARTNER_PLAN.monthlyPrice}/month.
+              </p>
+            </div>
+            <div className="flex flex-col gap-2 sm:items-end">
+              <Button asChild variant="outline" className="h-auto min-h-12 shrink-0 whitespace-normal px-5 py-3 font-semibold text-primary">
+                <Link to="/ai-checkup">Free AI Checkup <ArrowRight aria-hidden="true" /></Link>
+              </Button>
+              <Link to="/ai-checkup#partner" className="font-sans text-[14px] font-semibold text-[#2F5C90] underline underline-offset-4">
+                See the ${PARTNER_PLAN.monthlyPrice}/month plan
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -393,6 +441,8 @@ const Index = () => {
                         src={`https://images-na.ssl-images-amazon.com/images/P/${book.asin}.01.LZZZZZZZ.jpg`}
                         alt={`${book.title} book cover by Zain Adtani`}
                         className="w-full h-full object-contain"
+                        width={130}
+                        height={195}
                         loading="lazy"
                       />
                     </div>
@@ -427,8 +477,8 @@ const Index = () => {
       <section id="z-letter" className="section-y bg-white scroll-mt-20">
         <div className="container mx-auto px-5 sm:px-6 max-w-3xl">
           <SectionHead
-            eyebrow="Free daily newsletter"
-            title="Get The Daily Z"
+            eyebrow={newsletterWithCadence()}
+            title={`Get ${NEWSLETTER_NAME}`}
             sub="One useful money idea and one fun thing in your inbox every morning. Two minutes. No fluff. Free forever."
           />
           <form
@@ -446,7 +496,7 @@ const Index = () => {
               className="w-full rounded-xl border border-[#447BBE]/30 bg-white px-5 py-3.5 font-sans text-[16px] text-[#0A0F1A] placeholder:text-[#0A0F1A]/40 focus:outline-none focus:border-[#447BBE]"
             />
             <button type="submit" className="btn-cta w-full">
-              Send Me The Daily Z
+              Send Me {NEWSLETTER_NAME}
             </button>
             <p className="text-center font-sans text-[13px] text-[#0A0F1A]/60">
               Every morning. Unsubscribe anytime.
@@ -565,6 +615,8 @@ const Index = () => {
                       src={p.image}
                       alt={p.title}
                       className="w-full h-full object-cover"
+                      width={640}
+                      height={360}
                       loading="lazy"
                     />
                     <span className="absolute top-3 left-3 rounded-full bg-white/95 px-3 py-1 font-sans text-[11px] font-semibold tracking-wide text-[#0A0F1A]">
@@ -585,26 +637,35 @@ const Index = () => {
             </div>
           </ScrollReveal>
 
-          <div className="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-xl border border-[#447BBE]/15 bg-[#F7F9FC] px-5 py-4">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="font-sans text-[13px] font-semibold text-[#0A0F1A]/70">
-                Follow the build:
-              </span>
-              {SOCIALS.map(({ label, href, Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  title={label}
-                  className="text-[#447BBE] hover:text-[#2F5C90] transition-colors"
-                >
-                  <Icon className="w-5 h-5" />
-                </a>
+          <div className="mt-8 rounded-xl border border-[#447BBE]/15 bg-[#F7F9FC] px-5 py-5">
+            <p className="font-sans text-[13px] font-semibold uppercase tracking-[0.14em] text-[#0A0F1A]/70">
+              Follow the build
+            </p>
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {SOCIAL_GROUPS.map(({ platform, Icon, links }) => (
+                <div key={platform}>
+                  <p className="flex items-center gap-2 font-sans text-[14px] font-semibold text-[#0A0F1A]">
+                    <Icon className="w-4 h-4 text-[#447BBE]" aria-hidden="true" />
+                    {platform}
+                  </p>
+                  <ul className="mt-2 space-y-1.5">
+                    {links.map((link) => (
+                      <li key={link.href}>
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-sans text-[14px] text-[#2F5C90] underline underline-offset-4 hover:text-[#DD5013] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE] rounded"
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
             </div>
-            <div className="flex flex-wrap gap-4">
+            <div className="mt-5 flex flex-wrap gap-4">
               <Link
                 to="/lab"
                 className="font-sans text-[14px] text-[#2F5C90] underline-offset-4 hover:underline"
@@ -685,12 +746,12 @@ const Index = () => {
               Book a Call
             </a>
             <a
-              href={BEEHIIV_URL}
+              href={NEWSLETTER_SUBSCRIBE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary-outline"
             >
-              Join The Z Letter
+              Join {NEWSLETTER_NAME}
             </a>
           </div>
         </div>

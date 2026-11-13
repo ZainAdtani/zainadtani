@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/pagination";
 import { ExternalLink, Search, Star } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import { BooksJsonLd } from "@/components/BooksJsonLd";
 import { BOOKS, type BookStatus } from "@/data/books";
 import { AMAZON_BOOKS } from "@/data/myBooks";
 import { findCover } from "@/lib/covers";
@@ -200,6 +201,7 @@ export default function BooksHQ() {
           "author": { "@type": "Person", "name": "Zain Adtani", "url": "https://zainadtani.com" }
         })}</script>
       </Helmet>
+      <BooksJsonLd />
 
       <div className="container mx-auto px-4 py-16 max-w-7xl">
         <section aria-labelledby="books-i-wrote" className="mb-14">
@@ -211,6 +213,8 @@ export default function BooksHQ() {
                   src={`https://images-na.ssl-images-amazon.com/images/P/${book.asin}.01.LZZZZZZZ.jpg`}
                   alt={`${book.title} book cover by Zain Adtani`}
                   className="w-20 aspect-[2/3] object-contain shrink-0"
+                  width={80}
+                  height={120}
                   loading="lazy"
                 />
                 <div className="flex flex-col min-w-0">

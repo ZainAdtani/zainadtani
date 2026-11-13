@@ -104,7 +104,7 @@ export default function AICheckup() {
         </div>
       </section>
 
-      <section className="section-y bg-foreground px-5 text-background sm:px-6">
+      <section id="partner" className="section-y scroll-mt-20 bg-foreground px-5 text-background sm:px-6">
         <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-2 md:gap-16">
           <div>
             <p className="text-xs font-bold uppercase text-accent">The Fix</p>

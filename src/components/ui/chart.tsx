@@ -58,6 +58,18 @@ const ChartContainer = React.forwardRef<
 });
 ChartContainer.displayName = "Chart";
 
+function safeCssToken(value: string): string | null {
+  const color = value.trim();
+  if (/^#(?:[0-9a-fA-F]{3,4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.test(color)) return color;
+  if (/^hsl\(var\(--[a-zA-Z0-9-]+\)\)$/.test(color)) return color;
+  if (/^(?:hsl|hsla|rgb|rgba|oklch|lab|lch)\([0-9a-zA-Z.,%\s/+-]+\)$/.test(color)) return color;
+  return null;
+}
+
+function safeCssIdent(value: string): string {
+  return value.replace(/[^a-zA-Z0-9_-]/g, "");
+}
+
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
   const colorConfig = Object.entries(config).filter(([_, config]) => config.theme || config.color);
 
@@ -71,11 +83,13 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
         __html: Object.entries(THEMES)
           .map(
             ([theme, prefix]) => `
-${prefix} [data-chart=${id}] {
+${prefix} [data-chart=${safeCssIdent(id)}] {
 ${colorConfig
   .map(([key, itemConfig]) => {
-    const color = itemConfig.theme?.[theme as keyof typeof itemConfig.theme] || itemConfig.color;
-    return color ? `  --color-${key}: ${color};` : null;
+    const raw = itemConfig.theme?.[theme as keyof typeof itemConfig.theme] || itemConfig.color;
+    const color = raw ? safeCssToken(raw) : null;
+    const name = safeCssIdent(key);
+    return color && name ? `  --color-${name}: ${color};` : null;
   })
   .join("\n")}
 }

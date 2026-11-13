@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 const inputClass = "w-full bg-[#0A0F1A] border border-[#2C4A73] focus:border-[#447BBE] focus:outline-none rounded-[10px] px-4 py-3 text-[16px] text-white placeholder:text-white/50 transition-colors font-sans";
 const labelClass = "block text-[13px] font-bold text-[#E9E4A6] mb-1.5 tracking-widest";
@@ -152,18 +153,18 @@ ${result.pricingTip || ""}
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <a
-            href="https://zainadtani.com"
-            className="text-[12px] text-white/50 hover:text-white transition-colors whitespace-nowrap hidden sm:inline"
+          <Link
+            to="/"
+            className="text-[12px] text-white/70 hover:text-white transition-colors whitespace-nowrap"
           >
             🌐 Visit Zain's Main Site
-          </a>
-          <a
-            href="https://zainadtani.com/connect"
+          </Link>
+          <Link
+            to="/connect"
             className="text-[12px] font-bold bg-[#DD5013] hover:bg-[#DD5013]/90 text-white px-3 py-2 rounded-lg whitespace-nowrap transition-colors"
           >
             💼 Want Extra Income?
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -324,16 +325,20 @@ ${result.pricingTip || ""}
         )}
 
         {!result && !loading && (
-          <div className="text-center py-16 text-white/20">
+          <div className="text-center py-16 text-white/70">
             <div className="text-5xl mb-4">📖</div>
             <div className="text-[16px]">Enter your book idea above to get your full KDP launch kit.</div>
           </div>
         )}
       </div>
 
-      <div className="text-center mt-16 text-[12px] text-white/40">
+      <div className="text-center mt-16 text-[14px] text-white/75">
         Want to build something like this for your business? →{" "}
-        <a href="https://zainadtani.com/connect" className="underline hover:text-white/70">zainadtani.com/connect</a>
+        <Link to="/connect" className="underline hover:text-white">Connect</Link>
+        {" · "}
+        <Link to="/services#book-publishing" className="underline hover:text-white">Publishing help</Link>
+        {" · "}
+        <Link to="/#books" className="underline hover:text-white">My books</Link>
       </div>
       <div className="text-center mt-3 text-[11px] text-white/20">
         KDP Niche Finder · Zain Adtani · Adtani Education Ventures LLC
