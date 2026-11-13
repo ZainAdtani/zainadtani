@@ -1,7 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, Mail, Bot } from "lucide-react";
+import { ArrowRight, BookOpen, Mail, Bot, Gauge, Check, Share2 } from "lucide-react";
+import { NEWSLETTER_NAME, newsletterWithCadence } from "@/data/newsletter";
 
 const STRIPE_CHECKOUT_URL = "https://buy.stripe.com/8x27sLelAcHq76PfbDa3u01";
 
@@ -10,6 +11,38 @@ const WEEKS_PER_MONTH = 4.3333;
 
 function money(n: number): string {
   return "$" + Math.round(n).toLocaleString("en-US");
+}
+
+function readSlider(params: URLSearchParams, key: string, fallback: number, min: number, max: number): number {
+  if (!params.has(key)) return fallback;
+  const n = Number(params.get(key));
+  if (!Number.isFinite(n)) return fallback;
+  return Math.min(max, Math.max(min, n));
+}
+
+function shareUrl(missedCalls: number, customerWorth: number, neverTryAgain: number, wouldBook: number): string {
+  const q = new URLSearchParams({
+    calls: String(missedCalls),
+    worth: String(customerWorth),
+    again: String(neverTryAgain),
+    book: String(wouldBook),
+  });
+  return `https://zainadtani.com/missed-call-calculator?${q.toString()}`;
+}
+
+function summaryText(
+  missedCalls: number,
+  customerWorth: number,
+  neverTryAgain: number,
+  wouldBook: number,
+  monthly: number,
+  yearly: number,
+): string {
+  return [
+    `Missed calls may be costing about ${money(monthly)} a month (${money(yearly)} a year).`,
+    `${missedCalls} missed calls a week, ${money(customerWorth)} per new customer, ${neverTryAgain}% never try again, ${wouldBook}% would have booked.`,
+    `Estimate from Zain Adtani: ${shareUrl(missedCalls, customerWorth, neverTryAgain, wouldBook)}`,
+  ].join("\n");
 }
 
 type SliderRowProps = {
@@ -60,10 +93,10 @@ function SliderRow(props: SliderRowProps) {
 const HELPFUL_THINGS = [
   {
     icon: Mail,
-    title: "The Daily Z Newsletter",
-    body: "Short daily notes on AI, money, and building things. Free forever.",
+    title: newsletterWithCadence(),
+    body: "Short notes on AI, money, and building things, every morning. Free forever.",
     to: "/#z-letter",
-    cta: "Read The Z Letter",
+    cta: `Read ${NEWSLETTER_NAME}`,
   },
   {
     icon: BookOpen,
@@ -79,13 +112,22 @@ const HELPFUL_THINGS = [
     to: "/services",
     cta: "See how I help",
   },
+  {
+    icon: Gauge,
+    title: "Owner Stress Test",
+    body: "A short look at the missed-call leak and the safety net, in one grade.",
+    to: "/owner-stress-test",
+    cta: "Take the test",
+  },
 ];
 
 export default function MissedCallCalculator() {
-  const [missedCalls, setMissedCalls] = useState(10);
-  const [customerWorth, setCustomerWorth] = useState(250);
-  const [neverTryAgain, setNeverTryAgain] = useState(70);
-  const [wouldBook, setWouldBook] = useState(40);
+  const initial = typeof window === "undefined" ? null : new URLSearchParams(window.location.search);
+  const [missedCalls, setMissedCalls] = useState(() => (initial ? readSlider(initial, "calls", 10, 0, 50) : 10));
+  const [customerWorth, setCustomerWorth] = useState(() => (initial ? readSlider(initial, "worth", 250, 25, 2000) : 250));
+  const [neverTryAgain, setNeverTryAgain] = useState(() => (initial ? readSlider(initial, "again", 70, 0, 100) : 70));
+  const [wouldBook, setWouldBook] = useState(() => (initial ? readSlider(initial, "book", 40, 0, 100) : 40));
+  const [shareState, setShareState] = useState<"idle" | "copied" | "shared" | "failed">("idle");
 
   const calc = useMemo(() => {
     const monthly =
@@ -234,6 +276,65 @@ export default function MissedCallCalculator() {
           </div>
         </section>
 
+        <section aria-label="Shareable summary" className="mt-8 rounded-3xl border-2 border-[#D97706]/35 bg-[#FDF6E3] p-6 md:p-8">
+          <p className="font-sans text-[12px] font-bold uppercase tracking-[0.18em] text-[#A85B05]">Your summary</p>
+          <h2 className="mt-2 text-[32px] md:text-[44px] leading-none text-[#0A0F1A]" style={{ fontFamily: "'Luckiest Guy', cursive" }}>
+            About {money(calc.monthly)} a month
+          </h2>
+          <p className="mt-4 max-w-3xl font-sans text-[17px] leading-relaxed text-[#0A0F1A]/80">
+            At {missedCalls} missed calls a week, if a new customer is worth {money(customerWorth)}, {neverTryAgain}% never try again, and {wouldBook}% of those would have booked, that is about {money(calc.monthly)} every month and {money(calc.yearly)} a year.
+          </p>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <button
+              type="button"
+              className="btn-cta"
+              onClick={async () => {
+                const text = summaryText(missedCalls, customerWorth, neverTryAgain, wouldBook, calc.monthly, calc.yearly);
+                try {
+                  await navigator.clipboard.writeText(text);
+                  setShareState("copied");
+                } catch {
+                  setShareState("failed");
+                }
+              }}
+            >
+              {shareState === "copied" ? <Check className="mr-2 h-4 w-4" aria-hidden="true" /> : null}
+              {shareState === "copied" ? "Copied" : "Copy summary"}
+            </button>
+            <button
+              type="button"
+              className="btn-secondary-outline"
+              onClick={async () => {
+                const text = summaryText(missedCalls, customerWorth, neverTryAgain, wouldBook, calc.monthly, calc.yearly);
+                const url = shareUrl(missedCalls, customerWorth, neverTryAgain, wouldBook);
+                try {
+                  if (navigator.share) {
+                    await navigator.share({ title: "Missed call estimate", text, url });
+                    setShareState("shared");
+                    return;
+                  }
+                } catch (e) {
+                  if ((e as Error)?.name === "AbortError") return;
+                }
+                try {
+                  await navigator.clipboard.writeText(text);
+                  setShareState("copied");
+                } catch {
+                  setShareState("failed");
+                }
+              }}
+            >
+              <Share2 className="mr-2 h-4 w-4" aria-hidden="true" />
+              Share
+            </button>
+          </div>
+          <p className="mt-3 font-sans text-[13px] text-[#0A0F1A]/70" role="status">
+            {shareState === "failed"
+              ? "Could not copy from this browser. The summary is on the card above."
+              : "The shared link opens this page with the same sliders."}
+          </p>
+        </section>
+
         {/* More helpful things */}
         <section className="mt-20">
           <h2
@@ -242,7 +343,7 @@ export default function MissedCallCalculator() {
           >
             MORE HELPFUL THINGS
           </h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {HELPFUL_THINGS.map((item) => (
               <Link
                 key={item.title}

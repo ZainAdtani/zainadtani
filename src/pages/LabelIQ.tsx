@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import cheatSheetPdf from "@/assets/label-iq-cheatsheet.pdf.asset.json";
+import { NEWSLETTER_NAME, NEWSLETTER_SUBSCRIBE_URL } from "@/data/newsletter";
 
 export default function LabelIQ() {
 
@@ -12,13 +13,13 @@ export default function LabelIQ() {
           name="description"
           content="Food brands hide junk behind fancy words. Learn the one rule, the serving size trick, and the 4 villains. Free cheat sheet from Zain Adtani."
         />
-        <link rel="canonical" href="https://zainadtani.com/label-iq" />
+        <link rel="canonical" href="https://zainadtani.com/resources/label-iq" />
         <meta property="og:title" content="Label IQ: Read Any Food Label in 10 Seconds" />
         <meta
           property="og:description"
           content="The one rule, the serving size trick, and the 4 villains hiding in your pantry."
         />
-        <meta property="og:url" content="https://zainadtani.com/label-iq" />
+        <meta property="og:url" content="https://zainadtani.com/resources/label-iq" />
       </Helmet>
 
       <style>{`
@@ -118,12 +119,12 @@ export default function LabelIQ() {
         {/* Newsletter footer */}
         <section className="no-print mt-10 text-center">
           <a
-            href="https://the-z-letter.beehiiv.com/subscribe"
+            href={NEWSLETTER_SUBSCRIBE_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="font-sans text-[13px] text-[#0A0F1A]/65 hover:text-[#A85B05] transition-colors"
           >
-            Like this? Get The Z Letter
+            Like this? Get {NEWSLETTER_NAME}
           </a>
         </section>
       </main>

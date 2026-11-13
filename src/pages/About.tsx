@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { NEWSLETTER_HOST, NEWSLETTER_NAME } from "@/data/newsletter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Youtube, Linkedin, Calendar, ExternalLink } from "lucide-react";
@@ -57,8 +58,9 @@ const About = () => {
             Now I help small businesses implement AI without the overwhelm. I also help everyday people publish the book they've been putting off. I'm building in public, learning out loud, and figuring it out one lane at a time.
           </p>
           <p>
-            Outside of work: I write a daily newsletter called{" "}
-            <a href="https://the-z-letter.beehiiv.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">The Z Letter</a>
+            Outside of work: I write{" "}
+            <a href={NEWSLETTER_HOST} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{NEWSLETTER_NAME}</a>
+            , every morning
             {" "}- Check it out!
           </p>
         </div>

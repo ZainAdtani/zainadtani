@@ -28,8 +28,25 @@ export function todaysNoteIndex(date: Date = new Date()): number {
   return dayOfYear(date) % LIFE_NOTES.length;
 }
 
-export async function shareNote(text: string): Promise<"shared" | "copied" | "failed"> {
-  const payload = `${text}\n\nLife Notes by Zain Adtani: https://zainadtani.com/lifenotes`;
+/** 1-based public URL for one note, so a single line can be shared. */
+export function notePath(index: number): string {
+  return `/lifenotes/${index + 1}`;
+}
+
+export function noteUrl(index: number): string {
+  return `https://zainadtani.com${notePath(index)}`;
+}
+
+/** Accepts the 1-based number from the URL. Returns null when it is not a real note. */
+export function parseNoteNumber(raw: string | undefined): number | null {
+  if (!raw || !/^[1-9]\d*$/.test(raw)) return null;
+  const n = Number(raw);
+  if (n < 1 || n > LIFE_NOTES.length) return null;
+  return n;
+}
+
+export async function shareNote(text: string, url = "https://zainadtani.com/lifenotes"): Promise<"shared" | "copied" | "failed"> {
+  const payload = `${text}\n\nLife Notes by Zain Adtani: ${url}`;
   try {
     if (typeof navigator !== "undefined" && navigator.share) {
       await navigator.share({ title: "Life Notes", text: payload });

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 type Btn = { label: string; to: string; external?: boolean };
 type Star = {
   id: string; label: string; sub: string; color: string; size: number;
-  x: number; y: number; title: string; sentence: string; primary: Btn; secondary?: Btn;
+  x: number; y: number; title: string; sentence: string; primary: Btn; secondary?: Btn; extra?: Btn;
 };
 
 const STARS: Star[] = [
@@ -15,7 +15,8 @@ const STARS: Star[] = [
   { id: "build", label: "Build", sub: "AI tools", color: "#447BBE", size: 22, x: 40, y: 26,
     title: "Save time with simple tools.", sentence: "Start with a free tool that shows you where time or visibility is leaking.",
     primary: { label: "Free AI Checkup", to: "/ai-checkup" },
-    secondary: { label: "Missed Call Calculator", to: "/missed-call-calculator" } },
+    secondary: { label: "Missed Call Calculator", to: "/missed-call-calculator" },
+    extra: { label: "Owner Stress Test", to: "/owner-stress-test" } },
   { id: "read", label: "Read", sub: "Books on Amazon", color: "#C7BE6A", size: 22, x: 64, y: 62,
     title: "Start with a book.", sentence: "Three books, all live on Amazon. Pick the one that fits where you are.",
     primary: { label: "See my books", to: "#books" } },
@@ -116,6 +117,11 @@ export function StarMap() {
                   <CardButton b={star.primary} primary />
                   {star.secondary && <CardButton b={star.secondary} primary={false} />}
                 </div>
+                {star.extra && (
+                  <Link to={star.extra.to} className="mt-3 font-sans text-[14px] font-semibold text-[#2F5C90] underline underline-offset-4 w-fit">
+                    {star.extra.label}
+                  </Link>
+                )}
               </>
             ) : (
               <p className="font-sans text-[16px] text-center text-[#0A0F1A]/70">Hover or tap a star to see where it goes.</p>

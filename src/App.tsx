@@ -1,48 +1,50 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AppLayout } from "@/components/AppLayout";
-import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
-import Projects from "./pages/Projects";
-import Tools from "./pages/Tools";
-import Resources from "./pages/Resources";
-import AIPrompts from "./pages/AIPrompts";
-import BooksHQ from "./pages/BooksHQ";
-import Investing from "./pages/Investing";
-
-import DigitalProductsPage from "./pages/DigitalProductsPage";
-import LifeNotes from "./pages/LifeNotes";
-
-
 import Services from "./pages/Services";
-import Prompts from "./pages/Prompts";
-import HarryPotter from "./pages/HarryPotter";
-import PokemonDex from "./pages/PokemonDex";
-
-import LabelIQ from "./pages/LabelIQ";
-import Lab from "./pages/Lab";
 import Connect from "./pages/Connect";
-import KDPCopilot from "./pages/KDPCopilot";
 import FamilyProtectionGap from "./pages/FamilyProtectionGap";
-import RothIRAGame from "./pages/RothIRAGame";
-import LifeInsuranceCalculator from "./pages/LifeInsuranceCalculator";
-import FinalExpenseEstimator from "./pages/FinalExpenseEstimator";
-import TermVsWholeLifeQuiz from "./pages/TermVsWholeLifeQuiz";
 import MissedCallCalculator from "./pages/MissedCallCalculator";
 import AICheckup from "./pages/AICheckup";
-import OwnerStressTest from "./pages/OwnerStressTest";
-import AINewsSongs from "./pages/AINewsSongs";
 import BuzzerBlockPrivacy from "./pages/BuzzerBlockPrivacy";
-import DailyLifeNotes from "./pages/DailyLifeNotes";
+import DailyLifeNotes, { LifeNotePage } from "./pages/DailyLifeNotes";
 
+const Projects = lazy(() => import("./pages/Projects"));
+const Tools = lazy(() => import("./pages/Tools"));
+const Resources = lazy(() => import("./pages/Resources"));
+const AIPrompts = lazy(() => import("./pages/AIPrompts"));
+const BooksHQ = lazy(() => import("./pages/BooksHQ"));
+const Investing = lazy(() => import("./pages/Investing"));
+const DigitalProductsPage = lazy(() => import("./pages/DigitalProductsPage"));
+const LifeNotes = lazy(() => import("./pages/LifeNotes"));
+const Prompts = lazy(() => import("./pages/Prompts"));
+const HarryPotter = lazy(() => import("./pages/HarryPotter"));
+const PokemonDex = lazy(() => import("./pages/PokemonDex"));
+const LabelIQ = lazy(() => import("./pages/LabelIQ"));
+const Lab = lazy(() => import("./pages/Lab"));
+const KDPCopilot = lazy(() => import("./pages/KDPCopilot"));
+const RothIRAGame = lazy(() => import("./pages/RothIRAGame"));
+const LifeInsuranceCalculator = lazy(() => import("./pages/LifeInsuranceCalculator"));
+const FinalExpenseEstimator = lazy(() => import("./pages/FinalExpenseEstimator"));
+const TermVsWholeLifeQuiz = lazy(() => import("./pages/TermVsWholeLifeQuiz"));
+const OwnerStressTest = lazy(() => import("./pages/OwnerStressTest"));
+const AINewsSongs = lazy(() => import("./pages/AINewsSongs"));
+const AiSongs = lazy(() => import("./pages/projects/AiSongs"));
 
-// Project sub-pages
-import AiSongs from "./pages/projects/AiSongs";
+function PageFallback() {
+  return (
+    <div className="hero-warm min-h-[50vh]" role="status" aria-live="polite">
+      <span className="sr-only">Loading</span>
+    </div>
+  );
+}
 
 const queryClient = new QueryClient();
 
@@ -53,11 +55,12 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/kdp-copilot" element={<KDPCopilot />} />
+          <Route path="/kdp-copilot" element={<Suspense fallback={<PageFallback />}><KDPCopilot /></Suspense>} />
           <Route
             path="*"
             element={
               <AppLayout>
+                <Suspense fallback={<PageFallback />}>
                 <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/about" element={<About />} />
@@ -91,6 +94,11 @@ const App = () => (
                   <Route path="/resources/ai-news-songs" element={<AINewsSongs />} />
                   <Route path="/buzzerblock-privacy" element={<BuzzerBlockPrivacy />} />
                   <Route path="/lifenotes" element={<DailyLifeNotes />} />
+                  <Route path="/lifenotes/:noteId" element={<LifeNotePage />} />
+                  <Route path="/label-iq" element={<Navigate to="/resources/label-iq" replace />} />
+                  <Route path="/archive" element={<Navigate to="/lifenotes" replace />} />
+                  <Route path="/projects/pokedex" element={<Navigate to="/pokedex" replace />} />
+                  <Route path="/projects/harry-potter-world" element={<Navigate to="/harry-potter" replace />} />
                   <Route path="/newsletter" element={<Navigate to="/#z-letter" replace />} />
                   <Route path="/the-z-letter" element={<Navigate to="/#z-letter" replace />} />
                   <Route path="/thezletter" element={<Navigate to="/#z-letter" replace />} />
@@ -101,6 +109,7 @@ const App = () => (
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
+                </Suspense>
               </AppLayout>
             }
           />

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import zLetterLogo from "@/assets/z-letter-logo.jpeg";
+import { NEWSLETTER_NAME, NEWSLETTER_RSS_URL, NEWSLETTER_SUBSCRIBE_URL } from "@/data/newsletter";
 
 interface FeedItem {
   title: string;
@@ -8,8 +9,8 @@ interface FeedItem {
   pubDate: string;
 }
 
-const RSS_URL = "https://rss.beehiiv.com/feeds/jHsdvEe1Hm.xml";
-const SUBSCRIBE_URL = "https://the-z-letter.beehiiv.com/subscribe";
+const RSS_URL = NEWSLETTER_RSS_URL;
+const SUBSCRIBE_URL = NEWSLETTER_SUBSCRIBE_URL;
 
 const FALLBACK_ITEMS: FeedItem[] = [
   { title: "How I Use AI to Write a Book in 30 Days", link: SUBSCRIBE_URL, pubDate: "" },
@@ -72,7 +73,7 @@ export function ZLetterFeed() {
                 >
                   <img
                     src={zLetterLogo}
-                    alt="The Z Letter"
+                    alt={NEWSLETTER_NAME}
                     className="w-12 h-12 rounded-lg border border-border object-cover mb-3"
                   />
                   <h3 className="font-display font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2">

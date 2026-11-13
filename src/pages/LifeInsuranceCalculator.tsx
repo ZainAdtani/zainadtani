@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useMemo, useState } from "react";
 
-const SUBSCRIBE_URL = "https://the-z-letter.beehiiv.com/subscribe";
+import { NEWSLETTER_NAME, NEWSLETTER_SUBSCRIBE_URL } from "@/data/newsletter";
 
 /** Parse a digits-only field into a safe non-negative number. */
 function toNumber(raw: string): number {
@@ -290,12 +290,12 @@ export default function LifeInsuranceCalculator() {
             </p>
 
             <a
-              href={SUBSCRIBE_URL}
+              href={NEWSLETTER_SUBSCRIBE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 block text-center font-sans font-bold text-[#0A0F1A] rounded-full bg-emerald-400 hover:bg-emerald-300 transition-colors px-6 py-4 text-[16px]"
             >
-              Get The Daily Z, free
+              Get {NEWSLETTER_NAME}, free
             </a>
             <p className="mt-3 text-center font-sans text-[12px] text-white/50">
               One useful money idea every morning. Unsubscribe anytime.

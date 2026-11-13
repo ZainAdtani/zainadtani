@@ -89,6 +89,11 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  :focus-visible {
+    outline: 2px solid #447BBE;
+    outline-offset: 3px;
+  }
+
   h1, h2 {
     font-family: 'Luckiest Guy', cursive !important;
     letter-spacing: 0.02em;
@@ -152,6 +157,7 @@
     transition: background-color 0.2s ease, transform 0.15s ease;
   }
   .btn-cta:hover { background-color: #C4460F; }
+  .btn-cta:focus-visible { outline: 2px solid #0A0F1A; outline-offset: 3px; }
   .btn-cta:active { transform: scale(0.985); }
 
   .btn-secondary-outline {
@@ -165,6 +171,7 @@
     background-color: rgba(68, 123, 190, 0.07);
     border-color: #447BBE;
   }
+  .btn-secondary-outline:focus-visible { outline: 2px solid #0A0F1A; outline-offset: 3px; }
 
   .eyebrow {
     @apply font-sans text-[12px] font-semibold tracking-[0.14em] uppercase;

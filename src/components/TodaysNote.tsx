@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Share2, Check } from "lucide-react";
-import { LIFE_NOTES, todaysNoteIndex, shareNote } from "@/data/lifeNotes";
+import { LIFE_NOTES, todaysNoteIndex, noteUrl, shareNote } from "@/data/lifeNotes";
 
-export function NoteShareButton({ text, className = "" }: { text: string; className?: string }) {
+export function NoteShareButton({ text, url, className = "" }: { text: string; url?: string; className?: string }) {
   const [done, setDone] = useState(false);
   return (
     <button
@@ -11,7 +11,7 @@ export function NoteShareButton({ text, className = "" }: { text: string; classN
       aria-label="Share this note"
       title="Share this note"
       onClick={async () => {
-        const r = await shareNote(text);
+        const r = await shareNote(text, url);
         if (r !== "failed") {
           setDone(true);
           setTimeout(() => setDone(false), 1800);
@@ -27,7 +27,8 @@ export function NoteShareButton({ text, className = "" }: { text: string; classN
 
 export function TodaysNoteStrip() {
   const today = new Date();
-  const note = LIFE_NOTES[todaysNoteIndex(today)];
+  const index = todaysNoteIndex(today);
+  const note = LIFE_NOTES[index];
   const dateLabel = today.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
   return (
     <section aria-label="Today's Note" className="surface-warm border-b border-border px-5 py-5">
@@ -39,7 +40,7 @@ export function TodaysNoteStrip() {
           <p className="mt-1 font-sans text-[16px] sm:text-[17px] leading-snug text-[#0A0F1A]">{note}</p>
         </div>
         <div className="flex items-center gap-4">
-          <NoteShareButton text={note} />
+          <NoteShareButton text={note} url={noteUrl(index)} />
           <Link to="/lifenotes" className="font-sans text-[14px] font-semibold text-[#2F5C90] underline-offset-4 hover:underline whitespace-nowrap">
             See all notes
           </Link>
