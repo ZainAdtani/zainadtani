@@ -362,3 +362,31 @@
   .book3d-inner { transition: none; }
   .phone-demo, .phone-demo * , .res-icon { animation: none !important; transition: none !important; }
 }
+
+/* ===== Part 5: playground + page polish ===== */
+@keyframes btn-glow { 0%,100% { box-shadow: 0 0 0 0 rgba(221,80,19,0), 0 6px 18px -8px rgba(221,80,19,.45); } 50% { box-shadow: 0 0 0 4px rgba(221,80,19,.14), 0 0 26px 2px rgba(221,80,19,.38); } }
+.btn-glow { box-shadow: 0 0 20px 1px rgba(221,80,19,.3); }
+@keyframes play-wiggle { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-2.5deg) scale(1.03); } 50% { transform: rotate(2deg) scale(1.03); } 75% { transform: rotate(-1deg); } }
+@keyframes stagger-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes step-pop { 0% { opacity: 0; transform: scale(.4) rotate(-12deg); } 70% { transform: scale(1.12); } 100% { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  .btn-glow { animation: btn-glow 2.8s ease-in-out infinite; }
+  .tilt-smooth { transition: transform .2s ease-out, box-shadow .25s ease; }
+  .tilt-smooth:hover { box-shadow: 0 16px 36px -16px rgba(10,15,26,.25), 0 10px 30px -12px rgba(221,80,19,.22); }
+  .wiggle-hover:hover .wiggle-target, .wiggle-hover:focus-within .wiggle-target { animation: play-wiggle .6s ease-in-out; }
+  .stagger-list > * { animation: stagger-up .6s cubic-bezier(.22,1,.36,1) both; }
+  .stagger-list > *:nth-child(1) { animation-delay: 0ms } .stagger-list > *:nth-child(2) { animation-delay: 70ms }
+  .stagger-list > *:nth-child(3) { animation-delay: 140ms } .stagger-list > *:nth-child(4) { animation-delay: 210ms }
+  .stagger-list > *:nth-child(5) { animation-delay: 280ms } .stagger-list > *:nth-child(6) { animation-delay: 350ms }
+  .stagger-list > *:nth-child(7) { animation-delay: 420ms } .stagger-list > *:nth-child(8) { animation-delay: 490ms }
+  .stagger-list > *:nth-child(n+9) { animation-delay: 560ms }
+  .steps-row .step-icon { opacity: 0; }
+  .steps-row.is-on .step-icon { animation: step-pop .6s cubic-bezier(.22,1,.36,1) both; animation-delay: calc(var(--i, 0) * 220ms); }
+  .motion-page .bg-card, .motion-page .border.rounded-xl, .motion-page .border.rounded-lg {
+    transition: transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s ease;
+  }
+  .motion-page .bg-card:hover, .motion-page .rounded-xl.border:hover, .motion-page .rounded-lg.border:not(input):not(button):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px -14px rgba(10,15,26,.22), 0 0 0 1px rgba(68,123,190,.18), 0 10px 30px -12px rgba(221,80,19,.22);
+  }
+}

@@ -514,7 +514,7 @@ export default function Tools() {
   const isSearching = query.trim().length > 0;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="motion-page min-h-screen bg-background">
       <Helmet>
         <title>Tools — Software I Use Every Day | Zain Adtani</title>
         <meta name="description" content="A categorized list of the software, AI tools, and apps Zain Adtani uses every day for building, writing, designing, automating, and running a small business." />

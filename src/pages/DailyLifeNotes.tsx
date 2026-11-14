@@ -20,7 +20,7 @@ export default function DailyLifeNotes() {
         </p>
       </section>
       <section className="px-5 py-10">
-        <ul className="mx-auto grid max-w-3xl gap-4">
+        <ul className="stagger-list mx-auto grid max-w-3xl gap-4">
           {order.map((i) => {
             const isToday = i === todayIdx;
             return (

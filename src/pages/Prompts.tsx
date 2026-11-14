@@ -109,7 +109,7 @@ export default function Prompts() {
           <p className="text-base text-muted-foreground mb-4">
             Want me to build these into your workflow?
           </p>
-          <Button asChild size="lg">
+          <Button asChild size="lg" className="btn-shine btn-glow">
             <Link to="/services">→ Work With Me on AI</Link>
           </Button>
         </section>

@@ -134,7 +134,7 @@ export default function AIPrompts() {
   const isLongPrompt = (text: string) => text.length > 300;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="motion-page min-h-screen bg-background">
       <Helmet>
         <title>AI Prompt Library — Curated ChatGPT & Claude Prompts | Zain Adtani</title>
         <meta name="description" content="Zain Adtani's curated library of AI prompts for ChatGPT, Claude, and Gemini — searchable, tagged, and built for real work across writing, business, and learning." />
@@ -210,9 +210,8 @@ export default function AIPrompts() {
             </div>
             <Button 
               onClick={() => copyToClipboard(CUSTOM_INSTRUCTIONS, "Custom instructions")}
-              variant="outline"
               size="sm"
-              className="gap-2 shrink-0"
+              className="gap-2 shrink-0 bg-[#DD5013] text-white hover:bg-[#DD5013]/90 btn-shine btn-glow"
             >
               <Copy className="w-4 h-4" />
               Copy

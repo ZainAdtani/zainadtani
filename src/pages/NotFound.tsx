@@ -12,7 +12,7 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4 py-20">
+    <div className="hero-warm min-h-[80vh] flex items-center justify-center px-4 py-20">
       <Helmet>
         <title>Page Not Found · Zain Adtani</title>
         <meta name="description" content="The page you're looking for doesn't exist. Head back home or explore services, books, and resources." />
@@ -38,7 +38,7 @@ const NotFound = () => {
 
 
         <div className="flex flex-wrap gap-3 justify-center">
-          <Button asChild size="lg">
+          <Button asChild size="lg" className="btn-glow btn-shine bg-[#DD5013] text-white hover:bg-[#DD5013]/90">
             <Link to="/" className="flex items-center gap-2">
               <Home className="w-4 h-4" />
               Go Home

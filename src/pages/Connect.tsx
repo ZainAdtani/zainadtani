@@ -1,3 +1,4 @@
+import { WhatHappensNext } from "@/components/motion/StepsRow";
 import { Helmet } from "react-helmet-async";
 import { useForm, ValidationError } from "@formspree/react";
 import { NEWSLETTER_HOST, newsletterWithCadence } from "@/data/newsletter";
@@ -77,6 +78,8 @@ const Connect = () => {
       <div className="max-w-4xl mx-auto border-t border-white/10" />
 
       {/* OPPORTUNITY */}
+      <WhatHappensNext />
+
       <section id="opportunity" className="container mx-auto px-4 py-20 max-w-4xl scroll-mt-24">
         <div className="text-[12px] tracking-[0.22em] font-semibold text-[#2F5C90] mb-4">INCOME OPPORTUNITY</div>
         <h2

@@ -137,7 +137,7 @@ ${result.pricingTip || ""}
   );
 
   return (
-    <div className="min-h-screen bg-[#0A0F1A] text-white pb-20">
+    <div className="motion-page min-h-screen bg-[#0A0F1A] text-white pb-20">
       <Helmet>
         <title>KDP Niche Finder | Zain Adtani</title>
         <meta name="robots" content="noindex, nofollow" />
@@ -218,7 +218,7 @@ ${result.pricingTip || ""}
           <button
             onClick={generate}
             disabled={loading || !topic.trim()}
-            className="w-full py-4 rounded-xl font-extrabold text-[15px] tracking-wide text-white transition-all"
+            className={`w-full py-4 rounded-xl font-extrabold text-[15px] tracking-wide text-white transition-all btn-shine ${topic.trim() && !loading ? "btn-glow" : ""}`}
             style={{
               background: topic.trim() && !loading ? "#DD5013" : "rgba(221,80,19,0.35)",
               cursor: topic.trim() && !loading ? "pointer" : "not-allowed",

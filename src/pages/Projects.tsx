@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
 import { projects } from "@/data/projects";
 import pokeballBg from "@/assets/pokeball-background.png";
+import { TiltCard } from "@/components/motion/TiltCard";
 import pikachu from "@/assets/pikachu.png";
 
 export default function Projects() {
@@ -49,13 +50,14 @@ export default function Projects() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <ScrollReveal key={project.id} delay={index * 100}>
-            <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+            <TiltCard className={`rounded-lg ${project.id === "pokedex" || project.id === "harry-potter-world" ? "wiggle-hover" : ""}`}>
+            <Card className="overflow-hidden">
               {project.id === 'pokedex' ? (
                 <div className="aspect-video w-full overflow-hidden bg-muted relative">
                   <img 
                     src={pokeballBg} 
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="wiggle-target w-full h-full object-cover"
                   />
                 </div>
               ) : project.thumbnail ? (
@@ -63,7 +65,7 @@ export default function Projects() {
                   <img 
                     src={project.thumbnail} 
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="wiggle-target w-full h-full object-cover"
                     onError={(e) => {
                       e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="225"%3E%3Crect width="400" height="225" fill="%23222"%3E%3C/rect%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23666" font-size="20" font-family="system-ui"%3E' + project.title + '%3C/text%3E%3C/svg%3E';
                     }}
@@ -75,7 +77,7 @@ export default function Projects() {
                 <CardDescription>{project.description}</CardDescription>
               </CardHeader>
               <CardFooter className="flex gap-2">
-                <Button asChild className="flex-1">
+                <Button asChild className="flex-1 btn-shine btn-glow">
                   <Link to={project.route}>Open</Link>
                 </Button>
                 {project.id === 'pokedex' && notionPokedexUrl && (
@@ -96,6 +98,7 @@ export default function Projects() {
                 )}
               </CardFooter>
             </Card>
+            </TiltCard>
             </ScrollReveal>
           ))}
         </div>

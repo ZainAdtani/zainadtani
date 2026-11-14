@@ -78,7 +78,7 @@ export default function DigitalProductsPage() {
   const total = FREE_PRODUCTS.length + PAID_PRODUCTS.length;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="motion-page min-h-screen bg-background">
       <Helmet>
         <title>Digital Product HQ — Free Guides & Tools | Zain Adtani</title>
         <meta name="description" content="Free guides and simple tools from Zain Adtani — AI prompt packs, budget worksheets, and family protection planners, all sold through Gumroad." />
@@ -101,7 +101,7 @@ export default function DigitalProductsPage() {
             {total} {total === 1 ? "product" : "products"}, sold through my Gumroad store
           </p>
           <div className="mt-6">
-            <Button asChild size="lg">
+            <Button asChild size="lg" className="btn-shine btn-glow">
               <a href={STORE_URL} target="_blank" rel="noopener noreferrer">
                 Visit the full store on Gumroad →
               </a>

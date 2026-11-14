@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { TiltCard } from "@/components/motion/TiltCard";
 import pokemonImg from "@/assets/pokemon-pokedex.png";
 import harryPotterImg from "@/assets/harry-potter-world.png";
 
@@ -61,12 +62,12 @@ const Lab = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
             {PROJECTS.map((p) => (
-              <div
+              <TiltCard
                 key={p.title}
-                className="rounded-xl overflow-hidden bg-white border border-[#447BBE]/20 flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#447BBE]"
+                className={`rounded-xl overflow-hidden bg-white border border-[#447BBE]/20 flex flex-col hover:border-[#447BBE] ${p.href === "/pokedex" || p.href === "/harry-potter" ? "wiggle-hover" : ""}`}
               >
                 <div className="relative aspect-[16/10] overflow-hidden">
-                  <img src={p.image} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
+                  <img src={p.image} alt={p.title} className="wiggle-target w-full h-full object-cover" loading="lazy" />
                   <span
                     className="absolute top-3 left-3 rounded-full text-[#0A0F1A] text-xs font-semibold px-3 py-1.5"
                     style={{ backgroundColor: p.badgeBg }}
@@ -79,12 +80,12 @@ const Lab = () => {
                   <p className="text-sm text-[#A85B05] flex-1">{p.description}</p>
                   <Link
                     to={p.href}
-                    className="mt-2 inline-flex items-center justify-center w-full bg-[#DD5013] text-white font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity"
+                    className="mt-2 inline-flex items-center justify-center w-full bg-[#DD5013] text-white font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity btn-shine btn-glow"
                   >
                     {p.cta}
                   </Link>
                 </div>
-              </div>
+              </TiltCard>
             ))}
           </div>
         </div>

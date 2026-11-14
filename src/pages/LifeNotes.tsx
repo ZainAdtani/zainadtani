@@ -78,7 +78,7 @@ export default function LifeNotes() {
           {grouped.map(({ section, notes }) => (
             <div key={section}>
               <h2 className="text-2xl font-bold mb-4">{section}</h2>
-              <div className="grid gap-4">
+              <div className="stagger-list grid gap-4">
                 {notes.map((n, idx) => {
                   const bodyPreview = preview(n.body);
                   const long = isLong(n.body);
