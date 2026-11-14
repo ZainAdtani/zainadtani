@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Download, ShoppingCart, Calendar, BookOpen, Shield, PiggyBank, Briefcase } from "lucide-react";
+import { GapMeter } from "@/components/money/GapMeter";
 import pdfAsset from "@/assets/family-protection-gap-pdf.asset.json";
 
 const AMAZON_URL = "https://a.co/d/0j8SnTJt";
@@ -59,6 +60,8 @@ export default function FamilyProtectionGap() {
           </p>
         </div>
       </section>
+
+      <GapMeter />
 
       <div className="max-w-4xl mx-auto border-t border-border" />
 

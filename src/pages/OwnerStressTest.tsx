@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Check, Copy, Mail, PhoneOff, ShieldCheck } from "lucide-react";
+import { ScoreGauge } from "@/components/money/ScoreGauge";
 import {
   AI_CHECKUP_PATH,
   CALENDLY_URL,
@@ -360,6 +361,30 @@ function CopyScore({ inputs }: { inputs: StressInputs }) {
   );
 }
 
+/** Share my score: copies the short plain text summary to the clipboard. */
+function ShareScore({ inputs }: { inputs: StressInputs }) {
+  const text = useMemo(() => shareText(clampInputs(inputs)), [inputs]);
+  const [state, setState] = useState<"idle" | "copied" | "failed">("idle");
+  useEffect(() => {
+    if (state === "idle") return;
+    const t = window.setTimeout(() => setState("idle"), 2500);
+    return () => window.clearTimeout(t);
+  }, [state]);
+  return (
+    <div className="mt-3">
+      <button
+        type="button"
+        onClick={async () => setState((await copyToClipboard(text)) ? "copied" : "failed")}
+        className="btn-cta inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#DD5013] px-5 py-2.5 font-sans font-bold text-[15px] text-[#0A0F1A]"
+      >
+        {state === "copied" ? <Check className="h-4 w-4" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
+        {state === "copied" ? "Copied" : "Share my score"}
+      </button>
+      <p className="sr-only" role="status">{state === "copied" ? "Score copied to clipboard" : state === "failed" ? "Copy did not work" : ""}</p>
+    </div>
+  );
+}
+
 function GroupCard({ title, sub, children }: { title: string; sub: string; children: ReactNode }) {
   return (
     <div className="min-w-0 rounded-3xl border-2 border-[#0A0F1A]/10 bg-[#E9E4A6]/30 p-5 sm:p-6 md:p-8">
@@ -484,6 +509,7 @@ export default function OwnerStressTest() {
                   Your phone and your safety net, scored together.
                 </p>
               </div>
+              <div className="mt-5 flex justify-center"><ScoreGauge score={result.score} /></div>
 
               <div className="mt-7 border-t border-white/15 pt-6">
                 <div className="flex items-baseline justify-between gap-3">
@@ -528,6 +554,7 @@ export default function OwnerStressTest() {
               )}
 
               <CopyScore inputs={inputs} />
+              <ShareScore inputs={inputs} />
             </div>
 
             <p className="font-sans text-[12px] leading-5 text-[#0A0F1A]/60">{DISCLAIMER}</p>

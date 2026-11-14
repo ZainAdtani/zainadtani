@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useTweenedNumber } from "@/hooks/useTweenedNumber";
 import { Link } from "react-router-dom";
 import { ArrowRight, BookOpen, Mail, Bot, Gauge, Check, Share2 } from "lucide-react";
 import { NEWSLETTER_NAME, newsletterWithCadence } from "@/data/newsletter";
@@ -127,6 +128,7 @@ export default function MissedCallCalculator() {
   const [customerWorth, setCustomerWorth] = useState(() => (initial ? readSlider(initial, "worth", 250, 25, 2000) : 250));
   const [neverTryAgain, setNeverTryAgain] = useState(() => (initial ? readSlider(initial, "again", 70, 0, 100) : 70));
   const [wouldBook, setWouldBook] = useState(() => (initial ? readSlider(initial, "book", 40, 0, 100) : 40));
+  const [pulseKey, setPulseKey] = useState(0);
   const [shareState, setShareState] = useState<"idle" | "copied" | "shared" | "failed">("idle");
 
   const calc = useMemo(() => {
@@ -138,6 +140,13 @@ export default function MissedCallCalculator() {
       (wouldBook / 100);
     return { monthly, yearly: monthly * 12 };
   }, [missedCalls, customerWorth, neverTryAgain, wouldBook]);
+  const shownMonthly = useTweenedNumber(calc.monthly);
+  const shownYearly = useTweenedNumber(calc.yearly);
+  const prevMonthly = useRef(calc.monthly);
+  useEffect(() => {
+    if (calc.monthly > prevMonthly.current) setPulseKey(k => k + 1);
+    prevMonthly.current = calc.monthly;
+  }, [calc.monthly]);
 
   return (
     <div className="min-h-screen bg-white text-[#0A0F1A]">
@@ -235,10 +244,11 @@ export default function MissedCallCalculator() {
               Every month you lose
             </p>
             <p
-              className="mt-2 text-[52px] md:text-[60px] leading-none text-[#DD5013]"
+              key={pulseKey}
+              className={`mt-2 text-[52px] md:text-[60px] leading-none text-[#DD5013] tabular-nums ${pulseKey ? "animate-loss-pulse" : ""}`}
               style={{ fontFamily: "'Luckiest Guy', cursive" }}
             >
-              {money(calc.monthly)}
+              {money(shownMonthly)}
             </p>
             <p className="mt-6 font-sans text-[13px] font-bold uppercase tracking-[0.2em] text-[#E9E4A6]">
               Every year you lose
@@ -247,7 +257,7 @@ export default function MissedCallCalculator() {
               className="mt-2 text-[36px] md:text-[44px] leading-none text-white"
               style={{ fontFamily: "'Luckiest Guy', cursive" }}
             >
-              {money(calc.yearly)}
+              {money(shownYearly)}
             </p>
             <p className="mt-6 font-sans text-[14px] text-white/70 leading-relaxed">
               That is money walking past your shop every month. The good news:

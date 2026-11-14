@@ -326,3 +326,11 @@
     transform: translateX(120%); transition: transform .7s ease;
   }
 }
+
+/* Money tools motion (part 2) */
+@keyframes loss-pulse { 0% { text-shadow: 0 0 0 hsl(0 80% 55% / 0); transform: scale(1); } 40% { text-shadow: 0 0 24px hsl(0 80% 55% / 0.75); transform: scale(1.04); } 100% { text-shadow: 0 0 0 hsl(0 80% 55% / 0); transform: scale(1); } }
+.animate-loss-pulse { animation: loss-pulse 700ms ease-out; transform-origin: left center; }
+@keyframes flip-in { from { opacity: 0; transform: perspective(900px) rotateY(-70deg); } to { opacity: 1; transform: perspective(900px) rotateY(0); } }
+.animate-flip-in { animation: flip-in 800ms cubic-bezier(.2,.7,.2,1) both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
+@supports not (animation-timeline: view()) { .animate-flip-in { animation-timeline: auto; } }
+@media (prefers-reduced-motion: reduce) { .animate-loss-pulse, .animate-flip-in { animation: none !important; } }

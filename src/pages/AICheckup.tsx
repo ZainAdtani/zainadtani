@@ -13,7 +13,7 @@ function CheckupButton() {
 
 function ReportCard({ report }: { report: typeof SAMPLE_REPORTS[number] }) {
   return (
-    <article className="flex min-w-0 flex-col rounded-lg border border-border bg-card text-card-foreground">
+    <article className="animate-flip-in flex min-w-0 flex-col rounded-lg border border-border bg-card text-card-foreground">
       <div className="border-b border-border bg-accent/25 p-6 text-center">
         <div aria-label={`Grade ${report.grade}`} className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border-2 border-dashed border-primary text-4xl font-extrabold text-primary">{report.grade}</div>
         <h3 className="mt-5 text-xl leading-snug">{report.business}</h3>
