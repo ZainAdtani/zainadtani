@@ -1,3 +1,4 @@
+import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import zLetterLogo from "@/assets/z-letter-logo.jpeg";
@@ -27,7 +28,7 @@ export function ZLetterFeed() {
       .then((r) => r.text())
       .then((text) => {
         const xml = new DOMParser().parseFromString(text, "text/xml");
-        const entries = Array.from(xml.querySelectorAll("item")).slice(0, 3);
+        const entries = Array.from(xml.querySelectorAll("item")).slice(0, 12);
         const parsed = entries.map((el) => ({
           title: el.querySelector("title")?.textContent ?? "",
           link: el.querySelector("link")?.textContent ?? "#",
@@ -38,6 +39,9 @@ export function ZLetterFeed() {
       .catch(() => setItems(FALLBACK_ITEMS))
       .finally(() => setLoading(false));
   }, []);
+
+  const [query, setQuery] = useState("");
+  const shown = items.filter((it) => it.title.toLowerCase().includes(query.trim().toLowerCase()));
 
   const formatDate = (raw: string) => {
     try {
@@ -54,7 +58,18 @@ export function ZLetterFeed() {
   return (
     <div className="py-0">
       <div className="container mx-auto px-4 max-w-6xl">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="relative mx-auto mb-6 max-w-md">
+          <Search aria-hidden="true" className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search issues"
+            aria-label="Search issues by title"
+            className="w-full rounded-full border border-border bg-card py-2.5 pl-9 pr-4 font-sans text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {loading
             ? Array.from({ length: 3 }).map((_, i) => (
                 <div key={i} className="rounded-xl border border-border bg-card p-6 space-y-3">
@@ -63,7 +78,7 @@ export function ZLetterFeed() {
                   <Skeleton className="h-3 w-1/4" />
                 </div>
               ))
-            : items.map((item, i) => (
+            : shown.map((item, i) => (
                 <a
                   key={i}
                   href={item.link}

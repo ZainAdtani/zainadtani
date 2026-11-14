@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Share2, Check } from "lucide-react";
+import { TypeOut } from "@/components/TypeOut";
 import { LIFE_NOTES, todaysNoteIndex, noteUrl, shareNote } from "@/data/lifeNotes";
 
 export function NoteShareButton({ text, url, className = "" }: { text: string; url?: string; className?: string }) {
@@ -37,7 +38,7 @@ export function TodaysNoteStrip() {
           <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.14em] text-[#0A0F1A]/60">
             Today's Note <span className="mx-1">·</span> <span className="normal-case tracking-normal">{dateLabel}</span>
           </p>
-          <p className="mt-1 font-sans text-[16px] sm:text-[17px] leading-snug text-[#0A0F1A]">{note}</p>
+          <p className="mt-1 font-sans text-[16px] sm:text-[17px] leading-snug text-[#0A0F1A]"><TypeOut text={note} /></p>
         </div>
         <div className="flex items-center gap-4">
           <NoteShareButton text={note} url={noteUrl(index)} />

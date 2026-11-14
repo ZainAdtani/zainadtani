@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { PhoneDemo } from "@/components/home/PhoneDemo";
 import { NEWSLETTER_NAME, openNewsletterSignup, type NewsletterTag } from "@/data/newsletter";
 
 const BADGE = "/badges/app-store-badge.svg";
@@ -69,7 +70,7 @@ export function AppsSection() {
         <ul className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {LIVE.map((a) => (
             <li key={a.name} className="surface-card p-5 flex flex-col items-center text-center">
-              <img src={a.icon} alt={`${a.name} app icon`} width={80} height={80} loading="lazy" className="w-20 h-20 rounded-[22%]" />
+              <PhoneDemo icon={a.icon} name={a.name} />
               <h3 className="font-display text-[17px] leading-tight text-[#0A0F1A] mt-4">{a.name}</h3>
               <p className="font-sans text-[14px] leading-relaxed text-[#0A0F1A]/75 mt-2 flex-1">{a.sentence}</p>
               <a href={a.url} target="_blank" rel="noopener noreferrer" aria-label={`Download ${a.name} on the App Store`}

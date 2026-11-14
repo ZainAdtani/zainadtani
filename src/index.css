@@ -339,3 +339,26 @@
 @keyframes card-flip { from { opacity: 0; transform: perspective(900px) rotateY(-80deg); } to { opacity: 1; transform: perspective(900px) rotateY(0); } }
 .animate-card-flip { animation: card-flip 700ms cubic-bezier(.2,.7,.2,1) both; }
 @media (prefers-reduced-motion: reduce) { .animate-question-in, .animate-card-flip { animation: none !important; } }
+/* Part 4: content pages */
+.book3d-inner { transform-style: preserve-3d; transform: rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)); transition: transform 500ms cubic-bezier(.2,.7,.2,1); }
+.book3d:active .book3d-inner { translate: 0 -6px; }
+.book3d-inner.is-open { transform: rotateY(180deg); }
+.book3d-face, .book3d-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.book3d-back { transform: rotateY(180deg); }
+@keyframes phone-bob { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-6px) scale(1.06); } }
+@keyframes phone-bar { 0%,100% { transform: scaleX(1); } 50% { transform: scaleX(.55); } }
+@keyframes phone-glow { 0%,100% { opacity: .2; } 50% { opacity: .5; } }
+.phone-demo { transition: transform 300ms ease; }
+.phone-demo.is-on { transform: translateY(-4px); }
+.phone-demo.is-on .phone-demo-icon { animation: phone-bob 2.2s ease-in-out infinite; }
+.phone-demo.is-on .phone-demo-bar { transform-origin: left; animation: phone-bar 1.8s ease-in-out infinite; }
+.phone-demo.is-on .phone-demo-bar:nth-child(2) { animation-delay: .3s; }
+.phone-demo.is-on .phone-demo-bar:nth-child(3) { animation-delay: .6s; }
+.phone-demo.is-on .phone-demo-bg { animation: phone-glow 2.2s ease-in-out infinite; }
+@keyframes res-wiggle { 0%,100% { transform: rotate(0) scale(1); } 30% { transform: rotate(-10deg) scale(1.12); } 60% { transform: rotate(8deg) scale(1.05); } }
+.res-icon { transition: transform 300ms ease; }
+.group:hover .res-icon, .group:focus-visible .res-icon { animation: res-wiggle 700ms ease-in-out; }
+@media (prefers-reduced-motion: reduce) {
+  .book3d-inner { transition: none; }
+  .phone-demo, .phone-demo * , .res-icon { animation: none !important; transition: none !important; }
+}

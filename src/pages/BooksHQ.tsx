@@ -28,6 +28,7 @@ import { Helmet } from "react-helmet-async";
 import { BooksJsonLd } from "@/components/BooksJsonLd";
 import { BOOKS, type BookStatus } from "@/data/books";
 import { AMAZON_BOOKS } from "@/data/myBooks";
+import { BookCover3D } from "@/components/BookCover3D";
 import { findCover } from "@/lib/covers";
 
 const BOOKS_PER_PAGE = 12;
@@ -209,13 +210,10 @@ export default function BooksHQ() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {AMAZON_BOOKS.map((book) => (
               <div key={book.asin} className="surface-card p-5 flex gap-4">
-                <img
+                <BookCover3D
                   src={`https://images-na.ssl-images-amazon.com/images/P/${book.asin}.01.LZZZZZZZ.jpg`}
                   alt={`${book.title} book cover by Zain Adtani`}
-                  className="w-20 aspect-[2/3] object-contain shrink-0"
-                  width={80}
-                  height={120}
-                  loading="lazy"
+                  inside={book.blurb}
                 />
                 <div className="flex flex-col min-w-0">
                   <span className="font-sans text-[11px] font-semibold tracking-[0.12em] uppercase text-[#2F5C90]">{book.format}</span>

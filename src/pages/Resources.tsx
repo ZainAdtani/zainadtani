@@ -6,7 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CopyBlock } from "@/components/CopyBlock";
 import { AI_PROMPTS } from "@/data/ai_prompts";
-import { Search, ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
+import { Search, ChevronDown, ChevronUp, ExternalLink, User, BookOpen, Sparkles, Wallet, Wrench, type LucideIcon } from "lucide-react";
+
+const GROUP_ICON: Record<string, LucideIcon> = { "About & Contact": User, "Guides & Library": BookOpen, "Learn & Play": Sparkles, "Money & Business": Wallet };
 
 type ToolCategory = "AI & Agents" | "Productivity" | "Images & Design" | "Apps" | "Courses I Recommend";
 interface Tool { name: string; url: string; desc: string; category: ToolCategory; }
@@ -167,8 +169,10 @@ const categoryColor: Record<string, string> = {
 
 function SiteCard({ entry }: { entry: SiteEntry }) {
   const isExternal = entry.route.startsWith("http");
+  const GroupIcon = GROUP_ICON[entry.group] ?? Sparkles;
   const inner = (
     <>
+      <GroupIcon aria-hidden="true" className="res-icon mb-3 h-6 w-6 text-[#DD5013]" />
       <span className={`self-start rounded-full px-2.5 py-0.5 text-[10px] font-medium tracking-wide ${groupTagColor[entry.group]}`}>
         {entry.group}
       </span>
@@ -504,6 +508,7 @@ export default function Resources() {
                 e.currentTarget.style.boxShadow = "none";
               }}
             >
+              <Wrench aria-hidden="true" className="res-icon mb-2 h-5 w-5 text-[#447BBE]" />
               <h3 className="font-sans font-bold text-[16px] text-[#0A0F1A]">{t.name}</h3>
               <p className="font-sans text-[13px] text-[#A85B05] mt-2">{t.desc}</p>
               <span className="mt-3 inline-flex items-center gap-1 text-[12px] font-semibold text-[#DD5013] opacity-0 group-hover:opacity-100 transition-opacity duration-200">

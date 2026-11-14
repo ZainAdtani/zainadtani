@@ -18,6 +18,8 @@ function faviconFor(url?: string) {
   }
 }
 
+import { StoryTimeline } from "@/components/StoryTimeline";
+
 const About = () => {
   return (
     <div className="min-h-screen bg-background">
@@ -50,7 +52,7 @@ const About = () => {
           </p>
         </div>
 
-        <div className="space-y-5 text-muted-foreground leading-relaxed mb-12">
+        <StoryTimeline className="text-muted-foreground leading-relaxed mb-12">
           <p>Hey friends. I'm Zain Adtani. Most people call me Z.</p>
           <p>
             I'm an AI consultant, a licensed financial professional, and an author, based in
@@ -76,7 +78,7 @@ const About = () => {
           </p>
           <p>I run all of this through Adtani Education Ventures LLC.</p>
           <p>Glad you're here.</p>
-        </div>
+        </StoryTimeline>
 
         {/* Stat blocks */}
         <div className="grid grid-cols-3 gap-4 mb-12">
