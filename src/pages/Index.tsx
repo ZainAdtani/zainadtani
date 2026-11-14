@@ -120,14 +120,6 @@ const DISCOVERY = [
     internal: true,
   },
   {
-    label: "Local businesses",
-    title: "Free AI Checkup",
-    body: "A report card for your website, Google reviews, social pages, and AI search.",
-    to: "/ai-checkup",
-    icon: Bot,
-    internal: true,
-  },
-  {
     label: "On the App Store",
     title: "iPhone apps",
     body: "BuzzerBlock, PathFolk, and NOMsters are on the App Store. Three more are on the way.",
@@ -591,16 +583,6 @@ const Index = () => {
             <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-[#0A0F1A]/75 mt-3">
               I also help small businesses use practical AI without the overwhelm, and I help
               people publish the book they keep putting off.
-            </p>
-            <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-[#0A0F1A]/75 mt-3">
-              I've written three books on Amazon.
-            </p>
-            <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-[#0A0F1A]/75 mt-3">
-              Education first. No pitch. No pressure.
-            </p>
-            <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-[#0A0F1A]/75 mt-3">
-              Every morning I send The Z Letter: one useful money idea, one fun thing, and one line
-              to remember.
             </p>
             <Link
               to="/about"

@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { PhoneDemo } from "@/components/home/PhoneDemo";
-import { NEWSLETTER_NAME, openNewsletterSignup, type NewsletterTag } from "@/data/newsletter";
+import { NEWSLETTER_NAME } from "@/data/newsletter";
 
 const BADGE = "/badges/app-store-badge.svg";
 
@@ -31,34 +30,7 @@ const SOON = [
   { name: "NovaLearn", icon: "/images/apps/novalearn.svg", campaign: "novalearn", hook: "Quick science lessons." },
 ];
 
-function waitlistTag(campaign: string): NewsletterTag {
-  return { source: "zainadtani.com", medium: "app-waitlist", campaign };
-}
-
-type SubState = { kind: "idle" | "ok" | "error"; msg?: string };
-
 export function AppsSection() {
-  const [app, setApp] = useState(SOON[0].campaign);
-  const [state, setState] = useState<SubState>({ kind: "idle" });
-  const picked = SOON.find((item) => item.campaign === app) ?? SOON[0];
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const input = e.currentTarget.elements.namedItem("email") as HTMLInputElement;
-    const email = input?.value?.trim();
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setState({ kind: "error", msg: "Please enter a valid email address." });
-      input?.focus();
-      return;
-    }
-    openNewsletterSignup(email, waitlistTag(picked.campaign));
-    setState({
-      kind: "ok",
-      msg: `Almost done. Finish joining the ${picked.name} waitlist in the new tab. That also signs you up for ${NEWSLETTER_NAME}.`,
-    });
-    input.value = "";
-  };
-
   return (
     <section id="apps" aria-labelledby="apps-heading" className="section-y bg-white scroll-mt-20 max-sm:pb-32">
       <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
@@ -89,47 +61,16 @@ export function AppsSection() {
           ))}
         </ul>
 
-        <form onSubmit={onSubmit} className="mx-auto mt-10 max-w-xl rounded-2xl border border-[#D97706]/30 bg-[#FDF6E3] p-6 text-left">
-          <h3 className="font-display text-[20px] text-[#0A0F1A]">Join the waitlist</h3>
-          <p className="mt-2 font-sans text-[15px] leading-relaxed text-[#0A0F1A]/75">
-            Get a note when one of the upcoming apps is ready. This uses the same {NEWSLETTER_NAME} signup.
-          </p>
-          <div className="mt-4 grid gap-3">
-            <div>
-              <label htmlFor="app-waitlist-choice" className="font-sans text-[13px] font-semibold text-[#0A0F1A]">Which app</label>
-              <select
-                id="app-waitlist-choice"
-                name="app"
-                value={app}
-                onChange={(e) => setApp(e.target.value)}
-                className="mt-1 w-full rounded-lg border border-[#447BBE]/30 bg-white px-3 py-3 font-sans text-[16px] text-[#0A0F1A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE]"
-              >
-                {SOON.map((item) => (
-                  <option key={item.campaign} value={item.campaign}>{item.name}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label htmlFor="app-waitlist-email" className="font-sans text-[13px] font-semibold text-[#0A0F1A]">Email</label>
-              <input
-                id="app-waitlist-email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                maxLength={200}
-                placeholder="you@email.com"
-                className="mt-1 w-full rounded-lg border border-[#447BBE]/30 bg-white px-3 py-3 font-sans text-[16px] text-[#0A0F1A] placeholder:text-[#5C6570] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE]"
-              />
-            </div>
-            <button type="submit" className="btn-cta w-full">Join the waitlist</button>
-          </div>
-          {state.kind !== "idle" && (
-            <p role="status" aria-live="polite" className={`mt-3 font-sans text-[14px] font-medium ${state.kind === "error" ? "text-destructive" : "text-[#0A0F1A]"}`}>
-              {state.msg}
-            </p>
-          )}
-        </form>
+        <p className="mx-auto mt-10 max-w-xl text-center font-sans text-[15px] leading-relaxed text-[#0A0F1A]/70">
+          App news rides in{" "}
+          <a
+            href="#z-letter"
+            className="font-semibold text-[#2F5C90] underline underline-offset-4 hover:underline rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE]"
+          >
+            {NEWSLETTER_NAME}
+          </a>
+          .
+        </p>
       </div>
     </section>
   );
