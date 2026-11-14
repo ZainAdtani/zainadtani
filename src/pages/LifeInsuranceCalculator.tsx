@@ -1,5 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useMemo, useState } from "react";
+import { useTweenedNumber } from "@/hooks/useTweenedNumber";
+import { GaugeBar } from "@/components/money/GaugeBar";
 
 import { NEWSLETTER_NAME, NEWSLETTER_SUBSCRIBE_URL } from "@/data/newsletter";
 
@@ -18,7 +20,10 @@ function Field(props: {
   helper?: string;
   value: string;
   onChange: (v: string) => void;
+  max?: number;
 }) {
+  const num = Number(props.value) || 0;
+  const max = Math.max(props.max ?? 500000, num);
   return (
     <label className="block">
       <span className="font-sans font-bold text-[16px] text-[#0A0F1A]">
@@ -43,6 +48,16 @@ function Field(props: {
           className="w-full font-sans text-[18px] rounded-2xl border-2 border-[#0A0F1A]/10 bg-white pl-9 pr-4 py-3 outline-none focus:border-emerald-500 transition-colors"
         />
       </div>
+      <input
+        type="range"
+        min={0}
+        max={max}
+        step={Math.max(100, Math.round(max / 500 / 100) * 100)}
+        value={num}
+        aria-label={props.label}
+        onChange={(e) => props.onChange(e.target.value)}
+        className="mt-3 w-full accent-[#DD5013]"
+      />
     </label>
   );
 }
@@ -119,6 +134,7 @@ export default function LifeInsuranceCalculator() {
     const maxPart = Math.max(1, ...parts.map((p) => p.value));
     return { need, alreadyHave, gap, recommended, parts, maxPart };
   }, [income, years, mortgage, debts, college, finalCosts, savings, existing]);
+  const shownRecommended = useTweenedNumber(calc.recommended);
 
   const termTip =
     years <= 10
@@ -252,8 +268,9 @@ export default function LifeInsuranceCalculator() {
               className="mt-2 text-[52px] md:text-[60px] leading-none text-emerald-300"
               style={{ fontFamily: "'Luckiest Guy', cursive" }}
             >
-              {money(calc.recommended)}
+              {money(shownRecommended)}
             </p>
+            <GaugeBar value={calc.recommended} max={3000000} label={money(calc.recommended)} />
             <p className="mt-3 font-sans text-[14px] text-white/70">
               Estimated coverage your family might need, rounded up to the nearest $25,000.
             </p>

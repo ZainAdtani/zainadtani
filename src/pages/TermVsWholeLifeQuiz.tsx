@@ -214,7 +214,7 @@ export default function TermVsWholeLifeQuiz() {
                     No jargon, simple score
                   </span>
                 </div>
-                <div className="p-6 md:p-8">
+                <div key={step} className="p-6 md:p-8 animate-question-in">
                   <h2 className="font-sans font-bold text-[22px] text-[#0A0F1A]">
                     {question.title}
                   </h2>
@@ -276,7 +276,7 @@ export default function TermVsWholeLifeQuiz() {
               </>
             ) : (
               result && (
-                <div className="p-6 md:p-8 text-center">
+                <div className="p-6 md:p-8 text-center animate-card-flip">
                   <span className="inline-block font-sans text-[12px] font-bold uppercase tracking-[0.15em] rounded-full px-4 py-2 bg-emerald-500/10 text-emerald-700 border border-emerald-500/30">
                     {result.badge}
                   </span>
