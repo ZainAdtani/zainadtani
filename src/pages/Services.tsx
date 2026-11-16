@@ -51,6 +51,30 @@ const workflowBullets = [
   "30-day follow-up check-in included",
 ];
 
+const offers = [
+  {
+    name: "Local Visibility Setup",
+    price: "$400",
+    cadence: "one time",
+    button: "Buy now",
+    url: "https://buy.stripe.com/bJe5kDfpE0YI62L2oRa3u0h",
+  },
+  {
+    name: "Local AI Visibility Partner",
+    price: "$250",
+    cadence: "a month",
+    button: "Start monthly",
+    url: "https://buy.stripe.com/00wdR91yOazicr9aVna3u02",
+  },
+  {
+    name: "Permit Alerts",
+    price: "$99",
+    cadence: "a month",
+    button: "Start monthly",
+    url: "https://buy.stripe.com/28E4gz5P4bDmcr92oRa3u0j",
+  },
+];
+
 const ctaClass =
   "inline-block bg-[#DD5013] text-white font-display font-semibold text-[15px] px-7 py-3.5 rounded-[10px] hover:opacity-90 transition-opacity w-fit";
 
@@ -211,6 +235,42 @@ export default function Services() {
           <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
             <Link to="/ai-checkup" className={ctaClass}>Free AI Checkup</Link>
             <Link to="/ai-checkup#partner" className="btn-secondary-outline">See the ${PARTNER_PLAN.monthlyPrice}/month plan</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Work with me — pricing */}
+      <section id="work-with-me" className="bg-white py-20 border-t border-[#447BBE]/20 scroll-mt-20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="text-[11px] font-medium tracking-widest uppercase text-[#2F5C90] font-sans">
+              WORK WITH ME
+            </span>
+            <h2 className="font-display font-extrabold text-[36px] md:text-[44px] leading-[1.1] text-[#0A0F1A] mt-3">
+              Simple offers. Clear prices.
+            </h2>
+          </div>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {offers.map((offer) => (
+              <div
+                key={offer.name}
+                className="bg-white border border-[#447BBE]/20 rounded-2xl p-8 flex flex-col text-center hover:border-[#447BBE]/40 transition-colors"
+              >
+                <h3 className="font-display font-bold text-[22px] text-[#0A0F1A]">{offer.name}</h3>
+                <p className="mt-4 font-sans text-[#0A0F1A]">
+                  <span className="font-display font-extrabold text-[34px]">{offer.price}</span>
+                  <span className="text-[15px] text-[#0A0F1A]/65"> {offer.cadence}</span>
+                </p>
+                <a
+                  href={offer.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 block w-full text-center bg-[#DD5013] text-white font-display font-semibold text-[15px] px-7 py-3.5 rounded-[10px] hover:opacity-90 transition-opacity"
+                >
+                  {offer.button}
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </section>
