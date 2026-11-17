@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useTweenedNumber } from "@/hooks/useTweenedNumber";
 import { Link } from "react-router-dom";
 import { ArrowRight, BookOpen, Mail, Bot, Gauge, Check, Share2 } from "lucide-react";
+import MissedCallLeadForm from "@/components/MissedCallLeadForm";
 import { NEWSLETTER_NAME, newsletterWithCadence } from "@/data/newsletter";
 
 const STRIPE_CHECKOUT_URL = "https://buy.stripe.com/8x27sLelAcHq76PfbDa3u01";
@@ -344,6 +345,8 @@ export default function MissedCallCalculator() {
               : "The shared link opens this page with the same sliders."}
           </p>
         </section>
+
+        <MissedCallLeadForm monthlyLoss={calc.monthly} yearlyLoss={calc.yearly} />
 
         {/* More helpful things */}
         <section className="mt-20">
