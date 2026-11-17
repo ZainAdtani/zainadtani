@@ -66,6 +66,26 @@
 
   <body>
     <div id="root"></div>
+    <script>
+      // Dev preview only. The dev server preloads the Notion book-notes file as a
+      // script and reports a parse error for it, which pops a build-error box over
+      // every page. The app reads that file as plain text and works fine, so remove
+      // only that one box and leave every other error visible.
+      (function () {
+        var marker = "100-books-notion.md";
+        function clearKnownBox() {
+          var box = document.querySelector("vite-error-overlay");
+          if (!box || !box.shadowRoot) return;
+          var msg = box.shadowRoot.querySelector("pre");
+          if (msg && msg.textContent.indexOf(marker) !== -1) box.remove();
+        }
+        new MutationObserver(clearKnownBox).observe(document.documentElement, {
+          childList: true,
+          subtree: true,
+        });
+        clearKnownBox();
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

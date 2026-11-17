@@ -390,3 +390,10 @@
     box-shadow: 0 14px 34px -14px rgba(10,15,26,.22), 0 0 0 1px rgba(68,123,190,.18), 0 10px 30px -12px rgba(221,80,19,.22);
   }
 }
+
+/* The calculator page is one tall embedded tool, so the floating buttons would
+   land on its fields and submit control. They step aside while it is open. */
+body.hide-floating-controls button[aria-label="Open chat assistant"],
+body.hide-floating-controls button[aria-label="Back to top"] {
+  display: none;
+}

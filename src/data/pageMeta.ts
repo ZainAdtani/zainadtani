@@ -50,6 +50,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Move the sliders and see what missed calls cost your business every month and year. No email needed. From Zain Adtani.",
   },
+  "/calculator": {
+    title: "Missed Call Money Calculator | Zain Adtani",
+    description:
+      "See what missed calls could be costing your business. Free, takes about a minute. From Zain Adtani.",
+  },
   "/owner-stress-test": {
     title: "Owner Stress Test | Zain Adtani",
     description:

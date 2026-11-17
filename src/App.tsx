@@ -36,6 +36,7 @@ const FinalExpenseEstimator = lazy(() => import("./pages/FinalExpenseEstimator")
 const TermVsWholeLifeQuiz = lazy(() => import("./pages/TermVsWholeLifeQuiz"));
 const OwnerStressTest = lazy(() => import("./pages/OwnerStressTest"));
 const AINewsSongs = lazy(() => import("./pages/AINewsSongs"));
+const Calculator = lazy(() => import("./pages/Calculator"));
 const AiSongs = lazy(() => import("./pages/projects/AiSongs"));
 
 function PageFallback() {
@@ -89,6 +90,7 @@ const App = () => (
                   <Route path="/resources/final-expense-estimator" element={<FinalExpenseEstimator />} />
                   <Route path="/resources/term-vs-whole-life-quiz" element={<TermVsWholeLifeQuiz />} />
                   <Route path="/missed-call-calculator" element={<MissedCallCalculator />} />
+                  <Route path="/calculator" element={<Calculator />} />
                   <Route path="/owner-stress-test" element={<OwnerStressTest />} />
                   <Route path="/ai-checkup" element={<AICheckup />} />
                   <Route path="/resources/ai-news-songs" element={<AINewsSongs />} />
