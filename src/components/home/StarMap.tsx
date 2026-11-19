@@ -23,6 +23,9 @@ const STARS: Star[] = [
   { id: "play", label: "Play", sub: "iPhone apps", color: "#DD5013", size: 22, x: 86, y: 22,
     title: "Try an iPhone app.", sentence: "A few of my iPhone apps are on the App Store now. Others are on the way.",
     primary: { label: "See the apps", to: "#apps" } },
+  { id: "guides", label: "Digital guides", sub: "eBooks", color: "#2F5C90", size: 22, x: 27, y: 45,
+    title: "Digital guides", sentence: "Short, practical eBooks for business owners, from Adtani Education Ventures.",
+    primary: { label: "Browse the guides", to: "https://whop.com/adtani-education-ventures-f5c3/", external: true } },
 ];
 
 function usePrefersReducedMotion() {

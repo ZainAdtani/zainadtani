@@ -47,6 +47,33 @@ export function TodaysNoteStrip() {
           </Link>
         </div>
       </div>
+      <MoreNotes today={today} todayIndex={index} />
     </section>
+  );
+}
+
+/** The 5 notes from the days before today, newest first. */
+function MoreNotes({ today, todayIndex }: { today: Date; todayIndex: number }) {
+  const entries = Array.from({ length: 5 }, (_, k) => {
+    const d = new Date(today);
+    d.setDate(d.getDate() - (k + 1));
+    const i = (todayIndex - (k + 1) + LIFE_NOTES.length * 2) % LIFE_NOTES.length;
+    return { date: d, text: LIFE_NOTES[i] };
+  });
+  return (
+    <div className="mx-auto mt-5 max-w-3xl border-t border-[#0A0F1A]/10 pt-4">
+      <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.14em] text-[#0A0F1A]/60">More notes</p>
+      <ul className="mt-2 space-y-2">
+        {entries.map((e) => (
+          <li key={e.date.toDateString()} className="font-sans text-[15px] leading-snug text-[#0A0F1A]">
+            <span className="text-[#0A0F1A]/50">
+              {e.date.toLocaleDateString("en-US", { month: "long", day: "numeric" })}
+            </span>
+            <span className="mx-2 text-[#0A0F1A]/30">·</span>
+            {e.text}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
