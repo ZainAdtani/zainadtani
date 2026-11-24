@@ -90,7 +90,8 @@ export function AppLayout({ children }: AppLayoutProps) {
 }
 
 function LayoutShell({ children }: { children: ReactNode }) {
-  const isHome = useLocation().pathname === "/";
+  const pathname = useLocation().pathname;
+  const isHome = pathname === "/" || pathname === "/resources";
   return (
     <>
       <SiteDefaults />

@@ -414,4 +414,4 @@ body.hide-floating-controls button[aria-label="Back to top"] {
 .np-input { background: transparent; color: inherit; border: 0; border-bottom: 1px solid hsl(var(--np-muted)); padding: 10px 2px; font-size: 16px; }
 .np-input::placeholder { color: hsl(var(--np-muted)); }
 .np-submit { background: none; border: 0; color: inherit; text-decoration: underline; text-underline-offset: 4px; font-size: 16px; padding: 10px 2px; }
-.np h1.np-serif, .np h2.np-h, .np .np-h { font-family: Georgia, "Times New Roman", serif !important; font-weight: 400 !important; text-transform: none !important; letter-spacing: 0.01em; }
+.np h1.np-serif, .np h2.np-h, .np .np-h, .np .np-serif { font-family: Georgia, "Times New Roman", serif !important; font-weight: 400 !important; text-transform: none !important; letter-spacing: 0.01em; }
