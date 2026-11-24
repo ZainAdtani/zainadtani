@@ -1,4 +1,3 @@
-import { CountUp } from "@/components/CountUp";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -20,9 +19,7 @@ import {
 
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { ZLetterFeed } from "@/components/ZLetterFeed";
-import { TodaysNoteStrip } from "@/components/TodaysNote";
-import { TimeBar } from "@/components/TimeBar";
-import { StarMap } from "@/components/home/StarMap";
+import { MinimalHeader, MinimalHero, useNpTheme } from "@/components/home/MinimalHome";
 import { AppsSection } from "@/components/home/AppsSection";
 import { Button } from "@/components/ui/button";
 import { BOOKS } from "@/data/books";
@@ -36,8 +33,6 @@ import {
   newsletterWithCadence,
   openNewsletterSignup,
 } from "@/data/newsletter";
-import headshotImage from "@/assets/zain-hero-portrait.png.asset.json";
-import wavingHand from "@/assets/waving-hand.png";
 import pokemonImg from "@/assets/pokemon-pokedex.png";
 
 const CALENDLY_URL = "https://calendly.com/zkadtani";
@@ -239,7 +234,7 @@ function SubStatus({ state }: { state: SubState }) {
 }
 
 const Index = () => {
-  const [heroSub, setHeroSub] = useState<SubState>({ kind: "idle" });
+  const [theme, setTheme] = useNpTheme();
   const [mainSub, setMainSub] = useState<SubState>({ kind: "idle" });
   const handleSub = (e: React.FormEvent<HTMLFormElement>, set: (s: SubState) => void) => {
     e.preventDefault();
@@ -285,85 +280,10 @@ const Index = () => {
       </Helmet>
       <BooksJsonLd />
 
-      <TimeBar />
-
-      {/* 1 — HERO */}
-      <section className="hero-warm px-5 py-10 sm:py-12 md:py-14 text-center">
-        <div className="mx-auto max-w-3xl flex flex-col items-center">
-          <div className="relative isolate w-48 h-48 sm:w-56 sm:h-56 shrink-0 mb-7">
-            <div aria-hidden="true" className="hero-sun-blob absolute -inset-3 -z-10" />
-            <img
-              src={headshotImage.url}
-              alt="Zain Adtani"
-              className="w-full h-full rounded-full object-cover object-[center_18%] border-4 border-background"
-              width={224}
-              height={224}
-              fetchPriority="high"
-              onError={(event) => {
-                const image = event.currentTarget;
-                const fallback = `https://zainadtani.com${headshotImage.url}`;
-                if (image.src !== fallback) image.src = fallback;
-              }}
-            />
-          </div>
-          <h1 className="hero-greeting text-[48px] sm:text-[60px] md:text-[72px] leading-[1.15] text-foreground">
-            Hey friends <span className="sr-only">👋</span><img src={wavingHand} alt="" aria-hidden="true" className="inline-block align-[-0.08em] w-[0.8em] h-[0.8em]" />
-          </h1>
-          <svg aria-hidden="true" viewBox="0 0 310 30" className="hero-underline w-56 sm:w-72 h-7 mt-1" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round">
-            <path d="M5 10 Q88 1 155 9 T305 7" />
-            <path d="M13 21 Q95 15 156 20 T298 17" />
-          </svg>
-          <p className="max-w-2xl mt-5 font-sans text-[17px] sm:text-[20px] leading-relaxed text-foreground">
-            I'm Z — AI consultant, author of <a href="#books" className="font-bold underline underline-offset-4 decoration-primary hover:text-primary"><CountUp value={3} /> books</a>, and licensed financial professional helping families protect what they build.
-          </p>
-        </div>
-      </section>
-
-      <TodaysNoteStrip />
-
-      <div className="border-y border-border bg-background px-5 py-4 text-center font-sans text-[13px] sm:text-[15px] font-medium text-foreground">
-        <CountUp value={3} /> books on Amazon · Licensed TX Life &amp; Health · Eagle Scout
+      <div className={`np ${theme === "light" ? "np-light" : ""}`}>
+        <MinimalHeader theme={theme} onToggle={() => setTheme(theme === "dark" ? "light" : "dark")} />
+        <MinimalHero />
       </div>
-
-      {/* Hero actions */}
-      <section aria-label="Get started" className="bg-background px-5 pt-6 text-center">
-        <div className="mx-auto max-w-3xl flex flex-col items-center gap-3">
-          <a href="#start" className="btn-cta w-full sm:w-auto">
-            See how I can help
-          </a>
-          <div className="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
-            <Link to={MISSED_CALL_CALCULATOR_URL} className="btn-secondary-outline">
-              Free Missed Call Calculator
-            </Link>
-            <Link to={OWNER_STRESS_TEST_URL} className="btn-secondary-outline">
-              Take the Owner Stress Test
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section aria-label={`Join ${NEWSLETTER_NAME}`} className="bg-background px-5 py-6 sm:py-7 text-center">
-        <form
-          className="mx-auto max-w-lg"
-          onSubmit={(e) => handleSub(e, setHeroSub)}
-        >
-          <div className="flex flex-col sm:flex-row gap-2">
-            <label htmlFor="heroZletterEmail" className="sr-only">Email address for {NEWSLETTER_NAME}</label>
-            <input
-              id="heroZletterEmail"
-              name="email"
-              type="email"
-              placeholder="Your email address"
-              className="min-w-0 flex-1 rounded-lg border border-input bg-background px-4 py-3 font-sans text-[16px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary"
-            />
-            <Button type="submit" variant="secondary" className="h-auto min-h-12 px-7 rounded-lg font-sans font-semibold text-[15px]">Join free</Button>
-          </div>
-          <p className="mt-2 font-sans text-[13px] text-muted-foreground">Two minutes. No fluff. Free forever.</p>
-          <SubStatus state={heroSub} />
-        </form>
-      </section>
-
-      <StarMap />
 
       {/* 2 — VISITOR PATHS */}
       <section id="how-i-help" className="section-y bg-white scroll-mt-20">
@@ -467,37 +387,19 @@ const Index = () => {
       <Divider />
 
       {/* 4 — THE Z LETTER */}
-      <section id="z-letter" className="section-y bg-white scroll-mt-20">
-        <div className="container mx-auto px-5 sm:px-6 max-w-3xl">
-          <SectionHead
-            eyebrow={newsletterWithCadence()}
-            title={`Get ${NEWSLETTER_NAME}`}
-            sub="One useful money idea and one fun thing in your inbox every morning. Two minutes. No fluff. Free forever."
-          />
-          <form
-            className="mt-8 max-w-md mx-auto flex flex-col gap-3"
-            onSubmit={(e) => handleSub(e, setMainSub)}
-          >
-            <label htmlFor="zletterEmail" className="sr-only">
-              Email address
-            </label>
-            <input
-              id="zletterEmail"
-              name="email"
-              type="email"
-              placeholder="you@email.com"
-              className="w-full rounded-xl border border-[#447BBE]/30 bg-white px-5 py-3.5 font-sans text-[16px] text-[#0A0F1A] placeholder:text-[#0A0F1A]/40 focus:outline-none focus:border-[#447BBE]"
-            />
-            <button type="submit" className="btn-cta w-full">
-              Send Me {NEWSLETTER_NAME}
-            </button>
-            <p className="text-center font-sans text-[13px] text-[#0A0F1A]/60">
-              Every morning. Unsubscribe anytime.
-            </p>
-            <div className="text-center"><SubStatus state={mainSub} /></div>
+      <section id="z-letter" className={`np ${theme === "light" ? "np-light" : ""} scroll-mt-20 px-5 py-20`}>
+        <div className="mx-auto max-w-2xl">
+          <h2 className="np-h">{NEWSLETTER_NAME}</h2>
+          <p className="mt-3 text-[17px] leading-relaxed">A short daily note on AI, money, and building. Two minutes. No fluff. Free forever.</p>
+          <form className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-end" onSubmit={(e) => handleSub(e, setMainSub)}>
+            <label htmlFor="zletterEmail" className="sr-only">Email address</label>
+            <input id="zletterEmail" name="email" type="email" placeholder="you@email.com" className="np-input min-w-0 flex-1" />
+            <button type="submit" className="np-submit">Send Me {NEWSLETTER_NAME}</button>
           </form>
+          <SubStatus state={mainSub} />
         </div>
-
+      </section>
+      <section aria-label="Recent issues" className="section-y bg-white">
         <div className="mt-10">
           <p className="text-center font-sans text-[14px] font-semibold tracking-wide text-[#0A0F1A]/70 mb-4">
             Fresh from the inbox

@@ -9,7 +9,7 @@ import { AIChatWidget } from "./AIChatWidget";
 import { PageNext } from "./PageNext";
 import { SiteDefaults } from "./SiteDefaults";
 import { NEWSLETTER_HOST, NEWSLETTER_NAME, newsletterWithCadence } from "@/data/newsletter";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ReactNode } from "react";
 import { Linkedin, Youtube, Mail, Instagram, CalendarDays } from "lucide-react";
 
@@ -90,6 +90,7 @@ export function AppLayout({ children }: AppLayoutProps) {
 }
 
 function LayoutShell({ children }: { children: ReactNode }) {
+  const isHome = useLocation().pathname === "/";
   return (
     <>
       <SiteDefaults />
@@ -102,7 +103,7 @@ function LayoutShell({ children }: { children: ReactNode }) {
           <AppSidebar />
         </div>
 
-        <Header />
+        {!isHome && <Header />}
 
         <main className="flex-1 w-full">{children}</main>
         <SiteMotion />
