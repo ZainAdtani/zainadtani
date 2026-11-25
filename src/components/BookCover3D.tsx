@@ -17,7 +17,9 @@ export function BookCover3D({ src, alt, inside }: { src: string; alt: string; in
     <div className="shrink-0 flex flex-col items-center gap-2 w-24">
       <div ref={ref} onPointerMove={onMove} onPointerLeave={reset} className="book3d w-24 aspect-[2/3]" style={{ perspective: "700px" }}>
         <div className={`book3d-inner relative h-full w-full ${open ? "is-open" : ""}`}>
-          <img src={src} alt={alt} width={96} height={144} loading="lazy" className="book3d-face absolute inset-0 h-full w-full object-contain" />
+          <div className="book3d-face absolute inset-0 rounded-md bg-[#E9E4A6] p-1.5 shadow-[0_10px_24px_rgba(10,15,26,0.28)]">
+            <img src={src} alt={alt} width={96} height={144} loading="lazy" className="h-full w-full rounded-sm object-contain" />
+          </div>
           <div className="book3d-back absolute inset-0 overflow-auto rounded-md border border-border bg-[hsl(45,82%,94%)] p-2 font-sans text-[10.5px] leading-snug text-foreground">
             {inside}
           </div>

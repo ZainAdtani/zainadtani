@@ -398,9 +398,58 @@ body.hide-floating-controls button[aria-label="Back to top"] {
   display: none;
 }
 
-/* Minimal homepage top (dark by default, light via toggle) */
-.np { --np-bg: 0 0% 4%; --np-fg: 40 20% 92%; --np-muted: 40 8% 62%; background: hsl(var(--np-bg)); color: hsl(var(--np-fg)); font-family: "DM Sans", sans-serif; }
-.np.np-light { --np-bg: 40 25% 96%; --np-fg: 0 0% 8%; --np-muted: 0 0% 38%; }
+/* Softer semi-dark canvas. Page is a lifted navy mixed from #0A0F1A and #447BBE
+   so scrolling stays one color. Cards and cover mats sit lighter on top of it. */
+.tone-soft {
+  background-color: #203858;
+  color: #FFFFFF;
+}
+.tone-soft .tone-heading { color: #FFFFFF; }
+.tone-soft .tone-muted { color: #E9E4A6; }
+.tone-soft .tone-link { color: #E9E4A6; }
+.tone-soft .hairline { background-color: rgba(233, 228, 166, 0.35); }
+.tone-soft .surface-card,
+.tone-soft .card-lift {
+  box-shadow: 0 14px 34px rgba(10, 15, 26, 0.32);
+}
+.tone-soft:has(.np.np-light) {
+  background-color: #F6F3E8;
+  color: #0A0F1A;
+}
+.tone-soft:has(.np.np-light) .tone-heading { color: #0A0F1A; }
+.tone-soft:has(.np.np-light) .tone-muted,
+.tone-soft:has(.np.np-light) .tone-link { color: #2F5C90; }
+.tone-soft:has(.np.np-light) .hairline { background-color: rgba(68, 123, 190, 0.2); }
+
+/* Light mat so dark covers separate from the card and the page. */
+.cover-stage {
+  background-color: #E9E4A6;
+  border: 2px solid #FFFFFF;
+  border-radius: 14px;
+  padding: 10px;
+  box-shadow: 0 12px 28px rgba(10, 15, 26, 0.35);
+}
+
+/* Signup block: same navy family as the page, a step lighter so it reads as a block. */
+.signup-panel {
+  background-color: #2F5483;
+  border: 1px solid rgba(233, 228, 166, 0.55);
+  border-radius: 1rem;
+  padding: 1.5rem 1.25rem 1.25rem;
+  box-shadow: 0 16px 36px rgba(10, 15, 26, 0.28);
+}
+.tone-soft:has(.np.np-light) .signup-panel {
+  background-color: #FFFFFF;
+  border-color: rgba(68, 123, 190, 0.28);
+  color: #0A0F1A;
+}
+.signup-error { color: #E9E4A6; }
+.tone-soft:has(.np.np-light) .signup-error { color: #0A0F1A; }
+
+/* Homepage top, Z Letter, and Resources (softer navy by default, light via toggle) */
+.np { --np-bg: 214 47% 23.5%; --np-fg: 0 0% 100%; --np-muted: 55 60% 78%; background: #203858; color: #FFFFFF; font-family: "DM Sans", sans-serif; }
+.np.np-light { --np-bg: 45 33% 95%; --np-fg: 222 44% 7%; --np-muted: 0 0% 38%; background: #F6F3E8; color: #0A0F1A; }
+.tone-soft .np { background: transparent; color: inherit; }
 .np-serif, .np-h { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
 .np-h { font-size: 20px; letter-spacing: 0.01em; }
 .np-muted { color: hsl(var(--np-muted)); }

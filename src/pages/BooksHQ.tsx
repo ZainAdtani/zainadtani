@@ -295,11 +295,11 @@ export default function BooksHQ() {
             return (
               <ScrollReveal key={book.id} delay={index * 80}>
               <Card className="overflow-hidden hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(68,123,190,0.15)] transition-all duration-300 shadow-lg border-2 flex flex-col h-full">
-                <div className="aspect-[2/3] w-full bg-muted relative overflow-hidden">
+                <div className="aspect-[2/3] w-full bg-[#E9E4A6] p-1.5 relative overflow-hidden">
                   <img
                     src={coverSrc}
                     alt={`${book.title} cover`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-sm"
                     onError={(e) => { e.currentTarget.src = GENERIC_COVER; }}
                   />
                 </div>

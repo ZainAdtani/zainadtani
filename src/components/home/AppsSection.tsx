@@ -32,12 +32,12 @@ const SOON = [
 
 export function AppsSection() {
   return (
-    <section id="apps" aria-labelledby="apps-heading" className="section-y bg-white scroll-mt-20 max-sm:pb-32">
+    <section id="apps" aria-labelledby="apps-heading" className="section-y scroll-mt-20 max-sm:pb-32">
       <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
         <div className="text-center max-w-2xl mx-auto">
-          <p className="eyebrow">On the App Store</p>
-          <h2 id="apps-heading" className="font-display text-[30px] md:text-[40px] leading-[1.15] text-[#0A0F1A] mt-2">iPhone apps.</h2>
-          <p className="font-sans text-[16px] leading-relaxed text-[#0A0F1A]/70 mt-3">Three are on the App Store today. The others are on the way.</p>
+          <p className="eyebrow tone-muted">On the App Store</p>
+          <h2 id="apps-heading" className="font-display text-[30px] md:text-[40px] leading-[1.15] tone-heading mt-2">iPhone apps.</h2>
+          <p className="font-sans text-[16px] leading-relaxed tone-muted mt-3">Three are on the App Store today. The others are on the way.</p>
         </div>
         <ul className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {LIVE.map((a) => (
@@ -61,11 +61,11 @@ export function AppsSection() {
           ))}
         </ul>
 
-        <p className="mx-auto mt-10 max-w-xl text-center font-sans text-[15px] leading-relaxed text-[#0A0F1A]/70">
+        <p className="mx-auto mt-10 max-w-xl text-center font-sans text-[15px] leading-relaxed tone-muted">
           App news rides in{" "}
           <a
             href="#z-letter"
-            className="font-semibold text-[#2F5C90] underline underline-offset-4 hover:underline rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE]"
+            className="tone-link font-semibold underline underline-offset-4 hover:underline rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E9E4A6]"
           >
             {NEWSLETTER_NAME}
           </a>

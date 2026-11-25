@@ -171,11 +171,15 @@ function stepsFor(pathname: string) {
 export function PageNext() {
   const { pathname } = useLocation();
   const step = stepsFor(pathname);
+  const soft = pathname === "/";
+  const linkClass = soft
+    ? "font-sans text-[16px] font-semibold text-[#E9E4A6] underline underline-offset-4 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E9E4A6] rounded"
+    : "font-sans text-[16px] font-semibold text-[#2F5C90] underline underline-offset-4 hover:text-[#DD5013] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE] rounded";
   return (
-    <nav aria-label="Continue" className="border-t border-[#447BBE]/15 bg-[hsl(45,82%,96%)]">
+    <nav aria-label="Continue" className={soft ? "border-t border-[#E9E4A6]/35 bg-[#203858]" : "border-t border-[#447BBE]/15 bg-[hsl(45,82%,96%)]"}>
       <div className="mx-auto max-w-6xl px-5 py-8">
-        <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.14em] text-[#2F5C90]">Next</p>
-        <p className="mt-1 font-display text-[22px] leading-tight text-[#0A0F1A]">{step.title}</p>
+        <p className={`font-sans text-[12px] font-semibold uppercase tracking-[0.14em] ${soft ? "text-[#E9E4A6]" : "text-[#2F5C90]"}`}>Next</p>
+        <p className={`mt-1 font-display text-[22px] leading-tight ${soft ? "text-white" : "text-[#0A0F1A]"}`}>{step.title}</p>
         <ul className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2">
           {step.links.map((link) => (
             <li key={link.label}>
@@ -184,14 +188,14 @@ export function PageNext() {
                   href={link.to}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-sans text-[16px] font-semibold text-[#2F5C90] underline underline-offset-4 hover:text-[#DD5013] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE] rounded"
+                  className={linkClass}
                 >
                   {link.label}
                 </a>
               ) : (
                 <Link
                   to={link.to}
-                  className="font-sans text-[16px] font-semibold text-[#2F5C90] underline underline-offset-4 hover:text-[#DD5013] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE] rounded"
+                  className={linkClass}
                 >
                   {link.label}
                 </Link>

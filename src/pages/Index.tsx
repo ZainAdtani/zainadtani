@@ -209,11 +209,11 @@ function SectionHead({
 }) {
   return (
     <div className={align === "center" ? "text-center max-w-2xl mx-auto" : "max-w-2xl"}>
-      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-      <h2 className="font-display text-[30px] md:text-[40px] leading-[1.15] text-[#0A0F1A] mt-2">
+      {eyebrow && <p className="eyebrow tone-muted">{eyebrow}</p>}
+      <h2 className="font-display text-[30px] md:text-[40px] leading-[1.15] tone-heading mt-2">
         {title}
       </h2>
-      {sub && <p className="font-sans text-[16px] leading-relaxed text-[#0A0F1A]/70 mt-3">{sub}</p>}
+      {sub && <p className="font-sans text-[16px] leading-relaxed tone-muted mt-3">{sub}</p>}
     </div>
   );
 }
@@ -227,7 +227,7 @@ type SubState = { kind: "idle" | "ok" | "error"; msg?: string };
 function SubStatus({ state }: { state: SubState }) {
   if (state.kind === "idle") return null;
   return (
-    <p role="status" aria-live="polite" className={`mt-2 font-sans text-[14px] font-medium ${state.kind === "error" ? "text-destructive" : "text-foreground"}`}>
+    <p role="status" aria-live="polite" className={`mt-2 font-sans text-[14px] font-medium ${state.kind === "error" ? "signup-error" : "tone-heading"}`}>
       {state.msg}
     </p>
   );
@@ -261,7 +261,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="bg-white">
+    <div className="tone-soft">
       <div id="top" />
       <Helmet>
         <title>Zain Adtani | AI Consultant · Author · Licensed Financial Professional</title>
@@ -286,7 +286,7 @@ const Index = () => {
       </div>
 
       {/* 2 — VISITOR PATHS */}
-      <section id="how-i-help" className="section-y bg-white scroll-mt-20">
+      <section id="how-i-help" className="section-y scroll-mt-20">
         <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
           <SectionHead
             eyebrow="Start here"
@@ -311,10 +311,10 @@ const Index = () => {
               ))}
             </div>
           </ScrollReveal>
-          <div className="mt-7 flex flex-col items-start justify-between gap-4 rounded-lg border border-border bg-accent/25 p-6 sm:flex-row sm:items-center">
+          <div className="mt-7 flex flex-col items-start justify-between gap-4 rounded-lg border border-[#D97706]/40 bg-[#E9E4A6] p-6 text-[#0A0F1A] sm:flex-row sm:items-center">
             <div className="max-w-xl">
-              <p className="font-sans text-base leading-7 text-foreground">Own a local business? Get a free report card on how you show up on Google and AI search.</p>
-              <p className="mt-1 font-sans text-[14px] leading-6 text-foreground/75">
+              <p className="font-sans text-base leading-7 text-[#0A0F1A]">Own a local business? Get a free report card on how you show up on Google and AI search.</p>
+              <p className="mt-1 font-sans text-[14px] leading-6 text-[#0A0F1A]/80">
                 If you want the gaps handled each month, the Local AI Visibility Partner is ${PARTNER_PLAN.monthlyPrice}/month.
               </p>
             </div>
@@ -337,7 +337,7 @@ const Index = () => {
       <Divider />
 
       {/* 3 — BOOKS */}
-      <section id="books" className="section-y bg-white scroll-mt-20">
+      <section id="books" className="section-y scroll-mt-20">
         <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
           <SectionHead
             eyebrow="Author"
@@ -347,18 +347,16 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
             {AMAZON_BOOKS.map((book) => (
               <ScrollReveal key={book.asin}>
-                <div className="card-lift rounded-2xl surface-warm border border-[#D97706]/25 p-6 flex flex-col items-center text-center h-full">
-                  <div className="w-[130px] shrink-0">
-                    <div className="w-full aspect-[2/3] rounded-xl bg-white p-2 shadow-[0_6px_20px_rgba(10,15,26,0.10)]">
-                      <img
-                        src={`https://images-na.ssl-images-amazon.com/images/P/${book.asin}.01.LZZZZZZZ.jpg`}
-                        alt={`${book.title} book cover by Zain Adtani`}
-                        className="w-full h-full object-contain"
-                        width={130}
-                        height={195}
-                        loading="lazy"
-                      />
-                    </div>
+                <div className="card-lift rounded-2xl border border-[#E9E4A6] bg-white p-6 flex flex-col items-center text-center h-full">
+                  <div className="cover-stage w-[148px] shrink-0">
+                    <img
+                      src={`https://images-na.ssl-images-amazon.com/images/P/${book.asin}.01.LZZZZZZZ.jpg`}
+                      alt={`${book.title} book cover by Zain Adtani`}
+                      className="block aspect-[2/3] w-full rounded-md object-contain"
+                      width={148}
+                      height={222}
+                      loading="lazy"
+                    />
                   </div>
                   <span className="inline-flex items-center rounded-full bg-white border border-[#447BBE]/30 px-3 py-1 font-sans text-[11px] font-semibold tracking-[0.12em] uppercase text-[#2F5C90] mt-4">
                     {book.format}
@@ -387,8 +385,8 @@ const Index = () => {
       <Divider />
 
       {/* 4 — THE Z LETTER */}
-      <section id="z-letter" className={`np ${theme === "light" ? "np-light" : ""} scroll-mt-20 px-5 py-20`}>
-        <div className="mx-auto max-w-2xl">
+      <section id="z-letter" className={`np ${theme === "light" ? "np-light" : ""} scroll-mt-20 px-5 py-16`}>
+        <div className="signup-panel mx-auto max-w-2xl">
           <h2 className="np-h">{NEWSLETTER_NAME}</h2>
           <p className="mt-3 text-[17px] leading-relaxed">A short daily note on AI, money, and building. Two minutes. No fluff. Free forever.</p>
           <form className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-end" onSubmit={(e) => handleSub(e, setMainSub)}>
@@ -399,9 +397,9 @@ const Index = () => {
           <SubStatus state={mainSub} />
         </div>
       </section>
-      <section aria-label="Recent issues" className="section-y bg-white">
+      <section aria-label="Recent issues" className="section-y">
         <div className="mt-10">
-          <p className="text-center font-sans text-[14px] font-semibold tracking-wide text-[#0A0F1A]/70 mb-4">
+          <p className="text-center font-sans text-[14px] font-semibold tracking-wide tone-muted mb-4">
             Fresh from the inbox
           </p>
           <ZLetterFeed />
@@ -411,7 +409,7 @@ const Index = () => {
       <Divider />
 
       {/* 5 — FEATURED CONTENT / DISCOVERY */}
-      <section className="section-y bg-white">
+      <section className="section-y">
         <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
           <SectionHead
             eyebrow="Explore"
@@ -464,9 +462,9 @@ const Index = () => {
       <Divider />
 
       {/* 6 — MEET ZAIN */}
-      <section className="section-y bg-white">
+      <section className="section-y">
         <div className="container mx-auto px-5 sm:px-6 max-w-4xl">
-          <div className="rounded-2xl border border-[#447BBE]/18 bg-white p-7 md:p-10 shadow-[0_6px_22px_rgba(10,15,26,0.06)]">
+          <div className="rounded-2xl border border-[#E9E4A6] bg-white p-7 md:p-10 shadow-[0_14px_34px_rgba(10,15,26,0.32)]">
             <p className="eyebrow">Meet Zain</p>
             <h2 className="font-display text-[28px] md:text-[36px] leading-tight text-[#0A0F1A] mt-2">
               Hi, I'm Z.
@@ -499,7 +497,7 @@ const Index = () => {
       <Divider />
 
       {/* 7 — CURRENT PROJECTS + SOCIAL */}
-      <section className="section-y bg-white">
+      <section className="section-y">
         <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
           <SectionHead
             eyebrow="Built by Z"
@@ -586,7 +584,7 @@ const Index = () => {
       <Divider />
 
       {/* 8 — FINANCIAL EDUCATION */}
-      <section className="section-y bg-white">
+      <section className="section-y">
         <div className="container mx-auto px-5 sm:px-6 max-w-4xl">
           <SectionHead
             eyebrow="Financial education"
@@ -605,7 +603,7 @@ const Index = () => {
             ))}
           </div>
 
-          <div className="mt-8 rounded-2xl surface-warm border border-[#D97706]/25 p-7 md:p-9 text-center">
+          <div className="mt-8 rounded-2xl border border-[#E9E4A6] bg-white p-7 md:p-9 text-center shadow-[0_14px_34px_rgba(10,15,26,0.32)]">
             <p className="font-sans text-[11px] font-semibold tracking-[0.14em] uppercase text-[#A85B05]">
               Free resource
             </p>
@@ -632,12 +630,12 @@ const Index = () => {
       <Divider />
 
       {/* 9 — FINAL CTA */}
-      <section id="contact" className="section-y bg-white scroll-mt-20">
+      <section id="contact" className="section-y scroll-mt-20">
         <div className="container mx-auto px-5 sm:px-6 max-w-2xl text-center">
-          <h2 className="font-display text-[30px] md:text-[40px] leading-[1.15] text-[#0A0F1A]">
+          <h2 className="font-display text-[30px] md:text-[40px] leading-[1.15] tone-heading">
             Ready to build something useful?
           </h2>
-          <p className="font-sans text-[16px] leading-relaxed text-[#0A0F1A]/70 mt-4">
+          <p className="font-sans text-[16px] leading-relaxed tone-muted mt-4">
             Whether it's a website, a book, or a smarter way to run your business, let's talk. First
             call is free.
           </p>
