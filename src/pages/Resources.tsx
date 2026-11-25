@@ -84,8 +84,6 @@ const POSTS: ResourcePost[] = [
   },
 ];
 
-const DATE_LABEL = "Nov 23, 2026";
-
 export default function Resources() {
   return (
     <div className="np min-h-screen">
@@ -114,7 +112,7 @@ export default function Resources() {
               </span>
               <div>
                 <p className="np-muted text-[13px] tracking-wide">
-                  {DATE_LABEL} · {post.category}
+                  {post.category}
                 </p>
                 <h2 className="np-serif mt-2 text-[22px] leading-snug">{post.title}</h2>
                 <p className="mt-2 text-[16px] leading-relaxed">{post.text}</p>

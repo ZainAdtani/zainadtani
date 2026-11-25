@@ -1,6 +1,4 @@
 import { SiteMotion } from "@/components/SiteMotion";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { AppSidebar } from "./AppSidebar";
 import { BackToTop } from "./BackToTop";
 import { ReadingProgressBar } from "./ReadingProgressBar";
 import { ScrollToHash } from "./ScrollToHash";
@@ -50,8 +48,7 @@ const FOOTER_COLUMNS: { heading: string; links: { label: string; to: string }[] 
       { label: "Resources", to: "/resources" },
       { label: "Tools", to: "/tools" },
       { label: "Investing", to: "/investing" },
-      { label: "Life Notes", to: "/life-notes" },
-      { label: "Life Notes (daily)", to: "/lifenotes" },
+      { label: "Life Notes", to: "/lifenotes" },
       { label: "AI Prompt Library", to: "/ai-prompts" },
       { label: "10 starter prompts", to: "/prompts" },
       { label: "Digital Product HQ", to: "/digital-products" },
@@ -82,11 +79,7 @@ const FOOTER_SOCIALS = [
 ];
 
 export function AppLayout({ children }: AppLayoutProps) {
-  return (
-    <SidebarProvider defaultOpen={false}>
-      <LayoutShell>{children}</LayoutShell>
-    </SidebarProvider>
-  );
+  return <LayoutShell>{children}</LayoutShell>;
 }
 
 function LayoutShell({ children }: { children: ReactNode }) {
@@ -99,11 +92,7 @@ function LayoutShell({ children }: { children: ReactNode }) {
       <ReadingProgressBar />
       {/* Single document scroll — no nested scroll container, so reveal effects
           and full-page rendering always see real viewport intersections. */}
-      <div className="min-h-screen flex flex-col w-full bg-white">
-        <div className="hidden">
-          <AppSidebar />
-        </div>
-
+      <div className="min-h-screen flex flex-col w-full bg-background">
         {!isHome && <Header />}
 
         <main className="flex-1 w-full">{children}</main>

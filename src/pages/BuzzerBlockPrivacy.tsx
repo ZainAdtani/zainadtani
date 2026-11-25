@@ -2,11 +2,11 @@ import { Helmet } from "react-helmet-async";
 
 const CONTACT_EMAIL = "zkadtani@gmail.com";
 
-const paragraphClass = "mt-5 font-sans text-[16px] text-[#0A0F1A]/85 leading-[1.8]";
+const paragraphClass = "mt-5 font-sans text-[16px] text-white/85 leading-[1.8]";
 
 const BuzzerBlockPrivacy = () => {
   return (
-    <div className="min-h-screen bg-white text-[#0A0F1A]">
+    <div className="min-h-screen bg-background text-white">
       <Helmet>
         <title>BuzzerBlock Privacy Policy | Adtani Education Ventures</title>
         <meta
@@ -17,11 +17,11 @@ const BuzzerBlockPrivacy = () => {
       </Helmet>
 
       <div className="container mx-auto px-4 py-16 md:py-24 max-w-3xl">
-        <p className="font-sans text-[12px] font-semibold tracking-[0.18em] uppercase text-[#2F5C90]">
+        <p className="font-sans text-[12px] font-semibold tracking-[0.18em] uppercase text-[#447BBE]">
           Privacy Policy
         </p>
 
-        <h1 className="mt-3 text-[40px] md:text-[58px] leading-[1.05] tracking-[0.01em] text-[#0A0F1A]">
+        <h1 className="mt-3 text-[40px] md:text-[58px] leading-[1.05] tracking-[0.01em] text-white">
           BuzzerBlock Privacy Policy
         </h1>
 
@@ -51,14 +51,14 @@ const BuzzerBlockPrivacy = () => {
           Questions:{" "}
           <a
             href={`mailto:${CONTACT_EMAIL}`}
-            className="text-[#447BBE] underline underline-offset-2 hover:text-[#2F5C90]"
+            className="text-[#447BBE] underline underline-offset-2 hover:text-[#447BBE]"
           >
             {CONTACT_EMAIL}
           </a>
           .
         </p>
 
-        <p className="mt-8 font-sans text-[14px] text-[#0A0F1A]/60">
+        <p className="mt-8 font-sans text-[14px] text-white/60">
           Updated November 2, 2026.
         </p>
       </div>

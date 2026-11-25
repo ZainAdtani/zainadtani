@@ -64,7 +64,7 @@ function SliderRow(props: SliderRowProps) {
   return (
     <div>
       <div className="flex items-baseline justify-between gap-4">
-        <span className="font-sans font-bold text-[16px] text-[#0A0F1A]">
+        <span className="font-sans font-bold text-[16px] text-white">
           {props.label}
         </span>
         <span className="font-sans font-bold text-[18px] text-[#DD5013] whitespace-nowrap">
@@ -75,7 +75,7 @@ function SliderRow(props: SliderRowProps) {
           {props.suffix}
         </span>
       </div>
-      <span className="block font-sans text-[13px] text-[#0A0F1A]/60 mt-0.5">
+      <span className="block font-sans text-[13px] text-white/60 mt-0.5">
         {props.helper}
       </span>
       <input
@@ -150,7 +150,7 @@ export default function MissedCallCalculator() {
   }, [calc.monthly]);
 
   return (
-    <div className="min-h-screen bg-white text-[#0A0F1A]">
+    <div className="min-h-screen bg-background text-white">
       <Helmet>
         <title>Missed Call Cost Calculator | Zain Adtani</title>
         <meta
@@ -182,21 +182,21 @@ export default function MissedCallCalculator() {
             Adtani Education Ventures
           </p>
           <h1
-            className="mt-4 text-[#0A0F1A] text-[38px] md:text-[64px] leading-[1.05]"
+            className="mt-4 text-white text-[38px] md:text-[64px] leading-[1.05]"
             style={{ fontFamily: "'Luckiest Guy', cursive", letterSpacing: "0.02em" }}
           >
             What are missed calls
             <br />
             costing your business?
           </h1>
-          <p className="mt-4 font-sans text-[18px] md:text-[22px] text-[#0A0F1A]/75 max-w-2xl mx-auto">
+          <p className="mt-4 font-sans text-[18px] md:text-[22px] text-white/75 max-w-2xl mx-auto">
             Move the sliders. See your number. No email needed to see it.
           </p>
         </section>
 
         {/* Calculator */}
         <section className="mt-12 grid gap-8 lg:grid-cols-[1fr_360px]">
-          <div className="rounded-3xl border-2 border-[#0A0F1A]/10 bg-[#FDF6E3] p-6 md:p-8 space-y-8">
+          <div className="rounded-3xl border-2 border-white/10 bg-card p-6 md:p-8 space-y-8">
             <SliderRow
               label="Missed calls each week"
               helper="Calls that ring out, hit voicemail, or come in after hours."
@@ -287,12 +287,12 @@ export default function MissedCallCalculator() {
           </div>
         </section>
 
-        <section aria-label="Shareable summary" className="mt-8 rounded-3xl border-2 border-[#D97706]/35 bg-[#FDF6E3] p-6 md:p-8">
-          <p className="font-sans text-[12px] font-bold uppercase tracking-[0.18em] text-[#A85B05]">Your summary</p>
-          <h2 className="mt-2 text-[32px] md:text-[44px] leading-none text-[#0A0F1A]" style={{ fontFamily: "'Luckiest Guy', cursive" }}>
+        <section aria-label="Shareable summary" className="mt-8 rounded-3xl border-2 border-[#D97706]/35 bg-card p-6 md:p-8">
+          <p className="font-sans text-[12px] font-bold uppercase tracking-[0.18em] text-[#D97706]">Your summary</p>
+          <h2 className="mt-2 text-[32px] md:text-[44px] leading-none text-white" style={{ fontFamily: "'Luckiest Guy', cursive" }}>
             About {money(calc.monthly)} a month
           </h2>
-          <p className="mt-4 max-w-3xl font-sans text-[17px] leading-relaxed text-[#0A0F1A]/80">
+          <p className="mt-4 max-w-3xl font-sans text-[17px] leading-relaxed text-white/80">
             At {missedCalls} missed calls a week, if a new customer is worth {money(customerWorth)}, {neverTryAgain}% never try again, and {wouldBook}% of those would have booked, that is about {money(calc.monthly)} every month and {money(calc.yearly)} a year.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -339,7 +339,7 @@ export default function MissedCallCalculator() {
               Share
             </button>
           </div>
-          <p className="mt-3 font-sans text-[13px] text-[#0A0F1A]/70" role="status">
+          <p className="mt-3 font-sans text-[13px] text-white/70" role="status">
             {shareState === "failed"
               ? "Could not copy from this browser. The summary is on the card above."
               : "The shared link opens this page with the same sliders."}
@@ -351,7 +351,7 @@ export default function MissedCallCalculator() {
         {/* More helpful things */}
         <section className="mt-20">
           <h2
-            className="text-center text-[#0A0F1A] text-[32px] md:text-[44px]"
+            className="text-center text-white text-[32px] md:text-[44px]"
             style={{ fontFamily: "'Luckiest Guy', cursive", letterSpacing: "0.02em" }}
           >
             MORE HELPFUL THINGS
@@ -361,15 +361,15 @@ export default function MissedCallCalculator() {
               <Link
                 key={item.title}
                 to={item.to}
-                className="group rounded-3xl border-2 border-[#0A0F1A]/10 bg-white p-6 transition-all hover:border-[#447BBE] hover:-translate-y-1"
+                className="group rounded-3xl border-2 border-white/10 bg-card p-6 transition-all hover:border-[#447BBE] hover:-translate-y-1"
               >
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#E9E4A6]">
-                  <item.icon className="h-5 w-5 text-[#0A0F1A]" aria-hidden="true" />
+                  <item.icon className="h-5 w-5 text-white" aria-hidden="true" />
                 </span>
-                <p className="mt-4 font-sans font-bold text-[17px] text-[#0A0F1A]">
+                <p className="mt-4 font-sans font-bold text-[17px] text-white">
                   {item.title}
                 </p>
-                <p className="mt-2 font-sans text-[15px] text-[#0A0F1A]/75 leading-relaxed">
+                <p className="mt-2 font-sans text-[15px] text-white/75 leading-relaxed">
                   {item.body}
                 </p>
                 <span className="mt-4 inline-flex items-center gap-1 font-sans font-bold text-[14px] text-[#447BBE] group-hover:text-[#DD5013] transition-colors">
@@ -386,11 +386,11 @@ export default function MissedCallCalculator() {
 
         {/* Disclaimer */}
         <section className="mt-16 max-w-3xl mx-auto text-center">
-          <p className="font-sans text-[13px] text-[#0A0F1A]/55">
+          <p className="font-sans text-[13px] text-white/55">
             This calculator is an educational estimate, not a guarantee. Your
             real number depends on your business, your market, and your answers.
           </p>
-          <p className="mt-2 font-sans text-[13px] text-[#0A0F1A]/55">
+          <p className="mt-2 font-sans text-[13px] text-white/55">
             Made by Zain Adtani. Runs entirely in your browser, no data captured.
           </p>
         </section>

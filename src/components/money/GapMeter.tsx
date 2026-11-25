@@ -46,7 +46,7 @@ export function GapMeter() {
           <div className="mt-2 flex flex-wrap gap-2">
             {COVER_OPTIONS.map(o => (
               <button key={o.label} type="button" aria-pressed={mult === o.mult} onClick={() => setMult(o.mult)}
-                className={`rounded-full border-2 px-4 py-2 text-sm font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${mult === o.mult ? "border-[#DD5013] bg-[#DD5013] text-[#0A0F1A]" : "border-border bg-background hover:border-[#DD5013]"}`}>
+                className={`rounded-full border-2 px-4 py-2 text-sm font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${mult === o.mult ? "border-[#DD5013] bg-[#DD5013] text-white" : "border-border bg-background hover:border-[#DD5013]"}`}>
                 {o.label}
               </button>
             ))}

@@ -27,7 +27,7 @@ export const PODCASTS: Podcast[] = [
     title: "Morning Brew Daily",
     host: "Morning Brew",
     listen: "https://open.spotify.com/show/7nc7OQdPTekErtFSRxOBKh",
-    website: "https://www.morningbrew.com/podcasts/morning-brew-daily",
+    website: "https://www.morningbrew.com/",
     image: "/images/podcasts/morning-brew-daily.png",
   },
   {
@@ -42,7 +42,7 @@ export const PODCASTS: Podcast[] = [
     title: "Ultimate Human",
     host: "Gary Brecka",
     listen: "https://open.spotify.com/show/5Faf5ecAnYW7AzGdblqd6R",
-    website: "https://www.ultimatehumanpodcast.com/",
+    website: "https://www.youtube.com/@ultimatehuman",
     image: "/images/podcasts/ultimate-human.jpg",
   },
   {
@@ -56,7 +56,7 @@ export const PODCASTS: Podcast[] = [
     title: "Impact Theory",
     host: "Tom Bilyeu",
     listen: "https://open.spotify.com/show/1nARKz2vTIOb7gC9dusE4b",
-    website: "https://impacttheory.com/podcast",
+    website: "https://impacttheory.com/",
     image: "/images/podcasts/impact-theory.png",
   },
   {

@@ -23,7 +23,6 @@ const AIPrompts = lazy(() => import("./pages/AIPrompts"));
 const BooksHQ = lazy(() => import("./pages/BooksHQ"));
 const Investing = lazy(() => import("./pages/Investing"));
 const DigitalProductsPage = lazy(() => import("./pages/DigitalProductsPage"));
-const LifeNotes = lazy(() => import("./pages/LifeNotes"));
 const Prompts = lazy(() => import("./pages/Prompts"));
 const HarryPotter = lazy(() => import("./pages/HarryPotter"));
 const PokemonDex = lazy(() => import("./pages/PokemonDex"));
@@ -105,7 +104,7 @@ const App = () => (
                   <Route path="/projects/ai-songs" element={<AiSongs />} />
                   <Route path="/resources" element={<Resources />} />
                   <Route path="/ai-prompts" element={<AIPrompts />} />
-                  <Route path="/life-notes" element={<LifeNotes />} />
+                  <Route path="/life-notes" element={<Navigate to="/lifenotes" replace />} />
                   
                   <Route path="/services" element={<Services />} />
                   <Route path="/connect" element={<Connect />} />

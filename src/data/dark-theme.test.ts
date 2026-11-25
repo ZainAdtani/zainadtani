@@ -10,13 +10,13 @@ test("the site no longer ships a light theme toggle", () => {
   const resources = read("src/pages/Resources.tsx");
   const css = read("src/index.css");
   const main = read("src/main.tsx");
-  const sidebar = read("src/components/AppSidebar.tsx");
+  const layout = read("src/components/AppLayout.tsx");
 
   assert.doesNotMatch(home, /useNpTheme|np-light|home-theme|Switch to light/);
   assert.doesNotMatch(resources, /useNpTheme|np-light/);
   assert.doesNotMatch(css, /np-light/);
   assert.doesNotMatch(main, /ThemeProvider/);
-  assert.doesNotMatch(sidebar, /setTheme|useTheme/);
+  assert.doesNotMatch(layout, /AppSidebar|SidebarProvider/);
   assert.match(css, /color-scheme:\s*dark/);
   assert.match(home, /Book a Call/);
   assert.match(home, /Open menu/);

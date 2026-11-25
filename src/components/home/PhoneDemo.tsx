@@ -11,7 +11,7 @@ export function PhoneDemo({ icon, name }: { icon: string; name: string }) {
       onMouseEnter={() => setOn(true)}
       onMouseLeave={() => setOn(false)}
       onClick={() => setOn((v) => !v)}
-      className={`phone-demo ${on ? "is-on" : ""} relative w-[120px] h-[230px] rounded-[28px] border-[6px] border-[#0A0F1A] bg-[#0A0F1A] p-1 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE] focus-visible:ring-offset-2`}
+      className={`phone-demo ${on ? "is-on" : ""} relative w-[120px] h-[230px] rounded-[28px] border-[6px] border-white bg-[#0A0F1A] p-1 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE] focus-visible:ring-offset-2`}
     >
       <span className="absolute left-1/2 top-1 h-1.5 w-10 -translate-x-1/2 rounded-full bg-white/20" aria-hidden="true" />
       <span className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-[20px] bg-[hsl(45,82%,94%)]">

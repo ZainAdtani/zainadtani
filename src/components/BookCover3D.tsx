@@ -24,7 +24,7 @@ export function BookCover3D({ src, alt, inside }: { src: string; alt: string; in
         </div>
       </div>
       <button type="button" onClick={() => setOpen((v) => !v)} aria-pressed={open}
-        className="rounded-full border border-[#447BBE]/40 px-2.5 py-1 font-sans text-[11px] font-semibold text-[#2F5C90] hover:bg-[#447BBE]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+        className="rounded-full border border-[#447BBE]/40 px-2.5 py-1 font-sans text-[11px] font-semibold text-[#447BBE] hover:bg-[#447BBE]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
         Peek inside
       </button>
     </div>

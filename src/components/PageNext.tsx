@@ -81,17 +81,9 @@ const STEPS: Record<string, { title: string; links: NextLink[] }> = {
   "/lifenotes": {
     title: "These are the daily lines",
     links: [
-      { label: "Searchable Life Notes", to: "/life-notes" },
       { label: "My books", to: "/#books" },
-      { label: "Home", to: "/" },
-    ],
-  },
-  "/life-notes": {
-    title: "A different set of notes",
-    links: [
-      { label: "Today's Note archive", to: "/lifenotes" },
-      { label: "Resources", to: "/resources" },
       { label: NEWSLETTER_NAME, to: "/#z-letter" },
+      { label: "Home", to: "/" },
     ],
   },
   "/resources": {
@@ -160,7 +152,7 @@ function stepsFor(pathname: string) {
       title: "More notes",
       links: [
         { label: "All of Today's Notes", to: "/lifenotes" },
-        { label: "Searchable Life Notes", to: "/life-notes" },
+        { label: NEWSLETTER_NAME, to: "/#z-letter" },
         { label: "Home", to: "/" },
       ],
     };
@@ -174,8 +166,8 @@ export function PageNext() {
   return (
     <nav aria-label="Continue" className="border-t border-[#447BBE]/15 bg-[hsl(45,82%,96%)]">
       <div className="mx-auto max-w-6xl px-5 py-8">
-        <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.14em] text-[#2F5C90]">Next</p>
-        <p className="mt-1 font-display text-[22px] leading-tight text-[#0A0F1A]">{step.title}</p>
+        <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.14em] text-[#447BBE]">Next</p>
+        <p className="mt-1 font-display text-[22px] leading-tight text-white">{step.title}</p>
         <ul className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2">
           {step.links.map((link) => (
             <li key={link.label}>
@@ -184,14 +176,14 @@ export function PageNext() {
                   href={link.to}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-sans text-[16px] font-semibold text-[#2F5C90] underline underline-offset-4 hover:text-[#DD5013] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE] rounded"
+                  className="font-sans text-[16px] font-semibold text-[#447BBE] underline underline-offset-4 hover:text-[#DD5013] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE] rounded"
                 >
                   {link.label}
                 </a>
               ) : (
                 <Link
                   to={link.to}
-                  className="font-sans text-[16px] font-semibold text-[#2F5C90] underline underline-offset-4 hover:text-[#DD5013] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE] rounded"
+                  className="font-sans text-[16px] font-semibold text-[#447BBE] underline underline-offset-4 hover:text-[#DD5013] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE] rounded"
                 >
                   {link.label}
                 </Link>
