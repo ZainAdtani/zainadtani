@@ -11,14 +11,9 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarHeader,
-  SidebarFooter,
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { useTheme } from "next-themes";
-import { Sun, Moon, Monitor } from "lucide-react";
-
 import { useState, useEffect, useMemo } from "react";
 import Fuse from "fuse.js";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -39,7 +34,6 @@ const searchIndex: SearchableItem[] = NAV_ITEMS.map((item) => ({
 
 export function AppSidebar() {
   const { state } = useSidebar();
-  const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
   const isCollapsed = state === "collapsed";
 
@@ -159,37 +153,6 @@ export function AppSidebar() {
         </SidebarGroup>
 
       </SidebarContent>
-
-      {!isCollapsed && (
-        <SidebarFooter className="p-4 border-t">
-          <div className="flex items-center gap-2">
-            <Button
-              variant={theme === "light" ? "default" : "ghost"}
-              size="sm"
-              onClick={() => setTheme("light")}
-              className="flex-1"
-            >
-              <Sun className="h-4 w-4" />
-            </Button>
-            <Button
-              variant={theme === "dark" ? "default" : "ghost"}
-              size="sm"
-              onClick={() => setTheme("dark")}
-              className="flex-1"
-            >
-              <Moon className="h-4 w-4" />
-            </Button>
-            <Button
-              variant={theme === "system" ? "default" : "ghost"}
-              size="sm"
-              onClick={() => setTheme("system")}
-              className="flex-1"
-            >
-              <Monitor className="h-4 w-4" />
-            </Button>
-          </div>
-        </SidebarFooter>
-      )}
     </Sidebar>
   );
 }

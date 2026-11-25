@@ -19,7 +19,7 @@ import {
 
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { ZLetterFeed } from "@/components/ZLetterFeed";
-import { MinimalHeader, MinimalHero, useNpTheme } from "@/components/home/MinimalHome";
+import { MinimalHeader, MinimalHero } from "@/components/home/MinimalHome";
 import { AppsSection } from "@/components/home/AppsSection";
 import { Button } from "@/components/ui/button";
 import { BOOKS } from "@/data/books";
@@ -234,7 +234,6 @@ function SubStatus({ state }: { state: SubState }) {
 }
 
 const Index = () => {
-  const [theme, setTheme] = useNpTheme();
   const [mainSub, setMainSub] = useState<SubState>({ kind: "idle" });
   const handleSub = (e: React.FormEvent<HTMLFormElement>, set: (s: SubState) => void) => {
     e.preventDefault();
@@ -280,8 +279,8 @@ const Index = () => {
       </Helmet>
       <BooksJsonLd />
 
-      <div className={`np ${theme === "light" ? "np-light" : ""}`}>
-        <MinimalHeader theme={theme} onToggle={() => setTheme(theme === "dark" ? "light" : "dark")} />
+      <div className="np">
+        <MinimalHeader />
         <MinimalHero />
       </div>
 
@@ -387,7 +386,7 @@ const Index = () => {
       <Divider />
 
       {/* 4 — THE Z LETTER */}
-      <section id="z-letter" className={`np ${theme === "light" ? "np-light" : ""} scroll-mt-20 px-5 py-20`}>
+      <section id="z-letter" className="np scroll-mt-20 px-5 py-20">
         <div className="mx-auto max-w-2xl">
           <h2 className="np-h">{NEWSLETTER_NAME}</h2>
           <p className="mt-3 text-[17px] leading-relaxed">A short daily note on AI, money, and building. Two minutes. No fluff. Free forever.</p>

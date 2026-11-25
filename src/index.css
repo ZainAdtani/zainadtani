@@ -80,6 +80,7 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    color-scheme: dark;
   }
 
   body {
@@ -398,9 +399,17 @@ body.hide-floating-controls button[aria-label="Back to top"] {
   display: none;
 }
 
-/* Minimal homepage top (dark by default, light via toggle) */
-.np { --np-bg: 0 0% 4%; --np-fg: 40 20% 92%; --np-muted: 40 8% 62%; background: hsl(var(--np-bg)); color: hsl(var(--np-fg)); font-family: "DM Sans", sans-serif; }
-.np.np-light { --np-bg: 40 25% 96%; --np-fg: 0 0% 8%; --np-muted: 0 0% 38%; }
+/* Editorial dark surfaces. There is no light theme; OS light mode must not flip these. */
+.np {
+  --np-bg: 0 0% 4%;
+  --np-fg: 40 20% 92%;
+  --np-muted: 40 8% 62%;
+  background: hsl(var(--np-bg));
+  color: hsl(var(--np-fg));
+  color-scheme: dark;
+  font-family: "DM Sans", sans-serif;
+}
+.np-header { background: hsl(var(--np-bg)); }
 .np-serif, .np-h { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
 .np-h { font-size: 20px; letter-spacing: 0.01em; }
 .np-muted { color: hsl(var(--np-muted)); }
@@ -409,8 +418,42 @@ body.hide-floating-controls button[aria-label="Back to top"] {
 .np-link-plain { color: inherit; }
 .np-link-plain:hover { text-decoration: underline; text-underline-offset: 4px; }
 .np a:focus-visible, .np button:focus-visible, .np input:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
-.np-toggle { display: inline-flex; padding: 6px; color: inherit; background: none; border: 0; }
-.np-light .np-portrait { filter: invert(1); }
+.np-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: #DD5013;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.np-cta:hover { background: #C4460F; color: #fff; text-decoration: none; opacity: 1; }
+.np-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid hsl(var(--np-fg) / 0.22);
+  background: transparent;
+  color: inherit;
+}
+.np-mobile-link {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  font-size: 17px;
+  color: inherit;
+  text-decoration: none;
+}
+.np-mobile-link:hover { text-decoration: underline; text-underline-offset: 4px; }
 .np-input { background: transparent; color: inherit; border: 0; border-bottom: 1px solid hsl(var(--np-muted)); padding: 10px 2px; font-size: 16px; }
 .np-input::placeholder { color: hsl(var(--np-muted)); }
 .np-submit { background: none; border: 0; color: inherit; text-decoration: underline; text-underline-offset: 4px; font-size: 16px; padding: 10px 2px; }

@@ -109,22 +109,13 @@ const Investing = () => {
           <h2 className="text-3xl font-bold text-center mb-8">My Banking & Brokerage</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { name: "Marcus", logo: "https://logo.clearbit.com/marcus.com", FallbackIcon: PiggyBank, desc: "High yield savings for emergencies and short term goals.", href: "https://www.marcus.com/share/ZAI-3SI-69TP", cta: "Open Account" },
-              { name: "Fidelity", logo: "https://logo.clearbit.com/fidelity.com", FallbackIcon: LineChart, desc: "Main brokerage for stocks, ETFs, and retirement.", href: "https://fidelity.app.link/e/wKOQHcrcRVb", cta: "Open Account" },
-              { name: "Robinhood", logo: "https://logo.clearbit.com/robinhood.com", FallbackIcon: TrendingUp, desc: "Commission free trading for stocks, ETFs, and crypto.", href: "https://join.robinhood.com/zaina113", cta: "Join" },
+              { name: "Marcus", Icon: PiggyBank, desc: "High yield savings for emergencies and short term goals.", href: "https://www.marcus.com/share/ZAI-3SI-69TP", cta: "Open Account" },
+              { name: "Fidelity", Icon: LineChart, desc: "Main brokerage for stocks, ETFs, and retirement.", href: "https://fidelity.app.link/e/wKOQHcrcRVb", cta: "Open Account" },
+              { name: "Robinhood", Icon: TrendingUp, desc: "Commission free trading for stocks, ETFs, and crypto.", href: "https://join.robinhood.com/zaina113", cta: "Join" },
             ].map((b) => (
               <Card key={b.name} className="p-6 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_4px_24px_rgba(68,123,190,0.15)] transition-all duration-300 rounded-xl flex flex-col">
                 <div className="h-12 mb-4 flex items-center">
-                  <img
-                    src={b.logo}
-                    alt={b.name}
-                    className="h-8 object-contain"
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none";
-                      e.currentTarget.nextElementSibling?.classList.remove("hidden");
-                    }}
-                  />
-                  <b.FallbackIcon className="w-8 h-8 text-primary hidden" />
+                  <b.Icon className="w-8 h-8 text-primary" aria-hidden="true" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">{b.name}</h3>
                 <p className="text-sm text-muted-foreground mb-4 flex-grow">{b.desc}</p>

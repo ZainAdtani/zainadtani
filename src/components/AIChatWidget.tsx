@@ -128,17 +128,17 @@ export function AIChatWidget() {
       )}
 
       {open && (
-        <div className="fixed inset-0 sm:inset-auto sm:bottom-6 sm:right-6 z-50 sm:w-[400px] sm:h-[540px] flex flex-col bg-white sm:rounded-2xl border border-[#447BBE]/20 shadow-[0_12px_40px_rgba(10,15,26,0.16)] overflow-hidden">
+        <div className="fixed inset-0 sm:inset-auto sm:bottom-6 sm:right-6 z-50 sm:w-[400px] sm:h-[540px] flex flex-col bg-[#0A0F1A] text-[#F6F1E7] sm:rounded-2xl border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.45)] overflow-hidden">
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 border-b border-[#447BBE]/15 bg-[#447BBE]/5">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-white/5">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-[#447BBE]" />
-              <span className="text-sm font-semibold text-[#0A0F1A]">Ask me anything about Zain's work</span>
+              <div className="w-2 h-2 rounded-full bg-[#DD5013]" />
+              <span className="text-sm font-semibold text-white">Ask me anything about Zain's work</span>
             </div>
             <button
               onClick={() => setOpen(false)}
               aria-label="Close chat"
-              className="p-1 rounded hover:bg-[#447BBE]/10 text-[#0A0F1A]/60 hover:text-[#0A0F1A] transition-colors"
+              className="p-1 rounded hover:bg-white/10 text-white/70 hover:text-white transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -152,7 +152,7 @@ export function AIChatWidget() {
                   className={`max-w-[80%] px-3 py-2 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${
                     m.role === "user"
                       ? "bg-[#447BBE] text-white rounded-br-sm"
-                      : "bg-[#F3F6FA] text-[#0A0F1A] rounded-bl-sm"
+                      : "bg-white/10 text-[#F6F1E7] rounded-bl-sm"
                   }`}
                 >
                   {m.content}
@@ -161,23 +161,23 @@ export function AIChatWidget() {
             ))}
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-[#F3F6FA] px-3 py-2 rounded-2xl rounded-bl-sm flex gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#447BBE]/60 animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#447BBE]/60 animate-bounce" style={{ animationDelay: "120ms" }} />
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#447BBE]/60 animate-bounce" style={{ animationDelay: "240ms" }} />
+                <div className="bg-white/10 px-3 py-2 rounded-2xl rounded-bl-sm flex gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/70 animate-bounce" style={{ animationDelay: "0ms" }} />
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/70 animate-bounce" style={{ animationDelay: "120ms" }} />
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/70 animate-bounce" style={{ animationDelay: "240ms" }} />
                 </div>
               </div>
             )}
             {error && <p className="text-xs text-destructive text-center">{error}</p>}
             {reachedLimit && (
-              <p className="text-xs text-[#0A0F1A]/60 text-center">
+              <p className="text-xs text-white/60 text-center">
                 You've reached the message limit for this session. Email zkadtani@gmail.com to keep the conversation going.
               </p>
             )}
           </div>
 
           {/* Input */}
-          <div className="border-t border-[#447BBE]/15 p-3 bg-white">
+          <div className="border-t border-white/10 p-3 bg-[#0A0F1A]">
             <div className="flex items-center gap-2">
               <input
                 value={input}
@@ -190,7 +190,7 @@ export function AIChatWidget() {
                 }}
                 disabled={loading || reachedLimit}
                 placeholder="Ask about services, books, or AI..."
-                className="flex-1 bg-white text-[#0A0F1A] placeholder:text-[#0A0F1A]/45 text-sm rounded-full px-4 py-2.5 border border-[#447BBE]/30 focus:outline-none focus:border-[#447BBE] disabled:opacity-50"
+                className="flex-1 bg-white/5 text-[#F6F1E7] placeholder:text-white/45 text-sm rounded-full px-4 py-2.5 border border-white/20 focus:outline-none focus:border-[#E9E4A6] disabled:opacity-50"
               />
               <Button
                 size="icon"

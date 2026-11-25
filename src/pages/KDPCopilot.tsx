@@ -140,6 +140,7 @@ ${result.pricingTip || ""}
     <div className="motion-page min-h-screen bg-[#0A0F1A] text-white pb-20">
       <Helmet>
         <title>KDP Niche Finder | Zain Adtani</title>
+        <meta name="description" content="AI-powered Amazon launch kit generator." />
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 

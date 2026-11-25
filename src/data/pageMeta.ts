@@ -137,6 +137,10 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "The day's headlines, turned into a song. A fresh track lands here every morning. Press play and hear what the world sounded like today.",
   },
+  "/roth-ira-game": {
+    title: "The Roth IRA Game | Zain Adtani",
+    description: "A fun 3-minute game that teaches how a Roth IRA works and walks through 7 ETFs. Education only.",
+  },
   "/buzzerblock-privacy": {
     title: "BuzzerBlock Privacy Policy | Adtani Education Ventures",
     description: "BuzzerBlock does not collect, store, or share personal information.",
