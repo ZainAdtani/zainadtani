@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Home, BookOpen, Wrench } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import { NEWSLETTER_NAME, NEWSLETTER_SUBSCRIBE_URL } from "@/data/newsletter";
 
 const NotFound = () => {
   const location = useLocation();
@@ -32,7 +33,7 @@ const NotFound = () => {
           404: Nothing To See Here (Yet)
         </h1>
 
-        <p className="text-lg md:text-xl mb-10 max-w-md mx-auto text-[#0A0F1A]/80">
+        <p className="text-lg md:text-xl mb-10 max-w-md mx-auto text-white/80">
           This page either moved, got deleted, or never existed. Kind of like a New Year's resolution. Let's get you somewhere real.
         </p>
 
@@ -56,9 +57,19 @@ const NotFound = () => {
               Resources
             </Link>
           </Button>
+          <Button asChild size="lg" className="bg-[#DD5013] text-white hover:bg-[#C4460F]">
+            <a href="https://calendly.com/zkadtani" target="_blank" rel="noopener noreferrer">
+              Book a Call
+            </a>
+          </Button>
+          <Button asChild size="lg" variant="outline">
+            <a href={NEWSLETTER_SUBSCRIBE_URL} target="_blank" rel="noopener noreferrer">
+              Join {NEWSLETTER_NAME}
+            </a>
+          </Button>
         </div>
 
-        <p className="mt-12 text-xs text-[#0A0F1A]/70">
+        <p className="mt-12 text-xs text-white/70">
           Path: <code className="font-mono">{location.pathname}</code>
         </p>
       </div>

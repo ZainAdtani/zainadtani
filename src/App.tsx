@@ -1,9 +1,9 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AppLayout } from "@/components/AppLayout";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -15,6 +15,7 @@ import MissedCallCalculator from "./pages/MissedCallCalculator";
 import AICheckup from "./pages/AICheckup";
 import BuzzerBlockPrivacy from "./pages/BuzzerBlockPrivacy";
 import DailyLifeNotes, { LifeNotePage } from "./pages/DailyLifeNotes";
+import PayRedirect from "./pages/PayRedirect";
 
 const Projects = lazy(() => import("./pages/Projects"));
 const Tools = lazy(() => import("./pages/Tools"));
@@ -23,7 +24,6 @@ const AIPrompts = lazy(() => import("./pages/AIPrompts"));
 const BooksHQ = lazy(() => import("./pages/BooksHQ"));
 const Investing = lazy(() => import("./pages/Investing"));
 const DigitalProductsPage = lazy(() => import("./pages/DigitalProductsPage"));
-const LifeNotes = lazy(() => import("./pages/LifeNotes"));
 const Prompts = lazy(() => import("./pages/Prompts"));
 const HarryPotter = lazy(() => import("./pages/HarryPotter"));
 const PokemonDex = lazy(() => import("./pages/PokemonDex"));
@@ -46,6 +46,36 @@ function PageFallback() {
   );
 }
 
+const HEAD_SELECTORS = [
+  'meta[name="description"]',
+  'meta[property="og:title"]',
+  'meta[property="og:description"]',
+  'meta[property="og:url"]',
+  'meta[property="og:image"]',
+  'meta[property="og:type"]',
+  'meta[name="twitter:title"]',
+  'meta[name="twitter:description"]',
+  'meta[name="twitter:image"]',
+  'meta[name="twitter:card"]',
+  'link[rel="canonical"]',
+];
+
+/** Helmet leaves the homepage tags from index.html in place. Drop those copies once the page tags exist. */
+function HeadTagCleanup() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      for (const sel of HEAD_SELECTORS) {
+        const nodes = [...document.head.querySelectorAll(sel)];
+        if (!nodes.some((n) => n.hasAttribute("data-rh"))) continue;
+        nodes.filter((n) => !n.hasAttribute("data-rh")).forEach((n) => n.remove());
+      }
+    }, 0);
+    return () => window.clearTimeout(id);
+  }, [pathname]);
+  return null;
+}
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -54,8 +84,11 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <HeadTagCleanup />
         <Routes>
           <Route path="/kdp-copilot" element={<Suspense fallback={<PageFallback />}><KDPCopilot /></Suspense>} />
+          <Route path="/speed" element={<PayRedirect slug="speed-to-lead" />} />
+          <Route path="/pay/:slug" element={<PayRedirect />} />
           <Route
             path="*"
             element={
@@ -74,7 +107,7 @@ const App = () => (
                   <Route path="/projects/ai-songs" element={<AiSongs />} />
                   <Route path="/resources" element={<Resources />} />
                   <Route path="/ai-prompts" element={<AIPrompts />} />
-                  <Route path="/life-notes" element={<LifeNotes />} />
+                  <Route path="/life-notes" element={<Navigate to="/lifenotes" replace />} />
                   
                   <Route path="/services" element={<Services />} />
                   <Route path="/connect" element={<Connect />} />

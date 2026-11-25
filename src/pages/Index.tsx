@@ -19,7 +19,7 @@ import {
 
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { ZLetterFeed } from "@/components/ZLetterFeed";
-import { MinimalHeader, MinimalHero, useNpTheme } from "@/components/home/MinimalHome";
+import { MinimalHeader, MinimalHero } from "@/components/home/MinimalHome";
 import { AppsSection } from "@/components/home/AppsSection";
 import { Button } from "@/components/ui/button";
 import { BOOKS } from "@/data/books";
@@ -210,10 +210,10 @@ function SectionHead({
   return (
     <div className={align === "center" ? "text-center max-w-2xl mx-auto" : "max-w-2xl"}>
       {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-      <h2 className="font-display text-[30px] md:text-[40px] leading-[1.15] text-[#0A0F1A] mt-2">
+      <h2 className="font-display text-[30px] md:text-[40px] leading-[1.15] text-white mt-2">
         {title}
       </h2>
-      {sub && <p className="font-sans text-[16px] leading-relaxed text-[#0A0F1A]/70 mt-3">{sub}</p>}
+      {sub && <p className="font-sans text-[16px] leading-relaxed text-white/70 mt-3">{sub}</p>}
     </div>
   );
 }
@@ -234,7 +234,6 @@ function SubStatus({ state }: { state: SubState }) {
 }
 
 const Index = () => {
-  const [theme, setTheme] = useNpTheme();
   const [mainSub, setMainSub] = useState<SubState>({ kind: "idle" });
   const handleSub = (e: React.FormEvent<HTMLFormElement>, set: (s: SubState) => void) => {
     e.preventDefault();
@@ -261,7 +260,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="bg-white">
+    <div className="bg-background">
       <div id="top" />
       <Helmet>
         <title>Zain Adtani | AI Consultant · Author · Licensed Financial Professional</title>
@@ -280,13 +279,13 @@ const Index = () => {
       </Helmet>
       <BooksJsonLd />
 
-      <div className={`np ${theme === "light" ? "np-light" : ""}`}>
-        <MinimalHeader theme={theme} onToggle={() => setTheme(theme === "dark" ? "light" : "dark")} />
+      <div className="np">
+        <MinimalHeader />
         <MinimalHero />
       </div>
 
       {/* 2 — VISITOR PATHS */}
-      <section id="how-i-help" className="section-y bg-white scroll-mt-20">
+      <section id="how-i-help" className="section-y bg-background scroll-mt-20">
         <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
           <SectionHead
             eyebrow="Start here"
@@ -300,8 +299,8 @@ const Index = () => {
                   <span className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-[#447BBE]/10 text-[#447BBE]">
                     <Icon className="w-5 h-5" aria-hidden="true" />
                   </span>
-                  <h3 className="font-display text-[20px] text-[#0A0F1A] mt-4">{title}</h3>
-                  <p className="font-sans text-[15px] leading-relaxed text-[#0A0F1A]/70 mt-2 flex-1">
+                  <h3 className="font-display text-[20px] text-white mt-4">{title}</h3>
+                  <p className="font-sans text-[15px] leading-relaxed text-white/70 mt-2 flex-1">
                     {body}
                   </p>
                   <Link to={to} className="btn-cta mt-6 w-full">
@@ -322,7 +321,7 @@ const Index = () => {
               <Button asChild variant="outline" className="h-auto min-h-12 shrink-0 whitespace-normal px-5 py-3 font-semibold text-primary">
                 <Link to="/ai-checkup">Free AI Checkup <ArrowRight aria-hidden="true" /></Link>
               </Button>
-              <Link to="/ai-checkup#partner" className="font-sans text-[14px] font-semibold text-[#2F5C90] underline underline-offset-4">
+              <Link to="/ai-checkup#partner" className="font-sans text-[14px] font-semibold text-[#447BBE] underline underline-offset-4">
                 See the ${PARTNER_PLAN.monthlyPrice}/month plan
               </Link>
             </div>
@@ -337,7 +336,7 @@ const Index = () => {
       <Divider />
 
       {/* 3 — BOOKS */}
-      <section id="books" className="section-y bg-white scroll-mt-20">
+      <section id="books" className="section-y bg-background scroll-mt-20">
         <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
           <SectionHead
             eyebrow="Author"
@@ -349,7 +348,7 @@ const Index = () => {
               <ScrollReveal key={book.asin}>
                 <div className="card-lift rounded-2xl surface-warm border border-[#D97706]/25 p-6 flex flex-col items-center text-center h-full">
                   <div className="w-[130px] shrink-0">
-                    <div className="w-full aspect-[2/3] rounded-xl bg-white p-2 shadow-[0_6px_20px_rgba(10,15,26,0.10)]">
+                    <div className="w-full aspect-[2/3] rounded-xl bg-card p-2 shadow-[0_6px_20px_rgba(10,15,26,0.10)]">
                       <img
                         src={`https://images-na.ssl-images-amazon.com/images/P/${book.asin}.01.LZZZZZZZ.jpg`}
                         alt={`${book.title} book cover by Zain Adtani`}
@@ -360,13 +359,13 @@ const Index = () => {
                       />
                     </div>
                   </div>
-                  <span className="inline-flex items-center rounded-full bg-white border border-[#447BBE]/30 px-3 py-1 font-sans text-[11px] font-semibold tracking-[0.12em] uppercase text-[#2F5C90] mt-4">
+                  <span className="inline-flex items-center rounded-full bg-card border border-[#447BBE]/30 px-3 py-1 font-sans text-[11px] font-semibold tracking-[0.12em] uppercase text-[#447BBE] mt-4">
                     {book.format}
                   </span>
-                  <h3 className="font-display text-[22px] leading-tight text-[#0A0F1A] mt-3">
+                  <h3 className="font-display text-[22px] leading-tight text-white mt-3">
                     {book.title}
                   </h3>
-                  <p className="font-sans text-[14px] leading-relaxed text-[#0A0F1A]/75 mt-2 flex-1">
+                  <p className="font-sans text-[14px] leading-relaxed text-white/75 mt-2 flex-1">
                     {book.blurb}
                   </p>
                   <a
@@ -387,7 +386,7 @@ const Index = () => {
       <Divider />
 
       {/* 4 — THE Z LETTER */}
-      <section id="z-letter" className={`np ${theme === "light" ? "np-light" : ""} scroll-mt-20 px-5 py-20`}>
+      <section id="z-letter" className="np scroll-mt-20 px-5 py-20">
         <div className="mx-auto max-w-2xl">
           <h2 className="np-h">{NEWSLETTER_NAME}</h2>
           <p className="mt-3 text-[17px] leading-relaxed">A short daily note on AI, money, and building. Two minutes. No fluff. Free forever.</p>
@@ -399,9 +398,9 @@ const Index = () => {
           <SubStatus state={mainSub} />
         </div>
       </section>
-      <section aria-label="Recent issues" className="section-y bg-white">
+      <section aria-label="Recent issues" className="section-y bg-background">
         <div className="mt-10">
-          <p className="text-center font-sans text-[14px] font-semibold tracking-wide text-[#0A0F1A]/70 mb-4">
+          <p className="text-center font-sans text-[14px] font-semibold tracking-wide text-white/70 mb-4">
             Fresh from the inbox
           </p>
           <ZLetterFeed />
@@ -411,7 +410,7 @@ const Index = () => {
       <Divider />
 
       {/* 5 — FEATURED CONTENT / DISCOVERY */}
-      <section className="section-y bg-white">
+      <section className="section-y bg-background">
         <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
           <SectionHead
             eyebrow="Explore"
@@ -427,15 +426,15 @@ const Index = () => {
                       <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-[#447BBE]/10 text-[#447BBE]">
                         <Icon className="w-4 h-4" aria-hidden="true" />
                       </span>
-                      <span className="font-sans text-[11px] font-semibold tracking-[0.14em] uppercase text-[#A85B05]">
+                      <span className="font-sans text-[11px] font-semibold tracking-[0.14em] uppercase text-[#D97706]">
                         {label}
                       </span>
                     </div>
-                    <h3 className="font-display text-[18px] text-[#0A0F1A] mt-4">{title}</h3>
-                    <p className="font-sans text-[14px] leading-relaxed text-[#0A0F1A]/70 mt-1.5 flex-1">
+                    <h3 className="font-display text-[18px] text-white mt-4">{title}</h3>
+                    <p className="font-sans text-[14px] leading-relaxed text-white/70 mt-1.5 flex-1">
                       {body}
                     </p>
-                    <span className="inline-flex items-center gap-1.5 font-sans text-[14px] font-semibold text-[#2F5C90] mt-4">
+                    <span className="inline-flex items-center gap-1.5 font-sans text-[14px] font-semibold text-[#447BBE] mt-4">
                       Open <ArrowRight className="w-4 h-4" aria-hidden="true" />
                     </span>
                   </>
@@ -464,31 +463,31 @@ const Index = () => {
       <Divider />
 
       {/* 6 — MEET ZAIN */}
-      <section className="section-y bg-white">
+      <section className="section-y bg-background">
         <div className="container mx-auto px-5 sm:px-6 max-w-4xl">
-          <div className="rounded-2xl border border-[#447BBE]/18 bg-white p-7 md:p-10 shadow-[0_6px_22px_rgba(10,15,26,0.06)]">
+          <div className="rounded-2xl border border-[#447BBE]/18 bg-card p-7 md:p-10 shadow-[0_6px_22px_rgba(10,15,26,0.06)]">
             <p className="eyebrow">Meet Zain</p>
-            <h2 className="font-display text-[28px] md:text-[36px] leading-tight text-[#0A0F1A] mt-2">
+            <h2 className="font-display text-[28px] md:text-[36px] leading-tight text-white mt-2">
               Hi, I'm Z.
             </h2>
-            <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-[#0A0F1A]/75 mt-4">
+            <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-white/75 mt-4">
               Hey friends. I'm Zain, but most people call me Z.
             </p>
-            <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-[#0A0F1A]/75 mt-3">
+            <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-white/75 mt-3">
               I'm an AI consultant, a licensed financial professional, and an author, based in
               Dallas-Fort Worth.
             </p>
-            <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-[#0A0F1A]/75 mt-3">
+            <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-white/75 mt-3">
               I teach families how money actually works. Then I help them protect it. I'm licensed
               in Texas for life and health insurance.
             </p>
-            <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-[#0A0F1A]/75 mt-3">
+            <p className="font-sans text-[16px] md:text-[17px] leading-relaxed text-white/75 mt-3">
               I also help small businesses use practical AI without the overwhelm, and I help
               people publish the book they keep putting off.
             </p>
             <Link
               to="/about"
-              className="inline-flex items-center gap-1.5 font-sans font-semibold text-[15px] text-[#2F5C90] mt-6 underline-offset-4 hover:underline"
+              className="inline-flex items-center gap-1.5 font-sans font-semibold text-[15px] text-[#447BBE] mt-6 underline-offset-4 hover:underline"
             >
               More about me <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </Link>
@@ -499,7 +498,7 @@ const Index = () => {
       <Divider />
 
       {/* 7 — CURRENT PROJECTS + SOCIAL */}
-      <section className="section-y bg-white">
+      <section className="section-y bg-background">
         <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
           <SectionHead
             eyebrow="Built by Z"
@@ -510,7 +509,7 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-10">
               {FUN_PROJECTS.map((p) => (
                 <Link key={p.title} to={p.href} className="surface-card overflow-hidden flex flex-col">
-                  <div className="relative aspect-[16/9] overflow-hidden bg-[#F3F6FA]">
+                  <div className="relative aspect-[16/9] overflow-hidden bg-[#0A0F1A]">
                     <img
                       src={p.image}
                       alt={p.title}
@@ -519,16 +518,16 @@ const Index = () => {
                       height={360}
                       loading="lazy"
                     />
-                    <span className="absolute top-3 left-3 rounded-full bg-white/95 px-3 py-1 font-sans text-[11px] font-semibold tracking-wide text-[#0A0F1A]">
+                    <span className="absolute top-3 left-3 rounded-full bg-[#0A0F1A]/85 px-3 py-1 font-sans text-[11px] font-semibold tracking-wide text-[#E9E4A6]">
                       {p.badge}
                     </span>
                   </div>
                   <div className="p-6 flex flex-col gap-2 flex-1">
-                    <h3 className="font-display text-[18px] text-[#0A0F1A]">{p.title}</h3>
-                    <p className="font-sans text-[14px] leading-relaxed text-[#0A0F1A]/70 flex-1">
+                    <h3 className="font-display text-[18px] text-white">{p.title}</h3>
+                    <p className="font-sans text-[14px] leading-relaxed text-white/70 flex-1">
                       {p.description}
                     </p>
-                    <span className="inline-flex items-center gap-1.5 font-sans text-[14px] font-semibold text-[#2F5C90] mt-2">
+                    <span className="inline-flex items-center gap-1.5 font-sans text-[14px] font-semibold text-[#447BBE] mt-2">
                       Open <ArrowRight className="w-4 h-4" aria-hidden="true" />
                     </span>
                   </div>
@@ -537,14 +536,14 @@ const Index = () => {
             </div>
           </ScrollReveal>
 
-          <div className="mt-8 rounded-xl border border-[#447BBE]/15 bg-[#F7F9FC] px-5 py-5">
-            <p className="font-sans text-[13px] font-semibold uppercase tracking-[0.14em] text-[#0A0F1A]/70">
+          <div className="mt-8 rounded-xl border border-[#447BBE]/15 bg-white/5 px-5 py-5">
+            <p className="font-sans text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">
               Follow the build
             </p>
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {SOCIAL_GROUPS.map(({ platform, Icon, links }) => (
                 <div key={platform}>
-                  <p className="flex items-center gap-2 font-sans text-[14px] font-semibold text-[#0A0F1A]">
+                  <p className="flex items-center gap-2 font-sans text-[14px] font-semibold text-white">
                     <Icon className="w-4 h-4 text-[#447BBE]" aria-hidden="true" />
                     {platform}
                   </p>
@@ -555,7 +554,7 @@ const Index = () => {
                           href={link.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-sans text-[14px] text-[#2F5C90] underline underline-offset-4 hover:text-[#DD5013] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE] rounded"
+                          className="font-sans text-[14px] text-[#447BBE] underline underline-offset-4 hover:text-[#DD5013] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE] rounded"
                         >
                           {link.label}
                         </a>
@@ -568,13 +567,13 @@ const Index = () => {
             <div className="mt-5 flex flex-wrap gap-4">
               <Link
                 to="/lab"
-                className="font-sans text-[14px] text-[#2F5C90] underline-offset-4 hover:underline"
+                className="font-sans text-[14px] text-[#447BBE] underline-offset-4 hover:underline"
               >
                 Explore the Lab
               </Link>
               <Link
                 to="/resources/investing"
-                className="font-sans text-[14px] text-[#2F5C90] underline-offset-4 hover:underline"
+                className="font-sans text-[14px] text-[#447BBE] underline-offset-4 hover:underline"
               >
                 My Investing Stack
               </Link>
@@ -586,7 +585,7 @@ const Index = () => {
       <Divider />
 
       {/* 8 — FINANCIAL EDUCATION */}
-      <section className="section-y bg-white">
+      <section className="section-y bg-background">
         <div className="container mx-auto px-5 sm:px-6 max-w-4xl">
           <SectionHead
             eyebrow="Financial education"
@@ -597,8 +596,8 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
             {FINANCIAL_SITUATIONS.map((c) => (
               <div key={c.title} className="surface-card p-6">
-                <h3 className="font-display text-[17px] text-[#0A0F1A]">{c.title}</h3>
-                <p className="font-sans text-[14px] leading-relaxed text-[#0A0F1A]/70 mt-2">
+                <h3 className="font-display text-[17px] text-white">{c.title}</h3>
+                <p className="font-sans text-[14px] leading-relaxed text-white/70 mt-2">
                   {c.desc}
                 </p>
               </div>
@@ -606,13 +605,13 @@ const Index = () => {
           </div>
 
           <div className="mt-8 rounded-2xl surface-warm border border-[#D97706]/25 p-7 md:p-9 text-center">
-            <p className="font-sans text-[11px] font-semibold tracking-[0.14em] uppercase text-[#A85B05]">
+            <p className="font-sans text-[11px] font-semibold tracking-[0.14em] uppercase text-[#D97706]">
               Free resource
             </p>
-            <h3 className="font-display text-[22px] md:text-[26px] leading-tight text-[#0A0F1A] mt-2">
+            <h3 className="font-display text-[22px] md:text-[26px] leading-tight text-white mt-2">
               View the 30-Min Financial Education Deck
             </h3>
-            <p className="font-sans text-[15px] leading-relaxed text-[#0A0F1A]/75 mt-3 max-w-xl mx-auto">
+            <p className="font-sans text-[15px] leading-relaxed text-white/75 mt-3 max-w-xl mx-auto">
               A simple walkthrough of the four financial situations most families avoid: dying too
               soon, living too long, getting sick and not dying, and having no will or trust.
               Education only, at your own pace.
@@ -632,12 +631,12 @@ const Index = () => {
       <Divider />
 
       {/* 9 — FINAL CTA */}
-      <section id="contact" className="section-y bg-white scroll-mt-20">
+      <section id="contact" className="section-y bg-background scroll-mt-20">
         <div className="container mx-auto px-5 sm:px-6 max-w-2xl text-center">
-          <h2 className="font-display text-[30px] md:text-[40px] leading-[1.15] text-[#0A0F1A]">
+          <h2 className="font-display text-[30px] md:text-[40px] leading-[1.15] text-white">
             Ready to build something useful?
           </h2>
-          <p className="font-sans text-[16px] leading-relaxed text-[#0A0F1A]/70 mt-4">
+          <p className="font-sans text-[16px] leading-relaxed text-white/70 mt-4">
             Whether it's a website, a book, or a smarter way to run your business, let's talk. First
             call is free.
           </p>

@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { LIFE_NOTES, LifeNote } from "@/data/life_notes";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -21,7 +20,7 @@ function preview(body: string) {
   return (cut > 160 ? slice.slice(0, cut) : slice) + "…";
 }
 
-export default function LifeNotes() {
+export function SearchableLifeNotes() {
   const [q, setQ] = useState("");
   const [activeNote, setActiveNote] = useState<LifeNote | null>(null);
   
@@ -57,18 +56,10 @@ export default function LifeNotes() {
   }, [list]);
 
   return (
-    <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>Life Notes — Short Ideas Worth Re-Using | Zain Adtani</title>
-        <meta name="description" content="Short, searchable life notes from Zain Adtani — bite-sized ideas, lessons, and reminders on work, money, parenting, and personal growth, easy to copy and re-use." />
-        <meta property="og:title" content="Life Notes — Zain Adtani" />
-        <meta property="og:description" content="Bite-sized, searchable life notes on work, money, parenting, and personal growth." />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://zainadtani.com/life-notes" />
-      </Helmet>
-      <main className="container mx-auto px-4 py-12 max-w-4xl">
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-2">Life Notes ✍️</h1>
-        <p className="text-muted-foreground mb-6">Short ideas worth re-using. Search + copy.</p>
+    <section className="border-t border-white/10 px-5 py-16" aria-labelledby="more-notes-heading">
+      <div className="container mx-auto max-w-4xl">
+        <h2 id="more-notes-heading" className="text-3xl md:text-4xl mb-2">Short ideas worth re-using</h2>
+        <p className="text-muted-foreground mb-6">Search and copy.</p>
 
         <div className="max-w-xl mb-6">
           <Input value={q} onChange={(e)=>setQ(e.target.value)} placeholder="Search notes…" className="h-11" />
@@ -77,7 +68,7 @@ export default function LifeNotes() {
         <div className="space-y-8">
           {grouped.map(({ section, notes }) => (
             <div key={section}>
-              <h2 className="text-2xl font-bold mb-4">{section}</h2>
+              <h3 className="text-2xl mb-4">{section}</h3>
               <div className="stagger-list grid gap-4">
                 {notes.map((n, idx) => {
                   const bodyPreview = preview(n.body);
@@ -90,13 +81,13 @@ export default function LifeNotes() {
                             {n.tags.map(t => <Badge key={t} variant="outline">{t}</Badge>)}
                           </div>
                           <h3 className="text-lg font-semibold mb-3">{n.title}</h3>
-                          <div className="rounded-xl bg-rose-50 text-rose-900 dark:bg-rose-100/10 dark:text-rose-100 border border-rose-100 dark:border-rose-200/10 p-3 leading-relaxed whitespace-pre-line">
+                          <div className="rounded-xl bg-white/5 text-white border border-white/10 p-3 leading-relaxed whitespace-pre-line">
                             {bodyPreview}
                           </div>
                           {long && (
                             <button
                               onClick={() => setActiveNote(n)}
-                              className="mt-2 text-sm text-rose-700 hover:underline dark:text-rose-300"
+                              className="mt-2 text-sm text-[#E9E4A6] hover:underline"
                             >
                               Continue reading
                             </button>
@@ -111,10 +102,10 @@ export default function LifeNotes() {
             </div>
           ))}
         </div>
-      </main>
+      </div>
 
       <Dialog open={!!activeNote} onOpenChange={(open) => !open && setActiveNote(null)}>
-        <DialogContent className="max-w-2xl w-[92vw] rounded-2xl bg-white dark:bg-[#0b0f16] shadow-2xl border border-white/10">
+        <DialogContent className="max-w-2xl w-[92vw] rounded-2xl bg-[#121826] text-white shadow-2xl border border-white/10">
           <button
             onClick={() => setActiveNote(null)}
             className="absolute right-4 top-4 h-8 w-8 grid place-items-center rounded-full hover:bg-white/60 hover:dark:bg-white/10 transition-colors"
@@ -127,13 +118,13 @@ export default function LifeNotes() {
               <DialogHeader>
                 <DialogTitle className="text-2xl font-bold mb-4">{activeNote.title}</DialogTitle>
               </DialogHeader>
-              <div className="rounded-xl bg-rose-50 text-rose-900 dark:bg-rose-100/10 dark:text-rose-100 border border-rose-100 dark:border-rose-200/10 p-4 leading-relaxed whitespace-pre-line">
+              <div className="rounded-xl bg-white/5 text-white border border-white/10 p-4 leading-relaxed whitespace-pre-line">
                 {activeNote.body}
               </div>
             </div>
           )}
         </DialogContent>
       </Dialog>
-    </div>
+    </section>
   );
 }

@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { MinimalHeader, useNpTheme } from "@/components/home/MinimalHome";
+import { MinimalHeader } from "@/components/home/MinimalHome";
 
 interface ResourcePost {
   category: string;
@@ -32,7 +32,7 @@ const POSTS: ResourcePost[] = [
     category: "Prompt library",
     title: "My Prompt Library",
     text: "The prompts I actually use in my work, free to copy.",
-    link: { label: "Browse the prompts", to: "/prompts" },
+    link: { label: "Browse the prompts", to: "/ai-prompts" },
   },
   {
     category: "Quiz",
@@ -84,12 +84,9 @@ const POSTS: ResourcePost[] = [
   },
 ];
 
-const DATE_LABEL = "Nov 23, 2026";
-
 export default function Resources() {
-  const [theme, setTheme] = useNpTheme();
   return (
-    <div className={`np min-h-screen ${theme === "light" ? "np-light" : ""}`}>
+    <div className="np min-h-screen">
       <Helmet>
         <title>Resources — Tools, Books & Links I Recommend | Zain Adtani</title>
         <meta name="description" content="A curated library of tools, books, articles, and links Zain Adtani recommends for AI, building small businesses, writing, and personal growth." />
@@ -99,7 +96,7 @@ export default function Resources() {
         <link rel="canonical" href="https://zainadtani.com/resources" />
       </Helmet>
 
-      <MinimalHeader theme={theme} onToggle={() => setTheme(theme === "dark" ? "light" : "dark")} />
+      <MinimalHeader />
 
       <main className="mx-auto max-w-2xl px-5 pb-24 pt-6">
         <h1 className="np-serif text-[34px] leading-tight">Resources</h1>
@@ -115,7 +112,7 @@ export default function Resources() {
               </span>
               <div>
                 <p className="np-muted text-[13px] tracking-wide">
-                  {DATE_LABEL} · {post.category}
+                  {post.category}
                 </p>
                 <h2 className="np-serif mt-2 text-[22px] leading-snug">{post.title}</h2>
                 <p className="mt-2 text-[16px] leading-relaxed">{post.text}</p>

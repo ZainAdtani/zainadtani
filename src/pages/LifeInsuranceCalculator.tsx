@@ -26,16 +26,16 @@ function Field(props: {
   const max = Math.max(props.max ?? 500000, num);
   return (
     <label className="block">
-      <span className="font-sans font-bold text-[16px] text-[#0A0F1A]">
+      <span className="font-sans font-bold text-[16px] text-white">
         {props.label}
       </span>
       {props.helper && (
-        <span className="block font-sans text-[13px] text-[#0A0F1A]/60 mt-0.5">
+        <span className="block font-sans text-[13px] text-white/60 mt-0.5">
           {props.helper}
         </span>
       )}
       <div className="relative mt-2">
-        <span className="absolute left-4 top-1/2 -translate-y-1/2 font-sans text-[16px] text-[#0A0F1A]/50">
+        <span className="absolute left-4 top-1/2 -translate-y-1/2 font-sans text-[16px] text-white/50">
           $
         </span>
         <input
@@ -45,7 +45,7 @@ function Field(props: {
           value={props.value}
           placeholder="0"
           onChange={(e) => props.onChange(e.target.value.replace(/[^0-9]/g, ""))}
-          className="w-full font-sans text-[18px] rounded-2xl border-2 border-[#0A0F1A]/10 bg-white pl-9 pr-4 py-3 outline-none focus:border-emerald-500 transition-colors"
+          className="w-full font-sans text-[18px] rounded-2xl border-2 border-white/10 bg-card pl-9 pr-4 py-3 outline-none focus:border-emerald-500 transition-colors"
         />
       </div>
       <input
@@ -144,7 +144,7 @@ export default function LifeInsuranceCalculator() {
         : "Most families with a number like this look at a 30 year term policy.";
 
   return (
-    <div className="min-h-screen bg-white text-[#0A0F1A]">
+    <div className="min-h-screen bg-background text-white">
       <Helmet>
         <title>Life Insurance Calculator: How Much Coverage Do You Need?</title>
         <meta
@@ -176,21 +176,21 @@ export default function LifeInsuranceCalculator() {
             Free tool
           </p>
           <h1
-            className="mt-3 text-[#0A0F1A] text-[44px] md:text-[72px] leading-[1.02]"
+            className="mt-3 text-white text-[44px] md:text-[72px] leading-[1.02]"
             style={{ fontFamily: "'Luckiest Guy', cursive", letterSpacing: "0.02em" }}
           >
             HOW MUCH LIFE
             <br />
             INSURANCE DO YOU NEED?
           </h1>
-          <p className="mt-4 font-sans text-[18px] md:text-[22px] text-[#0A0F1A]/75 max-w-2xl mx-auto">
+          <p className="mt-4 font-sans text-[18px] md:text-[22px] text-white/75 max-w-2xl mx-auto">
             Answer 7 quick questions. Get a plain-English number in about 60 seconds.
           </p>
         </section>
 
         {/* Calculator */}
         <section className="mt-12 grid gap-8 lg:grid-cols-[1fr_360px]">
-          <div className="rounded-3xl border-2 border-[#0A0F1A]/10 bg-[#F8FAF6] p-6 md:p-8 space-y-6">
+          <div className="rounded-3xl border-2 border-white/10 bg-card p-6 md:p-8 space-y-6">
             <Field
               label="1. What is your yearly take-home pay?"
               helper="After taxes. Just your income, not the household total."
@@ -199,10 +199,10 @@ export default function LifeInsuranceCalculator() {
             />
 
             <div>
-              <span className="font-sans font-bold text-[16px] text-[#0A0F1A]">
+              <span className="font-sans font-bold text-[16px] text-white">
                 2. How many years should it replace?
               </span>
-              <span className="block font-sans text-[13px] text-[#0A0F1A]/60 mt-0.5">
+              <span className="block font-sans text-[13px] text-white/60 mt-0.5">
                 How long would your family need your income if you were gone tomorrow?
               </span>
               <div className="mt-3 flex items-center gap-4">
@@ -215,7 +215,7 @@ export default function LifeInsuranceCalculator() {
                   className="w-full accent-emerald-600"
                   aria-label="Years of income to replace"
                 />
-                <span className="font-sans font-bold text-[18px] text-[#0A0F1A] whitespace-nowrap w-20 text-right">
+                <span className="font-sans font-bold text-[18px] text-white whitespace-nowrap w-20 text-right">
                   {`${years} ${years === 1 ? "year" : "years"}`}
                 </span>
               </div>
@@ -310,7 +310,7 @@ export default function LifeInsuranceCalculator() {
               href={NEWSLETTER_SUBSCRIBE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 block text-center font-sans font-bold text-[#0A0F1A] rounded-full bg-emerald-400 hover:bg-emerald-300 transition-colors px-6 py-4 text-[16px]"
+              className="mt-6 block text-center font-sans font-bold text-white rounded-full bg-emerald-400 hover:bg-emerald-300 transition-colors px-6 py-4 text-[16px]"
             >
               Get {NEWSLETTER_NAME}, free
             </a>
@@ -323,19 +323,19 @@ export default function LifeInsuranceCalculator() {
         {/* DIME explainer */}
         <section className="mt-20">
           <h2
-            className="text-center text-[#0A0F1A] text-[32px] md:text-[44px]"
+            className="text-center text-white text-[32px] md:text-[44px]"
             style={{ fontFamily: "'Luckiest Guy', cursive", letterSpacing: "0.02em" }}
           >
             THE MATH BEHIND IT: DIME
           </h2>
-          <p className="mt-3 text-center font-sans text-[16px] text-[#0A0F1A]/70 max-w-2xl mx-auto">
+          <p className="mt-3 text-center font-sans text-[16px] text-white/70 max-w-2xl mx-auto">
             Four letters. Add them up, subtract what you already have. That is the whole formula.
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {DIME.map((d) => (
               <div
                 key={d.letter}
-                className="rounded-3xl border-2 border-[#0A0F1A]/10 bg-[#F8FAF6] p-6"
+                className="rounded-3xl border-2 border-white/10 bg-card p-6"
               >
                 <p
                   className="text-[40px] text-emerald-600 leading-none"
@@ -344,7 +344,7 @@ export default function LifeInsuranceCalculator() {
                   {d.letter}
                 </p>
                 <p className="mt-2 font-sans font-bold text-[17px]">{d.title}</p>
-                <p className="mt-2 font-sans text-[14px] text-[#0A0F1A]/70">{d.text}</p>
+                <p className="mt-2 font-sans text-[14px] text-white/70">{d.text}</p>
               </div>
             ))}
           </div>
@@ -353,7 +353,7 @@ export default function LifeInsuranceCalculator() {
         {/* FAQ */}
         <section className="mt-20 max-w-3xl mx-auto">
           <h2
-            className="text-center text-[#0A0F1A] text-[32px] md:text-[44px]"
+            className="text-center text-white text-[32px] md:text-[44px]"
             style={{ fontFamily: "'Luckiest Guy', cursive", letterSpacing: "0.02em" }}
           >
             QUICK ANSWERS
@@ -362,10 +362,10 @@ export default function LifeInsuranceCalculator() {
             {FAQS.map((f) => (
               <div
                 key={f.q}
-                className="rounded-3xl border-2 border-[#0A0F1A]/10 bg-white p-6"
+                className="rounded-3xl border-2 border-white/10 bg-card p-6"
               >
                 <p className="font-sans font-bold text-[17px]">{f.q}</p>
-                <p className="mt-2 font-sans text-[15px] text-[#0A0F1A]/75">{f.a}</p>
+                <p className="mt-2 font-sans text-[15px] text-white/75">{f.a}</p>
               </div>
             ))}
           </div>
@@ -373,12 +373,12 @@ export default function LifeInsuranceCalculator() {
 
         {/* Disclaimer */}
         <section className="mt-16 max-w-3xl mx-auto text-center">
-          <p className="font-sans text-[13px] text-[#0A0F1A]/55">
+          <p className="font-sans text-[13px] text-white/55">
             Educational only. Not financial advice. This calculator gives a rough
             starting estimate, not a recommendation. Talk to a licensed life
             insurance agent about your situation.
           </p>
-          <p className="mt-2 font-sans text-[13px] text-[#0A0F1A]/55">
+          <p className="mt-2 font-sans text-[13px] text-white/55">
             Made by Zain Adtani, Licensed Financial Professional.
           </p>
         </section>

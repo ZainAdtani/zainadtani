@@ -43,7 +43,7 @@ export default function Projects() {
         <img 
           src={pikachu} 
           alt="Pikachu" 
-          className="fixed bottom-8 right-8 sm:bottom-6 sm:right-6 w-20 h-20 animate-bounce z-30 pointer-events-none opacity-90"
+          className="fixed bottom-24 right-4 sm:bottom-28 sm:right-6 w-16 h-16 sm:w-20 sm:h-20 animate-bounce z-30 pointer-events-none opacity-90"
         />
 
         {/* Projects Grid */}

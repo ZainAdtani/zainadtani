@@ -51,7 +51,7 @@ export const projects: Project[] = [
     id: 'life-notes',
     title: 'Life Notes',
     description: 'Quotes, wisdom, and mindset notes.',
-    route: '/life-notes',
+    route: '/lifenotes',
     tags: ['quotes', 'wisdom', 'mindset']
   },
   {

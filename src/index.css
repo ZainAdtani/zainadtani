@@ -4,29 +4,29 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Design system — bright, warm, premium personal brand.
-   Brand hexes: white #FFFFFF, Dark Nova #0A0F1A, Spidey Blue #447BBE,
+/* Design system — dark only.
+   Brand hexes: Dark Nova #0A0F1A, white #FFFFFF, Spidey Blue #447BBE,
    Claude Orange #D97706, Sunset Drive #DD5013, Fresh Hay #E9E4A6. */
 
 @layer base {
   :root {
     /* Raw brand tokens */
-    --color-bg: #FFFFFF;
-    --color-ink: #0A0F1A;
+    --color-bg: #0A0F1A;
+    --color-ink: #FFFFFF;
     --color-primary: #447BBE;
     --color-detail: #D97706;
     --color-cta: #DD5013;
     --color-warm: #E9E4A6;
 
-    /* Semantic tokens (HSL) */
-    --background: 0 0% 100%;
-    --foreground: 222 44% 7%;
+    /* Semantic tokens (HSL). #0A0F1A is 222 44% 7%. */
+    --background: 222 44% 7%;
+    --foreground: 0 0% 100%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 44% 7%;
+    --card: 222 36% 11%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 44% 7%;
+    --popover: 222 36% 11%;
+    --popover-foreground: 0 0% 100%;
 
     --primary: 213 47% 51%;
     --primary-foreground: 0 0% 100%;
@@ -35,8 +35,8 @@
     --secondary: 18 84% 47%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 24% 97%;
-    --muted-foreground: 215 16% 40%;
+    --muted: 222 28% 14%;
+    --muted-foreground: 40 18% 78%;
 
     /* Fresh Hay — warm accent */
     --accent: 55 60% 78%;
@@ -45,29 +45,29 @@
     --destructive: 0 72% 46%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 213 47% 88%;
-    --input: 213 30% 88%;
+    --border: 213 24% 28%;
+    --input: 213 22% 24%;
     --ring: 213 47% 51%;
 
     --radius: 0.75rem;
 
-    --hero-bg: 0 0% 100%;
-    --hero-foreground: 222 44% 7%;
-    --hero-cream: 45 82% 94%;
-    --hero-sun: 47 96% 69%;
-    --hero-sky: 202 68% 71%;
+    --hero-bg: 222 44% 7%;
+    --hero-foreground: 0 0% 100%;
+    --hero-cream: 222 36% 10%;
+    --hero-sun: 18 84% 47%;
+    --hero-sky: 213 47% 51%;
 
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 222 44% 7%;
+    --sidebar-background: 222 44% 7%;
+    --sidebar-foreground: 0 0% 100%;
     --sidebar-primary: 213 47% 51%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 24% 97%;
-    --sidebar-accent-foreground: 222 44% 7%;
-    --sidebar-border: 213 47% 88%;
+    --sidebar-accent: 222 28% 14%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 213 24% 28%;
     --sidebar-ring: 213 47% 51%;
 
-    --shadow-soft: 0 1px 2px rgba(10, 15, 26, 0.04), 0 8px 24px rgba(10, 15, 26, 0.06);
-    --shadow-lifted: 0 2px 4px rgba(10, 15, 26, 0.05), 0 14px 34px rgba(10, 15, 26, 0.09);
+    --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.25), 0 8px 24px rgba(0, 0, 0, 0.28);
+    --shadow-lifted: 0 2px 4px rgba(0, 0, 0, 0.3), 0 14px 34px rgba(0, 0, 0, 0.35);
     --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
@@ -80,6 +80,7 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    color-scheme: dark;
   }
 
   body {
@@ -132,22 +133,21 @@
     @apply transition-transform duration-200 ease-out hover:scale-[1.02];
   }
 
-  /* Light surface card — soft blue border, restrained shadow */
   .surface-card {
-    background-color: #FFFFFF;
-    border: 1px solid rgba(68, 123, 190, 0.18);
+    background-color: #121826;
+    border: 1px solid rgba(68, 123, 190, 0.35);
     border-radius: var(--radius);
     box-shadow: var(--shadow-soft);
     transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
   .surface-card:hover {
-    border-color: rgba(68, 123, 190, 0.4);
+    border-color: rgba(221, 80, 19, 0.55);
     box-shadow: var(--shadow-lifted);
     transform: translateY(-2px);
   }
 
   .surface-warm {
-    background-color: rgba(233, 228, 166, 0.28);
+    background-color: rgba(233, 228, 166, 0.08);
   }
 
   .btn-cta {
@@ -157,25 +157,25 @@
     transition: background-color 0.2s ease, transform 0.15s ease;
   }
   .btn-cta:hover { background-color: #C4460F; }
-  .btn-cta:focus-visible { outline: 2px solid #0A0F1A; outline-offset: 3px; }
+  .btn-cta:focus-visible { outline: 2px solid #E9E4A6; outline-offset: 3px; }
   .btn-cta:active { transform: scale(0.985); }
 
   .btn-secondary-outline {
     @apply inline-flex items-center justify-center rounded-xl font-sans font-semibold text-[15px] px-6 py-3;
-    background-color: #FFFFFF;
-    color: #2F5C90;
-    border: 1px solid rgba(68, 123, 190, 0.45);
+    background-color: transparent;
+    color: #E9E4A6;
+    border: 1px solid rgba(68, 123, 190, 0.7);
     transition: background-color 0.2s ease, border-color 0.2s ease;
   }
   .btn-secondary-outline:hover {
-    background-color: rgba(68, 123, 190, 0.07);
-    border-color: #447BBE;
+    background-color: rgba(68, 123, 190, 0.16);
+    border-color: #E9E4A6;
   }
-  .btn-secondary-outline:focus-visible { outline: 2px solid #0A0F1A; outline-offset: 3px; }
+  .btn-secondary-outline:focus-visible { outline: 2px solid #E9E4A6; outline-offset: 3px; }
 
   .eyebrow {
     @apply font-sans text-[12px] font-semibold tracking-[0.14em] uppercase;
-    color: #2F5C90;
+    color: #E9E4A6;
   }
 
   .section-y {
@@ -200,13 +200,13 @@
 
 @layer utilities {
   .bg-gradient-hero {
-    background: linear-gradient(180deg, rgba(233, 228, 166, 0.32) 0%, #FFFFFF 100%);
+    background: linear-gradient(180deg, rgba(233, 228, 166, 0.16) 0%, #0A0F1A 100%);
   }
   .bg-gradient-cta {
     background: #DD5013;
   }
   .bg-gradient-badge {
-    background: rgba(233, 228, 166, 0.45);
+    background: rgba(233, 228, 166, 0.16);
   }
   .bg-dot-grid {
     background-image: radial-gradient(circle, rgba(68, 123, 190, 0.10) 1px, transparent 1px);
@@ -398,9 +398,17 @@ body.hide-floating-controls button[aria-label="Back to top"] {
   display: none;
 }
 
-/* Minimal homepage top (dark by default, light via toggle) */
-.np { --np-bg: 0 0% 4%; --np-fg: 40 20% 92%; --np-muted: 40 8% 62%; background: hsl(var(--np-bg)); color: hsl(var(--np-fg)); font-family: "DM Sans", sans-serif; }
-.np.np-light { --np-bg: 40 25% 96%; --np-fg: 0 0% 8%; --np-muted: 0 0% 38%; }
+/* Editorial dark surfaces. There is no light theme; OS light mode must not flip these. */
+.np {
+  --np-bg: 0 0% 4%;
+  --np-fg: 40 20% 92%;
+  --np-muted: 40 8% 62%;
+  background: hsl(var(--np-bg));
+  color: hsl(var(--np-fg));
+  color-scheme: dark;
+  font-family: "DM Sans", sans-serif;
+}
+.np-header { background: hsl(var(--np-bg)); }
 .np-serif, .np-h { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
 .np-h { font-size: 20px; letter-spacing: 0.01em; }
 .np-muted { color: hsl(var(--np-muted)); }
@@ -409,8 +417,42 @@ body.hide-floating-controls button[aria-label="Back to top"] {
 .np-link-plain { color: inherit; }
 .np-link-plain:hover { text-decoration: underline; text-underline-offset: 4px; }
 .np a:focus-visible, .np button:focus-visible, .np input:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
-.np-toggle { display: inline-flex; padding: 6px; color: inherit; background: none; border: 0; }
-.np-light .np-portrait { filter: invert(1); }
+.np-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: #DD5013;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.np-cta:hover { background: #C4460F; color: #fff; text-decoration: none; opacity: 1; }
+.np-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid hsl(var(--np-fg) / 0.22);
+  background: transparent;
+  color: inherit;
+}
+.np-mobile-link {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  font-size: 17px;
+  color: inherit;
+  text-decoration: none;
+}
+.np-mobile-link:hover { text-decoration: underline; text-underline-offset: 4px; }
 .np-input { background: transparent; color: inherit; border: 0; border-bottom: 1px solid hsl(var(--np-muted)); padding: 10px 2px; font-size: 16px; }
 .np-input::placeholder { color: hsl(var(--np-muted)); }
 .np-submit { background: none; border: 0; color: inherit; text-decoration: underline; text-underline-offset: 4px; font-size: 16px; padding: 10px 2px; }

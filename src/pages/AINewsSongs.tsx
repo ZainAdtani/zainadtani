@@ -57,7 +57,7 @@ const SONGS: Song[] = [
 
 function ArrivalPill() {
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full border border-[#D97706]/30 bg-[#E9E4A6]/60 px-3 py-1 font-sans text-[12px] font-semibold text-[#A85B05]">
+    <span className="inline-flex items-center gap-1.5 rounded-full border border-[#D97706]/30 bg-[#E9E4A6]/60 px-3 py-1 font-sans text-[12px] font-semibold text-[#D97706]">
       <Radio className="h-3.5 w-3.5" aria-hidden="true" />
       {ARRIVAL_BADGE}
     </span>
@@ -72,22 +72,22 @@ function SongCard({ song }: { song: Song }) {
   return (
     <article className="surface-card p-6 sm:p-7">
       <div className="flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-[#2F5C90]">
+        <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-[#447BBE]">
           {song.date}
         </span>
-        <span className="rounded-full border border-[#447BBE]/25 bg-[#447BBE]/10 px-3 py-1 font-sans text-[12px] font-semibold text-[#2F5C90]">
+        <span className="rounded-full border border-[#447BBE]/25 bg-[#447BBE]/10 px-3 py-1 font-sans text-[12px] font-semibold text-[#447BBE]">
           {song.style}
         </span>
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-[#0A0F1A]/10 bg-[#0A0F1A]/[0.04] px-3 py-1 font-sans text-[12px] font-semibold text-[#0A0F1A]/70">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-[#0A0F1A]/[0.04] px-3 py-1 font-sans text-[12px] font-semibold text-white/70">
           <Clock className="h-3.5 w-3.5" aria-hidden="true" />
           {song.runtime}
         </span>
       </div>
 
-      <h3 className="mt-4 text-[22px] leading-snug text-[#0A0F1A]">{song.title}</h3>
+      <h3 className="mt-4 text-[22px] leading-snug text-white">{song.title}</h3>
 
-      <p className="mt-2 max-w-2xl font-sans text-[14.5px] leading-7 text-[#0A0F1A]/70">
-        <span className="font-semibold text-[#0A0F1A]">Headlines in this track: </span>
+      <p className="mt-2 max-w-2xl font-sans text-[14.5px] leading-7 text-white/70">
+        <span className="font-semibold text-white">Headlines in this track: </span>
         {song.headlines}
       </p>
 
@@ -109,7 +109,7 @@ function SongCard({ song }: { song: Song }) {
                 href={song.sunoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 font-sans text-[13px] font-semibold text-[#2F5C90] underline underline-offset-4 transition-colors hover:text-[#DD5013]"
+                className="inline-flex items-center gap-1.5 font-sans text-[13px] font-semibold text-[#447BBE] underline underline-offset-4 transition-colors hover:text-[#DD5013]"
               >
                 <Music2 className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                 Open in Suno
@@ -149,35 +149,35 @@ export default function AINewsSongs() {
       {/* Breadcrumb */}
       <nav
         aria-label="Breadcrumb"
-        className="mx-auto max-w-4xl px-5 pt-6 font-sans text-[13px] text-[#0A0F1A]/55 sm:px-6"
+        className="mx-auto max-w-4xl px-5 pt-6 font-sans text-[13px] text-white/55 sm:px-6"
       >
-        <Link to="/" className="hover:text-[#2F5C90] transition-colors">
+        <Link to="/" className="hover:text-[#447BBE] transition-colors">
           Home
         </Link>
         <span className="mx-2" aria-hidden="true">
           →
         </span>
-        <Link to="/resources" className="hover:text-[#2F5C90] transition-colors">
+        <Link to="/resources" className="hover:text-[#447BBE] transition-colors">
           Resources
         </Link>
         <span className="mx-2" aria-hidden="true">
           →
         </span>
-        <span className="text-[#0A0F1A]">AI News Songs</span>
+        <span className="text-white">AI News Songs</span>
       </nav>
 
       {/* Hero */}
       <section className="hero-warm mt-6 px-5 py-14 text-center sm:px-6 md:py-20">
         <div className="mx-auto max-w-3xl">
           <p className="eyebrow">A daily listening habit</p>
-          <h1 className="mt-4 text-[40px] leading-[1.08] text-[#0A0F1A] sm:text-[52px] md:text-[60px]">
+          <h1 className="mt-4 text-[40px] leading-[1.08] text-white sm:text-[52px] md:text-[60px]">
             AI News Songs
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-8 text-[#0A0F1A]/75 md:text-[18px]">
+          <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-8 text-white/75 md:text-[18px]">
             The day's headlines, turned into a song. A fresh track lands here every
             morning. Press play and hear what the world sounded like today.
           </p>
-          <p className="mt-4 font-sans text-[13.5px] italic leading-6 text-[#0A0F1A]/55">
+          <p className="mt-4 font-sans text-[13.5px] italic leading-6 text-white/55">
             How are these made? That part stays our little secret.
           </p>
         </div>
@@ -187,10 +187,10 @@ export default function AINewsSongs() {
       <section className="section-y px-5 sm:px-6">
         <div className="mx-auto max-w-3xl">
           <div className="flex flex-wrap items-end justify-between gap-3">
-            <h2 className="text-[26px] leading-tight text-[#0A0F1A] sm:text-[30px]">
+            <h2 className="text-[26px] leading-tight text-white sm:text-[30px]">
               Song Library
             </h2>
-            <p className="font-sans text-[13px] font-semibold uppercase tracking-[0.12em] text-[#2F5C90]">
+            <p className="font-sans text-[13px] font-semibold uppercase tracking-[0.12em] text-[#447BBE]">
               Newest first
             </p>
           </div>
@@ -201,7 +201,7 @@ export default function AINewsSongs() {
             ))}
           </div>
 
-          <p className="mt-10 rounded-xl border border-[#447BBE]/20 bg-[#447BBE]/[0.05] px-5 py-4 text-center font-sans text-[14.5px] leading-7 text-[#0A0F1A]/75">
+          <p className="mt-10 rounded-xl border border-[#447BBE]/20 bg-[#447BBE]/[0.05] px-5 py-4 text-center font-sans text-[14.5px] leading-7 text-white/75">
             New here? Start with the newest song at the top. The library grows every
             morning.
           </p>

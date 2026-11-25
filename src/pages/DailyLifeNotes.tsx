@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { Link, useParams } from "react-router-dom";
 import { LIFE_NOTES, notePath, noteUrl, parseNoteNumber, todaysNoteIndex } from "@/data/lifeNotes";
 import { NoteShareButton } from "@/components/TodaysNote";
+import { SearchableLifeNotes } from "./LifeNotes";
 
 export default function DailyLifeNotes() {
   const todayIdx = todaysNoteIndex();
@@ -26,16 +27,16 @@ export default function DailyLifeNotes() {
             return (
               <li
                 key={i}
-                className={`rounded-xl border bg-white p-5 shadow-sm ${isToday ? "border-[#DD5013]/50 ring-2 ring-[#DD5013]/20" : "border-border"}`}
+                className={`rounded-xl border bg-card p-5 shadow-sm ${isToday ? "border-[#DD5013]/50 ring-2 ring-[#DD5013]/20" : "border-border"}`}
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.14em] text-[#0A0F1A]/55">
+                    <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.14em] text-white/55">
                       {isToday ? <span className="text-[#DD5013]">Today's note</span> : `Note ${i + 1}`}
                     </p>
                     <Link
                       to={notePath(i)}
-                      className="mt-1.5 block font-sans text-[17px] leading-snug text-[#0A0F1A] underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE] rounded"
+                      className="mt-1.5 block font-sans text-[17px] leading-snug text-white underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE] rounded"
                     >
                       {LIFE_NOTES[i]}
                     </Link>
@@ -47,6 +48,7 @@ export default function DailyLifeNotes() {
           })}
         </ul>
       </section>
+      <SearchableLifeNotes />
     </div>
   );
 }
@@ -89,16 +91,16 @@ export function LifeNotePage() {
         <meta property="og:url" content={url} />
       </Helmet>
       <section className="hero-warm px-5 py-14">
-        <article className="mx-auto max-w-xl rounded-2xl border border-[#D97706]/30 bg-white p-7 shadow-sm">
-          <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.14em] text-[#0A0F1A]/55">
+        <article className="mx-auto max-w-xl rounded-2xl border border-[#D97706]/30 bg-card p-7 shadow-sm">
+          <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.14em] text-white/55">
             {isToday ? <span className="text-[#DD5013]">Today's note</span> : `Life Note ${number}`}
           </p>
-          <h1 className="hero-greeting mt-3 text-[26px] sm:text-[32px] leading-snug text-[#0A0F1A]">
+          <h1 className="hero-greeting mt-3 text-[26px] sm:text-[32px] leading-snug text-white">
             {text}
           </h1>
           <div className="mt-6 flex flex-wrap items-center gap-4">
             <NoteShareButton text={text} url={url} />
-            <Link to="/lifenotes" className="font-sans text-[14px] font-semibold text-[#2F5C90] underline-offset-4 hover:underline">
+            <Link to="/lifenotes" className="font-sans text-[14px] font-semibold text-[#447BBE] underline-offset-4 hover:underline">
               All notes
             </Link>
           </div>

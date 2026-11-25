@@ -154,7 +154,7 @@ export default function TermVsWholeLifeQuiz() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-[#0A0F1A]">
+    <div className="min-h-screen bg-background text-white">
       <Helmet>
         <title>Term vs. Whole Life Quiz | Zain Adtani</title>
         <meta
@@ -183,21 +183,21 @@ export default function TermVsWholeLifeQuiz() {
             Free tool
           </p>
           <h1
-            className="mt-3 text-[#0A0F1A] text-[44px] md:text-[72px] leading-[1.02]"
+            className="mt-3 text-white text-[44px] md:text-[72px] leading-[1.02]"
             style={{ fontFamily: "'Luckiest Guy', cursive", letterSpacing: "0.02em" }}
           >
             TERM OR
             <br />
             WHOLE LIFE?
           </h1>
-          <p className="mt-4 font-sans text-[18px] md:text-[22px] text-[#0A0F1A]/75 max-w-2xl mx-auto">
+          <p className="mt-4 font-sans text-[18px] md:text-[22px] text-white/75 max-w-2xl mx-auto">
             Five questions, sixty seconds, and you will know which one actually fits your life.
           </p>
         </section>
 
         {/* Quiz card */}
         <section className="mt-12 max-w-3xl mx-auto">
-          <div className="rounded-3xl border-2 border-[#0A0F1A]/10 bg-white overflow-hidden shadow-[0_10px_25px_-5px_rgba(10,15,26,0.12)]">
+          <div className="rounded-3xl border-2 border-white/10 bg-card overflow-hidden shadow-[0_10px_25px_-5px_rgba(10,15,26,0.12)]">
             {!done ? (
               <>
                 <div className="h-2 bg-[#0A0F1A]/10 w-full">
@@ -206,19 +206,19 @@ export default function TermVsWholeLifeQuiz() {
                     style={{ width: `${progress}%` }}
                   />
                 </div>
-                <div className="bg-[#F8FAF6] border-b-2 border-[#0A0F1A]/10 px-6 md:px-8 py-4 flex justify-between items-center">
+                <div className="bg-card border-b-2 border-white/10 px-6 md:px-8 py-4 flex justify-between items-center">
                   <span className="font-sans text-[13px] font-bold uppercase tracking-[0.1em] text-emerald-600">
                     Question {step + 1} of {QUESTIONS.length}
                   </span>
-                  <span className="font-sans text-[13px] text-[#0A0F1A]/50">
+                  <span className="font-sans text-[13px] text-white/50">
                     No jargon, simple score
                   </span>
                 </div>
                 <div key={step} className="p-6 md:p-8 animate-question-in">
-                  <h2 className="font-sans font-bold text-[22px] text-[#0A0F1A]">
+                  <h2 className="font-sans font-bold text-[22px] text-white">
                     {question.title}
                   </h2>
-                  <p className="mt-1 font-sans text-[14px] text-[#0A0F1A]/60">
+                  <p className="mt-1 font-sans text-[14px] text-white/60">
                     {question.hint}
                   </p>
                   <div className="mt-6 space-y-3">
@@ -233,17 +233,17 @@ export default function TermVsWholeLifeQuiz() {
                           }
                           className={`w-full flex items-center text-left font-sans font-semibold text-[15px] rounded-2xl border-2 px-5 py-4 transition-colors ${
                             selected
-                              ? "bg-[#0A0F1A] text-white border-[#0A0F1A]"
-                              : "bg-[#F8FAF6] text-[#0A0F1A] border-[#0A0F1A]/10 hover:border-emerald-500"
+                              ? "bg-[#0A0F1A] text-white border-white"
+                              : "bg-card text-white border-white/10 hover:border-emerald-500"
                           }`}
                         >
                           <span
                             className={`w-5 h-5 rounded-full border-2 mr-4 flex-shrink-0 flex items-center justify-center ${
-                              selected ? "border-white" : "border-[#0A0F1A]/30"
+                              selected ? "border-white" : "border-white/30"
                             }`}
                           >
                             {selected && (
-                              <span className="w-2 h-2 rounded-full bg-white" />
+                              <span className="w-2 h-2 rounded-full bg-card" />
                             )}
                           </span>
                           {opt.text}
@@ -251,12 +251,12 @@ export default function TermVsWholeLifeQuiz() {
                       );
                     })}
                   </div>
-                  <div className="mt-6 flex justify-between items-center border-t-2 border-[#0A0F1A]/10 pt-5">
+                  <div className="mt-6 flex justify-between items-center border-t-2 border-white/10 pt-5">
                     <button
                       type="button"
                       onClick={() => setStep((s) => Math.max(0, s - 1))}
                       disabled={step === 0}
-                      className="font-sans font-bold text-[15px] rounded-full px-6 py-3 bg-[#0A0F1A]/5 text-[#0A0F1A]/70 hover:bg-[#0A0F1A]/10 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                      className="font-sans font-bold text-[15px] rounded-full px-6 py-3 bg-[#0A0F1A]/5 text-white/70 hover:bg-[#0A0F1A]/10 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                     >
                       Back
                     </button>
@@ -277,7 +277,7 @@ export default function TermVsWholeLifeQuiz() {
             ) : (
               result && (
                 <div className="p-6 md:p-8 text-center animate-card-flip">
-                  <span className="inline-block font-sans text-[12px] font-bold uppercase tracking-[0.15em] rounded-full px-4 py-2 bg-emerald-500/10 text-emerald-700 border border-emerald-500/30">
+                  <span className="inline-block font-sans text-[12px] font-bold uppercase tracking-[0.15em] rounded-full px-4 py-2 bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">
                     {result.badge}
                   </span>
                   <div className="mt-6 rounded-3xl bg-[#0A0F1A] text-white p-8 md:p-10">
@@ -291,8 +291,8 @@ export default function TermVsWholeLifeQuiz() {
                       {result.tagline}
                     </p>
                   </div>
-                  <div className="mt-6 rounded-3xl border-2 border-[#0A0F1A]/10 bg-[#F8FAF6] p-6 md:p-8 text-left">
-                    <p className="font-sans text-[13px] font-bold uppercase tracking-[0.15em] text-[#0A0F1A]/60 border-b-2 border-[#0A0F1A]/10 pb-3">
+                  <div className="mt-6 rounded-3xl border-2 border-white/10 bg-card p-6 md:p-8 text-left">
+                    <p className="font-sans text-[13px] font-bold uppercase tracking-[0.15em] text-white/60 border-b-2 border-white/10 pb-3">
                       Why this makes sense for you
                     </p>
                     <div className="mt-4 space-y-3">
@@ -301,7 +301,7 @@ export default function TermVsWholeLifeQuiz() {
                           <span className="font-sans font-bold text-emerald-600 text-[18px] leading-none mt-0.5">
                             ✓
                           </span>
-                          <span className="font-sans text-[15px] text-[#0A0F1A]/80">
+                          <span className="font-sans text-[15px] text-white/80">
                             {r}
                           </span>
                         </div>
@@ -309,7 +309,7 @@ export default function TermVsWholeLifeQuiz() {
                     </div>
                   </div>
                   <div className="mt-6 rounded-3xl border-2 border-emerald-500/30 bg-emerald-500/5 p-6 text-center">
-                    <p className="font-sans font-semibold text-[15px] text-[#0A0F1A]">
+                    <p className="font-sans font-semibold text-[15px] text-white">
                       Want a licensed agent to walk you through this? Talk to Zain.
                     </p>
                     <a
@@ -324,7 +324,7 @@ export default function TermVsWholeLifeQuiz() {
                   <button
                     type="button"
                     onClick={restart}
-                    className="mt-6 font-sans font-bold text-[14px] text-[#0A0F1A]/60 hover:text-[#0A0F1A] underline underline-offset-4 transition-colors"
+                    className="mt-6 font-sans font-bold text-[14px] text-white/60 hover:text-white underline underline-offset-4 transition-colors"
                   >
                     Retake quiz
                   </button>
@@ -337,7 +337,7 @@ export default function TermVsWholeLifeQuiz() {
         {/* FAQ */}
         <section className="mt-20 max-w-3xl mx-auto">
           <h2
-            className="text-center text-[#0A0F1A] text-[32px] md:text-[44px]"
+            className="text-center text-white text-[32px] md:text-[44px]"
             style={{ fontFamily: "'Luckiest Guy', cursive", letterSpacing: "0.02em" }}
           >
             QUICK ANSWERS
@@ -346,10 +346,10 @@ export default function TermVsWholeLifeQuiz() {
             {FAQS.map((f) => (
               <div
                 key={f.q}
-                className="rounded-3xl border-2 border-[#0A0F1A]/10 bg-white p-6"
+                className="rounded-3xl border-2 border-white/10 bg-card p-6"
               >
                 <p className="font-sans font-bold text-[17px]">{f.q}</p>
-                <p className="mt-2 font-sans text-[15px] text-[#0A0F1A]/75">{f.a}</p>
+                <p className="mt-2 font-sans text-[15px] text-white/75">{f.a}</p>
               </div>
             ))}
           </div>
@@ -357,12 +357,12 @@ export default function TermVsWholeLifeQuiz() {
 
         {/* Disclaimer */}
         <section className="mt-16 max-w-3xl mx-auto text-center">
-          <p className="font-sans text-[13px] text-[#0A0F1A]/55">
+          <p className="font-sans text-[13px] text-white/55">
             Educational only. Not financial advice. This quiz gives a starting
             direction, not a recommendation. Talk to a licensed life insurance
             agent about your situation.
           </p>
-          <p className="mt-2 font-sans text-[13px] text-[#0A0F1A]/55">
+          <p className="mt-2 font-sans text-[13px] text-white/55">
             Made by Zain Adtani, Licensed Financial Professional. Runs entirely in your browser, no data captured.
           </p>
         </section>

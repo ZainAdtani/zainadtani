@@ -41,8 +41,7 @@ const TOP_NAV: NavItem[] = [
       { label: "Digital Product HQ", path: "/digital-products" },
       { label: "AI Prompt Library", path: "/ai-prompts" },
       { label: "10 starter prompts", path: "/prompts" },
-      { label: "Life Notes", path: "/life-notes" },
-      { label: "Life Notes (daily)", path: "/lifenotes" },
+      { label: "Life Notes", path: "/lifenotes" },
     ],
   },
   { label: "About", path: "/about" },
@@ -65,14 +64,14 @@ export const Header = () => {
 
   const isActive = (path: string) =>
     path.startsWith("/#") ? false : path === "/" ? location.pathname === "/" : location.pathname.startsWith(path);
-  const focusRing = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE] focus-visible:ring-offset-2";
+  const focusRing = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E9E4A6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0F1A]";
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white border-b border-[#447BBE]/15">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#0A0F1A] text-[#F6F1E7]" style={{ colorScheme: "dark" }}>
       <div className="container mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
         <Link to="/" className="flex items-center gap-2" aria-label="Zain Adtani — home">
-          <img src={zaLogo} alt="Zain Adtani logo" className="h-9 w-9 object-contain" />
-          <span className="hidden sm:inline font-display font-extrabold text-[15px] text-[#0A0F1A]">
+          <img src={zaLogo} alt="" className="h-9 w-9 object-contain mix-blend-screen" />
+          <span className="font-display font-extrabold text-[15px] text-white">
             Zain Adtani
           </span>
         </Link>
@@ -81,8 +80,8 @@ export const Header = () => {
           {TOP_NAV.map((item) => {
             const linkCls = `px-3 py-2 rounded-lg font-sans font-medium text-[15px] transition-colors ${focusRing} ${
               isActive(item.path)
-                ? "text-[#2F5C90] bg-[#447BBE]/10"
-                : "text-[#0A0F1A] hover:text-[#2F5C90] hover:bg-[#447BBE]/5"
+                ? "text-[#E9E4A6] bg-white/10"
+                : "text-white/85 hover:text-white hover:bg-white/10"
             }`;
             if (!item.children) {
               return (
@@ -109,16 +108,16 @@ export const Header = () => {
                   aria-label={`${item.label} menu`}
                   aria-expanded={open}
                   onClick={() => setOpenMenu(open ? null : item.label)}
-                  className={`p-1 rounded-md text-[#0A0F1A] hover:text-[#2F5C90] ${focusRing}`}
+                  className={`p-1 rounded-md text-white/85 hover:text-white ${focusRing}`}
                 >
                   <ChevronDown className={`h-4 w-4 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden="true" />
                 </button>
                 {open && (
                   <div className="absolute left-0 top-full pt-2 z-50">
-                    <ul className="surface-card min-w-[230px] max-h-[70vh] overflow-y-auto bg-white p-2 shadow-lg">
+                    <ul className="min-w-[230px] max-h-[70vh] overflow-y-auto rounded-xl border border-white/10 bg-[#121826] p-2 shadow-lg">
                       {item.children.map((c) => (
                         <li key={c.path + c.label}>
-                          <Link to={c.path} className={`block rounded-lg px-3 py-2 font-sans text-[14px] text-[#0A0F1A] hover:bg-[#447BBE]/10 hover:text-[#2F5C90] ${focusRing}`}>
+                          <Link to={c.path} className={`block rounded-lg px-3 py-2 font-sans text-[14px] text-white/90 hover:bg-white/10 hover:text-[#E9E4A6] ${focusRing}`}>
                             {c.label}
                           </Link>
                         </li>
@@ -136,7 +135,7 @@ export const Header = () => {
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className={`hidden md:inline-flex items-center justify-center bg-[#DD5013] text-white font-sans font-semibold text-[14px] px-5 py-2.5 rounded-xl hover:bg-[#C4460F] transition-colors ${focusRing}`}
+            className={`inline-flex items-center justify-center bg-[#DD5013] text-white font-sans font-semibold text-[13px] sm:text-[14px] px-3 sm:px-5 py-2.5 rounded-xl hover:bg-[#C4460F] transition-colors ${focusRing}`}
           >
             Book a Call
           </a>
@@ -146,7 +145,7 @@ export const Header = () => {
             onClick={() => setMobileOpen((v) => !v)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
-            className={`md:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg text-[#0A0F1A] hover:bg-[#447BBE]/10 transition-colors ${focusRing}`}
+            className={`md:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg text-white hover:bg-white/10 transition-colors ${focusRing}`}
           >
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -154,7 +153,7 @@ export const Header = () => {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden border-t border-[#447BBE]/15 bg-white max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <div className="md:hidden border-t border-white/10 bg-[#0A0F1A] max-h-[calc(100vh-4rem)] overflow-y-auto">
           <nav className="container mx-auto px-4 py-3 flex flex-col gap-1" aria-label="Mobile">
             {TOP_NAV.map((item) => (
               <div key={item.label}>
@@ -163,7 +162,7 @@ export const Header = () => {
                     to={item.path}
                     onClick={() => setMobileOpen(false)}
                     className={`flex-1 flex items-center min-h-[48px] px-4 rounded-xl font-sans font-medium text-[16px] transition-colors ${focusRing} ${
-                      isActive(item.path) ? "text-[#2F5C90] bg-[#447BBE]/10" : "text-[#0A0F1A] hover:bg-[#447BBE]/5"
+                      isActive(item.path) ? "text-[#E9E4A6] bg-white/10" : "text-white/90 hover:bg-white/10"
                     }`}
                   >
                     {item.label}
@@ -174,20 +173,20 @@ export const Header = () => {
                       aria-label={`Show ${item.label} links`}
                       aria-expanded={mobileSub === item.label}
                       onClick={() => setMobileSub(mobileSub === item.label ? null : item.label)}
-                      className={`w-12 h-12 inline-flex items-center justify-center rounded-xl text-[#0A0F1A] hover:bg-[#447BBE]/10 ${focusRing}`}
+                      className={`w-12 h-12 inline-flex items-center justify-center rounded-xl text-white/90 hover:bg-white/10 ${focusRing}`}
                     >
                       <ChevronDown className={`h-5 w-5 transition-transform ${mobileSub === item.label ? "rotate-180" : ""}`} aria-hidden="true" />
                     </button>
                   )}
                 </div>
                 {item.children && mobileSub === item.label && (
-                  <ul className="ml-4 border-l border-[#447BBE]/20 pl-2 mb-1">
+                  <ul className="ml-4 border-l border-white/15 pl-2 mb-1">
                     {item.children.map((c) => (
                       <li key={c.path + c.label}>
                         <Link
                           to={c.path}
                           onClick={() => setMobileOpen(false)}
-                          className={`flex items-center min-h-[44px] px-3 rounded-lg font-sans text-[15px] text-[#0A0F1A] hover:bg-[#447BBE]/5 ${focusRing}`}
+                          className={`flex items-center min-h-[44px] px-3 rounded-lg font-sans text-[15px] text-white/85 hover:bg-white/10 hover:text-white ${focusRing}`}
                         >
                           {c.label}
                         </Link>

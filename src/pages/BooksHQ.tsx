@@ -216,7 +216,7 @@ export default function BooksHQ() {
                   inside={book.blurb}
                 />
                 <div className="flex flex-col min-w-0">
-                  <span className="font-sans text-[11px] font-semibold tracking-[0.12em] uppercase text-[#2F5C90]">{book.format}</span>
+                  <span className="font-sans text-[11px] font-semibold tracking-[0.12em] uppercase text-[#447BBE]">{book.format}</span>
                   <h3 className="font-display text-[17px] leading-tight text-foreground mt-1">{book.title}</h3>
                   <p className="font-sans text-[13px] leading-relaxed text-foreground/75 mt-1 flex-1">{book.blurb}</p>
                   <a href={`https://www.amazon.com/dp/${book.asin}`} target="_blank" rel="noopener noreferrer" className="btn-cta mt-3 text-[14px]">
@@ -260,7 +260,7 @@ export default function BooksHQ() {
               To Read ({bookCounts.TBR})
             </Button>
             <Button 
-              className={statusFilter === "DIGITAL_FILES" ? "bg-red-600 text-[#0A0F1A] hover:bg-red-700" : "bg-red-600/10 text-red-600 border border-red-600/20 hover:bg-red-600/20"}
+              className={statusFilter === "DIGITAL_FILES" ? "bg-red-600 text-white hover:bg-red-700" : "bg-red-600/10 text-red-600 border border-red-600/20 hover:bg-red-600/20"}
               onClick={() => setStatusFilter("DIGITAL_FILES")} 
               size="sm"
             >
@@ -310,7 +310,7 @@ export default function BooksHQ() {
                       href={book.whopUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="mb-2 inline-flex w-full items-center justify-center rounded-full bg-red-500 px-3 py-1 text-xs font-semibold text-[#0A0F1A] shadow-sm hover:bg-red-600 transition-colors"
+                      className="mb-2 inline-flex w-full items-center justify-center rounded-full bg-red-500 px-3 py-1 text-xs font-semibold text-white shadow-sm hover:bg-red-600 transition-colors"
                     >
                       🎁 Get free PDF
                     </a>

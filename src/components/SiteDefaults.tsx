@@ -14,6 +14,7 @@ export function SiteDefaults() {
 
   return (
     <Helmet>
+      {meta && <title>{meta.title}</title>}
       {meta && <meta name="description" content={meta.description} />}
       {meta && <meta property="og:title" content={meta.title} />}
       {meta && <meta property="og:description" content={meta.description} />}

@@ -61,10 +61,10 @@ export function StarMap() {
       <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
         <div className="text-center max-w-2xl mx-auto">
           <p className="eyebrow">A simple map</p>
-          <h2 id="start-heading" className="font-display text-[30px] md:text-[40px] leading-[1.15] text-[#0A0F1A] mt-2">
+          <h2 id="start-heading" className="font-display text-[30px] md:text-[40px] leading-[1.15] text-white mt-2">
             Where do you want to start?
           </h2>
-          <p className="font-sans text-[16px] leading-relaxed text-[#0A0F1A]/70 mt-3">
+          <p className="font-sans text-[16px] leading-relaxed text-white/70 mt-3">
             Pick a star. Each one takes you to a real next step on this site.
           </p>
         </div>
@@ -93,7 +93,7 @@ export function StarMap() {
                     onMouseEnter={() => setActive(s.id)}
                     onFocus={() => setActive(s.id)}
                     onClick={() => setActive(s.id)}
-                    className="starmap-star rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A0F1A] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(45,82%,94%)]"
+                    className="starmap-star rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#447BBE] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(45,82%,94%)]"
                     style={{ ["--i" as string]: i, ["--c" as string]: s.color, width: s.size + 14, height: s.size + 14 }}
                   >
                     <svg viewBox="0 0 24 24" className={`w-full h-full transition-transform ${on ? "scale-125" : ""}`} aria-hidden="true">
@@ -102,32 +102,32 @@ export function StarMap() {
                     </svg>
                   </button>
                   <span className="mt-1 text-center pointer-events-none whitespace-nowrap">
-                    <span className="block font-sans font-bold text-[14px] text-[#0A0F1A]">{s.label}</span>
-                    <span className="block font-sans text-[12px] text-[#0A0F1A]/70">{s.sub}</span>
+                    <span className="block font-sans font-bold text-[14px] text-white">{s.label}</span>
+                    <span className="block font-sans text-[12px] text-white/70">{s.sub}</span>
                   </span>
                 </div>
               );
             })}
           </div>
 
-          <div id="starmap-card" aria-live="polite" className="surface-card bg-white p-7 min-h-[220px] flex flex-col justify-center">
+          <div id="starmap-card" aria-live="polite" className="surface-card bg-card p-7 min-h-[220px] flex flex-col justify-center">
             {star ? (
               <>
                 <p className="eyebrow" style={{ color: star.id === "read" ? "#7A6F1E" : undefined }}>{star.label}</p>
-                <h3 className="font-display text-[22px] text-[#0A0F1A] mt-2">{star.title}</h3>
-                <p className="font-sans text-[16px] leading-relaxed text-[#0A0F1A]/75 mt-2">{star.sentence}</p>
+                <h3 className="font-display text-[22px] text-white mt-2">{star.title}</h3>
+                <p className="font-sans text-[16px] leading-relaxed text-white/75 mt-2">{star.sentence}</p>
                 <div className="mt-6 flex flex-col sm:flex-row gap-3">
                   <CardButton b={star.primary} primary />
                   {star.secondary && <CardButton b={star.secondary} primary={false} />}
                 </div>
                 {star.extra && (
-                  <Link to={star.extra.to} className="mt-3 font-sans text-[14px] font-semibold text-[#2F5C90] underline underline-offset-4 w-fit">
+                  <Link to={star.extra.to} className="mt-3 font-sans text-[14px] font-semibold text-[#447BBE] underline underline-offset-4 w-fit">
                     {star.extra.label}
                   </Link>
                 )}
               </>
             ) : (
-              <p className="font-sans text-[16px] text-center text-[#0A0F1A]/70">Hover or tap a star to see where it goes.</p>
+              <p className="font-sans text-[16px] text-center text-white/70">Hover or tap a star to see where it goes.</p>
             )}
           </div>
         </div>

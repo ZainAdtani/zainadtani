@@ -1,0 +1,23 @@
+# Checkout shortcuts for hosts that already read public/_headers
+# (Cloudflare Pages / Netlify). Same destinations as src/data/payLinks.ts.
+# 302 so a Stripe link can change without a permanent cache.
+/speed  https://buy.stripe.com/aFa14n1yObDmaj1aVna3u0l  302
+/pay/speed-to-lead  https://buy.stripe.com/aFa14n1yObDmaj1aVna3u0l  302
+/pay/visibility-annual  https://buy.stripe.com/5kQcN5cdsdLu62L0gJa3u0k  302
+/pay/permit-alerts  https://buy.stripe.com/28E4gz5P4bDmcr92oRa3u0j  302
+/pay/staging-rush  https://buy.stripe.com/00w3cv1yO9ve8aT9Rja3u0i  302
+/pay/visibility-setup  https://buy.stripe.com/bJe5kDfpE0YI62L2oRa3u0h  302
+/pay/staging-listing  https://buy.stripe.com/cNi5kDgtIfTC76PaVna3u0g  302
+/pay/staging-photo  https://buy.stripe.com/fZueVddhw22M4YH0gJa3u0f  302
+/pay/contractor-presence  https://buy.stripe.com/28EcN53GWePy4YH0gJa3u0e  302
+/pay/visibility-trial  https://buy.stripe.com/aFa6oH1yOdLu3UD9Rja3u0d  302
+/pay/missed-call  https://buy.stripe.com/00w4gzelA8raaj10gJa3u0c  302
+/pay/agent-pin  https://buy.stripe.com/5kQ14nb9o7n6aj10gJa3u0a  302
+/pay/agent-job  https://buy.stripe.com/bJe4gzb9o5eY0Ir2oRa3u09  302
+/pay/trades-pin  https://buy.stripe.com/aFa28rcds22Mezh5B3a3u08  302
+/pay/trades-job  https://buy.stripe.com/6oU28r91g9vefDlaVna3u07  302
+/pay/ai-assessment  https://buy.stripe.com/14AdR9fpEbDm4YHe7za3u05  302
+/pay/voice-care  https://buy.stripe.com/3cIaEXelA22Mcr9bZra3u04  302
+/pay/voice-build  https://buy.stripe.com/4gMaEX91g0YI3UD7Jba3u03  302
+/pay/visibility-partner  https://buy.stripe.com/00wdR91yOazicr9aVna3u02  302
+/pay/jumpstart  https://buy.stripe.com/8x27sLelAcHq76PfbDa3u01  302
