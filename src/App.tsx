@@ -15,6 +15,7 @@ import MissedCallCalculator from "./pages/MissedCallCalculator";
 import AICheckup from "./pages/AICheckup";
 import BuzzerBlockPrivacy from "./pages/BuzzerBlockPrivacy";
 import DailyLifeNotes, { LifeNotePage } from "./pages/DailyLifeNotes";
+import PayRedirect from "./pages/PayRedirect";
 
 const Projects = lazy(() => import("./pages/Projects"));
 const Tools = lazy(() => import("./pages/Tools"));
@@ -86,6 +87,8 @@ const App = () => (
         <HeadTagCleanup />
         <Routes>
           <Route path="/kdp-copilot" element={<Suspense fallback={<PageFallback />}><KDPCopilot /></Suspense>} />
+          <Route path="/speed" element={<PayRedirect slug="speed-to-lead" />} />
+          <Route path="/pay/:slug" element={<PayRedirect />} />
           <Route
             path="*"
             element={
