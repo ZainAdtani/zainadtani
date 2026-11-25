@@ -120,7 +120,7 @@ const LOCAL_BOOKS: Book[] = [
     cover: "/book-covers/millionaire-fastlane.jpg",
     rating: 5,
     hasDigitalFile: true,
-    hasFreePdf: true,
+    hasFreePdf: false,
   },
 
   // In Progress Books
@@ -166,7 +166,7 @@ const LOCAL_BOOKS: Book[] = [
     link: "https://www.amazon.com/4-Hour-Workweek-Escape-Live-Anywhere/dp/0307465357",
     cover: "/book-covers/4hr.jpeg",
     hasDigitalFile: true,
-    hasFreePdf: true,
+    hasFreePdf: false,
   },
   {
     id: "work-the-system",
@@ -263,7 +263,7 @@ const LOCAL_BOOKS: Book[] = [
     link: "https://www.amazon.com/dp/076790592X",
     cover: "/book-covers/tuesdays-with-morrie.png",
     rating: 5,
-    hasFreePdf: true,
+    hasFreePdf: false,
   },
   {
     id: "how-to-win-friends",
@@ -293,7 +293,7 @@ const LOCAL_BOOKS: Book[] = [
     tags: ["Personal Finance", "Investing"],
     link: "https://www.amazon.com/Unshakeable-Financial-Freedom-Playbook-Robbins/dp/1501164589",
     rating: 5,
-    hasFreePdf: true,
+    hasFreePdf: false,
   },
   {
     id: "100m-offers",
@@ -314,7 +314,7 @@ const LOCAL_BOOKS: Book[] = [
     cover: "https://m.media-amazon.com/images/I/71aFt4+OTOL._SY466_.jpg",
     rating: 5,
     hasDigitalFile: true,
-    hasFreePdf: true,
+    hasFreePdf: false,
   },
   {
     id: "brief-illustrated-guide-islam",
@@ -465,7 +465,7 @@ const LOCAL_BOOKS: Book[] = [
     isbn: "9781582701707",
     rating: 5,
     notes: "Probably need to reread once a month and watch the movie once a month",
-    hasFreePdf: true,
+    hasFreePdf: false,
   },
   {
     id: "the-sht-they-never-taught-you",
@@ -1352,7 +1352,7 @@ const LOCAL_BOOKS: Book[] = [
     tags: [],
     link: "https://a.co/d/eymslYJ",
     hasDigitalFile: true,
-    hasFreePdf: true,
+    hasFreePdf: false,
   },
   {
     id: "between-shades-of-gray",
